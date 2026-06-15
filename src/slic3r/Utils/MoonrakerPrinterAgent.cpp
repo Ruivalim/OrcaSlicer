@@ -828,7 +828,10 @@ bool MoonrakerPrinterAgent::fetch_moonraker_filament_data(std::vector<AmsTrayDat
         tray.bed_temp = safe_json_int(lane_obj, "bed_temp");
         tray.nozzle_temp = safe_json_int(lane_obj, "nozzle_temp");
         tray.has_filament = !tray.tray_type.empty();
-        tray.tray_info_idx = map_filament_type_to_generic_id(tray.tray_type);
+        auto* bundle = GUI::wxGetApp().preset_bundle;
+        tray.tray_info_idx = bundle
+            ? bundle->filaments.filament_id_by_type(tray.tray_type)
+            : map_filament_type_to_generic_id(tray.tray_type);
 
         max_lane_index = std::max(max_lane_index, lane_index);
         trays.push_back(tray);
@@ -953,7 +956,10 @@ bool MoonrakerPrinterAgent::fetch_hh_filament_info(std::vector<AmsTrayData>& tra
         tray.bed_temp = 0;  // HH doesn't provide bed temp in gate arrays
         tray.has_filament = true;
 
-        tray.tray_info_idx = map_filament_type_to_generic_id(tray.tray_type);
+        auto* bundle = GUI::wxGetApp().preset_bundle;
+        tray.tray_info_idx = bundle
+            ? bundle->filaments.filament_id_by_type(tray.tray_type)
+            : map_filament_type_to_generic_id(tray.tray_type);
 
         max_lane_index = std::max(max_lane_index, gate_idx);
         trays.push_back(tray);
@@ -1061,7 +1067,10 @@ bool MoonrakerPrinterAgent::fetch_creality_cfs_data(std::vector<AmsTrayData>& tr
             data.nozzle_temp = 0;
             data.has_filament = true;
 
-            data.tray_info_idx = map_filament_type_to_generic_id(data.tray_type);
+            auto* bundle = GUI::wxGetApp().preset_bundle;
+            data.tray_info_idx = bundle
+                ? bundle->filaments.filament_id_by_type(data.tray_type)
+                : map_filament_type_to_generic_id(data.tray_type);
 
             max_lane_index = std::max(max_lane_index, data.slot_index);
             trays.push_back(data);
