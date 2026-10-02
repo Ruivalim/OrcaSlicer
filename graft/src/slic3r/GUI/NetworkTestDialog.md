@@ -1,0 +1,23 @@
+# src/slic3r/GUI/NetworkTestDialog.hpp
+
+- TestJob · type · L36-L41 — enum TestJob
+- NetworkTestDialog · class · L43-L103 — class NetworkTestDialog : public DPIDialog
+- create_top_sizer · function · L67-L67 — wxBoxSizer* create_top_sizer(wxWindow* parent);
+- create_info_sizer · function · L68-L68 — wxBoxSizer* create_info_sizer(wxWindow* parent);
+- create_content_sizer · function · L69-L69 — wxBoxSizer* create_content_sizer(wxWindow* parent);
+- create_result_sizer · function · L70-L70 — wxBoxSizer* create_result_sizer(wxWindow* parent);
+- init_bind · function · L78-L78 — void init_bind();
+- NetworkTestDialog · function · L81-L81 — NetworkTestDialog(wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = wxEmptyString, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize(605, 375), long style = wxDEFAULT_DIALOG_STYLE);
+- on_dpi_changed · function · L85-L85 — void on_dpi_changed(const wxRect& suggested_rect);
+- set_default · function · L87-L87 — void set_default();
+- get_studio_version · function · L88-L88 — wxString get_studio_version();
+- get_os_info · function · L89-L89 — wxString get_os_info();
+- get_dns_info · function · L90-L90 — wxString get_dns_info();
+- start_all_job · function · L92-L92 — void start_all_job();
+- start_all_job_sequence · function · L93-L93 — void start_all_job_sequence();
+- start_test_bing_thread · function · L94-L94 — void start_test_bing_thread();
+- start_test_github_thread · function · L95-L95 — void start_test_github_thread();
+- start_test_ping_thread · function · L96-L96 — void start_test_ping_thread();
+- start_test_url · function · L98-L98 — void start_test_url(TestJob job, wxString name, wxString url);
+- on_close · function · L100-L100 — void on_close(wxCloseEvent& event);
+- update_status · function · L102-L102 — void update_status(int job_id, wxString info);

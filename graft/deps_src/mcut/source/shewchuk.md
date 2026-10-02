@@ -1,0 +1,73 @@
+# deps_src/mcut/source/shewchuk.c
+
+- grow_expansion · function · L774-L795 — int grow_expansion(elen, e, b, h)                /* e and h can be the same. */
+- grow_expansion_zeroelim · function · L811-L838 — int grow_expansion_zeroelim(elen, e, b, h)       /* e and h can be the same. */
+- expansion_sum · function · L853-L886 — int expansion_sum(elen, e, flen, f, h)
+- expansion_sum_zeroelim1 · function · L902-L946 — int expansion_sum_zeroelim1(elen, e, flen, f, h)
+- expansion_sum_zeroelim2 · function · L962-L1004 — int expansion_sum_zeroelim2(elen, e, flen, f, h)
+- fast_expansion_sum · function · L1019-L1080 — int fast_expansion_sum(elen, e, flen, f, h)           /* h cannot be e or f. */
+- fast_expansion_sum_zeroelim · function · L1096-L1168 — int fast_expansion_sum_zeroelim(elen, e, flen, f, h)  /* h cannot be e or f. */
+- linear_expansion_sum · function · L1181-L1231 — int linear_expansion_sum(elen, e, flen, f, h)         /* h cannot be e or f. */
+- linear_expansion_sum_zeroelim · function · L1245-L1304 — int linear_expansion_sum_zeroelim(elen, e, flen, f, h)/* h cannot be e or f. */
+- scale_expansion · function · L1319-L1351 — int scale_expansion(elen, e, b, h)            /* e and h cannot be the same. */
+- scale_expansion_zeroelim · function · L1368-L1409 — int scale_expansion_zeroelim(elen, e, b, h)   /* e and h cannot be the same. */
+- estimate · function · L1468-L1480 — REAL estimate(elen, e)
+- orient2dfast · function · L1508-L1520 — REAL orient2dfast(pa, pb, pc)
+- orient2dexact · function · L1522-L1565 — REAL orient2dexact(pa, pb, pc)
+- orient2dslow · function · L1567-L1609 — REAL orient2dslow(pa, pb, pc)
+- orient2dadapt · function · L1611-L1693 — REAL orient2dadapt(pa, pb, pc, detsum)
+- orient2d · function · L1695-L1729 — REAL orient2d(pa, pb, pc)
+- orient3dfast · function · L1760-L1783 — REAL orient3dfast(pa, pb, pc, pd)
+- orient3dexact · function · L1785-L1864 — REAL orient3dexact(pa, pb, pc, pd)
+- orient3dslow · function · L1866-L1960 — REAL orient3dslow(pa, pb, pc, pd)
+- orient3dadapt · function · L1962-L2365 — REAL orient3dadapt(pa, pb, pc, pd, permanent)
+- orient3d · function · L2367-L2410 — REAL orient3d(pa, pb, pc, pd)
+- incirclefast · function · L2438-L2463 — REAL incirclefast(pa, pb, pc, pd)
+- incircleexact · function · L2465-L2565 — REAL incircleexact(pa, pb, pc, pd)
+- incircleslow · function · L2567-L2725 — REAL incircleslow(pa, pb, pc, pd)
+- incircleadapt · function · L2727-L3299 — REAL incircleadapt(pa, pb, pc, pd, permanent)
+- incircle · function · L3301-L3345 — REAL incircle(pa, pb, pc, pd)
+- inspherefast · function · L3374-L3420 — REAL inspherefast(pa, pb, pc, pd, pe)
+- insphereexact · function · L3422-L3677 — REAL insphereexact(pa, pb, pc, pd, pe)
+- insphereslow · function · L3679-L4011 — REAL insphereslow(pa, pb, pc, pd, pe)
+- insphereadapt · function · L4013-L4231 — REAL insphereadapt(pa, pb, pc, pd, pe, permanent)
+- insphere · function · L4233-L4338 — REAL insphere(pa, pb, pc, pd, pe)
+- doublerand · function · L4842-L4859 — double doublerand()
+- narrowdoublerand · function · L4868-L4885 — double narrowdoublerand()
+- uniformdoublerand · function · L4893-L4902 — double uniformdoublerand()
+- floatrand · function · L4911-L4927 — float floatrand()
+- narrowfloatrand · function · L4936-L4952 — float narrowfloatrand()
+- uniformfloatrand · function · L4960-L4968 — float uniformfloatrand()
+- exactinit · function · L4989-L5029 — void exactinit()
+- grow_expansion · function · L5044-L5065 — int grow_expansion(elen, e, b, h) /* e and h can be the same. */
+- grow_expansion_zeroelim · function · L5081-L5108 — int grow_expansion_zeroelim(elen, e, b, h) /* e and h can be the same. */
+- expansion_sum · function · L5123-L5156 — int expansion_sum(elen, e, flen, f, h)
+- expansion_sum_zeroelim1 · function · L5172-L5216 — int expansion_sum_zeroelim1(elen, e, flen, f, h)
+- expansion_sum_zeroelim2 · function · L5232-L5274 — int expansion_sum_zeroelim2(elen, e, flen, f, h)
+- fast_expansion_sum · function · L5289-L5350 — int fast_expansion_sum(elen, e, flen, f, h) /* h cannot be e or f. */
+- fast_expansion_sum_zeroelim · function · L5366-L5438 — int fast_expansion_sum_zeroelim(elen, e, flen, f, h) /* h cannot be e or f. */
+- linear_expansion_sum · function · L5451-L5499 — int linear_expansion_sum(elen, e, flen, f, h) /* h cannot be e or f. */
+- linear_expansion_sum_zeroelim · function · L5513-L5570 — int linear_expansion_sum_zeroelim(elen, e, flen, f, h) /* h cannot be e or f. */
+- scale_expansion · function · L5585-L5617 — int scale_expansion(elen, e, b, h) /* e and h cannot be the same. */
+- scale_expansion_zeroelim · function · L5634-L5675 — int scale_expansion_zeroelim(elen, e, b, h) /* e and h cannot be the same. */
+- estimate · function · L5734-L5745 — REAL estimate(elen, e) int elen;
+- orient2dfast · function · L5773-L5785 — REAL orient2dfast(pa, pb, pc)
+- orient2dexact · function · L5787-L5830 — REAL orient2dexact(pa, pb, pc)
+- orient2dslow · function · L5832-L5874 — REAL orient2dslow(pa, pb, pc)
+- orient2dadapt · function · L5876-L5958 — REAL orient2dadapt(pa, pb, pc, detsum)
+- orient2d · function · L5960-L5994 — REAL orient2d(pa, pb, pc)
+- orient3dfast · function · L6025-L6048 — REAL orient3dfast(pa, pb, pc, pd)
+- orient3dexact · function · L6050-L6129 — REAL orient3dexact(pa, pb, pc, pd)
+- orient3dslow · function · L6131-L6225 — REAL orient3dslow(pa, pb, pc, pd)
+- orient3dadapt · function · L6227-L6669 — REAL orient3dadapt(pa, pb, pc, pd, permanent)
+- orient3d · function · L6671-L6714 — REAL orient3d(pa, pb, pc, pd)
+- incirclefast · function · L6747-L6772 — REAL incirclefast(pa, pb, pc, pd)
+- incircleexact · function · L6774-L6874 — REAL incircleexact(pa, pb, pc, pd)
+- incircleslow · function · L6876-L7031 — REAL incircleslow(pa, pb, pc, pd)
+- incircleadapt · function · L7033-L7647 — REAL incircleadapt(pa, pb, pc, pd, permanent)
+- incircle · function · L7649-L7693 — REAL incircle(pa, pb, pc, pd)
+- inspherefast · function · L7722-L7768 — REAL inspherefast(pa, pb, pc, pd, pe)
+- insphereexact · function · L7770-L8025 — REAL insphereexact(pa, pb, pc, pd, pe)
+- insphereslow · function · L8027-L8359 — REAL insphereslow(pa, pb, pc, pd, pe)
+- insphereadapt · function · L8361-L8572 — REAL insphereadapt(pa, pb, pc, pd, pe, permanent)
+- insphere · function · L8574-L8679 — REAL insphere(pa, pb, pc, pd, pe)

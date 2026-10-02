@@ -1,0 +1,39 @@
+# src/libslic3r/CAD/GeometryEngine.hpp
+
+- PrimitiveType · type · L20-L20 — enum class PrimitiveType { Box, Cylinder, Sphere, Cone, Torus, COUNT };
+- DressUpType · type · L21-L21 — enum class DressUpType   { Fillet, Chamfer };
+- FaceGroup · type · L22-L22 — enum class FaceGroup     { Top, Bottom, Lateral, All };
+- PrimitiveParams · class · L24-L50 — struct PrimitiveParams
+- serialize · function · L43-L49 — template<class Archive>
+- GeometryEngine · class · L52-L179 — class GeometryEngine
+- make_primitive · function · L55-L55 — static TopoDS_Solid make_primitive(const PrimitiveParams& params);
+- read_step_solids · function · L60-L60 — static std::vector<TopoDS_Shape> read_step_solids(const std::string& path, std::string& err);
+- MeshBrepStats · class · L70-L84 — struct MeshBrepStats
+- mesh_to_brep · function · L92-L95 — static TopoDS_Shape mesh_to_brep(const indexed_triangle_set& its,
+- MassProps · class · L97-L106 — struct MassProps
+- mass_properties · function · L107-L107 — static MassProps mass_properties(const TopoDS_Shape& shape);
+- Deviation · class · L109-L109 — struct Deviation { double max_mm{0}; double mean_mm{0}; double rms_mm{0}; int sample_count{0}; };
+- surface_deviation · function · L110-L112 — static Deviation surface_deviation(const TopoDS_Shape& candidate,
+- apply_fillet · function · L114-L115 — static TopoDS_Shape apply_fillet(const TopoDS_Shape& solid, double radius,
+- apply_fillet · function · L116-L117 — static TopoDS_Shape apply_fillet(const TopoDS_Shape& solid, double radius,
+- apply_chamfer · function · L118-L119 — static TopoDS_Shape apply_chamfer(const TopoDS_Shape& solid, double distance,
+- apply_chamfer · function · L120-L121 — static TopoDS_Shape apply_chamfer(const TopoDS_Shape& solid, double distance,
+- tessellate · function · L123-L125 — static TriangleMesh tessellate(const TopoDS_Shape& shape,
+- primitive_name · function · L126-L126 — static std::string  primitive_name(PrimitiveType type);
+- face_by_index · function · L131-L131 — static TopoDS_Face face_by_index(const TopoDS_Shape& shape, int index);  // null if out of range
+- face_count · function · L132-L132 — static int         face_count(const TopoDS_Shape& shape);
+- faces_of · function · L137-L137 — static std::vector<TopoDS_Face> faces_of(const TopoDS_Shape& shape);
+- edges_of · function · L138-L138 — static std::vector<TopoDS_Edge> edges_of(const TopoDS_Shape& shape);
+- edges_of_face · function · L139-L139 — static std::vector<TopoDS_Edge> edges_of_face(const TopoDS_Face& face);
+- face_centroid_world · function · L141-L141 — static Vec3d face_centroid_world(const TopoDS_Face& face);
+- face_normal_world · function · L143-L143 — static Vec3d face_normal_world(const TopoDS_Face& face);
+- sample_edge_world · function · L145-L145 — static std::vector<Vec3d> sample_edge_world(const TopoDS_Edge& edge, double chord_tol = 0.05);
+- edge_count · function · L147-L147 — static int          edge_count(const TopoDS_Shape& shape);
+- edge_by_index · function · L148-L148 — static TopoDS_Edge  edge_by_index(const TopoDS_Shape& shape, int index);
+- edge_index_of · function · L149-L149 — static int          edge_index_of(const TopoDS_Shape& shape, const TopoDS_Edge& edge);
+- CylinderFace · class · L155-L162 — struct CylinderFace
+- cylinder_of_face · function · L163-L163 — static CylinderFace cylinder_of_face(const TopoDS_Face& face);
+- circle_of_edge · function · L167-L167 — static CylinderFace circle_of_edge(const TopoDS_Edge& edge);
+- face_plane_bounds · function · L172-L174 — static bool face_plane_bounds(const TopoDS_Face& face, const Vec3d& origin,
+- collect_edges · function · L177-L177 — static std::vector<TopoDS_Edge> collect_edges(const TopoDS_Shape& solid, FaceGroup faces);
+- classify_face · function · L178-L178 — static FaceGroup classify_face(const TopoDS_Face& face, const TopoDS_Shape& solid);

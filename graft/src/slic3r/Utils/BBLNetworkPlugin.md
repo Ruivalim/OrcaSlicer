@@ -1,0 +1,150 @@
+# src/slic3r/Utils/BBLNetworkPlugin.hpp
+
+- BBLNetworkPlugin · class · L175-L565 — class BBLNetworkPlugin
+- instance · function · L178-L178 — static BBLNetworkPlugin& instance();
+- BBLNetworkPlugin · function · L181-L181 — BBLNetworkPlugin(const BBLNetworkPlugin&) = delete;
+- BBLNetworkPlugin · function · L183-L183 — BBLNetworkPlugin(BBLNetworkPlugin&&) = delete;
+- initialize · function · L196-L196 — int initialize(bool using_backup = false, const std::string& version = "");
+- unload · function · L202-L202 — int unload();
+- shutdown · function · L209-L209 — static void shutdown();
+- is_loaded · function · L214-L214 — bool is_loaded() const;
+- get_version · function · L219-L219 — std::string get_version() const;
+- create_agent · function · L231-L231 — void* create_agent(const std::string& log_dir);
+- destroy_agent · function · L237-L237 — int destroy_agent();
+- get_agent · function · L243-L243 — void* get_agent() const { return m_agent; }
+- has_agent · function · L248-L248 — bool has_agent() const { return m_agent != nullptr; }
+- get_networking_module · function · L255-L255 — HMODULE get_networking_module() const { return m_networking_module; }
+- get_source_module · function · L256-L256 — HMODULE get_source_module();
+- get_networking_module · function · L258-L258 — void* get_networking_module() const { return m_networking_module; }
+- get_source_module · function · L259-L259 — void* get_source_module();
+- get_function · function · L262-L262 — void* get_function(const char* name);
+- get_network_function · function · L265-L265 — void* get_network_function(const char* name) { return get_function(name); }
+- get_bambu_source_entry · function · L267-L267 — HMODULE get_bambu_source_entry() { return get_source_module(); }
+- get_bambu_source_entry · function · L269-L269 — void* get_bambu_source_entry() { return get_source_module(); }
+- get_libpath_in_current_directory · function · L276-L276 — static std::string get_libpath_in_current_directory(const std::string& library_name);
+- get_versioned_library_path · function · L277-L277 — static std::string get_versioned_library_path(const std::string& version);
+- resolve_library_path · function · L280-L280 — static std::string resolve_library_path(const std::string& version);
+- versioned_library_exists · function · L281-L281 — static bool versioned_library_exists(const std::string& version);
+- legacy_library_exists · function · L282-L282 — static bool legacy_library_exists();
+- remove_legacy_library · function · L283-L283 — static void remove_legacy_library();
+- scan_plugin_versions · function · L284-L284 — static std::vector<std::string> scan_plugin_versions();
+- get_load_error · function · L290-L290 — NetworkLibraryLoadError get_load_error() const { return m_load_error; }
+- clear_load_error · function · L291-L291 — void clear_load_error();
+- set_load_error · function · L292-L294 — void set_load_error(const std::string& message,
+- is_legacy_version · function · L300-L300 — static bool is_legacy_version(const std::string& version) { return version == BAMBU_NETWORK_AGENT_VERSION_LEGACY; }
+- network_abi · function · L302-L302 — NetworkAbi network_abi() const { return m_network_abi; }
+- use_legacy_network · function · L303-L303 — bool use_legacy_network() const { return m_network_abi == NetworkAbi::Legacy; }
+- get_check_debug_consistent · function · L309-L309 — func_check_debug_consistent get_check_debug_consistent() const { return m_check_debug_consistent; }
+- get_get_version · function · L310-L310 — func_get_version get_get_version() const { return m_get_version; }
+- get_create_agent · function · L311-L311 — func_create_agent get_create_agent() const { return m_create_agent; }
+- get_destroy_agent · function · L312-L312 — func_destroy_agent get_destroy_agent() const { return m_destroy_agent; }
+- get_init_log · function · L313-L313 — func_init_log get_init_log() const { return m_init_log; }
+- get_set_config_dir · function · L314-L314 — func_set_config_dir get_set_config_dir() const { return m_set_config_dir; }
+- get_set_cert_file · function · L315-L315 — func_set_cert_file get_set_cert_file() const { return m_set_cert_file; }
+- get_set_country_code · function · L316-L316 — func_set_country_code get_set_country_code() const { return m_set_country_code; }
+- get_start · function · L317-L317 — func_start get_start() const { return m_start; }
+- get_set_on_ssdp_msg_fn · function · L318-L318 — func_set_on_ssdp_msg_fn get_set_on_ssdp_msg_fn() const { return m_set_on_ssdp_msg_fn; }
+- get_set_on_printer_connected_fn · function · L319-L319 — func_set_on_printer_connected_fn get_set_on_printer_connected_fn() const { return m_set_on_printer_connected_fn; }
+- get_set_on_server_connected_fn · function · L320-L320 — func_set_on_server_connected_fn get_set_on_server_connected_fn() const { return m_set_on_server_connected_fn; }
+- get_set_on_http_error_fn · function · L321-L321 — func_set_on_http_error_fn get_set_on_http_error_fn() const { return m_set_on_http_error_fn; }
+- get_set_get_country_code_fn · function · L322-L322 — func_set_get_country_code_fn get_set_get_country_code_fn() const { return m_set_get_country_code_fn; }
+- get_set_on_subscribe_failure_fn · function · L323-L323 — func_set_on_subscribe_failure_fn get_set_on_subscribe_failure_fn() const { return m_set_on_subscribe_failure_fn; }
+- get_set_on_message_fn · function · L324-L324 — func_set_on_message_fn get_set_on_message_fn() const { return m_set_on_message_fn; }
+- get_set_on_user_message_fn · function · L325-L325 — func_set_on_user_message_fn get_set_on_user_message_fn() const { return m_set_on_user_message_fn; }
+- get_set_on_local_connect_fn · function · L326-L326 — func_set_on_local_connect_fn get_set_on_local_connect_fn() const { return m_set_on_local_connect_fn; }
+- get_set_on_local_message_fn · function · L327-L327 — func_set_on_local_message_fn get_set_on_local_message_fn() const { return m_set_on_local_message_fn; }
+- get_set_queue_on_main_fn · function · L328-L328 — func_set_queue_on_main_fn get_set_queue_on_main_fn() const { return m_set_queue_on_main_fn; }
+- get_connect_server · function · L329-L329 — func_connect_server get_connect_server() const { return m_connect_server; }
+- get_is_server_connected · function · L330-L330 — func_is_server_connected get_is_server_connected() const { return m_is_server_connected; }
+- get_refresh_connection · function · L331-L331 — func_refresh_connection get_refresh_connection() const { return m_refresh_connection; }
+- get_start_subscribe · function · L332-L332 — func_start_subscribe get_start_subscribe() const { return m_start_subscribe; }
+- get_stop_subscribe · function · L333-L333 — func_stop_subscribe get_stop_subscribe() const { return m_stop_subscribe; }
+- get_add_subscribe · function · L334-L334 — func_add_subscribe get_add_subscribe() const { return m_add_subscribe; }
+- get_del_subscribe · function · L335-L335 — func_del_subscribe get_del_subscribe() const { return m_del_subscribe; }
+- get_enable_multi_machine · function · L336-L336 — func_enable_multi_machine get_enable_multi_machine() const { return m_enable_multi_machine; }
+- get_send_message · function · L337-L337 — func_send_message get_send_message() const { return m_send_message; }
+- get_connect_printer · function · L338-L338 — func_connect_printer get_connect_printer() const { return m_connect_printer; }
+- get_disconnect_printer · function · L339-L339 — func_disconnect_printer get_disconnect_printer() const { return m_disconnect_printer; }
+- get_send_message_to_printer · function · L340-L340 — func_send_message_to_printer get_send_message_to_printer() const { return m_send_message_to_printer; }
+- get_check_cert · function · L341-L341 — func_check_cert get_check_cert() const { return m_check_cert; }
+- get_install_device_cert · function · L342-L342 — func_install_device_cert get_install_device_cert() const { return m_install_device_cert; }
+- get_start_discovery · function · L343-L343 — func_start_discovery get_start_discovery() const { return m_start_discovery; }
+- get_change_user · function · L344-L344 — func_change_user get_change_user() const { return m_change_user; }
+- get_is_user_login · function · L345-L345 — func_is_user_login get_is_user_login() const { return m_is_user_login; }
+- get_user_logout · function · L346-L346 — func_user_logout get_user_logout() const { return m_user_logout; }
+- get_get_user_id · function · L347-L347 — func_get_user_id get_get_user_id() const { return m_get_user_id; }
+- get_get_user_name · function · L348-L348 — func_get_user_name get_get_user_name() const { return m_get_user_name; }
+- get_get_user_avatar · function · L349-L349 — func_get_user_avatar get_get_user_avatar() const { return m_get_user_avatar; }
+- get_get_user_nickanme · function · L350-L350 — func_get_user_nickanme get_get_user_nickanme() const { return m_get_user_nickanme; }
+- get_build_login_cmd · function · L351-L351 — func_build_login_cmd get_build_login_cmd() const { return m_build_login_cmd; }
+- get_build_logout_cmd · function · L352-L352 — func_build_logout_cmd get_build_logout_cmd() const { return m_build_logout_cmd; }
+- get_build_login_info · function · L353-L353 — func_build_login_info get_build_login_info() const { return m_build_login_info; }
+- get_ping_bind · function · L354-L354 — func_ping_bind get_ping_bind() const { return m_ping_bind; }
+- get_bind_detect · function · L355-L355 — func_bind_detect get_bind_detect() const { return m_bind_detect; }
+- get_set_server_callback · function · L356-L356 — func_set_server_callback get_set_server_callback() const { return m_set_server_callback; }
+- get_bind · function · L357-L357 — func_bind get_bind() const { return m_bind; }
+- get_unbind · function · L358-L358 — func_unbind get_unbind() const { return m_unbind; }
+- get_get_bambulab_host · function · L359-L359 — func_get_bambulab_host get_get_bambulab_host() const { return m_get_bambulab_host; }
+- get_get_user_selected_machine · function · L360-L360 — func_get_user_selected_machine get_get_user_selected_machine() const { return m_get_user_selected_machine; }
+- get_set_user_selected_machine · function · L361-L361 — func_set_user_selected_machine get_set_user_selected_machine() const { return m_set_user_selected_machine; }
+- get_start_print · function · L362-L362 — func_start_print get_start_print() const { return m_start_print; }
+- get_start_local_print_with_record · function · L363-L363 — func_start_local_print_with_record get_start_local_print_with_record() const { return m_start_local_print_with_record; }
+- get_start_send_gcode_to_sdcard · function · L364-L364 — func_start_send_gcode_to_sdcard get_start_send_gcode_to_sdcard() const { return m_start_send_gcode_to_sdcard; }
+- get_start_local_print · function · L365-L365 — func_start_local_print get_start_local_print() const { return m_start_local_print; }
+- get_start_sdcard_print · function · L366-L366 — func_start_sdcard_print get_start_sdcard_print() const { return m_start_sdcard_print; }
+- get_get_user_presets · function · L367-L367 — func_get_user_presets get_get_user_presets() const { return m_get_user_presets; }
+- get_request_setting_id · function · L368-L368 — func_request_setting_id get_request_setting_id() const { return m_request_setting_id; }
+- get_put_setting · function · L369-L369 — func_put_setting get_put_setting() const { return m_put_setting; }
+- get_get_setting_list · function · L370-L370 — func_get_setting_list get_get_setting_list() const { return m_get_setting_list; }
+- get_get_setting_list2 · function · L371-L371 — func_get_setting_list2 get_get_setting_list2() const { return m_get_setting_list2; }
+- get_delete_setting · function · L372-L372 — func_delete_setting get_delete_setting() const { return m_delete_setting; }
+- get_set_extra_http_header · function · L373-L373 — func_set_extra_http_header get_set_extra_http_header() const { return m_set_extra_http_header; }
+- get_get_my_message · function · L374-L374 — func_get_my_message get_get_my_message() const { return m_get_my_message; }
+- get_check_user_task_report · function · L375-L375 — func_check_user_task_report get_check_user_task_report() const { return m_check_user_task_report; }
+- get_get_user_print_info · function · L376-L376 — func_get_user_print_info get_get_user_print_info() const { return m_get_user_print_info; }
+- get_get_user_tasks · function · L377-L377 — func_get_user_tasks get_get_user_tasks() const { return m_get_user_tasks; }
+- get_get_printer_firmware · function · L378-L378 — func_get_printer_firmware get_get_printer_firmware() const { return m_get_printer_firmware; }
+- get_get_task_plate_index · function · L379-L379 — func_get_task_plate_index get_get_task_plate_index() const { return m_get_task_plate_index; }
+- get_get_user_info · function · L380-L380 — func_get_user_info get_get_user_info() const { return m_get_user_info; }
+- get_request_bind_ticket · function · L381-L381 — func_request_bind_ticket get_request_bind_ticket() const { return m_request_bind_ticket; }
+- get_get_subtask_info · function · L382-L382 — func_get_subtask_info get_get_subtask_info() const { return m_get_subtask_info; }
+- get_get_slice_info · function · L383-L383 — func_get_slice_info get_get_slice_info() const { return m_get_slice_info; }
+- get_query_bind_status · function · L384-L384 — func_query_bind_status get_query_bind_status() const { return m_query_bind_status; }
+- get_modify_printer_name · function · L385-L385 — func_modify_printer_name get_modify_printer_name() const { return m_modify_printer_name; }
+- get_get_camera_url · function · L386-L386 — func_get_camera_url get_get_camera_url() const { return m_get_camera_url; }
+- get_get_design_staffpick · function · L387-L387 — func_get_design_staffpick get_get_design_staffpick() const { return m_get_design_staffpick; }
+- get_start_publish · function · L388-L388 — func_start_pubilsh get_start_publish() const { return m_start_publish; }
+- get_get_model_publish_url · function · L389-L389 — func_get_model_publish_url get_get_model_publish_url() const { return m_get_model_publish_url; }
+- get_get_subtask · function · L390-L390 — func_get_subtask get_get_subtask() const { return m_get_subtask; }
+- get_get_model_mall_home_url · function · L391-L391 — func_get_model_mall_home_url get_get_model_mall_home_url() const { return m_get_model_mall_home_url; }
+- get_get_model_mall_detail_url · function · L392-L392 — func_get_model_mall_detail_url get_get_model_mall_detail_url() const { return m_get_model_mall_detail_url; }
+- get_get_my_profile · function · L393-L393 — func_get_my_profile get_get_my_profile() const { return m_get_my_profile; }
+- get_get_my_token · function · L394-L394 — func_get_my_token get_get_my_token() const { return m_get_my_token; }
+- get_track_enable · function · L395-L395 — func_track_enable get_track_enable() const { return m_track_enable; }
+- get_track_remove_files · function · L396-L396 — func_track_remove_files get_track_remove_files() const { return m_track_remove_files; }
+- get_track_event · function · L397-L397 — func_track_event get_track_event() const { return m_track_event; }
+- get_track_header · function · L398-L398 — func_track_header get_track_header() const { return m_track_header; }
+- get_track_update_property · function · L399-L399 — func_track_update_property get_track_update_property() const { return m_track_update_property; }
+- get_track_get_property · function · L400-L400 — func_track_get_property get_track_get_property() const { return m_track_get_property; }
+- get_put_model_mall_rating · function · L401-L401 — func_put_model_mall_rating_url get_put_model_mall_rating() const { return m_put_model_mall_rating; }
+- get_get_oss_config · function · L402-L402 — func_get_oss_config get_get_oss_config() const { return m_get_oss_config; }
+- get_put_rating_picture_oss · function · L403-L403 — func_put_rating_picture_oss get_put_rating_picture_oss() const { return m_put_rating_picture_oss; }
+- get_get_model_mall_rating_result · function · L404-L404 — func_get_model_mall_rating_result get_get_model_mall_rating_result() const { return m_get_model_mall_rating_result; }
+- get_get_mw_user_preference · function · L405-L405 — func_get_mw_user_preference get_get_mw_user_preference() const { return m_get_mw_user_preference; }
+- get_get_mw_user_4ulist · function · L406-L406 — func_get_mw_user_4ulist get_get_mw_user_4ulist() const { return m_get_mw_user_4ulist; }
+- get_set_on_user_login_fn · function · L407-L407 — func_set_on_user_login_fn get_set_on_user_login_fn() const { return m_set_on_user_login_fn; }
+- get_get_studio_info_url · function · L408-L408 — func_get_studio_info_url get_get_studio_info_url() const { return m_get_studio_info_url; }
+- get_report_consent · function · L409-L409 — func_report_consent get_report_consent() const { return m_report_consent; }
+- get_get_camera_url_for_golive · function · L410-L410 — func_get_camera_url_for_golive get_get_camera_url_for_golive() const { return m_get_camera_url_for_golive; }
+- get_get_hms_snapshot · function · L411-L411 — func_get_hms_snapshot get_get_hms_snapshot() const { return m_get_hms_snapshot; }
+- get_get_filament_spools · function · L412-L412 — func_get_filament_spools get_get_filament_spools() const { return m_get_filament_spools; }
+- get_create_filament_spool · function · L413-L413 — func_create_filament_spool get_create_filament_spool() const { return m_create_filament_spool; }
+- get_update_filament_spool · function · L414-L414 — func_update_filament_spool get_update_filament_spool() const { return m_update_filament_spool; }
+- get_delete_filament_spools · function · L415-L415 — func_delete_filament_spools get_delete_filament_spools() const { return m_delete_filament_spools; }
+- get_get_filament_config · function · L416-L416 — func_get_filament_config get_get_filament_config() const { return m_get_filament_config; }
+- get_sync_ams_filaments · function · L417-L417 — func_sync_ams_filaments get_sync_ams_filaments() const { return m_sync_ams_filaments; }
+- as_legacy · function · L424-L424 — static PrintParams_Legacy as_legacy(PrintParams& param);
+- as_0203 · function · L425-L425 — static PrintParams_0203 as_0203(PrintParams& param);
+- BBLNetworkPlugin · function · L431-L431 — BBLNetworkPlugin();
+- load_all_function_pointers · function · L434-L434 — void load_all_function_pointers();
+- clear_all_function_pointers · function · L435-L435 — void clear_all_function_pointers();

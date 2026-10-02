@@ -1,0 +1,174 @@
+# deps_src/pybind11/include/pybind11/numpy.h
+
+- PYBIND11_WARNING_DISABLE_MSVC · function · L45-L60 — PYBIND11_NAMESPACE_BEGIN(PYBIND11_NAMESPACE)
+- PyArrayDescr1_Proxy · class · L71-L84 — struct PyArrayDescr1_Proxy
+- PyArrayDescr_Proxy · class · L86-L95 — struct PyArrayDescr_Proxy
+- PyArrayDescr2_Proxy · class · L98-L116 — struct PyArrayDescr2_Proxy
+- PyArray_Proxy · class · L118-L127 — struct PyArray_Proxy
+- PyVoidScalarObject_Proxy · class · L129-L134 — struct PyVoidScalarObject_Proxy
+- numpy_type_info · class · L136-L139 — struct numpy_type_info
+- numpy_internals · class · L141-L151 — struct numpy_internals
+- type_index · function · L145-L145 — auto it = registered_dtypes.find(std::type_index(tinfo));
+- get_numpy_internals · function · L165-L171 — inline numpy_internals &get_numpy_internals()
+- import_numpy_core_submodule · function · L173-L184 — PYBIND11_NOINLINE module_ import_numpy_core_submodule(const char *submodule_name)
+- npy_api · class · L203-L282 — struct npy_api
+- constants · type · L205-L266 — enum constants
+- PyArray_Dims · class · L270-L273 — struct PyArray_Dims
+- PyArrayDescr_Check_ · function · L283-L285 — bool PyArrayDescr_Check_(PyObject *obj) const
+- functions · type · L319-L342 — enum functions
+- lookup · function · L344-L382 — static npy_api lookup()
+- error_already_set · function · L350-L350 — throw error_already_set();
+- array_proxy · function · L530-L530 — inline PyArray_Proxy *array_proxy(void *ptr) { return reinterpret_cast<PyArray_Proxy *>(ptr); }
+- array_proxy · function · L532-L532 — inline const PyArray_Proxy *array_proxy(const void *ptr)
+- array_descriptor_proxy · function · L536-L536 — inline PyArrayDescr_Proxy *array_descriptor_proxy(PyObject *ptr)
+- array_descriptor_proxy · function · L540-L540 — inline const PyArrayDescr_Proxy *array_descriptor_proxy(const PyObject *ptr)
+- array_descriptor1_proxy · function · L544-L544 — inline const PyArrayDescr1_Proxy *array_descriptor1_proxy(const PyObject *ptr)
+- array_descriptor2_proxy · function · L548-L548 — inline const PyArrayDescr2_Proxy *array_descriptor2_proxy(const PyObject *ptr)
+- check_flags · function · L552-L554 — inline bool check_flags(const void *ptr, int flag)
+- append_extents · function · L567-L567 — static void append_extents(list & /* shape */) {}
+- append_extents · function · L582-L585 — static void append_extents(list &shape)
+- static_assert · function · L670-L682 — : data_{reinterpret_cast<const unsigned char *>(data)}, shape_{shape}, strides_{strides},
+- operator · function · L680-L680 — const T &operator()(Ix... index) const
+- itemsize · function · L702-L702 — constexpr static ssize_t itemsize() { return sizeof(T); }
+- shape · function · L705-L705 — ssize_t shape(ssize_t dim) const { return shape_[(size_t) dim]; }
+- ndim · function · L708-L708 — ssize_t ndim() const { return dims_; }
+- nbytes · function · L725-L725 — ssize_t nbytes() const { return size() * itemsize(); }
+- operator · function · L737-L737 — using ConstBase::operator();
+- target_type · function · L780-L783 — static handle &target_type()
+- target_dtype · function · L785-L788 — static handle &target_dtype()
+- load · function · L790-L796 — bool load(handle src, bool)
+- cast · function · L798-L800 — static handle cast(numpy_scalar<T> src, return_value_policy, handle)
+- numpy_scalar · function · L812-L812 — explicit numpy_scalar(value_type value) : value(value) {}
+- value_type · function · L814-L814 — explicit operator value_type() const { return value; }
+- dtype · function · L836-L842 — explicit dtype(const buffer_info &info)
+- descr · function · L837-L837 — dtype descr(_dtype_from_pep3118()(pybind11::str(info.format)));
+- str · function · L837-L837 — dtype descr(_dtype_from_pep3118()(pybind11::str(info.format)));
+- dtype · function · L844-L844 — explicit dtype(const pybind11::str &format) : dtype(from_args(format)) {}
+- dtype · function · L846-L846 — explicit dtype(const std::string &format) : dtype(pybind11::str(format)) {}
+- dtype · function · L848-L848 — explicit dtype(const char *format) : dtype(pybind11::str(format)) {}
+- dtype · function · L861-L862 — explicit dtype(int typenum)
+- error_already_set · function · L864-L864 — throw error_already_set();
+- from_args · function · L869-L875 — static dtype from_args(const object &args)
+- error_already_set · function · L872-L872 — throw error_already_set();
+- of · function · L879-L881 — static dtype of()
+- num_of · function · L886-L888 — static constexpr int num_of()
+- itemsize · function · L891-L891 — ssize_t itemsize() const
+- has_fields · function · L899-L899 — bool has_fields() const
+- array_descriptor_proxy · function · L912-L912 — char kind() const { return detail::array_descriptor_proxy(m_ptr)->kind; }
+- kind · function · L912-L940 — char kind() const { return detail::array_descriptor_proxy(m_ptr)->kind; }
+- char_ · function · L916-L916 — char char_() const
+- array_descriptor_proxy · function · L920-L920 — return detail::array_descriptor_proxy(m_ptr)->type;
+- num · function · L926-L926 — int num() const
+- array_descriptor_proxy · function · L930-L930 — return detail::array_descriptor_proxy(m_ptr)->type_num;
+- normalized_num · function · L936-L936 — int normalized_num() const
+- array_descriptor_proxy · function · L945-L945 — char byteorder() const { return detail::array_descriptor_proxy(m_ptr)->byteorder; }
+- byteorder · function · L945-L1003 — char byteorder() const { return detail::array_descriptor_proxy(m_ptr)->byteorder; }
+- alignment · function · L948-L948 — ssize_t alignment() const
+- get · function · L949-L949 — if (detail::npy_api::get().PyArray_RUNTIME_VERSION_ < 0x12)
+- array_descriptor1_proxy · function · L950-L950 — return detail::array_descriptor1_proxy(m_ptr)->alignment;
+- array_descriptor2_proxy · function · L952-L952 — return detail::array_descriptor2_proxy(m_ptr)->alignment;
+- flags · function · L956-L956 — std::uint64_t flags() const
+- get · function · L957-L957 — if (detail::npy_api::get().PyArray_RUNTIME_VERSION_ < 0x12)
+- array_descriptor2_proxy · function · L960-L960 — return detail::array_descriptor2_proxy(m_ptr)->flags;
+- _dtype_from_pep3118 · function · L964-L964 — static object &_dtype_from_pep3118()
+- import_numpy_core_submodule · function · L968-L971 — return detail::import_numpy_core_submodule("_internal")
+- strip_padding · function · L974-L974 — dtype strip_padding(ssize_t itemsize)
+- size · function · L990-L990 — field_descriptors.reserve(field_dict.size());
+- append · function · L1012-L1013 — for (auto &descr : field_descriptors)
+- move · function · L1013-L1013 — names.append(std::move(descr.name));
+- error_already_set · function · L1077-L1077 — throw error_already_set();
+- array · function · L1118-L1119 — explicit array(const buffer_info &info, handle base = handle())
+- handle · function · L1118-L1118 — explicit array(const buffer_info &info, handle base = handle())
+- dtype · function · L1122-L1122 — pybind11::dtype dtype() const
+- size · function · L1127-L1132 — ssize_t size() const
+- ndim · function · L1128-L1128 — return std::accumulate(shape(), shape() + ndim(), (ssize_t) 1, std::multiplies<ssize_t>());
+- itemsize · function · L1132-L1132 — ssize_t itemsize() const { return dtype().itemsize(); }
+- nbytes · function · L1135-L1135 — ssize_t nbytes() const { return size() * itemsize(); }
+- array_proxy · function · L1138-L1138 — ssize_t ndim() const { return detail::array_proxy(m_ptr)->nd; }
+- ndim · function · L1138-L1155 — ssize_t ndim() const { return detail::array_proxy(m_ptr)->nd; }
+- array_proxy · function · L1141-L1141 — object base() const { return reinterpret_borrow<object>(detail::array_proxy(m_ptr)->base); }
+- base · function · L1141-L1141 — object base() const { return reinterpret_borrow<object>(detail::array_proxy(m_ptr)->base); }
+- array_proxy · function · L1144-L1144 — const ssize_t *shape() const { return detail::array_proxy(m_ptr)->dimensions; }
+- shape · function · L1144-L1144 — const ssize_t *shape() const { return detail::array_proxy(m_ptr)->dimensions; }
+- shape · function · L1147-L1147 — ssize_t shape(ssize_t dim) const
+- ndim · function · L1148-L1148 — if (dim >= ndim())
+- strides · function · L1158-L1163 — ssize_t strides(ssize_t dim) const
+- array_proxy · function · L1166-L1166 — int flags() const { return detail::array_proxy(m_ptr)->flags; }
+- flags · function · L1166-L1176 — int flags() const { return detail::array_proxy(m_ptr)->flags; }
+- writeable · function · L1169-L1169 — bool writeable() const
+- owndata · function · L1174-L1174 — bool owndata() const
+- offset_at · function · L1204-L1204 — ssize_t offset_at() const { return 0; }
+- squeeze · function · L1248-L1251 — array squeeze()
+- resize · function · L1256-L1256 — void resize(ShapeContainer new_shape, bool refcheck = true)
+- error_already_set · function · L1265-L1265 — throw error_already_set();
+- reshape · function · L1273-L1282 — array reshape(ShapeContainer new_shape)
+- error_already_set · function · L1279-L1279 — throw error_already_set();
+- view · function · L1289-L1297 — array view(const std::string &dtype)
+- error_already_set · function · L1294-L1294 — throw error_already_set();
+- ensure · function · L1301-L1301 — static array ensure(handle h, int ExtraFlags = 0)
+- fail_dim_check · function · L1313-L1316 — void fail_dim_check(ssize_t dim, const std::string &msg) const
+- check_dimensions · function · L1319-L1320 — ssize_t byte_offset(Ix... index) const
+- check_writeable · function · L1324-L1324 — void check_writeable() const
+- check_dimensions_impl · function · L1335-L1335 — void check_dimensions_impl(ssize_t, const ssize_t *) const {}
+- string · function · L1340-L1340 — throw index_error(std::string("index ") + std::to_string(i)
+- raw_array · function · L1348-L1348 — static PyObject *raw_array(PyObject *ptr, int ExtraFlags = 0)
+- private_ctor · class · L1361-L1361 — struct private_ctor {};
+- array · function · L1376-L1376 — array_t(handle h, borrowed_t) : array(h, borrowed_t{}) {}
+- array_t · function · L1377-L1377 — array_t(handle h, stolen_t) : array(h, stolen_t{}) {}
+- array · function · L1380-L1380 — array_t(handle h, bool is_borrowed) : array(raw_array_t(h.ptr()), stolen_t{})
+- array · function · L1390-L1390 — array_t(const object &o) : array(raw_array_t(o.ptr()), stolen_t{})
+- stolen_t · function · L1390-L1391 — array_t(const object &o) : array(raw_array_t(o.ptr()), stolen_t{})
+- error_already_set · function · L1392-L1392 — throw error_already_set();
+- array_t · function · L1396-L1396 — explicit array_t(const buffer_info &info, handle base = handle()) : array(info, base) {}
+- handle · function · L1396-L1396 — explicit array_t(const buffer_info &info, handle base = handle()) : array(info, base) {}
+- array_t · function · L1404-L1404 — explicit array_t(ShapeContainer shape, const T *ptr = nullptr, handle base = handle())
+- array_t · function · L1412-L1412 — explicit array_t(ssize_t count, const T *ptr = nullptr, handle base = handle())
+- itemsize · function · L1415-L1415 — constexpr ssize_t itemsize() const { return sizeof(T); }
+- ensure · function · L1477-L1483 — static array_t ensure(handle h)
+- check_ · function · L1485-L1491 — static bool check_(handle h)
+- raw_array_t · function · L1495-L1495 — static PyObject *raw_array_t(PyObject *ptr)
+- format · function · L1512-L1514 — static std::string format()
+- format · function · L1519-L1519 — static std::string format() { return std::to_string(N) + 's'; }
+- format · function · L1523-L1523 — static std::string format() { return std::to_string(N) + 's'; }
+- format · function · L1528-L1531 — static std::string format()
+- format · function · L1536-L1540 — static std::string format()
+- load · function · L1548-L1554 — bool load(handle src, bool convert)
+- cast · function · L1556-L1558 — static handle cast(const handle &src, return_value_policy /* policy */, handle /* parent */)
+- compare · function · L1564-L1566 — static bool compare(const buffer_info &b)
+- dtype · function · L1595-L1595 — static pybind11::dtype dtype() { return pybind11::dtype(/*typenum*/ value); }
+- dtype · function · L1608-L1608 — static pybind11::dtype dtype() { return pybind11::dtype(/*typenum*/ value); }
+- dtype · function · L1636-L1641 — static pybind11::dtype dtype()
+- dtype · function · L1651-L1651 — static pybind11::dtype dtype() { return base_descr::dtype(); }
+- field_descriptor · class · L1654-L1660 — struct field_descriptor
+- ordered_fields · function · L1681-L1682 — for (auto &field : ordered_fields)
+- string · function · L1683-L1683 — pybind11_fail(std::string("NumPy: unsupported field dtype: `") + field.name + "` @ "
+- type_index · function · L1730-L1730 — auto tindex = std::type_index(tinfo);
+- dtype · function · L1744-L1744 — static pybind11::dtype dtype() { return reinterpret_borrow<pybind11::dtype>(dtype_ptr()); }
+- format · function · L1746-L1749 — static std::string format()
+- register_dtype · function · L1751-L1756 — static void register_dtype(any_container<field_descriptor> fields)
+- dtype_ptr · function · L1759-L1759 — static PyObject *dtype_ptr()
+- direct_converter · function · L1764-L1776 — static bool direct_converter(PyObject *obj, void *&value)
+- increment · function · L1875-L1875 — void increment(size_type dim) { p_ptr += m_strides[dim]; }
+- data · function · L1877-L1877 — void *data() const { return p_ptr; }
+- size · function · L1897-L1897 — container_type strides(shape.size());
+- strides · function · L1897-L1897 — container_type strides(shape.size());
+- init_common_iterator · function · L1923-L1947 — void init_common_iterator(const buffer_info &buffer,
+- increment_common_iterator · function · L1949-L1952 — void increment_common_iterator(size_t dim)
+- increment · function · L1950-L1951 — for (auto &iter : m_common_iterator)
+- class · type · L1960-L2050 — enum class broadcast_trivial { non_trivial, c_trivial, f_trivial };
+- value · function · L2059-L2067 — static constexpr bool vectorize
+- value · function · L2066-L2067 — && (!std::is_reference<T>::value
+- create · function · L2077-L2082 — static Type create(broadcast_trivial trivial, const std::vector<ssize_t> &shape)
+- mutable_data · function · L2084-L2084 — static Return *mutable_data(Type &array) { return array.mutable_data(); }
+- call · function · L2086-L2086 — static Return call(Func &f, Args &...args) { return f(args...); }
+- call · function · L2088-L2088 — static void call(Return *out, size_t i, Func &f, Args &...args) { out[i] = f(args...); }
+- create · function · L2096-L2096 — static Type create(broadcast_trivial, const std::vector<ssize_t> &) { return none(); }
+- mutable_data · function · L2098-L2098 — static void *mutable_data(Type &) { return nullptr; }
+- call · function · L2100-L2103 — static detail::void_type call(Func &f, Args &...args)
+- call · function · L2105-L2105 — static void call(void *, size_t, Func &f, Args &...args) { f(args...); }
+- operator · function · L2131-L2131 — object operator()(typename vectorize_arg<Args>::type... args)
+- broadcast · function · L2174-L2174 — auto trivial = broadcast(buffers, nd, shape);
+- create · function · L2188-L2188 — auto result = returned_array::create(trivial, shape);
+- Return · function · L2273-L2273 — detail::vectorize_helper<Return (*)(Args...), Return, Args...> vectorize(Return (*f)(Args...))
+- vectorize · function · L2273-L2273 — detail::vectorize_helper<Return (*)(Args...), Return, Args...> vectorize(Return (*f)(Args...))
+- Return · function · L2274-L2274 — return detail::vectorize_helper<Return (*)(Args...), Return, Args...>(f);

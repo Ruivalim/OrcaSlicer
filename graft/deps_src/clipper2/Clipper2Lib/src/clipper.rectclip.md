@@ -1,0 +1,33 @@
+# deps_src/clipper2/Clipper2Lib/src/clipper.rectclip.cpp
+
+- Path1ContainsPath2 · function · L23-L39 — inline bool Path1ContainsPath2(const Path64& path1, const Path64& path2)
+- GetLocation · function · L41-L70 — inline bool GetLocation(const Rect64& rec,
+- IsHorizontal · function · L72-L75 — inline bool IsHorizontal(const Point64& pt1, const Point64& pt2)
+- GetSegmentIntersection · function · L77-L120 — bool GetSegmentIntersection(const Point64& p1,
+- GetIntersection · function · L122-L208 — inline bool GetIntersection(const Path64& rectPath,
+- GetAdjacentLocation · function · L210-L214 — inline Location GetAdjacentLocation(Location loc, bool isClockwise)
+- HeadingClockwise · function · L216-L219 — inline bool HeadingClockwise(Location prev, Location curr)
+- AreOpposites · function · L221-L224 — inline bool AreOpposites(Location prev, Location curr)
+- IsClockwise · function · L226-L233 — inline bool IsClockwise(Location prev, Location curr,
+- UnlinkOp · function · L235-L235 — inline OutPt2* UnlinkOp(OutPt2* op)
+- UnlinkOpBack · function · L243-L243 — inline OutPt2* UnlinkOpBack(OutPt2* op)
+- GetEdgesForPt · function · L251-L259 — inline uint32_t GetEdgesForPt(const Point64& pt, const Rect64& rec)
+- IsHeadingClockwise · function · L261-L270 — inline bool IsHeadingClockwise(const Point64& pt1, const Point64& pt2, int edgeIdx)
+- HasHorzOverlap · function · L272-L276 — inline bool HasHorzOverlap(const Point64& left1, const Point64& right1,
+- HasVertOverlap · function · L278-L282 — inline bool HasVertOverlap(const Point64& top1, const Point64& bottom1,
+- AddToEdge · function · L284-L289 — inline void AddToEdge(OutPt2List& edge, OutPt2* op)
+- UncoupleEdge · function · L291-L304 — inline void UncoupleEdge(OutPt2* op)
+- SetNewOwner · function · L306-L315 — inline void SetNewOwner(OutPt2* op, size_t new_idx)
+- Add · method · L321-L321 — OutPt2* RectClip64::Add(Point64 pt, bool start_new)
+- AddCorner · method · L353-L359 — void RectClip64::AddCorner(Location prev, Location curr)
+- AddCorner · method · L361-L373 — void RectClip64::AddCorner(Location& loc, bool isClockwise)
+- GetNextLocation · method · L375-L428 — void RectClip64::GetNextLocation(const Path64& path,
+- StartLocsAreClockwise · function · L430-L445 — bool StartLocsAreClockwise(const std::vector<Location>& startlocs)
+- ExecuteInternal · method · L447-L608 — void RectClip64::ExecuteInternal(const Path64& path)
+- CheckEdges · method · L610-L667 — void RectClip64::CheckEdges()
+- TidyEdges · method · L669-L845 — void RectClip64::TidyEdges(size_t idx, OutPt2List& cw, OutPt2List& ccw)
+- GetPath · method · L847-L875 — Path64 RectClip64::GetPath(OutPt2*& op)
+- Execute · method · L877-L914 — Paths64 RectClip64::Execute(const Paths64& paths)
+- Execute · method · L920-L944 — Paths64 RectClipLines64::Execute(const Paths64& paths)
+- ExecuteInternal · method · L946-L1014 — void RectClipLines64::ExecuteInternal(const Path64& path)
+- GetPath · method · L1016-L1029 — Path64 RectClipLines64::GetPath(OutPt2*& op)

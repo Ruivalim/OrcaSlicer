@@ -1,0 +1,23 @@
+# deps_src/libigl/igl/opengl/glfw/ViewerPlugin.h
+
+- ViewerPlugin · function · L41-L41 — IGL_INLINE ViewerPlugin() {plugin_name = "dummy";}
+- ViewerPlugin · function · L42-L42 — virtual ~ViewerPlugin(){}
+- init · function · L44-L44 — IGL_INLINE virtual void init(Viewer *_viewer) { viewer = _viewer; }
+- shutdown · function · L46-L46 — IGL_INLINE virtual void shutdown() { }
+- load · function · L48-L48 — IGL_INLINE virtual bool load(std::string /*filename*/) { return false; }
+- save · function · L50-L50 — IGL_INLINE virtual bool save(std::string /*filename*/) { return false; }
+- serialize · function · L52-L53 — IGL_INLINE virtual bool serialize(std::vector<char>& /*buffer*/) const
+- deserialize · function · L55-L56 — IGL_INLINE virtual bool deserialize(const std::vector<char>& /*buffer*/)
+- post_load · function · L58-L58 — IGL_INLINE virtual bool post_load() { return false; }
+- pre_draw · function · L60-L60 — IGL_INLINE virtual bool pre_draw() { return false; }
+- post_draw · function · L62-L62 — IGL_INLINE virtual bool post_draw() { return false; }
+- post_resize · function · L64-L64 — IGL_INLINE virtual void post_resize(int /*w*/, int /*h*/) { }
+- mouse_down · function · L65-L66 — IGL_INLINE virtual bool mouse_down(int /*button*/, int /*modifier*/)
+- mouse_up · function · L67-L68 — IGL_INLINE virtual bool mouse_up(int /*button*/, int /*modifier*/)
+- mouse_move · function · L69-L70 — IGL_INLINE virtual bool mouse_move(int /*mouse_x*/, int /*mouse_y*/)
+- mouse_scroll · function · L71-L72 — IGL_INLINE virtual bool mouse_scroll(float /*delta_y*/)
+- key_pressed · function · L73-L74 — IGL_INLINE virtual bool key_pressed(unsigned int /*key*/, int /*modifiers*/)
+- key_down · function · L75-L76 — IGL_INLINE virtual bool key_down(int /*key*/, int /*modifiers*/)
+- key_up · function · L77-L78 — IGL_INLINE virtual bool key_up(int /*key*/, int /*modifiers*/)
+- serialize · function · L87-L90 — inline void serialize(const ViewerPlugin& obj,std::vector<char>& buffer)
+- deserialize · function · L92-L95 — inline void deserialize(ViewerPlugin& obj,const std::vector<char>& buffer)

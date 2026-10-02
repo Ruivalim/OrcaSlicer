@@ -1,0 +1,51 @@
+# src/libslic3r/SLA/SupportTreeBuildsteps.hpp
+
+- to_vec2 · function · L21-L21 — inline Vec2d to_vec2(const Vec3d &v3) { return {v3(X), v3(Y)}; }
+- dir_to_spheric · function · L23-L30 — inline std::pair<double, double> dir_to_spheric(const Vec3d &n, double norm = 1.)
+- spheric_to_dir · function · L32-L36 — inline Vec3d spheric_to_dir(double polar, double azimuth)
+- spheric_to_dir · function · L38-L42 — inline Vec3d spheric_to_dir(const std::tuple<double, double> &v)
+- spheric_to_dir · function · L44-L47 — inline Vec3d spheric_to_dir(const std::pair<double, double> &v)
+- spheric_to_dir · function · L49-L52 — inline Vec3d spheric_to_dir(const std::array<double, 2> &v)
+- PointRing · class · L57-L110 — template<size_t N>
+- is_one · function · L70-L73 — static inline bool constexpr is_one(double val)
+- PointRing · function · L77-L94 — PointRing(const Vec3d &n)
+- get · function · L96-L109 — Vec3d get(size_t idx, const Vec3d src, double r) const
+- dirv · function · L115-L117 — inline Vec3d dirv(const Vec3d& startp, const Vec3d& endp)
+- PillarIndex · class · L119-L162 — class PillarIndex
+- guarded_insert · function · L126-L130 — template<class...Args> inline void guarded_insert(Args&&...args)
+- lck · function · L128-L128 — std::lock_guard<Mutex> lck(m_mutex);
+- guarded_query · function · L132-L137 — template<class...Args>
+- lck · function · L135-L135 — std::lock_guard<Mutex> lck(m_mutex);
+- insert · function · L139-L142 — template<class...Args> inline void insert(Args&&...args)
+- query · function · L144-L148 — template<class...Args>
+- foreach · function · L150-L150 — template<class Fn> inline void foreach(Fn fn) { m_index.foreach(fn); }
+- guarded_foreach · function · L151-L155 — template<class Fn> inline void guarded_foreach(Fn fn)
+- lck · function · L153-L153 — std::lock_guard<Mutex> lck(m_mutex);
+- guarded_clone · function · L157-L161 — PointIndex guarded_clone()
+- lck · function · L159-L159 — std::lock_guard<Mutex> lck(m_mutex);
+- pairhash · function · L171-L186 — template<class I, class DoubleI = IntegerOnly<I>>
+- SupportTreeBuildsteps · class · L188-L373 — class SupportTreeBuildsteps
+- ray_mesh_intersect · function · L225-L229 — inline IndexedMesh::hit_result ray_mesh_intersect(const Vec3d& s,
+- pinhead_mesh_intersect · function · L242-L248 — IndexedMesh::hit_result pinhead_mesh_intersect(
+- pinhead_mesh_intersect · function · L250-L260 — IndexedMesh::hit_result pinhead_mesh_intersect(
+- bridge_mesh_intersect · function · L270-L274 — IndexedMesh::hit_result bridge_mesh_intersect(
+- bridge_mesh_intersect · function · L276-L284 — IndexedMesh::hit_result bridge_mesh_intersect(
+- bridge_mesh_distance · function · L286-L289 — template<class...Args>
+- interconnect · function · L292-L292 — bool interconnect(const Pillar& pillar, const Pillar& nextpillar);
+- connect_to_nearpillar · function · L295-L295 — bool connect_to_nearpillar(const Head& head, long nearpillar_id);
+- connect_to_ground · function · L301-L301 — bool connect_to_ground(Head& head, const Vec3d &dir);
+- connect_to_ground · function · L302-L302 — inline bool connect_to_ground(Head& head);
+- connect_to_model_body · function · L304-L304 — bool connect_to_model_body(Head &head);
+- search_pillar_and_connect · function · L306-L306 — bool search_pillar_and_connect(const Head& source);
+- create_ground_pillar · function · L313-L316 — bool create_ground_pillar(const Vec3d &jp,
+- add_pillar_base · function · L318-L321 — void add_pillar_base(long pid)
+- search_widening_path · function · L323-L326 — std::optional<DiffBridge> search_widening_path(const Vec3d &jp,
+- SupportTreeBuildsteps · function · L329-L329 — SupportTreeBuildsteps(SupportTreeBuilder & builder, const SupportableMesh &sm);
+- filter · function · L338-L338 — void filter();
+- add_pinheads · function · L342-L342 — void add_pinheads();
+- classify · function · L352-L352 — void classify();
+- routing_to_ground · function · L359-L359 — void routing_to_ground();
+- routing_to_model · function · L366-L366 — void routing_to_model();
+- interconnect_pillars · function · L368-L368 — void interconnect_pillars();
+- merge_result · function · L370-L370 — inline void merge_result() { m_builder.merged_mesh(); }
+- execute · function · L372-L372 — static bool execute(SupportTreeBuilder & builder, const SupportableMesh &sm);

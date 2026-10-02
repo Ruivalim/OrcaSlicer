@@ -1,0 +1,22 @@
+# src/libslic3r/SLA/Hollowing.hpp
+
+- HollowingConfig · class · L12-L18 — struct HollowingConfig
+- HollowingFlags · type · L20-L20 — enum HollowingFlags { hfRemoveInsideTriangles = 0x1 };
+- InteriorDeleter · class · L25-L25 — struct InteriorDeleter { void operator()(Interior *p); };
+- get_mesh · function · L28-L28 — indexed_triangle_set &      get_mesh(Interior &interior);
+- get_mesh · function · L29-L29 — const indexed_triangle_set &get_mesh(const Interior &interior);
+- DrainHole · class · L31-L64 — struct DrainHole
+- DrainHole · function · L39-L41 — DrainHole()
+- DrainHole · function · L43-L45 — DrainHole(Vec3f p, Vec3f n, float r, float h, bool fl = false)
+- is_inside · function · L51-L51 — bool is_inside(const Vec3f& pt) const;
+- get_intersections · function · L53-L54 — bool get_intersections(const Vec3f& s, const Vec3f& dir,
+- to_mesh · function · L56-L56 — indexed_triangle_set to_mesh() const;
+- serialize · function · L58-L61 — template<class Archive> inline void serialize(Archive &ar)
+- generate_interior · function · L70-L72 — InteriorPtr generate_interior(const TriangleMesh &mesh,
+- hollow_mesh · function · L75-L75 — void hollow_mesh(TriangleMesh &mesh, const HollowingConfig &cfg, int flags = 0);
+- hollow_mesh · function · L78-L78 — void hollow_mesh(TriangleMesh &mesh, const Interior &interior, int flags = 0);
+- remove_inside_triangles · function · L80-L81 — void remove_inside_triangles(TriangleMesh &mesh, const Interior &interior,
+- get_distance · function · L83-L83 — double get_distance(const Vec3f &p, const Interior &interior);
+- get_distance · function · L85-L89 — template<class T>
+- cut_drainholes · function · L91-L95 — void cut_drainholes(std::vector<ExPolygons> & obj_slices,
+- swap_normals · function · L97-L101 — inline void swap_normals(indexed_triangle_set &its)

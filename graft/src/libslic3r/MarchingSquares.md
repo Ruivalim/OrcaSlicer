@@ -1,0 +1,51 @@
+# src/libslic3r/MarchingSquares.hpp
+
+- Coord · class · L88-L111 — struct Coord
+- Coord · function · L92-L92 — Coord() = default;
+- Coord · function · L93-L93 — explicit Coord(long s) : r(s), c(s) {}
+- Coord · function · L94-L94 — Coord(long _r, long _c) : r(_r), c(_c) {}
+- seq · function · L96-L96 — size_t seq(const Coord& res) const { return r * res.c + c; }
+- _RasterTraits · class · L127-L138 — template<class T, class Enable = void> struct _RasterTraits
+- get · function · L133-L133 — static ValueType get(const T& raster, size_t row, size_t col);
+- rows · function · L136-L136 — static size_t rows(const T& raster);
+- cols · function · L137-L137 — static size_t cols(const T& raster);
+- _Loop · class · L141-L148 — template<class ExecutionPolicy, class Enable = void> struct _Loop
+- for_each_idx · function · L143-L147 — template<class It, class Fn> static void for_each_idx(It from, It to, Fn&& fn)
+- for_each_idx · function · L154-L158 — template<class It, class Fn> static void for_each_idx(It from, It to, Fn&& fn)
+- rows · function · L166-L166 — template<class T> size_t rows(const T& raster) { return RasterTraits<T>::rows(raster); }
+- cols · function · L168-L168 — template<class T> size_t cols(const T& raster) { return RasterTraits<T>::cols(raster); }
+- isoval · function · L170-L170 — template<class T> TRasterValue<T> isoval(const T& rst, const Coord& crd) { return RasterTraits<T>::get(rst, crd.r, crd.c); }
+- for_each_idx · function · L172-L175 — template<class ExecutionPolicy, class It, class Fn> void for_each_idx(ExecutionPolicy&& policy, It from, It to, Fn&& fn)
+- _t · function · L177-L177 — template<class E> constexpr std::underlying_type_t<E> _t(E e) noexcept { return static_cast<std::underlying_type_t<E>>(e); }
+- Dir · type · L181-L190 — enum class Dir : uint8_t
+- step · function · L208-L216 — inline void step(Coord& crd, const Dir d, const long n = 1)
+- Grid · class · L218-L647 — template<class Rst> class Grid
+- rastercoord · function · L227-L231 — inline Coord rastercoord(const Coord& crd) const
+- bl · function · L234-L234 — Coord bl(const Coord& crd) const { return tl(crd) + Coord{m_window.r, 0}; }
+- br · function · L235-L235 — Coord br(const Coord& crd) const { return tl(crd) + Coord{m_window.r, m_window.c}; }
+- tr · function · L236-L236 — Coord tr(const Coord& crd) const { return tl(crd) + Coord{0, m_window.c}; }
+- tl · function · L237-L237 — Coord tl(const Coord& crd) const { return rastercoord(crd); }
+- is_within · function · L240-L240 — inline bool is_within(const Coord& crd) const { return crd.r >= 0 && crd.r < m_rastsize.r && crd.c >= 0 && crd.c < m_rastsize.c; }
+- get_tags_block32 · function · L243-L261 — uint32_t get_tags_block32(const size_t bidx, const TRasterValue<Rst> v) const
+- get_dirs_block8 · function · L264-L281 — uint32_t get_dirs_block8(const size_t bidx) const
+- get_tags9 · function · L284-L299 — uint32_t get_tags9(size_t gidx) const
+- clr_dirs · function · L302-L309 — void clr_dirs(const size_t gidx, const Dir d)
+- get_dirs · function · L312-L319 — Dir get_dirs(const size_t gidx) const
+- coord · function · L322-L322 — Coord coord(size_t i) const { return {long(i) / m_gridsize.c, long(i) % m_gridsize.c}; }
+- seq · function · L325-L325 — size_t seq(const Coord& crd) const { return crd.seq(m_gridsize); }
+- stepidx · function · L328-L338 — size_t stepidx(const size_t idx, const Dir d) const
+- search_start_cell · function · L341-L362 — size_t search_start_cell(size_t gidx = 0) const
+- next_dir · function · L365-L387 — Dir next_dir(size_t idx, Dir prev = Dir::all) const
+- CellIt · class · L389-L463 — struct CellIt
+- Edge · class · L467-L470 — struct Edge
+- _edge · function · L472-L486 — Edge _edge(const Coord& ringvertex) const
+- edge · function · L488-L499 — Edge edge(const Coord& ringvertex) const
+- interpolate_edge · function · L501-L515 — void interpolate_edge(Coord& ecrd, TRasterValue<Rst> isoval) const
+- Grid · function · L518-L526 — explicit Grid(const Rst& rst, const Coord& window)
+- tag_grid · function · L529-L539 — template<class ExecutionPolicy> void tag_grid(ExecutionPolicy&& policy, TRasterValue<Rst> isoval)
+- scan_rings · function · L545-L613 — std::vector<Ring> scan_rings()
+- interpolate_rings · function · L576-L582 — template<class ExecutionPolicy> void interpolate_rings(ExecutionPolicy&& policy, std::vector<Ring>& rings, TRasterValue<Rst> isov)
+- streamtags · function · L584-L584 — std::ostream& streamtags(std::ostream& os)
+- streamdirs · function · L599-L599 — std::ostream& streamdirs(std::ostream& os)
+- execute_with_policy · function · L615-L638 — template<class Raster, class ExecutionPolicy>
+- execute · function · L640-L643 — template<class Raster> std::vector<marchsq::Ring> execute(const Raster& raster, TRasterValue<Raster> isoval, Coord windowsize = {})

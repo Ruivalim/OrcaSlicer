@@ -1,0 +1,29 @@
+# src/slic3r/GUI/BaseTransparentDPIFrame.hpp
+
+- Button · class · L10-L10 — class Button;
+- Label · class · L11-L11 — class Label;
+- CheckBox · class · L12-L12 — class CheckBox;
+- CapsuleButton · class · L14-L14 — class CapsuleButton;
+- BaseTransparentDPIFrame · class · L16-L79 — class BaseTransparentDPIFrame : public Slic3r::GUI::DPIFrame
+- DisappearanceMode · type · L19-L22 — enum DisappearanceMode
+- BaseTransparentDPIFrame · function · L24-L31 — BaseTransparentDPIFrame(wxWindow *        parent,
+- on_dpi_changed · function · L33-L33 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- on_show · function · L34-L34 — void on_show();
+- on_hide · function · L35-L35 — void on_hide();
+- clear_timer_count · function · L36-L36 — void clear_timer_count();
+- Show · function · L37-L37 — bool Show(bool show = true) override;
+- on_full_screen · function · L38-L38 — void         on_full_screen(IntEvent &);
+- deal_ok · function · L39-L39 — virtual void deal_ok();
+- deal_cancel · function · L40-L40 — virtual void deal_cancel();
+- on_timer · function · L41-L41 — virtual void on_timer(wxTimerEvent &event);
+- set_target_pos_and_gradual_disappearance · function · L42-L42 — void         set_target_pos_and_gradual_disappearance(wxPoint pos);
+- call_start_gradual_disappearance · function · L43-L43 — void         call_start_gradual_disappearance();
+- restart · function · L44-L44 — void         restart();
+- start_gradual_disappearance · function · L71-L71 — void start_gradual_disappearance();
+- init_timer · function · L72-L72 — void init_timer();
+- calc_step_transparent · function · L73-L73 — void calc_step_transparent();
+- on_close · function · L74-L74 — void on_close();
+- show_sizer · function · L75-L75 — void show_sizer(wxSizer *sizer, bool show);
+- hide_all · function · L76-L76 — void hide_all();
+- begin_gradual_disappearance · function · L77-L77 — void begin_gradual_disappearance();
+- begin_move_to_target_and_gradual_disappearance · function · L78-L78 — void begin_move_to_target_and_gradual_disappearance();

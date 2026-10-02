@@ -1,0 +1,35 @@
+# src/slic3r/GUI/OG_CustomCtrl.hpp
+
+- OG_CustomCtrl · class · L26-L115 — class OG_CustomCtrl :public wxPanel
+- CtrlLine · class · L39-L76 — struct CtrlLine
+- CtrlLine · function · L50-L54 — CtrlLine(   wxCoord         height,
+- get_max_win_width · function · L57-L57 — int     get_max_win_width();
+- correct_items_positions · function · L58-L58 — void    correct_items_positions();
+- msw_rescale · function · L59-L59 — void    msw_rescale();
+- update_visibility · function · L60-L60 — void    update_visibility(ConfigOptionMode mode);
+- render_separator · function · L62-L62 — void render_separator(wxDC& dc, wxCoord v_pos);
+- render · function · L64-L64 — void    render(wxDC& dc, wxCoord h_pos, wxCoord v_pos);
+- draw_text · function · L65-L65 — wxCoord draw_text      (wxDC& dc, wxPoint pos, const wxString& text, const wxColour* color, int width, bool is_url = false, bool is_main = false);
+- draw_blinking_bmp · function · L66-L66 — wxPoint draw_blinking_bmp(wxDC& dc, wxPoint pos, bool is_blinking);
+- draw_act_bmps · function · L67-L67 — wxPoint draw_act_bmps(wxDC& dc, wxPoint pos, const wxBitmap& bmp_undo_to_sys, const wxBitmap& bmp_undo, bool is_blinking, size_t rect_id = 0, bool is_main = false);
+- draw_edit_bmp · function · L68-L68 — wxCoord draw_edit_bmp(wxDC& dc, wxPoint pos, const wxBitmap& bmp_edit);
+- launch_browser · function · L69-L69 — bool    launch_browser() const;
+- is_separator · function · L70-L70 — bool    is_separator() const { return og_line.is_separator(); }
+- OG_CustomCtrl · function · L81-L86 — OG_CustomCtrl(  wxWindow* parent,
+- OnPaint · function · L89-L89 — void    OnPaint(wxPaintEvent&);
+- OnMotion · function · L90-L90 — void    OnMotion(wxMouseEvent& event);
+- OnLeftDown · function · L91-L91 — void    OnLeftDown(wxMouseEvent& event);
+- OnLeaveWin · function · L92-L92 — void    OnLeaveWin(wxMouseEvent& event);
+- init_ctrl_lines · function · L94-L94 — void    init_ctrl_lines();
+- update_visibility · function · L95-L95 — bool    update_visibility(ConfigOptionMode mode);
+- correct_window_position · function · L96-L96 — void    correct_window_position(wxWindow* win, const Line& line, Field* field = nullptr);
+- correct_widgets_position · function · L97-L97 — void    correct_widgets_position(wxSizer* widget, const Line& line, Field* field = nullptr);
+- init_max_win_width · function · L98-L98 — void    init_max_win_width();
+- set_max_win_width · function · L99-L99 — void    set_max_win_width(int max_win_width);
+- get_max_win_width · function · L100-L100 — int     get_max_win_width() { return m_max_win_width; }
+- get_title_width · function · L103-L103 — int    get_title_width();
+- fixup_items_positions · function · L105-L105 — void fixup_items_positions();
+- msw_rescale · function · L107-L107 — void    msw_rescale();
+- sys_color_changed · function · L108-L108 — void    sys_color_changed();
+- get_pos · function · L110-L110 — wxPoint get_pos(const Line& line, Field* field = nullptr);
+- get_height · function · L111-L111 — int     get_height(const Line& line);

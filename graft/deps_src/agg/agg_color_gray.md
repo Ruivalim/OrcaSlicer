@@ -1,0 +1,148 @@
+# deps_src/agg/agg_color_gray.h
+
+- value_type · type · L41-L41 — typedef int8u  value_type;
+- calc_type · type · L42-L42 — typedef int32u calc_type;
+- long_type · type · L43-L43 — typedef int32  long_type;
+- base_scale_e · type · L44-L50 — enum base_scale_e
+- self_type · type · L51-L51 — typedef gray8T self_type;
+- luminance · function · L56-L60 — static value_type luminance(const rgba& c)
+- luminance · function · L62-L66 — static value_type luminance(const rgba8& c)
+- convert · function · L68-L72 — static void convert(gray8T<linear>& dst, const gray8T<sRGB>& src)
+- convert · function · L74-L78 — static void convert(gray8T<sRGB>& dst, const gray8T<linear>& src)
+- convert · function · L80-L84 — static void convert(gray8T<linear>& dst, const rgba8& src)
+- convert · function · L86-L90 — static void convert(gray8T<linear>& dst, const srgba8& src)
+- convert · function · L92-L96 — static void convert(gray8T<sRGB>& dst, const rgba8& src)
+- convert · function · L98-L102 — static void convert(gray8T<sRGB>& dst, const srgba8& src)
+- a · function · L108-L109 — explicit gray8T(unsigned v_, unsigned a_ = base_mask) :
+- gray8T · function · L108-L109 — explicit gray8T(unsigned v_, unsigned a_ = base_mask) :
+- v · function · L117-L117 — v(luminance(c)),
+- a · function · L118-L118 — a(value_type(uround(c.a * base_mask))) {}
+- make_rgba8 · function · L150-L153 — rgba8 make_rgba8(const linear&) const
+- make_rgba8 · function · L155-L158 — rgba8 make_rgba8(const sRGB&) const
+- rgba8 · function · L160-L160 — operator rgba8() const
+- make_srgba8 · function · L166-L169 — srgba8 make_srgba8(const linear&) const
+- make_srgba8 · function · L171-L174 — srgba8 make_srgba8(const sRGB&) const
+- srgba8 · function · L176-L176 — operator srgba8() const
+- make_rgba16 · function · L182-L186 — rgba16 make_rgba16(const linear&) const
+- make_rgba16 · function · L188-L191 — rgba16 make_rgba16(const sRGB&) const
+- rgba16 · function · L193-L193 — operator rgba16() const
+- make_rgba32 · function · L199-L203 — rgba32 make_rgba32(const linear&) const
+- make_rgba32 · function · L205-L208 — rgba32 make_rgba32(const sRGB&) const
+- rgba32 · function · L210-L210 — operator rgba32() const
+- to_double · function · L216-L219 — static AGG_INLINE double to_double(value_type a)
+- from_double · function · L222-L225 — static AGG_INLINE value_type from_double(double a)
+- empty_value · function · L228-L231 — static AGG_INLINE value_type empty_value()
+- full_value · function · L234-L237 — static AGG_INLINE value_type full_value()
+- is_transparent · function · L240-L240 — AGG_INLINE bool is_transparent() const
+- is_opaque · function · L246-L246 — AGG_INLINE bool is_opaque() const
+- multiply · function · L253-L257 — static AGG_INLINE value_type multiply(value_type a, value_type b)
+- demultiply · function · L260-L271 — static AGG_INLINE value_type demultiply(value_type a, value_type b)
+- downscale · function · L275-L278 — static AGG_INLINE T downscale(T a)
+- downshift · function · L282-L285 — static AGG_INLINE T downshift(T a, unsigned n)
+- mult_cover · function · L290-L293 — static AGG_INLINE value_type mult_cover(value_type a, value_type b)
+- scale_cover · function · L296-L299 — static AGG_INLINE cover_type scale_cover(cover_type a, value_type b)
+- prelerp · function · L303-L306 — static AGG_INLINE value_type prelerp(value_type p, value_type q, value_type a)
+- lerp · function · L310-L314 — static AGG_INLINE value_type lerp(value_type p, value_type q, value_type a)
+- opacity · function · L340-L340 — double opacity() const
+- gradient · function · L375-L382 — self_type gradient(self_type c, double k) const
+- add · function · L385-L408 — AGG_INLINE void add(const self_type& c, unsigned cover)
+- no_color · function · L411-L411 — static self_type no_color() { return self_type(0,0); }
+- gray8 · type · L414-L414 — typedef gray8T<linear> gray8;
+- sgray8 · type · L415-L415 — typedef gray8T<sRGB> sgray8;
+- gray16 · class · L419-L442 — struct gray16
+- base_scale_e · type · L424-L430 — enum base_scale_e
+- luminance · function · L448-L451 — static value_type luminance(const rgba8& c)
+- luminance · function · L453-L456 — static value_type luminance(const srgba8& c)
+- luminance · function · L458-L461 — static value_type luminance(const rgba32& c)
+- a · function · L467-L468 — explicit gray16(unsigned v_, unsigned a_ = base_mask) :
+- gray16 · function · L467-L468 — explicit gray16(unsigned v_, unsigned a_ = base_mask) :
+- v · function · L475-L507 — gray16(const rgba& c) :
+- a · function · L477-L477 — a((value_type)uround(c.a * double(base_mask))) {}
+- gray16 · function · L480-L481 — gray16(const rgba8& c) :
+- a · function · L482-L482 — a((value_type(c.a) << 8) | c.a) {}
+- gray16 · function · L485-L486 — gray16(const srgba8& c) :
+- a · function · L487-L487 — a((value_type(c.a) << 8) | c.a) {}
+- gray16 · function · L490-L491 — gray16(const rgba16& c) :
+- a · function · L492-L492 — a(c.a) {}
+- gray16 · function · L495-L496 — gray16(const gray8& c) :
+- value_type · function · L497-L497 — a((value_type(c.a) << 8) | c.a) {}
+- gray16 · function · L500-L501 — gray16(const sgray8& c) :
+- a · function · L502-L502 — a(sRGB_conv<value_type>::alpha_from_sRGB(c.a)) {}
+- alpha_from_sRGB · function · L502-L502 — a(sRGB_conv<value_type>::alpha_from_sRGB(c.a)) {}
+- rgba8 · function · L505-L505 — operator rgba8() const
+- srgba8 · function · L511-L521 — operator srgba8() const
+- alpha_to_sRGB · function · L514-L514 — return srgba8(y, y, y, sRGB_conv<value_type>::alpha_to_sRGB(a));
+- rgba16 · function · L518-L518 — operator rgba16() const
+- rgba32 · function · L524-L524 — operator rgba32() const
+- gray8 · function · L531-L531 — operator gray8() const
+- sgray8 · function · L537-L537 — operator sgray8() const
+- to_double · function · L545-L548 — static AGG_INLINE double to_double(value_type a)
+- from_double · function · L551-L554 — static AGG_INLINE value_type from_double(double a)
+- empty_value · function · L557-L560 — static AGG_INLINE value_type empty_value()
+- full_value · function · L563-L566 — static AGG_INLINE value_type full_value()
+- is_transparent · function · L569-L569 — AGG_INLINE bool is_transparent() const
+- is_opaque · function · L575-L575 — AGG_INLINE bool is_opaque() const
+- multiply · function · L582-L586 — static AGG_INLINE value_type multiply(value_type a, value_type b)
+- demultiply · function · L589-L600 — static AGG_INLINE value_type demultiply(value_type a, value_type b)
+- downscale · function · L604-L607 — static AGG_INLINE T downscale(T a)
+- downshift · function · L611-L614 — static AGG_INLINE T downshift(T a, unsigned n)
+- mult_cover · function · L619-L622 — static AGG_INLINE value_type mult_cover(value_type a, cover_type b)
+- scale_cover · function · L625-L628 — static AGG_INLINE cover_type scale_cover(cover_type a, value_type b)
+- prelerp · function · L632-L635 — static AGG_INLINE value_type prelerp(value_type p, value_type q, value_type a)
+- lerp · function · L639-L643 — static AGG_INLINE value_type lerp(value_type p, value_type q, value_type a)
+- opacity · function · L669-L669 — double opacity() const
+- gradient · function · L705-L712 — self_type gradient(self_type c, double k) const
+- add · function · L715-L738 — AGG_INLINE void add(const self_type& c, unsigned cover)
+- no_color · function · L741-L741 — static self_type no_color() { return self_type(0,0); }
+- gray32 · class · L746-L762 — struct gray32
+- luminance · function · L767-L770 — static value_type luminance(const rgba32& c)
+- luminance · function · L772-L775 — static value_type luminance(const rgba8& c)
+- luminance · function · L777-L780 — static value_type luminance(const rgba16& c)
+- gray32 · function · L786-L786 — explicit gray32(value_type v_, value_type a_ = 1) :
+- rgba · function · L786-L836 — explicit gray32(value_type v_, value_type a_ = 1) :
+- a · function · L787-L787 — v(v_), a(a_) {}
+- gray32 · function · L790-L791 — gray32(const self_type& c, value_type a_) :
+- a · function · L791-L791 — v(c.v), a(a_) {}
+- gray32 · function · L794-L795 — gray32(const rgba& c) :
+- a · function · L796-L796 — a(value_type(c.a)) {}
+- gray32 · function · L799-L800 — gray32(const rgba8& c) :
+- a · function · L801-L801 — a(value_type(c.a / 255.0)) {}
+- gray32 · function · L804-L805 — gray32(const srgba8& c) :
+- a · function · L806-L806 — a(value_type(c.a / 255.0)) {}
+- gray32 · function · L809-L810 — gray32(const rgba16& c) :
+- a · function · L811-L811 — a(value_type(c.a / 65535.0)) {}
+- gray32 · function · L814-L815 — gray32(const rgba32& c) :
+- a · function · L816-L816 — a(value_type(c.a)) {}
+- gray32 · function · L819-L820 — gray32(const gray8& c) :
+- a · function · L821-L821 — a(value_type(c.a / 255.0)) {}
+- gray32 · function · L824-L825 — gray32(const sgray8& c) :
+- a · function · L826-L826 — a(sRGB_conv<value_type>::alpha_from_sRGB(c.a)) {}
+- alpha_from_sRGB · function · L826-L826 — a(sRGB_conv<value_type>::alpha_from_sRGB(c.a)) {}
+- gray32 · function · L829-L830 — gray32(const gray16& c) :
+- a · function · L831-L831 — a(value_type(c.a / 65535.0)) {}
+- rgba · function · L834-L834 — operator rgba() const
+- gray8 · function · L840-L840 — operator gray8() const
+- sgray8 · function · L846-L846 — operator sgray8() const
+- gray16 · function · L855-L855 — operator gray16() const
+- rgba8 · function · L861-L861 — operator rgba8() const
+- srgba8 · function · L868-L868 — operator srgba8() const
+- rgba16 · function · L875-L875 — operator rgba16() const
+- rgba32 · function · L882-L882 — operator rgba32() const
+- to_double · function · L888-L891 — static AGG_INLINE double to_double(value_type a)
+- from_double · function · L894-L897 — static AGG_INLINE value_type from_double(double a)
+- empty_value · function · L900-L903 — static AGG_INLINE value_type empty_value()
+- full_value · function · L906-L909 — static AGG_INLINE value_type full_value()
+- is_transparent · function · L912-L912 — AGG_INLINE bool is_transparent() const
+- is_opaque · function · L918-L918 — AGG_INLINE bool is_opaque() const
+- invert · function · L924-L927 — static AGG_INLINE value_type invert(value_type x)
+- multiply · function · L930-L933 — static AGG_INLINE value_type multiply(value_type a, value_type b)
+- demultiply · function · L936-L939 — static AGG_INLINE value_type demultiply(value_type a, value_type b)
+- downscale · function · L943-L946 — static AGG_INLINE T downscale(T a)
+- downshift · function · L950-L953 — static AGG_INLINE T downshift(T a, unsigned n)
+- mult_cover · function · L956-L959 — static AGG_INLINE value_type mult_cover(value_type a, cover_type b)
+- scale_cover · function · L962-L965 — static AGG_INLINE cover_type scale_cover(cover_type a, value_type b)
+- prelerp · function · L969-L972 — static AGG_INLINE value_type prelerp(value_type p, value_type q, value_type a)
+- lerp · function · L976-L983 — static AGG_INLINE value_type lerp(value_type p, value_type q, value_type a)
+- opacity · function · L1009-L1009 — double opacity() const
+- gradient · function · L1032-L1037 — self_type gradient(self_type c, double k) const
+- no_color · function · L1040-L1040 — static self_type no_color() { return self_type(0,0); }

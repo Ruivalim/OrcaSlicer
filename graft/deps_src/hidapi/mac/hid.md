@@ -1,0 +1,52 @@
+# deps_src/hidapi/mac/hid.c
+
+- pthread_barrierattr_t · type · L43-L43 — typedef int pthread_barrierattr_t;
+- pthread_barrier · class · L44-L49 — typedef struct pthread_barrier
+- pthread_barrier_init · function · L51-L69 — static int pthread_barrier_init(pthread_barrier_t *barrier, const pthread_barrierattr_t *attr, unsigned int count)
+- pthread_barrier_destroy · function · L71-L76 — static int pthread_barrier_destroy(pthread_barrier_t *barrier)
+- pthread_barrier_wait · function · L78-L95 — static int pthread_barrier_wait(pthread_barrier_t *barrier)
+- return_data · function · L97-L97 — static int return_data(hid_device *dev, unsigned char *data, size_t length);
+- input_report · class · L100-L104 — struct input_report
+- hid_device_ · class · L106-L124 — struct hid_device_
+- new_hid_device · function · L126-L126 — static hid_device *new_hid_device(void)
+- free_hid_device · function · L149-L180 — static void free_hid_device(hid_device *dev)
+- register_error · function · L186-L189 — static void register_error(hid_device *dev, const char *op)
+- get_int_property · function · L193-L206 — static int32_t get_int_property(IOHIDDeviceRef device, CFStringRef key)
+- get_vendor_id · function · L208-L211 — static unsigned short get_vendor_id(IOHIDDeviceRef device)
+- get_product_id · function · L213-L216 — static unsigned short get_product_id(IOHIDDeviceRef device)
+- get_max_report_length · function · L218-L221 — static int32_t get_max_report_length(IOHIDDeviceRef device)
+- get_string_property · function · L223-L263 — static int get_string_property(IOHIDDeviceRef device, CFStringRef prop, wchar_t *buf, size_t len)
+- get_serial_number · function · L265-L268 — static int get_serial_number(IOHIDDeviceRef device, wchar_t *buf, size_t len)
+- get_manufacturer_string · function · L270-L273 — static int get_manufacturer_string(IOHIDDeviceRef device, wchar_t *buf, size_t len)
+- get_product_string · function · L275-L278 — static int get_product_string(IOHIDDeviceRef device, wchar_t *buf, size_t len)
+- dup_wcs · function · L282-L282 — static wchar_t *dup_wcs(const wchar_t *s)
+- hidapi_IOHIDDeviceGetService · function · L297-L346 — static io_service_t hidapi_IOHIDDeviceGetService(IOHIDDeviceRef device)
+- IOHIDDevice_internal · class · L326-L341 — struct IOHIDDevice_internal
+- init_hid_manager · function · L349-L360 — static int init_hid_manager(void)
+- process_pending_events · function · L387-L392 — static void process_pending_events(void)
+- hid_enumerate · function · L394-L394 — struct hid_device_info  HID_API_EXPORT *hid_enumerate(unsigned short vendor_id, unsigned short product_id)
+- hid_free_enumeration · function · L503-L516 — void  HID_API_EXPORT hid_free_enumeration(struct hid_device_info *devs)
+- hid_device_removal_callback · function · L554-L562 — static void hid_device_removal_callback(void *context, IOReturn result,
+- hid_report_callback · function · L567-L613 — static void hid_report_callback(void *context, IOReturn result, void *sender,
+- perform_signal_callback · function · L617-L621 — static void perform_signal_callback(void *context)
+- read_thread · function · L623-L623 — static void *read_thread(void *param)
+- set_report · function · L762-L799 — static int set_report(hid_device *dev, IOHIDReportType type, const unsigned char *data, size_t length)
+- hid_write · function · L801-L804 — int HID_API_EXPORT hid_write(hid_device *dev, const unsigned char *data, size_t length)
+- return_data · function · L807-L818 — static int return_data(hid_device *dev, unsigned char *data, size_t length)
+- cond_wait · function · L820-L838 — static int cond_wait(const hid_device *dev, pthread_cond_t *cond, pthread_mutex_t *mutex)
+- cond_timedwait · function · L840-L859 — static int cond_timedwait(const hid_device *dev, pthread_cond_t *cond, pthread_mutex_t *mutex, const struct timespec *abstime)
+- hid_read_timeout · function · L861-L933 — int HID_API_EXPORT hid_read_timeout(hid_device *dev, unsigned char *data, size_t length, int milliseconds)
+- hid_read · function · L935-L938 — int HID_API_EXPORT hid_read(hid_device *dev, unsigned char *data, size_t length)
+- hid_set_nonblocking · function · L940-L946 — int HID_API_EXPORT hid_set_nonblocking(hid_device *dev, int nonblock)
+- hid_send_feature_report · function · L948-L951 — int HID_API_EXPORT hid_send_feature_report(hid_device *dev, const unsigned char *data, size_t length)
+- hid_get_feature_report · function · L953-L970 — int HID_API_EXPORT hid_get_feature_report(hid_device *dev, unsigned char *data, size_t length)
+- hid_close · function · L973-L1017 — void HID_API_EXPORT hid_close(hid_device *dev)
+- hid_get_manufacturer_string · function · L1019-L1022 — int HID_API_EXPORT_CALL hid_get_manufacturer_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_product_string · function · L1024-L1027 — int HID_API_EXPORT_CALL hid_get_product_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_serial_number_string · function · L1029-L1032 — int HID_API_EXPORT_CALL hid_get_serial_number_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_indexed_string · function · L1034-L1039 — int HID_API_EXPORT_CALL hid_get_indexed_string(hid_device *dev, int string_index, wchar_t *string, size_t maxlen)
+- get_location_id · function · L1056-L1059 — static int32_t get_location_id(IOHIDDeviceRef device)
+- get_usage · function · L1061-L1068 — static int32_t get_usage(IOHIDDeviceRef device)
+- get_usage_page · function · L1070-L1077 — static int32_t get_usage_page(IOHIDDeviceRef device)
+- get_transport · function · L1079-L1082 — static int get_transport(IOHIDDeviceRef device, wchar_t *buf, size_t len)
+- main · function · L1085-L1120 — int main(void)

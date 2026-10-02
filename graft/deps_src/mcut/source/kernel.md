@@ -1,0 +1,43 @@
+# deps_src/mcut/source/kernel.cpp
+
+- distance · function · L49-L52 — template <>
+- to_string · function · L56-L71 — std::string to_string(const sm_frag_location_t& v)
+- to_string · function · L73-L88 — std::string to_string(const cm_patch_location_t& v)
+- to_string · function · L90-L117 — std::string to_string(const status_t& v)
+- to_string · function · L119-L131 — std::string to_string(const cm_patch_winding_order_t& v)
+- m0_is_intersection_point · function · L134-L137 — inline bool m0_is_intersection_point(const vd_t& ps_vd, const int ps_vtx_cnt)
+- ps_is_cutmesh_vertex · function · L140-L143 — bool inline ps_is_cutmesh_vertex(const vd_t& ps_vd, const int sm_vtx_cnt)
+- ps_is_cutmesh_face · function · L145-L148 — bool inline ps_is_cutmesh_face(const fd_t& ps_fd, const int sm_face_count)
+- dump_mesh · function · L150-L178 — void dump_mesh(const hmesh_t& mesh, const char* fbasename)
+- point_on_face_plane · function · L181-L206 — bool point_on_face_plane(const hmesh_t& m, const fd_t& f, const vec3& p, int& fv_count)
+- dfs_cc · function · L216-L225 — void dfs_cc(vd_t u, const hmesh_t& mesh, std::vector<int>& visited, int connected_component_id)
+- connected_component_info_t · class · L358-L364 — struct connected_component_info_t
+- mark_seam_vertices · function · L368-L381 — void mark_seam_vertices(
+- OutputStorageTypesTuple · type · L433-L436 — typedef std::tuple<
+- InputStorageIteratorType · type · L437-L437 — typedef std::vector<std::vector<hd_t>>::const_iterator InputStorageIteratorType;
+- OutputStorageTypesTuple · type · L760-L765 — typedef std::tuple<
+- InputStorageIteratorType · type · L766-L766 — typedef face_array_iterator_t InputStorageIteratorType;
+- is_virtual_face · function · L1127-L1130 — bool is_virtual_face(const fd_t& face)
+- have_same_coordinate · function · L1136-L1169 — bool have_same_coordinate(
+- m0_is_polygon_boundary_halfedge · function · L1173-L1176 — inline bool m0_is_polygon_boundary_halfedge(const hd_t& h, uint32_t m0_num_cutpath_halfedges)
+- m0_is_polygon_boundary_edge · function · L1178-L1181 — inline bool m0_is_polygon_boundary_edge(const ed_t& e, uint32_t m0_num_cutpath_edges)
+- resolve_intersection_point_descriptor · function · L1184-L1397 — vd_t resolve_intersection_point_descriptor(
+- ps_get_ivtx_registry_entry_faces · function · L1399-L1407 — inline std::vector<fd_t> ps_get_ivtx_registry_entry_faces(const hmesh_t& ps, const std::pair<ed_t, fd_t>& ivtx_registry_entry)
+- update_neighouring_ps_iface_m0_edge_list · function · L1412-L1480 — void update_neighouring_ps_iface_m0_edge_list(
+- traced_polygon_t · type · L1482-L1482 — typedef std::vector<hd_t> traced_polygon_t;
+- linear_projection_sort · function · L1518-L1553 — std::vector<vd_t> linear_projection_sort(const std::vector<std::pair<vd_t, vec3>>& points)
+- dispatch · function · L1558-L10696 — void dispatch(output_t& output, const input_t& input)
+- result · function · L1687-L1687 — std::vector<std::pair<fd_t, std::vector<vd_t>>> result(std::distance(block_start_, block_end_));
+- OutputStorageType · type · L1800-L1800 — typedef std::unordered_map<ed_t, std::vector<fd_t>> OutputStorageType;
+- InputStorageIteratorType · type · L1801-L1801 — typedef std::map<fd_t, std::vector<fd_t>>::const_iterator InputStorageIteratorType;
+- OutputStorageType · type · L2011-L2011 — typedef std::unordered_map<ed_t, bounding_box_t<vec3>> OutputStorageType;
+- InputStorageIteratorType · type · L2012-L2012 — typedef std::unordered_map<ed_t, std::vector<fd_t>>::const_iterator InputStorageIteratorType;
+- InputStorageIteratorType · type · L2073-L2073 — typedef std::unordered_map<ed_t, std::vector<fd_t>>::iterator InputStorageIteratorType;
+- OutputStorageTypesTuple · type · L2190-L2196 — typedef std::tuple<
+- InputStorageIteratorType · type · L2197-L2197 — typedef std::map<fd_t, std::vector<fd_t>>::const_iterator InputStorageIteratorType;
+- OutputStorageTypesTuple · type · L2409-L2418 — typedef std::tuple<
+- file · function · L3343-L3343 — std::ofstream file(fpath);
+- InputStorageIteratorType · type · L4463-L4463 — typedef edge_array_iterator_t InputStorageIteratorType;
+- OutputStorageTypesTuple · type · L4464-L4471 — typedef std::tuple<
+- InputStorageIteratorType · type · L4894-L4894 — typedef face_array_iterator_t InputStorageIteratorType;
+- OutputStorageTypesTuple · type · L4895-L4901 — typedef std::tuple<

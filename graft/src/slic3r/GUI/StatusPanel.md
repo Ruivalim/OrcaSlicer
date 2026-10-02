@@ -1,0 +1,250 @@
+# src/slic3r/GUI/StatusPanel.hpp
+
+- StepIndicator · class · L40-L40 — class StepIndicator;
+- DevExtderSystem · class · L46-L46 — class DevExtderSystem;
+- MessageDialog · class · L51-L51 — class MessageDialog;
+- wgtDeviceNozzleRack · class · L52-L52 — class wgtDeviceNozzleRack;
+- CameraRecordingStatus · type · L54-L60 — enum CameraRecordingStatus
+- CameraTimelapseStatus · type · L62-L68 — enum CameraTimelapseStatus
+- PrintingTaskType · type · L70-L74 — enum PrintingTaskType
+- ExtruderState · type · L76-L81 — enum ExtruderState
+- ScoreData · class · L83-L95 — struct ScoreData
+- OnGetSubTaskFn · type · L97-L97 — typedef std::function<void(BBLModelTask* subtask)> OnGetSubTaskFn;
+- ExtruderImage · class · L99-L151 — class ExtruderImage : public wxWindow
+- update · function · L130-L130 — void update(int nozzle_num, int nozzle_id);
+- update · function · L131-L131 — void update(ExtruderState single_state);
+- update · function · L132-L132 — void update(ExtruderState right_state, ExtruderState left_state);
+- msw_rescale · function · L134-L134 — void msw_rescale();
+- setExtruderCount · function · L135-L135 — void setExtruderCount(int nozzle_num);
+- setExtruderUsed · function · L136-L136 — void setExtruderUsed(std::string loc);
+- paintEvent · function · L137-L137 — void paintEvent(wxPaintEvent &evt);
+- render · function · L139-L139 — void     render(wxDC &dc);
+- doRender · function · L148-L148 — void   doRender(wxDC &dc);
+- ExtruderImage · function · L149-L149 — ExtruderImage(wxWindow *parent, wxWindowID id, int nozzle_num, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- ExtruderSwithingStatus · class · L153-L182 — class ExtruderSwithingStatus : public wxPanel
+- ExtruderSwithingStatus · function · L156-L156 — ExtruderSwithingStatus(wxWindow *parent);
+- updateBy · function · L160-L160 — void updateBy(MachineObject *obj);
+- has_content_shown · function · L161-L161 — bool has_content_shown() const;
+- msw_rescale · function · L163-L163 — void msw_rescale();
+- updateBy · function · L166-L166 — void updateBy(const DevExtderSystem* ext_system);
+- showQuitBtn · function · L167-L167 — void showQuitBtn(bool show);
+- showRetryBtn · function · L168-L168 — void showRetryBtn(bool show);
+- on_quit · function · L170-L170 — void on_quit(wxCommandEvent &event);
+- on_retry · function · L171-L171 — void on_retry(wxCommandEvent &event);
+- ScoreDialog · class · L184-L255 — class ScoreDialog : public GUI::DPIDialog
+- ScoreDialog · function · L187-L187 — ScoreDialog(wxWindow *parent, int design_id, std::string model_id, int profile_id, int rating_id, bool success_printed, int star_count = 0);
+- ScoreDialog · function · L188-L188 — ScoreDialog(wxWindow *parent, ScoreData *score_data);
+- get_rating_id · function · L191-L191 — int       get_rating_id() { return m_rating_id; }
+- get_score_data · function · L192-L192 — ScoreData get_score_data();
+- set_comment · function · L193-L193 — void      set_comment(std::string comment);
+- set_cloud_bitmap · function · L194-L194 — void      set_cloud_bitmap(std::vector<std::string> cloud_bitmaps);
+- StatusCode · type · L197-L202 — enum StatusCode
+- ImageMsg · class · L215-L223 — struct ImageMsg
+- init · function · L236-L236 — void init();
+- update_static_bitmap · function · L237-L237 — void update_static_bitmap(wxStaticBitmap *static_bitmap, wxImage image);
+- create_comment_text · function · L238-L238 — void create_comment_text(const wxString &comment = "");
+- load_photo · function · L239-L239 — void load_photo(const std::vector<std::pair<wxString, std::string>> &filePaths);
+- on_dpi_changed · function · L240-L240 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- OnBitmapClicked · function · L241-L241 — void OnBitmapClicked(wxMouseEvent &event);
+- create_broad_sizer · function · L243-L243 — wxBoxSizer * create_broad_sizer(wxStaticBitmap *bitmap, ImageMsg &cur_image_msg);
+- get_score_sizer · function · L244-L244 — wxBoxSizer * get_score_sizer();
+- get_star_sizer · function · L245-L245 — wxBoxSizer * get_star_sizer();
+- get_comment_text_sizer · function · L246-L246 — wxBoxSizer * get_comment_text_sizer();
+- get_photo_btn_sizer · function · L247-L247 — wxBoxSizer * get_photo_btn_sizer();
+- get_button_sizer · function · L248-L248 — wxBoxSizer * get_button_sizer();
+- get_main_sizer · function · L249-L249 — wxBoxSizer * get_main_sizer(const std::vector<std::pair<wxString, std::string>> &images = std::vector<std::pair<wxString, std::string>>(), const wxString &comment = "");
+- add_need_upload_imgs · function · L251-L251 — std::set<std::pair<wxStaticBitmap *, wxString>>        add_need_upload_imgs();
+- create_local_thumbnail · function · L252-L252 — std::pair<wxStaticBitmap *, ImageMsg>                  create_local_thumbnail(wxString &local_path);
+- create_oss_thumbnail · function · L253-L253 — std::pair<wxStaticBitmap *, ImageMsg>                  create_oss_thumbnail(std::string &oss_path);
+- PrintingTaskPanel · class · L257-L376 — class PrintingTaskPanel : public wxPanel
+- PrintingTaskPanel · function · L260-L260 — PrintingTaskPanel(wxWindow* parent, PrintingTaskType type);
+- create_panel · function · L262-L262 — void create_panel(wxWindow* parent);
+- init_bitmaps · function · L325-L325 — void init_bitmaps();
+- init_scaled_buttons · function · L326-L326 — void init_scaled_buttons();
+- error_info_reset · function · L327-L327 — void error_info_reset();
+- show_error_msg · function · L328-L328 — void show_error_msg(wxString msg);
+- reset_printing_value · function · L329-L329 — void reset_printing_value();
+- msw_rescale · function · L330-L330 — void msw_rescale();
+- enable_partskip_button · function · L333-L333 — void enable_partskip_button(MachineObject* obj, bool enable);
+- enable_pause_resume_button · function · L334-L334 — void enable_pause_resume_button(bool enable, std::string type);
+- enable_abort_button · function · L335-L335 — void enable_abort_button(bool enable);
+- update_subtask_name · function · L336-L336 — void update_subtask_name(wxString name);
+- update_stage_value · function · L337-L337 — void update_stage_value(wxString stage, int val);
+- update_stage_value_with_machine · function · L338-L338 — void update_stage_value_with_machine(wxString stage, int val, MachineObject* obj = nullptr);
+- on_stage_clicked · function · L339-L339 — void on_stage_clicked(wxMouseEvent& event);
+- update_thermal_remaining_time · function · L342-L342 — void update_thermal_remaining_time(MachineObject* obj);
+- update_progress_percent · function · L343-L343 — void update_progress_percent(wxString percent, wxString icon);
+- update_left_time · function · L344-L344 — void update_left_time(wxString time);
+- update_left_time · function · L345-L345 — void update_left_time(int mc_left_time);
+- show_layers_num · function · L346-L346 — void show_layers_num(bool show) { m_staticText_layers->Show(show); }
+- update_layers_num · function · L347-L347 — void update_layers_num(bool show, wxString num = wxEmptyString);
+- show_priting_use_info · function · L348-L348 — void show_priting_use_info(bool show, wxString time = wxEmptyString, wxString weight = wxEmptyString);
+- show_profile_info · function · L349-L349 — void show_profile_info(bool show, wxString profile = wxEmptyString);
+- set_thumbnail_img · function · L350-L350 — void set_thumbnail_img(const wxBitmap& bmp, const std::string& bmp_name);
+- set_brightness_value · function · L351-L351 — void set_brightness_value(int value) { m_brightness_value = value; }
+- set_plate_index · function · L352-L352 — void set_plate_index(int plate_idx = -1);
+- market_scoring_show · function · L353-L353 — void market_scoring_show();
+- market_scoring_hide · function · L354-L354 — void market_scoring_hide();
+- get_abort_button · function · L357-L357 — ScalableButton* get_abort_button() {return m_button_abort;};
+- get_pause_resume_button · function · L358-L358 — ScalableButton* get_pause_resume_button() {return m_button_pause_resume;};
+- get_partskip_button · function · L359-L359 — Button* get_partskip_button() { return m_button_partskip; };
+- get_market_scoring_button · function · L360-L360 — Button* get_market_scoring_button() {return m_button_market_scoring;};
+- get_market_retry_buttom · function · L361-L361 — Button * get_market_retry_buttom() { return m_button_market_retry; };
+- get_clean_button · function · L362-L362 — Button* get_clean_button() {return m_button_clean;};
+- get_bitmap_thumbnail · function · L363-L363 — wxStaticBitmap* get_bitmap_thumbnail() {return m_bitmap_thumbnail;};
+- get_request_failed_panel · function · L364-L364 — wxPanel *  get_request_failed_panel() { return m_request_failed_panel; }
+- get_star_count · function · L365-L365 — int get_star_count() { return m_star_count; }
+- set_star_count · function · L366-L366 — void set_star_count(int star_count);
+- get_score_star · function · L367-L367 — std::vector<ScalableButton *> &get_score_star() { return m_score_star; }
+- get_star_count_dirty · function · L368-L368 — bool get_star_count_dirty() { return m_star_count_dirty; }
+- set_star_count_dirty · function · L369-L369 — void set_star_count_dirty(bool dirty) { m_star_count_dirty = dirty; }
+- get_part_skipped_count · function · L370-L370 — int get_part_skipped_count() { return m_part_skipped_count; }
+- set_part_skipped_count · function · L371-L371 — void set_part_skipped_count(int count) { m_part_skipped_count = count; }
+- get_part_skipped_dirty · function · L372-L372 — int get_part_skipped_dirty() { return m_part_skipped_dirty; }
+- set_part_skipped_dirty · function · L373-L373 — void set_part_skipped_dirty(int dirty) { m_part_skipped_dirty = dirty; }
+- set_has_reted_text · function · L374-L374 — void                           set_has_reted_text(bool has_rated);
+- paint · function · L375-L375 — void paint(wxPaintEvent&);
+- StatusBasePanel · class · L378-L625 — class StatusBasePanel : public wxScrolledWindow
+- on_subtask_partskip · function · L562-L562 — virtual void on_subtask_partskip(wxCommandEvent &event) { event.Skip(); }
+- on_subtask_pause_resume · function · L563-L563 — virtual void on_subtask_pause_resume(wxCommandEvent &event) { event.Skip(); }
+- on_subtask_abort · function · L564-L564 — virtual void on_subtask_abort(wxCommandEvent &event) { event.Skip(); }
+- on_lamp_switch · function · L565-L565 — virtual void on_lamp_switch(wxCommandEvent &event) { event.Skip(); }
+- on_bed_temp_kill_focus · function · L566-L566 — virtual void on_bed_temp_kill_focus(wxFocusEvent &event) { event.Skip(); }
+- on_bed_temp_set_focus · function · L567-L567 — virtual void on_bed_temp_set_focus(wxFocusEvent &event) { event.Skip(); }
+- on_nozzle_temp_kill_focus · function · L568-L568 — virtual void on_nozzle_temp_kill_focus(wxFocusEvent &event) { event.Skip(); }
+- on_nozzle_temp_set_focus · function · L569-L569 — virtual void on_nozzle_temp_set_focus(wxFocusEvent &event) { event.Skip(); }
+- on_nozzle_fan_switch · function · L570-L570 — virtual void on_nozzle_fan_switch(wxCommandEvent &event) { event.Skip(); }
+- on_printing_fan_switch · function · L571-L571 — virtual void on_printing_fan_switch(wxCommandEvent &event) { event.Skip(); }
+- on_axis_ctrl_z_up_10 · function · L572-L572 — virtual void on_axis_ctrl_z_up_10(wxCommandEvent &event) { event.Skip(); }
+- on_axis_ctrl_z_up_1 · function · L573-L573 — virtual void on_axis_ctrl_z_up_1(wxCommandEvent &event) { event.Skip(); }
+- on_axis_ctrl_z_down_1 · function · L574-L574 — virtual void on_axis_ctrl_z_down_1(wxCommandEvent &event) { event.Skip(); }
+- on_axis_ctrl_z_down_10 · function · L575-L575 — virtual void on_axis_ctrl_z_down_10(wxCommandEvent &event) { event.Skip(); }
+- on_axis_ctrl_e_up_10 · function · L576-L576 — virtual void on_axis_ctrl_e_up_10(wxCommandEvent &event) { event.Skip(); }
+- on_axis_ctrl_e_down_10 · function · L577-L577 — virtual void on_axis_ctrl_e_down_10(wxCommandEvent &event) { event.Skip(); }
+- on_nozzle_selected · function · L578-L578 — virtual void on_nozzle_selected(wxCommandEvent &event) { event.Skip(); }
+- on_camera_source_change · function · L579-L579 — void on_camera_source_change(wxCommandEvent& event);
+- handle_camera_source_change · function · L580-L580 — void handle_camera_source_change();
+- remove_controls · function · L581-L581 — void remove_controls();
+- on_webview_navigating · function · L582-L582 — void on_webview_navigating(wxWebViewEvent& evt);
+- on_camera_switch_toggled · function · L583-L583 — void on_camera_switch_toggled(wxMouseEvent& event);
+- toggle_custom_camera · function · L584-L584 — void toggle_custom_camera();
+- toggle_builtin_camera · function · L585-L585 — void toggle_builtin_camera();
+- StatusBasePanel · function · L588-L593 — StatusBasePanel(wxWindow *      parent,
+- init_bitmaps · function · L598-L598 — void init_bitmaps();
+- create_monitoring_page · function · L599-L599 — wxBoxSizer *create_monitoring_page();
+- create_machine_control_page · function · L600-L600 — wxBoxSizer *create_machine_control_page(wxWindow *parent);
+- create_temp_axis_group · function · L602-L602 — wxBoxSizer *create_temp_axis_group(wxWindow *parent);
+- create_temp_control · function · L603-L603 — wxBoxSizer *create_temp_control(wxWindow *parent);
+- create_misc_control · function · L604-L604 — wxBoxSizer *create_misc_control(wxWindow *parent);
+- create_axis_control · function · L605-L605 — wxBoxSizer *create_axis_control(wxWindow *parent);
+- create_bed_control · function · L606-L606 — wxPanel *create_bed_control(wxWindow *parent);
+- create_extruder_control · function · L607-L607 — wxBoxSizer *create_extruder_control(wxWindow *parent);
+- reset_temp_misc_control · function · L609-L609 — void reset_temp_misc_control();
+- create_ams_group · function · L612-L612 — wxBoxSizer *create_ams_group(wxWindow *parent);
+- create_settings_group · function · L613-L613 — wxBoxSizer *create_settings_group(wxWindow *parent);
+- create_filament_group · function · L614-L614 — wxBoxSizer* create_filament_group(wxWindow* parent);
+- expand_filament_loading · function · L616-L616 — void           expand_filament_loading(wxMouseEvent &e);
+- show_ams_group · function · L617-L617 — void           show_ams_group(bool show = true);
+- show_filament_load_group · function · L618-L618 — void show_filament_load_group(bool show = true);
+- get_media_play_ctrl · function · L619-L619 — MediaPlayCtrl* get_media_play_ctrl() {return m_media_play_ctrl;};
+- jump_to_Rack · function · L621-L621 — void jump_to_Rack();
+- on_ams_rack_switch · function · L624-L624 — void on_ams_rack_switch(wxCommandEvent& event);
+- StatusPanel · class · L628-L846 — class StatusPanel : public StatusBasePanel
+- init_scaled_buttons · function · L689-L689 — void init_scaled_buttons();
+- create_tasklist_info · function · L690-L690 — void create_tasklist_info();
+- show_task_list_info · function · L691-L691 — void show_task_list_info(bool show = true);
+- update_tasklist_info · function · L692-L692 — void update_tasklist_info();
+- on_market_scoring · function · L694-L694 — void on_market_scoring(wxCommandEvent &event);
+- on_market_retry · function · L695-L695 — void on_market_retry(wxCommandEvent &event);
+- on_subtask_partskip · function · L696-L696 — void on_subtask_partskip(wxCommandEvent &event);
+- on_subtask_pause_resume · function · L697-L697 — void on_subtask_pause_resume(wxCommandEvent &event);
+- on_subtask_abort · function · L698-L698 — void on_subtask_abort(wxCommandEvent &event);
+- on_print_error_clean · function · L699-L699 — void on_print_error_clean(wxCommandEvent &event);
+- error_info_reset · function · L700-L700 — void error_info_reset();
+- show_recenter_dialog · function · L701-L701 — void show_recenter_dialog();
+- check_axis_z_at_home · function · L704-L704 — bool check_axis_z_at_home(MachineObject* obj);
+- on_axis_ctrl_xy · function · L705-L705 — void on_axis_ctrl_xy(wxCommandEvent &event);
+- on_axis_ctrl_z_up_10 · function · L706-L706 — void on_axis_ctrl_z_up_10(wxCommandEvent &event);
+- on_axis_ctrl_z_up_1 · function · L707-L707 — void on_axis_ctrl_z_up_1(wxCommandEvent &event);
+- on_axis_ctrl_z_down_1 · function · L708-L708 — void on_axis_ctrl_z_down_1(wxCommandEvent &event);
+- on_axis_ctrl_z_down_10 · function · L709-L709 — void on_axis_ctrl_z_down_10(wxCommandEvent &event);
+- on_axis_ctrl_e_up_10 · function · L710-L710 — void on_axis_ctrl_e_up_10(wxCommandEvent &event);
+- on_axis_ctrl_e_down_10 · function · L711-L711 — void on_axis_ctrl_e_down_10(wxCommandEvent &event);
+- axis_ctrl_e_hint · function · L712-L712 — void axis_ctrl_e_hint(bool up_down);
+- on_nozzle_selected · function · L714-L714 — void on_nozzle_selected(wxCommandEvent &event);
+- on_bed_temp_kill_focus · function · L716-L716 — void on_bed_temp_kill_focus(wxFocusEvent &event);
+- on_bed_temp_set_focus · function · L717-L717 — void on_bed_temp_set_focus(wxFocusEvent &event);
+- on_set_bed_temp · function · L718-L718 — void on_set_bed_temp();
+- on_nozzle_temp_kill_focus · function · L719-L719 — void on_nozzle_temp_kill_focus(wxFocusEvent &event);
+- on_nozzle_temp_set_focus · function · L720-L720 — void on_nozzle_temp_set_focus(wxFocusEvent &event);
+- on_set_nozzle_temp · function · L721-L721 — void on_set_nozzle_temp(int nozzle_id);
+- on_set_chamber_temp · function · L722-L722 — void on_set_chamber_temp();
+- on_ams_load · function · L725-L725 — void on_ams_load(SimpleEvent &event);
+- update_load_with_temp · function · L726-L726 — void update_load_with_temp();
+- on_ams_load_curr · function · L727-L727 — void on_ams_load_curr();
+- on_ams_load_vams · function · L728-L728 — void on_ams_load_vams(wxCommandEvent& event);
+- on_ams_switch · function · L729-L729 — void on_ams_switch(SimpleEvent &event);
+- on_ams_unload · function · L730-L730 — void on_ams_unload(SimpleEvent &event);
+- on_ams_filament_backup · function · L731-L731 — void on_ams_filament_backup(SimpleEvent& event);
+- on_ams_setting_click · function · L732-L732 — void on_ams_setting_click(SimpleEvent& event);
+- on_filament_edit · function · L733-L733 — void on_filament_edit(wxCommandEvent &event);
+- on_ext_spool_edit · function · L734-L734 — void on_ext_spool_edit(wxCommandEvent &event);
+- on_filament_extrusion_cali · function · L735-L735 — void on_filament_extrusion_cali(wxCommandEvent &event);
+- on_ams_refresh_rfid · function · L736-L736 — void on_ams_refresh_rfid(wxCommandEvent &event);
+- on_ams_selected · function · L737-L737 — void on_ams_selected(wxCommandEvent &event);
+- on_ams_guide · function · L738-L738 — void on_ams_guide(wxCommandEvent &event);
+- on_ams_retry · function · L739-L739 — void on_ams_retry(wxCommandEvent &event);
+- on_fan_changed · function · L741-L741 — void on_fan_changed(wxCommandEvent& event);
+- on_cham_temp_kill_focus · function · L742-L742 — void on_cham_temp_kill_focus(wxFocusEvent& event);
+- on_cham_temp_set_focus · function · L743-L743 — void on_cham_temp_set_focus(wxFocusEvent& event);
+- on_switch_speed · function · L744-L744 — void on_switch_speed(wxCommandEvent& event);
+- on_lamp_switch · function · L745-L745 — void on_lamp_switch(wxCommandEvent &event);
+- on_printing_fan_switch · function · L746-L746 — void on_printing_fan_switch(wxCommandEvent &event);
+- on_nozzle_fan_switch · function · L747-L747 — void on_nozzle_fan_switch(wxCommandEvent &event);
+- on_thumbnail_enter · function · L748-L748 — void on_thumbnail_enter(wxMouseEvent &event);
+- on_thumbnail_leave · function · L749-L749 — void on_thumbnail_leave(wxMouseEvent &event);
+- refresh_thumbnail_webrequest · function · L750-L750 — void refresh_thumbnail_webrequest(wxMouseEvent& event);
+- on_switch_vcamera · function · L751-L751 — void on_switch_vcamera(wxMouseEvent &event);
+- on_camera_enter · function · L752-L752 — void on_camera_enter(wxMouseEvent &event);
+- on_camera_leave · function · L753-L753 — void on_camera_leave(wxMouseEvent& event);
+- on_auto_leveling · function · L754-L754 — void on_auto_leveling(wxCommandEvent &event);
+- on_xyz_abs · function · L755-L755 — void on_xyz_abs(wxCommandEvent &event);
+- on_show_parts_options · function · L758-L758 — void on_show_parts_options(wxCommandEvent& event);
+- on_show_print_options · function · L760-L760 — void on_show_print_options(wxCommandEvent &event);
+- on_show_safety_options · function · L762-L762 — void on_show_safety_options(wxCommandEvent &event);
+- on_start_calibration · function · L765-L765 — void on_start_calibration(wxCommandEvent &event);
+- update · function · L769-L769 — void update(MachineObject* obj);
+- show_printing_status · function · L770-L770 — void show_printing_status(bool ctrl_area = true, bool temp_area = true);
+- update_left_time · function · L771-L771 — void update_left_time(int mc_left_time);
+- update_basic_print_data · function · L772-L772 — void update_basic_print_data(bool def = false);
+- update_model_info · function · L773-L773 — void update_model_info();
+- update_subtask · function · L774-L774 — void update_subtask(MachineObject* obj);
+- update_partskip_subtask · function · L775-L775 — void update_partskip_subtask(MachineObject *obj);
+- update_cloud_subtask · function · L776-L776 — void update_cloud_subtask(MachineObject *obj);
+- update_sdcard_subtask · function · L777-L777 — void update_sdcard_subtask(MachineObject *obj);
+- update_temp_ctrl · function · L778-L778 — void update_temp_ctrl(MachineObject *obj);
+- update_misc_ctrl · function · L779-L779 — void update_misc_ctrl(MachineObject *obj);
+- update_ams · function · L780-L780 — void update_ams(MachineObject* obj);
+- update_rack · function · L781-L781 — void update_rack(MachineObject* obj);
+- update_filament_loading_panel · function · L782-L782 — void update_filament_loading_panel(MachineObject* obj);
+- update_extruder_status · function · L784-L784 — void update_extruder_status(MachineObject* obj);
+- update_ams_control_state · function · L785-L785 — void update_ams_control_state(std::string ams_id, std::string slot_id);
+- update_cali · function · L786-L786 — void update_cali(MachineObject* obj);
+- update_calib_bitmap · function · L787-L787 — void update_calib_bitmap();
+- reset_printing_values · function · L789-L789 — void reset_printing_values();
+- on_webrequest_state · function · L790-L790 — void on_webrequest_state(wxWebRequestEvent &evt);
+- is_task_changed · function · L791-L791 — bool is_task_changed(MachineObject* obj);
+- update_camera_state · function · L794-L794 — void update_camera_state(MachineObject* obj);
+- update_partskip_button · function · L798-L798 — void update_partskip_button(MachineObject* obj);
+- update_printer_parts_options · function · L801-L801 — void update_printer_parts_options(MachineObject* obj);
+- update_error_message · function · L804-L804 — void update_error_message();
+- StatusPanel · function · L807-L812 — StatusPanel(wxWindow *      parent,
+- ThumbnailState · type · L815-L821 — enum ThumbnailState
+- ThumbnailState · type · L834-L834 — enum ThumbnailState task_thumbnail_state {ThumbnailState::PLACE_HOLDER};
+- is_stage_list_info_changed · function · L837-L837 — bool is_stage_list_info_changed(MachineObject* obj);
+- set_default · function · L839-L839 — void set_default();
+- show_status · function · L840-L840 — void show_status(int status);
+- set_hold_count · function · L841-L841 — void set_hold_count(int& count);
+- rescale_camera_icons · function · L843-L843 — void rescale_camera_icons();
+- on_sys_color_changed · function · L844-L844 — void on_sys_color_changed();
+- msw_rescale · function · L845-L845 — void msw_rescale();

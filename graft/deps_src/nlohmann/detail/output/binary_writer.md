@@ -1,0 +1,44 @@
+# deps_src/nlohmann/detail/output/binary_writer.hpp
+
+- binary_writer · class · L27-L1633 — template<typename BasicJsonType, typename CharType>
+- binary_writer · function · L40-L43 — explicit binary_writer(output_adapter_t<CharType> adapter) : oa(std::move(adapter))
+- write_bson · function · L49-L73 — void write_bson(const BasicJsonType& j)
+- write_cbor · function · L78-L397 — void write_cbor(const BasicJsonType& j)
+- write_msgpack · function · L402-L719 — void write_msgpack(const BasicJsonType& j)
+- write_ubjson · function · L727-L924 — void write_ubjson(const BasicJsonType& j, const bool use_count,
+- calc_bson_entry_header_size · function · L935-L945 — static std::size_t calc_bson_entry_header_size(const string_t& name, const BasicJsonType& j)
+- write_bson_entry_header · function · L950-L957 — void write_bson_entry_header(const string_t& name,
+- write_bson_boolean · function · L962-L967 — void write_bson_boolean(const string_t& name,
+- write_bson_double · function · L972-L977 — void write_bson_double(const string_t& name,
+- calc_bson_string_size · function · L982-L985 — static std::size_t calc_bson_string_size(const string_t& value)
+- write_bson_string · function · L990-L999 — void write_bson_string(const string_t& name,
+- write_bson_null · function · L1004-L1007 — void write_bson_null(const string_t& name)
+- calc_bson_integer_size · function · L1012-L1017 — static std::size_t calc_bson_integer_size(const std::int64_t value)
+- write_bson_integer · function · L1022-L1035 — void write_bson_integer(const string_t& name,
+- calc_bson_unsigned_size · function · L1040-L1045 — static constexpr std::size_t calc_bson_unsigned_size(const std::uint64_t value) noexcept
+- write_bson_unsigned · function · L1050-L1067 — void write_bson_unsigned(const string_t& name,
+- write_bson_object_entry · function · L1072-L1077 — void write_bson_object_entry(const string_t& name,
+- calc_bson_array_size · function · L1082-L1092 — static std::size_t calc_bson_array_size(const typename BasicJsonType::array_t& value)
+- calc_bson_binary_size · function · L1097-L1100 — static std::size_t calc_bson_binary_size(const typename BasicJsonType::binary_t& value)
+- write_bson_array · function · L1105-L1119 — void write_bson_array(const string_t& name,
+- write_bson_binary · function · L1124-L1133 — void write_bson_binary(const string_t& name,
+- calc_bson_element_size · function · L1139-L1179 — static std::size_t calc_bson_element_size(const string_t& name,
+- write_bson_element · function · L1187-L1226 — void write_bson_element(const string_t& name,
+- calc_bson_object_size · function · L1234-L1243 — static std::size_t calc_bson_object_size(const typename BasicJsonType::object_t& value)
+- write_bson_object · function · L1249-L1259 — void write_bson_object(const typename BasicJsonType::object_t& value)
+- get_cbor_float_prefix · function · L1265-L1268 — static constexpr CharType get_cbor_float_prefix(float /*unused*/)
+- get_cbor_float_prefix · function · L1270-L1273 — static constexpr CharType get_cbor_float_prefix(double /*unused*/)
+- get_msgpack_float_prefix · function · L1279-L1282 — static constexpr CharType get_msgpack_float_prefix(float /*unused*/)
+- get_msgpack_float_prefix · function · L1284-L1287 — static constexpr CharType get_msgpack_float_prefix(double /*unused*/)
+- write_number_with_ubjson_prefix · function · L1294-L1304 — template<typename NumberType, typename std::enable_if<
+- write_number_with_ubjson_prefix · function · L1307-L1366 — template<typename NumberType, typename std::enable_if<
+- write_number_with_ubjson_prefix · function · L1369-L1431 — template < typename NumberType, typename std::enable_if <
+- ubjson_prefix · function · L1436-L1515 — CharType ubjson_prefix(const BasicJsonType& j) const noexcept
+- get_ubjson_float_prefix · function · L1517-L1520 — static constexpr CharType get_ubjson_float_prefix(float /*unused*/)
+- get_ubjson_float_prefix · function · L1522-L1525 — static constexpr CharType get_ubjson_float_prefix(double /*unused*/)
+- write_number · function · L1542-L1557 — template<typename NumberType, bool OutputIsLittleEndian = false>
+- write_compact_float · function · L1559-L1584 — void write_compact_float(const number_float_t n, detail::input_format_t format)
+- to_char_type · function · L1591-L1596 — template < typename C = CharType,
+- to_char_type · function · L1598-L1607 — template < typename C = CharType,
+- to_char_type · function · L1609-L1614 — template<typename C = CharType,
+- to_char_type · function · L1616-L1625 — template < typename InputCharType, typename C = CharType,

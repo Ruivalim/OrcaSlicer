@@ -1,0 +1,43 @@
+# src/slic3r/GUI/WebGuideDialog.hpp
+
+- GuideFrame · class · L44-L167 — class GuideFrame : public DPIDialog
+- GuideFrame · function · L49-L49 — GuideFrame(GUI_App *pGUI, long style = wxCAPTION | wxCLOSE_BOX | wxSYSTEM_MENU);
+- GuidePage · type · L52-L59 — enum GuidePage
+- load_url · function · L62-L62 — void load_url(wxString &url);
+- SetStartPage · function · L63-L63 — wxString SetStartPage(GuidePage startpage=BBL_WELCOME, bool load = true);
+- UpdateState · function · L65-L65 — void UpdateState();
+- OnIdle · function · L66-L66 — void OnIdle(wxIdleEvent &evt);
+- OnNavigationRequest · function · L69-L69 — void OnNavigationRequest(wxWebViewEvent &evt);
+- OnNavigationComplete · function · L70-L70 — void OnNavigationComplete(wxWebViewEvent &evt);
+- OnDocumentLoaded · function · L71-L71 — void OnDocumentLoaded(wxWebViewEvent &evt);
+- OnNewWindow · function · L72-L72 — void OnNewWindow(wxWebViewEvent &evt);
+- OnError · function · L73-L73 — void OnError(wxWebViewEvent &evt);
+- OnTitleChanged · function · L74-L74 — void OnTitleChanged(wxWebViewEvent &evt);
+- OnFullScreenChanged · function · L75-L75 — void OnFullScreenChanged(wxWebViewEvent &evt);
+- OnScriptMessage · function · L76-L76 — void OnScriptMessage(wxWebViewEvent &evt);
+- OnScriptResponseMessage · function · L78-L78 — void OnScriptResponseMessage(wxCommandEvent &evt);
+- RunScript · function · L79-L79 — void RunScript(const wxString &javascript);
+- IsFirstUse · function · L82-L82 — bool IsFirstUse();
+- LoadProfileData · function · L85-L85 — int LoadProfileData();
+- SaveProfileData · function · L86-L86 — int SaveProfileData();
+- LoadProfileFamily · function · L87-L87 — int LoadProfileFamily(std::string strVendor, std::string strFilePath);
+- init_guide_paths · function · L88-L88 — void init_guide_paths();
+- on_profile_loaded · function · L89-L89 — void on_profile_loaded();
+- BuildProfileJson · function · L90-L90 — bool BuildProfileJson(const PresetBundle& bundle, bool require_all_resource_vendors);
+- BuildProfileDataFromPresetBundle · function · L91-L91 — bool BuildProfileDataFromPresetBundle();
+- BuildProfileDataFromVendors · function · L92-L92 — bool BuildProfileDataFromVendors();
+- reset_profile_json · function · L93-L93 — void reset_profile_json();
+- SaveProfile · function · L94-L94 — int SaveProfile();
+- GetFilamentInfo · function · L95-L95 — int GetFilamentInfo( std::string VendorDirectory,json & pFilaList, std::string filepath, std::string &sVendor, std::string &sType);
+- apply_config · function · L98-L98 — bool apply_config(AppConfig *app_config, PresetBundle *preset_bundle, const PresetUpdater *updater, bool& apply_keeped_changes);
+- run · function · L99-L99 — bool run();
+- StrReplace · function · L101-L101 — void        StrReplace(std::string &strBase, std::string strSrc, std::string strDes);
+- w2s · function · L102-L102 — std::string w2s(wxString sSrc);
+- GetStardardFilePath · function · L103-L103 — void        GetStardardFilePath(std::string &FilePath);
+- LoadFile · function · L104-L104 — bool LoadFile(std::string jPath, std::string & sContent);
+- DownloadPlugin · function · L107-L107 — int DownloadPlugin();
+- InstallPlugin · function · L108-L108 — int InstallPlugin();
+- ShowPluginStatus · function · L109-L109 — int ShowPluginStatus(int status, int percent, bool &cancel);
+- on_dpi_changed · function · L111-L111 — void on_dpi_changed(const wxRect &suggested_rect) {}
+- GetFilamentInfo · function · L114-L115 — int GetFilamentInfo(const std::string& VendorDirectory, json& pFilaList, const std::string& filepath,
+- CachedFilamentInfo · class · L160-L165 — struct CachedFilamentInfo

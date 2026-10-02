@@ -1,0 +1,21 @@
+# src/slic3r/GUI/DragCanvas.hpp
+
+- DragShape · class · L10-L31 — class DragShape : public wxObject
+- DragShape · function · L13-L13 — DragShape(const wxBitmap& bitmap, int index);
+- GetPosition · function · L16-L16 — wxPoint GetPosition() const { return m_pos; }
+- SetPosition · function · L17-L17 — void SetPosition(const wxPoint& pos) { m_pos = pos; }
+- GetBitmap · function · L19-L19 — const wxBitmap& GetBitmap() const { return m_bitmap; }
+- SetBitmap · function · L20-L20 — void SetBitmap(const wxBitmap& bitmap) { m_bitmap = bitmap; }
+- get_index · function · L22-L22 — int get_index() { return m_index; }
+- hit_test · function · L24-L24 — bool hit_test(const wxPoint& pt) const;
+- paint · function · L25-L25 — void paint(wxDC& dc, bool highlight = false);
+- DragMode · type · L34-L37 — enum class DragMode
+- DragCanvas · class · L38-L64 — class DragCanvas : public wxPanel
+- DragCanvas · function · L41-L41 — DragCanvas(wxWindow* parent, const std::vector<std::string>& colors, const std::vector<int>& order);
+- set_shape_list · function · L43-L43 — void set_shape_list(const std::vector<std::string>& colors, const std::vector<int>& order);
+- get_shape_list_order · function · L44-L44 — std::vector<int> get_shape_list_order();
+- get_ordered_shape_list · function · L45-L45 — std::vector<DragShape*> get_ordered_shape_list();
+- on_paint · function · L48-L48 — void on_paint(wxPaintEvent& event);
+- on_erase · function · L49-L49 — void on_erase(wxEraseEvent& event);
+- on_mouse · function · L50-L50 — void on_mouse(wxMouseEvent& event);
+- find_shape · function · L51-L51 — DragShape* find_shape(const wxPoint& pt) const;

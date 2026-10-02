@@ -1,0 +1,18 @@
+# tests/compare_analyzer/compare_slices.py
+
+- escape_markdown_table · function · L61-L65 — def escape_markdown_table(val)
+- find_file · function · L67-L75 — def find_file(filename)
+- parse_metadata · function · L77-L119 — def parse_metadata(zip_file)
+- parse_project_settings · function · L121-L129 — def parse_project_settings(zip_file)
+- parse_critical_gcode · function · L131-L364 — def parse_critical_gcode(zip_file, filament_maps_str=None)
+- get_slicer_name · function · L366-L377 — def get_slicer_name(meta)
+- analyze_critical_discrepancies · function · L379-L509 — def analyze_critical_discrepancies(f1_meta, f2_meta, f1_settings, f2_settings, f1_stats, f2_stats)
+- clean_map · function · L385-L393 — def clean_map(m)
+- interpret_temp_action · function · L511-L565 — def interpret_temp_action(desc, active_extruder)
+- format_side_by_side_temp_track · function · L567-L729 — def format_side_by_side_temp_track(f1_track, f2_track, f1_name, f2_name): # 1. Find toolchanges for File 1 (Orca)
+- get_nozzle_map · function · L732-L749 — def get_nozzle_map(filament_maps_str, track)
+- analyze_preheat_cooldown_events · function · L752-L885 — def analyze_preheat_cooldown_events(track, nozzle_map=None)
+- build_comparison_report · function · L888-L1226 — def build_comparison_report(f1_name, f1_meta, f1_settings, f1_events, f1_lines, f1_size, f1_stats, f2_name, f2_meta, f2_settings, f2_events, f2_lines, f2_size, f2_stats)
+- clean_gcode_lines · function · L1122-L1133 — def clean_gcode_lines(lines_list)
+- clean_events · function · L1169-L1180 — def clean_events(events_list)
+- main · function · L1228-L1279 — def main()

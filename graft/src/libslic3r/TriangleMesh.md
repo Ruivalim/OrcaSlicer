@@ -1,0 +1,142 @@
+# src/libslic3r/TriangleMesh.hpp
+
+- TriangleMesh · class · L16-L16 — class TriangleMesh;
+- TriangleMeshSlicer · class · L17-L17 — class TriangleMeshSlicer;
+- RepairedMeshErrors · class · L19-L45 — struct RepairedMeshErrors
+- clear · function · L34-L34 — void clear() { *this = RepairedMeshErrors(); }
+- merge · function · L36-L42 — void merge(const RepairedMeshErrors& rhs)
+- repaired · function · L44-L44 — bool repaired() const { return degenerate_facets > 0 || edges_fixed > 0 || facets_removed > 0 || facets_reversed > 0 || backwards_edges > 0; }
+- TriangleMeshStats · class · L47-L85 — struct TriangleMeshStats
+- clear · function · L62-L62 — void clear() { *this = TriangleMeshStats(); }
+- merge · function · L64-L81 — TriangleMeshStats merge(const TriangleMeshStats &rhs) const
+- manifold · function · L83-L83 — bool manifold() const { return open_edges == 0; }
+- repaired · function · L84-L84 — bool repaired() const { return repaired_errors.repaired(); }
+- TriangleMesh · class · L87-L163 — class TriangleMesh
+- TriangleMesh · function · L90-L90 — TriangleMesh() = default;
+- TriangleMesh · function · L91-L91 — TriangleMesh(const std::vector<Vec3f> &vertices, const std::vector<Vec3i32> &faces);
+- TriangleMesh · function · L92-L92 — TriangleMesh(std::vector<Vec3f> &&vertices, const std::vector<Vec3i32> &&faces);
+- TriangleMesh · function · L93-L93 — explicit TriangleMesh(const indexed_triangle_set &M);
+- TriangleMesh · function · L94-L94 — explicit TriangleMesh(indexed_triangle_set &&M, const RepairedMeshErrors& repaired_errors = RepairedMeshErrors());
+- clear · function · L95-L95 — void clear() { this->its.clear(); this->m_stats.clear(); }
+- from_stl · function · L96-L96 — bool from_stl(stl_file& stl, bool repair = true);
+- ReadSTLFile · function · L97-L97 — bool  ReadSTLFile(const char *input_file, bool repair = true, ImportstlProgressFn stlFn = nullptr, int custom_header_length = 80);
+- write_ascii · function · L98-L98 — bool write_ascii(const char* output_file) const;
+- write_binary · function · L99-L99 — bool write_binary(const char* output_file) const;
+- volume · function · L100-L100 — float volume();
+- WriteOBJFile · function · L101-L101 — void WriteOBJFile(const char* output_file) const;
+- scale · function · L102-L102 — void scale(float factor);
+- scale · function · L103-L103 — void scale(const Vec3f &versor);
+- translate · function · L104-L104 — void translate(float x, float y, float z);
+- translate · function · L105-L105 — void translate(const Vec3f &displacement);
+- rotate · function · L106-L106 — void rotate(float angle, const Axis &axis);
+- rotate · function · L107-L107 — void rotate(float angle, const Vec3d& axis);
+- rotate_x · function · L108-L108 — void rotate_x(float angle) { this->rotate(angle, X); }
+- rotate_y · function · L109-L109 — void rotate_y(float angle) { this->rotate(angle, Y); }
+- rotate_z · function · L110-L110 — void rotate_z(float angle) { this->rotate(angle, Z); }
+- mirror · function · L111-L111 — void mirror(const Axis axis);
+- mirror_x · function · L112-L112 — void mirror_x() { this->mirror(X); }
+- mirror_y · function · L113-L113 — void mirror_y() { this->mirror(Y); }
+- mirror_z · function · L114-L114 — void mirror_z() { this->mirror(Z); }
+- transform · function · L115-L115 — void transform(const Transform3d& t, bool fix_left_handed = false);
+- transform · function · L116-L116 — void transform(const Matrix3d& t, bool fix_left_handed = false);
+- flip_triangles · function · L118-L118 — void flip_triangles();
+- align_to_origin · function · L119-L119 — void align_to_origin();
+- rotate · function · L120-L120 — void rotate(double angle, Point* center);
+- split · function · L121-L121 — std::vector<TriangleMesh> split() const;
+- merge · function · L122-L122 — void merge(const TriangleMesh &mesh);
+- horizontal_projection · function · L123-L123 — ExPolygons horizontal_projection() const;
+- convex_hull · function · L125-L125 — Polygon convex_hull() const;
+- bounding_box · function · L126-L126 — BoundingBoxf3 bounding_box() const;
+- transformed_bounding_box · function · L128-L128 — BoundingBoxf3 transformed_bounding_box(const Transform3d &trafo) const;
+- transformed_bounding_box · function · L130-L130 — BoundingBoxf3 transformed_bounding_box(const Transform3d& trafo, double world_min_z) const;
+- size · function · L132-L132 — Vec3d size() const { return m_stats.size.cast<double>(); }
+- center · function · L134-L134 — Vec3d center() const { return this->bounding_box().center(); }
+- convex_hull_3d · function · L136-L136 — TriangleMesh convex_hull_3d() const;
+- slice · function · L138-L138 — std::vector<ExPolygons> slice(const std::vector<double>& z) const;
+- facets_count · function · L139-L139 — size_t facets_count() const { assert(m_stats.number_of_facets == this->its.indices.size()); return m_stats.number_of_facets; }
+- empty · function · L140-L140 — bool   empty() const { return this->facets_count() == 0; }
+- repaired · function · L141-L141 — bool   repaired() const;
+- is_splittable · function · L142-L142 — bool   is_splittable() const;
+- memsize · function · L144-L144 — size_t memsize() const;
+- release_optional · function · L149-L149 — size_t release_optional() { return 0; }
+- restore_optional · function · L151-L151 — void   restore_optional() {}
+- stats · function · L153-L153 — const TriangleMeshStats& stats() const { return m_stats; }
+- set_init_shift · function · L155-L155 — void set_init_shift(const Vec3d &offset) { m_init_shift = offset; }
+- get_init_shift · function · L156-L156 — Vec3d get_init_shift() const { return m_init_shift; }
+- VertexFaceIndex · class · L166-L188 — struct VertexFaceIndex
+- VertexFaceIndex · function · L171-L171 — VertexFaceIndex(const indexed_triangle_set &its) { this->create(its); }
+- VertexFaceIndex · function · L172-L172 — VertexFaceIndex() {}
+- create · function · L174-L174 — void create(const indexed_triangle_set &its);
+- clear · function · L175-L175 — void clear() { m_vertex_to_face_start.clear(); m_vertex_faces_all.clear(); }
+- begin · function · L178-L178 — iterator begin(size_t vertex_id) const throw() { return m_vertex_faces_all.begin() + m_vertex_to_face_start[vertex_id]; }
+- end · function · L179-L179 — iterator end  (size_t vertex_id) const throw() { return m_vertex_faces_all.begin() + m_vertex_to_face_start[vertex_id + 1]; }
+- count · function · L181-L181 — size_t   count(size_t vertex_id) const throw() { return m_vertex_to_face_start[vertex_id + 1] - m_vertex_to_face_start[vertex_id]; }
+- its_face_edge_ids · function · L193-L193 — std::vector<Vec3i32> its_face_edge_ids(const indexed_triangle_set &its);
+- its_face_edge_ids · function · L194-L194 — std::vector<Vec3i32> its_face_edge_ids(const indexed_triangle_set &its, std::function<void()> throw_on_cancel_callback);
+- its_face_edge_ids · function · L195-L195 — std::vector<Vec3i32> its_face_edge_ids(const indexed_triangle_set &its, const std::vector<bool> &face_mask);
+- its_face_edge_ids · function · L197-L197 — std::vector<Vec3i32> its_face_edge_ids(const indexed_triangle_set &its, std::vector<Vec3i32> &face_neighbors, bool assign_unbound_edges = false, int *num_edges = nullptr);
+- its_face_neighbors · function · L200-L200 — std::vector<Vec3i32> its_face_neighbors(const indexed_triangle_set &its);
+- its_face_neighbors_par · function · L201-L201 — std::vector<Vec3i32> its_face_neighbors_par(const indexed_triangle_set &its);
+- its_flip_triangles · function · L204-L204 — void its_flip_triangles(indexed_triangle_set &its);
+- its_merge_vertices · function · L209-L209 — int its_merge_vertices(indexed_triangle_set &its, bool shrink_to_fit = true);
+- its_remove_degenerate_faces · function · L212-L212 — int its_remove_degenerate_faces(indexed_triangle_set &its, bool shrink_to_fit = true);
+- its_compactify_vertices · function · L215-L215 — int its_compactify_vertices(indexed_triangle_set &its, bool shrink_to_fit = true);
+- its_store_triangle · function · L218-L218 — bool its_store_triangle(const indexed_triangle_set &its, const char *obj_filename, size_t triangle_index);
+- its_store_triangles · function · L219-L219 — bool its_store_triangles(const indexed_triangle_set &its, const char *obj_filename, const std::vector<size_t>& triangles);
+- its_split · function · L221-L221 — std::vector<indexed_triangle_set> its_split(const indexed_triangle_set &its);
+- its_split · function · L222-L222 — std::vector<indexed_triangle_set> its_split(const indexed_triangle_set &its, std::vector<Vec3i32> &face_neighbors);
+- its_number_of_patches · function · L225-L225 — size_t its_number_of_patches(const indexed_triangle_set &its);
+- its_number_of_patches · function · L226-L226 — size_t its_number_of_patches(const indexed_triangle_set &its, const std::vector<Vec3i32> &face_neighbors);
+- its_is_splittable · function · L228-L228 — bool its_is_splittable(const indexed_triangle_set &its);
+- its_is_splittable · function · L229-L229 — bool its_is_splittable(const indexed_triangle_set &its, const std::vector<Vec3i32> &face_neighbors);
+- its_num_open_edges · function · L232-L232 — size_t its_num_open_edges(const indexed_triangle_set &its);
+- its_num_open_edges · function · L233-L233 — size_t its_num_open_edges(const std::vector<Vec3i32> &face_neighbors);
+- its_shrink_to_fit · function · L236-L236 — void its_shrink_to_fit(indexed_triangle_set &its);
+- its_collect_mesh_projection_points_above · function · L239-L239 — void its_collect_mesh_projection_points_above(const indexed_triangle_set &its, const Matrix3f &m, const float z, Points &all_pts);
+- its_collect_mesh_projection_points_above · function · L240-L240 — void its_collect_mesh_projection_points_above(const indexed_triangle_set &its, const Transform3f &t, const float z, Points &all_pts);
+- its_convex_hull_2d_above · function · L243-L243 — Polygon its_convex_hull_2d_above(const indexed_triangle_set &its, const Matrix3f &m, const float z);
+- its_convex_hull_2d_above · function · L244-L244 — Polygon its_convex_hull_2d_above(const indexed_triangle_set &its, const Transform3f &t, const float z);
+- its_triangle_vertex_index · function · L247-L252 — inline int its_triangle_vertex_index(const stl_triangle_vertex_indices &triangle_indices, int vertex_idx)
+- its_triangle_edge · function · L254-L258 — inline Vec2i32 its_triangle_edge(const stl_triangle_vertex_indices &triangle_indices, int edge_idx)
+- its_triangle_edge_index · function · L261-L266 — inline int its_triangle_edge_index(const stl_triangle_vertex_indices &triangle_indices, const Vec2i32 &triangle_edge)
+- its_triangle_vertex_the_same · function · L269-L301 — inline bool its_triangle_vertex_the_same(const stl_triangle_vertex_indices &triangle_indices_1, const stl_triangle_vertex_indices &triangle_indices_2)
+- its_triangle_vertices · function · L306-L312 — inline its_triangle its_triangle_vertices(const indexed_triangle_set &its,
+- its_unnormalized_normal · function · L314-L319 — inline stl_normal its_unnormalized_normal(const indexed_triangle_set &its,
+- its_volume · function · L321-L321 — float its_volume(const indexed_triangle_set &its);
+- its_average_edge_length · function · L322-L322 — float its_average_edge_length(const indexed_triangle_set &its);
+- its_merge · function · L324-L324 — void its_merge(indexed_triangle_set &A, const indexed_triangle_set &B);
+- its_merge · function · L325-L325 — void its_merge(indexed_triangle_set &A, const std::vector<Vec3f> &triangles);
+- its_merge · function · L326-L326 — void its_merge(indexed_triangle_set &A, const Pointf3s &triangles);
+- its_face_normals · function · L328-L328 — std::vector<Vec3f> its_face_normals(const indexed_triangle_set &its);
+- face_normal · function · L329-L329 — inline Vec3f face_normal(const stl_vertex vertex[3]) { return  (vertex[1] - vertex[0]).cross(vertex[2] - vertex[1]).normalized(); }
+- face_normal_normalized · function · L330-L330 — inline Vec3f face_normal_normalized(const stl_vertex vertex[3]) { return  face_normal(vertex).normalized(); }
+- its_face_normal · function · L331-L332 — inline Vec3f its_face_normal(const indexed_triangle_set &its, const stl_triangle_vertex_indices face)
+- its_face_normal · function · L333-L334 — inline Vec3f its_face_normal(const indexed_triangle_set &its, const int face_idx)
+- its_make_cube · function · L336-L336 — indexed_triangle_set    its_make_cube(double x, double y, double z);
+- its_make_prism · function · L337-L337 — indexed_triangle_set    its_make_prism(float width, float length, float height);
+- its_make_cylinder · function · L338-L338 — indexed_triangle_set    its_make_cylinder(double r, double h, double fa=(2*PI/180));
+- its_make_cone · function · L339-L339 — indexed_triangle_set    its_make_cone(double r, double h, double fa=(2*PI/180));
+- its_make_frustum · function · L340-L340 — indexed_triangle_set    its_make_frustum(double r, double h, double fa=(2*PI/180));
+- its_make_torus · function · L341-L341 — indexed_triangle_set    its_make_torus(double r, double h, double fa);
+- its_make_frustum_dowel · function · L342-L342 — indexed_triangle_set    its_make_frustum_dowel(double r, double h, int sectorCount);
+- its_make_pyramid · function · L343-L343 — indexed_triangle_set    its_make_pyramid(float base, float height);
+- its_make_sphere · function · L344-L344 — indexed_triangle_set    its_make_sphere(double radius, double fa);
+- its_make_snap · function · L345-L345 — indexed_triangle_set    its_make_snap(double r, double h, float space_proportion = 0.25f, float bulge_proportion = 0.125f);
+- its_make_groove_plane · function · L346-L346 — indexed_triangle_set    its_make_groove_plane(const Groove &cur_groove, float rotate_radius, std::vector<Vec3d> &cur_groove_vertices);
+- its_convex_hull · function · L348-L348 — indexed_triangle_set        its_convex_hull(const std::vector<Vec3f> &pts);
+- its_convex_hull · function · L349-L349 — inline indexed_triangle_set its_convex_hull(const indexed_triangle_set &its) { return its_convex_hull(its.vertices); }
+- make_cube · function · L351-L351 — inline TriangleMesh     make_cube(double x, double y, double z)                 { return TriangleMesh(its_make_cube(x, y, z)); }
+- make_prism · function · L352-L352 — inline TriangleMesh     make_prism(float width, float length, float height)     { return TriangleMesh(its_make_prism(width, length, height)); }
+- make_cylinder · function · L353-L353 — inline TriangleMesh     make_cylinder(double r, double h, double fa=(2*PI/180)) { return TriangleMesh{its_make_cylinder(r, h, fa)}; }
+- make_cone · function · L354-L354 — inline TriangleMesh     make_cone(double r, double h, double fa=(2*PI/180))     { return TriangleMesh(its_make_cone(r, h, fa)); }
+- make_pyramid · function · L355-L355 — inline TriangleMesh     make_pyramid(float base, float height)                  { return TriangleMesh(its_make_pyramid(base, height)); }
+- make_sphere · function · L356-L356 — inline TriangleMesh     make_sphere(double rho, double fa=(2*PI/90))            { return TriangleMesh(its_make_sphere(rho, fa)); }
+- make_torus · function · L357-L357 — inline TriangleMesh     make_torus(double r, double h, double fa=(PI/60))       { return TriangleMesh(its_make_torus(r, h, fa)); }
+- its_write_stl_ascii · function · L359-L359 — bool        its_write_stl_ascii(const char *file, const char *label, const std::vector<stl_triangle_vertex_indices> &indices, const std::vector<stl_vertex> &vertices);
+- its_write_stl_ascii · function · L360-L360 — inline bool its_write_stl_ascii(const char *file, const char *label, const indexed_triangle_set &its) { return its_write_stl_ascii(file, label, its.indices, its.vertices); }
+- its_write_stl_binary · function · L361-L361 — bool        its_write_stl_binary(const char *file, const char *label, const std::vector<stl_triangle_vertex_indices> &indices, const std::vector<stl_vertex> &vertices);
+- its_write_stl_binary · function · L362-L362 — inline bool its_write_stl_binary(const char *file, const char *label, const indexed_triangle_set &its) { return its_write_stl_binary(file, label, its.indices, its.vertices); }
+- bounding_box · function · L364-L364 — inline BoundingBoxf3 bounding_box(const TriangleMesh &m) { return m.bounding_box(); }
+- bounding_box · function · L365-L378 — inline BoundingBoxf3 bounding_box(const indexed_triangle_set& its)
+- load · function · L386-L389 — template<class Archive> void load(Archive &archive, Slic3r::TriangleMesh &mesh)
+- save · function · L390-L393 — template<class Archive> void save(Archive &archive, const Slic3r::TriangleMesh &mesh)

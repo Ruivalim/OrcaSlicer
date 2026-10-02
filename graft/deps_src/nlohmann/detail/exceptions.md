@@ -1,0 +1,30 @@
+# deps_src/nlohmann/detail/exceptions.hpp
+
+- exception · class · L49-L137 — class exception : public std::exception
+- what · function · L53-L53 — const char* what() const noexcept override
+- exception · function · L63-L63 — exception(int id_, const char* what_arg) : id(id_), m(what_arg) {}
+- id · function · L63-L63 — exception(int id_, const char* what_arg) : id(id_), m(what_arg) {}
+- m · function · L63-L63 — exception(int id_, const char* what_arg) : id(id_), m(what_arg) {}
+- name · function · L65-L68 — static std::string name(const std::string& ename, int id_)
+- diagnostics · function · L70-L132 — template<typename BasicJsonType>
+- parse_error · class · L184-L233 — class parse_error : public exception
+- create · function · L196-L202 — template<typename BasicJsonType>
+- create · function · L204-L211 — template<typename BasicJsonType>
+- parse_error · function · L225-L226 — parse_error(int id_, std::size_t byte_, const char* what_arg)
+- position_string · function · L228-L232 — static std::string position_string(const position_t& pos)
+- invalid_iterator · class · L272-L286 — class invalid_iterator : public exception
+- create · function · L275-L280 — template<typename BasicJsonType>
+- invalid_iterator · function · L284-L284 — invalid_iterator(int id_, const char* what_arg)
+- exception · function · L285-L285 — : exception(id_, what_arg) {}
+- type_error · class · L327-L340 — class type_error : public exception
+- create · function · L330-L335 — template<typename BasicJsonType>
+- exception · function · L339-L339 — type_error(int id_, const char* what_arg) : exception(id_, what_arg) {}
+- type_error · function · L339-L339 — type_error(int id_, const char* what_arg) : exception(id_, what_arg) {}
+- out_of_range · class · L375-L388 — class out_of_range : public exception
+- create · function · L378-L383 — template<typename BasicJsonType>
+- exception · function · L387-L387 — out_of_range(int id_, const char* what_arg) : exception(id_, what_arg) {}
+- out_of_range · function · L387-L387 — out_of_range(int id_, const char* what_arg) : exception(id_, what_arg) {}
+- other_error · class · L414-L427 — class other_error : public exception
+- create · function · L417-L422 — template<typename BasicJsonType>
+- exception · function · L426-L426 — other_error(int id_, const char* what_arg) : exception(id_, what_arg) {}
+- other_error · function · L426-L426 — other_error(int id_, const char* what_arg) : exception(id_, what_arg) {}

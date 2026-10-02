@@ -1,0 +1,42 @@
+# src/slic3r/GUI/CameraPopup.hpp
+
+- CameraPopup · class · L27-L106 — class CameraPopup : public PopupWindow
+- CameraPopup · function · L30-L30 — CameraPopup(wxWindow *parent);
+- Popup · function · L34-L34 — virtual void Popup(wxWindow *focus = NULL) wxOVERRIDE;
+- OnDismiss · function · L35-L35 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L36-L36 — virtual bool ProcessLeftDown(wxMouseEvent &event) wxOVERRIDE;
+- Show · function · L37-L37 — virtual bool Show(bool show = true) wxOVERRIDE;
+- sync_vcamera_state · function · L39-L39 — void sync_vcamera_state(bool show_vcamera);
+- check_func_supported · function · L40-L40 — void check_func_supported(MachineObject* obj);
+- update · function · L41-L41 — void update(bool vcamera_streaming);
+- CameraResolution · type · L43-L48 — enum CameraResolution
+- rescale · function · L50-L50 — void rescale();
+- on_switch_recording · function · L53-L53 — void on_switch_recording(wxCommandEvent& event);
+- on_set_resolution · function · L54-L54 — void on_set_resolution();
+- sdcard_absent_hint · function · L55-L55 — void sdcard_absent_hint();
+- on_camera_source_changed · function · L56-L56 — void on_camera_source_changed(wxCommandEvent& event);
+- handle_camera_source_change · function · L57-L57 — void handle_camera_source_change();
+- set_custom_cam_button_state · function · L58-L58 — void set_custom_cam_button_state(bool state);
+- create_item_radiobox · function · L60-L60 — wxWindow *  create_item_radiobox(wxString title, wxWindow *parent, wxString tooltip, int padding_left);
+- select_curr_radiobox · function · L61-L61 — void select_curr_radiobox(int btn_idx);
+- sync_resolution_setting · function · L62-L62 — void sync_resolution_setting(std::string resolution);
+- reset_resolution_setting · function · L63-L63 — void reset_resolution_setting();
+- to_resolution_label_string · function · L64-L64 — wxString to_resolution_label_string(CameraResolution resolution);
+- to_resolution_msg_string · function · L65-L65 — std::string to_resolution_msg_string(CameraResolution resolution);
+- start_interval · function · L95-L95 — void start_interval();
+- stop_interval · function · L96-L96 — void stop_interval(wxTimerEvent& event);
+- OnMouse · function · L97-L97 — void OnMouse(wxMouseEvent &event);
+- OnSize · function · L98-L98 — void OnSize(wxSizeEvent &event);
+- OnSetFocus · function · L99-L99 — void OnSetFocus(wxFocusEvent &event);
+- OnKillFocus · function · L100-L100 — void OnKillFocus(wxFocusEvent &event);
+- OnLeftUp · function · L101-L101 — void OnLeftUp(wxMouseEvent& event);
+- wxDECLARE_ABSTRACT_CLASS · function · L104-L104 — wxDECLARE_ABSTRACT_CLASS(CameraPopup);
+- wxDECLARE_EVENT_TABLE · function · L105-L105 — wxDECLARE_EVENT_TABLE();
+- CameraItem · class · L109-L126 — class CameraItem : public wxPanel
+- CameraItem · function · L112-L112 — CameraItem(wxWindow *parent, std::string normal, std::string hover);
+- msw_rescale · function · L120-L120 — void msw_rescale();
+- on_enter_win · function · L121-L121 — void on_enter_win(wxMouseEvent &evt);
+- on_level_win · function · L122-L122 — void on_level_win(wxMouseEvent &evt);
+- paintEvent · function · L123-L123 — void paintEvent(wxPaintEvent &evt);
+- render · function · L124-L124 — void render(wxDC &dc);
+- doRender · function · L125-L125 — void doRender(wxDC &dc);

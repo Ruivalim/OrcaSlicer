@@ -1,0 +1,36 @@
+# src/slic3r/Utils/UltiMaker.hpp
+
+- DynamicPrintConfig · class · L11-L11 — class DynamicPrintConfig;
+- Http · class · L12-L12 — class Http;
+- UltiMaker · class · L14-L68 — class UltiMaker : public PrintHost
+- UltiMaker · function · L17-L17 — explicit UltiMaker(DynamicPrintConfig *config);
+- get_name · function · L20-L20 — const char* get_name() const override;
+- test · function · L22-L22 — bool test(wxString &curl_msg) const override;
+- get_test_ok_msg · function · L23-L23 — wxString get_test_ok_msg() const override;
+- get_test_failed_msg · function · L24-L24 — wxString get_test_failed_msg(wxString &msg) const override;
+- has_auth_creds · function · L26-L26 — bool has_auth_creds() const;
+- is_authorized · function · L27-L27 — bool is_authorized() const;
+- auth_status · function · L28-L28 — std::string auth_status() const;
+- generate_auth_creds · function · L29-L29 — bool generate_auth_creds(wxString &msg) const;
+- test_auth · function · L30-L30 — std::string test_auth() const;
+- upload · function · L32-L32 — bool upload(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- has_auto_discovery · function · L33-L33 — bool has_auto_discovery() const override { return false; }
+- can_test · function · L34-L34 — bool can_test() const override { return true; }
+- get_post_upload_actions · function · L35-L35 — PrintHostPostUploadActions get_post_upload_actions() const override { return PrintHostPostUploadAction::StartPrint; }
+- get_host · function · L36-L36 — std::string get_host() const override { return host; }
+- get_api_user · function · L37-L37 — const std::string& get_api_user() const { return m_api_username; }
+- get_api_username · function · L38-L38 — const std::string& get_api_username() const { return m_api_username; }
+- get_api_password · function · L39-L39 — const std::string& get_api_password() const { return m_api_password; }
+- getPrintTime · function · L41-L41 — int getPrintTime(std::string filepath) const;
+- makeGriffinCompatible · function · L52-L52 — bool makeGriffinCompatible(std::string filepath) const;
+- ConnectionType · type · L55-L55 — enum class ConnectionType { rrf, dsf, error };
+- get_upload_url · function · L58-L58 — std::string get_upload_url(const std::string &filename, ConnectionType connectionType) const;
+- get_status_url · function · L59-L59 — std::string get_status_url() const;
+- get_connect_url · function · L60-L60 — std::string get_connect_url() const;
+- get_base_url · function · L61-L61 — std::string get_base_url() const;
+- timestamp_str · function · L62-L62 — std::string timestamp_str() const;
+- connect · function · L63-L63 — ConnectionType connect(wxString &msg) const;
+- set_auth · function · L64-L64 — void set_auth(Http& http) const;
+- disconnect · function · L65-L65 — void disconnect(ConnectionType connectionType) const;
+- start_print · function · L66-L66 — bool start_print(wxString &msg, const std::string &filename, ConnectionType connectionType) const;
+- get_err_code_from_body · function · L67-L67 — int get_err_code_from_body(const std::string &body) const;

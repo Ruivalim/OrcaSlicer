@@ -1,0 +1,62 @@
+# sandboxes/opencsg/main.cpp
+
+- Renderer · class · L34-L53 — class Renderer
+- Renderer · function · L40-L49 — Renderer(wxGLCanvas *c): m_canvas{c}
+- context · function · L51-L51 — wxGLContext * context() { return m_context.get(); }
+- context · function · L52-L52 — const wxGLContext * context() const { return m_context.get(); }
+- OCSGRenderer · class · L56-L68 — class OCSGRenderer: public Renderer, public Slic3r::GL::CSGDisplay
+- OCSGRenderer · function · L59-L59 — OCSGRenderer(wxGLCanvas *c): Renderer{c} {}
+- set_active · function · L61-L65 — void set_active(long w, long h) override
+- swap_buffers · function · L67-L67 — void swap_buffers() override { m_canvas->SwapBuffers(); }
+- ShaderCSGRenderer · class · L71-L83 — class ShaderCSGRenderer : public Renderer, public Slic3r::GL::ShaderCSGDisplay
+- ShaderCSGRenderer · function · L74-L74 — ShaderCSGRenderer(wxGLCanvas *c): Renderer{c} {}
+- set_active · function · L76-L80 — void set_active(long w, long h) override
+- swap_buffers · function · L82-L82 — void swap_buffers() override { m_canvas->SwapBuffers(); }
+- Canvas · class · L86-L99 — class Canvas: public wxGLCanvas
+- Canvas · function · L93-L94 — template<class...Args>
+- get_display · function · L96-L96 — std::shared_ptr<Slic3r::GL::Display> get_display() const { return m_display; }
+- set_display · function · L98-L98 — void set_display(std::shared_ptr<Slic3r::GL::Display> d) { m_display = d; }
+- EEvents · type · L102-L102 — enum EEvents { LCLK_U, RCLK_U, LCLK_D, RCLK_D, DDCLK, SCRL, MV };
+- Event · class · L103-L108 — struct Event
+- Event · function · L107-L107 — Event(EEvents t, long x = 0, long y = 0) : type{t}, a{x}, b{y} {}
+- RecorderMouseInput · class · L112-L194 — class RecorderMouseInput: public MouseInput
+- left_click_down · function · L117-L121 — void left_click_down() override
+- left_click_up · function · L122-L126 — void left_click_up() override
+- right_click_down · function · L127-L131 — void right_click_down() override
+- right_click_up · function · L132-L136 — void right_click_up() override
+- double_click · function · L137-L141 — void double_click() override
+- scroll · function · L142-L146 — void scroll(long v, long d, WheelAxis wa) override
+- move_to · function · L147-L151 — void move_to(long x, long y) override
+- save · function · L153-L157 — void save(std::ostream &stream)
+- load · function · L159-L167 — void load(std::istream &stream)
+- record · function · L169-L169 — void record(bool r) { m_recording = r; if (r) m_events.clear(); }
+- play · function · L171-L190 — void play()
+- stop · function · L192-L192 — void stop() { m_playing = false; }
+- is_playing · function · L193-L193 — bool is_playing() const { return m_playing; }
+- MyFrame · class · L197-L305 — class MyFrame: public wxFrame
+- SLAJob · class · L212-L238 — class SLAJob: public Slic3r::GUI::Job
+- SLAJob · function · L218-L222 — SLAJob(MyFrame *frame, const std::string &fname)
+- process · function · L225-L225 — void process() override;
+- get_project_fname · function · L227-L227 — const std::string & get_project_fname() const { return m_fname; }
+- finalize · function · L232-L237 — void finalize() override
+- read_csg_settings · function · L257-L257 — void read_csg_settings(const wxCmdLineParser &parser);
+- set_renderer_algorithm · function · L259-L259 — void set_renderer_algorithm(const wxString &alg);
+- activate_canvas_display · function · L261-L261 — void activate_canvas_display();
+- MyFrame · function · L264-L267 — MyFrame(const wxString &       title,
+- load_model · function · L270-L273 — void load_model(const std::string &fname)
+- play_back_mouse · function · L276-L296 — void play_back_mouse(const std::string &events_fname)
+- stream · function · L278-L278 — std::fstream stream(events_fname, std::fstream::in);
+- canvas · function · L298-L298 — Canvas * canvas() { return m_canvas.get(); }
+- canvas · function · L299-L299 — const Canvas * canvas() const { return m_canvas.get(); }
+- bind_canvas_events · function · L302-L302 — void bind_canvas_events(MouseInput &msinput);
+- get_fps_average · function · L304-L304 — double get_fps_average() const { return m_fps_avg; }
+- get_idx · function · L313-L317 — inline long get_idx(const wxString &a, const std::vector<wxString> &v)
+- App · class · L319-L353 — class App : public wxApp
+- OnInit · function · L323-L346 — bool OnInit() override
+- parser · function · L325-L325 — wxCmdLineParser parser(argc, argv);
+- Play · function · L348-L352 — void Play(wxIdleEvent &)
+- read_csg_settings · method · L357-L386 — void MyFrame::read_csg_settings(const wxCmdLineParser &parser)
+- set_renderer_algorithm · method · L388-L438 — void MyFrame::set_renderer_algorithm(const wxString &alg)
+- activate_canvas_display · method · L440-L467 — void MyFrame::activate_canvas_display()
+- MyFrame · method · L469-L675 — MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size,
+- bind_canvas_events · method · L677-L707 — void MyFrame::bind_canvas_events(MouseInput &ms)

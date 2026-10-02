@@ -1,0 +1,35 @@
+# src/slic3r/GUI/MultiMachine.hpp
+
+- DeviceItem · class · L23-L64 — class DeviceItem : public wxWindow
+- DeviceItem · function · L40-L40 — DeviceItem(wxWindow* parent, MachineObject* obj);
+- on_refresh · function · L43-L43 — void on_refresh(wxCommandEvent& evt);
+- sync_state · function · L44-L44 — void sync_state();
+- get_state_printable · function · L45-L45 — wxString get_state_printable();
+- get_state_device · function · L46-L46 — wxString get_state_device();
+- get_local_state_task · function · L47-L47 — wxString get_local_state_task();
+- get_cloud_state_task · function · L48-L48 — wxString get_cloud_state_task();
+- get_obj · function · L49-L49 — MachineObject* get_obj() const { return obj_; }
+- get_state_online · function · L51-L51 — int get_state_online() const { return state_online; }
+- get_state_printable · function · L52-L52 — int get_state_printable() const { return state_printable; }
+- get_state_selected · function · L53-L53 — int get_state_selected() const { return state_selected; }
+- get_state_enable_ams · function · L54-L54 — int get_state_enable_ams() const { return state_enable_ams; }
+- get_state_device · function · L55-L55 — int get_state_device() const { return state_device; }
+- get_state_local_task · function · L56-L56 — int get_state_local_task() const { return state_local_task; }
+- get_state_cloud_task · function · L57-L57 — int get_state_cloud_task() const { return state_cloud_task; }
+- get_state_dev_name · function · L58-L58 — std::string get_state_dev_name() const { return state_dev_name; }
+- selected · function · L60-L60 — void selected();
+- unselected · function · L61-L61 — void unselected();
+- is_blocking_printing · function · L62-L62 — bool is_blocking_printing(MachineObject* obj_);
+- update_item · function · L63-L63 — void update_item(const DeviceItem* item);
+- selected_machines · function · L66-L66 — std::vector<DeviceItem*> selected_machines(const std::vector<DeviceItem*>& dev_item_list, std::string search_text);
+- ObjState · class · L68-L73 — struct ObjState
+- SortItem · class · L75-L108 — struct SortItem
+- SortCallBack · type · L77-L77 — typedef std::function<bool(DeviceItem*, DeviceItem*)> SortCallBack;
+- SortMultiMachineCB · type · L78-L78 — typedef std::function<bool(ObjState s1, ObjState s2) > SortMultiMachineCB;
+- SortRule · type · L80-L94 — enum SortRule : uint8_t
+- SortItem · function · L101-L101 — SortItem();
+- SortItem · function · L102-L102 — SortItem(SortRule sr) { rule = sr; }
+- get_call_back · function · L104-L104 — SortCallBack get_call_back();
+- set_role · function · L105-L105 — void set_role(SortRule rule, bool big);
+- set_role · function · L106-L106 — void set_role(SortMultiMachineCB cb, SortRule rl, bool big);
+- get_machine_call_back · function · L107-L107 — SortMultiMachineCB get_machine_call_back() const { return cb; }

@@ -1,0 +1,165 @@
+# deps_src/agg/agg_color_rgba.h
+
+- order_rgb · class · L35-L35 — struct order_rgb  { enum rgb_e  { R=0, G=1, B=2, N=3 }; };
+- rgb_e · type · L35-L35 — struct order_rgb  { enum rgb_e  { R=0, G=1, B=2, N=3 }; };
+- bgr_e · type · L36-L36 — struct order_bgr  { enum bgr_e  { B=0, G=1, R=2, N=3 }; };
+- order_bgr · class · L36-L36 — struct order_bgr  { enum bgr_e  { B=0, G=1, R=2, N=3 }; };
+- order_rgba · class · L37-L37 — struct order_rgba { enum rgba_e { R=0, G=1, B=2, A=3, N=4 }; };
+- rgba_e · type · L37-L37 — struct order_rgba { enum rgba_e { R=0, G=1, B=2, A=3, N=4 }; };
+- argb_e · type · L38-L38 — struct order_argb { enum argb_e { A=0, R=1, G=2, B=3, N=4 }; };
+- order_argb · class · L38-L38 — struct order_argb { enum argb_e { A=0, R=1, G=2, B=3, N=4 }; };
+- abgr_e · type · L39-L39 — struct order_abgr { enum abgr_e { A=0, B=1, G=2, R=3, N=4 }; };
+- order_abgr · class · L39-L39 — struct order_abgr { enum abgr_e { A=0, B=1, G=2, R=3, N=4 }; };
+- bgra_e · type · L40-L40 — struct order_bgra { enum bgra_e { B=0, G=1, R=2, A=3, N=4 }; };
+- order_bgra · class · L40-L40 — struct order_bgra { enum bgra_e { B=0, G=1, R=2, A=3, N=4 }; };
+- linear · class · L43-L43 — struct linear {};
+- sRGB · class · L44-L44 — struct sRGB {};
+- rgba · class · L47-L69 — struct rgba
+- rgba · function · L60-L60 — rgba(double r_, double g_, double b_, double a_=1.0) :
+- a · function · L61-L61 — r(r_), g(g_), b(b_), a(a_) {}
+- a · function · L64-L64 — rgba(const rgba& c, double a_) : r(c.r), g(c.g), b(c.b), a(a_) {}
+- rgba · function · L64-L64 — rgba(const rgba& c, double a_) : r(c.r), g(c.g), b(c.b), a(a_) {}
+- clear · function · L67-L67 — rgba& clear()
+- opacity · function · L90-L90 — double opacity() const
+- gradient · function · L141-L149 — rgba gradient(rgba c, double k) const
+- no_color · function · L170-L170 — static rgba no_color() { return rgba(0,0,0,0); }
+- from_wavelength · function · L173-L173 — static rgba from_wavelength(double wl, double gamma = 1.0);
+- rgba · function · L176-L176 — explicit rgba(double wavelen, double gamma=1.0)
+- from_wavelength · function · L194-L236 — inline rgba rgba::from_wavelength(double wl, double gamma)
+- rgba_pre · function · L238-L241 — inline rgba rgba_pre(double r, double g, double b, double a)
+- value_type · type · L248-L248 — typedef int8u  value_type;
+- calc_type · type · L249-L249 — typedef int32u calc_type;
+- long_type · type · L250-L250 — typedef int32  long_type;
+- base_scale_e · type · L251-L257 — enum base_scale_e
+- self_type · type · L258-L258 — typedef rgba8T self_type;
+- convert · function · L266-L272 — static void convert(rgba8T<linear>& dst, const rgba8T<sRGB>& src)
+- convert · function · L274-L280 — static void convert(rgba8T<sRGB>& dst, const rgba8T<linear>& src)
+- convert · function · L282-L288 — static void convert(rgba8T<linear>& dst, const rgba& src)
+- convert · function · L290-L297 — static void convert(rgba8T<sRGB>& dst, const rgba& src)
+- convert · function · L299-L305 — static void convert(rgba& dst, const rgba8T<linear>& src)
+- convert · function · L307-L314 — static void convert(rgba& dst, const rgba8T<sRGB>& src)
+- r · function · L320-L329 — rgba8T(unsigned r_, unsigned g_, unsigned b_, unsigned a_ = base_mask) :
+- a · function · L324-L324 — a(value_type(a_)) {}
+- rgba8T · function · L327-L327 — rgba8T(const rgba& c)
+- rgba · function · L344-L355 — operator rgba() const
+- to_double · function · L352-L352 — static AGG_INLINE double to_double(value_type a)
+- from_double · function · L358-L361 — static AGG_INLINE value_type from_double(double a)
+- empty_value · function · L364-L367 — static AGG_INLINE value_type empty_value()
+- full_value · function · L370-L373 — static AGG_INLINE value_type full_value()
+- is_transparent · function · L376-L376 — AGG_INLINE bool is_transparent() const
+- is_opaque · function · L382-L382 — AGG_INLINE bool is_opaque() const
+- invert · function · L388-L391 — static AGG_INLINE value_type invert(value_type x)
+- multiply · function · L395-L399 — static AGG_INLINE value_type multiply(value_type a, value_type b)
+- demultiply · function · L402-L413 — static AGG_INLINE value_type demultiply(value_type a, value_type b)
+- downscale · function · L417-L420 — static AGG_INLINE T downscale(T a)
+- downshift · function · L424-L427 — static AGG_INLINE T downshift(T a, unsigned n)
+- mult_cover · function · L432-L435 — static AGG_INLINE value_type mult_cover(value_type a, cover_type b)
+- scale_cover · function · L438-L441 — static AGG_INLINE cover_type scale_cover(cover_type a, value_type b)
+- prelerp · function · L445-L448 — static AGG_INLINE value_type prelerp(value_type p, value_type q, value_type a)
+- lerp · function · L452-L456 — static AGG_INLINE value_type lerp(value_type p, value_type q, value_type a)
+- opacity · function · L482-L482 — double opacity() const
+- premultiply · function · L488-L504 — AGG_INLINE self_type& premultiply()
+- premultiply · function · L507-L527 — AGG_INLINE self_type& premultiply(unsigned a_)
+- demultiply · function · L530-L549 — AGG_INLINE self_type& demultiply()
+- add · function · L564-L593 — AGG_INLINE void add(const self_type& c, unsigned cover)
+- apply_gamma_dir · function · L597-L602 — AGG_INLINE void apply_gamma_dir(const GammaLUT& gamma)
+- apply_gamma_inv · function · L606-L611 — AGG_INLINE void apply_gamma_inv(const GammaLUT& gamma)
+- no_color · function · L614-L614 — static self_type no_color() { return self_type(0,0,0,0); }
+- from_wavelength · function · L617-L617 — static self_type from_wavelength(double wl, double gamma = 1.0)
+- rgba8 · type · L623-L623 — typedef rgba8T<linear> rgba8;
+- srgba8 · type · L624-L624 — typedef rgba8T<sRGB> srgba8;
+- rgb8_packed · function · L628-L631 — inline rgba8 rgb8_packed(unsigned v)
+- bgr8_packed · function · L634-L637 — inline rgba8 bgr8_packed(unsigned v)
+- argb8_packed · function · L640-L643 — inline rgba8 argb8_packed(unsigned v)
+- rgba16 · class · L662-L723 — struct rgba16
+- base_scale_e · type · L667-L673 — enum base_scale_e
+- rgba16 · function · L685-L686 — rgba16(unsigned r_, unsigned g_, unsigned b_, unsigned a_=base_mask) :
+- a · function · L689-L689 — a(value_type(a_)) {}
+- rgba16 · function · L692-L693 — rgba16(const self_type& c, unsigned a_) :
+- a · function · L693-L693 — r(c.r), g(c.g), b(c.b), a(value_type(a_)) {}
+- rgba16 · function · L696-L697 — rgba16(const rgba& c) :
+- double · function · L698-L698 — g((value_type)uround(c.g * double(base_mask))),
+- b · function · L699-L699 — b((value_type)uround(c.b * double(base_mask))),
+- a · function · L700-L700 — a((value_type)uround(c.a * double(base_mask))) {}
+- rgba16 · function · L703-L704 — rgba16(const rgba8& c) :
+- value_type · function · L705-L705 — g(value_type((value_type(c.g) << 8) | c.g)),
+- value_type · function · L706-L706 — b(value_type((value_type(c.b) << 8) | c.b)),
+- a · function · L707-L707 — a(value_type((value_type(c.a) << 8) | c.a)) {}
+- value_type · function · L707-L707 — a(value_type((value_type(c.a) << 8) | c.a)) {}
+- rgba16 · function · L710-L711 — rgba16(const srgba8& c) :
+- rgb_from_sRGB · function · L712-L712 — g(sRGB_conv<value_type>::rgb_from_sRGB(c.g)),
+- rgb_from_sRGB · function · L713-L713 — b(sRGB_conv<value_type>::rgb_from_sRGB(c.b)),
+- a · function · L714-L714 — a(sRGB_conv<value_type>::alpha_from_sRGB(c.a)) {}
+- alpha_from_sRGB · function · L714-L714 — a(sRGB_conv<value_type>::alpha_from_sRGB(c.a)) {}
+- rgba · function · L717-L717 — operator rgba() const
+- rgba8 · function · L727-L727 — operator rgba8() const
+- srgba8 · function · L733-L733 — operator srgba8() const
+- to_double · function · L744-L747 — static AGG_INLINE double to_double(value_type a)
+- from_double · function · L750-L753 — static AGG_INLINE value_type from_double(double a)
+- empty_value · function · L756-L759 — static AGG_INLINE value_type empty_value()
+- full_value · function · L762-L765 — static AGG_INLINE value_type full_value()
+- is_transparent · function · L768-L768 — AGG_INLINE bool is_transparent() const
+- is_opaque · function · L774-L774 — AGG_INLINE bool is_opaque() const
+- invert · function · L780-L783 — static AGG_INLINE value_type invert(value_type x)
+- multiply · function · L787-L791 — static AGG_INLINE value_type multiply(value_type a, value_type b)
+- demultiply · function · L794-L805 — static AGG_INLINE value_type demultiply(value_type a, value_type b)
+- downscale · function · L809-L812 — static AGG_INLINE T downscale(T a)
+- downshift · function · L816-L819 — static AGG_INLINE T downshift(T a, unsigned n)
+- mult_cover · function · L824-L827 — static AGG_INLINE value_type mult_cover(value_type a, cover_type b)
+- scale_cover · function · L830-L833 — static AGG_INLINE cover_type scale_cover(cover_type a, value_type b)
+- prelerp · function · L837-L840 — static AGG_INLINE value_type prelerp(value_type p, value_type q, value_type a)
+- lerp · function · L844-L848 — static AGG_INLINE value_type lerp(value_type p, value_type q, value_type a)
+- opacity · function · L865-L871 — AGG_INLINE self_type& opacity(double a_)
+- opacity · function · L874-L874 — double opacity() const
+- premultiply · function · L880-L896 — AGG_INLINE self_type& premultiply()
+- premultiply · function · L899-L919 — AGG_INLINE self_type& premultiply(unsigned a_)
+- demultiply · function · L922-L941 — AGG_INLINE self_type& demultiply()
+- add · function · L956-L985 — AGG_INLINE void add(const self_type& c, unsigned cover)
+- apply_gamma_dir · function · L989-L994 — AGG_INLINE void apply_gamma_dir(const GammaLUT& gamma)
+- apply_gamma_inv · function · L998-L1003 — AGG_INLINE void apply_gamma_inv(const GammaLUT& gamma)
+- no_color · function · L1006-L1006 — static self_type no_color() { return self_type(0,0,0,0); }
+- from_wavelength · function · L1009-L1009 — static self_type from_wavelength(double wl, double gamma = 1.0)
+- rgba32 · class · L1031-L1082 — struct rgba32
+- rgba32 · function · L1047-L1047 — rgba32(value_type r_, value_type g_, value_type b_, value_type a_= 1) :
+- a · function · L1048-L1048 — r(r_), g(g_), b(b_), a(a_) {}
+- rgba32 · function · L1051-L1052 — rgba32(const self_type& c, float a_) :
+- a · function · L1052-L1052 — r(c.r), g(c.g), b(c.b), a(a_) {}
+- rgba32 · function · L1055-L1056 — rgba32(const rgba& c) :
+- a · function · L1056-L1056 — r(value_type(c.r)), g(value_type(c.g)), b(value_type(c.b)), a(value_type(c.a)) {}
+- rgba32 · function · L1059-L1060 — rgba32(const rgba8& c) :
+- a · function · L1063-L1063 — a(value_type(c.a / 255.0)) {}
+- rgba32 · function · L1066-L1067 — rgba32(const srgba8& c) :
+- rgb_from_sRGB · function · L1068-L1068 — g(sRGB_conv<value_type>::rgb_from_sRGB(c.g)),
+- rgb_from_sRGB · function · L1069-L1069 — b(sRGB_conv<value_type>::rgb_from_sRGB(c.b)),
+- a · function · L1070-L1070 — a(sRGB_conv<value_type>::alpha_from_sRGB(c.a)) {}
+- alpha_from_sRGB · function · L1070-L1070 — a(sRGB_conv<value_type>::alpha_from_sRGB(c.a)) {}
+- rgba32 · function · L1073-L1074 — rgba32(const rgba16& c) :
+- a · function · L1077-L1077 — a(value_type(c.a / 65535.0)) {}
+- rgba · function · L1080-L1080 — operator rgba() const
+- rgba8 · function · L1086-L1086 — operator rgba8() const
+- srgba8 · function · L1096-L1096 — operator srgba8() const
+- rgba16 · function · L1106-L1106 — operator rgba16() const
+- to_double · function · L1116-L1119 — static AGG_INLINE double to_double(value_type a)
+- from_double · function · L1122-L1125 — static AGG_INLINE value_type from_double(double a)
+- empty_value · function · L1128-L1131 — static AGG_INLINE value_type empty_value()
+- full_value · function · L1134-L1137 — static AGG_INLINE value_type full_value()
+- is_transparent · function · L1140-L1140 — AGG_INLINE bool is_transparent() const
+- is_opaque · function · L1146-L1146 — AGG_INLINE bool is_opaque() const
+- invert · function · L1152-L1155 — static AGG_INLINE value_type invert(value_type x)
+- multiply · function · L1158-L1161 — static AGG_INLINE value_type multiply(value_type a, value_type b)
+- demultiply · function · L1164-L1167 — static AGG_INLINE value_type demultiply(value_type a, value_type b)
+- downscale · function · L1171-L1174 — static AGG_INLINE T downscale(T a)
+- downshift · function · L1178-L1181 — static AGG_INLINE T downshift(T a, unsigned n)
+- mult_cover · function · L1184-L1187 — static AGG_INLINE value_type mult_cover(value_type a, cover_type b)
+- scale_cover · function · L1190-L1193 — static AGG_INLINE cover_type scale_cover(cover_type a, value_type b)
+- prelerp · function · L1197-L1200 — static AGG_INLINE value_type prelerp(value_type p, value_type q, value_type a)
+- lerp · function · L1204-L1211 — static AGG_INLINE value_type lerp(value_type p, value_type q, value_type a)
+- opacity · function · L1228-L1234 — AGG_INLINE self_type& opacity(double a_)
+- opacity · function · L1237-L1237 — double opacity() const
+- premultiply · function · L1243-L1259 — AGG_INLINE self_type& premultiply()
+- demultiply · function · L1262-L1278 — AGG_INLINE self_type& demultiply()
+- add · function · L1292-L1320 — AGG_INLINE void add(const self_type& c, unsigned cover)
+- apply_gamma_dir · function · L1324-L1329 — AGG_INLINE void apply_gamma_dir(const GammaLUT& gamma)
+- apply_gamma_inv · function · L1333-L1338 — AGG_INLINE void apply_gamma_inv(const GammaLUT& gamma)
+- no_color · function · L1341-L1341 — static self_type no_color() { return self_type(0,0,0,0); }
+- from_wavelength · function · L1344-L1344 — static self_type from_wavelength(double wl, double gamma = 1)

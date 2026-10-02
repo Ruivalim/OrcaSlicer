@@ -1,0 +1,36 @@
+# src/slic3r/GUI/Widgets/StepCtrl.hpp
+
+- StepCtrlBase · class · L9-L62 — class StepCtrlBase : public StaticBox
+- StepCtrlBase · function · L30-L34 — StepCtrlBase(wxWindow *      parent,
+- SetHint · function · L39-L39 — void SetHint(wxString hint);
+- SetTipFont · function · L41-L41 — bool SetTipFont(wxFont const & font);
+- AppendItem · function · L44-L44 — int AppendItem(const wxString &item, wxString const & tip = {});
+- DeleteAllItems · function · L46-L46 — void DeleteAllItems();
+- GetCount · function · L48-L48 — unsigned int GetCount() const;
+- GetSelection · function · L50-L50 — int  GetSelection() const;
+- SelectItem · function · L52-L52 — void SelectItem(int item);
+- Idle · function · L53-L53 — void Idle();
+- GetItemText · function · L55-L55 — wxString GetItemText(unsigned int item) const;
+- GetItemUseText · function · L56-L56 — int      GetItemUseText(wxString txt) const;
+- SetItemText · function · L57-L57 — void     SetItemText(unsigned int item, wxString const& value);
+- sendStepCtrlEvent · function · L61-L61 — bool sendStepCtrlEvent(bool changing = false);
+- StepCtrl · class · L64-L86 — class StepCtrl : public StepCtrlBase
+- StepCtrl · function · L69-L73 — StepCtrl(wxWindow *      parent,
+- Rescale · function · L75-L75 — virtual void Rescale();
+- mouseDown · function · L78-L78 — void mouseDown(wxMouseEvent &event);
+- mouseMove · function · L79-L79 — void mouseMove(wxMouseEvent &event);
+- mouseUp · function · L80-L80 — void mouseUp(wxMouseEvent &event);
+- mouseCaptureLost · function · L81-L81 — void mouseCaptureLost(wxMouseCaptureLostEvent &event);
+- doRender · function · L83-L83 — void doRender(wxDC &dc) override;
+- DECLARE_EVENT_TABLE · function · L85-L85 — DECLARE_EVENT_TABLE()
+- StepIndicator · class · L88-L104 — class StepIndicator : public StepCtrlBase
+- StepIndicator · function · L93-L97 — StepIndicator(wxWindow *parent,
+- Rescale · function · L99-L99 — virtual void Rescale();
+- SelectNext · function · L101-L101 — void SelectNext();
+- doRender · function · L103-L103 — void doRender(wxDC &dc) override;
+- FilamentStepIndicator · class · L107-L127 — class FilamentStepIndicator : public StepCtrlBase
+- FilamentStepIndicator · function · L115-L119 — FilamentStepIndicator(wxWindow* parent,
+- Rescale · function · L121-L121 — virtual void Rescale();
+- SelectNext · function · L123-L123 — void SelectNext();
+- SetSlotInformation · function · L124-L124 — void SetSlotInformation(wxString slot);
+- doRender · function · L126-L126 — void doRender(wxDC& dc) override;

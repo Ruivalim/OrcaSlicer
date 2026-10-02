@@ -1,0 +1,198 @@
+# src/slic3r/GUI/Selection.hpp
+
+- Shader · class · L13-L13 — class Shader;
+- Model · class · L14-L14 — class Model;
+- ModelObject · class · L15-L15 — class ModelObject;
+- ModelVolume · class · L16-L16 — class ModelVolume;
+- ObjectID · class · L17-L17 — class ObjectID;
+- ModelInstance · class · L18-L18 — class ModelInstance;
+- GLVolume · class · L19-L19 — class GLVolume;
+- GLArrow · class · L20-L20 — class GLArrow;
+- GLCurvedArrow · class · L21-L21 — class GLCurvedArrow;
+- DynamicPrintConfig · class · L22-L22 — class DynamicPrintConfig;
+- GLShaderProgram · class · L23-L23 — class GLShaderProgram;
+- BuildVolume · class · L25-L25 — class BuildVolume;
+- Selection · class · L34-L451 — class Selection
+- IndicesList · type · L37-L37 — typedef std::set<unsigned int> IndicesList;
+- EMode · type · L39-L43 — enum EMode : unsigned char
+- EType · type · L45-L59 — enum EType : unsigned char
+- VolumeCache · class · L62-L94 — struct VolumeCache
+- TransformCache · class · L65-L76 — struct TransformCache
+- TransformCache · function · L74-L74 — TransformCache();
+- TransformCache · function · L75-L75 — explicit TransformCache(const Geometry::Transformation& transform);
+- VolumeCache · function · L82-L82 — VolumeCache() = default;
+- VolumeCache · function · L83-L83 — VolumeCache(const Geometry::Transformation& volume_transform, const Geometry::Transformation& instance_transform);
+- get_volume_position · function · L85-L85 — const Vec3d& get_volume_position() const { return m_volume.position; }
+- get_volume_scale_matrix · function · L86-L86 — const Transform3d& get_volume_scale_matrix() const { return m_volume.scale_matrix; }
+- get_volume_transform · function · L87-L87 — const Geometry::Transformation& get_volume_transform() const { return m_volume.transform; }
+- get_instance_position · function · L89-L89 — const Vec3d& get_instance_position() const { return m_instance.position; }
+- get_instance_rotation_matrix · function · L90-L90 — const Transform3d& get_instance_rotation_matrix() const { return m_instance.rotation_matrix; }
+- get_instance_scale_matrix · function · L91-L91 — const Transform3d& get_instance_scale_matrix() const { return m_instance.scale_matrix; }
+- get_instance_mirror_matrix · function · L92-L92 — const Transform3d& get_instance_mirror_matrix() const { return m_instance.mirror_matrix; }
+- get_instance_transform · function · L93-L93 — const Geometry::Transformation &get_instance_transform() const { return m_instance.transform; }
+- VolumesCache · type · L97-L97 — typedef std::map<unsigned int, VolumeCache> VolumesCache;
+- InstanceIdxsList · type · L98-L98 — typedef std::set<int> InstanceIdxsList;
+- ObjectIdxsToInstanceIdxsMap · type · L99-L99 — typedef std::map<int, InstanceIdxsList> ObjectIdxsToInstanceIdxsMap;
+- Clipboard · class · L101-L123 — class Clipboard
+- Clipboard · function · L110-L110 — Clipboard();
+- reset · function · L112-L112 — void reset();
+- is_empty · function · L113-L113 — bool is_empty() const;
+- is_sla_compliant · function · L115-L115 — bool is_sla_compliant() const;
+- add_object · function · L117-L117 — ModelObject* add_object();
+- get_object · function · L118-L118 — ModelObject* get_object(unsigned int id);
+- get_objects · function · L119-L119 — const ModelObjectPtrs& get_objects() const;
+- get_mode · function · L121-L121 — Selection::EMode get_mode() const { return m_mode; }
+- set_mode · function · L122-L122 — void set_mode(Selection::EMode mode) { m_mode = mode; }
+- Cache · class · L126-L139 — struct Cache
+- Planes · class · L185-L189 — struct Planes
+- Selection · function · L199-L199 — Selection();
+- set_volumes · function · L201-L201 — void set_volumes(GLVolumePtrs* volumes);
+- init · function · L202-L202 — bool init();
+- is_enabled · function · L204-L204 — bool is_enabled() const { return m_enabled; }
+- set_enabled · function · L205-L205 — void set_enabled(bool enable) { m_enabled = enable; }
+- get_model · function · L207-L207 — Model* get_model() const { return m_model; }
+- set_model · function · L208-L208 — void set_model(Model* model);
+- get_mode · function · L210-L210 — EMode get_mode() const { return m_mode; }
+- set_mode · function · L211-L211 — void set_mode(EMode mode) { m_mode = mode; }
+- query_real_volume_idx_from_other_view · function · L213-L213 — int query_real_volume_idx_from_other_view(unsigned int object_idx, unsigned int instance_idx, unsigned int model_volume_idx);
+- add · function · L214-L214 — void add(unsigned int volume_idx, bool as_single_selection = true, bool check_for_already_contained = false);
+- remove · function · L215-L215 — void remove(unsigned int volume_idx);
+- add_object · function · L217-L217 — void add_object(unsigned int object_idx, bool as_single_selection = true);
+- remove_object · function · L218-L218 — void remove_object(unsigned int object_idx);
+- add_instance · function · L220-L220 — void add_instance(unsigned int object_idx, unsigned int instance_idx, bool as_single_selection = true);
+- remove_instance · function · L221-L221 — void remove_instance(unsigned int object_idx, unsigned int instance_idx);
+- add_volume · function · L223-L223 — void add_volume(unsigned int object_idx, unsigned int volume_idx, int instance_idx, bool as_single_selection = true);
+- remove_volume · function · L224-L224 — void remove_volume(unsigned int object_idx, unsigned int volume_idx);
+- add_volumes · function · L226-L226 — void add_volumes(EMode mode, const std::vector<unsigned int>& volume_idxs, bool as_single_selection = true);
+- remove_volumes · function · L227-L227 — void remove_volumes(EMode mode, const std::vector<unsigned int>& volume_idxs);
+- get_selected_single_volume · function · L230-L230 — ModelVolume *                   get_selected_single_volume(int &out_object_idx, int &out_volume_idx) const;
+- get_selected_single_object · function · L231-L231 — ModelObject *                   get_selected_single_object(int &out_object_idx) const;
+- get_selected_single_intance · function · L232-L232 — const ModelInstance *           get_selected_single_intance() const;
+- add_curr_plate · function · L233-L233 — void add_curr_plate();
+- add_object_from_idx · function · L234-L234 — void add_object_from_idx(std::vector<int>& object_idxs);
+- remove_curr_plate · function · L235-L235 — void remove_curr_plate();
+- clone · function · L236-L236 — void clone(int numbers = 1);
+- center · function · L237-L237 — void center();
+- drop · function · L238-L238 — void drop();
+- center_plate · function · L239-L239 — void center_plate(const int plate_idx);
+- set_printable · function · L240-L240 — void set_printable(bool printable);
+- get_auto_drop · function · L241-L241 — bool get_auto_drop() const;
+- set_auto_drop · function · L242-L242 — void set_auto_drop(bool enabled);
+- add_all · function · L244-L244 — void add_all();
+- remove_all · function · L245-L245 — void remove_all();
+- set_deserialized · function · L248-L248 — void set_deserialized(EMode mode, const std::vector<std::pair<size_t, size_t>> &volumes_and_instances);
+- instances_changed · function · L251-L251 — void instances_changed(const std::vector<size_t> &instance_ids_selected);
+- volumes_changed · function · L254-L254 — void volumes_changed(const std::vector<size_t> &map_volume_old_to_new);
+- clear · function · L255-L255 — void clear();
+- is_empty · function · L257-L257 — bool is_empty() const { return m_type == Empty; }
+- is_wipe_tower · function · L258-L258 — bool is_wipe_tower() const { return m_type == WipeTower; }
+- is_any_modifier · function · L259-L259 — bool is_any_modifier() const { return is_single_modifier() || is_multiple_modifier(); }
+- is_single_modifier · function · L260-L260 — bool is_single_modifier() const { return m_type == SingleModifier; }
+- is_multiple_modifier · function · L261-L261 — bool is_multiple_modifier() const { return m_type == MultipleModifier; }
+- is_single_full_instance · function · L262-L262 — bool is_single_full_instance() const;
+- is_multiple_full_instance · function · L263-L263 — bool is_multiple_full_instance() const { return m_type == MultipleFullInstance; }
+- is_single_full_object · function · L264-L264 — bool is_single_full_object() const { return m_type == SingleFullObject; }
+- is_multiple_full_object · function · L265-L265 — bool is_multiple_full_object() const { return m_type == MultipleFullObject; }
+- is_single_volume · function · L266-L266 — bool is_single_volume() const { return m_type == SingleVolume; }
+- is_multiple_volume · function · L267-L267 — bool is_multiple_volume() const { return m_type == MultipleVolume; }
+- is_any_volume · function · L268-L268 — bool is_any_volume() const { return is_single_volume() || is_multiple_volume(); }
+- is_any_connector · function · L269-L269 — bool is_any_connector() const;
+- is_any_cut_volume · function · L270-L270 — bool is_any_cut_volume() const;
+- is_mixed · function · L271-L271 — bool is_mixed() const { return m_type == Mixed; }
+- is_from_single_instance · function · L272-L272 — bool is_from_single_instance() const { return get_instance_idx() != -1; }
+- is_from_single_object · function · L273-L273 — bool is_from_single_object() const;
+- is_sla_compliant · function · L274-L274 — bool is_sla_compliant() const;
+- is_instance_mode · function · L275-L275 — bool is_instance_mode() const { return m_mode == Instance; }
+- is_single_volume_or_modifier · function · L276-L276 — bool is_single_volume_or_modifier() const { return is_single_volume() || is_single_modifier(); }
+- is_single_volume_instance · function · L277-L277 — bool is_single_volume_instance() const { return is_single_full_instance() && m_list.size() == 1; }
+- is_single_text · function · L278-L278 — bool is_single_text() const;
+- contains_volume · function · L280-L280 — bool contains_volume(unsigned int volume_idx) const { return m_list.find(volume_idx) != m_list.end(); }
+- contains_all_volumes · function · L282-L282 — bool contains_all_volumes(const std::vector<unsigned int>& volume_idxs) const;
+- contains_any_volume · function · L284-L284 — bool contains_any_volume(const std::vector<unsigned int>& volume_idxs) const;
+- contains_sinking_volumes · function · L286-L286 — bool contains_sinking_volumes(bool ignore_modifiers = true) const;
+- matches · function · L288-L288 — bool matches(const std::vector<unsigned int>& volume_idxs) const;
+- requires_uniform_scale · function · L290-L290 — bool requires_uniform_scale() const;
+- get_object_idx · function · L293-L293 — int get_object_idx() const;
+- get_instance_idx · function · L295-L295 — int get_instance_idx() const;
+- get_instance_idxs · function · L298-L298 — const InstanceIdxsList& get_instance_idxs() const;
+- get_volume_idxs · function · L300-L300 — const IndicesList& get_volume_idxs() const { return m_list; }
+- get_volume · function · L301-L301 — const GLVolume* get_volume(unsigned int volume_idx) const;
+- get_first_volume · function · L302-L302 — const GLVolume* get_first_volume() const { return get_volume(*m_list.begin()); }
+- get_volume · function · L303-L303 — GLVolume* get_volume(unsigned int volume_idx);
+- get_content · function · L305-L305 — const ObjectIdxsToInstanceIdxsMap& get_content() const { return m_cache.content; }
+- volumes_count · function · L307-L307 — unsigned int volumes_count() const { return (unsigned int)m_list.size(); }
+- get_bounding_box · function · L308-L308 — const BoundingBoxf3& get_bounding_box() const;
+- get_unscaled_instance_bounding_box · function · L312-L312 — const BoundingBoxf3& get_unscaled_instance_bounding_box() const;
+- get_scaled_instance_bounding_box · function · L315-L315 — const BoundingBoxf3& get_scaled_instance_bounding_box() const;
+- get_full_unscaled_instance_bounding_box · function · L318-L318 — const BoundingBoxf3& get_full_unscaled_instance_bounding_box() const;
+- get_full_scaled_instance_bounding_box · function · L321-L321 — const BoundingBoxf3& get_full_scaled_instance_bounding_box() const;
+- get_full_unscaled_instance_local_bounding_box · function · L324-L324 — const BoundingBoxf3& get_full_unscaled_instance_local_bounding_box() const;
+- get_bounding_box_in_current_reference_system · function · L327-L327 — const std::pair<BoundingBoxf3, Transform3d>& get_bounding_box_in_current_reference_system() const;
+- get_bounding_box_in_reference_system · function · L330-L330 — std::pair<BoundingBoxf3, Transform3d> get_bounding_box_in_reference_system(ECoordinatesType type) const;
+- get_bounding_sphere · function · L333-L333 — const std::pair<Vec3d, double> get_bounding_sphere() const;
+- setup_cache · function · L335-L335 — void setup_cache();
+- translate · function · L336-L336 — void translate(const Vec3d& displacement, TransformationType transformation_type);
+- move_to_center · function · L337-L337 — void move_to_center(const Vec3d& displacement, bool local = false);
+- rotate · function · L338-L338 — void rotate(const Vec3d& rotation, TransformationType transformation_type);
+- flattening_rotate · function · L339-L339 — void flattening_rotate(const Vec3d& normal);
+- scale · function · L340-L340 — void scale(const Vec3d& scale, TransformationType transformation_type);
+- scale_to_fit_print_volume · function · L342-L342 — void scale_to_fit_print_volume(const BuildVolume& volume);
+- scale_to_fit_print_volume · function · L344-L344 — void scale_to_fit_print_volume(const DynamicPrintConfig& config);
+- scale_and_translate · function · L346-L346 — void scale_and_translate(const Vec3d &scale, const Vec3d &world_translation, TransformationType transformation_type);
+- mirror · function · L347-L347 — void mirror(Axis axis, TransformationType transformation_type);
+- translate · function · L349-L349 — void translate(unsigned int object_idx, const Vec3d& displacement);
+- translate · function · L350-L350 — void translate(unsigned int object_idx, unsigned int instance_idx, const Vec3d& displacement);
+- translate · function · L351-L351 — void translate(unsigned int object_idx, unsigned int instance_idx, unsigned int volume_idx, const Vec3d &displacement);
+- rotate · function · L353-L353 — void rotate(unsigned int object_idx, unsigned int instance_idx, const Transform3d &overwrite_tran);
+- rotate · function · L354-L354 — void rotate(unsigned int object_idx, unsigned int instance_idx, unsigned int volume_idx, const Transform3d &overwrite_tran);
+- notify_instance_update · function · L356-L356 — void notify_instance_update(int object_idx, int instance_idx);
+- get_volume_selection_mode · function · L358-L358 — EMode get_volume_selection_mode(){ return m_volume_selection_mode;}
+- set_volume_selection_mode · function · L359-L359 — void set_volume_selection_mode(EMode mode) { if (!m_volume_selection_locked) m_volume_selection_mode = mode; }
+- lock_volume_selection_mode · function · L360-L360 — void lock_volume_selection_mode() { m_volume_selection_locked = true; }
+- unlock_volume_selection_mode · function · L361-L361 — void unlock_volume_selection_mode() { m_volume_selection_locked = false; }
+- erase · function · L363-L363 — void erase();
+- render · function · L365-L365 — void render(float scale_factor = 1.0);
+- render_center · function · L367-L367 — void render_center(bool gizmo_is_dragging);
+- render_sidebar_hints · function · L370-L370 — void render_sidebar_hints(const std::string& sidebar_field, bool uniform_scale);
+- requires_local_axes · function · L372-L372 — bool requires_local_axes() const;
+- render_bounding_box · function · L374-L377 — void render_bounding_box(const BoundingBoxf3& box, const ColorRGB& color, float scale)
+- cut_to_clipboard · function · L380-L380 — void cut_to_clipboard();
+- copy_to_clipboard · function · L381-L381 — void copy_to_clipboard();
+- paste_from_clipboard · function · L382-L382 — void paste_from_clipboard();
+- get_selected_object_instances · function · L384-L384 — std::set<std::pair<int, int>> get_selected_object_instances();
+- get_clipboard · function · L386-L386 — const Clipboard& get_clipboard() const { return m_clipboard; }
+- fill_color · function · L388-L388 — void fill_color(int  extruder_id);
+- get_volume_idxs_from_object · function · L391-L391 — std::vector<unsigned int> get_volume_idxs_from_object(unsigned int object_idx) const;
+- get_volume_idxs_from_instance · function · L393-L393 — std::vector<unsigned int> get_volume_idxs_from_instance(unsigned int object_idx, unsigned int instance_idx) const;
+- get_volume_idxs_from_volume · function · L395-L395 — std::vector<unsigned int> get_volume_idxs_from_volume(unsigned int object_idx, unsigned int instance_idx, unsigned int volume_idx) const;
+- get_missing_volume_idxs_from · function · L397-L397 — std::vector<unsigned int> get_missing_volume_idxs_from(const std::vector<unsigned int>& volume_idxs) const;
+- get_unselected_volume_idxs_from · function · L399-L399 — std::vector<unsigned int> get_unselected_volume_idxs_from(const std::vector<unsigned int>& volume_idxs) const;
+- update_valid · function · L402-L402 — void update_valid();
+- update_type · function · L403-L403 — void update_type();
+- set_caches · function · L404-L404 — void set_caches();
+- do_add_volume · function · L405-L405 — void do_add_volume(unsigned int volume_idx);
+- do_add_volumes · function · L406-L406 — void do_add_volumes(const std::vector<unsigned int>& volume_idxs);
+- do_remove_volume · function · L407-L407 — void do_remove_volume(unsigned int volume_idx);
+- do_remove_instance · function · L408-L408 — void do_remove_instance(unsigned int object_idx, unsigned int instance_idx);
+- do_remove_object · function · L409-L409 — void do_remove_object(unsigned int object_idx);
+- set_bounding_boxes_dirty · function · L410-L418 — void set_bounding_boxes_dirty()
+- render_synchronized_volumes · function · L419-L419 — void render_synchronized_volumes();
+- render_bounding_box · function · L420-L420 — void render_bounding_box(const BoundingBoxf3& box, const Transform3d& trafo, const bool auto_drop, const ColorRGB& color);
+- render_sidebar_position_hints · function · L421-L421 — void render_sidebar_position_hints(const std::string& sidebar_field, GLShaderProgram& shader, const Transform3d& matrix);
+- render_sidebar_rotation_hints · function · L422-L422 — void render_sidebar_rotation_hints(const std::string& sidebar_field, GLShaderProgram& shader, const Transform3d& matrix);
+- render_sidebar_scale_hints · function · L424-L424 — void render_sidebar_scale_hints(const std::string& sidebar_field, bool gizmo_uniform_scale, GLShaderProgram& shader, const Transform3d& matrix);
+- render_sidebar_layers_hints · function · L425-L425 — void render_sidebar_layers_hints(const std::string& sidebar_field, GLShaderProgram& shader);
+- SyncRotationType · type · L428-L435 — enum class SyncRotationType
+- synchronize_unselected_instances · function · L436-L436 — void synchronize_unselected_instances(SyncRotationType sync_rotation_type);
+- synchronize_unselected_volumes · function · L437-L437 — void synchronize_unselected_volumes();
+- ensure_on_bed · function · L440-L440 — void ensure_on_bed();
+- ensure_not_below_bed · function · L441-L441 — void ensure_not_below_bed();
+- is_from_fully_selected_instance · function · L442-L442 — bool is_from_fully_selected_instance(unsigned int volume_idx) const;
+- paste_volumes_from_clipboard · function · L444-L444 — void paste_volumes_from_clipboard();
+- paste_objects_from_clipboard · function · L445-L445 — void paste_objects_from_clipboard();
+- transform_instance_relative · function · L447-L448 — void transform_instance_relative(GLVolume& volume, const VolumeCache& volume_data, TransformationType transformation_type,
+- transform_volume_relative · function · L449-L450 — void transform_volume_relative(GLVolume& volume, const VolumeCache& volume_data, TransformationType transformation_type,
+- get_selected_volume · function · L453-L453 — ModelVolume    *get_selected_volume   (const Selection &selection);
+- get_selected_gl_volume · function · L454-L454 — const GLVolume *get_selected_gl_volume(const Selection &selection);
+- get_selected_volume · function · L456-L456 — ModelVolume    *get_selected_volume   (const ObjectID &volume_id, const Selection &selection);
+- get_volume · function · L457-L457 — ModelVolume    *get_volume            (const ObjectID &volume_id, const Selection &selection);

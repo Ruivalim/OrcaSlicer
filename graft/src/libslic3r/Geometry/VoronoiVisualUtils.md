@@ -1,0 +1,28 @@
+# src/libslic3r/Geometry/VoronoiVisualUtils.hpp
+
+- voronoi_visual_utils · class · L22-L184 — template <typename CT>
+- discretize · function · L42-L135 — template <class InCT1, class InCT2,
+- parabola_y · function · L139-L141 — static CT parabola_y(CT x, CT a, CT b)
+- get_point_projection · function · L150-L178 — template <class InCT,
+- cast · function · L180-L183 — template <typename InCT>
+- coordinate_type · type · L202-L202 — typedef double coordinate_type;
+- point_type · type · L203-L203 — typedef boost::polygon::point_data<coordinate_type> point_type;
+- segment_type · type · L204-L204 — typedef boost::polygon::segment_data<coordinate_type> segment_type;
+- rect_type · type · L205-L205 — typedef boost::polygon::rectangle_data<coordinate_type> rect_type;
+- cell_type · type · L206-L206 — typedef VD::cell_type cell_type;
+- source_index_type · type · L207-L207 — typedef VD::cell_type::source_index_type source_index_type;
+- source_category_type · type · L208-L208 — typedef VD::cell_type::source_category_type source_category_type;
+- edge_type · type · L209-L209 — typedef VD::edge_type edge_type;
+- cell_container_type · type · L210-L210 — typedef VD::cell_container_type cell_container_type;
+- vertex_container_type · type · L211-L211 — typedef VD::cell_container_type vertex_container_type;
+- edge_container_type · type · L212-L212 — typedef VD::edge_container_type edge_container_type;
+- const_cell_iterator · type · L213-L213 — typedef VD::const_cell_iterator const_cell_iterator;
+- const_vertex_iterator · type · L214-L214 — typedef VD::const_vertex_iterator const_vertex_iterator;
+- const_edge_iterator · type · L215-L215 — typedef VD::const_edge_iterator const_edge_iterator;
+- color_exterior · function · L219-L234 — inline void color_exterior(const VD::edge_type* edge)
+- retrieve_point · function · L236-L244 — inline point_type retrieve_point(const Points &points, const std::vector<segment_type> &segments, const cell_type& cell)
+- clip_infinite_edge · function · L246-L282 — inline void clip_infinite_edge(const Points &points, const std::vector<segment_type> &segments, const edge_type& edge, coordinate_type bbox_max_size, std::vector<point_type>* clipped_edge)
+- sample_curved_edge · function · L284-L293 — inline void sample_curved_edge(const Points &points, const std::vector<segment_type> &segments, const edge_type& edge, std::vector<point_type> &sampled_edge, coordinate_type max_dist)
+- get_extents · function · L297-L297 — BoundingBox get_extents(const Lines &lines);
+- dump_voronoi_to_svg · function · L299-L454 — static inline void dump_voronoi_to_svg(
+- svg · function · L351-L351 — ::Slic3r::SVG svg(path, bbox);

@@ -1,0 +1,43 @@
+# src/libslic3r/Format/bbs_3mf.hpp
+
+- Model · class · L10-L10 — class Model;
+- ModelObject · class · L11-L11 — class ModelObject;
+- DynamicPrintConfig · class · L13-L13 — class DynamicPrintConfig;
+- Preset · class · L14-L14 — class Preset;
+- PackingTemporaryData · class · L40-L48 — class PackingTemporaryData
+- PackingTemporaryData · function · L47-L47 — PackingTemporaryData() {}
+- PlateMixedFilamentInfo · class · L55-L61 — struct PlateMixedFilamentInfo
+- PlateData · class · L64-L144 — struct PlateData
+- PlateData · function · L66-L71 — PlateData(int plate_id, std::set<std::pair<int, int>> &obj_to_inst_list, bool lock_state) : plate_index(plate_id), locked(lock_state)
+- PlateData · function · L72-L75 — PlateData() : plate_index(-1), locked(false)
+- parse_filament_info · function · L81-L81 — void parse_filament_info(GCodeProcessorResult *result);
+- get_gcode_prediction_str · function · L136-L138 — std::string get_gcode_prediction_str()
+- get_gcode_weight_str · function · L140-L142 — std::string get_gcode_weight_str()
+- SaveStrategy · type · L147-L169 — enum class SaveStrategy
+- is_published_3mf_flag · function · L182-L182 — bool is_published_3mf_flag(const std::string &value);
+- LoadStrategy · type · L200-L212 — enum class LoadStrategy
+- Export3mfProgressFn · type · L258-L258 — typedef std::function<void(int export_stage, int current, int total, bool& cancel)> Export3mfProgressFn;
+- Import3mfProgressFn · type · L259-L259 — typedef std::function<void(int import_stage, int current, int total, bool& cancel)> Import3mfProgressFn;
+- PlateDataPtrs · type · L261-L261 — typedef std::vector<PlateData*> PlateDataPtrs;
+- PlateDataMaps · type · L263-L263 — typedef std::map<int, PlateData*> PlateDataMaps;
+- StoreParams · class · L265-L285 — struct StoreParams
+- StoreParams · function · L284-L284 — StoreParams() {}
+- load_bbs_3mf · function · L291-L292 — extern bool load_bbs_3mf(const char* path, DynamicPrintConfig* config, ConfigSubstitutionContext* config_substitutions, Model* model, PlateDataPtrs* plate_data_list, std::vector<Preset*>* project_presets,
+- bbs_3mf_get_thumbnail · function · L294-L294 — extern std::string bbs_3mf_get_thumbnail(const char * path);
+- bbs_3mf_is_published · function · L297-L297 — extern bool bbs_3mf_is_published(const std::string &path);
+- load_gcode_3mf_from_stream · function · L299-L300 — extern bool load_gcode_3mf_from_stream(std::istream & data, DynamicPrintConfig* config, Model* model, PlateDataPtrs* plate_data_list,
+- store_bbs_3mf · function · L321-L321 — extern bool store_bbs_3mf(StoreParams& store_params);
+- release_PlateData_list · function · L323-L323 — extern void release_PlateData_list(PlateDataPtrs& plate_data_list);
+- save_object_mesh · function · L327-L327 — extern void save_object_mesh(ModelObject& object);
+- delete_object_mesh · function · L329-L329 — extern void delete_object_mesh(ModelObject& object);
+- backup_soon · function · L331-L331 — extern void backup_soon();
+- remove_backup · function · L333-L333 — extern void remove_backup(Model& model, bool removeAll);
+- set_backup_interval · function · L335-L335 — extern void set_backup_interval(long interval);
+- set_backup_callback · function · L337-L337 — extern void set_backup_callback(std::function<void(int)> callback);
+- run_backup_ui_tasks · function · L339-L339 — extern void run_backup_ui_tasks();
+- has_restore_data · function · L341-L341 — extern bool has_restore_data(std::string & path, std::string & origin);
+- put_other_changes · function · L343-L343 — extern void put_other_changes();
+- clear_other_changes · function · L345-L345 — extern void clear_other_changes(bool backup);
+- has_other_changes · function · L347-L347 — extern bool has_other_changes(bool backup);
+- SaveObjectGaurd · class · L349-L353 — class SaveObjectGaurd
+- SaveObjectGaurd · function · L351-L351 — SaveObjectGaurd(ModelObject& object);

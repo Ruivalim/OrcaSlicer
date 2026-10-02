@@ -1,0 +1,45 @@
+# src/slic3r/GUI/DeviceCore/DevPrintOptions.h
+
+- class · type · L14-L14 — enum class PrintOptionEnum
+- PrintOptionData · class · L32-L34 — struct PrintOptionData
+- class · type · L47-L126 — enum class PurifyAirAtPrintEndState : int
+- SetPrintingSpeedLevel · function · L54-L54 — void SetPrintingSpeedLevel(DevPrintingSpeedLevel speed_level);
+- GetPrintingSpeedLevel · function · L55-L55 — DevPrintingSpeedLevel GetPrintingSpeedLevel() const { return m_speed_level;}
+- GetDetectionOption · function · L58-L58 — PrintOptionData* GetDetectionOption(PrintOptionEnum print_option);
+- command_xcam_control_ai_monitoring · function · L61-L61 — int command_xcam_control_ai_monitoring(bool on_off, std::string lvl);
+- command_xcam_control_first_layer_inspector · function · L62-L62 — int command_xcam_control_first_layer_inspector(bool on_off, bool print_halt);
+- command_xcam_control_buildplate_marker_detector · function · L63-L63 — int command_xcam_control_buildplate_marker_detector(bool on_off);
+- command_xcam_control_auto_recovery_step_loss · function · L64-L64 — int command_xcam_control_auto_recovery_step_loss(bool on_off);
+- command_xcam_control_allow_prompt_sound · function · L65-L65 — int command_xcam_control_allow_prompt_sound(bool on_off);
+- command_xcam_control_filament_tangle_detect · function · L66-L66 — int command_xcam_control_filament_tangle_detect(bool on_off);
+- command_xcam_control_idelheatingprotect_detector · function · L67-L67 — int command_xcam_control_idelheatingprotect_detector(bool on_off);
+- command_xcam_control_build_plate_align_detector · function · L70-L70 — int command_xcam_control_build_plate_align_detector(bool on_off);
+- command_xcam_control_fod_check · function · L71-L71 — int command_xcam_control_fod_check(bool on_off);
+- command_xcam_control_displacement_detection · function · L72-L72 — int command_xcam_control_displacement_detection(bool on_off);
+- command_xcam_control_purify_air_at_print_end · function · L73-L73 — int command_xcam_control_purify_air_at_print_end(int on_off);
+- command_smart_nozzle_blob_detect_mode · function · L74-L74 — int command_smart_nozzle_blob_detect_mode(int mode);  // 0=off, 1=on, 2=auto
+- command_snapshot_control · function · L75-L75 — int command_snapshot_control(int on_off);
+- command_xcam_control · function · L77-L77 — int command_xcam_control(std::string module_name, bool on_off,  MachineObject *obj ,std::string lvl = "");
+- command_set_printing_option · function · L79-L79 — int command_set_printing_option(bool auto_recovery, MachineObject *obj);
+- command_set_prompt_sound · function · L81-L81 — int command_set_prompt_sound(bool prompt_sound, MachineObject *obj);
+- command_set_filament_tangle_detect · function · L83-L83 — int command_set_filament_tangle_detect(bool fliament_tangle_detect, MachineObject *obj);
+- command_set_against_continued_heating_mode · function · L85-L85 — int command_set_against_continued_heating_mode(bool on_off);
+- command_set_purify_air_at_print_end · function · L86-L86 — int command_set_purify_air_at_print_end(PurifyAirAtPrintEndState state, MachineObject *obj);
+- command_set_snapshot_control · function · L87-L87 — int command_set_snapshot_control(int on_off, MachineObject *obj);
+- parse_auto_recovery_step_loss_status · function · L89-L89 — void parse_auto_recovery_step_loss_status(int flag);
+- parse_allow_prompt_sound_status · function · L90-L90 — void parse_allow_prompt_sound_status(int flag);
+- parse_filament_tangle_detect_status · function · L91-L91 — void parse_filament_tangle_detect_status(int flag);
+- GetAiMonitoring · function · L94-L94 — bool GetAiMonitoring() const { return m_ai_monitoring_detection.current_detect_value == 1; }
+- GetFirstLayerInspector · function · L95-L95 — bool GetFirstLayerInspector() const{ return m_first_layer_detection.current_detect_value == 1; }
+- GetBuildplateMarkerDetector · function · L96-L96 — bool GetBuildplateMarkerDetector() const { return m_buildplate_mark_detection.current_detect_value == 1; }
+- GetAutoRecoveryStepLoss · function · L97-L97 — bool GetAutoRecoveryStepLoss() const { return m_auto_recovery_detection.current_detect_value == 1; }
+- GetAllowPromptSound · function · L98-L98 — bool GetAllowPromptSound() const { return m_allow_prompt_sound_detection.current_detect_value == 1; }
+- GetFilamentTangleDetect · function · L99-L99 — bool GetFilamentTangleDetect() const { return m_filament_tangle_detection.current_detect_value == 1; }
+- GetIdelHeatingProtectEenabled · function · L100-L100 — int  GetIdelHeatingProtectEenabled() const { return m_idel_heating_protect_detection.current_detect_value; }
+- GetAiMonitoringSensitivity · function · L101-L101 — std::string GetAiMonitoringSensitivity() const { return m_ai_monitoring_detection.current_detect_sensitivity_value; }
+- Parse · function · L131-L131 — static void Parse(DevPrintOptions* opts, const nlohmann::json& print_json);
+- ParseDetectionV1_0 · function · L134-L134 — static void ParseDetectionV1_0(DevPrintOptions *opts, MachineObject *obj, const nlohmann::json &print_json);
+- ParseDetectionV1_1 · function · L135-L135 — static void ParseDetectionV1_1(DevPrintOptions *opts, MachineObject *obj, const nlohmann::json &print_json, bool enable);
+- ParseDetectionV1_2 · function · L136-L136 — static void ParseDetectionV1_2(DevPrintOptions *opts, MachineObject *obj, const nlohmann::json &print_json);
+- ParseDetectionV2_0 · function · L138-L138 — static void ParseDetectionV2_0(DevPrintOptions *opts, std::string cfg);
+- ParseDetectionV2_1 · function · L139-L139 — static void ParseDetectionV2_1(DevPrintOptions *opts, std::string cfg);

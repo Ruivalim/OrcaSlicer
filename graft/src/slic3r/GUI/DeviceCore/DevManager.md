@@ -1,0 +1,39 @@
+# src/slic3r/GUI/DeviceCore/DevManager.h
+
+- get_agent · function · L42-L42 — NetworkAgent* get_agent() const { return m_agent; }
+- set_agent · function · L43-L43 — void set_agent(NetworkAgent* agent);
+- start_refresher · function · L45-L45 — void start_refresher();
+- stop_refresher · function · L46-L46 — void stop_refresher();
+- get_selected_machine · function · L48-L48 — MachineObject* get_selected_machine();
+- set_selected_machine · function · L49-L49 — bool set_selected_machine(std::string dev_id);
+- OnSelectedMachineLost · function · L53-L53 — void OnSelectedMachineLost();
+- record_user_last_machine · function · L55-L55 — void record_user_last_machine(const std::string& dev_id);
+- get_user_last_machine · function · L56-L56 — std::string get_user_last_machine() const;
+- set_local_selected_machine · function · L59-L59 — void           set_local_selected_machine(std::string dev_id) { local_selected_machine = dev_id; };
+- get_local_selected_machine · function · L60-L60 — MachineObject* get_local_selected_machine() const { return get_local_machine(local_selected_machine); }
+- erase_local_machine · function · L63-L63 — void erase_local_machine(std::string dev_id) { localMachineList.erase(dev_id); }
+- get_first_online_user_machine · function · L73-L73 — std::string get_first_online_user_machine() const;
+- erase_user_machine · function · L74-L74 — void erase_user_machine(std::string dev_id) { userMachineList.erase(dev_id); }
+- clean_user_info · function · L75-L75 — void clean_user_info(bool keep_local_selection = false);
+- load_last_machine · function · L82-L82 — void load_last_machine();
+- update_user_machine_list_info · function · L83-L83 — void update_user_machine_list_info(const std::string& provider);
+- parse_user_print_info · function · L84-L84 — void parse_user_print_info(std::string body);
+- reload_printer_settings · function · L85-L85 — void reload_printer_settings();
+- add_user_subscribe · function · L90-L90 — void add_user_subscribe();
+- del_user_subscribe · function · L91-L91 — void del_user_subscribe();
+- subscribe_device_list · function · L92-L92 — void subscribe_device_list(std::vector<std::string> dev_list);
+- modify_device_name · function · L98-L98 — void modify_device_name(std::string dev_id, std::string dev_name, const std::string& provider);
+- get_current_printer_agent_id · function · L103-L103 — std::string get_current_printer_agent_id() const;
+- on_machine_alive · function · L106-L106 — void on_machine_alive(std::string json_str);
+- query_bind_status · function · L107-L107 — int query_bind_status(std::string& msg, const std::string& provider);
+- EnableMultiMachine · function · L110-L110 — void EnableMultiMachine(bool enable = true);
+- IsMultiMachineEnabled · function · L111-L111 — bool IsMultiMachineEnabled() const { return m_enable_mutil_machine; }
+- load_local_machines_from_config · function · L121-L121 — void load_local_machines_from_config();
+- keep_alive · function · L123-L123 — void keep_alive();
+- check_pushing · function · L124-L124 — void check_pushing();
+- OnMachineBindStateChanged · function · L126-L126 — void OnMachineBindStateChanged(MachineObject* obj, const std::string& new_state);
+- OnSelectedMachineChanged · function · L127-L127 — void OnSelectedMachineChanged(const std::string& pre_dev_id, const std::string& new_dev_id);
+- insert_local_device · function · L133-L135 — MachineObject* insert_local_device(const BBLocalMachine& machine,
+- update_local_machine · function · L136-L136 — static void update_local_machine(const MachineObject& m);
+- Start · function · L151-L151 — void Start() { m_timer->Start(m_timer_interval_msec); }
+- Stop · function · L152-L152 — void Stop() { m_timer->Stop(); }

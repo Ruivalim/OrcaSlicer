@@ -1,0 +1,140 @@
+# src/libslic3r/GCode/WipeTower.hpp
+
+- WipeTowerWriter · class · L19-L19 — class WipeTowerWriter;
+- PrintConfig · class · L20-L20 — class PrintConfig;
+- GCodeFlavor · type · L21-L21 — enum GCodeFlavor : unsigned char;
+- construct_gap_for_skip_points · function · L26-L27 — Polylines construct_gap_for_skip_points(
+- flush_planner_queue_command · function · L32-L32 — const char* flush_planner_queue_command(GCodeFlavor flavor); // finish queued moves, e.g. around M104/M109
+- wait_command · function · L33-L33 — std::string wait_command(GCodeFlavor flavor, float seconds);  // pause for `seconds`
+- WipeTower · class · L35-L680 — class WipeTower
+- never_skip_tag · function · L39-L39 — static const std::string never_skip_tag() { return "_GCODE_WIPE_TOWER_NEVER_SKIP_TAG"; }
+- get_limit_depth_by_height · function · L43-L43 — static float get_limit_depth_by_height(float max_height);
+- get_auto_brim_by_height · function · L44-L44 — static float get_auto_brim_by_height(float max_height);
+- estimate_brim_real_width · function · L49-L49 — static float estimate_brim_real_width(float brim_width, float nozzle_diameter, float first_layer_height, bool type2);
+- get_wrapping_detection_depth · function · L51-L51 — static float get_wrapping_detection_depth();
+- nozzle_change_perimeter_width · function · L53-L53 — static float nozzle_change_perimeter_width(float nozzle_diameter);
+- its_make_rib_tower · function · L54-L54 — static TriangleMesh                 its_make_rib_tower(float width, float depth, float height, float rib_length, float rib_width, bool fillet_wall);
+- its_make_rib_brim · function · L55-L55 — static TriangleMesh                 its_make_rib_brim(const Polygon& brim, float layer_height);
+- rib_section · function · L56-L56 — static Polygon                      rib_section(float width, float depth, float rib_length, float rib_width, bool fillet_wall);
+- PurgeEstimate · class · L58-L64 — struct PurgeEstimate
+- estimate_tower_blocks_depth · function · L68-L68 — static float estimate_tower_blocks_depth(const std::vector<PurgeEstimate> &purges, float width, float layer_height, float nozzle_diameter, float extra_spacing);
+- rib_footprint_side · function · L71-L71 — static float rib_footprint_side(float width, float depth, float rib_width, float extra_rib_length, float max_height);
+- estimate_rib_tower_bbox_side · function · L74-L74 — static float estimate_rib_tower_bbox_side(const std::vector<PurgeEstimate> &purges, float width, float layer_height, float nozzle_diameter, float extra_spacing, float rib_width, float extra_rib_length, float max_height);
+- move_box_inside_polygon · function · L79-L79 — static Vec2f                        move_box_inside_polygon(const BoundingBox &box, const Polygons &polygons, coord_t offset = 0);
+- rounding_polygon · function · L80-L80 — static Polygon                      rounding_polygon(Polygon &polygon, double rounding = 2., double angle_tol = 30. / 180. * PI);
+- Extrusion · class · L81-L91 — struct Extrusion
+- Extrusion · function · L83-L83 — Extrusion(const Vec2f &pos, float width, unsigned int tool) : pos(pos), width(width), tool(tool) {}
+- NozzleChangeResult · class · L93-L104 — struct NozzleChangeResult
+- ToolChangeResult · class · L106-L170 — struct ToolChangeResult
+- total_extrusion_length_in_plane · function · L156-L166 — float total_extrusion_length_in_plane()
+- box_coordinates · class · L172-L201 — struct box_coordinates
+- box_coordinates · function · L174-L178 — box_coordinates(float left, float bottom, float width, float height) :
+- box_coordinates · function · L179-L179 — box_coordinates(const Vec2f &pos, float width, float height) : box_coordinates(pos(0), pos(1), width, height) {}
+- translate · function · L180-L183 — void translate(const Vec2f &shift)
+- translate · function · L184-L184 — void translate(const float dx, const float dy) { translate(Vec2f(dx, dy)); }
+- expand · function · L185-L190 — void expand(const float offset)
+- expand · function · L191-L196 — void expand(const float offset_x, const float offset_y)
+- construct_tcr · function · L205-L209 — ToolChangeResult construct_tcr(WipeTowerWriter& writer,
+- construct_block_tcr · function · L211-L214 — ToolChangeResult construct_block_tcr(WipeTowerWriter& writer,
+- WipeTower · function · L222-L222 — WipeTower(const PrintConfig& config, int plate_idx, Vec3d plate_origin, size_t initial_tool, const float wipe_tower_height, const std::vector<unsigned int>& slice_used_filaments);
+- set_extruder · function · L226-L226 — void set_extruder(size_t idx, const PrintConfig& config);
+- set_shared_print_bed · function · L228-L228 — void set_shared_print_bed(const Polygons &bed) { m_shared_print_bed = bed; }
+- set_has_filament_switcher · function · L231-L231 — void set_has_filament_switcher(bool v) { m_has_filament_switcher = v; }
+- plan_toolchange · function · L234-L234 — void plan_toolchange(float z_par, float layer_height_par, unsigned int old_tool, unsigned int new_tool, float wipe_volume_ec = 0.f, float wipe_volume_nc = 0.f, float prime_volume = 0.f);
+- generate · function · L238-L238 — void generate(std::vector<std::vector<ToolChangeResult>> &result);
+- only_generate_out_wall · function · L240-L240 — WipeTower::ToolChangeResult only_generate_out_wall(bool is_new_mode = false);
+- generate_support_wall · function · L241-L241 — Polygon generate_support_wall(WipeTowerWriter &writer, const box_coordinates &wt_box, double feedrate, bool first_layer);
+- generate_support_wall_new · function · L242-L242 — Polygon generate_support_wall_new(WipeTowerWriter &writer, const box_coordinates &wt_box, double feedrate, bool first_layer,bool rib_wall, bool extrude_perimeter, bool skip_points);
+- generate_rib_polygon · function · L244-L244 — Polygon generate_rib_polygon(const box_coordinates &wt_box);
+- get_depth · function · L245-L245 — float get_depth() const { return m_wipe_tower_depth; }
+- get_brim_width · function · L246-L246 — float get_brim_width() const { return m_wipe_tower_brim_width_real; }
+- get_bbx · function · L247-L252 — BoundingBoxf get_bbx() const
+- get_outer_wall · function · L253-L256 — std::map<float, Polylines> get_outer_wall() const
+- get_height · function · L257-L257 — float get_height() const { return m_wipe_tower_height; }
+- get_layer_height · function · L258-L258 — float get_layer_height() const { return m_layer_height; }
+- get_rib_length · function · L259-L259 — float get_rib_length() const { return m_rib_length; }
+- get_rib_width · function · L260-L260 — float get_rib_width() const { return m_rib_width; }
+- set_last_layer_extruder_fill · function · L262-L266 — void set_last_layer_extruder_fill(bool extruder_fill)
+- set_layer · function · L270-L299 — void set_layer(
+- position · function · L302-L302 — const Vec2f& 		 position() const { return m_wipe_tower_pos; }
+- width · function · L304-L304 — float     		 width()    const { return m_wipe_tower_width; }
+- finished · function · L306-L306 — bool 	  		 finished() const { return m_max_color_changes == 0; }
+- prime · function · L309-L316 — std::vector<ToolChangeResult> prime(
+- tool_change · function · L321-L321 — ToolChangeResult tool_change(size_t new_tool, bool extrude_perimeter = false, bool first_toolchange_to_nonsoluble = false);
+- nozzle_change · function · L323-L323 — NozzleChangeResult nozzle_change(int old_filament_id, int new_filament_id);
+- finish_layer · function · L327-L327 — ToolChangeResult finish_layer(bool extruder_perimeter = true, bool extruder_fill = true);
+- extrusion_flow · function · L330-L334 — float extrusion_flow(float layer_height = -1.f) const // negative layer_height - return current m_extrusion_flow
+- nozzle_change_extrusion_flow · function · L335-L340 — float nozzle_change_extrusion_flow(float layer_height = -1.f) const // negative layer_height - return current m_extrusion_flow
+- get_floating_area · function · L342-L342 — bool get_floating_area(float& start_pos_y, float& end_pos_y) const;
+- need_thick_bridge_flow · function · L343-L343 — bool need_thick_bridge_flow(float pos_y) const;
+- get_extrusion_flow · function · L344-L344 — float get_extrusion_flow() const { return m_extrusion_flow; }
+- layer_finished · function · L347-L349 — bool 			 layer_finished() const
+- get_used_filament · function · L351-L351 — std::vector<float> get_used_filament() const { return m_used_filament_length; }
+- get_number_of_toolchanges · function · L352-L352 — int get_number_of_toolchanges() const { return m_num_tool_changes; }
+- set_has_tpu_filament · function · L354-L354 — void set_has_tpu_filament(bool has_tpu) { m_has_tpu_filament = has_tpu; }
+- has_tpu_filament · function · L356-L356 — bool has_tpu_filament() const { return m_has_tpu_filament; }
+- FilamentParameters · class · L357-L394 — struct FilamentParameters
+- set_used_filament_ids · function · L397-L397 — void set_used_filament_ids(const std::vector<int> &used_filament_ids) { m_used_filament_ids = used_filament_ids; };
+- set_filament_categories · function · L398-L398 — void set_filament_categories(const std::vector<int> & filament_categories) { m_filament_categories = filament_categories;};
+- set_nozzle_group_result · function · L399-L399 — void set_nozzle_group_result(const MultiNozzleUtils::LayeredNozzleGroupResult &multi_nozzle_group_result) { m_multi_nozzle_group_result = &multi_nozzle_group_result; };
+- WipeTowerLayerType · type · L404-L404 — enum class WipeTowerLayerType : unsigned char { Normal, Contact, Solid, Contact_UP};// Contact layer should be solid and reduce feed
+- WipeTowerBlock · class · L406-L419 — struct WipeTowerBlock
+- BlockDepthInfo · class · L421-L426 — struct BlockDepthInfo
+- get_block_by_category · function · L434-L434 — WipeTowerBlock* get_block_by_category(int filament_adhesiveness_category, bool create);
+- add_depth_to_block · function · L435-L435 — void add_depth_to_block(int filament_id, int filament_adhesiveness_category, float depth, bool is_nozzle_change = false);
+- get_filament_category · function · L436-L436 — int get_filament_category(int filament_id);
+- reset_block_status · function · L437-L437 — void reset_block_status();
+- get_wall_filament_for_all_layer · function · L438-L438 — int get_wall_filament_for_all_layer();
+- generate_new · function · L440-L440 — void generate_new(std::vector<std::vector<WipeTower::ToolChangeResult>> &result);
+- plan_tower_new · function · L442-L442 — void plan_tower_new();
+- generate_wipe_tower_blocks · function · L443-L443 — void generate_wipe_tower_blocks(bool add_solid_flag);
+- update_all_layer_depth · function · L444-L444 — void update_all_layer_depth(float wipe_tower_depth);
+- set_nozzle_last_layer_id · function · L445-L445 — void set_nozzle_last_layer_id();
+- set_first_layer_flow_ratio · function · L446-L446 — void set_first_layer_flow_ratio(const float flow_ratio);
+- set_accelerations · function · L449-L450 — void set_accelerations(const std::vector<double> &normal, const std::vector<double> &first_layer_normal,
+- calc_block_infill_gap · function · L451-L451 — void calc_block_infill_gap();
+- tool_change_new · function · L452-L452 — ToolChangeResult   tool_change_new(size_t new_tool, bool solid_change = false, bool solid_nozzlechange=false);
+- ramming · function · L453-L453 — NozzleChangeResult ramming(int old_filament_id, int new_filament_id, bool solid_change = false, bool extruder_change = true); // extruder_chang means nozzle_change
+- finish_layer_new · function · L454-L454 — ToolChangeResult   finish_layer_new(bool extrude_perimeter = true, bool extrude_fill = true, bool extrude_fill_wall = true);
+- finish_block · function · L455-L455 — ToolChangeResult   finish_block(const WipeTowerBlock &block, int filament_id, bool extrude_fill = true);
+- finish_block_solid · function · L456-L456 — ToolChangeResult   finish_block_solid(const WipeTowerBlock &block, int filament_id, bool extrude_fill = true, WipeTowerLayerType layer_type = WipeTowerLayerType::Normal);
+- toolchange_wipe_new · function · L457-L457 — void toolchange_wipe_new(WipeTowerWriter &writer, const box_coordinates &cleaning_box, float wipe_length,bool solid_toolchange=false);
+- get_rib_offset · function · L458-L458 — Vec2f              get_rib_offset() const { return m_rib_offset; }
+- is_need_ramming · function · L459-L459 — bool               is_need_ramming(int filament_id_1, int filament_id_2, int layer_id) const;
+- is_same_extruder · function · L460-L460 — bool               is_same_extruder(int filament_id_1, int filament_id_2, int layer_id) const;
+- is_same_nozzle · function · L461-L461 — bool               is_same_nozzle(int filament_id_1, int filament_id_2, int layer_id) const;
+- get_nozzle_id · function · L462-L462 — int                get_nozzle_id(int filament_id, int layer_id) const;
+- get_extruder_id · function · L463-L463 — int                get_extruder_id(int filament_id, int layer_id) const;
+- wipe_shape · type · L466-L470 — enum wipe_shape // A fill-in direction
+- filament_area · function · L474-L476 — float filament_area() const
+- is_first_layer · function · L580-L580 — bool is_first_layer() const { return size_t(m_layer_info - m_plan.begin()) == m_first_layer_idx; }
+- is_valid_last_layer · function · L581-L581 — bool                       is_valid_last_layer(int tool, int layer_id, double layer_z) const;
+- volume_to_length · function · L588-L590 — float volume_to_length(float volume, float line_width, float layer_height) const
+- length_to_volume · function · L592-L595 — float length_to_volume(float length,float line_width, float layer_height) const
+- plan_tower · function · L597-L597 — void plan_tower();
+- make_wipe_tower_square · function · L600-L600 — void make_wipe_tower_square();
+- get_next_pos · function · L602-L602 — Vec2f get_next_pos(const WipeTower::box_coordinates &cleaning_box, float wipe_length, bool solid_toolchange);
+- save_on_last_wipe · function · L605-L605 — void save_on_last_wipe();
+- is_tpu_filament · function · L607-L607 — bool is_tpu_filament(int filament_id) const;
+- is_petg_filament · function · L608-L608 — bool is_petg_filament(int filament_id) const;
+- is_need_reverse_travel · function · L609-L609 — bool is_need_reverse_travel(int filament, bool extruder_change) const;
+- align_perimeter · function · L611-L611 — box_coordinates align_perimeter(const box_coordinates& perimeter_box);
+- set_for_wipe_tower_writer · function · L613-L613 — void set_for_wipe_tower_writer(WipeTowerWriter &writer);
+- WipeTowerInfo · class · L616-L643 — struct WipeTowerInfo
+- ToolChange · class · L617-L631 — struct ToolChange
+- ToolChange · function · L629-L630 — ToolChange(size_t old, size_t newtool, float depth=0.f, float ramming_depth=0.f, float fwl=0.f, float wv=0.f, float wl = 0, float pv = 0)
+- toolchanges_depth · function · L637-L637 — float toolchanges_depth() const { float sum = 0.f; for (const auto &a : tool_changes) sum += a.required_depth; return sum; }
+- WipeTowerInfo · function · L641-L642 — WipeTowerInfo(float z_par, float layer_height_par)
+- first_toolchange_to_nonsoluble_nonsupport · function · L654-L655 — int first_toolchange_to_nonsoluble_nonsupport(
+- set_toolchange · function · L656-L656 — WipeTowerInfo::ToolChange set_toolchange(int old_tool, int new_tool, float layer_height, float wipe_volume, float purge_volume,int layer_id);
+- toolchange_Unload · function · L657-L661 — void toolchange_Unload(
+- toolchange_Change · function · L663-L666 — void toolchange_Change(
+- toolchange_Load · function · L668-L670 — void toolchange_Load(
+- toolchange_Wipe · function · L672-L675 — void toolchange_Wipe(
+- get_wall_skip_points · function · L676-L676 — void get_wall_skip_points(const WipeTowerInfo &layer,int layer_id);
+- get_all_wall_skip_points · function · L677-L677 — void get_all_wall_skip_points();
+- merge_tcr · function · L678-L678 — ToolChangeResult merge_tcr(ToolChangeResult &first, ToolChangeResult &second);
+- get_block_gap_width · function · L679-L679 — float            get_block_gap_width(int tool, bool is_nozzlechangle = false);
+- wipe_tower_sparse_layers_skipped · function · L691-L691 — bool wipe_tower_sparse_layers_skipped(const PrintConfig &config);
+- wipe_tower_layer_is_sparse · function · L694-L694 — bool wipe_tower_layer_is_sparse(const std::vector<WipeTower::ToolChangeResult> &layer_tool_changes);
+- compute_compacted_wipe_tower_z · function · L699-L700 — std::vector<float> compute_compacted_wipe_tower_z(const std::vector<std::vector<WipeTower::ToolChangeResult>> &tool_changes,

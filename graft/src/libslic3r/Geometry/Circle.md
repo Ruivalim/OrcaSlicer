@@ -1,0 +1,37 @@
+# src/libslic3r/Geometry/Circle.hpp
+
+- circle_center · function · L12-L31 — template<typename Vector>
+- CircleSq · class · L34-L58 — template<typename Vector>
+- CircleSq · function · L41-L41 — CircleSq() {}
+- CircleSq · function · L42-L42 — CircleSq(const Vector &center, const Scalar radius2) : center(center), radius2(radius2) {}
+- CircleSq · function · L43-L43 — CircleSq(const Vector &a, const Vector &b) : center(Scalar(0.5) * (a + b)) { radius2 = (a - center).squaredNorm(); }
+- CircleSq · function · L44-L47 — CircleSq(const Vector &a, const Vector &b, const Vector &c, Scalar epsilon)
+- invalid · function · L49-L49 — bool invalid() const { return this->radius2 < 0; }
+- valid · function · L50-L50 — bool valid() const { return ! this->invalid(); }
+- contains · function · L51-L51 — bool contains(const Vector &p) const { return (p - this->center).squaredNorm() < this->radius2; }
+- contains · function · L52-L52 — bool contains(const Vector &p, const Scalar epsilon2) const { return (p - this->center).squaredNorm() < this->radius2 + epsilon2; }
+- inflated · function · L54-L55 — CircleSq inflated(Scalar epsilon) const
+- make_invalid · function · L57-L57 — static CircleSq make_invalid() { return CircleSq { { 0, 0 }, -1 }; }
+- Circle · class · L61-L88 — template<typename Vector>
+- Circle · function · L68-L68 — Circle() {}
+- Circle · function · L69-L69 — Circle(const Vector &center, const Scalar radius) : center(center), radius(radius) {}
+- Circle · function · L70-L70 — Circle(const Vector &a, const Vector &b) : center(Scalar(0.5) * (a + b)) { radius = (a - center).norm(); }
+- Circle · function · L71-L71 — Circle(const Vector &a, const Vector &b, const Vector &c, const Scalar epsilon) { *this = CircleSq(a, b, c, epsilon); }
+- Circle · function · L74-L75 — template<typename Vector2>
+- invalid · function · L79-L79 — bool invalid() const { return this->radius < 0; }
+- valid · function · L80-L80 — bool valid() const { return ! this->invalid(); }
+- contains · function · L81-L81 — bool contains(const Vector &p) const { return (p - this->center).squaredNorm() <= this->radius * this->radius; }
+- contains · function · L82-L83 — bool contains(const Vector &p, const Scalar epsilon) const
+- inflated · function · L85-L85 — Circle inflated(Scalar epsilon) const { assert(this->radius >= 0); return { this->center, this->radius + epsilon }; }
+- make_invalid · function · L87-L87 — static Circle make_invalid() { return Circle { { 0, 0 }, -1 }; }
+- circle_center_taubin_newton · function · L96-L96 — Point circle_center_taubin_newton(const Points::const_iterator& input_start, const Points::const_iterator& input_end, size_t cycles = 20);
+- circle_center_taubin_newton · function · L97-L97 — inline Point circle_center_taubin_newton(const Points& input, size_t cycles = 20) { return circle_center_taubin_newton(input.cbegin(), input.cend(), cycles); }
+- circle_center_taubin_newton · function · L100-L100 — Vec2d circle_center_taubin_newton(const Vec2ds::const_iterator& input_start, const Vec2ds::const_iterator& input_end, size_t cycles = 20);
+- circle_center_taubin_newton · function · L101-L101 — inline Vec2d circle_center_taubin_newton(const Vec2ds& input, size_t cycles = 20) { return circle_center_taubin_newton(input.cbegin(), input.cend(), cycles); }
+- circle_taubin_newton · function · L102-L102 — Circled circle_taubin_newton(const Vec2ds& input, size_t cycles = 20);
+- circle_ransac · function · L105-L105 — Circled circle_ransac(const Vec2ds& input, size_t iterations = 20, double* min_error = nullptr);
+- smallest_enclosing_circle2_welzl · function · L108-L138 — template<typename Vector, typename Points>
+- smallest_enclosing_circle_welzl · function · L141-L145 — template<typename Vector, typename Points>
+- smallest_enclosing_circle_welzl · function · L148-L151 — inline Circled smallest_enclosing_circle_welzl(const Points &points)
+- ray_circle_intersections_r2_lv2_c · function · L158-L172 — template<typename T>
+- ray_circle_intersections · function · L173-L183 — template<typename T>

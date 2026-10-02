@@ -1,0 +1,42 @@
+# deps_src/imgui/imstb_textedit.h
+
+- StbUndoRecord · type · L299-L306 — typedef struct
+- StbUndoState · type · L308-L315 — typedef struct
+- STB_TexteditState · type · L317-L353 — typedef struct
+- StbTexteditRow · type · L364-L370 — typedef struct
+- stb_text_locate_coord · function · L398-L455 — static int stb_text_locate_coord(STB_TEXTEDIT_STRING *str, float x, float y)
+- stb_textedit_click · function · L458-L524 — static void stb_textedit_click(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, float x, float y)
+- stb_textedit_drag · function · L527-L589 — static void stb_textedit_drag(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, float x, float y)
+- stb_text_undo · function · L597-L597 — static void stb_text_undo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state);
+- stb_text_redo · function · L598-L598 — static void stb_text_redo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state);
+- stb_text_makeundo_delete · function · L599-L599 — static void stb_text_makeundo_delete(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, int where, int length);
+- stb_text_makeundo_insert · function · L600-L600 — static void stb_text_makeundo_insert(STB_TexteditState *state, int where, int length);
+- stb_text_makeundo_replace · function · L601-L601 — static void stb_text_makeundo_replace(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, int where, int old_length, int new_length);
+- StbFindState · type · L603-L609 — typedef struct
+- stb_textedit_find_charpos · function · L613-L667 — static void stb_textedit_find_charpos(StbFindState *find, STB_TEXTEDIT_STRING *str, int n, int single_line)
+- stb_textedit_clamp · function · L672-L683 — static void stb_textedit_clamp(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
+- stb_textedit_delete · function · L686-L691 — static void stb_textedit_delete(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, int where, int len)
+- stb_textedit_delete_selection · function · L694-L707 — static void stb_textedit_delete_selection(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
+- stb_textedit_sortselection · function · L710-L717 — static void stb_textedit_sortselection(STB_TexteditState *state)
+- stb_textedit_move_to_first · function · L720-L728 — static void stb_textedit_move_to_first(STB_TexteditState *state)
+- stb_textedit_move_to_last · function · L731-L740 — static void stb_textedit_move_to_last(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
+- is_word_boundary · function · L743-L746 — static int is_word_boundary( STB_TEXTEDIT_STRING *str, int idx )
+- stb_textedit_move_to_word_previous · function · L749-L759 — static int stb_textedit_move_to_word_previous( STB_TEXTEDIT_STRING *str, int c )
+- stb_textedit_move_to_word_next · function · L764-L775 — static int stb_textedit_move_to_word_next( STB_TEXTEDIT_STRING *str, int c )
+- stb_textedit_prep_selection_at_cursor · function · L782-L788 — static void stb_textedit_prep_selection_at_cursor(STB_TexteditState *state)
+- stb_textedit_cut · function · L791-L799 — static int stb_textedit_cut(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
+- stb_textedit_paste_internal · function · L802-L818 — static int stb_textedit_paste_internal(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, STB_TEXTEDIT_CHARTYPE *text, int len)
+- stb_textedit_key · function · L825-L1207 — static void stb_textedit_key(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, STB_TEXTEDIT_KEYTYPE key)
+- stb_textedit_flush_redo · function · L1215-L1219 — static void stb_textedit_flush_redo(StbUndoState *state)
+- stb_textedit_discard_undo · function · L1222-L1238 — static void stb_textedit_discard_undo(StbUndoState *state)
+- stb_textedit_discard_redo · function · L1244-L1272 — static void stb_textedit_discard_redo(StbUndoState *state)
+- stb_text_create_undo_record · function · L1274-L1274 — static StbUndoRecord *stb_text_create_undo_record(StbUndoState *state, int numchars)
+- stb_text_createundo · function · L1298-L1298 — static STB_TEXTEDIT_CHARTYPE *stb_text_createundo(StbUndoState *state, int pos, int insert_len, int delete_len)
+- stb_text_undo · function · L1318-L1384 — static void stb_text_undo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
+- stb_text_redo · function · L1386-L1435 — static void stb_text_redo(STB_TEXTEDIT_STRING *str, STB_TexteditState *state)
+- stb_text_makeundo_insert · function · L1437-L1440 — static void stb_text_makeundo_insert(STB_TexteditState *state, int where, int length)
+- stb_text_makeundo_delete · function · L1442-L1450 — static void stb_text_makeundo_delete(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, int where, int length)
+- stb_text_makeundo_replace · function · L1452-L1460 — static void stb_text_makeundo_replace(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, int where, int old_length, int new_length)
+- stb_textedit_clear_state · function · L1463-L1478 — static void stb_textedit_clear_state(STB_TexteditState *state, int is_single_line)
+- stb_textedit_initialize_state · function · L1481-L1484 — static void stb_textedit_initialize_state(STB_TexteditState *state, int is_single_line)
+- stb_textedit_paste · function · L1491-L1494 — static int stb_textedit_paste(STB_TEXTEDIT_STRING *str, STB_TexteditState *state, STB_TEXTEDIT_CHARTYPE const *ctext, int len)

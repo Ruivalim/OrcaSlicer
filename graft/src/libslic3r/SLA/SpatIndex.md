@@ -1,0 +1,31 @@
+# src/libslic3r/SLA/SpatIndex.hpp
+
+- Vec3d · type · L15-L15 — typedef Eigen::Matrix<double,   3, 1, Eigen::DontAlign> Vec3d;
+- PointIndex · class · L18-L55 — class PointIndex
+- Impl · class · L19-L19 — class Impl;
+- PointIndex · function · L26-L26 — PointIndex();
+- PointIndex · function · L29-L29 — PointIndex(const PointIndex&);
+- PointIndex · function · L30-L30 — PointIndex(PointIndex&&);
+- insert · function · L34-L34 — void insert(const PointIndexEl&);
+- remove · function · L35-L35 — bool remove(const PointIndexEl&);
+- insert · function · L37-L40 — inline void insert(const Vec3d& v, unsigned idx)
+- query · function · L42-L42 — std::vector<PointIndexEl> query(std::function<bool(const PointIndexEl&)>) const;
+- nearest · function · L43-L43 — std::vector<PointIndexEl> nearest(const Vec3d&, unsigned k) const;
+- query · function · L44-L47 — std::vector<PointIndexEl> query(const Vec3d &v, unsigned k) const // wrapper
+- size · function · L50-L50 — size_t size() const;
+- empty · function · L51-L51 — bool empty() const { return size() == 0; }
+- foreach · function · L53-L53 — void foreach(std::function<void(const PointIndexEl& el)> fn);
+- foreach · function · L54-L54 — void foreach(std::function<void(const PointIndexEl& el)> fn) const;
+- BoxIndex · class · L59-L92 — class BoxIndex
+- Impl · class · L60-L60 — class Impl;
+- BoxIndex · function · L67-L67 — BoxIndex();
+- BoxIndex · function · L70-L70 — BoxIndex(const BoxIndex&);
+- BoxIndex · function · L71-L71 — BoxIndex(BoxIndex&&);
+- insert · function · L75-L75 — void insert(const BoxIndexEl&);
+- insert · function · L76-L79 — void insert(const BoundingBox& bb, unsigned idx)
+- remove · function · L81-L81 — bool remove(const BoxIndexEl&);
+- QueryType · type · L83-L83 — enum QueryType { qtIntersects, qtWithin };
+- query · function · L85-L85 — std::vector<BoxIndexEl> query(const BoundingBox&, QueryType qt);
+- size · function · L88-L88 — size_t size() const;
+- empty · function · L89-L89 — bool empty() const { return size() == 0; }
+- foreach · function · L91-L91 — void foreach(std::function<void(const BoxIndexEl& el)> fn);

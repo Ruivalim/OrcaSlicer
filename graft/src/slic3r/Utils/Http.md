@@ -1,0 +1,64 @@
+# src/slic3r/Utils/Http.hpp
+
+- HttpErrorCode · type · L18-L33 — enum HttpErrorCode
+- Http · class · L36-L213 — class Http : public std::enable_shared_from_this<Http>
+- Progress · class · L40-L56 — struct Progress
+- Progress · function · L49-L51 — Progress(size_t dltotal, size_t dlnow, size_t ultotal, size_t ulnow, const std::string& buffer) :
+- Progress · function · L53-L55 — Progress(size_t dltotal, size_t dlnow, size_t ultotal, size_t ulnow, const std::string& buffer, double ulspd) :
+- Ptr · type · L58-L58 — typedef std::shared_ptr<Http> Ptr;
+- CompleteFn · type · L59-L59 — typedef std::function<void(std::string /* body */, unsigned /* http_status */)> CompleteFn;
+- ErrorFn · type · L66-L66 — typedef std::function<void(std::string /* body */, std::string /* error */, unsigned /* http_status */)> ErrorFn;
+- ProgressFn · type · L70-L70 — typedef std::function<void(Progress, bool& /* cancel */)> ProgressFn;
+- IPResolveFn · type · L72-L72 — typedef std::function<void(std::string/* address */)> IPResolveFn;
+- HeaderCallbackFn · type · L74-L74 — typedef std::function<void(std::string headers)> HeaderCallbackFn;
+- Http · function · L76-L76 — Http(Http &&other);
+- get · function · L82-L82 — static Http get(std::string url);
+- post · function · L83-L83 — static Http post(std::string url);
+- put · function · L84-L84 — static Http put(std::string url);
+- del · function · L85-L85 — static Http del(std::string url);
+- put2 · function · L88-L88 — static Http put2(std::string url);
+- patch · function · L89-L89 — static Http patch(std::string url);
+- set_extra_headers · function · L92-L92 — static void set_extra_headers(std::map<std::string, std::string> headers);
+- get_extra_headers · function · L93-L93 — static std::map<std::string, std::string> get_extra_headers();
+- Http · function · L97-L97 — Http(const Http &) = delete;
+- timeout_connect · function · L102-L102 — Http& timeout_connect(long timeout);
+- timeout_max · function · L104-L104 — Http& timeout_max(long timeout);
+- size_limit · function · L107-L107 — Http& size_limit(size_t sizeLimit);
+- set_range · function · L109-L109 — Http& set_range(const std::string& range);
+- header · function · L111-L111 — Http& header(std::string name, const std::string &value);
+- headers_reset · function · L113-L113 — Http& headers_reset();
+- remove_header · function · L115-L115 — Http& remove_header(std::string name);
+- auth_digest · function · L117-L117 — Http& auth_digest(const std::string &user, const std::string &password);
+- auth_basic · function · L119-L119 — Http& auth_basic(const std::string &user, const std::string &password);
+- ca_file · function · L123-L123 — Http& ca_file(const std::string &filename);
+- tls_verify · function · L127-L127 — Http& tls_verify(bool enable);
+- form_clear · function · L129-L129 — Http& form_clear();
+- form_add · function · L131-L131 — Http& form_add(const std::string &name, const std::string &contents);
+- form_add_file · function · L133-L133 — Http& form_add_file(const std::string &name, const boost::filesystem::path &path, boost::filesystem::ifstream::off_type offset = 0, size_t length = 0);
+- mime_form_add_text · function · L135-L135 — Http& mime_form_add_text(std::string& name, std::string& value);
+- mime_form_add_file · function · L137-L137 — Http& mime_form_add_file(std::string& name, const char* path);
+- form_add_file · function · L139-L139 — Http& form_add_file(const std::wstring& name, const boost::filesystem::path& path, boost::filesystem::ifstream::off_type offset = 0, size_t length = 0);
+- form_add_file · function · L141-L141 — Http& form_add_file(const std::string &name, const boost::filesystem::path &path, const std::string &filename, boost::filesystem::ifstream::off_type offset = 0, size_t length = 0);
+- ssl_revoke_best_effort · function · L146-L146 — Http& ssl_revoke_best_effort(bool set);
+- set_post_body · function · L152-L152 — Http& set_post_body(const boost::filesystem::path &path);
+- set_post_body · function · L157-L157 — Http& set_post_body(const std::string &body);
+- set_put_body · function · L162-L162 — Http& set_put_body(const boost::filesystem::path &path);
+- set_del_body · function · L167-L167 — Http& set_del_body(const std::string& body);
+- on_complete · function · L170-L170 — Http& on_complete(CompleteFn fn);
+- on_error · function · L174-L174 — Http& on_error(ErrorFn fn);
+- on_progress · function · L178-L178 — Http& on_progress(ProgressFn fn);
+- on_ip_resolve · function · L181-L181 — Http& on_ip_resolve(IPResolveFn fn);
+- on_header_callback · function · L183-L183 — Http& on_header_callback(HeaderCallbackFn fn);
+- perform · function · L186-L186 — Ptr perform();
+- perform_sync · function · L188-L188 — void perform_sync();
+- cancel · function · L190-L190 — void cancel();
+- print · function · L193-L193 — void print() const;
+- ca_file_supported · function · L196-L196 — static bool ca_file_supported();
+- tls_global_init · function · L199-L199 — static std::string tls_global_init();
+- tls_system_cert_store · function · L200-L200 — static std::string tls_system_cert_store();
+- url_encode · function · L203-L203 — static std::string url_encode(const std::string &str);
+- url_decode · function · L204-L204 — static std::string url_decode(const std::string &str);
+- get_filename_from_url · function · L206-L206 — static std::string get_filename_from_url(const std::string &url);
+- get_host_from_url · function · L207-L207 — static std::string get_host_from_url(const std::string &url, std::string *port = nullptr);
+- get_host_header_value · function · L208-L208 — static std::string get_host_header_value(const std::string &url);
+- Http · function · L210-L210 — Http(const std::string &url);

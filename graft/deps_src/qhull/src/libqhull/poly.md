@@ -1,0 +1,78 @@
+# deps_src/qhull/src/libqhull/poly.h
+
+- qh_appendfacet · function · L210-L210 — void    qh_appendfacet(facetT *facet);
+- qh_appendvertex · function · L211-L211 — void    qh_appendvertex(vertexT *vertex);
+- qh_attachnewfacets · function · L212-L212 — void    qh_attachnewfacets(void /* qh.visible_list, qh.newfacet_list */);
+- qh_checkflipped · function · L213-L213 — boolT   qh_checkflipped(facetT *facet, realT *dist, boolT allerror);
+- qh_delfacet · function · L214-L214 — void    qh_delfacet(facetT *facet);
+- qh_deletevisible · function · L215-L215 — void    qh_deletevisible(void /*qh.visible_list, qh.horizon_list*/);
+- qh_facetintersect · function · L216-L216 — setT   *qh_facetintersect(facetT *facetA, facetT *facetB, int *skipAp,int *skipBp, int extra);
+- qh_gethash · function · L217-L217 — int     qh_gethash(int hashsize, setT *set, int size, int firstindex, void *skipelem);
+- qh_makenewfacet · function · L218-L218 — facetT *qh_makenewfacet(setT *vertices, boolT toporient, facetT *facet);
+- qh_makenewplanes · function · L219-L219 — void    qh_makenewplanes(void /* newfacet_list */);
+- qh_makenew_nonsimplicial · function · L220-L220 — facetT *qh_makenew_nonsimplicial(facetT *visible, vertexT *apex, int *numnew);
+- qh_makenew_simplicial · function · L221-L221 — facetT *qh_makenew_simplicial(facetT *visible, vertexT *apex, int *numnew);
+- qh_matchneighbor · function · L222-L223 — void    qh_matchneighbor(facetT *newfacet, int newskip, int hashsize,
+- qh_matchnewfacets · function · L224-L224 — void    qh_matchnewfacets(void);
+- qh_matchvertices · function · L225-L226 — boolT   qh_matchvertices(int firstindex, setT *verticesA, int skipA,
+- qh_newfacet · function · L227-L227 — facetT *qh_newfacet(void);
+- qh_newridge · function · L228-L228 — ridgeT *qh_newridge(void);
+- qh_pointid · function · L229-L229 — int     qh_pointid(pointT *point);
+- qh_removefacet · function · L230-L230 — void    qh_removefacet(facetT *facet);
+- qh_removevertex · function · L231-L231 — void    qh_removevertex(vertexT *vertex);
+- qh_updatevertices · function · L232-L232 — void    qh_updatevertices(void);
+- qh_addhash · function · L237-L237 — void    qh_addhash(void* newelem, setT *hashtable, int hashsize, int hash);
+- qh_check_bestdist · function · L238-L238 — void    qh_check_bestdist(void);
+- qh_check_dupridge · function · L239-L239 — void    qh_check_dupridge(facetT *facet1, realT dist1, facetT *facet2, realT dist2);
+- qh_check_maxout · function · L240-L240 — void    qh_check_maxout(void);
+- qh_check_output · function · L241-L241 — void    qh_check_output(void);
+- qh_check_point · function · L242-L242 — void    qh_check_point(pointT *point, facetT *facet, realT *maxoutside, realT *maxdist, facetT **errfacet1, facetT **errfacet2);
+- qh_check_points · function · L243-L243 — void    qh_check_points(void);
+- qh_checkconvex · function · L244-L244 — void    qh_checkconvex(facetT *facetlist, int fault);
+- qh_checkfacet · function · L245-L245 — void    qh_checkfacet(facetT *facet, boolT newmerge, boolT *waserrorp);
+- qh_checkflipped_all · function · L246-L246 — void    qh_checkflipped_all(facetT *facetlist);
+- qh_checkpolygon · function · L247-L247 — void    qh_checkpolygon(facetT *facetlist);
+- qh_checkvertex · function · L248-L248 — void    qh_checkvertex(vertexT *vertex);
+- qh_clearcenters · function · L249-L249 — void    qh_clearcenters(qh_CENTER type);
+- qh_createsimplex · function · L250-L250 — void    qh_createsimplex(setT *vertices);
+- qh_delridge · function · L251-L251 — void    qh_delridge(ridgeT *ridge);
+- qh_delvertex · function · L252-L252 — void    qh_delvertex(vertexT *vertex);
+- qh_facet3vertex · function · L253-L253 — setT   *qh_facet3vertex(facetT *facet);
+- qh_findbestfacet · function · L254-L255 — facetT *qh_findbestfacet(pointT *point, boolT bestoutside,
+- qh_findbestlower · function · L256-L256 — facetT *qh_findbestlower(facetT *upperfacet, pointT *point, realT *bestdistp, int *numpart);
+- qh_findfacet_all · function · L257-L258 — facetT *qh_findfacet_all(pointT *point, realT *bestdist, boolT *isoutside,
+- qh_findgood · function · L259-L259 — int     qh_findgood(facetT *facetlist, int goodhorizon);
+- qh_findgood_all · function · L260-L260 — void    qh_findgood_all(facetT *facetlist);
+- qh_furthestnext · function · L261-L261 — void    qh_furthestnext(void /* qh.facet_list */);
+- qh_furthestout · function · L262-L262 — void    qh_furthestout(facetT *facet);
+- qh_infiniteloop · function · L263-L263 — void    qh_infiniteloop(facetT *facet);
+- qh_initbuild · function · L264-L264 — void    qh_initbuild(void);
+- qh_initialhull · function · L265-L265 — void    qh_initialhull(setT *vertices);
+- qh_initialvertices · function · L266-L266 — setT   *qh_initialvertices(int dim, setT *maxpoints, pointT *points, int numpoints);
+- qh_isvertex · function · L267-L267 — vertexT *qh_isvertex(pointT *point, setT *vertices);
+- qh_makenewfacets · function · L268-L268 — vertexT *qh_makenewfacets(pointT *point /*horizon_list, visible_list*/);
+- qh_matchduplicates · function · L269-L269 — void    qh_matchduplicates(facetT *atfacet, int atskip, int hashsize, int *hashcount);
+- qh_nearcoplanar · function · L270-L270 — void    qh_nearcoplanar(void /* qh.facet_list */);
+- qh_nearvertex · function · L271-L271 — vertexT *qh_nearvertex(facetT *facet, pointT *point, realT *bestdistp);
+- qh_newhashtable · function · L272-L272 — int     qh_newhashtable(int newsize);
+- qh_newvertex · function · L273-L273 — vertexT *qh_newvertex(pointT *point);
+- qh_nextridge3d · function · L274-L274 — ridgeT *qh_nextridge3d(ridgeT *atridge, facetT *facet, vertexT **vertexp);
+- qh_outcoplanar · function · L275-L275 — void    qh_outcoplanar(void /* facet_list */);
+- qh_point · function · L276-L276 — pointT *qh_point(int id);
+- qh_point_add · function · L277-L277 — void    qh_point_add(setT *set, pointT *point, void *elem);
+- qh_pointfacet · function · L278-L278 — setT   *qh_pointfacet(void /*qh.facet_list*/);
+- qh_pointvertex · function · L279-L279 — setT   *qh_pointvertex(void /*qh.facet_list*/);
+- qh_prependfacet · function · L280-L280 — void    qh_prependfacet(facetT *facet, facetT **facetlist);
+- qh_printhashtable · function · L281-L281 — void    qh_printhashtable(FILE *fp);
+- qh_printlists · function · L282-L282 — void    qh_printlists(void);
+- qh_resetlists · function · L283-L283 — void    qh_resetlists(boolT stats, boolT resetVisible /*qh.newvertex_list qh.newfacet_list qh.visible_list*/);
+- qh_setvoronoi_all · function · L284-L284 — void    qh_setvoronoi_all(void);
+- qh_triangulate · function · L285-L285 — void    qh_triangulate(void /*qh.facet_list*/);
+- qh_triangulate_facet · function · L286-L286 — void    qh_triangulate_facet(facetT *facetA, vertexT **first_vertex);
+- qh_triangulate_link · function · L287-L287 — void    qh_triangulate_link(facetT *oldfacetA, facetT *facetA, facetT *oldfacetB, facetT *facetB);
+- qh_triangulate_mirror · function · L288-L288 — void    qh_triangulate_mirror(facetT *facetA, facetT *facetB);
+- qh_triangulate_null · function · L289-L289 — void    qh_triangulate_null(facetT *facetA);
+- qh_vertexintersect · function · L290-L290 — void    qh_vertexintersect(setT **vertexsetA,setT *vertexsetB);
+- qh_vertexintersect_new · function · L291-L291 — setT   *qh_vertexintersect_new(setT *vertexsetA,setT *vertexsetB);
+- qh_vertexneighbors · function · L292-L292 — void    qh_vertexneighbors(void /*qh.facet_list*/);
+- qh_vertexsubset · function · L293-L293 — boolT   qh_vertexsubset(setT *vertexsetA, setT *vertexsetB);

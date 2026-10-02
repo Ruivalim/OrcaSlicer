@@ -1,0 +1,307 @@
+# src/slic3r/GUI/DeviceManager.hpp
+
+- DeviceErrorDialog · class · L63-L63 — class DeviceErrorDialog; // Previous definitions
+- NetworkAgent · class · L66-L66 — class NetworkAgent;
+- DevAms · class · L76-L76 — class DevAms;
+- DevAmsTray · class · L77-L77 — class DevAmsTray;
+- DevAxis · class · L78-L78 — class DevAxis;      // Orca: adopt DeviceCore split
+- DevBed · class · L79-L79 — class DevBed;
+- DevChamber · class · L80-L80 — class DevChamber;   // Orca: adopt DeviceCore split
+- DevConfig · class · L81-L81 — class DevConfig;
+- DevCtrl · class · L82-L82 — class DevCtrl;
+- DevExtensionTool · class · L83-L83 — class DevExtensionTool;
+- DevExtderSystem · class · L84-L84 — class DevExtderSystem;
+- DevFan · class · L85-L85 — class DevFan;
+- DevFilaSystem · class · L86-L86 — class DevFilaSystem;
+- DevFilaSwitch · class · L87-L87 — class DevFilaSwitch;
+- DevPrintOptions · class · L88-L88 — class DevPrintOptions;
+- DevHMS · class · L89-L89 — class DevHMS;
+- DevLamp · class · L90-L90 — class DevLamp;
+- DevNozzleSystem · class · L91-L91 — class DevNozzleSystem;
+- DevNozzleMappingCtrl · class · L92-L92 — class DevNozzleMappingCtrl;
+- DeviceManager · class · L93-L93 — class DeviceManager;
+- DevStatus · class · L94-L94 — class DevStatus;    // Orca: adopt DeviceCore split
+- DevStorage · class · L95-L95 — class DevStorage;
+- DevUpgrade · class · L96-L96 — class DevUpgrade;   // Orca: adopt DeviceCore split
+- is_stringing_prone_filament · function · L101-L101 — bool is_stringing_prone_filament(const std::string& filament_id, float nozzle_diameter);
+- MachineObject · class · L104-L1002 — class MachineObject
+- MachineObject · function · L158-L158 — MachineObject(DeviceManager* manager, NetworkAgent* agent, std::string name, std::string id, std::string ip);
+- set_agent · function · L161-L161 — void set_agent(NetworkAgent* agent) { m_agent = agent; }
+- get_agent · function · L162-L162 — NetworkAgent* get_agent() const { return m_agent; } // Orca: needed by DeviceCore modules (DevAxisCtrl)
+- GetAxis · function · L169-L169 — std::shared_ptr<DevAxis>    GetAxis() const { return m_axis; }
+- GetChamber · function · L170-L170 — std::shared_ptr<DevChamber> GetChamber() const { return m_chamber; }
+- GetCalib · function · L171-L171 — DevCalib*                   GetCalib() const { return m_calib; }
+- GetStatus · function · L172-L172 — DevStatus*                  GetStatus() const { return m_status; }
+- GetUpgrade · function · L173-L173 — std::weak_ptr<DevUpgrade>   GetUpgrade() const { return m_upgrade; }
+- ActiveState · type · L176-L180 — enum ActiveState
+- PrintOption · type · L182-L185 — enum PrintOption
+- get_dev_name · function · L193-L193 — std::string get_dev_name() const { return dev_name; }
+- set_dev_name · function · L194-L194 — void set_dev_name(std::string val) { dev_name = val; }
+- get_dev_ip · function · L196-L196 — std::string get_dev_ip() const { return dev_ip; }
+- set_dev_ip · function · L197-L197 — void set_dev_ip(std::string ip) { dev_ip = ip;  }
+- get_dev_id · function · L199-L199 — std::string get_dev_id() const { return dev_id; }
+- set_dev_id · function · L200-L200 — void set_dev_id(std::string val) { dev_id = val; }
+- dev_id_from_address · function · L204-L204 — static std::string dev_id_from_address(const std::string& host, const std::string& port = "");
+- get_ftp_folder · function · L208-L208 — std::string get_ftp_folder();
+- connection_type · function · L213-L213 — std::string connection_type() const { return dev_connection_type; }
+- is_lan_mode_printer · function · L214-L214 — bool is_lan_mode_printer() const { return dev_connection_type == "lan"; }
+- is_cloud_mode_printer · function · L215-L215 — bool is_cloud_mode_printer() const { return dev_connection_type == "cloud"; }
+- HasRecentCloudMessage · function · L220-L220 — bool HasRecentCloudMessage();
+- HasRecentLanMessage · function · L221-L221 — bool HasRecentLanMessage();
+- has_access_right · function · L226-L226 — bool has_access_right() const { return !get_access_code().empty(); }
+- get_access_code · function · L227-L227 — std::string get_access_code() const;
+- set_access_code · function · L228-L228 — void set_access_code(std::string code, bool only_refresh = true);
+- get_show_printer_type · function · L242-L242 — std::string   get_show_printer_type() const;
+- get_printer_series · function · L243-L243 — PrinterSeries get_printer_series() const;
+- get_printer_arch · function · L244-L244 — PrinterArch get_printer_arch() const;
+- get_printer_ams_type · function · L245-L245 — std::string get_printer_ams_type() const;
+- get_printer_type_display_str · function · L246-L246 — wxString get_printer_type_display_str() const;
+- get_auto_pa_cali_thumbnail_img_str · function · L247-L247 — std::string get_auto_pa_cali_thumbnail_img_str() const;
+- get_printer_series_str · function · L250-L250 — std::string get_printer_series_str() const;
+- is_series_n · function · L252-L252 — static bool is_series_n(const std::string& series_str);
+- is_series_p · function · L253-L253 — static bool is_series_p(const std::string& series_str);
+- is_series_x · function · L254-L254 — static bool is_series_x(const std::string& series_str);
+- is_series_o · function · L255-L255 — static bool is_series_o(const std::string& series_str);
+- is_series_n · function · L257-L257 — bool is_series_n() const;
+- is_series_p · function · L258-L258 — bool is_series_p() const;
+- is_series_x · function · L259-L259 — bool is_series_x() const;
+- is_series_o · function · L260-L260 — bool is_series_o() const;
+- can_use_emmc_print · function · L261-L261 — bool can_use_emmc_print() const;
+- reload_printer_settings · function · L263-L263 — void reload_printer_settings();
+- get_printer_thumbnail_img_str · function · L264-L264 — std::string get_printer_thumbnail_img_str() const;
+- is_avaliable · function · L273-L273 — bool is_avaliable() { return bind_state == "free"; }
+- set_lan_mode_connection_state · function · L280-L280 — void set_lan_mode_connection_state(bool state) {m_lan_mode_connection_state = state;};
+- get_lan_mode_connection_state · function · L281-L281 — bool get_lan_mode_connection_state() {return m_lan_mode_connection_state;};
+- set_ctt_dlg · function · L282-L282 — void set_ctt_dlg( wxString text);
+- show_unsupported_dlg · function · L283-L283 — void show_unsupported_dlg(int code);
+- is_in_extrusion_cali · function · L320-L320 — bool is_in_extrusion_cali();
+- is_extrusion_cali_finished · function · L321-L321 — bool is_extrusion_cali_finished();
+- get_curr_Ams · function · L324-L324 — DevAms*     get_curr_Ams();
+- get_curr_tray · function · L325-L325 — DevAmsTray* get_curr_tray();
+- get_ams_tray · function · L326-L326 — DevAmsTray* get_ams_tray(std::string ams_id, std::string tray_id);;
+- get_filament_id · function · L328-L328 — std::string  get_filament_id(std::string ams_id, std::string tray_id) const;
+- get_filament_type · function · L329-L329 — std::string  get_filament_type(const std::string& ams_id, const std::string& tray_id) const;
+- get_filament_display_type · function · L330-L330 — std::string  get_filament_display_type(const std::string& ams_id, const std::string& tray_id) const;
+- _parse_ams_status · function · L333-L333 — void _parse_ams_status(int ams_status);
+- is_target_slot_unload · function · L335-L335 — bool is_target_slot_unload() const;
+- can_unload_filament · function · L336-L336 — bool can_unload_filament();
+- get_ams_colors · function · L338-L338 — void get_ams_colors(std::vector<wxColour>& ams_colors);
+- is_main_extruder_on_left · function · L341-L341 — bool is_main_extruder_on_left() const { return false;  } // only means the extruder is on the left hand when extruder id is 0
+- is_multi_extruders · function · L342-L342 — bool is_multi_extruders() const;
+- get_extruder_id_by_ams_id · function · L343-L343 — int  get_extruder_id_by_ams_id(const std::string& ams_id);
+- is_nozzle_flow_type_supported · function · L348-L348 — [[nodiscard]] bool is_nozzle_flow_type_supported() const { return is_enable_np | has_extra_flow_type; };
+- get_nozzle_replace_url · function · L349-L349 — [[nodiscard]] wxString get_nozzle_replace_url() const;
+- GetExtderSystem · function · L369-L369 — DevExtderSystem* GetExtderSystem() const { return m_extder_system; }
+- GetExtensionTool · function · L370-L370 — std::weak_ptr<DevExtensionTool> GetExtensionTool() const { return m_extension_tool; }
+- GetNozzleSystem · function · L372-L372 — DevNozzleSystem* GetNozzleSystem() const { return m_nozzle_system;}
+- get_nozzle_mapping_result · function · L375-L375 — std::shared_ptr<DevNozzleMappingCtrl> get_nozzle_mapping_result() const { return m_nozzle_mapping_ptr; }
+- clear_auto_nozzle_mapping · function · L376-L376 — void clear_auto_nozzle_mapping();// defined in DevMappingNozzle.cpp
+- GetFilaSystem · function · L378-L378 — std::shared_ptr<DevFilaSystem>   GetFilaSystem() const { return m_fila_system;}
+- GetFilaSwitch · function · L379-L379 — DevFilaSwitch*   GetFilaSwitch() const { return m_fila_switch;}
+- HasAms · function · L380-L380 — bool             HasAms() const;
+- GetLamp · function · L382-L382 — DevLamp*         GetLamp() const { return m_lamp; }
+- GetFan · function · L383-L383 — DevFan*          GetFan() const { return m_fan; }
+- GetBed · function · L384-L384 — DevBed *         GetBed() const { return m_bed; };
+- GetStorage · function · L385-L385 — DevStorage      *GetStorage() const { return m_storage; }
+- GetCtrl · function · L387-L387 — DevCtrl*   GetCtrl() const { return m_ctrl; }       /* ctrl*/
+- GetHMS · function · L388-L388 — DevHMS*    GetHMS() const { return m_hms_system; }   /* hms*/
+- GetConfig · function · L389-L389 — DevConfig* GetConfig() const { return m_config; } /* config*/
+- GetPrintOptions · function · L391-L391 — DevPrintOptions*      GetPrintOptions() const { return m_print_options; } /* print options */
+- GetPrintingSpeedLevel · function · L392-L392 — DevPrintingSpeedLevel GetPrintingSpeedLevel() const; /* print speed */
+- get_firmware_type_str · function · L425-L425 — std::string get_firmware_type_str();
+- get_lifecycle_type_str · function · L426-L426 — std::string get_lifecycle_type_str();
+- is_in_upgrading · function · L427-L427 — bool is_in_upgrading() const;
+- is_upgrading_avalable · function · L428-L428 — bool is_upgrading_avalable();
+- get_upgrade_percent · function · L429-L429 — int get_upgrade_percent() const;
+- get_ota_version · function · L430-L430 — std::string get_ota_version();
+- check_version_valid · function · L431-L431 — bool check_version_valid();
+- get_upgrade_result_str · function · L432-L432 — wxString get_upgrade_result_str(int upgrade_err_code);
+- get_ams_version · function · L434-L434 — std::map<int, DevFirmwareVersionInfo> get_ams_version();
+- clear_version_info · function · L436-L436 — void clear_version_info();
+- store_version_info · function · L437-L437 — void store_version_info(const DevFirmwareVersionInfo& info);
+- is_system_printing · function · L453-L453 — bool    is_system_printing();
+- get_error_code_str · function · L457-L457 — static std::string get_error_code_str(int error_code);
+- get_print_error_str · function · L458-L458 — std::string get_print_error_str() const { return MachineObject::get_error_code_str(this->print_error); }
+- add_command_error_code_dlg · function · L461-L461 — void  add_command_error_code_dlg(int command_err, json action_json=json{});
+- reset_pa_cali_history_result · function · L489-L493 — void reset_pa_cali_history_result()
+- reset_pa_cali_result · function · L495-L498 — void reset_pa_cali_result()
+- reset_flow_rate_cali_result · function · L500-L503 — void reset_flow_rate_cali_result()
+- check_pa_result_validation · function · L505-L505 — bool check_pa_result_validation(PACalibResult& result);
+- is_axis_at_home · function · L514-L514 — bool is_axis_at_home(std::string axis);
+- is_filament_at_extruder · function · L516-L516 — bool is_filament_at_extruder();
+- get_curr_stage · function · L518-L518 — wxString get_curr_stage();
+- get_curr_stage_idx · function · L519-L519 — int get_curr_stage_idx();
+- get_stage_remaining_seconds · function · L520-L520 — int get_stage_remaining_seconds() const { return stage_remaining_seconds; }
+- is_in_calibration · function · L522-L522 — bool is_in_calibration();
+- is_calibration_running · function · L523-L523 — bool is_calibration_running();
+- is_calibration_done · function · L524-L524 — bool is_calibration_done();
+- parse_state_changed_event · function · L526-L526 — void parse_state_changed_event();
+- parse_home_flag · function · L527-L527 — void parse_home_flag(int flag);
+- get_bed_temperature_limit · function · L534-L534 — int get_bed_temperature_limit();
+- is_filament_installed · function · L535-L535 — bool is_filament_installed();
+- LiveviewLocal · type · L551-L557 — enum LiveviewLocal
+- LiveviewRemote · type · L558-L563 — enum LiveviewRemote
+- FileLocal · type · L564-L567 — enum FileLocal
+- FileRemote · type · L568-L573 — enum FileRemote
+- PlateMakerDectect · type · L575-L579 — enum PlateMakerDectect : int
+- DoorOpenCheckState · type · L581-L586 — enum DoorOpenCheckState : int
+- DeviceMode · type · L588-L593 — enum DeviceMode : unsigned int
+- connect · function · L699-L699 — int connect(bool use_openssl = true);
+- disconnect · function · L700-L700 — int disconnect();
+- any_loaded_filament_is_stringing_prone · function · L718-L718 — bool any_loaded_filament_is_stringing_prone() const;
+- is_makeworld_subtask · function · L725-L725 — bool is_makeworld_subtask();
+- is_fdm_type · function · L729-L729 — inline bool is_fdm_type() const { return m_device_mode == DEVICE_MODE_FDM; }
+- is_sdcard_printing · function · L742-L742 — bool is_sdcard_printing();
+- is_timelapse · function · L743-L743 — bool is_timelapse();
+- is_recording_enable · function · L744-L744 — bool is_recording_enable();
+- is_recording · function · L745-L745 — bool is_recording();
+- get_liveview_remote · function · L748-L748 — int get_liveview_remote();
+- get_file_remote · function · L749-L749 — int get_file_remote();
+- parse_version · function · L751-L751 — std::string parse_version();
+- parse_version_func · function · L752-L752 — void parse_version_func();
+- is_studio_cmd · function · L753-L753 — bool is_studio_cmd(int seq);
+- canEnableTimelapse · function · L756-L756 — bool canEnableTimelapse(wxString& error_message) const;
+- is_timelapse_storage_low · function · L757-L757 — bool is_timelapse_storage_low(const std::string& storage) const;
+- command_get_version · function · L760-L760 — int command_get_version(bool with_retry = true);
+- command_request_push_all · function · L761-L761 — int command_request_push_all(bool request_now = false);
+- command_pushing · function · L762-L762 — int command_pushing(std::string cmd);
+- command_clean_print_error · function · L763-L763 — int command_clean_print_error(std::string task_id, int print_error);
+- command_clean_print_error_uiop · function · L764-L764 — int command_clean_print_error_uiop(int print_error);
+- command_set_printer_nozzle · function · L765-L765 — int command_set_printer_nozzle(std::string nozzle_type, float diameter);
+- command_set_printer_nozzle2 · function · L766-L766 — int command_set_printer_nozzle2(int id, std::string nozzle_type, float diameter);
+- command_get_access_code · function · L767-L767 — int command_get_access_code();
+- command_ack_proceed · function · L768-L768 — int command_ack_proceed(json& proceed);
+- command_purification_disable · function · L769-L769 — int command_purification_disable();
+- command_dont_remind_next_time · function · L770-L770 — int command_dont_remind_next_time(json& mqtt_guard_json);
+- command_upgrade_confirm · function · L773-L773 — int command_upgrade_confirm();
+- command_consistency_upgrade_confirm · function · L774-L774 — int command_consistency_upgrade_confirm();
+- command_upgrade_firmware · function · L775-L775 — int command_upgrade_firmware(FirmwareInfo info);
+- command_upgrade_module · function · L776-L776 — int command_upgrade_module(std::string url, std::string module_type, std::string version);
+- command_xyz_abs · function · L779-L779 — int command_xyz_abs();
+- command_auto_leveling · function · L780-L780 — int command_auto_leveling();
+- command_go_home · function · L781-L781 — int command_go_home();
+- command_task_abort · function · L783-L783 — int command_task_abort();
+- command_task_partskip · function · L785-L785 — int command_task_partskip(std::vector<int> part_ids);
+- command_task_cancel · function · L786-L786 — int command_task_cancel(std::string job_id);
+- command_task_pause · function · L787-L787 — int command_task_pause();
+- command_task_resume · function · L788-L788 — int command_task_resume();
+- command_hms_idle_ignore · function · L789-L789 — int command_hms_idle_ignore(const std::string &error_str, int type);
+- command_hms_resume · function · L790-L790 — int command_hms_resume(const std::string& error_str, const std::string& job_id);
+- command_hms_ignore · function · L791-L791 — int command_hms_ignore(const std::string& error_str, const std::string& job_id);
+- command_hms_stop · function · L792-L792 — int command_hms_stop(const std::string &error_str, const std::string &job_id);
+- command_stop_buzzer · function · L794-L794 — int command_stop_buzzer();
+- command_set_bed · function · L798-L798 — int command_set_bed(int temp);
+- command_set_nozzle · function · L800-L800 — int command_set_nozzle(int temp);
+- command_set_nozzle_new · function · L801-L801 — int command_set_nozzle_new(int nozzle_id, int temp);
+- command_refresh_nozzle · function · L802-L802 — int command_refresh_nozzle();
+- command_set_chamber · function · L803-L803 — int command_set_chamber(int temp);
+- check_resume_condition · function · L804-L804 — int check_resume_condition();
+- command_ams_change_filament · function · L807-L807 — int command_ams_change_filament(bool load, std::string ams_id, std::string slot_id, int old_temp = 210, int new_temp = 210, std::optional<int> extruder_id = std::nullopt);
+- command_ams_user_settings · function · L808-L808 — int command_ams_user_settings(bool start_read_opt, bool tray_read_opt, bool remain_flag = false);
+- command_ams_switch_filament · function · L809-L809 — int command_ams_switch_filament(bool switch_filament);
+- command_ams_air_print_detect · function · L810-L810 — int command_ams_air_print_detect(bool air_print_detect);
+- command_ams_calibrate · function · L811-L811 — int command_ams_calibrate(int ams_id);
+- command_ams_filament_settings · function · L812-L812 — int command_ams_filament_settings(int ams_id, int slot_id, std::string filament_id, std::string setting_id, std::string tray_color, std::string tray_type, int nozzle_temp_min, int nozzle_temp_max);
+- command_ams_select_tray · function · L813-L813 — int command_ams_select_tray(std::string tray_id);
+- command_ams_refresh_rfid · function · L814-L814 — int command_ams_refresh_rfid(std::string tray_id);
+- command_ams_refresh_rfid2 · function · L815-L815 — int command_ams_refresh_rfid2(int ams_id, int slot_id);
+- command_ams_control · function · L816-L816 — int command_ams_control(std::string action);
+- command_ams_drying_stop · function · L817-L817 — int command_ams_drying_stop();
+- command_start_extrusion_cali · function · L818-L818 — int command_start_extrusion_cali(int tray_index, int nozzle_temp, int bed_temp, float max_volumetric_speed, std::string setting_id = "");
+- command_stop_extrusion_cali · function · L819-L819 — int command_stop_extrusion_cali();
+- command_extrusion_cali_set · function · L820-L820 — int command_extrusion_cali_set(int tray_index, std::string setting_id, std::string name, float k, float n, int bed_temp = -1, int nozzle_temp = -1, float max_volumetric_speed = -1);
+- command_set_printing_speed · function · L823-L823 — int command_set_printing_speed(DevPrintingSpeedLevel lvl);
+- command_set_prompt_sound · function · L826-L826 — int command_set_prompt_sound(bool prompt_sound);
+- command_set_filament_tangle_detect · function · L829-L829 — int command_set_filament_tangle_detect(bool fliament_tangle_detect);
+- command_set_printing_option · function · L833-L833 — int command_set_printing_option(bool auto_recovery);
+- command_nozzle_blob_detect · function · L835-L835 — int command_nozzle_blob_detect(bool nozzle_blob_detect);
+- command_axis_control · function · L839-L839 — int command_axis_control(std::string axis, double unit = 1.0f, double input_val = 1.0f, int speed = 3000);
+- command_extruder_control · function · L841-L841 — int command_extruder_control(int nozzle_id, double val);
+- is_support_command_calibration · function · L843-L843 — bool is_support_command_calibration();
+- command_start_calibration · function · L844-L844 — int command_start_calibration(bool vibration, bool bed_leveling, bool xcam_cali, bool motor_noise, bool nozzle_cali, bool bed_cali, bool clumppos_cali);
+- command_start_pa_calibration · function · L847-L847 — int command_start_pa_calibration(const X1CCalibInfos& pa_data, int mode = 0);  // 0: automatic mode; 1: manual mode. default: automatic mode
+- command_set_pa_calibration · function · L848-L848 — int command_set_pa_calibration(const std::vector<PACalibResult>& pa_calib_values, bool is_auto_cali);
+- command_delete_pa_calibration · function · L849-L849 — int command_delete_pa_calibration(const PACalibIndexInfo& pa_calib);
+- command_get_pa_calibration_tab · function · L850-L850 — int command_get_pa_calibration_tab(const PACalibExtruderInfo& calib_info);
+- command_get_pa_calibration_result · function · L851-L851 — int command_get_pa_calibration_result(float nozzle_diameter);
+- commnad_select_pa_calibration · function · L852-L852 — int commnad_select_pa_calibration(const PACalibIndexInfo& pa_calib_info);
+- command_start_flow_ratio_calibration · function · L855-L855 — int command_start_flow_ratio_calibration(const X1CCalibInfos& calib_data);
+- command_get_flow_ratio_calibration_result · function · L856-L856 — int command_get_flow_ratio_calibration_result(float nozzle_diameter);
+- command_ipcam_record · function · L859-L859 — int command_ipcam_record(bool on_off);
+- command_ipcam_timelapse · function · L860-L860 — int command_ipcam_timelapse(bool on_off);
+- command_ipcam_resolution_set · function · L861-L861 — int command_ipcam_resolution_set(std::string resolution);
+- command_ipcam_check_timelapse_storage · function · L862-L862 — int command_ipcam_check_timelapse_storage(const std::string& storage, int total_layer);
+- command_ipcam_delete_oldest_timelapse · function · L863-L863 — int command_ipcam_delete_oldest_timelapse(const std::string& storage, int total_layer);
+- command_xcam_control · function · L864-L864 — int command_xcam_control(std::string module_name, bool on_off, std::string lvl = "");
+- command_xcam_control_ai_monitoring · function · L867-L867 — int command_xcam_control_ai_monitoring(bool on_off, std::string lvl);
+- command_xcam_control_spaghetti_detection · function · L868-L868 — int command_xcam_control_spaghetti_detection(bool on_off, std::string lvl);
+- command_xcam_control_purgechutepileup_detection · function · L869-L869 — int command_xcam_control_purgechutepileup_detection(bool on_off, std::string lvl);
+- command_xcam_control_nozzleclumping_detection · function · L870-L870 — int command_xcam_control_nozzleclumping_detection(bool on_off, std::string lvl);
+- command_xcam_control_airprinting_detection · function · L871-L871 — int command_xcam_control_airprinting_detection(bool on_off, std::string lvl);
+- command_xcam_control_first_layer_inspector · function · L873-L873 — int command_xcam_control_first_layer_inspector(bool on_off, bool print_halt);
+- command_xcam_control_buildplate_marker_detector · function · L874-L874 — int command_xcam_control_buildplate_marker_detector(bool on_off);
+- command_xcam_control_auto_recovery_step_loss · function · L875-L875 — int command_xcam_control_auto_recovery_step_loss(bool on_off);
+- command_xcam_control_allow_prompt_sound · function · L876-L876 — int command_xcam_control_allow_prompt_sound(bool on_off);
+- command_xcam_control_filament_tangle_detect · function · L877-L877 — int command_xcam_control_filament_tangle_detect(bool on_off);
+- is_local · function · L880-L880 — inline bool is_local() { return !get_dev_ip().empty(); }
+- set_bind_status · function · L881-L881 — void set_bind_status(std::string status);
+- get_bind_str · function · L882-L882 — std::string get_bind_str();
+- can_print · function · L883-L883 — bool can_print();
+- can_resume · function · L884-L884 — bool can_resume();
+- can_pause · function · L885-L885 — bool can_pause();
+- can_abort · function · L886-L886 — bool can_abort();
+- is_in_printing · function · L887-L887 — bool is_in_printing();
+- is_in_printing_pause · function · L888-L888 — bool is_in_printing_pause() const;
+- is_in_prepare · function · L889-L889 — bool is_in_prepare();
+- is_printing_finished · function · L890-L890 — bool is_printing_finished();
+- is_core_xy · function · L891-L891 — bool is_core_xy();
+- reset_update_time · function · L892-L892 — void reset_update_time();
+- reset · function · L893-L893 — void reset();
+- is_in_printing_status · function · L894-L894 — static bool is_in_printing_status(std::string status);
+- set_print_state · function · L896-L896 — void set_print_state(std::string status);
+- is_connected · function · L898-L898 — bool is_connected();
+- is_connecting · function · L899-L899 — bool is_connecting();
+- set_online_state · function · L901-L901 — void set_online_state(bool on_off);
+- is_online · function · L902-L902 — bool is_online() { return m_is_online; }
+- is_info_ready · function · L903-L903 — bool is_info_ready(bool check_version = true) const;
+- is_security_control_ready · function · L904-L904 — bool is_security_control_ready() const;
+- is_camera_busy_off · function · L905-L905 — bool is_camera_busy_off();
+- get_resolution_supported · function · L907-L907 — std::vector<std::string> get_resolution_supported();
+- get_compatible_machine · function · L908-L908 — std::vector<std::string> get_compatible_machine();
+- MsgFn · type · L911-L911 — typedef std::function<void(std::string topic, std::string payload)> MsgFn;
+- publish_json · function · L912-L912 — int publish_json(const json& json_item, int qos = 0, int flag = 0) ;
+- publish_json · function · L913-L913 — int publish_json(const std::string& json_str, int qos = 0, int flag = 0) = delete;
+- cloud_publish_json · function · L914-L914 — int cloud_publish_json(std::string json_str, int qos = 0, int flag = 0);
+- local_publish_json · function · L915-L915 — int local_publish_json(std::string json_str, int qos = 0, int flag = 0);
+- parse_json · function · L916-L916 — int parse_json(std::string tunnel, std::string payload, bool key_filed_only = false);
+- publish_gcode · function · L917-L917 — int publish_gcode(std::string gcode_str);
+- update_device_cert_state · function · L918-L918 — void update_device_cert_state(bool ready);
+- setting_id_to_type · function · L920-L920 — static std::string setting_id_to_type(std::string setting_id, std::string tray_type);
+- get_subtask · function · L921-L921 — BBLSubTask* get_subtask();
+- get_modeltask · function · L922-L922 — BBLModelTask* get_modeltask();
+- set_modeltask · function · L923-L923 — void set_modeltask(BBLModelTask* task);
+- update_model_task · function · L925-L925 — void update_model_task();
+- free_slice_info · function · L927-L927 — void free_slice_info();
+- update_slice_info · function · L928-L928 — void update_slice_info(std::string project_id, std::string profile_id, std::string subtask_id, int plate_idx);
+- get_firmware_info · function · L932-L932 — void get_firmware_info();
+- is_firmware_info_valid · function · L933-L933 — bool is_firmware_info_valid();
+- get_max_filament_color_count · function · L943-L943 — int get_max_filament_color_count() const;
+- parse_vt_tray · function · L956-L956 — DevAmsTray parse_vt_tray(json vtray);
+- contains_tray · function · L959-L959 — bool    contains_tray(const std::string &ams_id, const std::string &tray_id) const;
+- get_tray · function · L960-L960 — DevAmsTray get_tray(const std::string &ams_id, const std::string &tray_id) const;/*use contains_tray() check first*/
+- check_enable_np · function · L963-L963 — bool check_enable_np(const json& print) const;
+- parse_new_info · function · L964-L964 — void parse_new_info(json print);
+- get_flag_bits · function · L965-L965 — int  get_flag_bits(std::string str, int start, int count = 1) const;
+- get_flag_bits_no_border · function · L966-L966 — uint32_t get_flag_bits_no_border(std::string str, int start_idx, int count = 1) const;
+- get_flag_bits · function · L967-L967 — int get_flag_bits(int num, int start, int count = 1, int base = 10) const;
+- FilamentData · class · L970-L975 — struct FilamentData
+- update_filament_list · function · L977-L977 — void update_filament_list();
+- update_printer_preset_name · function · L978-L978 — void update_printer_preset_name();
+- check_ams_filament_valid · function · L979-L979 — void check_ams_filament_valid();
+- support_door_open_check · function · L984-L984 — bool               support_door_open_check() const { return is_support_door_open_check;};
+- get_door_open_check_state · function · L985-L985 — DoorOpenCheckState get_door_open_check_state() const { return xcam_door_open_check;};
+- command_set_door_open_check · function · L986-L986 — void               command_set_door_open_check(DoorOpenCheckState state);
+- get_save_remote_print_file_to_storage · function · L989-L989 — bool get_save_remote_print_file_to_storage() const { return xcam__save_remote_print_file_to_storage; };
+- command_set_save_remote_print_file_to_storage · function · L990-L990 — void command_set_save_remote_print_file_to_storage(bool save);
+- change_the_opacity · function · L1005-L1005 — void change_the_opacity(wxColour& colour);
+- get_stage_string · function · L1006-L1006 — wxString get_stage_string(int stage);

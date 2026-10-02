@@ -1,0 +1,36 @@
+# src/slic3r/GUI/Jobs/BoostThreadWorker.hpp
+
+- BoostThreadWorker · class · L24-L151 — class BoostThreadWorker : public Worker, private Job::Ctl
+- JobEntry · class · L26-L31 — struct JobEntry // Goes into worker and also out of worker as a finalize msg
+- StatusInfo · class · L34-L34 — struct StatusInfo { int status; std::string msg; };
+- MainThreadCallData · class · L38-L42 — struct MainThreadCallData
+- EmptyMessage · class · L44-L44 — struct EmptyMessage {};
+- WorkerMessage · class · L46-L65 — class WorkerMessage
+- MsgType · type · L49-L49 — enum MsgType { Empty, Status, Finalize, MainThreadCall };
+- WorkerMessage · function · L55-L55 — WorkerMessage() = default;
+- WorkerMessage · function · L56-L58 — WorkerMessage(int s, std::string txt)
+- WorkerMessage · function · L59-L59 — WorkerMessage(JobEntry &&entry) : m_data{std::move(entry)} {}
+- WorkerMessage · function · L60-L60 — WorkerMessage(MainThreadCallData fn) : m_data{std::move(fn)} {}
+- get_type · function · L62-L62 — int get_type () const { return m_data.which(); }
+- deliver · function · L64-L64 — void deliver(BoostThreadWorker &runner);
+- run · function · L77-L77 — void run();
+- join · function · L79-L79 — bool join(int timeout_ms = 0);
+- update_status · function · L84-L84 — void update_status(int st, const std::string &msg = "") override;
+- was_canceled · function · L86-L86 — bool was_canceled() const override { return m_canceled.load(); }
+- call_on_main_thread · function · L88-L88 — std::future<void> call_on_main_thread(std::function<void()> fn) override;
+- BoostThreadWorker · function · L91-L93 — explicit BoostThreadWorker(std::shared_ptr<ProgressIndicator> pri,
+- BoostThreadWorker · function · L95-L99 — explicit BoostThreadWorker(std::shared_ptr<ProgressIndicator> pri,
+- BoostThreadWorker · function · L101-L104 — explicit BoostThreadWorker(std::shared_ptr<ProgressIndicator> pri,
+- BoostThreadWorker · function · L108-L108 — BoostThreadWorker(const BoostThreadWorker &) = delete;
+- BoostThreadWorker · function · L109-L109 — BoostThreadWorker(BoostThreadWorker &&)      = delete;
+- push · function · L113-L113 — bool push(std::shared_ptr<Job> job) override;
+- is_idle · function · L115-L125 — bool is_idle() const override
+- cancel · function · L127-L127 — void cancel() override { m_canceled.store(true); }
+- cancel_all · function · L128-L128 — void cancel_all() override { m_input_queue.clear(); cancel(); }
+- get_pri · function · L130-L130 — ProgressIndicator * get_pri() { return m_progress.get(); }
+- get_pri · function · L131-L131 — const ProgressIndicator * get_pri() const  { return m_progress.get(); }
+- clear_percent · function · L133-L138 — void clear_percent() override
+- show_error_info · function · L140-L145 — void show_error_info(const std::string &msg, int code, const std::string &description, const std::string &extra) override
+- process_events · function · L147-L147 — void process_events() override;
+- wait_for_current_job · function · L148-L148 — bool wait_for_current_job(unsigned timeout_ms = 0) override;
+- wait_for_idle · function · L149-L149 — bool wait_for_idle(unsigned timeout_ms = 0) override;

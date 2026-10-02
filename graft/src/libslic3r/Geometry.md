@@ -1,0 +1,97 @@
+# src/libslic3r/Geometry.hpp
+
+- Orientation · type · L19-L24 — enum Orientation
+- orient · function · L33-L50 — static inline Orientation orient(const Point &a, const Point &b, const Point &c)
+- is_ccw · function · L55-L79 — static inline bool is_ccw(const Polygon &poly)
+- ray_ray_intersection · function · L81-L90 — inline bool ray_ray_intersection(const Vec2d &p1, const Vec2d &v1, const Vec2d &p2, const Vec2d &v2, Vec2d &res)
+- segment_segment_intersection · function · L92-L121 — inline bool segment_segment_intersection(const Vec2d &p1, const Vec2d &v1, const Vec2d &p2, const Vec2d &v2, Vec2d &res)
+- segments_intersect · function · L123-L173 — inline bool segments_intersect(
+- foot_pt · function · L175-L181 — template<typename T> inline T foot_pt(const T &line_pt, const T &line_dir, const T &pt)
+- foot_pt · function · L183-L186 — inline Vec2d foot_pt(const Line &iline, const Point &ipt)
+- ray_point_distance_squared · function · L188-L191 — template<typename T> inline auto ray_point_distance_squared(const T &ray_pt, const T &ray_dir, const T &pt)
+- ray_point_distance · function · L193-L196 — template<typename T> inline auto ray_point_distance(const T &ray_pt, const T &ray_dir, const T &pt)
+- ray_point_distance_squared · function · L198-L201 — inline double ray_point_distance_squared(const Line &iline, const Point &ipt)
+- ray_point_distance · function · L203-L206 — inline double ray_point_distance(const Line &iline, const Point &ipt)
+- liang_barsky_line_clipping_interval · function · L209-L258 — template<typename T>
+- liang_barsky_line_clipping · function · L260-L277 — template<typename T>
+- liang_barsky_line_clipping · function · L280-L294 — template<typename T>
+- directions_parallel · function · L296-L296 — bool directions_parallel(double angle1, double angle2, double max_diff = 0);
+- directions_perpendicular · function · L297-L297 — bool directions_perpendicular(double angle1, double angle2, double max_diff = 0);
+- contains · function · L298-L298 — template<class T> bool contains(const std::vector<T> &vector, const Point &point);
+- rad2deg · function · L299-L299 — template<typename T> T rad2deg(T angle) { return T(180.0) * angle / T(PI); }
+- rad2deg_dir · function · L300-L300 — double rad2deg_dir(double angle);
+- deg2rad · function · L301-L305 — template<typename T> constexpr T deg2rad(const T angle)
+- angle_to_0_2PI · function · L306-L319 — template<typename T> T angle_to_0_2PI(T angle)
+- to_range_pi_pi · function · L320-L326 — template<typename T> void to_range_pi_pi(T &angle)
+- simplify_polygons · function · L328-L328 — void simplify_polygons(const Polygons &polygons, double tolerance, Polygons* retval);
+- linint · function · L330-L330 — double linint(double value, double oldmin, double oldmax, double newmin, double newmax);
+- arrange · function · L331-L335 — bool arrange(
+- assemble_transform · function · L344-L345 — void assemble_transform(Transform3d& transform, const Vec3d& translation = Vec3d::Zero(), const Vec3d& rotation = Vec3d::Zero(),
+- assemble_transform · function · L354-L355 — Transform3d assemble_transform(const Vec3d& translation = Vec3d::Zero(), const Vec3d& rotation = Vec3d::Zero(),
+- assemble_transform · function · L359-L361 — void assemble_transform(Transform3d& transform, const Transform3d& translation = Transform3d::Identity(),
+- assemble_transform · function · L365-L366 — Transform3d assemble_transform(const Transform3d& translation = Transform3d::Identity(), const Transform3d& rotation = Transform3d::Identity(),
+- translation_transform · function · L369-L369 — void translation_transform(Transform3d& transform, const Vec3d& translation);
+- translation_transform · function · L372-L372 — Transform3d translation_transform(const Vec3d& translation);
+- rotation_transform · function · L378-L378 — void rotation_transform(Transform3d& transform, const Vec3d& rotation);
+- rotation_transform · function · L384-L384 — Transform3d rotation_transform(const Vec3d& rotation);
+- scale_transform · function · L387-L387 — void scale_transform(Transform3d& transform, double scale);
+- scale_transform · function · L388-L388 — void scale_transform(Transform3d& transform, const Vec3d& scale);
+- scale_transform · function · L391-L391 — Transform3d scale_transform(double scale);
+- scale_transform · function · L392-L392 — Transform3d scale_transform(const Vec3d& scale);
+- extract_euler_angles · function · L396-L396 — Vec3d extract_euler_angles(const Eigen::Matrix<double, 3, 3, Eigen::DontAlign>& rotation_matrix);
+- extract_euler_angles · function · L400-L400 — Vec3d extract_euler_angles(const Transform3d& transform);
+- rotation_from_two_vectors · function · L405-L405 — void rotation_from_two_vectors(Vec3d from, Vec3d to, Vec3d &rotation_axis, double &phi, Matrix3d *rotation_matrix = nullptr);
+- Transformation · class · L407-L502 — class Transformation
+- Transformation · function · L412-L412 — Transformation() = default;
+- Transformation · function · L413-L413 — explicit Transformation(const Transform3d& transform) : m_matrix(transform) {}
+- get_offset · function · L415-L415 — Vec3d get_offset() const { return m_matrix.translation(); }
+- get_offset · function · L416-L416 — double get_offset(Axis axis) const { return get_offset()[axis]; }
+- get_offset_matrix · function · L418-L418 — Transform3d get_offset_matrix() const;
+- set_offset · function · L420-L420 — void set_offset(const Vec3d& offset) { m_matrix.translation() = offset; }
+- set_offset · function · L421-L421 — void set_offset(Axis axis, double offset) { m_matrix.translation()[axis] = offset; }
+- get_rotation · function · L423-L423 — Vec3d get_rotation() const;
+- get_rotation_by_quaternion · function · L424-L424 — Vec3d get_rotation_by_quaternion() const;
+- get_rotation · function · L425-L425 — double get_rotation(Axis axis) const { return get_rotation()[axis]; }
+- get_rotation_matrix · function · L427-L427 — Transform3d get_rotation_matrix() const;
+- set_rotation · function · L429-L429 — void set_rotation(const Vec3d& rotation);
+- set_rotation · function · L430-L430 — void set_rotation(Axis axis, double rotation);
+- get_scaling_factor · function · L432-L432 — Vec3d get_scaling_factor() const;
+- get_scaling_factor · function · L433-L433 — double get_scaling_factor(Axis axis) const { return get_scaling_factor()[axis]; }
+- get_scaling_factor_matrix · function · L435-L435 — Transform3d get_scaling_factor_matrix() const;
+- is_scaling_uniform · function · L437-L440 — bool is_scaling_uniform() const
+- set_scaling_factor · function · L442-L442 — void set_scaling_factor(const Vec3d& scaling_factor);
+- set_scaling_factor · function · L443-L443 — void set_scaling_factor(Axis axis, double scaling_factor);
+- get_mirror · function · L445-L445 — Vec3d get_mirror() const;
+- get_mirror · function · L446-L446 — double get_mirror(Axis axis) const { return get_mirror()[axis]; }
+- get_mirror_matrix · function · L448-L448 — Transform3d get_mirror_matrix() const;
+- is_left_handed · function · L450-L452 — bool is_left_handed() const
+- set_mirror · function · L454-L454 — void set_mirror(const Vec3d& mirror);
+- set_mirror · function · L455-L455 — void set_mirror(Axis axis, double mirror);
+- has_skew · function · L457-L457 — bool has_skew() const;
+- reset · function · L459-L459 — void reset();
+- reset_offset · function · L460-L460 — void reset_offset() { set_offset(Vec3d::Zero()); }
+- reset_rotation · function · L461-L461 — void reset_rotation();
+- reset_scaling_factor · function · L462-L462 — void reset_scaling_factor();
+- reset_mirror · function · L463-L463 — void reset_mirror() { set_mirror(Vec3d::Ones()); }
+- reset_skew · function · L464-L464 — void reset_skew();
+- get_matrix · function · L466-L466 — const Transform3d& get_matrix() const { return m_matrix; }
+- get_matrix_no_offset · function · L467-L467 — Transform3d get_matrix_no_offset() const;
+- get_matrix_no_scaling_factor · function · L468-L468 — Transform3d get_matrix_no_scaling_factor() const;
+- get_matrix_with_applied_shrinkage_compensation · function · L471-L471 — Transform3d get_matrix_with_applied_shrinkage_compensation(const Vec3d &shrinkage_compensation) const;
+- set_matrix · function · L473-L473 — void set_matrix(const Transform3d& transform) { m_matrix = transform; }
+- volume_to_bed_transformation · function · L480-L480 — static Transformation volume_to_bed_transformation(const Transformation& instance_transformation, const BoundingBoxf3& bbox);
+- serialize · function · L494-L494 — template<class Archive> void serialize(Archive& ar) { ar(m_matrix); }
+- Transformation · function · L495-L495 — explicit Transformation(int) {}
+- load_and_construct · function · L496-L501 — template <class Archive> static void load_and_construct(Archive& ar, cereal::construct<Transformation>& construct)
+- TransformationSVD · class · L504-L521 — struct TransformationSVD
+- TransformationSVD · function · L517-L517 — explicit TransformationSVD(const Transformation& trafo) : TransformationSVD(trafo.get_matrix()) {}
+- TransformationSVD · function · L518-L518 — explicit TransformationSVD(const Transform3d& trafo);
+- mirror_matrix · function · L520-L520 — Eigen::DiagonalMatrix<double, 3, 3> mirror_matrix() const { return Eigen::DiagonalMatrix<double, 3, 3>(this->mirror ? -1. : 1., 1., 1.); }
+- transform3d_from_string · function · L524-L524 — extern Transform3d transform3d_from_string(const std::string& transform_str);
+- rotation_xyz_diff · function · L528-L528 — extern Eigen::Quaterniond rotation_xyz_diff(const Vec3d &rot_xyz_from, const Vec3d &rot_xyz_to);
+- rotation_diff_z · function · L531-L531 — extern double rotation_diff_z(const Vec3d &rot_xyz_from, const Vec3d &rot_xyz_to);
+- is_rotation_ninety_degrees · function · L534-L540 — inline bool is_rotation_ninety_degrees(double a)
+- is_rotation_ninety_degrees · function · L543-L546 — inline bool is_rotation_ninety_degrees(const Vec3d &rotation)
+- mat_around_a_point_rotate · function · L548-L548 — Transformation mat_around_a_point_rotate(const Transformation& innMat, const Vec3d &pt, const Vec3d &axis, float rotate_theta_radian);
+- generate_transform · function · L549-L549 — Transformation generate_transform(const Vec3d &x_dir, const Vec3d &y_dir, const Vec3d &z_dir, const Vec3d &origin);
+- is_point_inside_polygon_corner · function · L565-L565 — bool is_point_inside_polygon_corner(const Point &a, const Point &b, const Point &c, const Point &query_point);

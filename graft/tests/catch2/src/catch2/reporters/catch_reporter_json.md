@@ -1,0 +1,32 @@
+# tests/catch2/src/catch2/reporters/catch_reporter_json.hpp
+
+- JsonReporter · class · L19-L91 — class JsonReporter : public StreamingReporterBase
+- JsonReporter · function · L21-L21 — JsonReporter( ReporterConfig&& config );
+- getDescription · function · L25-L25 — static std::string getDescription();
+- testRunStarting · function · L28-L28 — void testRunStarting( TestRunInfo const& runInfo ) override;
+- testRunEnded · function · L29-L29 — void testRunEnded( TestRunStats const& runStats ) override;
+- testCaseStarting · function · L31-L31 — void testCaseStarting( TestCaseInfo const& tcInfo ) override;
+- testCaseEnded · function · L32-L32 — void testCaseEnded( TestCaseStats const& tcStats ) override;
+- testCasePartialStarting · function · L34-L35 — void testCasePartialStarting( TestCaseInfo const& tcInfo,
+- testCasePartialEnded · function · L36-L37 — void testCasePartialEnded( TestCaseStats const& tcStats,
+- sectionStarting · function · L39-L39 — void sectionStarting( SectionInfo const& sectionInfo ) override;
+- sectionEnded · function · L40-L40 — void sectionEnded( SectionStats const& sectionStats ) override;
+- assertionEnded · function · L42-L42 — void assertionEnded( AssertionStats const& assertionStats ) override;
+- benchmarkPreparing · function · L46-L46 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L47-L47 — void benchmarkStarting( BenchmarkInfo const& ) override;
+- benchmarkEnded · function · L48-L48 — void benchmarkEnded( BenchmarkStats<> const& ) override;
+- benchmarkFailed · function · L49-L49 — void benchmarkFailed( StringRef error ) override;
+- listReporters · function · L51-L52 — void listReporters(
+- listListeners · function · L53-L54 — void listListeners(
+- listTests · function · L55-L55 — void listTests( std::vector<TestCaseHandle> const& tests ) override;
+- listTags · function · L56-L56 — void listTags( std::vector<TagInfo> const& tags ) override;
+- Writer · type · L60-L63 — enum class Writer
+- startArray · function · L65-L65 — JsonArrayWriter& startArray();
+- startArray · function · L66-L66 — JsonArrayWriter& startArray( StringRef key );
+- startObject · function · L68-L68 — JsonObjectWriter& startObject();
+- startObject · function · L69-L69 — JsonObjectWriter& startObject( StringRef key );
+- endObject · function · L71-L71 — void endObject();
+- endArray · function · L72-L72 — void endArray();
+- isInside · function · L74-L74 — bool isInside( Writer writer );
+- startListing · function · L76-L76 — void startListing();
+- endListing · function · L77-L77 — void endListing();

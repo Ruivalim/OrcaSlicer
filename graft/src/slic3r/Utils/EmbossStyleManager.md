@@ -1,0 +1,48 @@
+# src/slic3r/Utils/EmbossStyleManager.hpp
+
+- StyleManager · class · L24-L317 — class StyleManager
+- StyleManager · function · L30-L30 — StyleManager(const ImWchar *language_glyph_range, const std::function<EmbossStyles()>& create_default_styles);
+- init · function · L43-L43 — void init(AppConfig *app_config);
+- store_styles_to_app_config · function · L52-L52 — bool store_styles_to_app_config(bool use_modification = true, bool store_active_index = true);
+- add_style · function · L58-L58 — void add_style(const std::string& name);
+- swap · function · L66-L66 — void swap(size_t i1, size_t i2);
+- discard_style_changes · function · L72-L72 — void discard_style_changes();
+- erase · function · L79-L79 — void erase(size_t index);
+- rename · function · L85-L85 — void rename(const std::string &name);
+- load_valid_style · function · L90-L90 — void load_valid_style();
+- load_style · function · L98-L98 — bool load_style(size_t font_index);
+- load_style · function · L101-L101 — bool load_style(const Style &style);
+- load_style · function · L103-L103 — bool load_style(const Style &style, const wxFont &font);
+- clear_glyphs_cache · function · L106-L106 — void clear_glyphs_cache();
+- clear_imgui_font · function · L109-L109 — void clear_imgui_font();
+- get_stored_style · function · L112-L112 — const Style *get_stored_style() const;
+- get_style · function · L114-L114 — const Style &get_style() const     { return m_style_cache.style; }
+- get_style · function · L115-L115 — Style &get_style()           { return m_style_cache.style; }
+- get_style_index · function · L116-L116 — size_t get_style_index() const     { return m_style_cache.style_index; }
+- get_truncated_name · function · L117-L117 — std::string &get_truncated_name()        { return m_style_cache.truncated_name; }
+- get_atlas · function · L118-L118 — const ImFontAtlas &get_atlas() const     { return m_style_cache.atlas; }
+- get_font_prop · function · L119-L119 — const FontProp    &get_font_prop() const { return get_style().prop; }
+- get_font_prop · function · L120-L120 — FontProp    &get_font_prop()       { return get_style().prop; }
+- get_wx_font · function · L121-L121 — const wxFont &get_wx_font()        const { return m_style_cache.wx_font; }
+- get_stored_wx_font · function · L122-L122 — const wxFont &get_stored_wx_font() const { return m_style_cache.stored_wx_font; }
+- get_font_file_with_cache · function · L123-L123 — Slic3r::Emboss::FontFileWithCache &get_font_file_with_cache()   { return m_style_cache.font_file; }
+- has_collections · function · L124-L125 — bool has_collections() const { return m_style_cache.font_file.font_file != nullptr &&
+- exist_stored_style · function · L128-L128 — bool exist_stored_style() const { return m_style_cache.style_index != std::numeric_limits<size_t>::max(); }
+- is_font_changed · function · L134-L134 — bool is_font_changed() const;
+- is_unique_style_name · function · L136-L136 — bool is_unique_style_name(const std::string &name) const;
+- set_wx_font · function · L143-L143 — bool set_wx_font(const wxFont &wx_font);
+- set_wx_font · function · L152-L152 — bool set_wx_font(const wxFont &wx_font, std::unique_ptr<Slic3r::Emboss::FontFile> font_file);
+- get_imgui_font · function · L157-L157 — ImFont *get_imgui_font();
+- create_imgui_font · function · L159-L159 — ImFont *create_imgui_font(const std::string& text, double scale);
+- init_trunc_names · function · L162-L162 — void init_trunc_names(float max_width);
+- init_style_images · function · L169-L169 — void init_style_images(const Vec2i32& max_size, const std::string &text);
+- free_style_images · function · L170-L170 — void free_style_images();
+- get_styles · function · L173-L173 — const std::vector<Style> &get_styles() const;
+- StyleImage · class · L178-L186 — struct StyleImage
+- Style · class · L192-L221 — struct Style : public EmbossStyle
+- is_active_font · function · L225-L225 — bool is_active_font();
+- get_imgui_font_size · function · L231-L231 — static float get_imgui_font_size(const FontProp &prop, const Slic3r::Emboss::FontFile &file, double scale);
+- StyleCache · class · L245-L271 — struct StyleCache
+- StyleImagesData · class · L281-L314 — struct StyleImagesData
+- Item · class · L283-L288 — struct Item
+- StyleImages · class · L301-L307 — struct StyleImages

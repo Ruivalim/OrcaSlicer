@@ -1,0 +1,71 @@
+# src/libslic3r/BoundingBox.hpp
+
+- BoundingBoxBase · class · L12-L110 — template <typename PointType, typename APointsType = std::vector<PointType>>
+- BoundingBoxBase · function · L21-L21 — BoundingBoxBase() : min(PointType::Zero()), max(PointType::Zero()), defined(false) {}
+- BoundingBoxBase · function · L22-L23 — BoundingBoxBase(const PointType &pmin, const PointType &pmax) :
+- BoundingBoxBase · function · L24-L25 — BoundingBoxBase(const PointType &p1, const PointType &p2, const PointType &p3) :
+- BoundingBoxBase · function · L27-L29 — template<class It, class = IteratorOnly<It>>
+- BoundingBoxBase · function · L31-L33 — BoundingBoxBase(const PointsType &points)
+- reset · function · L35-L35 — void reset() { this->defined = false; this->min = PointType::Zero(); this->max = PointType::Zero(); }
+- merge · function · L36-L36 — void merge(const PointType &point);
+- merge · function · L37-L37 — void merge(const PointsType &points);
+- merge · function · L38-L38 — void merge(const BoundingBoxBase<PointType, PointsType> &bb);
+- scale · function · L39-L39 — void scale(double factor);
+- size · function · L40-L40 — PointType size() const;
+- radius · function · L41-L41 — double radius() const;
+- area · function · L42-L42 — double area() const { return double(this->max(0) - this->min(0)) * (this->max(1) - this->min(1));    } // BBS
+- translate · function · L43-L43 — void translate(coordf_t x, coordf_t y) { assert(this->defined); PointType v(x, y); this->min += v; this->max += v; }
+- v · function · L43-L43 — void translate(coordf_t x, coordf_t y) { assert(this->defined); PointType v(x, y); this->min += v; this->max += v; }
+- translate · function · L44-L44 — void translate(const PointType &v) { this->min += v; this->max += v; }
+- offset · function · L45-L45 — void offset(coordf_t delta);
+- inflated · function · L46-L46 — BoundingBoxBase<PointType, PointsType> inflated(coordf_t delta) const throw() { BoundingBoxBase<PointType, PointsType> out(*this); out.offset(delta); return out; }
+- center · function · L47-L47 — PointType center() const;
+- contains · function · L48-L51 — bool contains(const PointType &point) const
+- contains · function · L52-L54 — bool contains(const BoundingBoxBase<PointType, PointsType> &other) const
+- overlap · function · L55-L58 — bool overlap(const BoundingBoxBase<PointType, PointsType> &other) const
+- construct · function · L95-L109 — template<bool IncludeBoundary = false, class BoundingBoxType, class It, class = IteratorOnly<It>>
+- BoundingBox3Base · class · L112-L171 — template <class PointType>
+- BoundingBox3Base · function · L118-L118 — BoundingBox3Base() : BoundingBoxBase<PointType>() {}
+- BoundingBox3Base · function · L119-L121 — BoundingBox3Base(const PointType &pmin, const PointType &pmax) :
+- BoundingBox3Base · function · L122-L123 — BoundingBox3Base(const PointType &p1, const PointType &p2, const PointType &p3) :
+- BoundingBox3Base · function · L125-L139 — template<class It, class = IteratorOnly<It> > BoundingBox3Base(It from, It to)
+- BoundingBox3Base · function · L141-L143 — BoundingBox3Base(const PointsType &points)
+- polygon · function · L145-L145 — Polygon polygon(bool is_scaled = false) const;//BBS: 2D footprint polygon
+- merge · function · L146-L146 — void merge(const PointType &point);
+- merge · function · L147-L147 — void merge(const PointsType &points);
+- merge · function · L148-L148 — void merge(const BoundingBox3Base<PointType> &bb);
+- size · function · L149-L149 — PointType size() const;
+- radius · function · L150-L150 — double radius() const;
+- translate · function · L151-L151 — void translate(coordf_t x, coordf_t y, coordf_t z) { assert(this->defined); PointType v(x, y, z); this->min += v; this->max += v; }
+- v · function · L151-L151 — void translate(coordf_t x, coordf_t y, coordf_t z) { assert(this->defined); PointType v(x, y, z); this->min += v; this->max += v; }
+- translate · function · L152-L152 — void translate(const Vec3d &v) { this->min += v; this->max += v; }
+- offset · function · L153-L153 — void offset(coordf_t delta);
+- inflated · function · L154-L154 — BoundingBox3Base<PointType> inflated(coordf_t delta) const throw() { BoundingBox3Base<PointType> out(*this); out.offset(delta); return out; }
+- center · function · L155-L155 — PointType center() const;
+- max_size · function · L156-L156 — coordf_t max_size() const;
+- contains · function · L158-L160 — bool contains(const PointType &point) const
+- contains · function · L162-L164 — bool contains(const BoundingBox3Base<PointType>& other) const
+- intersects · function · L167-L170 — bool intersects(const BoundingBox3Base<PointType>& other) const
+- BoundingBox3 · class · L234-L251 — class BoundingBox3  : public BoundingBox3Base<Vec3crd>
+- BoundingBox3 · function · L237-L237 — BoundingBox3() : BoundingBox3Base<Vec3crd>() {}
+- BoundingBox3 · function · L238-L238 — BoundingBox3(const Vec3crd &pmin, const Vec3crd &pmax) : BoundingBox3Base<Vec3crd>(pmin, pmax) {}
+- BoundingBox3 · function · L239-L249 — BoundingBox3(const Points3& points) : BoundingBox3Base<Vec3crd>()
+- BoundingBox3 · function · L250-L250 — BoundingBox3(const std::vector<Vec3crd>& points) : BoundingBox3Base<Vec3crd>(points) {}
+- BoundingBoxf · class · L253-L259 — class BoundingBoxf : public BoundingBoxBase<Vec2d>
+- BoundingBoxf · function · L256-L256 — BoundingBoxf() : BoundingBoxBase<Vec2d>() {}
+- BoundingBoxf · function · L257-L257 — BoundingBoxf(const Vec2d &pmin, const Vec2d &pmax) : BoundingBoxBase<Vec2d>(pmin, pmax) {}
+- BoundingBoxf · function · L258-L258 — BoundingBoxf(const std::vector<Vec2d> &points) : BoundingBoxBase<Vec2d>(points) {}
+- BoundingBoxf3 · class · L261-L267 — class BoundingBoxf3 : public BoundingBox3Base<Vec3d>
+- transformed · function · L266-L266 — BoundingBoxf3 transformed(const Transform3d& matrix) const;
+- empty · function · L275-L279 — template<typename PointType>
+- scaled · function · L281-L281 — inline BoundingBox scaled(const BoundingBoxf &bb) { return {scaled(bb.min), scaled(bb.max)}; }
+- scaled · function · L283-L284 — template<class T = coord_t>
+- scaled · function · L286-L287 — template<class T = coord_t>
+- unscaled · function · L289-L290 — template<class T = double>
+- unscaled · function · L292-L293 — template<class T = double>
+- cast · function · L295-L300 — template<class Tout, class Tin>
+- cast · function · L302-L307 — template<class Tout, class Tin>
+- serialize · function · L313-L313 — template<class Archive> void serialize(Archive& archive, Slic3r::BoundingBox   &bb) { archive(bb.min, bb.max, bb.defined); }
+- serialize · function · L314-L314 — template<class Archive> void serialize(Archive& archive, Slic3r::BoundingBox3  &bb) { archive(bb.min, bb.max, bb.defined); }
+- serialize · function · L315-L315 — template<class Archive> void serialize(Archive& archive, Slic3r::BoundingBoxf  &bb) { archive(bb.min, bb.max, bb.defined); }
+- serialize · function · L316-L316 — template<class Archive> void serialize(Archive& archive, Slic3r::BoundingBoxf3 &bb) { archive(bb.min, bb.max, bb.defined); }

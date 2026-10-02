@@ -1,0 +1,22 @@
+# src/libvgcode/glad/src/gles2.c
+
+- glad_gl_load_GL_ES_VERSION_2_0 · function · L279-L423 — static void glad_gl_load_GL_ES_VERSION_2_0( GLADuserptrloadfunc load, void* userptr)
+- glad_gl_load_GL_ES_VERSION_3_0 · function · L424-L530 — static void glad_gl_load_GL_ES_VERSION_3_0( GLADuserptrloadfunc load, void* userptr)
+- glad_gl_free_extensions · function · L534-L543 — static void glad_gl_free_extensions(char **exts_i)
+- glad_gl_get_extensions · function · L544-L583 — static int glad_gl_get_extensions( const char **out_exts, char ***out_exts_i)
+- glad_gl_has_extension · function · L584-L615 — static int glad_gl_has_extension(const char *exts, char **exts_i, const char *ext)
+- glad_gl_get_proc_from_userptr · function · L617-L619 — static GLADapiproc glad_gl_get_proc_from_userptr(void *userptr, const char* name)
+- glad_gl_find_extensions_gles2 · function · L621-L631 — static int glad_gl_find_extensions_gles2(void)
+- glad_gl_find_core_gles2 · function · L633-L661 — static int glad_gl_find_core_gles2(void)
+- gladLoadGLES2UserPtr · function · L663-L678 — int gladLoadGLES2UserPtr( GLADuserptrloadfunc load, void *userptr)
+- gladLoadGLES2 · function · L681-L683 — int gladLoadGLES2( GLADloadfunc load)
+- glad_get_dlopen_handle · function · L704-L704 — static void* glad_get_dlopen_handle(const char *lib_names[], int length)
+- glad_close_dlopen_handle · function · L734-L742 — static void glad_close_dlopen_handle(void* handle)
+- glad_dlsym_handle · function · L744-L754 — static GLADapiproc glad_dlsym_handle(void* handle, const char *name)
+- emscripten_GetProcAddress · function · L763-L763 — extern __eglMustCastToProperFunctionPointerType emscripten_GetProcAddress(const char *name);
+- _glad_gles2_userptr · class · L772-L775 — struct _glad_gles2_userptr
+- glad_gles2_get_proc · function · L778-L792 — static GLADapiproc glad_gles2_get_proc(void *vuserptr, const char* name)
+- glad_gles2_dlopen_handle · function · L796-L796 — static void* glad_gles2_dlopen_handle(void)
+- glad_gles2_build_userptr · function · L818-L828 — static struct _glad_gles2_userptr glad_gles2_build_userptr(void *handle)
+- gladLoaderLoadGLES2 · function · L830-L862 — int gladLoaderLoadGLES2(void)
+- gladLoaderUnloadGLES2 · function · L866-L871 — void gladLoaderUnloadGLES2(void)

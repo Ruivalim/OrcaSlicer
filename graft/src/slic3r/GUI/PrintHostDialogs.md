@@ -1,0 +1,80 @@
+# src/slic3r/GUI/PrintHostDialogs.hpp
+
+- wxButton · class · L18-L18 — class wxButton;
+- wxTextCtrl · class · L19-L19 — class wxTextCtrl;
+- wxComboBox · class · L20-L20 — class wxComboBox;
+- ComboBox · class · L21-L21 — class ComboBox;
+- wxDataViewListCtrl · class · L22-L22 — class wxDataViewListCtrl;
+- wxFlexGridSizer · class · L23-L23 — class wxFlexGridSizer;
+- wxStaticText · class · L24-L24 — class wxStaticText;
+- wxWrapSizer · class · L25-L25 — class wxWrapSizer;
+- CheckBox · class · L26-L26 — class CheckBox;
+- BitmapComboBox · class · L28-L28 — namespace Slic3r { namespace GUI { class BitmapComboBox; } }
+- PrintHostSendDialog · class · L34-L62 — class PrintHostSendDialog : public GUI::MsgDialog
+- PrintHostSendDialog · function · L37-L37 — PrintHostSendDialog(const boost::filesystem::path &path, PrintHostPostUploadActions post_actions, const wxArrayString& groups, const wxArrayString& storage_paths, const wxArrayString& storage_names, bool switch_to_device_tab);
+- filename · function · L39-L39 — boost::filesystem::path filename() const;
+- post_action · function · L40-L40 — PrintHostPostUploadAction post_action() const;
+- group · function · L41-L41 — std::string group() const;
+- storage · function · L42-L42 — std::string storage() const;
+- switch_to_device_tab · function · L43-L43 — bool switch_to_device_tab() const {return m_switch_to_device_tab;}
+- EndModal · function · L45-L45 — virtual void EndModal(int ret) override;
+- init · function · L46-L46 — virtual void init();
+- extendedInfo · function · L47-L47 — virtual std::map<std::string, std::string> extendedInfo() const { return {}; }
+- PrintHostQueueDialog · class · L65-L148 — class PrintHostQueueDialog : public DPIDialog
+- Event · class · L68-L82 — class Event : public wxEvent
+- Event · function · L76-L76 — Event(wxEventType eventType, int winid, size_t job_id);
+- Event · function · L77-L77 — Event(wxEventType eventType, int winid, size_t job_id, int progress);
+- Event · function · L78-L78 — Event(wxEventType eventType, int winid, size_t job_id, wxString error);
+- Event · function · L79-L79 — Event(wxEventType eventType, int winid, size_t job_id, wxString tag, wxString status);
+- Clone · function · L81-L81 — virtual wxEvent *Clone() const;
+- PrintHostQueueDialog · function · L85-L85 — PrintHostQueueDialog(wxWindow *parent);
+- append_job · function · L87-L87 — void append_job(const PrintHostJob &job);
+- get_active_jobs · function · L88-L88 — void get_active_jobs(std::vector<std::pair<std::string, std::string>>& ret);
+- Show · function · L90-L95 — virtual bool Show(bool show = true) override
+- on_dpi_changed · function · L97-L97 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- on_sys_color_changed · function · L98-L98 — void on_sys_color_changed() override;
+- Column · type · L101-L109 — enum Column
+- JobState · type · L111-L118 — enum JobState
+- UserDataType · type · L122-L126 — enum UserDataType
+- get_state · function · L137-L137 — JobState get_state(int idx);
+- set_state · function · L138-L138 — void set_state(int idx, JobState);
+- on_list_select · function · L139-L139 — void on_list_select();
+- on_progress · function · L140-L140 — void on_progress(Event&);
+- on_error · function · L141-L141 — void on_error(Event&);
+- on_cancel · function · L142-L142 — void on_cancel(Event&);
+- on_info · function · L143-L143 — void on_info(Event&);
+- save_user_data · function · L146-L146 — void save_user_data(int);
+- load_user_data · function · L147-L147 — bool load_user_data(int, std::vector<int>&);
+- ElegooPrintHostSendDialog · class · L150-L189 — class ElegooPrintHostSendDialog : public PrintHostSendDialog
+- ElegooPrintHostSendDialog · function · L153-L158 — ElegooPrintHostSendDialog(const boost::filesystem::path& path,
+- EndModal · function · L160-L160 — virtual void EndModal(int ret) override;
+- timeLapse · function · L161-L161 — int          timeLapse() const { return m_timeLapse; }
+- heatedBedLeveling · function · L162-L162 — int          heatedBedLeveling() const { return m_heatedBedLeveling; }
+- bedType · function · L163-L163 — BedType      bedType() const { return m_BedType; }
+- init · function · L165-L165 — virtual void                               init() override;
+- extendedInfo · function · L166-L171 — virtual std::map<std::string, std::string> extendedInfo() const override
+- appBedType · function · L174-L174 — BedType appBedType() const;
+- refresh · function · L175-L175 — void    refresh();
+- CrealityPrintHostSendDialog · class · L191-L220 — class CrealityPrintHostSendDialog : public PrintHostSendDialog
+- CrealityPrintHostSendDialog · function · L194-L200 — CrealityPrintHostSendDialog(const boost::filesystem::path& path,
+- init · function · L202-L202 — virtual void                               init() override;
+- extendedInfo · function · L203-L203 — virtual std::map<std::string, std::string> extendedInfo() const override;
+- SlotInfo · class · L211-L217 — struct SlotInfo
+- FlashforgePrintHostSendDialog · class · L222-L280 — class FlashforgePrintHostSendDialog : public PrintHostSendDialog
+- FlashforgePrintHostSendDialog · function · L225-L234 — FlashforgePrintHostSendDialog(const boost::filesystem::path&  path,
+- init · function · L236-L236 — virtual void init() override;
+- EndModal · function · L237-L237 — virtual void EndModal(int ret) override;
+- extendedInfo · function · L238-L238 — virtual std::map<std::string, std::string> extendedInfo() const override;
+- MappingRow · class · L241-L244 — struct MappingRow
+- load_slots · function · L246-L246 — void load_slots();
+- ensure_slots_loaded · function · L247-L247 — bool ensure_slots_loaded(bool force_reload = false);
+- rebuild_mapping_rows · function · L248-L248 — void rebuild_mapping_rows();
+- auto_assign_mappings · function · L249-L249 — void auto_assign_mappings();
+- refresh_mapping_card · function · L250-L250 — void refresh_mapping_card(MappingRow& row);
+- sync_mapping_section_visibility · function · L251-L251 — void sync_mapping_section_visibility();
+- find_slot_by_id · function · L252-L252 — const Slic3r::FlashforgeMaterialSlot* find_slot_by_id(const std::string& slot_id_text) const;
+- find_filament_by_tool_id · function · L253-L253 — const FilamentInfo* find_filament_by_tool_id(int tool_id) const;
+- slot_matches_filament · function · L254-L254 — bool slot_matches_filament(const Slic3r::FlashforgeMaterialSlot& slot, const FilamentInfo& filament) const;
+- validate_before_close · function · L255-L255 — bool validate_before_close();
+- normalize_material · function · L256-L256 — std::string normalize_material(const std::string& material) const;
+- to_wx_colour · function · L257-L257 — wxColour to_wx_colour(const std::string& color) const;

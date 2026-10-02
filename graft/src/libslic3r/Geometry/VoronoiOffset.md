@@ -1,0 +1,32 @@
+# src/libslic3r/Geometry/VoronoiOffset.hpp
+
+- contour_point · function · L22-L22 — inline const Point& contour_point(const VD::cell_type &cell, const Line &line)
+- contour_point · function · L24-L24 — inline Point&       contour_point(const VD::cell_type &cell, Line &line)
+- contour_point · function · L27-L27 — inline const Point& contour_point(const VD::cell_type &cell, const Lines &lines)
+- contour_point · function · L29-L29 — inline Point&       contour_point(const VD::cell_type &cell, Lines &lines)
+- vertex_point · function · L32-L32 — inline Vec2d 		vertex_point(const VD::vertex_type &v) { return Vec2d(v.x(), v.y()); }
+- vertex_point · function · L33-L33 — inline Vec2d 		vertex_point(const VD::vertex_type *v) { return Vec2d(v->x(), v->y()); }
+- VertexCategory · type · L36-L48 — enum class VertexCategory : unsigned char
+- EdgeCategory · type · L53-L63 — enum class EdgeCategory : unsigned char
+- CellCategory · type · L66-L76 — enum class CellCategory : unsigned char
+- vertex_category · function · L78-L79 — inline VertexCategory 	vertex_category(const VD::vertex_type &v)
+- vertex_category · function · L80-L81 — inline VertexCategory 	vertex_category(const VD::vertex_type *v)
+- set_vertex_category · function · L82-L83 — inline void 		  	set_vertex_category(VD::vertex_type &v, VertexCategory c)
+- set_vertex_category · function · L84-L85 — inline void 		  	set_vertex_category(VD::vertex_type *v, VertexCategory c)
+- edge_category · function · L87-L88 — inline EdgeCategory 	edge_category(const VD::edge_type &e)
+- edge_category · function · L89-L90 — inline EdgeCategory 	edge_category(const VD::edge_type *e)
+- set_edge_category · function · L91-L92 — inline void 			set_edge_category(VD::edge_type &e, EdgeCategory c)
+- set_edge_category · function · L93-L94 — inline void 			set_edge_category(VD::edge_type *e, EdgeCategory c)
+- cell_category · function · L96-L97 — inline CellCategory   	cell_category(const VD::cell_type &v)
+- cell_category · function · L98-L99 — inline CellCategory   	cell_category(const VD::cell_type *v)
+- set_cell_category · function · L100-L101 — inline void 		  	set_cell_category(const VD::cell_type &v, CellCategory c)
+- set_cell_category · function · L102-L103 — inline void 		  	set_cell_category(const VD::cell_type *v, CellCategory c)
+- reset_inside_outside_annotations · function · L106-L106 — void reset_inside_outside_annotations(VD &vd);
+- annotate_inside_outside · function · L110-L110 — void annotate_inside_outside(VD &vd, const Lines &lines);
+- signed_vertex_distances · function · L114-L114 — std::vector<double> signed_vertex_distances(const VD &vd, const Lines &lines);
+- edge_offset_no_intersection · function · L116-L117 — static inline bool edge_offset_no_intersection(const Vec2d &intersection_point)
+- edge_offset_has_intersection · function · L118-L119 — static inline bool edge_offset_has_intersection(const Vec2d &intersection_point)
+- edge_offset_contour_intersections · function · L120-L122 — std::vector<Vec2d> edge_offset_contour_intersections(
+- skeleton_edges_rough · function · L124-L127 — std::vector<Vec2d> skeleton_edges_rough(
+- offset · function · L129-L134 — Polygons offset(
+- offset · function · L141-L145 — Polygons offset(

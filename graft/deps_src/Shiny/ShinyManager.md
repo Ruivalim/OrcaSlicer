@@ -1,0 +1,41 @@
+# deps_src/Shiny/ShinyManager.h
+
+- ShinyManager · type · L42-L77 — typedef struct
+- _ShinyManager_appendTicksToCurNode · function · L89-L95 — SHINY_INLINE void _ShinyManager_appendTicksToCurNode(ShinyManager *self)
+- _ShinyManager_createNodeTable · function · L99-L99 — SHINY_API void _ShinyManager_createNodeTable(ShinyManager *self, uint32_t a_count);
+- _ShinyManager_resizeNodeTable · function · L100-L100 — SHINY_API void _ShinyManager_resizeNodeTable(ShinyManager *self, uint32_t a_count);
+- _ShinyManager_createNodePool · function · L102-L102 — SHINY_API void _ShinyManager_createNodePool(ShinyManager *self, uint32_t a_count);
+- _ShinyManager_resizeNodePool · function · L103-L103 — SHINY_API void _ShinyManager_resizeNodePool(ShinyManager *self, uint32_t a_count);
+- _ShinyManager_insertNode · function · L106-L106 — SHINY_API void _ShinyManager_insertNode(ShinyManager *self, ShinyNode* a_pNode);
+- _ShinyManager_init · function · L108-L114 — SHINY_INLINE void _ShinyManager_init(ShinyManager *self)
+- _ShinyManager_uninit · function · L116-L122 — SHINY_INLINE void _ShinyManager_uninit(ShinyManager *self)
+- _ShinyManager_incLookup · function · L125-L125 — SHINY_INLINE void _ShinyManager_incLookup(ShinyManager *self) { self->_lookupCount++; }
+- _ShinyManager_incLookupSuccess · function · L126-L126 — SHINY_INLINE void _ShinyManager_incLookupSuccess(ShinyManager *self) { self->_lookupSuccessCount++; }
+- ShinyManager_lookupRate · function · L127-L127 — SHINY_INLINE float ShinyManager_lookupRate(const ShinyManager *self) { return ((float) self->_lookupSuccessCount) / ((float) self->_lookupCount); }
+- _ShinyManager_incLookup · function · L130-L130 — SHINY_INLINE void _ShinyManager_incLookup(ShinyManager * self) { self = self; }
+- _ShinyManager_incLookupSuccess · function · L131-L131 — SHINY_INLINE void _ShinyManager_incLookupSuccess(ShinyManager *  self) { self = self; }
+- ShinyManager_lookupRate · function · L132-L132 — SHINY_INLINE float ShinyManager_lookupRate(const ShinyManager *  self) { self = self; return -1; }
+- ShinyManager_resetZones · function · L135-L135 — SHINY_API void ShinyManager_resetZones(ShinyManager *self);
+- ShinyManager_destroyNodes · function · L136-L136 — SHINY_API void ShinyManager_destroyNodes(ShinyManager *self);
+- ShinyManager_tableUsage · function · L138-L140 — SHINY_INLINE float ShinyManager_tableUsage(const ShinyManager *self)
+- ShinyManager_allocMemInBytes · function · L142-L145 — SHINY_INLINE uint32_t ShinyManager_allocMemInBytes(const ShinyManager *self)
+- ShinyManager_beginNode · function · L147-L152 — SHINY_INLINE void ShinyManager_beginNode(ShinyManager *self, ShinyNode* a_node)
+- ShinyManager_lookupAndBeginNode · function · L154-L163 — SHINY_INLINE void ShinyManager_lookupAndBeginNode(ShinyManager *self, ShinyNodeCache* a_cache, ShinyZone* a_zone)
+- ShinyManager_endCurNode · function · L165-L172 — SHINY_INLINE void ShinyManager_endCurNode(ShinyManager *self)
+- ShinyManager_preLoad · function · L176-L176 — SHINY_API void ShinyManager_preLoad(ShinyManager *self);
+- ShinyManager_updateClean · function · L178-L178 — SHINY_API void ShinyManager_updateClean(ShinyManager *self);
+- ShinyManager_update · function · L179-L179 — SHINY_API void ShinyManager_update(ShinyManager *self);
+- ShinyManager_clear · function · L181-L181 — SHINY_API void ShinyManager_clear(ShinyManager *self);
+- ShinyManager_destroy · function · L182-L182 — SHINY_API void ShinyManager_destroy(ShinyManager *self);
+- ShinyManager_sortZones · function · L184-L187 — SHINY_INLINE void ShinyManager_sortZones(ShinyManager *self)
+- ShinyManager_getOutputErrorString · function · L189-L189 — SHINY_API const char* ShinyManager_getOutputErrorString(ShinyManager *self);
+- ShinyManager_output · function · L191-L191 — SHINY_API int ShinyManager_output(ShinyManager *self, const char *a_filename);
+- ShinyManager_outputToStream · function · L192-L192 — SHINY_API void ShinyManager_outputToStream(ShinyManager *self, FILE *stream);
+- ShinyManager_outputTreeToString · function · L197-L201 — SHINY_INLINE std::string ShinyManager_outputTreeToString(ShinyManager *self)
+- ShinyManager_outputFlatToString · function · L203-L209 — SHINY_INLINE std::string ShinyManager_outputFlatToString(ShinyManager *self)
+- ShinyManager_isZoneSelfTimeBelow · function · L214-L217 — SHINY_INLINE int ShinyManager_isZoneSelfTimeBelow(ShinyManager *self, ShinyZone* a_zone, float a_percentage)
+- ShinyManager_isZoneTotalTimeBelow · function · L219-L222 — SHINY_INLINE int ShinyManager_isZoneTotalTimeBelow(ShinyManager *self, ShinyZone* a_zone, float a_percentage)
+- ShinyManager_enumerateNodes · function · L226-L228 — SHINY_INLINE void ShinyManager_enumerateNodes(ShinyManager *self, void (*a_func)(const ShinyNode*))
+- ShinyManager_enumerateZones · function · L230-L232 — SHINY_INLINE void ShinyManager_enumerateZones(ShinyManager *self, void (*a_func)(const ShinyZone*))
+- ShinyEndNodeOnDestruction · function · L257-L257 — SHINY_INLINE ~ShinyEndNodeOnDestruction()
+- ShinyManager_endCurNode · function · L257-L258 — SHINY_INLINE ~ShinyEndNodeOnDestruction()

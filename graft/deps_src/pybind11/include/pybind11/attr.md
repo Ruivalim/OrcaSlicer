@@ -1,0 +1,55 @@
+# deps_src/pybind11/include/pybind11/attr.h
+
+- is_method · function · L27-L27 — explicit is_method(const handle &c) : class_(c) {}
+- is_setter · class · L31-L31 — struct is_setter {};
+- is_operator · class · L34-L34 — struct is_operator {};
+- is_final · class · L37-L37 — struct is_final {};
+- name · class · L52-L169 — struct name
+- sibling · class · L58-L70 — struct sibling
+- keep_alive · class · L74-L74 — struct keep_alive {};
+- multiple_inheritance · class · L77-L77 — struct multiple_inheritance {};
+- dynamic_attr · class · L80-L80 — struct dynamic_attr {};
+- buffer_protocol · class · L83-L83 — struct buffer_protocol {};
+- release_gil_before_calling_cpp_dtor · class · L87-L87 — struct release_gil_before_calling_cpp_dtor {};
+- metaclass · class · L90-L168 — struct metaclass
+- custom_type_setup · class · L109-L115 — struct custom_type_setup
+- module_local · class · L118-L161 — struct module_local
+- arithmetic · class · L124-L124 — struct arithmetic {};
+- prepend · class · L127-L127 — struct prepend {};
+- call_guard · class · L151-L153 — struct call_guard<>
+- op_type · type · L176-L176 — enum op_type : int;
+- function_record · class · L197-L275 — struct function_record
+- type_record · class · L284-L320 — struct type_record
+- name · function · L368-L368 — std::string tname(base.name());
+- tname · function · L368-L368 — std::string tname(base.name());
+- function_call · function · L390-L390 — inline function_call::function_call(const function_record &f, handle p) : func(f), parent(p)
+- parent · function · L390-L393 — inline function_call::function_call(const function_record &f, handle p) : func(f), parent(p)
+- is_new_style_constructor · class · L396-L396 — struct is_new_style_constructor {};
+- init · function · L410-L410 — static void init(const T &, function_record *) {}
+- init · function · L411-L411 — static void init(const T &, type_record *) {}
+- precall · function · L412-L412 — static void precall(function_call &) {}
+- postcall · function · L413-L413 — static void postcall(function_call &, handle) {}
+- init · function · L419-L419 — static void init(const name &n, function_record *r) { r->name = const_cast<char *>(n.value); }
+- init · function · L425-L425 — static void init(const doc &n, function_record *r) { r->doc = const_cast<char *>(n.value); }
+- init · function · L431-L431 — static void init(const char *d, function_record *r) { r->doc = const_cast<char *>(d); }
+- init · function · L432-L432 — static void init(const char *d, type_record *r) { r->doc = d; }
+- init · function · L440-L440 — static void init(const return_value_policy &p, function_record *r) { r->policy = p; }
+- init · function · L447-L447 — static void init(const sibling &s, function_record *r) { r->sibling = s.value; }
+- init · function · L453-L456 — static void init(const is_method &s, function_record *r)
+- init · function · L462-L462 — static void init(const is_setter &, function_record *r) { r->is_setter = true; }
+- init · function · L468-L468 — static void init(const scope &s, function_record *r) { r->scope = s.value; }
+- init · function · L474-L474 — static void init(const is_operator &, function_record *r) { r->is_operator = true; }
+- init · function · L480-L482 — static void init(const is_new_style_constructor &, function_record *r)
+- check_kw_only_arg · function · L485-L490 — inline void check_kw_only_arg(const arg &a, function_record *r)
+- append_self_arg_if_needed · function · L492-L496 — inline void append_self_arg_if_needed(function_record *r)
+- init · function · L501-L506 — static void init(const arg &a, function_record *r)
+- init · function · L512-L547 — static void init(const arg_v &a, function_record *r)
+- init · function · L553-L560 — static void init(const kw_only &, function_record *r)
+- init · function · L566-L573 — static void init(const pos_only &, function_record *r)
+- init · function · L581-L581 — static void init(const handle &h, type_record *r) { r->bases.append(h); }
+- init · function · L676-L676 — static void init(const Args &...args, function_record *r)
+- init · function · L683-L683 — static void init(const Args &...args, type_record *r)
+- precall · function · L690-L690 — static void precall(function_call &call)
+- postcall · function · L696-L703 — static void postcall(function_call &call, handle fn_ret)
+- expected_num_args · function · L716-L719 — constexpr bool expected_num_args(size_t nargs, bool has_args, bool has_kwargs)
+- PYBIND11_NAMESPACE_END · function · L722-L722 — PYBIND11_NAMESPACE_END(PYBIND11_NAMESPACE)

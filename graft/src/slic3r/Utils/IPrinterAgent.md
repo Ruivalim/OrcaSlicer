@@ -1,0 +1,45 @@
+# src/slic3r/Utils/IPrinterAgent.hpp
+
+- ICloudServiceAgent · class · L17-L17 — class ICloudServiceAgent;
+- AgentInfo · class · L25-L30 — struct AgentInfo
+- FilamentSyncMode · type · L40-L44 — enum class FilamentSyncMode
+- IPrinterAgent · class · L67-L303 — class IPrinterAgent
+- set_cloud_agent · function · L77-L77 — virtual void set_cloud_agent(std::shared_ptr<ICloudServiceAgent> cloud) = 0;
+- send_message · function · L85-L85 — virtual int send_message(std::string dev_id, std::string json_str, int qos, int flag) = 0;
+- connect_printer · function · L90-L90 — virtual int connect_printer(std::string dev_id, std::string dev_ip, std::string username, std::string password, bool use_ssl) = 0;
+- disconnect_printer · function · L95-L95 — virtual int disconnect_printer() = 0;
+- send_message_to_printer · function · L100-L100 — virtual int send_message_to_printer(std::string dev_id, std::string json_str, int qos, int flag) = 0;
+- check_cert · function · L108-L108 — virtual int check_cert() = 0;
+- install_device_cert · function · L113-L113 — virtual void install_device_cert(std::string dev_id, bool lan_only) = 0;
+- start_discovery · function · L121-L121 — virtual bool start_discovery(bool start, bool sending) = 0;
+- ping_bind · function · L129-L129 — virtual int ping_bind(std::string ping_code) = 0;
+- bind_detect · function · L134-L134 — virtual int bind_detect(std::string dev_ip, std::string sec_link, detectResult& detect) = 0;
+- bind · function · L139-L139 — virtual int bind(std::string dev_ip, std::string dev_id, std::string dev_model, std::string sec_link, std::string timezone, bool improved, OnUpdateStatusFn update_fn) = 0;
+- unbind · function · L144-L144 — virtual int unbind(std::string dev_id) = 0;
+- request_bind_ticket · function · L149-L149 — virtual int request_bind_ticket(std::string* ticket) = 0;
+- get_hms_snapshot · function · L155-L155 — virtual int get_hms_snapshot(std::string dev_id, std::string file_name, std::function<void(std::string, int)> callback) = 0;
+- set_server_callback · function · L160-L160 — virtual int set_server_callback(OnServerErrFn fn) = 0;
+- get_user_selected_machine · function · L168-L168 — virtual std::string get_user_selected_machine() = 0;
+- set_user_selected_machine · function · L173-L173 — virtual int set_user_selected_machine(std::string dev_id) = 0;
+- start_subscribe · function · L181-L181 — virtual int start_subscribe(std::string module) { (void) module; return BAMBU_NETWORK_SUCCESS; }
+- stop_subscribe · function · L186-L186 — virtual int stop_subscribe(std::string module) { (void) module; return BAMBU_NETWORK_SUCCESS; }
+- add_subscribe · function · L191-L191 — virtual int add_subscribe(std::vector<std::string> dev_list) { (void) dev_list; return BAMBU_NETWORK_SUCCESS; }
+- del_subscribe · function · L196-L196 — virtual int del_subscribe(std::vector<std::string> dev_list) { (void) dev_list; return BAMBU_NETWORK_SUCCESS; }
+- start_print · function · L204-L204 — virtual int start_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) = 0;
+- start_local_print_with_record · function · L209-L209 — virtual int start_local_print_with_record(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) = 0;
+- start_send_gcode_to_sdcard · function · L214-L214 — virtual int start_send_gcode_to_sdcard(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) = 0;
+- start_local_print · function · L219-L219 — virtual int start_local_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) = 0;
+- start_sdcard_print · function · L224-L224 — virtual int start_sdcard_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) = 0;
+- set_on_ssdp_msg_fn · function · L232-L232 — virtual int set_on_ssdp_msg_fn(OnMsgArrivedFn fn) = 0;
+- set_on_printer_connected_fn · function · L237-L237 — virtual int set_on_printer_connected_fn(OnPrinterConnectedFn fn) = 0;
+- set_on_subscribe_failure_fn · function · L242-L242 — virtual int set_on_subscribe_failure_fn(GetSubscribeFailureFn fn) = 0;
+- set_on_message_fn · function · L247-L247 — virtual int set_on_message_fn(OnMessageFn fn) = 0;
+- set_on_user_message_fn · function · L252-L252 — virtual int set_on_user_message_fn(OnMessageFn fn) = 0;
+- set_on_local_connect_fn · function · L257-L257 — virtual int set_on_local_connect_fn(OnLocalConnectedFn fn) = 0;
+- set_on_local_message_fn · function · L262-L262 — virtual int set_on_local_message_fn(OnMessageFn fn) = 0;
+- set_queue_on_main_fn · function · L267-L267 — virtual int set_queue_on_main_fn(QueueOnMainFn fn) = 0;
+- get_agent_info · function · L272-L272 — virtual AgentInfo get_agent_info() = 0;
+- get_filament_sync_mode · function · L285-L285 — virtual FilamentSyncMode get_filament_sync_mode() const { return FilamentSyncMode::none; }
+- fetch_filament_info · function · L292-L292 — virtual bool fetch_filament_info(std::string dev_id) { return false; }
+- to_orca_filament_id · function · L301-L301 — virtual std::string to_orca_filament_id(const std::string& printer_filament_id) const { return printer_filament_id; }
+- from_orca_filament_id · function · L302-L302 — virtual std::string from_orca_filament_id(const std::string& orca_filament_id) const { return orca_filament_id; }

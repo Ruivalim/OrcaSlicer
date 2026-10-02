@@ -1,0 +1,89 @@
+# src/slic3r/GUI/Gizmos/GLGizmoPainterBase.hpp
+
+- SLAGizmoEventType · type · L20-L20 — enum class SLAGizmoEventType : unsigned char;
+- ClippingPlane · class · L21-L21 — class ClippingPlane;
+- GLGizmoMmuSegmentation · class · L23-L23 — class GLGizmoMmuSegmentation;
+- Selection · class · L24-L24 — class Selection;
+- PainterGizmoType · type · L26-L31 — enum class PainterGizmoType
+- TriangleSelectorGUI · class · L33-L85 — class TriangleSelectorGUI : public TriangleSelector
+- TriangleSelectorGUI · function · L35-L36 — explicit TriangleSelectorGUI(const TriangleMesh& mesh, float edge_limit = 0.6f)
+- render · function · L39-L39 — virtual void render(ImGuiWrapper* imgui, const Transform3d& matrix);
+- set_wireframe_needed · function · L41-L41 — void         set_wireframe_needed(bool need_wireframe) { m_need_wireframe = need_wireframe; }
+- get_wireframe_needed · function · L42-L42 — bool         get_wireframe_needed() { return m_need_wireframe; }
+- request_update_render_data · function · L45-L49 — void request_update_render_data(bool paint_changed = false)
+- render_debug · function · L56-L56 — void render_debug(ImGuiWrapper* imgui);
+- get_seed_fill_color · function · L66-L66 — static ColorRGBA get_seed_fill_color(const ColorRGBA &base_color);
+- update_render_data · function · L69-L69 — void update_render_data();
+- update_paint_contour · function · L81-L81 — void update_paint_contour();
+- render_paint_contour · function · L82-L82 — void render_paint_contour(const Transform3d& matrix);
+- TrianglePatch · class · L88-L98 — struct TrianglePatch
+- is_fragment · function · L97-L97 — bool is_fragment() const;
+- TriangleSelectorPatch · class · L100-L177 — class TriangleSelectorPatch : public TriangleSelectorGUI
+- TriangleSelectorPatch · function · L102-L103 — explicit TriangleSelectorPatch(const TriangleMesh& mesh, const std::vector<ColorRGBA> ebt_colors, float edge_limit = 0.6f)
+- render · function · L108-L108 — void render(ImGuiWrapper* imgui, const Transform3d& matrix) override;
+- update_triangles_per_type · function · L110-L110 — void update_triangles_per_type();
+- update_selector_triangles · function · L112-L112 — void update_selector_triangles();
+- update_triangles_per_patch · function · L113-L113 — void update_triangles_per_patch();
+- set_ebt_colors · function · L115-L115 — void set_ebt_colors(const std::vector<ColorRGBA> ebt_colors) { m_ebt_colors = ebt_colors; }
+- set_filter_state · function · L116-L116 — void set_filter_state(bool is_filter_state);
+- release_geometry · function · L127-L127 — void release_geometry();
+- finalize_vertices · function · L130-L130 — void finalize_vertices();
+- finalize_triangle_indices · function · L133-L133 — void finalize_triangle_indices();
+- clear · function · L135-L148 — void clear()
+- has_VBOs · function · L150-L154 — [[nodiscard]] inline bool has_VBOs(size_t triangle_indices_idx) const
+- update_render_data · function · L175-L175 — void update_render_data();
+- render · function · L176-L176 — void render(int buffer_idx, bool show_wireframe=false);
+- GLGizmoPainterBase · class · L183-L387 — class GLGizmoPainterBase : public GLGizmoBase
+- on_render · function · L188-L188 — void on_render() override {}
+- GLGizmoPainterBase · function · L191-L191 — GLGizmoPainterBase(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- data_changed · function · L193-L193 — void data_changed(bool is_serializing) override;
+- gizmo_event · function · L194-L194 — virtual bool gizmo_event(SLAGizmoEventType action, const Vec2d& mouse_position, bool shift_down, bool alt_down, bool control_down);
+- on_tool_shortcut · function · L196-L196 — virtual bool on_tool_shortcut(Shortcut shortcut) { return false; }
+- render_painter_gizmo · function · L202-L202 — virtual void render_painter_gizmo() = 0;
+- get_cursor_radius_min · function · L204-L204 — virtual const float get_cursor_radius_min() const { return CursorRadiusMin; }
+- get_cursor_radius_max · function · L205-L205 — virtual const float get_cursor_radius_max() const { return CursorRadiusMax; }
+- get_cursor_radius_step · function · L206-L206 — virtual const float get_cursor_radius_step() const { return CursorRadiusStep; }
+- get_cursor_height_min · function · L209-L209 — virtual const float get_cursor_height_min() const { return CursorHeightMin; }
+- get_cursor_height_max · function · L210-L210 — virtual const float get_cursor_height_max() const { return CursorHeightMax; }
+- get_cursor_height_step · function · L211-L211 — virtual const float get_cursor_height_step() const { return CursorHeightStep; }
+- on_mouse · function · L220-L220 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- render_triangles · function · L223-L223 — virtual void render_triangles(const Selection& selection) const;
+- render_cursor · function · L224-L224 — void render_cursor();
+- render_cursor_circle · function · L225-L225 — void render_cursor_circle();
+- render_cursor_sphere · function · L226-L226 — void render_cursor_sphere(const Transform3d& trafo) const;
+- render_cursor_height_range · function · L228-L228 — void render_cursor_height_range(const Transform3d& trafo) const;
+- update_model_object · function · L230-L230 — virtual void update_model_object() = 0;
+- update_from_model_object · function · L231-L231 — virtual void update_from_model_object(bool first_update) = 0;
+- get_cursor_sphere_left_button_color · function · L233-L233 — virtual ColorRGBA get_cursor_sphere_left_button_color() const  { return { 0.0f, 0.0f, 1.0f, 0.25f }; }
+- get_cursor_sphere_right_button_color · function · L234-L234 — virtual ColorRGBA get_cursor_sphere_right_button_color() const { return { 1.0f, 0.0f, 0.0f, 0.25f }; }
+- get_cursor_hover_color · function · L236-L236 — virtual ColorRGBA get_cursor_hover_color() const { return { 0.f, 0.f, 0.f, 0.25f }; }
+- get_left_button_state_type · function · L238-L238 — virtual EnforcerBlockerType get_left_button_state_type() const { return EnforcerBlockerType::ENFORCER; }
+- get_right_button_state_type · function · L239-L239 — virtual EnforcerBlockerType get_right_button_state_type() const { return EnforcerBlockerType::BLOCKER; }
+- ToolType · type · L256-L262 — enum class ToolType
+- ProjectedMousePosition · class · L264-L269 — struct ProjectedMousePosition
+- ProjectedHeightRange · class · L272-L277 — struct ProjectedHeightRange
+- Button · type · L301-L305 — enum class Button
+- ClippingPlaneDataWrapper · class · L307-L311 — struct ClippingPlaneDataWrapper
+- get_clipping_plane_data · function · L313-L313 — ClippingPlaneDataWrapper get_clipping_plane_data() const;
+- get_clipping_plane_in_volume_coordinates · function · L315-L315 — TriangleSelector::ClippingPlane get_clipping_plane_in_volume_coordinates(const Transform3d &trafo) const;
+- get_projected_mouse_positions · function · L318-L318 — std::vector<std::vector<ProjectedMousePosition>> get_projected_mouse_positions(const Vec2d &mouse_position, double resolution, const std::vector<Transform3d> &trafo_matrices) const;
+- get_projected_height_range · function · L320-L320 — std::vector<ProjectedHeightRange> get_projected_height_range(const Vec2d& mouse_position, double resolution, const std::vector<const ModelVolume*>& part_volumes, const std::vector<Transform3d>& trafo_matrices) const;
+- is_mesh_point_clipped · function · L322-L322 — bool is_mesh_point_clipped(const Vec3d& point, const Transform3d& trafo) const;
+- mesh_trafo_matrices · function · L324-L324 — std::vector<Transform3d> mesh_trafo_matrices() const;
+- update_raycast_cache · function · L325-L327 — void update_raycast_cache(const Vec2d& mouse_position,
+- RaycastResult · class · L341-L346 — struct RaycastResult
+- CutContours · class · L350-L359 — struct CutContours
+- bounding_box · function · L367-L367 — BoundingBoxf3 bounding_box() const;
+- update_contours · function · L368-L368 — void update_contours(int i, const TriangleMesh& vol_mesh, float cursor_z, float max_z, float min_z) const;
+- on_set_state · function · L371-L371 — void on_set_state() override;
+- on_opening · function · L372-L372 — virtual void on_opening() = 0;
+- on_shutdown · function · L373-L373 — virtual void on_shutdown() = 0;
+- get_painter_type · function · L374-L374 — virtual PainterGizmoType get_painter_type() const = 0;
+- on_is_activable · function · L376-L376 — bool on_is_activable() const override;
+- render_follows_cursor · function · L377-L377 — bool render_follows_cursor() const override;
+- on_is_selectable · function · L378-L378 — bool on_is_selectable() const override;
+- on_load · function · L379-L379 — void on_load(cereal::BinaryInputArchive& ar) override;
+- on_save · function · L380-L380 — void on_save(cereal::BinaryOutputArchive& ar) const override {}
+- on_get_requirements · function · L381-L381 — CommonGizmosDataID on_get_requirements() const override;
+- wants_enter_leave_snapshots · function · L382-L382 — bool wants_enter_leave_snapshots() const override { return true; }
+- handle_snapshot_action_name · function · L384-L384 — virtual wxString handle_snapshot_action_name(bool shift_down, Button button_down) const = 0;

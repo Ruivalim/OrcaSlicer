@@ -1,0 +1,82 @@
+# src/slic3r/GUI/Gizmos/GLGizmoAdvancedCut.hpp
+
+- CutConnectorType · type · L9-L9 — enum class CutConnectorType : int;
+- ModelVolume · class · L10-L10 — class ModelVolume;
+- SLAGizmoEventType · type · L14-L14 — enum class SLAGizmoEventType : unsigned char;
+- GLGizmoAdvancedCut · class · L16-L217 — class GLGizmoAdvancedCut : public GLGizmoRotate3D
+- Rotate_data · class · L18-L26 — struct Rotate_data
+- Rotate_data · function · L22-L25 — Rotate_data(double an, Axis a)
+- InvalidConnectorsStatistics · class · L105-L117 — struct InvalidConnectorsStatistics
+- invalidate · function · L111-L116 — void invalidate()
+- GLGizmoAdvancedCut · function · L122-L122 — GLGizmoAdvancedCut(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- gizmo_event · function · L124-L124 — bool gizmo_event(SLAGizmoEventType action, const Vec2d &mouse_position, bool shift_down, bool alt_down, bool control_down);
+- on_key · function · L125-L125 — bool on_key(wxKeyEvent &evt);
+- get_movement · function · L127-L127 — double get_movement() const { return m_movement; }
+- set_movement · function · L128-L128 — void set_movement(double movement) const;
+- finish_rotation · function · L129-L129 — void finish_rotation();
+- get_tooltip · function · L130-L130 — std::string get_tooltip() const override;
+- bounding_box · function · L132-L132 — BoundingBoxf3 bounding_box() const;
+- is_looking_forward · function · L135-L135 — bool is_looking_forward() const;
+- unproject_on_cut_plane · function · L137-L137 — bool unproject_on_cut_plane(const Vec2d &mouse_pos, Vec3d &pos, Vec3d &pos_world);
+- apply_clipping_plane · function · L139-L139 — virtual bool apply_clipping_plane() { return m_connectors_editing; }
+- data_changed · function · L141-L141 — void data_changed(bool is_serializing) override;
+- on_init · function · L144-L144 — bool on_init() override;
+- on_load · function · L145-L145 — void on_load(cereal::BinaryInputArchive &ar) override;
+- on_save · function · L146-L146 — void on_save(cereal::BinaryOutputArchive &ar) const override;
+- on_get_name · function · L147-L147 — std::string on_get_name() const override;
+- on_set_state · function · L148-L148 — void on_set_state() override;
+- on_is_activable · function · L149-L149 — bool on_is_activable() const override;
+- on_get_requirements · function · L150-L150 — CommonGizmosDataID on_get_requirements() const override;
+- on_start_dragging · function · L151-L151 — void on_start_dragging() override;
+- on_stop_dragging · function · L152-L152 — void on_stop_dragging() override;
+- on_dragging · function · L153-L153 — void on_dragging(const UpdateData& data) override;
+- on_render · function · L154-L154 — void on_render() override;
+- on_render_input_window · function · L155-L155 — virtual void on_render_input_window(float x, float y, float bottom_limit);
+- show_tooltip_information · function · L157-L157 — void show_tooltip_information(float x, float y);
+- perform_cut · function · L160-L160 — void perform_cut(const Selection& selection);
+- can_perform_cut · function · L161-L161 — bool can_perform_cut() const;
+- apply_connectors_in_model · function · L162-L162 — void apply_connectors_in_model(ModelObject *mo, bool &create_dowels_as_separate_object);
+- is_selection_changed · function · L164-L164 — bool is_selection_changed(bool alt_down, bool shift_down);
+- select_connector · function · L165-L165 — void select_connector(int idx, bool select);
+- calc_projection · function · L167-L167 — double calc_projection(const Linef3& mouse_ray) const;
+- calc_plane_normal · function · L168-L168 — Vec3d calc_plane_normal(const std::array<Vec3d, 4>& plane_points) const;
+- calc_plane_center · function · L169-L169 — Vec3d calc_plane_center(const std::array<Vec3d, 4>& plane_points) const;
+- get_plane_normal · function · L170-L170 — Vec3d get_plane_normal() const;
+- get_plane_center · function · L171-L171 — Vec3d get_plane_center() const;
+- update_plane_points · function · L172-L172 — void update_plane_points();
+- get_plane_points · function · L173-L173 — std::array<Vec3d, 4> get_plane_points() const;
+- get_plane_points_world_coord · function · L174-L174 — std::array<Vec3d, 4> get_plane_points_world_coord() const;
+- reset_cut_plane · function · L175-L175 — void reset_cut_plane();
+- reset_all · function · L176-L176 — void reset_all();
+- put_connectors_on_cut_plane · function · L179-L179 — void put_connectors_on_cut_plane(const Vec3d &cp_normal, double cp_offset);
+- update_clipper · function · L180-L180 — void update_clipper();
+- render_cut_plane_and_grabbers · function · L182-L182 — void render_cut_plane_and_grabbers();
+- render_connectors · function · L183-L183 — void render_connectors();
+- render_clipper_cut · function · L184-L184 — void render_clipper_cut();
+- render_cut_line · function · L185-L185 — void render_cut_line();
+- render_connector_model · function · L186-L186 — void render_connector_model(GLModel &model, const ColorRGBA& color, Transform3d model_matrix, bool for_picking = false);
+- clear_selection · function · L188-L188 — void clear_selection();
+- init_connector_shapes · function · L189-L189 — void init_connector_shapes();
+- set_connectors_editing · function · L190-L190 — void set_connectors_editing(bool connectors_editing);
+- reset_connectors · function · L191-L191 — void reset_connectors();
+- update_connector_shape · function · L192-L192 — void update_connector_shape();
+- apply_selected_connectors · function · L193-L193 — void apply_selected_connectors(std::function<void(size_t idx)> apply_fn);
+- select_all_connectors · function · L194-L194 — void select_all_connectors();
+- unselect_all_connectors · function · L195-L195 — void unselect_all_connectors();
+- validate_connector_settings · function · L196-L196 — void validate_connector_settings();
+- add_connector · function · L197-L197 — bool add_connector(CutConnectors &connectors, const Vec2d &mouse_position);
+- delete_selected_connectors · function · L198-L198 — bool delete_selected_connectors();
+- is_outside_of_cut_contour · function · L199-L199 — bool is_outside_of_cut_contour(size_t idx, const CutConnectors &connectors, const Vec3d cur_pos);
+- is_conflict_for_connector · function · L200-L200 — bool is_conflict_for_connector(size_t idx, const CutConnectors &connectors, const Vec3d cur_pos);
+- check_conflict_for_all_connectors · function · L201-L201 — void check_conflict_for_all_connectors();
+- render_cut_plane_input_window · function · L204-L204 — void render_cut_plane_input_window(float x, float y, float bottom_limit);
+- init_connectors_input_window_data · function · L205-L205 — void init_connectors_input_window_data();
+- render_connectors_input_window · function · L206-L206 — void render_connectors_input_window(float x, float y, float bottom_limit);
+- render_input_window_warning · function · L207-L207 — void render_input_window_warning() const;
+- render_reset_button · function · L208-L208 — bool render_reset_button(const std::string &label_id, const std::string &tooltip) const;
+- render_connect_type_radio_button · function · L209-L209 — bool render_connect_type_radio_button(CutConnectorType type);
+- render_combo · function · L211-L211 — bool render_combo(const std::string &label, const std::vector<std::string> &lines, size_t &selection_idx);
+- render_slider_double_input · function · L212-L212 — bool render_slider_double_input(const std::string &label, float &value_in, float &tolerance_in);
+- cut_line_processing · function · L214-L214 — bool cut_line_processing() const;
+- discard_cut_line_processing · function · L215-L215 — void discard_cut_line_processing();
+- process_cut_line · function · L216-L216 — bool process_cut_line(SLAGizmoEventType action, const Vec2d &mouse_position);

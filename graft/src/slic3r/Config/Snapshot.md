@@ -1,0 +1,31 @@
+# src/slic3r/Config/Snapshot.hpp
+
+- AppConfig · class · L16-L16 — class AppConfig;
+- Snapshot · class · L31-L90 — class Snapshot
+- Reason · type · L34-L40 — enum Reason
+- Snapshot · function · L42-L42 — Snapshot() { clear(); }
+- clear · function · L44-L44 — void 		clear();
+- load_ini · function · L45-L45 — void 		load_ini(const std::string &path);
+- save_ini · function · L46-L46 — void 		save_ini(const std::string &path);
+- export_selections · function · L49-L49 — void 		export_selections(AppConfig &config) const;
+- export_vendor_configs · function · L50-L50 — void 		export_vendor_configs(AppConfig &config) const;
+- equal_to_active · function · L55-L55 — bool 		equal_to_active(const AppConfig &app_config) const;
+- format_reason · function · L67-L67 — std::string 				format_reason() const;
+- VendorConfig · class · L80-L87 — struct VendorConfig
+- SnapshotDB · class · L92-L128 — class SnapshotDB
+- singleton · function · L96-L96 — static SnapshotDB&				singleton();
+- const_iterator · type · L98-L98 — typedef std::vector<Snapshot>::const_iterator const_iterator;
+- load_db · function · L103-L103 — size_t 							load_db();
+- update_slic3r_versions · function · L104-L104 — void 							update_slic3r_versions(std::vector<Index> &index_db);
+- take_snapshot · function · L108-L108 — const Snapshot&					take_snapshot(const AppConfig &app_config, Snapshot::Reason reason, const std::string &comment = "");
+- restore_snapshot · function · L109-L109 — const Snapshot&					restore_snapshot(const std::string &id, AppConfig &app_config);
+- restore_snapshot · function · L110-L110 — void 							restore_snapshot(const Snapshot &snapshot, AppConfig &app_config);
+- is_on_snapshot · function · L113-L113 — bool 							is_on_snapshot(AppConfig &app_config) const;
+- snapshot_with_vendor_preset · function · L115-L115 — const_iterator					snapshot_with_vendor_preset(const std::string &vendor_name, const Semver &config_version);
+- begin · function · L117-L117 — const_iterator					begin()     const { return m_snapshots.begin(); }
+- end · function · L118-L118 — const_iterator					end()       const { return m_snapshots.end(); }
+- snapshot · function · L119-L119 — const_iterator 					snapshot(const std::string &id) const;
+- snapshots · function · L120-L120 — const std::vector<Snapshot>& 	snapshots() const { return m_snapshots; }
+- create_db_dir · function · L124-L124 — static boost::filesystem::path	create_db_dir();
+- take_config_snapshot_report_error · function · L131-L131 — const Snapshot* take_config_snapshot_report_error(const AppConfig &app_config, Snapshot::Reason reason, const std::string &comment);
+- take_config_snapshot_cancel_on_error · function · L135-L135 — bool take_config_snapshot_cancel_on_error(const AppConfig &app_config, Snapshot::Reason reason, const std::string &comment, const std::string &message);

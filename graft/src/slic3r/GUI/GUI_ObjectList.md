@@ -1,0 +1,238 @@
+# src/slic3r/GUI/GUI_ObjectList.hpp
+
+- wxBoxSizer · class · L18-L18 — class wxBoxSizer;
+- wxBitmapComboBox · class · L19-L19 — class wxBitmapComboBox;
+- wxMenuItem · class · L20-L20 — class wxMenuItem;
+- MenuWithSeparators · class · L21-L21 — class MenuWithSeparators;
+- ConfigOptionsGroup · class · L24-L24 — class ConfigOptionsGroup;
+- DynamicPrintConfig · class · L25-L25 — class DynamicPrintConfig;
+- ModelConfig · class · L26-L26 — class ModelConfig;
+- ModelObject · class · L27-L27 — class ModelObject;
+- ModelVolume · class · L28-L28 — class ModelVolume;
+- TriangleMesh · class · L29-L29 — class TriangleMesh;
+- ModelVolumeType · type · L30-L30 — enum class ModelVolumeType : int;
+- t_config_option_keys · type · L33-L33 — typedef std::vector<std::string>                    t_config_option_keys;
+- ModelVolumePtrs · type · L34-L34 — typedef std::vector<ModelVolume*>                   ModelVolumePtrs;
+- coordf_t · type · L35-L35 — typedef double                                      coordf_t;
+- t_layer_height_range · type · L36-L36 — typedef std::pair<coordf_t, coordf_t>               t_layer_height_range;
+- t_layer_config_ranges · type · L37-L37 — typedef std::map<t_layer_height_range, ModelConfig> t_layer_config_ranges;
+- Shortcut · type · L44-L44 — enum class Shortcut : uint8_t;
+- ObjectVolumeID · class · L46-L49 — struct ObjectVolumeID
+- ObjectSettingEvent · type · L51-L51 — typedef Event<ObjectVolumeID> ObjectSettingEvent;
+- PartPlate · class · L53-L53 — class PartPlate;
+- BitmapComboBox · class · L57-L57 — class BitmapComboBox;
+- ItemForDelete · class · L59-L80 — struct ItemForDelete
+- ItemForDelete · function · L65-L67 — ItemForDelete(ItemType type, int obj_idx, int sub_obj_idx)
+- MeshErrorsInfo · class · L82-L86 — struct MeshErrorsInfo
+- ObjectList · class · L88-L517 — class ObjectList : public wxDataViewCtrl
+- SELECTION_MODE · type · L91-L99 — enum SELECTION_MODE
+- OBJECT_ORGANIZE_TYPE · type · L101-L105 — enum OBJECT_ORGANIZE_TYPE
+- Clipboard · class · L107-L125 — struct Clipboard
+- reset · function · L109-L113 — void reset()
+- empty · function · L114-L114 — bool        empty()    const { return m_type == itUndef; }
+- get_type · function · L115-L115 — ItemType    get_type() const { return m_type; }
+- set_type · function · L116-L116 — void        set_type(ItemType type) { m_type = type; }
+- get_ranges_cache · function · L118-L118 — t_layer_config_ranges&  get_ranges_cache() { return m_layer_config_ranges_cache; }
+- get_config_cache · function · L119-L119 — DynamicPrintConfig&     get_config_cache() { return m_config_cache; }
+- dragged_item_data · class · L133-L167 — struct dragged_item_data
+- init · function · L135-L142 — void init(const int obj_idx, const int subobj_idx, const ItemType type)
+- init · function · L144-L147 — void init(const int obj_idx, const ItemType type)
+- clear · function · L149-L154 — void clear()
+- obj_idx · function · L156-L156 — int obj_idx() const  { return m_obj_idx; }
+- sub_obj_idx · function · L157-L157 — int sub_obj_idx() const  { return m_vol_idx; }
+- type · function · L158-L158 — ItemType type() const { return m_type; }
+- inst_idxs · function · L159-L159 — std::set<int>& inst_idxs() { return m_inst_idxs; }
+- is_live_model_item · function · L201-L201 — bool is_live_model_item(wxDataViewItem item) const;
+- start_filament_editor · function · L202-L202 — void start_filament_editor(wxDataViewItem item);
+- ensure_current_item_visible · function · L212-L216 — inline void ensure_current_item_visible()
+- ObjectList · function · L219-L219 — ObjectList(wxWindow* parent);
+- set_min_height · function · L222-L222 — void set_min_height();
+- update_min_height · function · L223-L223 — void update_min_height();
+- GetModel · function · L225-L225 — ObjectDataViewModel*        GetModel() const    { return m_objects_model; }
+- config · function · L226-L226 — ModelConfig*                config() const      { return m_config; }
+- objects · function · L227-L227 — std::vector<ModelObject*>*  objects() const     { return m_objects; }
+- object · function · L229-L229 — ModelObject*                object(const int obj_idx) const ;
+- create_objects_ctrl · function · L232-L232 — void                create_objects_ctrl();
+- update_objects_list_filament_column · function · L234-L234 — void                update_objects_list_filament_column(size_t filaments_count);
+- update_objects_list_filament_column_when_delete_filament · function · L235-L235 — void                update_objects_list_filament_column_when_delete_filament(size_t filament_id, size_t filaments_count, int replace_filament_id = -1);
+- update_filament_colors · function · L236-L236 — void                update_filament_colors();
+- set_filament_column_hidden · function · L238-L238 — void                set_filament_column_hidden(const bool hide) const;
+- set_variable_height_column_hidden · function · L240-L240 — void                set_variable_height_column_hidden(const bool hide) const;
+- set_color_paint_hidden · function · L242-L242 — void                set_color_paint_hidden(const bool hide) const;
+- set_support_paint_hidden · function · L243-L243 — void                set_support_paint_hidden(const bool hide) const;
+- set_sinking_hidden · function · L244-L244 — void                set_sinking_hidden(const bool hide) const;
+- update_filament_in_config · function · L247-L247 — void                update_filament_in_config(const wxDataViewItem& item);
+- update_name_in_model · function · L249-L249 — void                update_name_in_model(const wxDataViewItem& item) const;
+- update_name_in_list · function · L250-L250 — void                update_name_in_list(int obj_idx, int vol_idx) const;
+- update_filament_values_for_items · function · L251-L251 — void                update_filament_values_for_items(const size_t filaments_count);
+- update_filament_values_for_items_when_delete_filament · function · L252-L252 — void                update_filament_values_for_items_when_delete_filament(const size_t filament_id, const int replace_id = -1);
+- update_plate_values_for_items · function · L255-L255 — void                update_plate_values_for_items();
+- update_name_for_items · function · L256-L256 — void                update_name_for_items();
+- get_selected_item_indexes · function · L259-L259 — void                get_selected_item_indexes(int& obj_idx, int& vol_idx, const wxDataViewItem& item = wxDataViewItem(0));
+- get_selection_indexes · function · L260-L260 — void                get_selection_indexes(std::vector<int>& obj_idxs, std::vector<int>& vol_idxs);
+- get_repaired_errors_count · function · L262-L262 — int                 get_repaired_errors_count(const int obj_idx, const int vol_idx = -1) const;
+- get_mesh_errors_info · function · L267-L267 — MeshErrorsInfo      get_mesh_errors_info(const int obj_idx, const int vol_idx = -1, wxString* sidebar_info = nullptr, int* non_manifold_edges = nullptr) const;
+- get_mesh_errors_info · function · L268-L268 — MeshErrorsInfo      get_mesh_errors_info(wxString* sidebar_info = nullptr, int* non_manifold_edges = nullptr);
+- set_tooltip_for_item · function · L269-L269 — void                set_tooltip_for_item(const wxPoint& pt);
+- selection_changed · function · L271-L271 — void                selection_changed();
+- show_context_menu · function · L272-L272 — void                show_context_menu(const bool evt_context_menu);
+- extruder_editing · function · L273-L273 — void                extruder_editing();
+- key_event · function · L275-L275 — void                key_event(wxKeyEvent& event);
+- update_shortcut_accelerators · function · L278-L278 — void                update_shortcut_accelerators();
+- dispatch_shortcut · function · L280-L280 — bool                dispatch_shortcut(Shortcut shortcut);
+- copy · function · L282-L282 — void                copy();
+- paste · function · L283-L283 — void                paste();
+- cut · function · L284-L284 — void                cut();
+- clone · function · L286-L286 — void                clone();
+- cut_to_clipboard · function · L287-L287 — bool                cut_to_clipboard();
+- copy_to_clipboard · function · L288-L288 — bool                copy_to_clipboard();
+- paste_from_clipboard · function · L289-L289 — bool                paste_from_clipboard();
+- undo · function · L290-L290 — void                undo();
+- redo · function · L291-L291 — void                redo();
+- increase_instances · function · L292-L292 — void                increase_instances();
+- decrease_instances · function · L293-L293 — void                decrease_instances();
+- add_category_to_settings_from_selection · function · L295-L295 — void                add_category_to_settings_from_selection(const std::vector< std::pair<std::string, bool> >& category_options, wxDataViewItem item);
+- add_category_to_settings_from_frequent · function · L296-L296 — void                add_category_to_settings_from_frequent(const std::vector<std::string>& category_options, wxDataViewItem item);
+- show_settings · function · L297-L297 — void                show_settings(const wxDataViewItem settings_item);
+- is_instance_or_object_selected · function · L298-L298 — bool                is_instance_or_object_selected();
+- load_subobject · function · L300-L300 — void                load_subobject(ModelVolumeType type, bool from_galery = false);
+- load_modifier · function · L303-L303 — void                load_modifier(const wxArrayString& input_files, ModelObject& model_object, std::vector<ModelVolume*>& added_volumes, ModelVolumeType type, bool from_galery = false);
+- load_generic_subobject · function · L304-L304 — void                load_generic_subobject(const std::string& type_name, const ModelVolumeType type);
+- load_shape_object · function · L305-L305 — void                load_shape_object(const std::string &type_name);
+- load_mesh_object · function · L306-L306 — void                load_mesh_object(const TriangleMesh &mesh, const wxString &name, bool center = true);
+- switch_to_object_process · function · L308-L308 — void                switch_to_object_process();
+- del_object · function · L309-L309 — bool                del_object(const int obj_idx, bool refresh_immediately = true);
+- del_subobject_item · function · L310-L310 — void                del_subobject_item(wxDataViewItem& item);
+- del_settings_from_config · function · L311-L311 — void                del_settings_from_config(const wxDataViewItem& parent_item);
+- del_instances_from_object · function · L312-L312 — void                del_instances_from_object(const int obj_idx);
+- del_layer_from_object · function · L313-L313 — void                del_layer_from_object(const int obj_idx, const t_layer_height_range& layer_range);
+- del_layers_from_object · function · L314-L314 — void                del_layers_from_object(const int obj_idx);
+- del_from_cut_object · function · L315-L315 — bool                del_from_cut_object(bool is_connector, bool is_model_part = false, bool is_negative_volume = false);
+- del_subobject_from_object · function · L316-L316 — bool                del_subobject_from_object(const int obj_idx, const int idx, const int type);
+- del_info_item · function · L317-L317 — void                del_info_item(const int obj_idx, InfoItemType type);
+- split · function · L318-L318 — void                split();
+- merge · function · L319-L319 — void                merge(bool to_multipart_object);
+- layers_editing · function · L321-L321 — void                layers_editing();
+- boolean · function · L323-L323 — void                boolean();    // BBS: Boolean Operation of parts
+- add_layer_root_item · function · L324-L324 — wxDataViewItem      add_layer_root_item(const wxDataViewItem obj_item);
+- add_settings_item · function · L325-L325 — wxDataViewItem      add_settings_item(wxDataViewItem parent_item, const DynamicPrintConfig* config);
+- get_default_layer_config · function · L327-L327 — DynamicPrintConfig  get_default_layer_config(const int obj_idx);
+- get_volume_by_item · function · L328-L328 — bool                get_volume_by_item(const wxDataViewItem& item, ModelVolume*& volume);
+- is_splittable · function · L329-L329 — bool                is_splittable(bool to_objects);
+- selected_instances_of_same_object · function · L330-L330 — bool                selected_instances_of_same_object();
+- can_split_instances · function · L331-L331 — bool                can_split_instances();
+- can_merge_to_multipart_object · function · L332-L332 — bool                can_merge_to_multipart_object() const;
+- can_merge_to_single_object · function · L333-L333 — bool                can_merge_to_single_object() const;
+- can_mesh_boolean · function · L334-L334 — bool                can_mesh_boolean() const;
+- has_selected_cut_object · function · L336-L336 — bool                has_selected_cut_object() const;
+- invalidate_cut_info_for_selection · function · L337-L337 — void                invalidate_cut_info_for_selection();
+- invalidate_cut_info_for_object · function · L338-L338 — void                invalidate_cut_info_for_object(int obj_idx);
+- delete_all_connectors_for_selection · function · L339-L339 — void                delete_all_connectors_for_selection();
+- delete_all_connectors_for_object · function · L340-L340 — void                delete_all_connectors_for_object(int obj_idx);
+- get_mouse_position_in_control · function · L342-L342 — wxPoint             get_mouse_position_in_control() const { return wxGetMousePosition() - this->GetScreenPosition(); }
+- get_selected_obj_idx · function · L343-L343 — int                 get_selected_obj_idx() const;
+- get_item_config · function · L344-L344 — ModelConfig&        get_item_config(const wxDataViewItem& item) const;
+- changed_object · function · L346-L346 — void                changed_object(const int obj_idx = -1) const;
+- part_selection_changed · function · L347-L347 — void                part_selection_changed();
+- add_objects_to_list · function · L351-L351 — void add_objects_to_list(std::vector<size_t> obj_idxs, bool call_selection_changed = true, bool notify_partplate = true, bool do_info_update = true);
+- add_object_to_list · function · L352-L352 — void add_object_to_list(size_t obj_idx, bool call_selection_changed = true, bool notify_partplate = true, bool do_info_update = true);
+- add_volumes_to_object_in_list · function · L355-L355 — wxDataViewItemArray add_volumes_to_object_in_list(size_t obj_idx, std::function<bool(const ModelVolume *)> add_to_selection = nullptr);
+- delete_object_from_list · function · L357-L357 — void delete_object_from_list();
+- delete_object_from_list · function · L358-L358 — void delete_object_from_list(const size_t obj_idx);
+- delete_volume_from_list · function · L359-L359 — void delete_volume_from_list(const size_t obj_idx, const size_t vol_idx);
+- delete_instance_from_list · function · L360-L360 — void delete_instance_from_list(const size_t obj_idx, const size_t inst_idx);
+- delete_from_model_and_list · function · L361-L361 — void delete_from_model_and_list(const ItemType type, const int obj_idx, const int sub_obj_idx);
+- delete_from_model_and_list · function · L362-L362 — void delete_from_model_and_list(const std::vector<ItemForDelete>& items_for_delete);
+- update_lock_icons_for_model · function · L363-L363 — void update_lock_icons_for_model();
+- delete_all_objects_from_list · function · L365-L365 — void delete_all_objects_from_list();
+- increase_object_instances · function · L367-L367 — void increase_object_instances(const size_t obj_idx, const size_t num);
+- decrease_object_instances · function · L369-L369 — void decrease_object_instances(const size_t obj_idx, const size_t num);
+- unselect_objects · function · L373-L373 — void unselect_objects();
+- select_object_item · function · L376-L376 — void select_object_item(bool is_msr_gizmo);
+- remove · function · L379-L379 — void remove();
+- del_layer_range · function · L380-L380 — void del_layer_range(const t_layer_height_range& range);
+- add_layer_range_after_current · function · L387-L387 — void add_layer_range_after_current(const t_layer_height_range current_range);
+- can_add_new_range_after_current · function · L388-L388 — wxString can_add_new_range_after_current( t_layer_height_range current_range);
+- add_layer_item · function · L389-L391 — void add_layer_item (const t_layer_height_range& range,
+- edit_layer_range · function · L392-L392 — bool edit_layer_range(const t_layer_height_range& range, coordf_t layer_height);
+- edit_layer_range · function · L398-L401 — bool edit_layer_range(const t_layer_height_range& range,
+- init · function · L403-L403 — void init();
+- multiple_selection · function · L404-L404 — bool multiple_selection() const ;
+- is_selected · function · L405-L405 — bool is_selected(const ItemType type) const;
+- is_connectors_item_selected · function · L406-L406 — bool is_connectors_item_selected() const;
+- is_connectors_item_selected · function · L407-L407 — bool is_connectors_item_selected(const wxDataViewItemArray &sels) const;
+- get_selected_layers_range_idx · function · L408-L408 — int  get_selected_layers_range_idx() const;
+- set_selected_layers_range_idx · function · L409-L409 — void set_selected_layers_range_idx(const int range_idx) { m_selected_layers_range_idx = range_idx; }
+- set_selection_mode · function · L410-L410 — void set_selection_mode(SELECTION_MODE mode) { m_selection_mode = mode; }
+- update_selections · function · L411-L411 — void update_selections();
+- update_selections_on_canvas · function · L412-L412 — void update_selections_on_canvas();
+- select_item · function · L413-L413 — void select_item(const wxDataViewItem& item);
+- select_item · function · L414-L414 — void select_item(std::function<wxDataViewItem()> get_item);
+- select_items · function · L415-L415 — void select_items(const wxDataViewItemArray& sels);
+- select_item · function · L417-L417 — void select_item(const ObjectVolumeID& ov_id);
+- select_items · function · L418-L418 — void select_items(const std::vector<ObjectVolumeID>& ov_ids);
+- select_all · function · L419-L419 — void select_all();
+- select_item_all_children · function · L420-L420 — void select_item_all_children();
+- update_selection_mode · function · L421-L421 — void update_selection_mode();
+- check_last_selection · function · L422-L422 — bool check_last_selection(wxString& msg_str);
+- fix_multiselection_conflicts · function · L424-L424 — void fix_multiselection_conflicts();
+- fix_cut_selection · function · L426-L426 — void fix_cut_selection();
+- fix_cut_selection · function · L427-L427 — bool fix_cut_selection(wxDataViewItemArray &sels);
+- get_selected_model_volume · function · L429-L429 — ModelVolume* get_selected_model_volume();
+- change_part_type · function · L431-L431 — void change_part_type();
+- set_volume_type · function · L433-L433 — void set_volume_type(ModelVolumeType new_type);
+- get_selected_volume_type · function · L434-L434 — ModelVolumeType get_selected_volume_type();
+- last_volume_is_deleted · function · L436-L436 — void last_volume_is_deleted(const int obj_idx);
+- update_and_show_object_settings_item · function · L437-L437 — void update_and_show_object_settings_item();
+- update_settings_item_and_selection · function · L438-L438 — void update_settings_item_and_selection(wxDataViewItem item, wxDataViewItemArray& selections);
+- update_object_list_by_printer_technology · function · L439-L439 — void update_object_list_by_printer_technology();
+- update_info_items · function · L440-L440 — void update_info_items(size_t obj_idx, wxDataViewItemArray *selections = nullptr, bool added_object = false, bool color_mode_changed = false);
+- update_variable_layer_obj_num · function · L441-L441 — void update_variable_layer_obj_num(ObjectDataViewModelNode* obj_node, size_t layer_data_count);
+- instances_to_separated_object · function · L443-L443 — void instances_to_separated_object(const int obj_idx, const std::set<int>& inst_idx);
+- instances_to_separated_objects · function · L444-L444 — void instances_to_separated_objects(const int obj_idx);
+- split_instances · function · L445-L445 — void split_instances();
+- rename_item · function · L446-L446 — void rename_item();
+- fix_through_cgal · function · L447-L447 — void fix_through_cgal();
+- simplify · function · L448-L448 — void simplify();
+- smooth_mesh · function · L449-L449 — void smooth_mesh();
+- update_item_error_icon · function · L450-L450 — void update_item_error_icon(const int obj_idx, int vol_idx) const ;
+- copy_layers_to_clipboard · function · L452-L452 — void copy_layers_to_clipboard();
+- paste_layers_into_list · function · L453-L453 — void paste_layers_into_list();
+- copy_settings_to_clipboard · function · L454-L454 — void copy_settings_to_clipboard();
+- paste_settings_into_list · function · L455-L455 — void paste_settings_into_list();
+- can_paste_settings_into_list · function · L456-L456 — bool can_paste_settings_into_list();
+- clipboard_is_empty · function · L457-L457 — bool clipboard_is_empty() const { return m_clipboard.empty(); }
+- paste_volumes_into_list · function · L458-L458 — void paste_volumes_into_list(int obj_idx, const ModelVolumePtrs& volumes);
+- paste_objects_into_list · function · L459-L459 — void paste_objects_into_list(const std::vector<size_t>& object_idxs);
+- msw_rescale · function · L461-L461 — void msw_rescale();
+- sys_color_changed · function · L462-L462 — void sys_color_changed();
+- update_after_undo_redo · function · L464-L464 — void update_after_undo_redo();
+- update_printable_state · function · L466-L466 — void update_printable_state(int obj_idx, int instance_idx);
+- toggle_printable_state · function · L467-L467 — void toggle_printable_state();
+- toggle_auto_drop · function · L468-L468 — void toggle_auto_drop();
+- enable_layers_editing · function · L469-L469 — void enable_layers_editing();
+- set_extruder_for_selected_items · function · L472-L472 — void set_extruder_for_selected_items(const int extruder);
+- reorder_volumes_and_get_selection · function · L473-L473 — wxDataViewItemArray reorder_volumes_and_get_selection(int obj_idx, std::function<bool(const ModelVolume*)> add_to_selection = nullptr);
+- apply_volumes_order · function · L474-L474 — void apply_volumes_order();
+- on_plate_added · function · L477-L477 — void on_plate_added(PartPlate* part_plate);
+- on_plate_deleted · function · L478-L478 — void on_plate_deleted(int plate_index);
+- reload_all_plates · function · L479-L479 — void reload_all_plates(bool notify_partplate = false);
+- on_plate_selected · function · L480-L480 — void on_plate_selected(int plate_index);
+- notify_instance_updated · function · L481-L481 — void notify_instance_updated(int obj_idx);
+- object_config_options_changed · function · L482-L482 — void object_config_options_changed(const ObjectVolumeID& ov_id);
+- printable_state_changed · function · L483-L483 — void printable_state_changed(const std::vector<ModelObject*> model_objects);
+- printable_state_changed · function · L484-L484 — void printable_state_changed(const std::vector<ObjectVolumeID>& ov_ids);
+- assembly_plate_object_name · function · L487-L487 — void assembly_plate_object_name();
+- selected_object · function · L488-L488 — void selected_object(ObjectDataViewModelNode* item);
+- OnContextMenu · function · L495-L495 — void OnContextMenu(wxDataViewEvent &event);
+- list_manipulation · function · L496-L496 — void list_manipulation(const wxPoint& mouse_pos, bool evt_context_menu = false);
+- update_name_column_width · function · L499-L499 — void update_name_column_width() const;
+- OnBeginDrag · function · L501-L501 — void OnBeginDrag(wxDataViewEvent &event);
+- OnDropPossible · function · L502-L502 — void OnDropPossible(wxDataViewEvent &event);
+- OnDrop · function · L503-L503 — void OnDrop(wxDataViewEvent &event);
+- can_drop · function · L504-L504 — bool can_drop(const wxDataViewItem& item, int& src_obj_id, int& src_plate, int& dest_obj_id, int& dest_plate) const ;
+- ItemValueChanged · function · L506-L506 — void ItemValueChanged(wxDataViewEvent &event);
+- OnStartEditing · function · L508-L508 — void OnStartEditing(wxDataViewEvent &event);
+- OnEditingStarted · function · L509-L509 — void OnEditingStarted(wxDataViewEvent &event);
+- OnEditingDone · function · L510-L510 — void OnEditingDone(wxDataViewEvent &event);
+- apply_object_instance_transfrom_to_all_volumes · function · L513-L513 — void apply_object_instance_transfrom_to_all_volumes(ModelObject *model_object, bool need_update_assemble_matrix = true);

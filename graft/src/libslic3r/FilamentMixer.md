@@ -1,0 +1,24 @@
+# src/libslic3r/FilamentMixer.hpp
+
+- GradientAnchor · class · L19-L24 — struct GradientAnchor
+- GradientCurve · class · L28-L31 — struct GradientCurve
+- empty · function · L30-L30 — bool empty() const { return points.empty(); }
+- parse_gradient_curve · function · L45-L45 — GradientCurve parse_gradient_curve(const std::string& s);
+- serialize_gradient_curve · function · L50-L50 — std::string serialize_gradient_curve(const GradientCurve& c);
+- sample_gradient_curve · function · L56-L56 — double sample_gradient_curve(const GradientCurve& c, double t);
+- compute_pchip_default_tangents · function · L62-L62 — std::vector<double> compute_pchip_default_tangents(const std::vector<GradientAnchor>& pts);
+- filament_mixer_lerp · function · L64-L67 — void filament_mixer_lerp(unsigned char r1, unsigned char g1, unsigned char b1,
+- filament_mixer_lerp_float · function · L69-L72 — void filament_mixer_lerp_float(float r1, float g1, float b1,
+- filament_mixer_lerp_linear_float · function · L74-L77 — void filament_mixer_lerp_linear_float(float r1, float g1, float b1,
+- blend_color · function · L81-L81 — std::string blend_color(const std::string& hex_a, const std::string& hex_b, float ratio_b);
+- blend_color_multi · function · L85-L86 — std::string blend_color_multi(const std::vector<std::string> &hex_colors,
+- parse_mixed_components · function · L89-L89 — std::vector<unsigned int> parse_mixed_components(const std::string &str);
+- parse_mixed_ratios · function · L94-L94 — std::vector<double> parse_mixed_ratios(const std::string &str, size_t n_components);
+- has_any_mixed_filament · function · L98-L98 — bool has_any_mixed_filament(const std::vector<unsigned char> &is_mixed);
+- check_mixed_filament_integrity · function · L103-L106 — std::vector<size_t> check_mixed_filament_integrity(
+- expand_mixed_filaments · function · L111-L114 — std::vector<unsigned int> expand_mixed_filaments(
+- remap_mixed_components_on_delete · function · L121-L124 — void remap_mixed_components_on_delete(
+- check_mixed_filament_type_consistency · function · L130-L133 — std::vector<size_t> check_mixed_filament_type_consistency(
+- expand_mixed_slots_in_unprintables · function · L138-L141 — void expand_mixed_slots_in_unprintables(
+- sanitize_mixed_gradient_curve_array · function · L150-L150 — void sanitize_mixed_gradient_curve_array(std::vector<std::string>& vals);
+- validate_mixed_filament_params · function · L154-L160 — std::map<std::string, std::string> validate_mixed_filament_params(

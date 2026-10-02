@@ -1,0 +1,24 @@
+# src/slic3r/GUI/SettingsIndex.hpp
+
+- InputInfo · class · L18-L23 — struct InputInfo
+- GroupAndCategory · class · L25-L32 — struct GroupAndCategory
+- compose_display_label · function · L36-L43 — inline wxString compose_display_label(const wxString& line_label, const wxString& leaf_label, bool multi)
+- resolve_setting_title · function · L47-L52 — inline wxString resolve_setting_title(const wxString& precomposed, const wxString& live_label, bool live_multi)
+- Option · class · L54-L77 — struct Option
+- opt_key · function · L76-L76 — std::string opt_key() const;
+- SettingsIndex · class · L82-L118 — class SettingsIndex
+- append_options · function · L89-L89 — void append_options(DynamicPrintConfig *config, Preset::Type type, ConfigOptionMode mode);
+- sort_options · function · L90-L90 — void sort_options();
+- init · function · L93-L93 — void init(std::vector<InputInfo> input_values);
+- apply · function · L95-L95 — bool apply(DynamicPrintConfig *config, Preset::Type type, ConfigOptionMode mode);
+- add_key · function · L97-L98 — void add_key(const std::string &opt_key, Preset::Type type, const wxString &group, const wxString &category,
+- set_path · function · L99-L99 — void set_path(const std::string &opt_key, Preset::Type type, const std::string &path);
+- set_line_label · function · L102-L102 — void set_line_label(const std::string &opt_key, Preset::Type type, const wxString &label);
+- options · function · L104-L104 — const std::vector<Option> &options() const { return m_options; }
+- all_options · function · L105-L105 — const std::vector<Option> &all_options() const { return m_all_modes; }
+- option_at · function · L106-L106 — const Option &             option_at(size_t pos) const { return m_options[pos]; }
+- get_option · function · L108-L108 — const Option &get_option(const std::string &opt_key, Preset::Type type, int &variant_index) const;
+- get_option · function · L109-L109 — Option        get_option(const std::string &opt_key, const wxString &label, Preset::Type type) const;
+- get_group_and_category · function · L111-L111 — const GroupAndCategory &get_group_and_category(const std::string &opt_key) { return m_groups_and_categories[opt_key]; }
+- sort_options_by_key · function · L113-L116 — void sort_options_by_key()
+- sort_options_by_label · function · L117-L117 — void sort_options_by_label() { sort_options(); }

@@ -1,0 +1,36 @@
+# src/libslic3r/SurfaceMesh.hpp
+
+- TriangleMesh · class · L11-L11 — class TriangleMesh;
+- Face_index · type · L15-L15 — enum Face_index : int;
+- Halfedge_index · class · L17-L33 — class Halfedge_index
+- Halfedge_index · function · L21-L21 — Halfedge_index() : m_face(Face_index(-1)), m_side(0) {}
+- face · function · L22-L22 — Face_index face() const { return m_face; }
+- side · function · L23-L23 — unsigned char side() const { return m_side; }
+- is_invalid · function · L24-L24 — bool is_invalid() const { return int(m_face) < 0; }
+- Halfedge_index · function · L29-L29 — Halfedge_index(int face_idx, unsigned char side_idx) : m_face(Face_index(face_idx)), m_side(side_idx) {}
+- Vertex_index · class · L37-L50 — class Vertex_index
+- Vertex_index · function · L41-L41 — Vertex_index() : m_face(Face_index(-1)), m_vertex_idx(0) {}
+- is_invalid · function · L42-L42 — bool is_invalid() const { return int(m_face) < 0; }
+- Vertex_index · function · L46-L46 — Vertex_index(int face_idx, unsigned char vertex_idx) : m_face(Face_index(face_idx)), m_vertex_idx(vertex_idx) {}
+- SurfaceMesh · class · L54-L159 — class SurfaceMesh
+- SurfaceMesh · function · L56-L59 — explicit SurfaceMesh(const indexed_triangle_set& its)
+- SurfaceMesh · function · L60-L60 — SurfaceMesh(const SurfaceMesh&)            = delete;
+- source · function · L63-L63 — Vertex_index source(Halfedge_index h) const { assert(! h.is_invalid()); return Vertex_index(h.m_face, h.m_side); }
+- target · function · L64-L64 — Vertex_index target(Halfedge_index h) const { assert(! h.is_invalid()); return Vertex_index(h.m_face, h.m_side == 2 ? 0 : h.m_side + 1); }
+- face · function · L65-L65 — Face_index face(Halfedge_index h) const { assert(! h.is_invalid()); return h.m_face; }
+- next · function · L67-L67 — Halfedge_index next(Halfedge_index h)     const { assert(! h.is_invalid()); h.m_side = (h.m_side + 1) % 3; return h; }
+- prev · function · L68-L68 — Halfedge_index prev(Halfedge_index h)     const { assert(! h.is_invalid()); h.m_side = (h.m_side == 0 ? 2 : h.m_side - 1); return h; }
+- halfedge · function · L69-L69 — Halfedge_index halfedge(Vertex_index v)   const { return Halfedge_index(v.m_face, (v.m_vertex_idx == 0 ? 2 : v.m_vertex_idx - 1)); }
+- halfedge · function · L70-L70 — Halfedge_index halfedge(Face_index f)     const { return Halfedge_index(f, 0); }
+- opposite · function · L71-L90 — Halfedge_index opposite(Halfedge_index h) const
+- next_around_target · function · L92-L92 — Halfedge_index next_around_target(Halfedge_index h) const { return opposite(next(h)); }
+- prev_around_target · function · L93-L93 — Halfedge_index prev_around_target(Halfedge_index h) const { Halfedge_index op = opposite(h); return (op.is_invalid() ? Halfedge_index() : prev(op)); }
+- next_around_source · function · L94-L94 — Halfedge_index next_around_source(Halfedge_index h) const { Halfedge_index op = opposite(h); return (op.is_invalid() ? Halfedge_index() : next(op)); }
+- prev_around_source · function · L95-L95 — Halfedge_index prev_around_source(Halfedge_index h) const { return opposite(prev(h)); }
+- halfedge · function · L96-L114 — Halfedge_index halfedge(Vertex_index source, Vertex_index target) const
+- point · function · L116-L116 — const stl_vertex& point(Vertex_index v) const { return m_its.vertices[m_its.indices[v.m_face][v.m_vertex_idx]]; }
+- degree · function · L118-L135 — size_t degree(Vertex_index v) const
+- degree · function · L137-L147 — size_t degree(Face_index f) const
+- is_border · function · L149-L149 — bool is_border(Halfedge_index h) const { return m_face_neighbors[h.m_face][h.m_side] == -1; }
+- is_same_vertex · function · L151-L151 — bool is_same_vertex(const Vertex_index& a, const Vertex_index& b) const { return m_its.indices[a.m_face][a.m_vertex_idx] == m_its.indices[b.m_face][b.m_vertex_idx]; }
+- get_face_neighbors · function · L152-L152 — Vec3i32 get_face_neighbors(Face_index face_id) const { assert(int(face_id) < int(m_face_neighbors.size())); return m_face_neighbors[face_id]; }

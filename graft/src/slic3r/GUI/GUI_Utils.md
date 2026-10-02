@@ -1,0 +1,85 @@
+# src/slic3r/GUI/GUI_Utils.hpp
+
+- wxCheckBox · class · L31-L31 — class wxCheckBox;
+- wxTopLevelWindow · class · L32-L32 — class wxTopLevelWindow;
+- wxRect · class · L33-L33 — class wxRect;
+- hex_to_int · function · L41-L44 — inline int hex_to_int(const char c)
+- decode_color_to_float_array · function · L46-L51 — static ColorRGBA decode_color_to_float_array(const std::string color)
+- copy_file_gui · function · L53-L53 — extern CopyFileResult copy_file_gui(const std::string &from, const std::string &to, std::string& error_message, const bool with_check = false);
+- find_toplevel_parent · function · L69-L69 — wxTopLevelWindow* find_toplevel_parent(wxWindow *window);
+- format_nozzle_diameter · function · L70-L70 — wxString format_nozzle_diameter(float diameter);
+- is_running_in_msix · function · L72-L72 — bool is_running_in_msix();
+- open_ms_store_product_page · function · L74-L74 — void open_ms_store_product_page();
+- on_window_geometry · function · L76-L76 — void on_window_geometry(wxTopLevelWindow *tlw, std::function<void()> callback);
+- get_dpi_for_window · function · L80-L80 — int get_dpi_for_window(const wxWindow *window);
+- get_default_font_for_dpi · function · L81-L81 — wxFont get_default_font_for_dpi(const wxWindow* window, int dpi);
+- get_default_font · function · L82-L82 — inline wxFont get_default_font(const wxWindow* window) { return get_default_font_for_dpi(window, get_dpi_for_window(window)); }
+- check_dark_mode · function · L84-L84 — bool check_dark_mode();
+- update_dark_config · function · L85-L85 — void update_dark_config();
+- update_dark_ui · function · L87-L87 — void update_dark_ui(wxWindow* window);
+- DPIAware · class · L92-L282 — template<class P> class DPIAware : public P, public wxInspector::wxInspectable
+- DPIAware · function · L95-L177 — DPIAware(wxWindow *parent, wxWindowID id, const wxString &title, const wxPoint &pos=wxDefaultPosition,
+- scale_factor · function · L181-L181 — float   scale_factor() const        { return m_scale_factor; }
+- prev_scale_factor · function · L182-L182 — float   prev_scale_factor() const   { return m_prev_scale_factor; }
+- set_scale_factor · function · L184-L184 — void    set_scale_factor(float v)      { m_scale_factor = v; }
+- set_prev_scale_factor · function · L185-L185 — void    set_prev_scale_factor(float v) { m_prev_scale_factor = v; }
+- set_em_unit · function · L186-L186 — void    set_em_unit(int v)             { m_em_unit = v; }
+- force_rescale · function · L187-L187 — bool    force_rescale() const          { return m_force_rescale; }
+- em_unit · function · L189-L189 — int     em_unit() const             { return m_em_unit; }
+- normal_font · function · L191-L191 — const wxFont& normal_font() const   { return m_normal_font; }
+- enable_force_rescale · function · L192-L192 — void enable_force_rescale()         { m_force_rescale = true; }
+- force_color_changed · function · L195-L199 — void force_color_changed()
+- ShowModal · function · L202-L208 — int ShowModal()
+- on_dpi_changed · function · L211-L211 — virtual void on_dpi_changed(const wxRect &suggested_rect) = 0;
+- on_sys_color_changed · function · L212-L212 — virtual void on_sys_color_changed() {};
+- update_em_unit · function · L235-L245 — void update_em_unit()
+- is_new_scale_factor · function · L248-L248 — bool    is_new_scale_factor() const { return fabs(m_scale_factor - m_prev_scale_factor) > 0.001; }
+- rescale · function · L250-L269 — void    rescale(const wxRect &suggested_rect)
+- HandleSettingChange · function · L272-L279 — bool HandleSettingChange(WXWPARAM wParam, WXLPARAM lParam) override
+- DPIFrame · type · L284-L284 — typedef DPIAware<wxFrame> DPIFrame;
+- DPIDialog · class · L285-L304 — class DPIDialog : public DPIAware<wxDialog>
+- EndModal · function · L291-L303 — void EndModal(int retCode) override
+- EventGuard · class · L307-L383 — class EventGuard
+- EventStorageBase · class · L316-L318 — struct EventStorageBase
+- EventStorageFun · class · L320-L335 — template<class EvTag, class Fun>
+- EventStorageFun · function · L326-L332 — EventStorageFun(wxEvtHandler *emitter, const EvTag &tag, Fun fun)
+- EventStorageMethod · class · L337-L356 — template<typename EvTag, typename Class, typename EvArg, typename EvHandler>
+- EventStorageMethod · function · L346-L353 — EventStorageMethod(wxEvtHandler *emitter, const EvTag &tag, MethodPtr method, EvHandler *handler)
+- EventGuard · function · L360-L360 — EventGuard() {}
+- EventGuard · function · L361-L361 — EventGuard(const EventGuard&) = delete;
+- EventGuard · function · L362-L362 — EventGuard(EventGuard &&other) : event_storage(std::move(other.event_storage)) {}
+- EventGuard · function · L364-L367 — template<class EvTag, class Fun>
+- EventGuard · function · L369-L372 — template<typename EvTag, typename Class, typename EvArg, typename EvHandler>
+- unbind · function · L381-L381 — void unbind() { event_storage.reset(nullptr); }
+- CheckboxFileDialog · class · L386-L414 — class CheckboxFileDialog : public wxFileDialog
+- CheckboxFileDialog · function · L389-L400 — CheckboxFileDialog(wxWindow *parent,
+- get_checkbox_value · function · L402-L402 — bool get_checkbox_value() const;
+- ExtraPanel · class · L405-L411 — struct ExtraPanel : public wxPanel
+- ExtraPanel · function · L409-L409 — ExtraPanel(wxWindow *parent);
+- ctor · function · L410-L410 — static wxWindow* ctor(wxWindow *parent);
+- WindowMetrics · class · L417-L434 — class WindowMetrics
+- WindowMetrics · function · L423-L423 — WindowMetrics() : maximized(false) {}
+- from_window · function · L425-L425 — static WindowMetrics from_window(wxTopLevelWindow *window);
+- deserialize · function · L426-L426 — static boost::optional<WindowMetrics> deserialize(const std::string &str);
+- get_rect · function · L428-L428 — const wxRect& get_rect() const { return rect; }
+- get_maximized · function · L429-L429 — bool get_maximized() const { return maximized; }
+- sanitize_for_display · function · L431-L431 — void sanitize_for_display(const wxRect &screen_rect);
+- center_for_display · function · L432-L432 — void center_for_display(const wxRect &screen_rect);
+- serialize · function · L433-L433 — std::string serialize() const;
+- hex_digit_to_int · function · L438-L444 — inline int hex_digit_to_int(const char c)
+- TaskTimer · class · L446-L454 — class TaskTimer
+- TaskTimer · function · L451-L451 — TaskTimer(std::string task_name);
+- KeyAutoRepeatFilter · class · L456-L464 — class KeyAutoRepeatFilter
+- increase_count · function · L461-L461 — void increase_count() { ++m_count; }
+- reset_count · function · L462-L462 — void reset_count() { m_count = 0; }
+- is_first · function · L463-L463 — bool is_first() const { return m_count == 0; }
+- load_image · function · L474-L474 — bool load_image(const std::string& filename, wxImage &image);
+- generate_image · function · L475-L475 — bool generate_image(const std::string &filename, wxImage &image, wxSize img_size, int method = GERNERATE_IMAGE_RESIZE);
+- get_dpi_for_window · function · L476-L476 — int get_dpi_for_window(const wxWindow *window);
+- dataview_remove_insets · function · L479-L479 — void dataview_remove_insets(wxDataViewCtrl* dv);
+- staticbox_remove_margin · function · L480-L480 — void staticbox_remove_margin(wxStaticBox* sb);
+- set_window_corner_radius · function · L482-L482 — void set_window_corner_radius(wxWindow* win, int radius);
+- RemoveButtonBorder · function · L486-L486 — void RemoveButtonBorder(wxWindow* win);   // for wxButton/wxBitmapToggleButton based controls (SwitchButton, CheckBox)
+- RemoveInputBorder · function · L487-L487 — void RemoveInputBorder(wxWindow* win);    // for TextCtrl based controls (TextInput, ComboBox, SpinInput..)
+- is_debugger_present · function · L491-L491 — bool is_debugger_present();
+- fit_in_display · function · L497-L497 — void fit_in_display(wxTopLevelWindow& window, wxSize desired_size);

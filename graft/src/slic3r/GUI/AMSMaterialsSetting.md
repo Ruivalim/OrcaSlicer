@@ -1,0 +1,49 @@
+# src/slic3r/GUI/AMSMaterialsSetting.hpp
+
+- ColorPicker · class · L34-L64 — class ColorPicker : public wxWindow
+- ColorPicker · function · L51-L51 — ColorPicker(wxWindow* parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- msw_rescale · function · L54-L54 — void msw_rescale();
+- set_color · function · L55-L55 — void set_color(wxColour col);
+- set_colors · function · L56-L56 — void set_colors(std::vector<wxColour>  cols);
+- set_selected · function · L57-L57 — void set_selected(bool sel) {m_selected = sel;Refresh();};
+- set_show_full · function · L58-L58 — void set_show_full(bool full) {m_show_full = full;Refresh();};
+- is_empty · function · L59-L59 — void is_empty(bool empty) {m_is_empty = empty;};
+- paintEvent · function · L61-L61 — void paintEvent(wxPaintEvent& evt);
+- render · function · L62-L62 — void render(wxDC& dc);
+- doRender · function · L63-L63 — void doRender(wxDC& dc);
+- ColorPickerPopup · class · L66-L92 — class ColorPickerPopup : public PopupWindow
+- ColorPickerPopup · function · L82-L82 — ColorPickerPopup(wxWindow* parent);
+- on_custom_clr_picker · function · L84-L84 — void on_custom_clr_picker(wxMouseEvent& event);
+- set_ams_colours · function · L85-L85 — void set_ams_colours(std::vector<wxColour> ams);
+- set_def_colour · function · L86-L86 — void set_def_colour(wxColour col);
+- paintEvent · function · L87-L87 — void paintEvent(wxPaintEvent& evt);
+- OnDismiss · function · L88-L88 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L89-L89 — virtual bool ProcessLeftDown(wxMouseEvent& event) wxOVERRIDE;
+- AMSMaterialsSetting · class · L95-L202 — class AMSMaterialsSetting : public DPIDialog
+- AMSMaterialsSetting · function · L98-L98 — AMSMaterialsSetting(wxWindow *parent, wxWindowID id);
+- create · function · L100-L100 — void create();
+- paintEvent · function · L102-L102 — void paintEvent(wxPaintEvent &evt);
+- input_min_finish · function · L103-L103 — void input_min_finish();
+- input_max_finish · function · L104-L104 — void input_max_finish();
+- update · function · L105-L105 — void update();
+- Show · function · L106-L106 — bool Show(bool show) override;
+- Popup · function · L107-L109 — void Popup(wxString filament = wxEmptyString, wxString sn = wxEmptyString,
+- post_select_event · function · L111-L111 — void post_select_event(int index);
+- set_color · function · L112-L112 — void set_color(wxColour color);
+- set_empty_color · function · L113-L113 — void set_empty_color(wxColour color);
+- set_colors · function · L114-L114 — void set_colors(std::vector<wxColour> colors);
+- set_ctype · function · L115-L115 — void set_ctype(int ctype);
+- on_picker_color · function · L117-L117 — void on_picker_color(wxCommandEvent& color);
+- create_panel_normal · function · L140-L140 — void create_panel_normal(wxWindow* parent);
+- create_panel_kn · function · L141-L141 — void create_panel_kn(wxWindow* parent);
+- on_dpi_changed · function · L142-L142 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- on_select_filament · function · L143-L143 — void on_select_filament(wxCommandEvent& evt);
+- on_select_cali_result · function · L144-L144 — void on_select_cali_result(wxCommandEvent &evt);
+- on_select_ok · function · L145-L145 — void on_select_ok(wxCommandEvent &event);
+- on_select_reset · function · L146-L146 — void on_select_reset(wxCommandEvent &event);
+- on_select_close · function · L147-L147 — void on_select_close(wxCommandEvent &event);
+- on_clr_picker · function · L148-L148 — void on_clr_picker(wxMouseEvent &event);
+- is_virtual_tray · function · L149-L149 — bool is_virtual_tray();
+- update_widgets · function · L150-L150 — void update_widgets();
+- update_filament_editing · function · L152-L152 — void update_filament_editing(bool is_printing);
+- FilamentInfos · class · L197-L200 — struct FilamentInfos

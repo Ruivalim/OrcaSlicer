@@ -1,0 +1,65 @@
+# src/libslic3r/Geometry/Bicubic.hpp
+
+- LinearKernel · class · L16-L69 — template<typename T>
+- FloatType · type · L19-L19 — typedef T FloatType;
+- a00 · function · L21-L23 — static T a00()
+- a01 · function · L24-L26 — static T a01()
+- a02 · function · L27-L29 — static T a02()
+- a03 · function · L30-L32 — static T a03()
+- a10 · function · L33-L35 — static T a10()
+- a11 · function · L36-L38 — static T a11()
+- a12 · function · L39-L41 — static T a12()
+- a13 · function · L42-L44 — static T a13()
+- a20 · function · L45-L47 — static T a20()
+- a21 · function · L48-L50 — static T a21()
+- a22 · function · L51-L53 — static T a22()
+- a23 · function · L54-L56 — static T a23()
+- a30 · function · L57-L59 — static T a30()
+- a31 · function · L60-L62 — static T a31()
+- a32 · function · L63-L65 — static T a32()
+- a33 · function · L66-L68 — static T a33()
+- CubicCatmulRomKernel · class · L72-L125 — template<typename T>
+- FloatType · type · L75-L75 — typedef T FloatType;
+- a00 · function · L77-L79 — static T a00()
+- a01 · function · L80-L82 — static T a01()
+- a02 · function · L83-L85 — static T a02()
+- a03 · function · L86-L88 — static T a03()
+- a10 · function · L89-L91 — static T a10()
+- a11 · function · L92-L94 — static T a11()
+- a12 · function · L95-L97 — static T a12()
+- a13 · function · L98-L100 — static T a13()
+- a20 · function · L101-L103 — static T a20()
+- a21 · function · L104-L106 — static T a21()
+- a22 · function · L107-L109 — static T a22()
+- a23 · function · L110-L112 — static T a23()
+- a30 · function · L113-L115 — static T a30()
+- a31 · function · L116-L118 — static T a31()
+- a32 · function · L119-L121 — static T a32()
+- a33 · function · L122-L124 — static T a33()
+- CubicBSplineKernel · class · L128-L181 — template<typename T>
+- FloatType · type · L131-L131 — typedef T FloatType;
+- a00 · function · L133-L135 — static T a00()
+- a01 · function · L136-L138 — static T a01()
+- a02 · function · L139-L141 — static T a02()
+- a03 · function · L142-L144 — static T a03()
+- a10 · function · L145-L147 — static T a10()
+- a11 · function · L148-L150 — static T a11()
+- a12 · function · L151-L153 — static T a12()
+- a13 · function · L154-L156 — static T a13()
+- a20 · function · L157-L159 — static T a20()
+- a21 · function · L160-L162 — static T a21()
+- a22 · function · L163-L165 — static T a22()
+- a23 · function · L166-L168 — static T a23()
+- a30 · function · L169-L171 — static T a30()
+- a31 · function · L172-L174 — static T a31()
+- a32 · function · L175-L177 — static T a32()
+- a33 · function · L178-L180 — static T a33()
+- clamp · function · L183-L188 — template<class T>
+- CubicKernelWrapper · class · L191-L224 — template<typename Kernel>
+- FloatType · type · L194-L194 — typedef typename Kernel::FloatType FloatType;
+- kernel · function · L198-L213 — static FloatType kernel(FloatType x)
+- interpolate · function · L215-L223 — static FloatType interpolate(FloatType f0, FloatType f1, FloatType f2, FloatType f3, FloatType x)
+- cubic_interpolate · function · L238-L255 — template<typename KernelWrapper>
+- T · type · L241-L241 — typedef typename KernelWrapper::FloatType T;
+- bicubic_interpolate · function · L257-L285 — template<typename Kernel, typename Derived>
+- T · type · L260-L260 — typedef typename Kernel::FloatType T;

@@ -1,0 +1,35 @@
+# deps_src/libigl/igl/xml/serialize_xml.h
+
+- serialize_xml · function · L54-L58 — IGL_INLINE void serialize_xml(
+- serialize_xml · function · L62-L62 — IGL_INLINE void serialize_xml(const T& obj,const std::string& filename);
+- serialize_xml · function · L68-L73 — IGL_INLINE void serialize_xml(
+- serialize · function · L107-L107 — IGL_INLINE typename std::enable_if<std::is_fundamental<T>::value>::type serialize(const T& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L109-L109 — IGL_INLINE typename std::enable_if<std::is_fundamental<T>::value>::type deserialize(T& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- serialize · function · L112-L112 — IGL_INLINE void serialize(const std::string& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L113-L113 — IGL_INLINE void deserialize(std::string& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- serialize · function · L117-L117 — IGL_INLINE typename std::enable_if<std::is_base_of<XMLSerializableBase,T>::value>::type serialize(const T& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L119-L119 — IGL_INLINE typename std::enable_if<std::is_base_of<XMLSerializableBase,T>::value>::type deserialize(T& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- serialize · function · L123-L123 — IGL_INLINE void serialize(const std::pair<T1,T2>& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L125-L125 — IGL_INLINE void deserialize(std::pair<T1,T2>& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- serialize · function · L128-L128 — IGL_INLINE void serialize(const std::vector<T1,T2>& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L130-L130 — IGL_INLINE void deserialize(std::vector<T1,T2>& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- serialize · function · L133-L133 — IGL_INLINE void serialize(const std::set<T>& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L135-L135 — IGL_INLINE void deserialize(std::set<T>& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- serialize · function · L138-L138 — IGL_INLINE void serialize(const std::map<T1,T2>& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L140-L140 — IGL_INLINE void deserialize(std::map<T1,T2>& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- serialize · function · L195-L195 — IGL_INLINE void serialize(const Eigen::SparseMatrix<T,P,I>& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L197-L197 — IGL_INLINE void deserialize(Eigen::SparseMatrix<T,P,I>& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- serialize · function · L201-L201 — IGL_INLINE typename std::enable_if<std::is_pointer<T>::value>::type serialize(const T& obj,tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element,const std::string& name);
+- deserialize · function · L203-L203 — IGL_INLINE typename std::enable_if<std::is_pointer<T>::value>::type deserialize(T& obj,const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element,const std::string& name);
+- getAttribute · function · L207-L207 — IGL_INLINE void getAttribute(const char* src,bool& dest);
+- getAttribute · function · L208-L208 — IGL_INLINE void getAttribute(const char* scr,char& dest);
+- getAttribute · function · L209-L209 — IGL_INLINE void getAttribute(const char* src,std::string& dest);
+- getAttribute · function · L210-L210 — IGL_INLINE void getAttribute(const char* src,float& dest);
+- getAttribute · function · L211-L211 — IGL_INLINE void getAttribute(const char* src,double& dest);
+- getAttribute · function · L213-L213 — IGL_INLINE typename std::enable_if<std::is_integral<T>::value && std::is_unsigned<T>::value>::type getAttribute(const char* src,T& dest);
+- getAttribute · function · L215-L215 — IGL_INLINE typename std::enable_if<std::is_integral<T>::value && !std::is_unsigned<T>::value>::type getAttribute(const char* src,T& dest);
+- replaceSubString · function · L216-L216 — IGL_INLINE void replaceSubString(std::string& str,const std::string& search,const std::string& replace);
+- encodeXMLElementName · function · L217-L217 — IGL_INLINE void encodeXMLElementName(std::string& name);
+- decodeXMLElementName · function · L218-L218 — IGL_INLINE void decodeXMLElementName(std::string& name);
+- base64_encode · function · L219-L219 — IGL_INLINE std::string base64_encode(unsigned char const* bytes_to_encode,unsigned int in_len);
+- base64_decode · function · L220-L220 — IGL_INLINE std::string base64_decode(std::string const& encoded_string);

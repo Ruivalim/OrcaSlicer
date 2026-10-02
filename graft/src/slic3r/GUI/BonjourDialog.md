@@ -1,0 +1,24 @@
+# src/slic3r/GUI/BonjourDialog.hpp
+
+- wxListView · class · L14-L14 — class wxListView;
+- wxStaticText · class · L15-L15 — class wxStaticText;
+- wxTimer · class · L16-L16 — class wxTimer;
+- wxTimerEvent · class · L17-L17 — class wxTimerEvent;
+- address · class · L18-L18 — class address;
+- Bonjour · class · L22-L22 — class Bonjour;
+- BonjourReplyEvent · class · L23-L23 — class BonjourReplyEvent;
+- ReplySet · class · L24-L24 — class ReplySet;
+- BonjourDialog · class · L27-L51 — class BonjourDialog: public wxDialog
+- BonjourDialog · function · L30-L30 — BonjourDialog(wxWindow *parent, Slic3r::PrinterTechnology);
+- BonjourDialog · function · L31-L31 — BonjourDialog(BonjourDialog &&) = delete;
+- BonjourDialog · function · L32-L32 — BonjourDialog(const BonjourDialog &) = delete;
+- show_and_lookup · function · L37-L37 — bool show_and_lookup();
+- get_selected · function · L38-L38 — wxString get_selected() const;
+- on_reply · function · L48-L48 — virtual void on_reply(BonjourReplyEvent &);
+- on_timer · function · L49-L49 — void on_timer(wxTimerEvent &);
+- on_timer_process · function · L50-L50 — void on_timer_process();
+- IPListDialog · class · L53-L67 — class IPListDialog : public wxDialog
+- IPListDialog · function · L56-L56 — IPListDialog(wxWindow* parent, const wxString& hostname, const std::vector<boost::asio::ip::address>& ips, size_t& selected_index);
+- IPListDialog · function · L57-L57 — IPListDialog(IPListDialog&&) = delete;
+- IPListDialog · function · L58-L58 — IPListDialog(const IPListDialog&) = delete;
+- EndModal · function · L63-L63 — virtual void EndModal(int retCode) wxOVERRIDE;

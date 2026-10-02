@@ -1,0 +1,378 @@
+# src/libslic3r/Print.hpp
+
+- GCode · class · L33-L33 — class GCode;
+- Layer · class · L34-L34 — class Layer;
+- ModelObject · class · L35-L35 — class ModelObject;
+- Print · class · L36-L36 — class Print;
+- PrintObject · class · L37-L37 — class PrintObject;
+- SupportLayer · class · L38-L38 — class SupportLayer;
+- TreeSupportData · class · L40-L40 — class TreeSupportData;
+- TreeSupport · class · L41-L41 — class TreeSupport;
+- ExtrusionLayers · class · L42-L42 — class ExtrusionLayers;
+- LayeredNozzleGroupResult · class · L43-L43 — namespace MultiNozzleUtils { class NozzleGroupResultBase; class LayeredNozzleGroupResult; }
+- NozzleGroupResultBase · class · L43-L43 — namespace MultiNozzleUtils { class NozzleGroupResultBase; class LayeredNozzleGroupResult; }
+- VolumeSlices · class · L47-L51 — struct VolumeSlices
+- groupedVolumeSlices · class · L53-L58 — struct groupedVolumeSlices
+- SupportNecessaryType · type · L60-L65 — enum SupportNecessaryType
+- Generator · class · L74-L74 — class Generator;
+- PrintStep · type · L81-L94 — enum PrintStep
+- PrintObjectStep · type · L96-L103 — enum PrintObjectStep
+- SlicingPipelineStepPlugin · type · L105-L111 — enum class SlicingPipelineStepPlugin
+- PrintRegion · class · L115-L169 — class PrintRegion
+- PrintRegion · function · L118-L118 — PrintRegion() = default;
+- PrintRegion · function · L119-L119 — PrintRegion(const PrintRegionConfig &config);
+- PrintRegion · function · L120-L120 — PrintRegion(const PrintRegionConfig &config, const size_t config_hash, int print_object_region_id = -1, ObjectID gradient_volume_id = ObjectID()) : m_config(config), m_config_hash(config_hash), m_print_object_region_id(print_object_region_id), m_gradient_volume_id(gradient_volume_id) {}
+- PrintRegion · function · L121-L121 — PrintRegion(PrintRegionConfig &&config);
+- PrintRegion · function · L122-L122 — PrintRegion(PrintRegionConfig &&config, const size_t config_hash, int print_object_region_id = -1, ObjectID gradient_volume_id = ObjectID()) : m_config(std::move(config)), m_config_hash(config_hash), m_print_object_region_id(print_object_region_id), m_gradient_volume_id(gradient_volume_id) {}
+- config · function · L127-L127 — const PrintRegionConfig&    config() const throw() { return m_config; }
+- config_hash · function · L128-L128 — size_t                      config_hash() const throw() { return m_config_hash; }
+- print_region_id · function · L130-L130 — int                         print_region_id() const throw() { return m_print_region_id; }
+- print_object_region_id · function · L131-L131 — int                         print_object_region_id() const throw() { return m_print_object_region_id; }
+- gradient_volume_id · function · L135-L135 — ObjectID                    gradient_volume_id() const throw() { return m_gradient_volume_id; }
+- extruder · function · L137-L137 — unsigned int 				extruder(FlowRole role) const;
+- flow · function · L138-L138 — Flow                        flow(const PrintObject &object, FlowRole role, double layer_height, bool first_layer = false) const;
+- nozzle_dmr_avg · function · L140-L140 — coordf_t                    nozzle_dmr_avg(const PrintConfig &print_config) const;
+- bridging_height_avg · function · L142-L142 — coordf_t                    bridging_height_avg(const PrintConfig &print_config) const;
+- collect_object_printing_extruders · function · L145-L145 — void                        collect_object_printing_extruders(const Print &print, std::vector<unsigned int> &object_extruders) const;
+- collect_object_printing_extruders · function · L146-L146 — static void                 collect_object_printing_extruders(const PrintConfig &print_config, const PrintRegionConfig &region_config, const bool has_brim, std::vector<unsigned int> &object_extruders);
+- set_config · function · L150-L150 — void                        set_config(const PrintRegionConfig &config) { m_config = config; m_config_hash = m_config.hash(); }
+- set_config · function · L151-L151 — void                        set_config(PrintRegionConfig &&config) { m_config = std::move(config); m_config_hash = m_config.hash(); }
+- config_apply_only · function · L152-L153 — void                        config_apply_only(const ConfigBase &other, const t_config_option_keys &keys, bool ignore_nonexistent = false)
+- print_region_ref_inc · function · L156-L156 — friend void print_region_ref_inc(PrintRegion&);
+- print_region_ref_reset · function · L157-L157 — friend void print_region_ref_reset(PrintRegion&);
+- print_region_ref_cnt · function · L158-L158 — friend int  print_region_ref_cnt(const PrintRegion&);
+- ConstVectorOfPtrsAdaptor · class · L174-L192 — template<typename T>
+- begin · function · L178-L178 — T * const *             begin() const { return m_data->data(); }
+- end · function · L179-L179 — T * const *             end()   const { return m_data->data() + m_data->size(); }
+- front · function · L180-L180 — const T*                front() const { return m_data->front(); }
+- back · function · L182-L182 — const T*                back()  const { return m_data->back(); }
+- size · function · L183-L183 — size_t                  size()  const { return m_data->size(); }
+- empty · function · L184-L184 — bool                    empty() const { return m_data->empty(); }
+- at · function · L186-L186 — const T*                at(size_t i) const { return m_data->at(i); }
+- vector · function · L187-L187 — std::vector<const T*>   vector() const { return std::vector<const T*>(this->begin(), this->end()); }
+- ConstVectorOfPtrsAdaptor · function · L189-L189 — ConstVectorOfPtrsAdaptor(const std::vector<T*> *data) : m_data(data) {}
+- LayerPtrs · type · L194-L194 — typedef std::vector<Layer*>       LayerPtrs;
+- ConstLayerPtrs · type · L195-L195 — typedef std::vector<const Layer*> ConstLayerPtrs;
+- ConstLayerPtrsAdaptor · class · L196-L199 — class ConstLayerPtrsAdaptor : public ConstVectorOfPtrsAdaptor<Layer>
+- ConstLayerPtrsAdaptor · function · L198-L198 — ConstLayerPtrsAdaptor(const LayerPtrs *data) : ConstVectorOfPtrsAdaptor<Layer>(data) {}
+- SupportLayerPtrs · type · L201-L201 — typedef std::vector<SupportLayer*>        SupportLayerPtrs;
+- ConstSupportLayerPtrs · type · L202-L202 — typedef std::vector<const SupportLayer*>  ConstSupportLayerPtrs;
+- ConstSupportLayerPtrsAdaptor · class · L203-L206 — class ConstSupportLayerPtrsAdaptor : public ConstVectorOfPtrsAdaptor<SupportLayer>
+- ConstSupportLayerPtrsAdaptor · function · L205-L205 — ConstSupportLayerPtrsAdaptor(const SupportLayerPtrs *data) : ConstVectorOfPtrsAdaptor<SupportLayer>(data) {}
+- PrintInstance · class · L211-L231 — struct PrintInstance
+- get_bounding_box · function · L220-L220 — BoundingBoxf3   get_bounding_box() const;
+- get_convex_hull_2d · function · L221-L221 — Polygon get_convex_hull_2d();
+- shift_without_plate_offset · function · L230-L230 — Point shift_without_plate_offset() const;
+- PrintInstances · type · L233-L233 — typedef std::vector<PrintInstance> PrintInstances;
+- PrintObjectRegions · class · L235-L335 — class PrintObjectRegions
+- VolumeExtents · class · L243-L246 — struct VolumeExtents
+- VolumeRegion · class · L248-L260 — struct VolumeRegion
+- PaintedRegion · class · L262-L270 — struct PaintedRegion
+- FuzzySkinPaintedRegion · class · L274-L286 — struct FuzzySkinPaintedRegion
+- ParentType · type · L276-L276 — enum class ParentType { VolumeRegion, PaintedRegion };
+- parent_print_object_region · function · L284-L284 — PrintRegion *parent_print_object_region(const LayerRangeRegions &layer_range) const;
+- parent_print_object_region_id · function · L285-L285 — int          parent_print_object_region_id(const LayerRangeRegions &layer_range) const;
+- LayerRangeRegions · class · L290-L308 — struct LayerRangeRegions
+- has_volume · function · L304-L307 — bool has_volume(const ObjectID id) const
+- ref_cnt_inc · function · L322-L322 — void ref_cnt_inc() { ++ m_ref_cnt; }
+- ref_cnt_dec · function · L323-L323 — void ref_cnt_dec() { if (-- m_ref_cnt == 0) delete this; }
+- clear · function · L324-L328 — void clear()
+- PrintObject · class · L337-L615 — class PrintObject : public PrintObjectBaseWithState<Print, PrintObjectStep, posCount>
+- Inherited · type · L340-L340 — typedef PrintObjectBaseWithState<Print, PrintObjectStep, posCount> Inherited;
+- size · function · L344-L344 — const Vec3crd&               size() const			{ return m_size; }
+- config · function · L345-L345 — const PrintObjectConfig&     config() const         { return m_config; }
+- configBrimWidth · function · L346-L346 — void                         configBrimWidth(double m)      {m_config.brim_width.value = m; }
+- layers · function · L347-L347 — ConstLayerPtrsAdaptor        layers() const         { return ConstLayerPtrsAdaptor(&m_layers); }
+- support_layers · function · L348-L348 — ConstSupportLayerPtrsAdaptor support_layers() const { return ConstSupportLayerPtrsAdaptor(&m_support_layers); }
+- trafo · function · L349-L349 — const Transform3d&           trafo() const          { return m_trafo; }
+- trafo_centered · function · L351-L352 — Transform3d                  trafo_centered() const
+- instances · function · L353-L353 — const PrintInstances&        instances() const      { return m_instances; }
+- instances · function · L354-L354 — PrintInstances &instances() { return m_instances; }
+- layers · function · L357-L357 — LayerPtrs&                   layers()               { return m_layers; }
+- support_layers · function · L358-L358 — SupportLayerPtrs&            support_layers()       { return m_support_layers; }
+- remove_bridges_from_contacts · function · L360-L367 — template<typename PolysType>
+- bounding_box · function · L371-L371 — BoundingBox                  bounding_box() const   { return BoundingBox(Point(- m_size.x() / 2, - m_size.y() / 2), Point(m_size.x() / 2, m_size.y() / 2)); }
+- height · function · L374-L374 — coord_t 				     height() const         { return m_size.z(); }
+- max_z · function · L375-L375 — double                      max_z() const         { return m_max_z; }
+- center_offset · function · L377-L377 — const Point& 			     center_offset() const  { return m_center_offset; }
+- generate_support_preview · function · L380-L380 — void generate_support_preview();
+- firstLayerObjSlice · function · L381-L381 — const std::vector<VolumeSlices>& firstLayerObjSlice() const { return firstLayerObjSliceByVolume; }
+- firstLayerObjSliceMod · function · L382-L382 — std::vector<VolumeSlices>& firstLayerObjSliceMod() { return firstLayerObjSliceByVolume; }
+- firstLayerObjGroups · function · L383-L383 — const std::vector<groupedVolumeSlices>& firstLayerObjGroups() const { return firstLayerObjSliceByGroups; }
+- firstLayerObjGroupsMod · function · L384-L384 — std::vector<groupedVolumeSlices>& firstLayerObjGroupsMod() { return firstLayerObjSliceByGroups; }
+- has_brim · function · L386-L390 — bool                         has_brim() const
+- object_skirt · function · L393-L393 — const ExtrusionEntityCollection& object_skirt() const
+- total_layer_count · function · L400-L400 — size_t 			total_layer_count() const { return this->layer_count() + this->support_layer_count(); }
+- layer_count · function · L401-L401 — size_t 			layer_count() const { return m_layers.size(); }
+- clear_layers · function · L402-L402 — void 			clear_layers();
+- get_layer · function · L403-L403 — const Layer* 	get_layer(int idx) const { return m_layers[idx]; }
+- get_layer · function · L404-L404 — Layer* 			get_layer(int idx) 		 { return m_layers[idx]; }
+- get_layer_at_printz · function · L406-L406 — const Layer*	get_layer_at_printz(coordf_t print_z) const;
+- get_layer_at_printz · function · L407-L407 — Layer*			get_layer_at_printz(coordf_t print_z);
+- get_layer_at_printz · function · L409-L409 — const Layer*	get_layer_at_printz(coordf_t print_z, coordf_t epsilon) const;
+- get_layer_at_printz · function · L410-L410 — Layer*			get_layer_at_printz(coordf_t print_z, coordf_t epsilon);
+- get_layer_idx_get_printz · function · L411-L411 — int             get_layer_idx_get_printz(coordf_t print_z, coordf_t epsilon);
+- get_layer_at_bottomz · function · L413-L413 — const Layer*    get_layer_at_bottomz(coordf_t bottom_z, coordf_t epsilon) const;
+- get_layer_at_bottomz · function · L414-L414 — Layer*          get_layer_at_bottomz(coordf_t bottom_z, coordf_t epsilon);
+- get_first_layer_bellow_printz · function · L417-L417 — const Layer*	get_first_layer_bellow_printz(coordf_t print_z, coordf_t epsilon) const;
+- add_layer · function · L420-L420 — Layer*          add_layer(int id, coordf_t height, coordf_t print_z, coordf_t slice_z);
+- add_tree_support_layer · function · L423-L423 — SupportLayer* add_tree_support_layer(int id, coordf_t height, coordf_t print_z, coordf_t slice_z);
+- alloc_tree_support_preview_cache · function · L424-L424 — std::shared_ptr<TreeSupportData> alloc_tree_support_preview_cache();
+- clear_tree_support_preview_cache · function · L425-L425 — void clear_tree_support_preview_cache() { m_tree_support_preview_cache.reset(); }
+- support_layer_count · function · L427-L427 — size_t          support_layer_count() const { return m_support_layers.size(); }
+- clear_support_layers · function · L428-L428 — void            clear_support_layers();
+- get_support_layer · function · L429-L429 — SupportLayer*   get_support_layer(int idx) { return idx<m_support_layers.size()? m_support_layers[idx]:nullptr; }
+- get_support_layer_at_printz · function · L430-L430 — const SupportLayer* get_support_layer_at_printz(coordf_t print_z, coordf_t epsilon) const;
+- get_support_layer_at_printz · function · L431-L431 — SupportLayer*   get_support_layer_at_printz(coordf_t print_z, coordf_t epsilon);
+- add_support_layer · function · L432-L432 — SupportLayer*   add_support_layer(int id, int interface_id, coordf_t height, coordf_t print_z);
+- insert_support_layer · function · L433-L433 — SupportLayerPtrs::iterator insert_support_layer(SupportLayerPtrs::iterator pos, size_t id, size_t interface_id, coordf_t height, coordf_t print_z, coordf_t slice_z);
+- update_layer_height_profile · function · L437-L437 — static bool     update_layer_height_profile(const ModelObject &model_object, const SlicingParameters &slicing_parameters, std::vector<coordf_t> &layer_height_profile);
+- slicing_parameters · function · L443-L443 — const SlicingParameters&    slicing_parameters() const { return m_slicing_params; }
+- slicing_parameters · function · L445-L445 — static SlicingParameters    slicing_parameters(const DynamicPrintConfig &full_config, const ModelObject &model_object, float object_max_z, const Vec3d &object_shrinkage_compensation, std::vector<int> variant_index = std::vector<int>());
+- num_printing_regions · function · L447-L447 — size_t                      num_printing_regions() const throw() { return m_shared_regions->all_regions.size(); }
+- printing_region · function · L448-L448 — const PrintRegion&          printing_region(size_t idx) const throw() { return *m_shared_regions->all_regions[idx].get(); }
+- all_regions · function · L450-L450 — std::vector<std::reference_wrapper<const PrintRegion>> all_regions() const;
+- shared_regions · function · L451-L451 — const PrintObjectRegions*   shared_regions() const throw() { return m_shared_regions; }
+- has_support · function · L453-L453 — bool                        has_support()           const { return m_config.enable_support || m_config.enforce_support_layers > 0; }
+- has_raft · function · L454-L454 — bool                        has_raft()              const { return m_config.raft_layers > 0; }
+- has_support_material · function · L455-L455 — bool                        has_support_material()  const { return this->has_support() || this->has_raft(); }
+- is_mm_painted · function · L457-L457 — bool                        is_mm_painted()         const { return this->model_object()->is_mm_painted(); }
+- is_fuzzy_skin_painted · function · L459-L459 — bool                        is_fuzzy_skin_painted() const { return this->model_object()->is_fuzzy_skin_painted(); }
+- object_extruders · function · L462-L462 — std::vector<unsigned int>   object_extruders() const;
+- slice · function · L465-L465 — void slice();
+- slice_support_volumes · function · L468-L468 — std::vector<Polygons>       slice_support_volumes(const ModelVolumeType model_volume_type) const;
+- slice_support_blockers · function · L469-L469 — std::vector<Polygons>       slice_support_blockers() const { return this->slice_support_volumes(ModelVolumeType::SUPPORT_BLOCKER); }
+- slice_support_enforcers · function · L470-L470 — std::vector<Polygons>       slice_support_enforcers() const { return this->slice_support_volumes(ModelVolumeType::SUPPORT_ENFORCER); }
+- project_and_append_custom_facets · function · L473-L473 — void project_and_append_custom_facets(bool seam, EnforcerBlockerType type, std::vector<Polygons>& expolys, std::vector<std::pair<Vec3f,Vec3f>>* vertical_points=nullptr) const;
+- get_first_layer_bbox · function · L476-L476 — BoundingBox get_first_layer_bbox(float& area, float& layer_height, std::string& name);
+- get_certain_layers · function · L477-L477 — void         get_certain_layers(float start, float end, std::vector<LayerPtrs> &out, std::vector<BoundingBox> &boundingbox_objects);
+- get_instances_shift_without_plate_offset · function · L478-L478 — Points       get_instances_shift_without_plate_offset() const;
+- get_shared_object · function · L479-L479 — PrintObject* get_shared_object() const { return m_shared_object; }
+- set_shared_object · function · L480-L480 — void         set_shared_object(PrintObject *object);
+- clear_shared_object · function · L481-L481 — void         clear_shared_object();
+- copy_layers_from_shared_object · function · L482-L482 — void         copy_layers_from_shared_object();
+- copy_layers_overhang_from_shared_object · function · L483-L483 — void         copy_layers_overhang_from_shared_object();
+- get_id · function · L492-L492 — size_t get_id() const { return m_id; }
+- set_id · function · L493-L493 — void set_id(size_t id) { m_id = id; }
+- PrintObject · function · L499-L499 — PrintObject(Print* print, ModelObject* model_object, const Transform3d& trafo, PrintInstances&& instances);
+- config_apply · function · L502-L502 — void                    config_apply(const ConfigBase &other, bool ignore_nonexistent = false) { m_config.apply(other, ignore_nonexistent); }
+- config_apply_only · function · L503-L503 — void                    config_apply_only(const ConfigBase &other, const t_config_option_keys &keys, bool ignore_nonexistent = false) { m_config.apply_only(other, keys, ignore_nonexistent); }
+- set_instances · function · L504-L504 — PrintBase::ApplyStatus  set_instances(PrintInstances &&instances);
+- invalidate_step · function · L506-L506 — bool                    invalidate_step(PrintObjectStep step);
+- invalidate_all_steps · function · L508-L508 — bool                    invalidate_all_steps();
+- invalidate_state_by_config_options · function · L511-L512 — bool                    invalidate_state_by_config_options(
+- update_slicing_parameters · function · L514-L514 — void                    update_slicing_parameters();
+- object_config_from_model_object · function · L516-L516 — static PrintObjectConfig object_config_from_model_object(const PrintObjectConfig &default_object_config, const ModelObject &object, size_t num_extruders, std::vector<int>& variant_index);
+- make_perimeters · function · L519-L519 — void make_perimeters();
+- prepare_infill · function · L520-L520 — void prepare_infill();
+- infill · function · L521-L521 — void infill();
+- ironing · function · L522-L522 — void ironing();
+- need_z_contouring · function · L523-L523 — bool need_z_contouring() const;
+- contour_z · function · L524-L524 — void contour_z();
+- generate_support_material · function · L525-L525 — void generate_support_material();
+- estimate_curled_extrusions · function · L526-L526 — void estimate_curled_extrusions();
+- simplify_extrusion_path · function · L527-L527 — void simplify_extrusion_path();
+- detect_extruder_geometric_unprintables · function · L538-L538 — std::vector<std::set<int>> detect_extruder_geometric_unprintables() const;
+- slice_volumes · function · L540-L540 — void slice_volumes();
+- _shrink_contour_holes · function · L542-L542 — ExPolygons _shrink_contour_holes(double contour_delta, double hole_delta, const ExPolygons& polys) const;
+- detect_overhangs_for_lift · function · L544-L544 — void detect_overhangs_for_lift();
+- clear_overhangs_for_lift · function · L545-L545 — void clear_overhangs_for_lift();
+- _transform_hole_to_polyholes · function · L547-L547 — void _transform_hole_to_polyholes();
+- detect_surfaces_type · function · L550-L550 — void detect_surfaces_type();
+- process_external_surfaces · function · L551-L551 — void process_external_surfaces();
+- discover_vertical_shells · function · L552-L552 — void discover_vertical_shells();
+- bridge_over_infill · function · L553-L553 — void bridge_over_infill();
+- clip_fill_surfaces · function · L554-L554 — void clip_fill_surfaces();
+- discover_horizontal_shells · function · L555-L555 — void discover_horizontal_shells();
+- combine_infill · function · L556-L556 — void combine_infill();
+- _generate_support_material · function · L557-L557 — void _generate_support_material();
+- prepare_adaptive_infill_data · function · L558-L559 — std::pair<FillAdaptive::OctreePtr, FillAdaptive::OctreePtr> prepare_adaptive_infill_data(
+- prepare_lightning_infill_data · function · L560-L560 — FillLightning::GeneratorPtr prepare_lightning_infill_data();
+- is_support_necessary · function · L563-L563 — SupportNecessaryType is_support_necessary();
+- apply_conical_overhang · function · L607-L607 — void apply_conical_overhang();
+- FakeWipeTower · class · L617-L762 — struct FakeWipeTower
+- set_fake_extrusion_data · function · L633-L642 — void set_fake_extrusion_data(Vec2f p, float w, float h, float lh, float d, float bd, Vec2d o)
+- set_fake_extrusion_data · function · L643-L655 — void set_fake_extrusion_data(const Vec2f& p, float w, float h, float lh, float d, const std::vector<std::pair<float, float>>& zad, float bd, float ra, float ca, const Vec2d& o)
+- set_pos · function · L657-L657 — void set_pos(Vec2f p) { pos = p+rib_offset; }
+- set_pos_and_rotation · function · L658-L658 — void set_pos_and_rotation(const Vec2f& p, float rotation) { pos = p; rotation_angle = rotation; }
+- getFakeExtrusionPathsFromWipeTower · function · L660-L683 — std::vector<ExtrusionPaths> getFakeExtrusionPathsFromWipeTower() const
+- getTrueExtrusionLayersFromWipeTower · function · L685-L685 — ExtrusionLayers getTrueExtrusionLayersFromWipeTower() const;
+- getFakeExtrusionPathsFromWipeTower2 · function · L687-L761 — std::vector<ExtrusionPaths> getFakeExtrusionPathsFromWipeTower2() const
+- WipeTowerData · class · L764-L816 — struct WipeTowerData
+- WipeTowerMeshData · class · L766-L771 — struct WipeTowerMeshData
+- clear · function · L794-L806 — void clear()
+- construct_mesh · function · L807-L807 — void construct_mesh(float width, float depth, float height, float brim_width, bool is_rib_wipe_tower, float rib_width, float rib_length, bool fillet_wall, float cone_angle = 0.f);
+- WipeTowerData · function · L813-L813 — WipeTowerData(ToolOrdering &tool_ordering) : tool_ordering(tool_ordering) { clear(); }
+- WipeTowerData · function · L814-L814 — WipeTowerData(const WipeTowerData & /* rhs */) = delete;
+- PrintStatistics · class · L818-L868 — struct PrintStatistics
+- PrintStatistics · function · L820-L820 — PrintStatistics() { clear(); }
+- config · function · L834-L834 — DynamicConfig           config() const;
+- placeholders · function · L836-L836 — static DynamicConfig    placeholders();
+- finalize_output_path · function · L838-L838 — std::string             finalize_output_path(const std::string &path_in) const;
+- clear · function · L840-L850 — void clear()
+- PrintObjectPtrs · type · L870-L870 — typedef std::vector<PrintObject*>       PrintObjectPtrs;
+- ConstPrintObjectPtrs · type · L871-L871 — typedef std::vector<const PrintObject*> ConstPrintObjectPtrs;
+- ConstPrintObjectPtrsAdaptor · class · L872-L875 — class ConstPrintObjectPtrsAdaptor : public ConstVectorOfPtrsAdaptor<PrintObject>
+- ConstPrintObjectPtrsAdaptor · function · L874-L874 — ConstPrintObjectPtrsAdaptor(const PrintObjectPtrs *data) : ConstVectorOfPtrsAdaptor<PrintObject>(data) {}
+- PrintRegionPtrs · type · L877-L877 — typedef std::vector<PrintRegion*>       PrintRegionPtrs;
+- StatisticsByExtruderCount · class · L886-L897 — struct StatisticsByExtruderCount
+- clear · function · L892-L896 — void clear()
+- FilamentTempType · type · L899-L904 — enum FilamentTempType
+- FilamentCompatibilityType · type · L906-L912 — enum FilamentCompatibilityType
+- Print · class · L915-L1398 — class Print : public PrintBaseWithState<PrintStep, psCount>
+- Inherited · type · L918-L918 — typedef PrintBaseWithState<PrintStep, psCount> Inherited;
+- PrintObjectInfo · type · L920-L920 — typedef std::pair<PrintObject *, bool>         PrintObjectInfo;
+- set_slicing_pipeline_hook_fn · function · L926-L926 — static void set_slicing_pipeline_hook_fn(SlicingPipelineHookFn fn) { s_slicing_pipeline_hook_fn = std::move(fn); }
+- Print · function · L928-L928 — Print() = default;
+- technology · function · L931-L931 — PrinterTechnology	technology() const noexcept override { return ptFFF; }
+- clear · function · L938-L938 — void                clear() override;
+- empty · function · L939-L939 — bool                empty() const override { return m_objects.empty(); }
+- print_object_ids · function · L941-L941 — std::vector<ObjectID> print_object_ids() const override;
+- apply · function · L943-L943 — ApplyStatus         apply(const Model &model, DynamicPrintConfig config, bool extruder_applied = false) override;
+- process · function · L945-L945 — void                process(long long *time_cost_with_cache = nullptr, bool use_cache = false) override;
+- export_gcode · function · L948-L948 — std::string         export_gcode(const std::string& path_template, GCodeProcessorResult* result, ThumbnailsGeneratorCallback thumbnail_cb = nullptr);
+- export_cached_data · function · L950-L950 — int                 export_cached_data(const std::string& dir_path, bool with_space=false) override;
+- load_cached_data · function · L951-L951 — int                 load_cached_data(const std::string& directory) override;
+- is_step_done · function · L954-L954 — bool                is_step_done(PrintStep step) const { return Inherited::is_step_done(step); }
+- is_step_done · function · L956-L956 — bool                is_step_done(PrintObjectStep step) const;
+- finished · function · L958-L958 — bool                finished() const override { return this->is_step_done(psGCodeExport); }
+- has_infinite_skirt · function · L960-L960 — bool                has_infinite_skirt() const;
+- has_skirt · function · L961-L961 — bool                has_skirt() const;
+- has_brim · function · L962-L962 — bool                has_brim() const;
+- has_auto_brim · function · L964-L966 — bool                has_auto_brim() const
+- validate · function · L969-L969 — StringObjectException validate(std::vector<StringObjectException> *warnings = nullptr, Polygons* collison_polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr) const override;
+- skirt_first_layer_height · function · L970-L970 — double              skirt_first_layer_height() const;
+- brim_flow · function · L971-L971 — Flow                brim_flow() const;
+- skirt_flow · function · L972-L972 — Flow                skirt_flow() const;
+- object_extruders · function · L974-L974 — std::vector<unsigned int> object_extruders() const;
+- support_material_extruders · function · L975-L975 — std::vector<unsigned int> support_material_extruders() const;
+- extruders · function · L976-L976 — std::vector<unsigned int> extruders(bool conside_custom_gcode = false) const;
+- max_allowed_layer_height · function · L977-L977 — double              max_allowed_layer_height() const;
+- has_support_material · function · L978-L978 — bool                has_support_material() const;
+- auto_assign_extruders · function · L980-L980 — void                auto_assign_extruders(ModelObject* model_object) const;
+- config · function · L982-L982 — const PrintConfig&          config() const { return m_config; }
+- default_object_config · function · L983-L983 — const PrintObjectConfig&    default_object_config() const { return m_default_object_config; }
+- default_region_config · function · L984-L984 — const PrintRegionConfig& default_region_config() const { return m_default_region_config; }
+- objects · function · L985-L985 — ConstPrintObjectPtrsAdaptor objects() const { return ConstPrintObjectPtrsAdaptor(&m_objects); }
+- get_object · function · L986-L986 — PrintObject*                get_object(size_t idx) { return const_cast<PrintObject*>(m_objects[idx]); }
+- get_object · function · L987-L987 — const PrintObject*          get_object(size_t idx) const { return m_objects[idx]; }
+- get_object · function · L990-L990 — const PrintObject*          get_object(ObjectID object_id) const
+- get_brimMap · function · L997-L997 — get_brimMap() { return m_brimMap; }
+- num_object_instances · function · L1001-L1001 — unsigned int                num_object_instances() const;
+- objects_mutable · function · L1004-L1004 — PrintObjectPtrs&            objects_mutable() { return m_objects; }
+- print_regions_mutable · function · L1005-L1005 — PrintRegionPtrs&            print_regions_mutable() { return m_print_regions; }
+- layers_sorted_for_object · function · L1006-L1006 — std::vector<size_t>         layers_sorted_for_object(float start, float end, std::vector<LayerPtrs> &layers_of_objects, std::vector<BoundingBox> &boundingBox_for_objects, VecOfPoints& objects_instances_shift);
+- SkirtBrimGroup · class · L1007-L1017 — struct SkirtBrimGroup
+- Brim · class · L1008-L1011 — struct Brim
+- skirt · function · L1019-L1019 — const ExtrusionEntityCollection& skirt() const { return m_skirt; }
+- skirt_brim_groups · function · L1020-L1020 — const std::vector<SkirtBrimGroup>& skirt_brim_groups() const { return m_skirt_brim_groups; }
+- has_shared_per_object_skirt · function · L1021-L1021 — bool has_shared_per_object_skirt() const { return m_has_shared_per_object_skirt; }
+- first_layer_convex_hull · function · L1027-L1027 — const Polygon&                   first_layer_convex_hull() const { return m_first_layer_convex_hull; }
+- print_statistics · function · L1029-L1029 — const PrintStatistics&      print_statistics() const { return m_print_statistics; }
+- print_statistics · function · L1030-L1030 — PrintStatistics&            print_statistics() { return m_print_statistics; }
+- statistics_by_extruder · function · L1032-L1032 — const StatisticsByExtruderCount statistics_by_extruder() const { return m_statistics_by_extruder_count; }
+- statistics_by_extruder · function · L1033-L1033 — StatisticsByExtruderCount& statistics_by_extruder() { return m_statistics_by_extruder_count; }
+- has_wipe_tower · function · L1036-L1036 — bool                        has_wipe_tower() const;
+- wipe_tower_data · function · L1037-L1037 — const WipeTowerData&        wipe_tower_data(size_t filaments_cnt = 0) const;
+- tool_ordering · function · L1038-L1038 — const ToolOrdering& 		tool_ordering() const { return m_tool_ordering; }
+- update_filament_maps_to_config · function · L1040-L1040 — void update_filament_maps_to_config(std::vector<int> f_maps, std::vector<int> f_volume_maps = std::vector<int>{}, std::vector<int> f_nozzle_maps = std::vector<int>{});
+- update_to_config_by_nozzle_group_result · function · L1047-L1047 — void update_to_config_by_nozzle_group_result(const MultiNozzleUtils::LayeredNozzleGroupResult& group_result);
+- apply_config_for_render · function · L1048-L1048 — void apply_config_for_render(const DynamicConfig &config);
+- get_filament_maps · function · L1051-L1051 — std::vector<int> get_filament_maps() const;
+- get_filament_map_mode · function · L1052-L1052 — FilamentMapMode  get_filament_map_mode() const;
+- get_filament_volume_maps · function · L1053-L1053 — std::vector<int> get_filament_volume_maps() const;
+- get_filament_nozzle_maps · function · L1054-L1054 — std::vector<int> get_filament_nozzle_maps() const;
+- get_extruder_id · function · L1056-L1056 — size_t get_extruder_id(unsigned int filament_id) const;
+- get_extruder_shared_printable_polygon · function · L1062-L1062 — Polygons get_extruder_shared_printable_polygon() const;
+- set_nozzle_group_result · function · L1066-L1066 — void set_nozzle_group_result(std::shared_ptr<MultiNozzleUtils::NozzleGroupResultBase> result) { m_nozzle_group_result = result; }
+- get_nozzle_group_result · function · L1067-L1067 — std::shared_ptr<MultiNozzleUtils::NozzleGroupResultBase> get_nozzle_group_result() const { return m_nozzle_group_result; }
+- get_layered_nozzle_group_result · function · L1068-L1068 — std::shared_ptr<MultiNozzleUtils::LayeredNozzleGroupResult> get_layered_nozzle_group_result() const;
+- is_dynamic_group_reorder · function · L1076-L1076 — bool is_dynamic_group_reorder() const;
+- sequential_dynamic_orderings · function · L1082-L1082 — const std::map<const PrintObject*, ToolOrdering>& sequential_dynamic_orderings() const { return m_sequential_dynamic_orderings; }
+- get_extruder_filament_info · function · L1084-L1084 — const std::vector<std::vector<DynamicPrintConfig>>& get_extruder_filament_info() const { return m_extruder_filament_info; }
+- set_extruder_filament_info · function · L1085-L1085 — void set_extruder_filament_info(const std::vector<std::vector<DynamicPrintConfig>>& filament_info) { m_extruder_filament_info = filament_info; }
+- set_geometric_unprintable_filaments · function · L1087-L1087 — void set_geometric_unprintable_filaments(const std::vector<std::set<int>> &unprintables_filament_ids) { m_geometric_unprintable_filaments = unprintables_filament_ids; }
+- get_geometric_unprintable_filaments · function · L1088-L1088 — std::vector<std::set<int>> get_geometric_unprintable_filaments() const { return m_geometric_unprintable_filaments;}
+- set_slice_used_filaments · function · L1090-L1093 — void set_slice_used_filaments(const std::vector<unsigned int> &first_layer_used_filaments, const std::vector<unsigned int> &used_filaments)
+- get_slice_used_filaments · function · L1094-L1094 — std::vector<unsigned int> get_slice_used_filaments(bool first_layer) const { return first_layer ? m_slice_used_filaments_first_layer : m_slice_used_filaments;}
+- set_slice_used_mixed_filaments · function · L1095-L1097 — void set_slice_used_mixed_filaments(const std::vector<unsigned int> &used_mixed_filaments)
+- get_slice_used_mixed_filaments · function · L1098-L1098 — const std::vector<unsigned int>& get_slice_used_mixed_filaments() const { return m_slice_used_mixed_filaments; }
+- get_physical_unprintable_filaments · function · L1111-L1111 — std::vector<std::set<int>> get_physical_unprintable_filaments(const std::vector<unsigned int>& used_filaments) const;
+- get_filament_unprintable_flow · function · L1123-L1123 — std::map<int, std::set<NozzleVolumeType>> get_filament_unprintable_flow(const std::vector<unsigned int> &used_filaments) const;
+- get_extruder_printable_height · function · L1125-L1125 — std::vector<double> get_extruder_printable_height() const;
+- get_extruder_printable_polygons · function · L1126-L1126 — std::vector<Polygons> get_extruder_printable_polygons() const;
+- get_extruder_unprintable_polygons · function · L1127-L1127 — std::vector<Polygons> get_extruder_unprintable_polygons() const;
+- enable_timelapse_print · function · L1129-L1129 — bool                        enable_timelapse_print() const;
+- output_filename · function · L1131-L1131 — std::string                 output_filename(const std::string &filename_base = std::string()) const override;
+- get_model_name · function · L1133-L1133 — std::string                 get_model_name() const;
+- get_plate_number_formatted · function · L1134-L1134 — std::string                 get_plate_number_formatted() const;
+- num_print_regions · function · L1136-L1136 — size_t                      num_print_regions() const throw() { return m_print_regions.size(); }
+- get_print_region · function · L1137-L1137 — const PrintRegion&          get_print_region(size_t idx) const  { return *m_print_regions[idx]; }
+- get_tool_ordering · function · L1138-L1138 — const ToolOrdering&         get_tool_ordering() const { return m_wipe_tower_data.tool_ordering; }
+- set_plate_origin · function · L1141-L1141 — void set_plate_origin(Vec3d origin) { m_origin = origin; }
+- get_plate_origin · function · L1142-L1142 — const Vec3d get_plate_origin() const { return m_origin; }
+- set_gcode_file_ready · function · L1144-L1144 — void set_gcode_file_ready();
+- set_gcode_file_invalidated · function · L1145-L1145 — void set_gcode_file_invalidated();
+- export_gcode_from_previous_file · function · L1146-L1146 — void export_gcode_from_previous_file(const std::string& file, GCodeProcessorResult* result, ThumbnailsGeneratorCallback thumbnail_cb = nullptr);
+- get_modified_count · function · L1148-L1148 — int get_modified_count() const {return m_modified_count;}
+- is_support_used · function · L1150-L1150 — bool is_support_used() const {return m_support_used;}
+- get_conflict_string · function · L1151-L1159 — std::string get_conflict_string() const
+- sequential_print_clearance_valid · function · L1162-L1162 — static StringObjectException sequential_print_clearance_valid(const Print &print, Polygons *polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr);
+- compacted_wipe_tower_clearance_valid · function · L1164-L1164 — static StringObjectException compacted_wipe_tower_clearance_valid(const Print &print, Polygons *polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr);
+- get_conflict_result · function · L1165-L1165 — ConflictResultOpt            get_conflict_result() const { return m_conflict_result; }
+- first_layer_wipe_tower_corners · function · L1168-L1168 — Points first_layer_wipe_tower_corners(bool check_wipe_tower_existance=true) const;
+- is_BBL_printer · function · L1171-L1171 — bool &is_BBL_printer() { return m_isBBLPrinter; }
+- is_BBL_printer · function · L1172-L1172 — const bool is_BBL_printer() const { return m_isBBLPrinter; }
+- wipe_tower_type · function · L1173-L1173 — WipeTowerType wipe_tower_type() const { return is_BBL_printer() ? WipeTowerType::Type1 : m_config.wipe_tower_type.value; }
+- calib_mode · function · L1174-L1174 — CalibMode& calib_mode() { return m_calib_params.mode; }
+- calib_mode · function · L1175-L1175 — const CalibMode calib_mode() const { return m_calib_params.mode; }
+- set_calib_params · function · L1176-L1176 — void set_calib_params(const Calib_Params& params);
+- calib_params · function · L1177-L1177 — const Calib_Params& calib_params() const { return m_calib_params; }
+- translate_to_print_space · function · L1178-L1178 — Vec2d translate_to_print_space(const Vec2d &point) const;
+- validate_compacted_wipe_tower_clearance · function · L1180-L1180 — void                validate_compacted_wipe_tower_clearance() const;
+- get_wipe_tower_depth · function · L1181-L1181 — float               get_wipe_tower_depth() const { return m_wipe_tower_data.depth; }
+- get_wipe_tower_bbx · function · L1182-L1182 — BoundingBoxf        get_wipe_tower_bbx() const { return m_wipe_tower_data.bbx; }
+- get_rib_offset · function · L1183-L1183 — Vec2f               get_rib_offset() const { return m_wipe_tower_data.rib_offset; }
+- get_fake_wipe_tower · function · L1184-L1184 — const FakeWipeTower& get_fake_wipe_tower() const { return m_fake_wipe_tower; }
+- set_check_multi_filaments_compatibility · function · L1186-L1186 — void set_check_multi_filaments_compatibility(bool check) { m_need_check_multi_filaments_compatibility = check; }
+- need_check_multi_filaments_compatibility · function · L1187-L1187 — bool need_check_multi_filaments_compatibility() const { return m_need_check_multi_filaments_compatibility; }
+- translate_to_print_space · function · L1190-L1190 — Vec2d translate_to_print_space(const Point &point) const;
+- get_filament_temp_type · function · L1191-L1191 — static FilamentTempType get_filament_temp_type(const std::string& filament_type);
+- get_hrc_by_nozzle_type · function · L1192-L1192 — static int get_hrc_by_nozzle_type(const NozzleType& type);
+- get_incompatible_filaments_by_nozzle · function · L1193-L1193 — static std::vector<std::string> get_incompatible_filaments_by_nozzle(const float nozzle_diameter, const std::optional<NozzleVolumeType> nozzle_volume_type = std::nullopt);
+- check_multi_filaments_compatibility · function · L1194-L1198 — static FilamentCompatibilityType check_multi_filaments_compatibility(
+- is_filaments_compatible · function · L1200-L1200 — static bool is_filaments_compatible(const std::vector<int>& types);
+- get_compatible_filament_type · function · L1207-L1207 — static int get_compatible_filament_type(const std::set<int>& types);
+- is_all_objects_are_short · function · L1209-L1211 — bool is_all_objects_are_short() const
+- get_filament_config_indx · function · L1215-L1215 — int get_filament_config_indx(int filament_id, int layer_id);
+- get_nozzle_config_index · function · L1216-L1216 — int get_nozzle_config_index(int filament_id, int layer_id);
+- has_same_shrinkage_compensations · function · L1220-L1220 — bool has_same_shrinkage_compensations() const;
+- shrinkage_compensation · function · L1222-L1222 — Vec3d shrinkage_compensation() const;
+- object_skirt_offset · function · L1224-L1224 — std::tuple<float, float> object_skirt_offset(double margin_height = 0) const;
+- FilamentIndexKey · class · L1227-L1237 — struct FilamentIndexKey
+- PrintIndexKey · class · L1239-L1250 — struct PrintIndexKey
+- FilamentIndexKeyHash · class · L1252-L1261 — struct FilamentIndexKeyHash
+- PrintIndexKeyHash · class · L1262-L1272 — struct PrintIndexKeyHash
+- get_config_index · function · L1275-L1275 — int get_config_index(int filament_id, int layer_id, const std::vector<std::string> &variant_list, const std::vector<int>& self_index_list, FilamentIndexMap &index_map);
+- get_config_index · function · L1276-L1276 — int get_config_index(int filament_id, int layer_id, const std::vector<std::string> &variant_list, const std::vector<int>& self_index_list, PrintIndexMap &index_map);
+- invalidate_step · function · L1279-L1279 — bool                invalidate_step(PrintStep step);
+- check_multi_filament_valid · function · L1283-L1283 — static StringObjectException check_multi_filament_valid(const Print &print);
+- has_tpu_filament · function · L1285-L1285 — bool                has_tpu_filament() const;
+- invalidate_state_by_config_options · function · L1286-L1286 — bool                invalidate_state_by_config_options(const ConfigOptionResolver &new_config, const std::vector<t_config_option_key> &opt_keys);
+- _make_skirt · function · L1288-L1288 — void                _make_skirt();
+- _make_wipe_tower · function · L1289-L1289 — void                _make_wipe_tower();
+- finalize_first_layer_convex_hull · function · L1290-L1290 — void                finalize_first_layer_convex_hull();
+- update_filament_self_index_cache · function · L1291-L1291 — void                update_filament_self_index_cache();
+- collect_filament_variant_uses · function · L1298-L1300 — bool                collect_filament_variant_uses(const MultiNozzleUtils::LayeredNozzleGroupResult& group_result,
+- first_layer_islands · function · L1303-L1303 — Polygons            first_layer_islands() const;
+- run_pipeline_hook · function · L1307-L1310 — void run_pipeline_hook(SlicingPipelineStepPlugin step, const PrintObject* object)
+- compacted_tower_half_clearance · function · L1414-L1414 — inline double compacted_tower_half_clearance(double clearance) { return 0.5 * (clearance - 0.2); }
+- CompactedTowerZone · class · L1417-L1433 — struct CompactedTowerZone
+- empty · function · L1432-L1432 — bool empty() const { return hull.points.empty(); }
+- compacted_tower_footprint_padding · function · L1440-L1440 — double compacted_tower_footprint_padding(const PrintConfig &config, double brim_width);
+- compacted_wipe_tower_zone · function · L1443-L1443 — CompactedTowerZone compacted_wipe_tower_zone(const PrintConfig &config, const Polygon &tower_footprint);
+- CompactedTowerClearance · class · L1446-L1458 — struct CompactedTowerClearance
+- compacted_wipe_tower_clearance · function · L1462-L1463 — CompactedTowerClearance compacted_wipe_tower_clearance(const PrintConfig &config, const CompactedTowerZone &zone,
+- compacted_tower_body_tier · function · L1467-L1470 — inline bool compacted_tower_body_tier(const CompactedTowerClearance &clearance)
+- compacted_wipe_tower_rings · function · L1475-L1475 — Polygons compacted_wipe_tower_rings(const CompactedTowerZone &zone, bool any_body_tier);
+- compacted_wipe_tower_offender_outline · function · L1482-L1482 — Polygon compacted_wipe_tower_offender_outline(const Polygon &inst_hull, double body_clearance);

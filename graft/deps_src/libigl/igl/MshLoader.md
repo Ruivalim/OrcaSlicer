@@ -1,0 +1,40 @@
+# deps_src/libigl/igl/MshLoader.h
+
+- msh_struct · class · L26-L35 — struct msh_struct
+- Float · type · L41-L41 — typedef double Float;
+- IndexVector · type · L43-L43 — typedef std::vector<int>      IndexVector;
+- IntVector · type · L44-L44 — typedef std::vector<int>      IntVector;
+- FloatVector · type · L45-L45 — typedef std::vector<Float>    FloatVector;
+- FloatField · type · L46-L46 — typedef std::vector<FloatVector> FloatField;
+- IntField · type · L47-L47 — typedef std::vector<IntVector> IntField;
+- FieldNames · type · L48-L48 — typedef std::vector<std::string> FieldNames;
+- msh_struct · type · L49-L49 — typedef std::multimap<msh_struct,int> StructIndex;
+- StructVector · type · L50-L50 — typedef std::vector<msh_struct> StructVector;
+- get_nodes · function · L70-L70 — const FloatVector& get_nodes()    const { return m_nodes; }
+- get_elements · function · L73-L73 — const IndexVector& get_elements() const { return m_elements; }
+- get_elements_types · function · L76-L76 — const IntVector& get_elements_types() const { return m_elements_types; }
+- get_elements_lengths · function · L78-L78 — const IntVector& get_elements_lengths() const { return m_elements_lengths; }
+- get_elements_tags · function · L80-L80 — const IntField&  get_elements_tags() const { return m_elements_tags; }
+- get_elements_ids · function · L82-L82 — const IntVector& get_elements_ids() const { return m_elements_ids; }
+- get_elements_nodes_idx · function · L85-L85 — const IndexVector& get_elements_nodes_idx() const { return m_elements_nodes_idx; }
+- get_node_fields · function · L88-L88 — const FloatField& get_node_fields() const { return m_node_fields;}
+- get_node_fields_names · function · L90-L90 — const FieldNames& get_node_fields_names() const { return m_node_fields_names;}
+- get_node_fields_components · function · L92-L92 — const IntVector&  get_node_fields_components() const {return m_node_fields_components;}
+- get_node_field_components · function · L94-L97 — int get_node_field_components(size_t c)  const
+- get_element_fields · function · L100-L100 — const FloatField& get_element_fields() const { return m_element_fields;}
+- get_element_fields_names · function · L102-L102 — const FieldNames& get_element_fields_names() const { return m_element_fields_names;}
+- get_element_fields_components · function · L104-L104 — const IntVector&  get_element_fields_components() const {return m_element_fields_components;}
+- get_element_field_components · function · L106-L108 — int get_element_field_components(size_t c)  const
+- is_node_field · function · L110-L114 — bool is_node_field(const std::string& fieldname)  const
+- is_element_field · function · L116-L120 — bool is_element_field(const std::string& fieldname) const
+- index_structures · function · L123-L127 — bool is_element_map_identity() const ;
+- is_element_map_identity · function · L123-L123 — bool is_element_map_identity() const ;
+- get_structure_index · function · L130-L130 — const StructIndex& get_structure_index() const
+- get_structure_length · function · L136-L136 — const StructIndex& get_structure_length() const
+- get_structures · function · L142-L142 — const StructVector& get_structures() const
+- num_nodes_per_elem_type · function · L147-L149 — public:
+- parse_nodes · function · L152-L152 — void parse_nodes(std::ifstream& fin);
+- parse_elements · function · L153-L153 — void parse_elements(std::ifstream& fin);
+- parse_node_field · function · L154-L154 — void parse_node_field(std::ifstream& fin);
+- parse_element_field · function · L155-L155 — void parse_element_field(std::ifstream& fin);
+- parse_unknown_field · function · L156-L157 — void parse_unknown_field(std::ifstream& fin,

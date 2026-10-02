@@ -1,0 +1,27 @@
+# src/slic3r/Utils/Flashforge.hpp
+
+- DynamicPrintConfig · class · L13-L13 — class DynamicPrintConfig;
+- Http · class · L14-L14 — class Http;
+- FlashforgeMaterialSlot · class · L16-L22 — struct FlashforgeMaterialSlot
+- FlashforgeDiscoveredPrinter · class · L24-L29 — struct FlashforgeDiscoveredPrinter
+- Flashforge · class · L31-L74 — class Flashforge : public PrintHost
+- Flashforge · function · L34-L34 — explicit Flashforge(DynamicPrintConfig *config);
+- get_name · function · L37-L37 — const char *get_name() const override;
+- test · function · L39-L39 — bool                       test(wxString &curl_msg) const override;
+- get_test_ok_msg · function · L40-L40 — wxString                   get_test_ok_msg() const override;
+- get_test_failed_msg · function · L41-L41 — wxString                   get_test_failed_msg(wxString &msg) const override;
+- upload · function · L42-L42 — bool                       upload(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- has_auto_discovery · function · L43-L43 — bool                       has_auto_discovery() const override { return true; }
+- can_test · function · L44-L44 — bool                       can_test() const override { return true; }
+- get_post_upload_actions · function · L45-L45 — PrintHostPostUploadActions get_post_upload_actions() const override { return PrintHostPostUploadAction::StartPrint; }
+- get_host · function · L46-L46 — std::string                get_host() const override { return m_host; }
+- fetch_material_slots · function · L47-L47 — bool                       fetch_material_slots(std::vector<FlashforgeMaterialSlot>& slots, bool* supports_material_station, wxString& msg) const;
+- discover_printers · function · L48-L48 — static bool                discover_printers(std::vector<FlashforgeDiscoveredPrinter>& printers, wxString& msg, int timeout_ms = 10000, int idle_timeout_ms = 1500, int max_retries = 3);
+- upload_local_api · function · L66-L66 — bool upload_local_api(PrintHostUpload upload_data, ProgressFn progress_fn, ErrorFn error_fn) const;
+- test_local_api · function · L67-L67 — bool test_local_api(wxString& msg) const;
+- request_local_api_json · function · L68-L68 — bool request_local_api_json(const std::string& path, const std::string& body, std::string& response_body, wxString& error_msg) const;
+- make_http_url · function · L69-L69 — std::string make_http_url(const std::string& path) const;
+- extract_host_name · function · L70-L70 — std::string extract_host_name() const;
+- get_err_code_from_body · function · L71-L71 — int  get_err_code_from_body(const std::string &body) const;
+- connect · function · L72-L72 — bool connect(wxString& msg) const;
+- start_print · function · L73-L73 — bool start_print(wxString& msg, const std::string& filename) const;

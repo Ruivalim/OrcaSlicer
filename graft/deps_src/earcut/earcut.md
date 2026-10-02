@@ -1,0 +1,45 @@
+# deps_src/earcut/earcut.hpp
+
+- nth · class · L17-L20 — template <std::size_t I, typename T> struct nth
+- get · function · L18-L19 — inline static typename std::tuple_element<I, T>::type
+- Earcut · class · L26-L136 — template <typename N = uint32_t>
+- Node · class · L36-L60 — struct Node
+- Node · function · L37-L37 — Node(N index, double x_, double y_) : i(index), x(x_), y(y_) {}
+- Node · function · L38-L38 — Node(const Node&) = delete;
+- Node · function · L40-L40 — Node(Node&&) = delete;
+- linkedList · function · L62-L62 — template <typename Ring> Node* linkedList(const Ring& points, const bool clockwise);
+- filterPoints · function · L63-L63 — Node* filterPoints(Node* start, Node* end = nullptr);
+- earcutLinked · function · L64-L64 — void earcutLinked(Node* ear, int pass = 0);
+- isEar · function · L65-L65 — bool isEar(Node* ear);
+- isEarHashed · function · L66-L66 — bool isEarHashed(Node* ear);
+- cureLocalIntersections · function · L67-L67 — Node* cureLocalIntersections(Node* start);
+- splitEarcut · function · L68-L68 — void splitEarcut(Node* start);
+- eliminateHoles · function · L69-L69 — template <typename Polygon> Node* eliminateHoles(const Polygon& points, Node* outerNode);
+- eliminateHole · function · L70-L70 — Node* eliminateHole(Node* hole, Node* outerNode);
+- findHoleBridge · function · L71-L71 — Node* findHoleBridge(Node* hole, Node* outerNode);
+- sectorContainsSector · function · L72-L72 — bool sectorContainsSector(const Node* m, const Node* p);
+- indexCurve · function · L73-L73 — void indexCurve(Node* start);
+- sortLinked · function · L74-L74 — Node* sortLinked(Node* list);
+- zOrder · function · L75-L75 — int32_t zOrder(const double x_, const double y_);
+- getLeftmost · function · L76-L76 — Node* getLeftmost(Node* start);
+- pointInTriangle · function · L77-L77 — bool pointInTriangle(double ax, double ay, double bx, double by, double cx, double cy, double px, double py) const;
+- isValidDiagonal · function · L78-L78 — bool isValidDiagonal(Node* a, Node* b);
+- area · function · L79-L79 — double area(const Node* p, const Node* q, const Node* r) const;
+- equals · function · L80-L80 — bool equals(const Node* p1, const Node* p2);
+- intersects · function · L81-L81 — bool intersects(const Node* p1, const Node* q1, const Node* p2, const Node* q2);
+- onSegment · function · L82-L82 — bool onSegment(const Node* p, const Node* q, const Node* r);
+- sign · function · L83-L83 — int sign(double val);
+- intersectsPolygon · function · L84-L84 — bool intersectsPolygon(const Node* a, const Node* b);
+- locallyInside · function · L85-L85 — bool locallyInside(const Node* a, const Node* b);
+- middleInside · function · L86-L86 — bool middleInside(const Node* a, const Node* b);
+- splitPolygon · function · L87-L87 — Node* splitPolygon(Node* a, Node* b);
+- insertNode · function · L88-L88 — template <typename Point> Node* insertNode(std::size_t i, const Point& p, Node* last);
+- removeNode · function · L89-L89 — void removeNode(Node* p);
+- ObjectPool · class · L96-L134 — template <typename T, typename Alloc = std::allocator<T>>
+- ObjectPool · function · L99-L99 — ObjectPool() { }
+- ObjectPool · function · L100-L102 — ObjectPool(std::size_t blockSize_)
+- construct · function · L107-L107 — T* construct(Args&&... args)
+- reset · function · L117-L125 — void reset(std::size_t newBlockSize)
+- clear · function · L126-L126 — void clear() { reset(blockSize); }
+- alloc_traits · type · L133-L133 — typedef typename std::allocator_traits<Alloc> alloc_traits;
+- earcut · function · L808-L813 — template <typename N = uint32_t, typename Polygon>

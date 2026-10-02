@@ -1,0 +1,477 @@
+# src/libslic3r/Model.hpp
+
+- BinaryInputArchive · class · L41-L41 — class BinaryInputArchive;
+- BinaryOutputArchive · class · L42-L42 — class BinaryOutputArchive;
+- load_optional · function · L43-L43 — template <class T> void load_optional(BinaryInputArchive &ar, std::shared_ptr<const T> &ptr);
+- save_optional · function · L44-L44 — template <class T> void save_optional(BinaryOutputArchive &ar, const std::shared_ptr<const T> &ptr);
+- load_by_value · function · L45-L45 — template <class T> void load_by_value(BinaryInputArchive &ar, T &obj);
+- save_by_value · function · L46-L46 — template <class T> void save_by_value(BinaryOutputArchive &ar, const T &obj);
+- ConversionType · type · L52-L52 — enum class ConversionType;
+- BuildVolume · class · L54-L54 — class BuildVolume;
+- Model · class · L55-L55 — class Model;
+- ModelInstance · class · L56-L56 — class ModelInstance;
+- ModelMaterial · class · L57-L57 — class ModelMaterial;
+- ModelObject · class · L58-L58 — class ModelObject;
+- ModelVolume · class · L59-L59 — class ModelVolume;
+- ModelWipeTower · class · L60-L60 — class ModelWipeTower;
+- Print · class · L61-L61 — class Print;
+- SLAPrint · class · L62-L62 — class SLAPrint;
+- TriangleSelector · class · L63-L63 — class TriangleSelector;
+- Preset · class · L65-L65 — class Preset;
+- BBLProject · class · L66-L66 — class BBLProject;
+- KeyStore · class · L68-L68 — class KeyStore;
+- StackImpl · class · L71-L71 — class StackImpl;
+- ModelConfigObject · class · L74-L104 — class ModelConfigObject : public ObjectBase, public ModelConfig
+- ModelConfigObject · function · L85-L85 — explicit ModelConfigObject() = default;
+- ModelConfigObject · function · L88-L88 — explicit ModelConfigObject(int) : ObjectBase(-1) {}
+- ModelConfigObject · function · L90-L90 — explicit ModelConfigObject(const ModelConfigObject &cfg) = default;
+- ModelConfigObject · function · L92-L92 — explicit ModelConfigObject(ModelConfigObject &&cfg) = default;
+- timestamp · function · L94-L94 — Timestamp          timestamp() const throw() override { return this->ModelConfig::timestamp(); }
+- object_id_and_timestamp_match · function · L95-L95 — bool               object_id_and_timestamp_match(const ModelConfigObject &rhs) const throw() { return this->id() == rhs.id() && this->timestamp() == rhs.timestamp(); }
+- serialize · function · L101-L103 — template<class Archive> void serialize(Archive &ar)
+- StaticSerializationWrapper · class · L107-L118 — template<typename T>
+- StaticSerializationWrapper · function · L111-L111 — StaticSerializationWrapper(T &wrap) : wrapped(wrap) {}
+- load · function · L115-L115 — template<class Archive> void load(Archive &ar) { cereal::load_by_value(ar, wrapped); }
+- save · function · L116-L116 — template<class Archive> void save(Archive &ar) const { cereal::save_by_value(ar, wrapped); }
+- t_model_material_id · type · L121-L121 — typedef std::string t_model_material_id;
+- t_model_material_attribute · type · L122-L122 — typedef std::string t_model_material_attribute;
+- t_model_material_attributes · type · L123-L123 — typedef std::map<t_model_material_attribute, std::string> t_model_material_attributes;
+- ModelMaterialMap · type · L125-L125 — typedef std::map<t_model_material_id, ModelMaterial*> ModelMaterialMap;
+- ModelObjectPtrs · type · L126-L126 — typedef std::vector<ModelObject*> ModelObjectPtrs;
+- ModelVolumePtrs · type · L127-L127 — typedef std::vector<ModelVolume*> ModelVolumePtrs;
+- ModelInstancePtrs · type · L128-L128 — typedef std::vector<ModelInstance*> ModelInstancePtrs;
+- new_clone · function · L140-L140 — static TYPE* new_clone(const TYPE &rhs) { \
+- make_clone · function · L147-L153 — TYPE         make_clone(const TYPE &rhs) { \
+- assign_clone · function · L154-L154 — TYPE&        assign_clone(const TYPE &rhs) { \
+- ModelMaterial · class · L163-L204 — class ModelMaterial final : public ObjectBase
+- get_model · function · L171-L171 — Model* get_model() const { return m_model; }
+- apply · function · L172-L173 — void apply(const t_model_material_attributes &attributes)
+- ModelMaterial · function · L182-L182 — ModelMaterial(Model *model) : m_model(model) { assert(this->id().valid()); }
+- ModelMaterial · function · L184-L184 — ModelMaterial(const ModelMaterial &rhs) = default;
+- set_model · function · L185-L185 — void set_model(Model *model) { m_model = model; }
+- set_new_unique_id · function · L186-L186 — void set_new_unique_id() { ObjectBase::set_new_unique_id(); this->config.set_new_unique_id(); }
+- ModelMaterial · function · L192-L192 — ModelMaterial() : ObjectBase(-1), config(-1), m_model(nullptr) { assert(this->id().invalid()); assert(this->config.id().invalid()); }
+- serialize · function · L193-L198 — template<class Archive> void serialize(Archive &ar)
+- config_wrapper · function · L195-L195 — Internal::StaticSerializationWrapper<ModelConfigObject> config_wrapper(config);
+- ModelMaterial · function · L201-L201 — ModelMaterial(ModelMaterial &&rhs) = delete;
+- LayerHeightProfile · class · L206-L243 — class LayerHeightProfile final : public ObjectWithTimestamp
+- assign · function · L209-L209 — void assign(const LayerHeightProfile &rhs) { if (! this->timestamp_matches(rhs)) { m_data = rhs.m_data; this->copy_timestamp(rhs); } }
+- assign · function · L210-L210 — void assign(LayerHeightProfile &&rhs) { if (! this->timestamp_matches(rhs)) { m_data = std::move(rhs.m_data); this->copy_timestamp(rhs); } }
+- get · function · L212-L212 — std::vector<coordf_t> get() const throw() { return m_data; }
+- empty · function · L213-L213 — bool                  empty() const throw() { return m_data.empty(); }
+- set · function · L214-L214 — void                  set(const std::vector<coordf_t> &data) { if (m_data != data) { m_data = data; this->touch(); } }
+- set · function · L215-L215 — void                  set(std::vector<coordf_t> &&data) { if (m_data != data) { m_data = std::move(data); this->touch(); } }
+- clear · function · L216-L216 — void                  clear() { m_data.clear(); this->touch(); }
+- serialize · function · L218-L221 — template<class Archive> void serialize(Archive &ar)
+- LayerHeightProfile · function · L226-L226 — explicit LayerHeightProfile() = default;
+- LayerHeightProfile · function · L229-L229 — explicit LayerHeightProfile(int) : ObjectWithTimestamp(-1) {}
+- LayerHeightProfile · function · L231-L231 — explicit LayerHeightProfile(const LayerHeightProfile &rhs) = default;
+- LayerHeightProfile · function · L233-L233 — explicit LayerHeightProfile(LayerHeightProfile &&rhs) = default;
+- CutMode · type · L245-L248 — enum class CutMode : int
+- CutConnectorType · type · L250-L255 — enum class CutConnectorType : int
+- CutConnectorStyle · type · L257-L262 — enum class CutConnectorStyle : int
+- CutConnectorShape · type · L264-L271 — enum class CutConnectorShape : int
+- CutConnectorParas · class · L272-L276 — struct CutConnectorParas
+- CutConnectorAttributes · class · L278-L306 — struct CutConnectorAttributes
+- CutConnectorAttributes · function · L284-L284 — CutConnectorAttributes() {}
+- CutConnectorAttributes · function · L286-L288 — CutConnectorAttributes(CutConnectorType t, CutConnectorStyle st, CutConnectorShape sh)
+- CutConnectorAttributes · function · L290-L291 — CutConnectorAttributes(const CutConnectorAttributes& rhs) :
+- serialize · function · L303-L305 — template<class Archive> inline void serialize(Archive& ar)
+- CutConnector · class · L308-L337 — struct CutConnector
+- CutConnector · function · L319-L321 — CutConnector()
+- CutConnector · function · L323-L325 — CutConnector(Vec3d p, Transform3d rot, float r, float h, float rt, float ht, float za, CutConnectorAttributes attributes)
+- CutConnector · function · L327-L328 — CutConnector(const CutConnector& rhs) :
+- serialize · function · L334-L336 — template<class Archive> inline void serialize(Archive& ar)
+- ModelVolumeType · type · L343-L350 — enum class ModelVolumeType : int
+- ModelObject · class · L356-L714 — class ModelObject final : public ObjectBase
+- get_model · function · L405-L405 — Model*                  get_model() { return m_model; }
+- get_model · function · L406-L406 — const Model*            get_model() const { return m_model; }
+- get_backup_id · function · L408-L408 — int                     get_backup_id() const;
+- get_config_value · function · L409-L409 — template<typename T> const T* get_config_value(const DynamicPrintConfig& global_config, const std::string& config_option)
+- add_volume · function · L416-L416 — ModelVolume*            add_volume(const TriangleMesh &mesh, bool modify_to_center_geometry = true);
+- add_volume · function · L417-L417 — ModelVolume*            add_volume(TriangleMesh &&mesh, ModelVolumeType type = ModelVolumeType::MODEL_PART, bool modify_to_center_geometry = true);
+- add_volume · function · L418-L418 — ModelVolume*            add_volume(const ModelVolume &volume, ModelVolumeType type = ModelVolumeType::INVALID);
+- add_volume · function · L419-L419 — ModelVolume*            add_volume(const ModelVolume &volume, TriangleMesh &&mesh);
+- add_volume_with_shared_mesh · function · L420-L420 — ModelVolume*            add_volume_with_shared_mesh(const ModelVolume &other, ModelVolumeType type = ModelVolumeType::MODEL_PART);
+- delete_volume · function · L421-L421 — void                    delete_volume(size_t idx);
+- clear_volumes · function · L422-L422 — void                    clear_volumes();
+- sort_volumes · function · L423-L423 — void                    sort_volumes(bool full_sort);
+- is_multiparts · function · L424-L424 — bool                    is_multiparts() const { return volumes.size() > 1; }
+- is_fdm_support_painted · function · L426-L426 — bool                    is_fdm_support_painted() const;
+- is_seam_painted · function · L428-L428 — bool                    is_seam_painted() const;
+- is_mm_painted · function · L430-L430 — bool                    is_mm_painted() const;
+- is_fuzzy_skin_painted · function · L432-L432 — bool                    is_fuzzy_skin_painted() const;
+- has_custom_layering · function · L435-L436 — bool                    has_custom_layering() const
+- add_instance · function · L438-L438 — ModelInstance*          add_instance();
+- add_instance · function · L439-L439 — ModelInstance*          add_instance(const ModelInstance &instance);
+- add_instance · function · L440-L440 — ModelInstance*          add_instance(const Vec3d &offset, const Vec3d &scaling_factor, const Vec3d &rotation, const Vec3d &mirror);
+- delete_instance · function · L441-L441 — void                    delete_instance(size_t idx);
+- delete_last_instance · function · L442-L442 — void                    delete_last_instance();
+- clear_instances · function · L443-L443 — void                    clear_instances();
+- bounding_box_approx · function · L446-L446 — const BoundingBoxf3&    bounding_box_approx() const;
+- bounding_box_exact · function · L448-L448 — const BoundingBoxf3&    bounding_box_exact() const;
+- min_z · function · L451-L451 — double                  min_z() const;
+- max_z · function · L452-L452 — double                  max_z() const;
+- invalidate_bounding_box · function · L454-L460 — void invalidate_bounding_box()
+- mesh · function · L463-L463 — TriangleMesh mesh() const;
+- raw_mesh · function · L466-L466 — TriangleMesh raw_mesh() const;
+- raw_indexed_triangle_set · function · L468-L468 — indexed_triangle_set raw_indexed_triangle_set() const;
+- raw_bounding_box · function · L471-L471 — const BoundingBoxf3& raw_bounding_box() const;
+- instance_bounding_box · function · L473-L473 — BoundingBoxf3 instance_bounding_box(size_t instance_idx, bool dont_translate = false) const;
+- instance_bounding_box · function · L474-L474 — BoundingBoxf3 instance_bounding_box(const ModelInstance& instance, bool dont_translate = false) const;
+- raw_mesh_bounding_box · function · L477-L477 — const BoundingBoxf3& raw_mesh_bounding_box() const;
+- full_raw_mesh_bounding_box · function · L479-L479 — BoundingBoxf3 full_raw_mesh_bounding_box() const;
+- instance_convex_hull_bounding_box · function · L482-L482 — BoundingBoxf3 instance_convex_hull_bounding_box(size_t instance_idx, bool dont_translate = false) const;
+- instance_convex_hull_bounding_box · function · L483-L483 — BoundingBoxf3 instance_convex_hull_bounding_box(const ModelInstance* instance, bool dont_translate = false) const;
+- convex_hull_2d · function · L488-L488 — Polygon       convex_hull_2d(const Transform3d &trafo_instance) const;
+- center_around_origin · function · L490-L490 — void center_around_origin(bool include_modifiers = true);
+- ensure_on_bed · function · L491-L491 — void ensure_on_bed(bool allow_negative_z = false);
+- translate_instances · function · L493-L493 — void translate_instances(const Vec3d& vector);
+- translate_instance · function · L494-L494 — void translate_instance(size_t instance_idx, const Vec3d& vector);
+- translate · function · L495-L495 — void translate(const Vec3d &vector) { this->translate(vector(0), vector(1), vector(2)); }
+- translate · function · L496-L496 — void translate(double x, double y, double z);
+- scale · function · L497-L497 — void scale(const Vec3d &versor);
+- scale · function · L498-L498 — void scale(const double s) { this->scale(Vec3d(s, s, s)); }
+- scale · function · L499-L499 — void scale(double x, double y, double z) { this->scale(Vec3d(x, y, z)); }
+- scale_to_fit · function · L503-L503 — void scale_to_fit(const Vec3d &size);
+- rotate · function · L504-L504 — void rotate(double angle, Axis axis);
+- rotate · function · L505-L505 — void rotate(double angle, const Vec3d& axis);
+- mirror · function · L506-L506 — void mirror(Axis axis);
+- scale_mesh_after_creation · function · L509-L509 — void scale_mesh_after_creation(const float scale);
+- convert_units · function · L510-L510 — void convert_units(ModelObjectPtrs&new_objects, ConversionType conv_type, std::vector<int> volume_idxs);
+- materials_count · function · L512-L512 — size_t materials_count() const;
+- facets_count · function · L513-L513 — size_t facets_count() const;
+- parts_count · function · L514-L514 — size_t parts_count() const;
+- invalidate_cut · function · L516-L516 — void invalidate_cut();
+- delete_connectors · function · L518-L518 — void delete_connectors();
+- clone_for_cut · function · L519-L519 — void clone_for_cut(ModelObject **obj);
+- split · function · L521-L521 — void split(ModelObjectPtrs*new_objects, bool remap_paint);
+- merge · function · L522-L522 — void merge();
+- make_boolean · function · L525-L525 — bool make_boolean(ModelObject *cut_object, const std::string &boolean_opts);
+- merge_volumes · function · L527-L527 — ModelObjectPtrs merge_volumes(std::vector<int>& vol_indeces);//BBS
+- bake_xy_rotation_into_meshes · function · L532-L532 — void bake_xy_rotation_into_meshes(size_t instance_idx);
+- get_instance_min_z · function · L534-L534 — double get_instance_min_z(size_t instance_idx) const;
+- get_instance_max_z · function · L535-L535 — double get_instance_max_z(size_t instance_idx) const;
+- print_info · function · L538-L538 — void print_info() const;
+- get_export_filename · function · L540-L540 — std::string get_export_filename() const;
+- get_object_stl_stats · function · L543-L543 — TriangleMeshStats get_object_stl_stats() const;
+- get_repaired_errors_count · function · L545-L545 — int         get_repaired_errors_count(const int vol_idx = -1) const;
+- has_solid_mesh · function · L548-L548 — bool has_solid_mesh() const;
+- is_cut · function · L549-L549 — bool is_cut() const { return cut_id.id().valid(); }
+- has_connectors · function · L550-L550 — bool has_connectors() const;
+- ModelObject · function · L554-L559 — explicit ModelObject(Model* model) : m_model(model), origin_translation(Vec3d::Zero())
+- ModelObject · function · L560-L565 — explicit ModelObject(int) : ObjectBase(-1), config(-1), layer_height_profile(-1), origin_translation(Vec3d::Zero())
+- assign_new_unique_ids_recursive · function · L567-L567 — void assign_new_unique_ids_recursive() override;
+- ModelObject · function · L571-L586 — ModelObject(const ModelObject &rhs) : ObjectBase(-1), config(-1), layer_height_profile(-1), m_model(rhs.m_model)
+- ModelObject · function · L587-L602 — explicit ModelObject(ModelObject &&rhs) : ObjectBase(-1), config(-1), layer_height_profile(-1)
+- set_new_unique_id · function · L629-L633 — void set_new_unique_id()
+- copy_transformation_caches · function · L652-L662 — void copy_transformation_caches(const ModelObject &src)
+- set_model · function · L667-L667 — void        set_model(Model *model) { m_model = model; }
+- ModelObject · function · L673-L678 — ModelObject() :
+- save · function · L679-L689 — template<class Archive> void save(Archive& ar) const
+- config_wrapper · function · L681-L681 — Internal::StaticSerializationWrapper<ModelConfigObject const> config_wrapper(config);
+- layer_heigth_profile_wrapper · function · L682-L682 — Internal::StaticSerializationWrapper<LayerHeightProfile const> layer_heigth_profile_wrapper(layer_height_profile);
+- load · function · L690-L707 — template<class Archive> void load(Archive& ar)
+- config_wrapper · function · L692-L692 — Internal::StaticSerializationWrapper<ModelConfigObject> config_wrapper(config);
+- layer_heigth_profile_wrapper · function · L693-L693 — Internal::StaticSerializationWrapper<LayerHeightProfile> layer_heigth_profile_wrapper(layer_height_profile);
+- update_instances_print_volume_state · function · L710-L710 — unsigned int update_instances_print_volume_state(const BuildVolume &build_volume);
+- update_min_max_z · function · L713-L713 — void update_min_max_z();
+- ConversionType · type · L716-L721 — enum class ConversionType : int
+- En3mfType · type · L723-L728 — enum class En3mfType : int
+- FacetsAnnotation · class · L730-L799 — class FacetsAnnotation final : public ObjectWithTimestamp
+- assign · function · L733-L733 — void assign(const FacetsAnnotation &rhs) { if (! this->timestamp_matches(rhs)) { m_data = rhs.m_data; this->copy_timestamp(rhs); } }
+- assign · function · L734-L734 — void assign(FacetsAnnotation &&rhs) { if (! this->timestamp_matches(rhs)) { m_data = std::move(rhs.m_data); this->copy_timestamp(rhs); } }
+- get_data · function · L735-L735 — const TriangleSelector::TriangleSplittingData &get_data() const noexcept { return m_data; }
+- set_data · function · L736-L736 — void set_data(TriangleSelector::TriangleSplittingData &&data) { m_data = std::move(data); this->touch(); }
+- set · function · L737-L737 — bool set(const TriangleSelector& selector);
+- get_facets · function · L738-L738 — indexed_triangle_set get_facets(const ModelVolume& mv, EnforcerBlockerType type) const;
+- get_facets · function · L740-L740 — void get_facets(const ModelVolume& mv, std::vector<indexed_triangle_set>& facets_per_type) const;
+- set_enforcer_block_type_limit · function · L741-L744 — void                 set_enforcer_block_type_limit(const ModelVolume  &mv,
+- shift_states_above · function · L747-L747 — void                 shift_states_above(const ModelVolume &mv, EnforcerBlockerType threshold, int delta);
+- remap_states · function · L751-L751 — void                 remap_states(const ModelVolume &mv, const EnforcerBlockerStateMap &state_map);
+- get_facets_strict · function · L752-L752 — indexed_triangle_set get_facets_strict(const ModelVolume& mv, EnforcerBlockerType type) const;
+- has_facets · function · L753-L753 — bool has_facets(const ModelVolume& mv, EnforcerBlockerType type) const;
+- empty · function · L754-L754 — bool empty() const { return m_data.triangles_to_split.empty(); }
+- reset · function · L758-L758 — void reset();
+- get_triangle_as_string · function · L761-L761 — std::string get_triangle_as_string(int i) const;
+- reserve · function · L764-L764 — void reserve(int n_triangles) { m_data.triangles_to_split.reserve(n_triangles); }
+- set_triangle_from_string · function · L766-L766 — void set_triangle_from_string(int triangle_id, const std::string& str);
+- shrink_to_fit · function · L768-L768 — void shrink_to_fit() { m_data.triangles_to_split.shrink_to_fit(); m_data.bitstream.shrink_to_fit(); }
+- equals · function · L769-L769 — bool equals(const FacetsAnnotation &other) const;
+- FacetsAnnotation · function · L774-L774 — explicit FacetsAnnotation() = default;
+- FacetsAnnotation · function · L777-L777 — explicit FacetsAnnotation(int) : ObjectWithTimestamp(-1) {}
+- FacetsAnnotation · function · L779-L779 — explicit FacetsAnnotation(const FacetsAnnotation &rhs) = default;
+- FacetsAnnotation · function · L781-L781 — explicit FacetsAnnotation(FacetsAnnotation &&rhs) = default;
+- serialize · function · L790-L793 — template<class Archive> void serialize(Archive &ar)
+- ModelVolume · class · L803-L1242 — class ModelVolume final : public ObjectBase
+- Source · class · L808-L824 — struct Source
+- serialize · function · L819-L823 — template<class Archive> void serialize(Archive& ar)
+- CutInfo · class · L829-L854 — struct CutInfo
+- CutInfo · function · L838-L838 — CutInfo() = default;
+- CutInfo · function · L839-L845 — CutInfo(CutConnectorType type, float rad_tolerance, float h_tolerance, bool processed = false) :
+- set_processed · function · L847-L847 — void set_processed() { is_processed = true; }
+- invalidate · function · L848-L848 — void invalidate()    { is_connector = false; }
+- reset_from_upper · function · L849-L849 — void reset_from_upper() { is_from_upper = true; }
+- serialize · function · L851-L853 — template<class Archive> inline void serialize(Archive& ar)
+- is_from_upper · function · L857-L857 — bool                is_from_upper() const    { return cut_info.is_from_upper; }
+- reset_from_upper · function · L858-L858 — void                reset_from_upper()       { cut_info.reset_from_upper(); }
+- is_cut_connector · function · L860-L860 — bool                is_cut_connector() const { return cut_info.is_processed && cut_info.is_connector; }
+- invalidate_cut_info · function · L861-L861 — void                invalidate_cut_info()    { cut_info.invalidate(); }
+- mesh · function · L864-L864 — const TriangleMesh& mesh() const { return *m_mesh.get(); }
+- mesh_ptr · function · L865-L865 — std::shared_ptr<const TriangleMesh> mesh_ptr() const { return m_mesh; }
+- set_mesh · function · L866-L866 — void                set_mesh(const TriangleMesh &mesh) { m_mesh = std::make_shared<const TriangleMesh>(mesh); }
+- set_mesh · function · L867-L867 — void                set_mesh(TriangleMesh &&mesh) { m_mesh = std::make_shared<const TriangleMesh>(std::move(mesh)); }
+- set_mesh · function · L868-L868 — void                set_mesh(const indexed_triangle_set &mesh) { m_mesh = std::make_shared<const TriangleMesh>(mesh); }
+- set_mesh · function · L869-L869 — void                set_mesh(indexed_triangle_set &&mesh) { m_mesh = std::make_shared<const TriangleMesh>(std::move(mesh)); }
+- set_mesh · function · L870-L870 — void                set_mesh(std::shared_ptr<const TriangleMesh> &mesh) { m_mesh = mesh; }
+- set_mesh · function · L871-L871 — void                set_mesh(std::unique_ptr<const TriangleMesh> &&mesh) { m_mesh = std::move(mesh); }
+- reset_mesh · function · L872-L872 — void				reset_mesh() { m_mesh = std::make_shared<const TriangleMesh>(); }
+- get_mesh_shared_ptr · function · L873-L873 — const std::shared_ptr<const TriangleMesh>& get_mesh_shared_ptr() const { return m_mesh; }
+- save_painting · function · L893-L893 — std::optional<TriangleSelector::SavedPainting> save_painting() const;
+- restore_painting · function · L896-L896 — void restore_painting(const std::optional<TriangleSelector::SavedPainting>& saved, bool keep_existing_paint = false);
+- get_object · function · L911-L911 — ModelObject*        get_object() const { return this->object; }
+- type · function · L912-L912 — ModelVolumeType     type() const { return m_type; }
+- set_type · function · L913-L913 — void                set_type(const ModelVolumeType t) { m_type = t; }
+- is_model_part · function · L914-L914 — bool                is_model_part()         const { return m_type == ModelVolumeType::MODEL_PART; }
+- is_negative_volume · function · L915-L915 — bool                is_negative_volume()    const { return m_type == ModelVolumeType::NEGATIVE_VOLUME; }
+- is_modifier · function · L916-L916 — bool                is_modifier()           const { return m_type == ModelVolumeType::PARAMETER_MODIFIER; }
+- is_support_enforcer · function · L917-L917 — bool                is_support_enforcer()   const { return m_type == ModelVolumeType::SUPPORT_ENFORCER; }
+- is_support_blocker · function · L918-L918 — bool                is_support_blocker()    const { return m_type == ModelVolumeType::SUPPORT_BLOCKER; }
+- is_support_modifier · function · L919-L919 — bool                is_support_modifier()   const { return m_type == ModelVolumeType::SUPPORT_BLOCKER || m_type == ModelVolumeType::SUPPORT_ENFORCER; }
+- is_text · function · L920-L920 — bool                is_text()               const { return text_configuration.has_value(); }
+- is_svg · function · L921-L921 — bool                is_svg() const { return emboss_shape.has_value()  && !text_configuration.has_value(); }
+- is_the_only_one_part · function · L922-L922 — bool                is_the_only_one_part() const; // behave like an object
+- material_id · function · L923-L923 — t_model_material_id material_id() const { return m_material_id; }
+- set_material_id · function · L924-L924 — void                set_material_id(t_model_material_id material_id);
+- reset_extra_facets · function · L925-L925 — void                reset_extra_facets();
+- material · function · L926-L926 — ModelMaterial*      material() const;
+- set_material · function · L927-L927 — void                set_material(t_model_material_id material_id, const ModelMaterial &material);
+- extruder_id · function · L930-L930 — int                 extruder_id() const;
+- clear_cache · function · L933-L937 — void clear_cache()
+- is_splittable · function · L939-L939 — bool                is_splittable() const;
+- get_extruders · function · L942-L942 — std::vector<int>    get_extruders() const;
+- update_extruder_count · function · L943-L943 — void                update_extruder_count(size_t extruder_count);
+- update_extruder_count_when_delete_filament · function · L944-L945 — void                update_extruder_count_when_delete_filament(size_t extruder_count, size_t filament_id, int replace_filament_id = -1,
+- split · function · L950-L950 — size_t              split(unsigned int max_extruders, bool remap_paint);
+- translate · function · L951-L951 — void                translate(double x, double y, double z) { translate(Vec3d(x, y, z)); }
+- translate · function · L952-L952 — void                translate(const Vec3d& displacement);
+- scale · function · L953-L953 — void                scale(const Vec3d& scaling_factors);
+- scale · function · L954-L954 — void                scale(double x, double y, double z) { scale(Vec3d(x, y, z)); }
+- scale · function · L955-L955 — void                scale(double s) { scale(Vec3d(s, s, s)); }
+- rotate · function · L956-L956 — void                rotate(double angle, Axis axis);
+- rotate · function · L957-L957 — void                rotate(double angle, const Vec3d& axis);
+- mirror · function · L958-L958 — void                mirror(Axis axis);
+- scale_geometry_after_creation · function · L961-L961 — void                scale_geometry_after_creation(const Vec3f &versor);
+- scale_geometry_after_creation · function · L962-L962 — void                scale_geometry_after_creation(const float scale) { this->scale_geometry_after_creation(Vec3f(scale, scale, scale)); }
+- center_geometry_after_creation · function · L966-L966 — void                center_geometry_after_creation(bool update_source_offset = true);
+- calculate_convex_hull · function · L968-L968 — void                calculate_convex_hull();
+- get_convex_hull · function · L969-L969 — const TriangleMesh& get_convex_hull() const;
+- get_convex_hull_shared_ptr · function · L970-L970 — const std::shared_ptr<const TriangleMesh>& get_convex_hull_shared_ptr() const { return m_convex_hull; }
+- get_convex_hull_2d · function · L972-L972 — const Polygon& get_convex_hull_2d(const Transform3d &trafo_instance) const;
+- invalidate_convex_hull_2d · function · L973-L976 — void invalidate_convex_hull_2d()
+- get_repaired_errors_count · function · L979-L979 — int                 get_repaired_errors_count() const;
+- type_from_string · function · L982-L982 — static ModelVolumeType type_from_string(const std::string &s);
+- type_to_string · function · L983-L983 — static std::string  type_to_string(const ModelVolumeType t);
+- get_transformation · function · L985-L985 — const Geometry::Transformation& get_transformation() const { return m_transformation; }
+- set_transformation · function · L986-L986 — void set_transformation(const Geometry::Transformation& transformation) { clear_cache(); m_transformation = transformation; }
+- set_transformation · function · L987-L987 — void set_transformation(const Transform3d& trafo) { clear_cache(); m_transformation.set_matrix(trafo); }
+- get_offset · function · L989-L989 — Vec3d get_offset() const { return m_transformation.get_offset(); }
+- get_offset · function · L991-L991 — double get_offset(Axis axis) const { return m_transformation.get_offset(axis); }
+- set_offset · function · L993-L993 — void set_offset(const Vec3d& offset) { clear_cache(); m_transformation.set_offset(offset); }
+- set_offset · function · L994-L994 — void set_offset(Axis axis, double offset) { clear_cache(); m_transformation.set_offset(axis, offset); }
+- get_rotation · function · L996-L996 — Vec3d get_rotation() const { return m_transformation.get_rotation(); }
+- get_rotation · function · L997-L997 — double get_rotation(Axis axis) const { return m_transformation.get_rotation(axis); }
+- set_rotation · function · L999-L999 — void set_rotation(const Vec3d& rotation) { clear_cache(); m_transformation.set_rotation(rotation); }
+- set_rotation · function · L1000-L1000 — void set_rotation(Axis axis, double rotation) { clear_cache(); m_transformation.set_rotation(axis, rotation); }
+- get_scaling_factor · function · L1002-L1002 — Vec3d get_scaling_factor() const { return m_transformation.get_scaling_factor(); }
+- get_scaling_factor · function · L1003-L1003 — double get_scaling_factor(Axis axis) const { return m_transformation.get_scaling_factor(axis); }
+- set_scaling_factor · function · L1005-L1005 — void set_scaling_factor(const Vec3d& scaling_factor) { clear_cache(); m_transformation.set_scaling_factor(scaling_factor); }
+- set_scaling_factor · function · L1006-L1006 — void set_scaling_factor(Axis axis, double scaling_factor) {clear_cache(); m_transformation.set_scaling_factor(axis, scaling_factor); }
+- get_mirror · function · L1008-L1008 — Vec3d get_mirror() const { return m_transformation.get_mirror(); }
+- get_mirror · function · L1009-L1009 — double get_mirror(Axis axis) const { return m_transformation.get_mirror(axis); }
+- is_left_handed · function · L1010-L1010 — bool is_left_handed() const { return m_transformation.is_left_handed(); }
+- set_mirror · function · L1012-L1012 — void set_mirror(const Vec3d& mirror) { clear_cache(); m_transformation.set_mirror(mirror); }
+- set_mirror · function · L1013-L1013 — void set_mirror(Axis axis, double mirror) { clear_cache(); m_transformation.set_mirror(axis, mirror); }
+- convert_from_imperial_units · function · L1014-L1014 — void convert_from_imperial_units();
+- convert_from_meters · function · L1015-L1015 — void convert_from_meters();
+- get_matrix · function · L1017-L1017 — const Transform3d& get_matrix() const { return m_transformation.get_matrix(); }
+- get_matrix_no_offset · function · L1018-L1018 — Transform3d get_matrix_no_offset() const { return m_transformation.get_matrix_no_offset(); }
+- set_new_unique_id · function · L1020-L1027 — void set_new_unique_id()
+- is_fdm_support_painted · function · L1029-L1029 — bool is_fdm_support_painted() const { return !this->supported_facets.empty(); }
+- is_seam_painted · function · L1030-L1030 — bool is_seam_painted() const { return !this->seam_facets.empty(); }
+- is_mm_painted · function · L1031-L1031 — bool is_mm_painted() const { return !this->mmu_segmentation_facets.empty(); }
+- is_fuzzy_skin_painted · function · L1032-L1032 — bool is_fuzzy_skin_painted() const { return !this->fuzzy_skin_facets.empty(); }
+- is_any_painted · function · L1033-L1033 — bool is_any_painted() const { return is_fdm_support_painted() || is_seam_painted() || is_mm_painted() || is_fuzzy_skin_painted(); }
+- get_extruders_from_multi_material_painting · function · L1037-L1037 — std::vector<size_t> get_extruders_from_multi_material_painting() const;
+- model_volume_list_update_supports · function · L1044-L1044 — friend void model_volume_list_update_supports(ModelObject& model_object_dst, const ModelObject& model_object_new);
+- ModelVolume · function · L1047-L1047 — explicit ModelVolume(const ModelVolume &rhs) = default;
+- set_model_object · function · L1048-L1048 — void     set_model_object(ModelObject *model_object) { object = model_object; }
+- assign_new_unique_ids_recursive · function · L1049-L1049 — void 	 assign_new_unique_ids_recursive() override;
+- transform_this_mesh · function · L1050-L1050 — void     transform_this_mesh(const Transform3d& t, bool fix_left_handed);
+- transform_this_mesh · function · L1051-L1051 — void     transform_this_mesh(const Matrix3d& m, bool fix_left_handed);
+- calculate_convex_hull_2d · function · L1070-L1070 — void  calculate_convex_hull_2d(const Geometry::Transformation &transformation) const;
+- ModelVolume · function · L1078-L1093 — ModelVolume(ModelObject *object, const TriangleMesh &mesh, ModelVolumeType type = ModelVolumeType::MODEL_PART) : m_mesh(new TriangleMesh(mesh)), m_type(type), object(object)
+- ModelVolume · function · L1094-L1107 — ModelVolume(ModelObject *object, const std::shared_ptr<const TriangleMesh> &mesh, ModelVolumeType type = ModelVolumeType::MODEL_PART) : m_mesh(mesh), m_type(type), object(object)
+- ModelVolume · function · L1108-L1121 — ModelVolume(ModelObject *object, TriangleMesh &&mesh, TriangleMesh &&convex_hull, ModelVolumeType type = ModelVolumeType::MODEL_PART) :
+- ModelVolume · function · L1124-L1148 — ModelVolume(ModelObject *object, const ModelVolume &other) :
+- ModelVolume · function · L1150-L1182 — ModelVolume(ModelObject *object, const ModelVolume &other, TriangleMesh &&mesh) :
+- ModelVolume · function · L1189-L1196 — ModelVolume() : ObjectBase(-1), config(-1), supported_facets(-1), seam_facets(-1), mmu_segmentation_facets(-1), fuzzy_skin_facets(-1), object(nullptr)
+- load · function · L1197-L1228 — template<class Archive> void load(Archive &ar)
+- save · function · L1229-L1241 — template<class Archive> void save(Archive &ar) const
+- model_volumes_sort_by_id · function · L1244-L1247 — inline void model_volumes_sort_by_id(ModelVolumePtrs &model_volumes)
+- model_volume_find_by_id · function · L1249-L1249 — inline const ModelVolume* model_volume_find_by_id(const ModelVolumePtrs &model_volumes, const ObjectID id)
+- ModelInstanceEPrintVolumeState · type · L1255-L1262 — enum ModelInstanceEPrintVolumeState : unsigned char
+- ModelInstance · class · L1266-L1436 — class ModelInstance final : public ObjectBase
+- get_labeled_id · function · L1284-L1290 — size_t get_labeled_id() const
+- get_object · function · L1292-L1292 — ModelObject* get_object() const { return this->object; }
+- get_transformation · function · L1294-L1294 — const Geometry::Transformation& get_transformation() const { return m_transformation; }
+- set_transformation · function · L1295-L1295 — void set_transformation(const Geometry::Transformation& transformation) { m_transformation = transformation; }
+- get_assemble_transformation · function · L1297-L1297 — const Geometry::Transformation& get_assemble_transformation() const { return m_assemble_transformation; }
+- set_assemble_transformation · function · L1298-L1301 — void set_assemble_transformation(const Geometry::Transformation& transformation)
+- set_assemble_from_transform · function · L1302-L1305 — void set_assemble_from_transform(const Transform3d& transform)
+- get_assemble_offset · function · L1306-L1306 — Vec3d get_assemble_offset() const {return m_assemble_transformation.get_offset(); }
+- set_assemble_offset · function · L1307-L1307 — void set_assemble_offset(const Vec3d& offset) { m_assemble_transformation.set_offset(offset); }
+- set_assemble_rotation · function · L1308-L1308 — void set_assemble_rotation(const Vec3d &rotation) { m_assemble_transformation.set_rotation(rotation); }
+- rotate_assemble · function · L1309-L1311 — void rotate_assemble(double angle, const Vec3d& axis)
+- set_offset_to_assembly · function · L1314-L1314 — void set_offset_to_assembly(const Vec3d& offset) { m_offset_to_assembly = offset; }
+- get_offset_to_assembly · function · L1315-L1315 — Vec3d get_offset_to_assembly() const { return m_offset_to_assembly; }
+- get_offset · function · L1317-L1317 — Vec3d get_offset() const { return m_transformation.get_offset(); }
+- get_offset · function · L1318-L1318 — double get_offset(Axis axis) const { return m_transformation.get_offset(axis); }
+- set_offset · function · L1320-L1320 — void set_offset(const Vec3d& offset) { m_transformation.set_offset(offset); }
+- set_offset · function · L1321-L1321 — void set_offset(Axis axis, double offset) { m_transformation.set_offset(axis, offset); }
+- get_rotation · function · L1323-L1323 — Vec3d get_rotation() const { return m_transformation.get_rotation(); }
+- get_rotation · function · L1324-L1324 — double get_rotation(Axis axis) const { return m_transformation.get_rotation(axis); }
+- set_rotation · function · L1326-L1326 — void set_rotation(const Vec3d& rotation) { m_transformation.set_rotation(rotation); }
+- set_rotation · function · L1327-L1327 — void set_rotation(Axis axis, double rotation) { m_transformation.set_rotation(axis, rotation); }
+- rotate · function · L1330-L1334 — void rotate(Matrix3d rotation_matrix)
+- get_scaling_factor · function · L1336-L1336 — Vec3d get_scaling_factor() const { return m_transformation.get_scaling_factor(); }
+- get_scaling_factor · function · L1337-L1337 — double get_scaling_factor(Axis axis) const { return m_transformation.get_scaling_factor(axis); }
+- set_scaling_factor · function · L1339-L1339 — void set_scaling_factor(const Vec3d& scaling_factor) { m_transformation.set_scaling_factor(scaling_factor); }
+- set_scaling_factor · function · L1340-L1340 — void set_scaling_factor(Axis axis, double scaling_factor) { m_transformation.set_scaling_factor(axis, scaling_factor); }
+- get_mirror · function · L1342-L1342 — Vec3d get_mirror() const { return m_transformation.get_mirror(); }
+- get_mirror · function · L1343-L1343 — double get_mirror(Axis axis) const { return m_transformation.get_mirror(axis); }
+- is_left_handed · function · L1344-L1344 — bool is_left_handed() const { return m_transformation.is_left_handed(); }
+- set_mirror · function · L1346-L1346 — void set_mirror(const Vec3d& mirror) { m_transformation.set_mirror(mirror); }
+- set_mirror · function · L1347-L1347 — void set_mirror(Axis axis, double mirror) { m_transformation.set_mirror(axis, mirror); }
+- transform_mesh · function · L1350-L1350 — void transform_mesh(TriangleMesh* mesh, bool dont_translate = false) const;
+- transform_bounding_box · function · L1352-L1352 — BoundingBoxf3 transform_bounding_box(const BoundingBoxf3 &bbox, bool dont_translate = false) const;
+- transform_vector · function · L1354-L1354 — Vec3d transform_vector(const Vec3d& v, bool dont_translate = false) const;
+- transform_polygon · function · L1356-L1356 — void transform_polygon(Polygon* polygon) const;
+- get_matrix · function · L1358-L1358 — const Transform3d& get_matrix() const { return m_transformation.get_matrix(); }
+- get_matrix_no_offset · function · L1359-L1359 — Transform3d get_matrix_no_offset() const { return m_transformation.get_matrix_no_offset(); }
+- is_printable · function · L1361-L1361 — bool is_printable() const { return object->printable && printable && (print_volume_state == ModelInstancePVS_Inside); }
+- is_assemble_initialized · function · L1362-L1362 — bool is_assemble_initialized() { return m_assemble_initialized; }
+- get_auto_brim_width · function · L1365-L1365 — double get_auto_brim_width(double deltaT, double adhesion) const;
+- get_auto_brim_width · function · L1366-L1366 — double get_auto_brim_width() const;
+- convex_hull_2d · function · L1368-L1368 — Polygon convex_hull_2d();
+- invalidate_convex_hull_2d · function · L1369-L1369 — void invalidate_convex_hull_2d();
+- get_arrange_polygon · function · L1373-L1373 — void get_arrange_polygon(void *arrange_polygon, const Slic3r::DynamicPrintConfig &config = Slic3r::DynamicPrintConfig()) const;
+- apply_arrange_result · function · L1376-L1383 — void apply_arrange_result(const Vec2d& offs, double rotation)
+- calc_print_volume_state · function · L1385-L1385 — ModelInstanceEPrintVolumeState calc_print_volume_state(const BuildVolume& build_volume) const;
+- ModelInstance · function · L1393-L1393 — explicit ModelInstance(const ModelInstance &rhs) = default;
+- set_model_object · function · L1394-L1394 — void     set_model_object(ModelObject *model_object) { object = model_object; }
+- update_print_volume_state · function · L1396-L1400 — ModelInstanceEPrintVolumeState update_print_volume_state(const BuildVolume& build_volume)
+- ModelInstance · function · L1408-L1412 — explicit ModelInstance(ModelObject* object)
+- ModelInstance · function · L1414-L1422 — explicit ModelInstance(ModelObject *object, const ModelInstance &other) :
+- ModelInstance · function · L1424-L1424 — explicit ModelInstance(ModelInstance &&rhs) = delete;
+- ModelInstance · function · L1431-L1431 — ModelInstance() : ObjectBase(-1), object(nullptr) { assert(this->id().invalid()); }
+- serialize · function · L1433-L1435 — template<class Archive> void serialize(Archive& ar)
+- ModelWipeTower · class · L1439-L1467 — class ModelWipeTower final : public ObjectBase
+- ModelWipeTower · function · L1453-L1453 — explicit ModelWipeTower() {}
+- ModelWipeTower · function · L1456-L1456 — explicit ModelWipeTower(int) : ObjectBase(-1) {}
+- ModelWipeTower · function · L1458-L1458 — explicit ModelWipeTower(const ModelWipeTower &cfg) = default;
+- ModelWipeTower · function · L1461-L1461 — ModelWipeTower(ModelWipeTower &&rhs) = delete;
+- serialize · function · L1466-L1466 — template<typename Archive> void serialize(Archive &ar) { ar(positions, rotation); }
+- ExtruderParams · class · L1470-L1476 — struct ExtruderParams
+- GlobalSpeedMap · class · L1478-L1490 — struct GlobalSpeedMap
+- ModelProfileInfo · class · L1493-L1501 — class ModelProfileInfo
+- ModelDesignInfo · class · L1504-L1510 — class ModelDesignInfo
+- ModelInfo · class · L1513-L1534 — class ModelInfo
+- load · function · L1525-L1533 — void load(ModelInfo &info)
+- Model · class · L1541-L1759 — class Model final : public ObjectBase
+- SetDesigner · function · L1576-L1583 — void SetDesigner(std::string designer, std::string designer_user_id)
+- get_curr_plate_custom_gcodes · function · L1591-L1596 — const CustomGCode::Info get_curr_plate_custom_gcodes() const
+- Model · function · L1599-L1599 — Model() { assert(this->id().valid()); }
+- Model · function · L1604-L1604 — Model(const Model &rhs) : ObjectBase(-1) { assert(this->id().invalid()); this->assign_copy(rhs); assert(this->id().valid()); assert(this->id() == rhs.id()); }
+- Model · function · L1606-L1606 — Model(Model &&rhs) : ObjectBase(-1) { assert(this->id().invalid()); this->assign_copy(std::move(rhs)); assert(this->id().valid()); assert(this->id() == rhs.id()); }
+- read_from_step · function · L1612-L1619 — static Model read_from_step(const std::string&                                      input_file,
+- read_from_file · function · L1624-L1633 — static Model read_from_file(
+- obj_import_vertex_color_deal · function · L1635-L1635 — static bool    obj_import_vertex_color_deal(const std::vector<unsigned char> &vertex_filament_ids, const unsigned char &first_extruder_id, Model *model);
+- obj_import_face_color_deal · function · L1636-L1636 — static bool    obj_import_face_color_deal(const std::vector<unsigned char> &face_filament_ids, const unsigned char &first_extruder_id, Model *model);
+- findMaxSpeed · function · L1637-L1637 — static double findMaxSpeed(const ModelObject* object);
+- getThermalLength · function · L1638-L1638 — static double getThermalLength(const ModelVolume* modelVolumePtr);
+- getThermalLength · function · L1639-L1639 — static double getThermalLength(const std::vector<ModelVolume*> modelVolumePtrs);
+- getBedPolygon · function · L1640-L1640 — static Polygon getBedPolygon() { return Model::printSpeedMap.bed_poly; }
+- setPrintSpeedTable · function · L1642-L1642 — static void setPrintSpeedTable(const DynamicPrintConfig& config, const PrintConfig& print_config);
+- setExtruderParams · function · L1643-L1643 — static void setExtruderParams(const DynamicPrintConfig& config, int extruders_count);
+- read_from_archive · function · L1646-L1649 — static Model read_from_archive(
+- add_object · function · L1652-L1652 — ModelObject* add_object();
+- add_object · function · L1653-L1653 — ModelObject* add_object(const char *name, const char *path, const TriangleMesh &mesh);
+- add_object · function · L1654-L1654 — ModelObject* add_object(const char *name, const char *path, TriangleMesh &&mesh);
+- add_object · function · L1655-L1655 — ModelObject* add_object(const ModelObject &other);
+- delete_object · function · L1656-L1656 — void         delete_object(size_t idx);
+- delete_object · function · L1657-L1657 — bool         delete_object(ObjectID id);
+- delete_object · function · L1658-L1658 — bool         delete_object(ModelObject* object);
+- clear_objects · function · L1659-L1659 — void         clear_objects();
+- collect_reusable_objects · function · L1661-L1661 — void         collect_reusable_objects(std::vector<ObjectBase *> & objects);
+- set_object_backup_id · function · L1662-L1662 — void         set_object_backup_id(ModelObject const & object, int uuid);
+- get_object_backup_id · function · L1663-L1663 — int          get_object_backup_id(ModelObject const & object); // generate new if needed
+- get_object_backup_id · function · L1664-L1664 — int          get_object_backup_id(ModelObject const & object) const; // generate new if needed
+- add_material · function · L1666-L1666 — ModelMaterial* add_material(t_model_material_id material_id);
+- add_material · function · L1667-L1667 — ModelMaterial* add_material(t_model_material_id material_id, const ModelMaterial &other);
+- get_material · function · L1668-L1668 — ModelMaterial* get_material(t_model_material_id material_id)
+- delete_material · function · L1673-L1673 — void          delete_material(t_model_material_id material_id);
+- clear_materials · function · L1674-L1674 — void          clear_materials();
+- add_default_instances · function · L1676-L1676 — bool          add_default_instances();
+- bounding_box_approx · function · L1678-L1678 — BoundingBoxf3 bounding_box_approx() const;
+- bounding_box_exact · function · L1680-L1680 — BoundingBoxf3 bounding_box_exact() const;
+- max_z · function · L1682-L1682 — double        max_z() const;
+- update_print_volume_state · function · L1685-L1685 — unsigned int  update_print_volume_state(const BuildVolume &build_volume);
+- center_instances_around_point · function · L1687-L1687 — bool 		  center_instances_around_point(const Vec2d &point);
+- translate · function · L1688-L1688 — void 		  translate(coordf_t x, coordf_t y, coordf_t z) { for (ModelObject *o : this->objects) o->translate(x, y, z); }
+- mesh · function · L1689-L1689 — TriangleMesh  mesh() const;
+- duplicate_objects_grid · function · L1692-L1692 — void duplicate_objects_grid(size_t x, size_t y, coordf_t dist);
+- looks_like_multipart_object · function · L1694-L1694 — bool 		  looks_like_multipart_object() const;
+- convert_multipart_object · function · L1695-L1695 — void 		  convert_multipart_object(unsigned int max_extruders);
+- looks_like_imperial_units · function · L1696-L1696 — bool          looks_like_imperial_units() const;
+- convert_from_imperial_units · function · L1697-L1697 — void          convert_from_imperial_units(bool only_small_volumes);
+- looks_like_saved_in_meters · function · L1698-L1698 — bool          looks_like_saved_in_meters() const;
+- convert_from_meters · function · L1699-L1699 — void          convert_from_meters(bool only_small_volumes);
+- removed_objects_with_zero_volume · function · L1700-L1700 — int           removed_objects_with_zero_volume();
+- adjust_min_z · function · L1703-L1703 — void 		  adjust_min_z();
+- print_info · function · L1705-L1705 — void 		  print_info() const { for (const ModelObject *o : this->objects) o->print_info(); }
+- propose_export_file_name_and_path · function · L1708-L1708 — std::string   propose_export_file_name_and_path() const;
+- propose_export_file_name_and_path · function · L1710-L1710 — std::string   propose_export_file_name_and_path(const std::string &new_extension) const;
+- get_auxiliary_file_temp_path · function · L1712-L1712 — std::string   get_auxiliary_file_temp_path();
+- get_backup_path · function · L1715-L1715 — std::string   get_backup_path();
+- get_backup_path · function · L1716-L1716 — std::string   get_backup_path(const std::string &sub_path);
+- set_backup_path · function · L1717-L1717 — void          set_backup_path(const std::string &path);
+- load_from · function · L1718-L1718 — void          load_from(Model & model);
+- is_need_backup · function · L1719-L1719 — bool          is_need_backup() { return need_backup;  }
+- set_need_backup · function · L1720-L1720 — void          set_need_backup();
+- remove_backup_path_if_exist · function · L1721-L1721 — void          remove_backup_path_if_exist();
+- is_fdm_support_painted · function · L1724-L1724 — bool          is_fdm_support_painted() const;
+- is_seam_painted · function · L1726-L1726 — bool          is_seam_painted() const;
+- is_mm_painted · function · L1728-L1728 — bool          is_mm_painted() const;
+- is_fuzzy_skin_painted · function · L1730-L1730 — bool          is_fuzzy_skin_painted() const;
+- Model · function · L1735-L1738 — explicit Model(int) : ObjectBase(-1)
+- assign_new_unique_ids_recursive · function · L1739-L1739 — void assign_new_unique_ids_recursive();
+- update_links_bottom_up_recursive · function · L1740-L1740 — void update_links_bottom_up_recursive();
+- load · function · L1744-L1747 — template<class Archive> void load(Archive& ar)
+- wipe_tower_wrapper · function · L1745-L1745 — Internal::StaticSerializationWrapper<ModelWipeTower> wipe_tower_wrapper(wipe_tower);
+- save · function · L1748-L1751 — template<class Archive> void save(Archive& ar) const
+- wipe_tower_wrapper · function · L1749-L1749 — Internal::StaticSerializationWrapper<ModelWipeTower const> wipe_tower_wrapper(wipe_tower);
+- model_object_list_equal · function · L1766-L1766 — bool model_object_list_equal(const Model &model_old, const Model &model_new);
+- model_object_list_extended · function · L1770-L1770 — bool model_object_list_extended(const Model &model_old, const Model &model_new);
+- model_volume_list_changed · function · L1774-L1774 — bool model_volume_list_changed(const ModelObject &model_object_old, const ModelObject &model_object_new, const ModelVolumeType type);
+- model_volume_list_changed · function · L1775-L1775 — bool model_volume_list_changed(const ModelObject &model_object_old, const ModelObject &model_object_new, const std::initializer_list<ModelVolumeType> &types);
+- model_custom_supports_data_changed · function · L1779-L1779 — bool model_custom_supports_data_changed(const ModelObject& mo, const ModelObject& mo_new);
+- model_custom_seam_data_changed · function · L1783-L1783 — bool model_custom_seam_data_changed(const ModelObject& mo, const ModelObject& mo_new);
+- model_mmu_segmentation_data_changed · function · L1787-L1787 — extern bool model_mmu_segmentation_data_changed(const ModelObject& mo, const ModelObject& mo_new);
+- model_fuzzy_skin_data_changed · function · L1791-L1791 — extern bool model_fuzzy_skin_data_changed(const ModelObject &mo, const ModelObject &mo_new);
+- model_brim_points_data_changed · function · L1793-L1793 — bool model_brim_points_data_changed(const ModelObject& mo, const ModelObject& mo_new);
+- model_has_multi_part_objects · function · L1797-L1797 — bool model_has_multi_part_objects(const Model &model);
+- model_has_advanced_features · function · L1799-L1799 — bool model_has_advanced_features(const Model &model);
+- remap_model_filament_slots · function · L1806-L1806 — void remap_model_filament_slots(Model &model, const std::map<int, int> &slot_relocations);
+- check_model_ids_validity · function · L1810-L1810 — void check_model_ids_validity(const Model &model);
+- check_model_ids_equal · function · L1811-L1811 — void check_model_ids_equal(const Model &model1, const Model &model2);

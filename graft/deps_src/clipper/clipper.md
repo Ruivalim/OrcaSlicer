@@ -1,0 +1,149 @@
+# deps_src/clipper/clipper.hpp
+
+- ClipType · type · L75-L75 — enum ClipType { ctIntersection, ctUnion, ctDifference, ctXor };
+- PolyType · type · L76-L76 — enum PolyType { ptSubject, ptClip };
+- PolyFillType · type · L81-L81 — enum PolyFillType { pftEvenOdd, pftNonZero, pftPositive, pftNegative };
+- ZFillCallback · type · L134-L134 — typedef std::function<void(const IntPoint& e1bot, const IntPoint& e1top, const IntPoint& e2bot, const IntPoint& e2top, IntPoint& pt)> ZFillCallback;
+- InitOptions · type · L137-L137 — enum InitOptions {ioReverseSolution = 1, ioStrictlySimple = 2, ioPreserveCollinear = 4};
+- JoinType · type · L138-L138 — enum JoinType {jtSquare, jtRound, jtMiter};
+- EndType · type · L139-L139 — enum EndType {etClosedPolygon, etClosedLine, etOpenButt, etOpenSquare, etOpenRound};
+- PolyNode · class · L141-L141 — class PolyNode;
+- PolyNodes · type · L142-L142 — typedef std::vector<PolyNode*, Allocator<PolyNode*>> PolyNodes;
+- PolyNode · class · L144-L167 — class PolyNode
+- PolyNode · function · L147-L147 — PolyNode() : Parent(0), Index(0), m_IsOpen(false) {}
+- GetNext · function · L153-L153 — PolyNode* GetNext() const { return Childs.empty() ? GetNextSiblingUp() : Childs.front(); }
+- IsHole · function · L154-L154 — bool IsHole() const;
+- IsOpen · function · L155-L155 — bool IsOpen() const { return m_IsOpen; }
+- ChildCount · function · L156-L156 — int  ChildCount() const { return (int)Childs.size(); }
+- GetNextSiblingUp · function · L162-L162 — PolyNode* GetNextSiblingUp() const { return Parent ? ((Index == Parent->Childs.size() - 1) ? Parent->GetNextSiblingUp() : Parent->Childs[Index + 1]) : nullptr; }
+- AddChild · function · L163-L163 — void AddChild(PolyNode& child);
+- PolyTree · class · L169-L197 — class PolyTree: public PolyNode
+- PolyTree · function · L172-L172 — PolyTree() {}
+- PolyTree · function · L173-L173 — PolyTree(PolyTree &&src) { *this = std::move(src); }
+- GetFirst · function · L188-L188 — PolyNode* GetFirst() const { return Childs.empty() ? nullptr : Childs.front(); }
+- Clear · function · L189-L189 — void Clear() {  AllNodes.clear(); Childs.clear(); }
+- Total · function · L190-L190 — int Total() const;
+- RemoveOutermostPolygon · function · L191-L191 — void RemoveOutermostPolygon();
+- PolyTree · function · L193-L193 — PolyTree(const PolyTree &src) = delete;
+- Area · function · L199-L199 — double Area(const Path &poly);
+- Orientation · function · L200-L200 — inline bool Orientation(const Path &poly) { return Area(poly) >= 0; }
+- PointInPolygon · function · L201-L201 — int PointInPolygon(const IntPoint &pt, const Path &path);
+- SimplifyPolygon · function · L204-L204 — Paths SimplifyPolygon(const Path &in_poly, PolyFillType fillType = pftNonZero, bool strictly_simple = true);
+- CleanPolygon · function · L206-L206 — void CleanPolygon(const Path& in_poly, Path& out_poly, double distance = 1.415);
+- CleanPolygon · function · L207-L207 — void CleanPolygon(Path& poly, double distance = 1.415);
+- CleanPolygons · function · L208-L208 — void CleanPolygons(const Paths& in_polys, Paths& out_polys, double distance = 1.415);
+- CleanPolygons · function · L209-L209 — void CleanPolygons(Paths& polys, double distance = 1.415);
+- MinkowskiSum · function · L211-L211 — void MinkowskiSum(const Path& pattern, const Path& path, Paths& solution, bool pathIsClosed);
+- MinkowskiSum · function · L212-L212 — void MinkowskiSum(const Path& pattern, const Paths& paths, Paths& solution, bool pathIsClosed);
+- MinkowskiDiff · function · L213-L213 — void MinkowskiDiff(const Path& poly1, const Path& poly2, Paths& solution);
+- PolyTreeToPaths · function · L215-L215 — void PolyTreeToPaths(const PolyTree& polytree, Paths& paths);
+- PolyTreeToPaths · function · L216-L216 — void PolyTreeToPaths(PolyTree&& polytree, Paths& paths);
+- ClosedPathsFromPolyTree · function · L217-L217 — void ClosedPathsFromPolyTree(const PolyTree& polytree, Paths& paths);
+- OpenPathsFromPolyTree · function · L218-L218 — void OpenPathsFromPolyTree(PolyTree& polytree, Paths& paths);
+- ReversePath · function · L220-L220 — void ReversePath(Path& p);
+- ReversePaths · function · L221-L221 — void ReversePaths(Paths& p);
+- IntRect · class · L223-L223 — struct IntRect { cInt left; cInt top; cInt right; cInt bottom; };
+- EdgeSide · type · L226-L226 — enum EdgeSide { esLeft = 1, esRight = 2};
+- TEdge · class · L230-L256 — struct TEdge
+- IntersectNode · class · L258-L264 — struct IntersectNode
+- IntersectNode · function · L259-L260 — IntersectNode(TEdge *Edge1, TEdge *Edge2, IntPoint Pt) :
+- LocalMinimum · class · L266-L270 — struct LocalMinimum
+- OutPt · class · L274-L283 — struct OutPt
+- OutRec · class · L288-L304 — struct OutRec
+- Join · class · L306-L312 — struct Join
+- Join · function · L307-L308 — Join(OutPt *OutPt1, OutPt *OutPt2, IntPoint OffPt) :
+- ClipperBase · function · L323-L323 — ClipperBase() :
+- m_HasOpenPaths · function · L325-L327 — m_UseFullRange(false),
+- AddPath · function · L329-L329 — bool AddPath(const Path &pg, PolyType PolyTyp, bool Closed);
+- AddPaths · function · L331-L380 — template<typename PathsProvider>
+- edges · function · L361-L361 — std::vector<TEdge, Allocator<TEdge>> edges(num_edges_total);
+- Clear · function · L382-L382 — void Clear();
+- GetBounds · function · L383-L383 — IntRect GetBounds();
+- PreserveCollinear · function · L386-L386 — bool PreserveCollinear() const {return m_PreserveCollinear;};
+- PreserveCollinear · function · L387-L387 — void PreserveCollinear(bool value) {m_PreserveCollinear = value;};
+- AddPathInternal · function · L389-L389 — bool AddPathInternal(const Path &pg, int highI, PolyType PolyTyp, bool Closed, TEdge* edges);
+- AddBoundsToLML · function · L390-L390 — TEdge* AddBoundsToLML(TEdge *e, bool IsClosed);
+- Reset · function · L391-L391 — void Reset();
+- ProcessBound · function · L392-L392 — TEdge* ProcessBound(TEdge* E, bool IsClockwise);
+- DescendToMin · function · L393-L393 — TEdge* DescendToMin(TEdge *&E);
+- AscendToMax · function · L394-L394 — void AscendToMax(TEdge *&E, bool Appending, bool IsClosed);
+- Clipper · class · L417-L535 — class Clipper : public ClipperBase
+- Clipper · function · L420-L420 — Clipper(int initOptions = 0);
+- Clear · function · L422-L422 — void Clear() { ClipperBase::Clear(); DisposeAllOutRecs(); }
+- Execute · function · L423-L426 — bool Execute(ClipType clipType,
+- Execute · function · L427-L430 — bool Execute(ClipType clipType,
+- Execute · function · L431-L434 — bool Execute(ClipType clipType,
+- Execute · function · L435-L438 — bool Execute(ClipType clipType,
+- ReverseSolution · function · L439-L439 — bool ReverseSolution() const { return m_ReverseOutput; };
+- ReverseSolution · function · L440-L440 — void ReverseSolution(bool value) {m_ReverseOutput = value;};
+- StrictlySimple · function · L441-L441 — bool StrictlySimple() const {return m_StrictSimple;};
+- StrictlySimple · function · L442-L442 — void StrictlySimple(bool value) {m_StrictSimple = value;};
+- ZFillFunction · function · L445-L445 — void ZFillFunction(ZFillCallback zFillFunc) { m_ZFill = zFillFunc; }
+- Reset · function · L448-L448 — void Reset();
+- ExecuteInternal · function · L449-L449 — virtual bool ExecuteInternal();
+- SetWindingCount · function · L481-L481 — void SetWindingCount(TEdge& edge) const;
+- IsEvenOddFillType · function · L482-L483 — bool IsEvenOddFillType(const TEdge& edge) const
+- IsEvenOddAltFillType · function · L484-L485 — bool IsEvenOddAltFillType(const TEdge& edge) const
+- InsertLocalMinimaIntoAEL · function · L486-L486 — void InsertLocalMinimaIntoAEL(const cInt botY);
+- InsertEdgeIntoAEL · function · L487-L487 — void InsertEdgeIntoAEL(TEdge *edge, TEdge* startEdge);
+- AddEdgeToSEL · function · L488-L488 — void AddEdgeToSEL(TEdge *edge);
+- CopyAELToSEL · function · L489-L489 — void CopyAELToSEL();
+- DeleteFromSEL · function · L490-L490 — void DeleteFromSEL(TEdge *e);
+- DeleteFromAEL · function · L491-L491 — void DeleteFromAEL(TEdge *e);
+- UpdateEdgeIntoAEL · function · L492-L492 — void UpdateEdgeIntoAEL(TEdge *&e);
+- SwapPositionsInSEL · function · L493-L493 — void SwapPositionsInSEL(TEdge *edge1, TEdge *edge2);
+- IsContributing · function · L494-L494 — bool IsContributing(const TEdge& edge) const;
+- IsTopHorz · function · L495-L495 — bool IsTopHorz(const cInt XPos);
+- SwapPositionsInAEL · function · L496-L496 — void SwapPositionsInAEL(TEdge *edge1, TEdge *edge2);
+- DoMaxima · function · L497-L497 — void DoMaxima(TEdge *e);
+- ProcessHorizontals · function · L498-L498 — void ProcessHorizontals();
+- ProcessHorizontal · function · L499-L499 — void ProcessHorizontal(TEdge *horzEdge);
+- AddLocalMaxPoly · function · L500-L500 — void AddLocalMaxPoly(TEdge *e1, TEdge *e2, const IntPoint &pt);
+- AddLocalMinPoly · function · L501-L501 — OutPt* AddLocalMinPoly(TEdge *e1, TEdge *e2, const IntPoint &pt);
+- GetOutRec · function · L502-L502 — OutRec* GetOutRec(int idx);
+- AppendPolygon · function · L503-L503 — void AppendPolygon(TEdge *e1, TEdge *e2);
+- IntersectEdges · function · L504-L504 — void IntersectEdges(TEdge *e1, TEdge *e2, IntPoint &pt);
+- CreateOutRec · function · L505-L505 — OutRec* CreateOutRec();
+- AddOutPt · function · L506-L506 — OutPt* AddOutPt(TEdge *e, const IntPoint &pt);
+- GetLastOutPt · function · L507-L507 — OutPt* GetLastOutPt(TEdge *e);
+- AllocateOutPt · function · L508-L508 — OutPt* AllocateOutPt();
+- DupOutPt · function · L509-L509 — OutPt* DupOutPt(OutPt* outPt, bool InsertAfter);
+- DisposeOutPt · function · L511-L511 — void DisposeOutPt(OutPt *pt) { pt->Next = m_OutPtsFree; m_OutPtsFree = pt; }
+- DisposeOutPts · function · L512-L512 — void DisposeOutPts(OutPt*& pp) { if (pp != nullptr) { pp->Prev->Next = m_OutPtsFree; m_OutPtsFree = pp; } }
+- DisposeAllOutRecs · function · L513-L513 — void DisposeAllOutRecs();
+- ProcessIntersections · function · L514-L514 — bool ProcessIntersections(const cInt topY);
+- BuildIntersectList · function · L515-L515 — void BuildIntersectList(const cInt topY);
+- ProcessEdgesAtTopOfScanbeam · function · L516-L516 — void ProcessEdgesAtTopOfScanbeam(const cInt topY);
+- BuildResult · function · L517-L517 — void BuildResult(Paths& polys);
+- BuildResult2 · function · L518-L518 — void BuildResult2(PolyTree& polytree);
+- SetHoleState · function · L519-L519 — void SetHoleState(TEdge *e, OutRec *outrec);
+- FixupIntersectionOrder · function · L520-L520 — bool FixupIntersectionOrder();
+- FixupOutPolygon · function · L521-L521 — void FixupOutPolygon(OutRec &outrec);
+- FixupOutPolyline · function · L522-L522 — void FixupOutPolyline(OutRec &outrec);
+- FindOwnerFromSplitRecs · function · L523-L523 — bool FindOwnerFromSplitRecs(OutRec &outRec, OutRec *&currOrfl);
+- FixHoleLinkage · function · L524-L524 — void FixHoleLinkage(OutRec &outrec);
+- JoinPoints · function · L525-L525 — bool JoinPoints(Join *j, OutRec* outRec1, OutRec* outRec2);
+- JoinHorz · function · L526-L526 — bool JoinHorz(OutPt* op1, OutPt* op1b, OutPt* op2, OutPt* op2b, const IntPoint &Pt, bool DiscardLeft);
+- JoinCommonEdges · function · L527-L527 — void JoinCommonEdges();
+- DoSimplePolygons · function · L528-L528 — void DoSimplePolygons();
+- FixupFirstLefts1 · function · L529-L529 — void FixupFirstLefts1(OutRec* OldOutRec, OutRec* NewOutRec);
+- FixupFirstLefts2 · function · L530-L530 — void FixupFirstLefts2(OutRec* InnerOutRec, OutRec* OuterOutRec);
+- FixupFirstLefts3 · function · L531-L531 — void FixupFirstLefts3(OutRec* OldOutRec, OutRec* NewOutRec);
+- SetZ · function · L533-L533 — void SetZ(IntPoint& pt, TEdge& e1, TEdge& e2);
+- ClipperOffset · class · L538-L575 — class ClipperOffset
+- ClipperOffset · function · L541-L542 — ClipperOffset(double miterLimit = 2.0, double roundPrecision = 0.25, double shortestEdgeLength = 0.) :
+- AddPath · function · L544-L544 — void AddPath(const Path& path, JoinType joinType, EndType endType);
+- AddPaths · function · L545-L549 — template<typename PathsProvider>
+- Execute · function · L550-L550 — void Execute(Paths& solution, double delta);
+- Execute · function · L551-L551 — void Execute(PolyTree& solution, double delta);
+- Clear · function · L552-L552 — void Clear();
+- FixOrientations · function · L569-L569 — void FixOrientations();
+- DoOffset · function · L570-L570 — void DoOffset(double delta);
+- OffsetPoint · function · L571-L571 — void OffsetPoint(int j, int& k, JoinType jointype);
+- DoSquare · function · L572-L572 — void DoSquare(int j, int k);
+- DoMiter · function · L573-L573 — void DoMiter(int j, int k, double r);
+- DoRound · function · L574-L574 — void DoRound(int j, int k);
+- clipperException · class · L578-L586 — class clipperException : public std::exception
+- clipperException · function · L581-L581 — clipperException(const char* description): m_descr(description) {}
+- what · function · L583-L583 — virtual const char* what() const throw() {return m_descr.c_str();}
+- SimplifyPolygons · function · L590-L598 — template<typename PathsProvider>

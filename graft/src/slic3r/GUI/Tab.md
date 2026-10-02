@@ -1,0 +1,261 @@
+# src/slic3r/GUI/Tab.hpp
+
+- TabCtrl · class · L43-L43 — class TabCtrl;
+- ModeSwitchButton · class · L44-L44 — class ModeSwitchButton;
+- SwitchButton · class · L45-L45 — class SwitchButton;
+- MultiSwitchButton · class · L46-L46 — class MultiSwitchButton;
+- ModelConfig · class · L50-L50 — class ModelConfig;
+- ObjectBase · class · L51-L51 — class ObjectBase;
+- TabPresetComboBox · class · L55-L55 — class TabPresetComboBox;
+- OG_CustomCtrl · class · L56-L56 — class OG_CustomCtrl;
+- input_shaper_types_for_flavor · function · L58-L58 — std::vector<InputShaperType> input_shaper_types_for_flavor(GCodeFlavor flavor);
+- Page · class · L63-L126 — class Page: public std::enable_shared_from_this<Page>// : public wxScrolledWindow
+- Page · function · L76-L76 — Page(wxWindow* parent, const wxString& title, int iconID, wxPanel* tab_owner);
+- vsizer · function · L89-L89 — wxBoxSizer*	vsizer() const { return m_vsizer; }
+- parent · function · L90-L90 — wxWindow*	parent() const { return m_parent; }
+- title · function · L91-L91 — const wxString&	title()	 const { return m_title; }
+- iconID · function · L92-L92 — size_t		iconID() const { return m_iconID; }
+- set_config · function · L93-L93 — void		set_config(DynamicPrintConfig* config_in) { m_config = config_in; }
+- reload_config · function · L94-L94 — void		reload_config();
+- update_visibility · function · L95-L95 — void        update_visibility(ConfigOptionMode mode, bool update_contolls_visibility);
+- activate · function · L96-L96 — void        activate(ConfigOptionMode mode, std::function<void()> throw_if_canceled);
+- clear · function · L97-L97 — void        clear();
+- msw_rescale · function · L98-L98 — void        msw_rescale();
+- sys_color_changed · function · L99-L99 — void        sys_color_changed();
+- refresh · function · L100-L100 — void        refresh();
+- get_field · function · L101-L101 — Field*		get_field(const t_config_option_key& opt_key, int opt_index = -1) const;
+- get_line · function · L102-L102 — Line *      get_line(const t_config_option_key &opt_key, int opt_index = -1);
+- set_value · function · L103-L103 — bool		set_value(const t_config_option_key& opt_key, const boost::any& value);
+- new_optgroup · function · L105-L105 — ConfigOptionsGroupShp	new_optgroup(const wxString& title, const wxString& icon = wxEmptyString, int noncommon_label_width = -1, bool is_extruder_og = false);
+- get_optgroup · function · L106-L106 — const ConfigOptionsGroupShp	get_optgroup(const wxString& title) const;
+- set_item_colour · function · L108-L114 — bool		set_item_colour(const wxColour *clr)
+- get_item_colour · function · L116-L118 — const wxColour	get_item_colour()
+- get_show · function · L119-L119 — bool get_show() const { return m_show; }
+- Tab · class · L130-L484 — class Tab: public wxPanel
+- PresetDependencies · class · L167-L176 — struct PresetDependencies
+- OptStatus · type · L249-L249 — enum OptStatus { osSystemValue = 1, osInitValue = 2 };
+- set_type · function · L258-L258 — void                set_type();
+- Highlighter · class · L265-L278 — struct Highlighter
+- set_timer_owner · function · L267-L267 — void set_timer_owner(wxEvtHandler* owner, int timerid = wxID_ANY);
+- init · function · L268-L268 — void init(std::pair<OG_CustomCtrl*, bool*>);
+- blink · function · L269-L269 — void blink();
+- invalidate · function · L270-L270 — void invalidate();
+- Tab · function · L318-L318 — Tab(ParamsPanel* parent, const wxString& title, Preset::Type type);
+- parent · function · L322-L322 — wxWindow*	parent() const { return m_parent; }
+- title · function · L323-L323 — wxString	title()	 const { return m_title; }
+- name · function · L324-L324 — std::string	name()	 const { return m_presets->name(); }
+- type · function · L325-L325 — Preset::Type type()  const { return m_type; }
+- completed · function · L327-L327 — bool 		completed() const { return m_completed; }
+- supports_printer_technology · function · L328-L328 — virtual bool supports_printer_technology(const PrinterTechnology tech) const = 0;
+- create_preset_tab · function · L330-L330 — void		create_preset_tab();
+- add_scaled_button · function · L331-L333 — void        add_scaled_button(wxWindow* parent, ScalableButton** btn, const std::string& icon_name,
+- add_scaled_bitmap · function · L334-L334 — void        add_scaled_bitmap(wxWindow* parent, ScalableBitmap& btn, const std::string& icon_name);
+- update_ui_items_related_on_parent_preset · function · L335-L335 — void		update_ui_items_related_on_parent_preset(const Preset* selected_preset_parent);
+- load_current_preset · function · L336-L336 — void		load_current_preset();
+- reactive_preset_combo_box · function · L338-L338 — void        reactive_preset_combo_box();
+- rebuild_page_tree · function · L339-L339 — void        rebuild_page_tree();
+- update_btns_enabling · function · L340-L340 — void		update_btns_enabling();
+- update_preset_choice · function · L341-L341 — void		update_preset_choice();
+- select_preset · function · L343-L343 — bool select_preset(std::string preset_name = "", bool delete_current = false, const std::string &last_selected_ph_printer_name = "", bool force_select = false, bool force_no_transfer = false);
+- may_discard_current_dirty_preset · function · L344-L344 — bool		may_discard_current_dirty_preset(PresetCollection* presets = nullptr, const std::string& new_printer_name = "", bool no_transfer = false, bool no_transfer_variant = false);
+- clear_pages · function · L346-L346 — virtual void    clear_pages();
+- update_description_lines · function · L347-L347 — virtual void    update_description_lines();
+- activate_selected_page · function · L348-L348 — virtual void    activate_selected_page(std::function<void()> throw_if_canceled);
+- OnTreeSelChange · function · L350-L350 — void		OnTreeSelChange(wxCommandEvent& event);
+- OnKeyDown · function · L351-L351 — void		OnKeyDown(wxKeyEvent& event);
+- compare_preset · function · L353-L353 — void		compare_preset();
+- transfer_options · function · L354-L354 — void		transfer_options(const std::string&name_from, const std::string&name_to, std::vector<std::string> options);
+- save_preset · function · L356-L356 — void        save_preset(std::string name = std::string(), bool detach = false, bool save_to_project = false, bool from_input = false, std::string input_name = "");
+- delete_preset · function · L359-L359 — void		delete_preset();
+- toggle_show_hide_incompatible · function · L360-L360 — void		toggle_show_hide_incompatible();
+- update_show_hide_incompatible_button · function · L361-L361 — void		update_show_hide_incompatible_button();
+- update_ui_from_settings · function · L362-L362 — void		update_ui_from_settings();
+- update_label_colours · function · L363-L363 — void		update_label_colours();
+- decorate · function · L364-L364 — void		decorate();
+- update_changed_ui · function · L365-L365 — void		update_changed_ui();
+- get_sys_and_mod_flags · function · L366-L366 — void		get_sys_and_mod_flags(const std::string& opt_key, bool& sys_page, bool& modified_page);
+- update_changed_tree_ui · function · L367-L367 — void        update_changed_tree_ui();
+- update_undo_buttons · function · L368-L368 — void		update_undo_buttons();
+- update_extruder_switch_colors · function · L369-L369 — void        update_extruder_switch_colors();
+- update_all_extruder_options_status · function · L370-L370 — void        update_all_extruder_options_status();
+- check_extruder_options_status · function · L371-L371 — void        check_extruder_options_status(int index, bool &sys_extruder, bool &modified_extruder, const std::vector<PageShp>& pages_to_check);
+- on_roll_back_value · function · L373-L373 — void		on_roll_back_value(const bool to_sys = false);
+- add_options_page · function · L375-L375 — PageShp		add_options_page(const wxString& title, const std::string& icon, bool is_extruder_pages = false);
+- translate_category · function · L376-L376 — static wxString translate_category(const wxString& title, Preset::Type preset_type);
+- OnActivate · function · L378-L378 — virtual void	OnActivate();
+- on_preset_loaded · function · L379-L379 — virtual void	on_preset_loaded() {}
+- build · function · L380-L380 — virtual void	build() = 0;
+- update · function · L381-L381 — virtual void	update() = 0;
+- toggle_options · function · L382-L382 — virtual void	toggle_options() = 0;
+- init_options_list · function · L383-L383 — virtual void	init_options_list();
+- options_list_storage_key · function · L384-L384 — std::string	options_list_storage_key(const std::string& opt_key) const;
+- update_custom_dirty · function · L385-L385 — virtual void    update_custom_dirty(std::vector<std::string> &dirty_options, std::vector<std::string> &nonsys_options) {}
+- load_initial_data · function · L386-L386 — void			load_initial_data();
+- update_dirty · function · L387-L387 — void			update_dirty();
+- update_tab_ui · function · L389-L389 — void			update_tab_ui(bool update_plater_presets = false);
+- load_config · function · L390-L390 — void			load_config(const DynamicPrintConfig& config);
+- reload_config · function · L391-L391 — virtual void	reload_config();
+- update_mode · function · L392-L392 — void            update_mode();
+- update_visibility · function · L393-L393 — void            update_visibility();
+- msw_rescale · function · L394-L394 — virtual void    msw_rescale();
+- sys_color_changed · function · L395-L395 — virtual void	sys_color_changed();
+- get_field · function · L396-L396 — Field*			get_field(const t_config_option_key& opt_key, int opt_index = -1) const;
+- get_line · function · L397-L397 — Line*			get_line(const t_config_option_key& opt_key);
+- get_custom_ctrl_with_blinking_ptr · function · L398-L398 — std::pair<OG_CustomCtrl*, bool*> get_custom_ctrl_with_blinking_ptr(const t_config_option_key& opt_key, int opt_index = -1);
+- get_field · function · L400-L400 — Field*          get_field(const t_config_option_key &opt_key, Page** selected_page, int opt_index = -1);
+- toggle_option · function · L401-L401 — void            toggle_option(const std::string &opt_key, bool toggle, int opt_index = -1);
+- toggle_line · function · L402-L402 — void            toggle_line(const std::string &opt_key, bool toggle, int opt_index = -1); // BBS: hide some line
+- set_option_label · function · L403-L403 — void            set_option_label(const std::string &opt_key, const wxString &label, int opt_index = -1);
+- SettingRowState · class · L406-L411 — struct SettingRowState
+- setting_row_state · function · L412-L412 — SettingRowState setting_row_state(const std::string &opt_id) const;
+- description_line_widget · function · L414-L414 — wxSizer*		description_line_widget(wxWindow* parent, ogStaticText** StaticText, wxString text = wxEmptyString);
+- current_preset_is_dirty · function · L415-L415 — bool			current_preset_is_dirty() const;
+- saved_preset_is_dirty · function · L416-L416 — bool			saved_preset_is_dirty() const;
+- update_saved_preset_from_current_preset · function · L417-L417 — void            update_saved_preset_from_current_preset();
+- update_pages_with_multi_variant · function · L418-L418 — void            update_pages_with_multi_variant();
+- get_config · function · L420-L420 — DynamicPrintConfig*	get_config() { return m_config; }
+- get_presets · function · L421-L421 — PresetCollection *  get_presets() { return m_presets; }
+- get_combo_box · function · L422-L422 — TabPresetComboBox *  get_combo_box() { return m_presets_choice; }
+- on_value_change · function · L424-L424 — virtual void    on_value_change(const std::string& opt_key, const boost::any& value);
+- update_wiping_button_visibility · function · L426-L426 — void            update_wiping_button_visibility();
+- activate_option · function · L427-L427 — void			activate_option(const std::string& opt_key, const wxString& category);
+- apply_searcher · function · L428-L428 — void			apply_searcher();
+- cache_config_diff · function · L429-L429 — void			cache_config_diff(const std::vector<std::string>& selected_options, const DynamicPrintConfig* config = nullptr);
+- apply_config_from_cache · function · L430-L430 — void			apply_config_from_cache();
+- show_timelapse_warning_dialog · function · L431-L431 — void            show_timelapse_warning_dialog();
+- get_category_icon_map · function · L433-L433 — const std::map<wxString, std::string>& get_category_icon_map() { return m_category_icon; }
+- update_current_page_in_background · function · L435-L435 — bool update_current_page_in_background(int& item);
+- unselect_tree_item · function · L436-L436 — void unselect_tree_item();
+- set_expanded · function · L438-L438 — void set_expanded(bool value);
+- restore_last_select_item · function · L439-L439 — void restore_last_select_item();
+- validate_custom_gcode · function · L441-L441 — static bool validate_custom_gcode(const wxString& title, const std::string& gcode);
+- validate_custom_gcodes · function · L442-L442 — bool        validate_custom_gcodes();
+- validate_filament_temperature_pairs · function · L443-L443 — bool        validate_filament_temperature_pairs();
+- set_just_edit · function · L445-L445 — void        set_just_edit(bool just_edit);
+- edit_custom_gcode · function · L447-L447 — void						edit_custom_gcode(const t_config_option_key& opt_key);
+- get_custom_gcode · function · L448-L448 — virtual const std::string&	get_custom_gcode(const t_config_option_key& opt_key);
+- set_custom_gcode · function · L449-L449 — virtual void				set_custom_gcode(const t_config_option_key& opt_key, const std::string& value);
+- update_extruder_variants · function · L451-L451 — void        update_extruder_variants(int extruder_id = -1, bool reload = true);
+- switch_excluder · function · L452-L452 — void        switch_excluder(int extruder_id = -1, bool reload = true);
+- sync_excluder · function · L453-L453 — void        sync_excluder();
+- parse_extruder_selection · function · L454-L454 — void        parse_extruder_selection(int selection, int &extruder_id, NozzleVolumeType &nozzle_type);
+- calculate_selection_index_for_extruder · function · L455-L455 — int         calculate_selection_index_for_extruder(int extruder_id, NozzleVolumeType nozzle_type);
+- get_extruder_sync_enable_state · function · L456-L456 — bool        get_extruder_sync_enable_state(int extruder_id);
+- get_current_active_extruder · function · L457-L457 — int         get_current_active_extruder();
+- generate_extruder_options · function · L459-L459 — std::vector<wxString>  generate_extruder_options();
+- get_actual_nozzle_volume_type · function · L460-L460 — NozzleVolumeType       get_actual_nozzle_volume_type(int extruder_id);
+- create_line_with_widget · function · L463-L463 — void			create_line_with_widget(ConfigOptionsGroup* optgroup, const std::string& opt_key, const std::string& path, widget_t widget);
+- compatible_widget_create · function · L464-L464 — wxSizer*		compatible_widget_create(wxWindow* parent, PresetDependencies &deps);
+- compatible_widget_reload · function · L465-L465 — void 			compatible_widget_reload(PresetDependencies &deps);
+- load_key_value · function · L466-L466 — void			load_key_value(const std::string& opt_key, const boost::any& value, bool saved_value = false);
+- tree_sel_change_delayed · function · L470-L470 — bool			tree_sel_change_delayed(wxCommandEvent& event);
+- on_presets_changed · function · L471-L471 — void			on_presets_changed();
+- update_printer_agent_if_needed · function · L472-L472 — void			update_printer_agent_if_needed();
+- build_preset_description_line · function · L473-L473 — void			build_preset_description_line(ConfigOptionsGroup* optgroup);
+- update_preset_description_line · function · L474-L474 — void			update_preset_description_line();
+- update_frequently_changed_parameters · function · L475-L475 — void			update_frequently_changed_parameters();
+- set_tooltips_text · function · L476-L476 — void			set_tooltips_text();
+- filter_diff_option · function · L477-L477 — void			filter_diff_option(std::vector<std::string> &options);
+- get_config_manipulation · function · L481-L481 — ConfigManipulation get_config_manipulation();
+- TabPrint · class · L486-L505 — class TabPrint : public Tab
+- TabPrint · function · L490-L491 — TabPrint(ParamsPanel* parent, Preset::Type type = Preset::TYPE_PRINT) :
+- build · function · L494-L494 — void		build() override;
+- reload_config · function · L495-L495 — void		reload_config() override;
+- update_description_lines · function · L496-L496 — void		update_description_lines() override;
+- toggle_options · function · L497-L497 — void		toggle_options() override;
+- update · function · L498-L498 — void		update() override;
+- clear_pages · function · L499-L499 — void		clear_pages() override;
+- supports_printer_technology · function · L500-L500 — bool 		supports_printer_technology(const PrinterTechnology tech) const override { return tech == ptFFF; }
+- TabPrintModel · class · L507-L545 — class TabPrintModel : public TabPrint
+- TabPrintModel · function · L511-L511 — TabPrintModel(ParamsPanel* parent, std::vector<std::string> const & keys);
+- build · function · L514-L514 — void build() override;
+- set_model_config · function · L516-L516 — void set_model_config(std::map<ObjectBase *, ModelConfig *> const & object_configs);
+- has_model_config · function · L518-L518 — bool has_model_config() const { return !m_object_configs.empty(); }
+- update_model_config · function · L520-L520 — void update_model_config();
+- reset_model_config · function · L522-L522 — virtual void reset_model_config();
+- has_key · function · L524-L524 — bool has_key(std::string const &key);
+- activate_selected_page · function · L527-L527 — virtual void    activate_selected_page(std::function<void()> throw_if_canceled) override;
+- on_value_change · function · L529-L529 — virtual void    on_value_change(const std::string& opt_key, const boost::any& value) override;
+- notify_changed · function · L531-L531 — virtual void    notify_changed(ObjectBase * object) = 0;
+- reload_config · function · L533-L533 — virtual void	reload_config() override;
+- update_custom_dirty · function · L535-L535 — virtual void	update_custom_dirty(std::vector<std::string> &dirty_options, std::vector<std::string> &nonsys_options) override;
+- TabPrintPlate · class · L548-L564 — class TabPrintPlate : public TabPrintModel
+- TabPrintPlate · function · L552-L552 — TabPrintPlate(ParamsPanel* parent);
+- build · function · L554-L554 — void build() override;
+- reset_model_config · function · L555-L555 — void reset_model_config() override;
+- show_spiral_mode_settings_dialog · function · L556-L556 — int show_spiral_mode_settings_dialog(bool is_object_config) { return m_config_manipulation.show_spiral_mode_settings_dialog(is_object_config); }
+- update_mixed_filament_seq_state · function · L558-L558 — void update_mixed_filament_seq_state();
+- on_value_change · function · L561-L561 — virtual void    on_value_change(const std::string& opt_key, const boost::any& value) override;
+- notify_changed · function · L562-L562 — virtual void    notify_changed(ObjectBase* object) override;
+- update_custom_dirty · function · L563-L563 — virtual void	update_custom_dirty(std::vector<std::string> &dirty_options, std::vector<std::string> &nonsys_options) override;
+- TabPrintObject · class · L566-L574 — class TabPrintObject : public TabPrintModel
+- TabPrintObject · function · L570-L570 — TabPrintObject(ParamsPanel* parent);
+- notify_changed · function · L573-L573 — virtual void    notify_changed(ObjectBase * object) override;
+- TabPrintPart · class · L576-L584 — class TabPrintPart : public TabPrintModel
+- TabPrintPart · function · L580-L580 — TabPrintPart(ParamsPanel* parent);
+- notify_changed · function · L583-L583 — virtual void    notify_changed(ObjectBase * object) override;
+- TabPrintLayer · class · L586-L595 — class TabPrintLayer : public TabPrintModel
+- TabPrintLayer · function · L590-L590 — TabPrintLayer(ParamsPanel* parent);
+- notify_changed · function · L593-L593 — virtual void    notify_changed(ObjectBase* object) override;
+- update_custom_dirty · function · L594-L594 — virtual void    update_custom_dirty(std::vector<std::string> &dirty_options, std::vector<std::string> &nonsys_options) override;
+- TabFilament · class · L597-L628 — class TabFilament : public Tab
+- add_filament_overrides_page · function · L603-L603 — void            add_filament_overrides_page();
+- update_filament_overrides_page · function · L604-L604 — void            update_filament_overrides_page(const DynamicPrintConfig* printers_config);
+- update_volumetric_flow_preset_hints · function · L605-L605 — void 			update_volumetric_flow_preset_hints();
+- TabFilament · function · L611-L612 — TabFilament(ParamsPanel* parent) :
+- build · function · L615-L615 — void		build() override;
+- reload_config · function · L616-L616 — void		reload_config() override;
+- update_description_lines · function · L617-L617 — void		update_description_lines() override;
+- toggle_options · function · L618-L618 — void		toggle_options() override;
+- update · function · L619-L619 — void		update() override;
+- init_options_list · function · L620-L620 — void        init_options_list() override;
+- clear_pages · function · L621-L621 — void        clear_pages() override;
+- supports_printer_technology · function · L622-L622 — bool 		supports_printer_technology(const PrinterTechnology tech) const override { return tech == ptFFF; }
+- on_value_change · function · L624-L624 — void		on_value_change(const std::string& opt_key, const boost::any& value) override;
+- get_custom_gcode · function · L626-L626 — const std::string&	get_custom_gcode(const t_config_option_key& opt_key) override;
+- set_custom_gcode · function · L627-L627 — void				set_custom_gcode(const t_config_option_key& opt_key, const std::string& value) override;
+- TabPrinter · class · L630-L687 — class TabPrinter : public Tab
+- append_option_line · function · L634-L634 — void		append_option_line(ConfigOptionsGroupShp optgroup, const std::string opt_key, const std::string& label_path = "");
+- update_input_shaper_menu · function · L636-L636 — void        update_input_shaper_menu(GCodeFlavor flavor);
+- TabPrinter · function · L656-L657 — TabPrinter(ParamsPanel* parent) :
+- build · function · L660-L660 — void		build() override;
+- build_fff · function · L661-L661 — void		build_fff();
+- build_sla · function · L662-L662 — void		build_sla();
+- reload_config · function · L663-L663 — void		reload_config() override;
+- activate_selected_page · function · L664-L664 — void		activate_selected_page(std::function<void()> throw_if_canceled) override;
+- clear_pages · function · L665-L665 — void		clear_pages() override;
+- toggle_options · function · L666-L666 — void		toggle_options() override;
+- update · function · L667-L667 — void		update() override;
+- update_fff · function · L668-L668 — void		update_fff();
+- update_sla · function · L669-L669 — void		update_sla();
+- update_pages · function · L670-L670 — void        update_pages(); // update m_pages according to printer technology
+- on_gcode_flavor_changed · function · L671-L671 — void        on_gcode_flavor_changed();
+- extruders_count_changed · function · L672-L672 — void		extruders_count_changed(size_t extruders_count);
+- build_kinematics_page · function · L673-L673 — PageShp		build_kinematics_page();
+- build_unregular_pages · function · L674-L674 — void		build_unregular_pages(bool from_initial_build = false);
+- on_preset_loaded · function · L675-L675 — void		on_preset_loaded() override;
+- init_options_list · function · L676-L676 — void		init_options_list() override;
+- msw_rescale · function · L677-L677 — void		msw_rescale() override;
+- supports_printer_technology · function · L678-L678 — bool 		supports_printer_technology(const PrinterTechnology /* tech */) const override { return true; }
+- set_extruder_volume_type · function · L680-L680 — void		set_extruder_volume_type(int extruder_id, NozzleVolumeType type);
+- on_value_change · function · L681-L681 — void		on_value_change(const std::string& opt_key, const boost::any& value) override;
+- create_bed_shape_widget · function · L683-L683 — wxSizer*	create_bed_shape_widget(wxWindow* parent);
+- cache_extruder_cnt · function · L684-L684 — void		cache_extruder_cnt(const DynamicPrintConfig* config = nullptr);
+- apply_extruder_cnt_from_cache · function · L685-L685 — bool		apply_extruder_cnt_from_cache();
+- refresh_printer_agent_dropdown · function · L686-L686 — void		refresh_printer_agent_dropdown() const;
+- TabSLAMaterial · class · L689-L702 — class TabSLAMaterial : public Tab
+- TabSLAMaterial · function · L693-L694 — TabSLAMaterial(ParamsPanel* parent) :
+- build · function · L697-L697 — void		build() override;
+- reload_config · function · L698-L698 — void		reload_config() override;
+- toggle_options · function · L699-L699 — void		toggle_options() override;
+- update · function · L700-L700 — void		update() override;
+- supports_printer_technology · function · L701-L701 — bool 		supports_printer_technology(const PrinterTechnology tech) const override { return tech == ptSLA; }
+- TabSLAPrint · class · L704-L721 — class TabSLAPrint : public Tab
+- TabSLAPrint · function · L708-L709 — TabSLAPrint(ParamsPanel* parent) :
+- build · function · L714-L714 — void		build() override;
+- reload_config · function · L715-L715 — void		reload_config() override;
+- update_description_lines · function · L716-L716 — void		update_description_lines() override;
+- toggle_options · function · L717-L717 — void		toggle_options() override;
+- update · function · L718-L718 — void		update() override;
+- clear_pages · function · L719-L719 — void		clear_pages() override;
+- supports_printer_technology · function · L720-L720 — bool 		supports_printer_technology(const PrinterTechnology tech) const override { return tech == ptSLA; }

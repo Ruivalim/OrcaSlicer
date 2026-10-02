@@ -1,0 +1,92 @@
+# src/libslic3r/MultiPoint.hpp
+
+- BoundingBox · class · L12-L12 — class BoundingBox;
+- BoundingBox3 · class · L13-L13 — class BoundingBox3;
+- MultiPoint · class · L15-L116 — class MultiPoint
+- MultiPoint · function · L20-L20 — MultiPoint() {}
+- MultiPoint · function · L21-L21 — MultiPoint(const MultiPoint &other) : points(other.points) {}
+- MultiPoint · function · L22-L22 — MultiPoint(MultiPoint &&other) : points(std::move(other.points)) {}
+- MultiPoint · function · L23-L23 — MultiPoint(std::initializer_list<Point> list) : points(list) {}
+- MultiPoint · function · L24-L24 — explicit MultiPoint(const Points &_points) : points(_points) {}
+- scale · function · L28-L28 — void scale(double factor);
+- scale · function · L29-L29 — void scale(double factor_x, double factor_y);
+- translate · function · L30-L30 — void translate(double x, double y) { this->translate(Point(coord_t(x), coord_t(y))); }
+- translate · function · L31-L31 — void translate(const Point &vector);
+- rotate · function · L32-L32 — void rotate(double angle) { this->rotate(cos(angle), sin(angle)); }
+- rotate · function · L33-L33 — void rotate(double cos_angle, double sin_angle);
+- rotate · function · L34-L34 — void rotate(double angle, const Point &center);
+- reverse · function · L35-L35 — void reverse() { std::reverse(this->points.begin(), this->points.end()); }
+- front · function · L37-L37 — const Point& front() const { return this->points.front(); }
+- back · function · L38-L38 — const Point& back() const { return this->points.back(); }
+- first_point · function · L39-L39 — const Point& first_point() const { return this->front(); }
+- last_point · function · L40-L40 — virtual const Point& last_point() const = 0;
+- lines · function · L41-L41 — virtual Lines lines() const = 0;
+- size · function · L42-L42 — size_t size() const { return points.size(); }
+- empty · function · L43-L43 — bool   empty() const { return points.empty(); }
+- length · function · L44-L44 — double length() const;
+- is_valid · function · L45-L45 — bool   is_valid() const { return this->points.size() >= 2; }
+- find_point · function · L49-L49 — int  find_point(const Point &point) const;
+- find_point · function · L52-L52 — int  find_point(const Point &point, const double scaled_epsilon) const;
+- has_boundary_point · function · L53-L53 — bool has_boundary_point(const Point &point) const;
+- closest_point_index · function · L54-L68 — int  closest_point_index(const Point &point) const
+- closest_point · function · L69-L69 — const Point* closest_point(const Point &point) const { return this->points.empty() ? nullptr : &this->points[this->closest_point_index(point)]; }
+- distance_to · function · L72-L75 — double distance_to(const Point& point) const
+- bounding_box · function · L76-L76 — BoundingBox bounding_box() const;
+- has_duplicate_points · function · L78-L78 — bool has_duplicate_points() const;
+- remove_duplicate_points · function · L80-L80 — bool remove_duplicate_points();
+- clear · function · L81-L81 — void clear() { this->points.clear(); }
+- append · function · L82-L82 — void append(const Point &point) { this->points.push_back(point); }
+- append · function · L83-L83 — void append(const Points &src) { this->append(src.begin(), src.end()); }
+- append · function · L84-L84 — void append(const Points::const_iterator &begin, const Points::const_iterator &end) { this->points.insert(this->points.end(), begin, end); }
+- append · function · L85-L93 — void append(Points &&src)
+- intersection · function · L95-L95 — bool intersection(const Line& line, Point* intersection) const;
+- first_intersection · function · L96-L96 — bool first_intersection(const Line& line, Point* intersection) const;
+- intersections · function · L97-L97 — bool intersections(const Line &line, Points *intersections) const;
+- symmetric_y · function · L98-L98 — void symmetric_y(const coord_t &y_axis);
+- _douglas_peucker · function · L99-L99 — static Points _douglas_peucker(const Points &points, const double tolerance);
+- visivalingam · function · L100-L100 — static Points visivalingam(const Points& pts, const double tolerance);
+- concave_hull_2d · function · L101-L101 — static Points concave_hull_2d(const Points& pts, const double tolerence);
+- minimumDistanceBetweenLinesDefinedByPoints · function · L104-L104 — static double minimumDistanceBetweenLinesDefinedByPoints(const Points& A, const Points& B);
+- begin · function · L106-L106 — inline auto begin()        { return points.begin(); }
+- begin · function · L107-L107 — inline auto begin()  const { return points.begin(); }
+- end · function · L108-L108 — inline auto end()          { return points.end();   }
+- end · function · L109-L109 — inline auto end()    const { return points.end();   }
+- cbegin · function · L110-L110 — inline auto cbegin() const { return points.begin(); }
+- cend · function · L111-L111 — inline auto cend()   const { return points.end();   }
+- squaredDistanceToLineSegment · function · L115-L115 — static double squaredDistanceToLineSegment(const Point& p, const Point& v, const Point& w);
+- MultiPoint3 · class · L118-L167 — class MultiPoint3
+- append · function · L123-L123 — void append(const Point3& point) { this->points.push_back(point); }
+- append · function · L124-L124 — void append(const Vec3crd& point) { this->points.push_back(Point3(point)); }
+- append · function · L125-L128 — void append(const Points3::const_iterator& begin, const Points3::const_iterator& end)
+- translate · function · L130-L130 — void translate(double x, double y, double z = 0) { this->translate(Point3(coord_t(x), coord_t(y), coord_t(z))); }
+- translate · function · L131-L131 — void translate(const Point3& vector);
+- reverse · function · L132-L132 — void reverse() { std::reverse(this->points.begin(), this->points.end()); }
+- rotate · function · L133-L133 — void rotate(double angle) { this->rotate(cos(angle), sin(angle)); }
+- rotate · function · L134-L134 — void rotate(double cos_angle, double sin_angle);
+- rotate · function · L135-L135 — void rotate(double angle, const Point3 &center);
+- first_point · function · L137-L137 — Point3& first_point() { return this->points.front(); }
+- last_point · function · L138-L138 — Point3& last_point() { return this->points.back(); }
+- first_point · function · L139-L139 — const Point3& first_point() const { return this->points.front(); }
+- last_point · function · L140-L140 — const Point3& last_point() const { return this->points.back(); }
+- size · function · L141-L141 — size_t size() const { return this->points.size(); }
+- empty · function · L142-L142 — bool empty() const { return this->points.empty(); }
+- clear · function · L143-L143 — void clear() { this->points.clear(); }
+- begin · function · L145-L145 — auto begin() { return this->points.begin(); }
+- end · function · L146-L146 — auto end() { return this->points.end(); }
+- begin · function · L147-L147 — auto begin() const { return this->points.begin(); }
+- end · function · L148-L148 — auto end() const { return this->points.end(); }
+- lines · function · L150-L150 — virtual Lines3 lines() const = 0;
+- length · function · L151-L151 — double length() const;
+- is_valid · function · L152-L152 — bool is_valid() const { return this->points.size() >= 2; }
+- bounding_box · function · L154-L154 — BoundingBox3 bounding_box() const;
+- find_point · function · L157-L157 — int find_point(const Point &point) const;
+- find_point · function · L158-L158 — int find_point(const Point &point, const double scaled_epsilon) const;
+- find_point · function · L159-L159 — int find_point(const Point3 &point) const;
+- find_point · function · L160-L160 — int find_point(const Point3 &point, const double scaled_epsilon) const;
+- remove_duplicate_points · function · L163-L163 — bool remove_duplicate_points();
+- _douglas_peucker · function · L166-L166 — static Points3 _douglas_peucker(const Points3 &points, double tolerance);
+- get_extents · function · L169-L169 — extern BoundingBox get_extents(const MultiPoint &mp);
+- get_extents_rotated · function · L170-L170 — extern BoundingBox get_extents_rotated(const Points &points, double angle);
+- get_extents_rotated · function · L171-L171 — extern BoundingBox get_extents_rotated(const MultiPoint &mp, double angle);
+- length · function · L173-L181 — inline double length(const Points &pts)
+- area · function · L183-L188 — inline double area(const Points &polygon)

@@ -1,0 +1,47 @@
+# src/libslic3r/Arachne/SkeletalTrapezoidation.hpp
+
+- SkeletalTrapezoidation · class · L54-L555 — class SkeletalTrapezoidation
+- central_filter_dist · function · L73-L73 — inline coord_t central_filter_dist() { return scaled<coord_t>(0.02); }
+- snap_dist · function · L75-L75 — inline coord_t snap_dist() { return scaled<coord_t>(0.02); }
+- SkeletalTrapezoidation · function · L108-L114 — SkeletalTrapezoidation(const Polygons& polys,
+- generateToolpaths · function · L134-L134 — void generateToolpaths(std::vector<VariableWidthLines> &generated_toolpaths, bool filter_outermost_central_edges = false);
+- TransitionMidRef · class · L144-L152 — struct TransitionMidRef
+- TransitionMidRef · function · L148-L151 — TransitionMidRef(edge_t* edge, std::list<TransitionMiddle>::iterator transition_it)
+- constructFromPolygons · function · L167-L167 — void constructFromPolygons(const Polygons& polys);
+- makeNode · function · L175-L175 — node_t &makeNode(const VD::vertex_type &vd_node, Point p); //!< Get the node which the VD node maps to, or create a new mapping if there wasn't any yet.
+- transferEdge · function · L186-L186 — void transferEdge(const Point &from, const Point &to, const VD::edge_type &vd_edge, edge_t *&prev_edge, const Point &start_source_point, const Point &end_source_point, const std::vector<Segment> &segments);
+- discretize · function · L213-L213 — Points discretize(const VD::edge_type& segment, const std::vector<Segment>& segments);
+- separatePointyQuadEndNodes · function · L220-L220 — void separatePointyQuadEndNodes();
+- updateIsCentral · function · L225-L225 — void updateIsCentral(); // Update the "is_central" flag for each edge based on the transitioning_angle
+- filterCentral · function · L233-L233 — void filterCentral(coord_t max_length);
+- filterCentral · function · L240-L240 — bool filterCentral(edge_t* starting_edge, coord_t traveled_dist, coord_t max_length);
+- filterOuterCentral · function · L250-L250 — void filterOuterCentral();
+- updateBeadCount · function · L256-L256 — void updateBeadCount();
+- filterNoncentralRegions · function · L263-L263 — void filterNoncentralRegions();
+- filterNoncentralRegions · function · L272-L272 — bool filterNoncentralRegions(edge_t* to_edge, coord_t bead_count, coord_t traveled_dist, coord_t max_dist);
+- generateTransitionMids · function · L281-L281 — void generateTransitionMids(ptr_vector_t<std::list<TransitionMiddle>>& edge_transitions);
+- filterTransitionMids · function · L290-L290 — void filterTransitionMids();
+- dissolveNearbyTransitions · function · L306-L306 — std::list<TransitionMidRef> dissolveNearbyTransitions(edge_t* edge_to_start, TransitionMiddle& origin_transition, coord_t traveled_dist, coord_t max_dist, bool going_up);
+- dissolveBeadCountRegion · function · L314-L314 — void dissolveBeadCountRegion(edge_t* edge_to_start, coord_t from_bead_count, coord_t to_bead_count);
+- filterEndOfCentralTransition · function · L329-L329 — bool filterEndOfCentralTransition(edge_t* edge_to_start, coord_t traveled_dist, coord_t max_dist, coord_t replacing_bead_count);
+- generateAllTransitionEnds · function · L335-L335 — void generateAllTransitionEnds(ptr_vector_t<std::list<TransitionEnd>>& edge_transition_ends);
+- applyTransitions · function · L340-L340 — void applyTransitions(ptr_vector_t<std::list<TransitionEnd>>& edge_transition_ends);
+- generateTransitioningRibs · function · L352-L352 — void generateTransitioningRibs();
+- generateTransitionEnds · function · L363-L363 — void generateTransitionEnds(edge_t& edge, coord_t mid_R, coord_t transition_lower_bead_count, ptr_vector_t<std::list<TransitionEnd>>& edge_transition_ends);
+- generateTransitionEnd · function · L385-L385 — bool generateTransitionEnd(edge_t& edge, coord_t start_pos, coord_t end_pos, coord_t transition_half_length, double start_rest, double end_rest, coord_t transition_lower_bead_count, ptr_vector_t<std::list<TransitionEnd>>& edge_transition_ends);
+- isGoingDown · function · L404-L404 — bool isGoingDown(edge_t* outgoing, coord_t traveled_dist, coord_t transition_half_length, coord_t lower_bead_count) const;
+- isEndOfCentral · function · L413-L413 — bool isEndOfCentral(const edge_t& edge) const;
+- generateExtraRibs · function · L422-L422 — void generateExtraRibs();
+- generateSegments · function · L431-L431 — void generateSegments();
+- getQuadMaxRedgeTo · function · L439-L439 — edge_t* getQuadMaxRedgeTo(edge_t* quad_start_edge);
+- propagateBeadingsUpward · function · L454-L454 — void propagateBeadingsUpward(std::vector<edge_t*>& upward_quad_mids, ptr_vector_t<BeadingPropagation>& node_beadings);
+- propagateBeadingsDownward · function · L467-L467 — void propagateBeadingsDownward(std::vector<edge_t*>& upward_quad_mids, ptr_vector_t<BeadingPropagation>& node_beadings);
+- propagateBeadingsDownward · function · L472-L472 — void propagateBeadingsDownward(edge_t* edge_to_peak, ptr_vector_t<BeadingPropagation>& node_beadings);
+- interpolate · function · L491-L491 — static Beading interpolate(const Beading& left, double ratio_left_to_whole, const Beading& right, coord_t switching_radius);
+- interpolate · function · L504-L504 — static Beading interpolate(const Beading& left, double ratio_left_to_whole, const Beading& right);
+- getOrCreateBeading · function · L515-L515 — std::shared_ptr<BeadingPropagation> getOrCreateBeading(node_t* node, ptr_vector_t<BeadingPropagation>& node_beadings);
+- getNearestBeading · function · L526-L526 — std::shared_ptr<BeadingPropagation> getNearestBeading(node_t* node, coord_t max_dist);
+- generateJunctions · function · L532-L532 — void generateJunctions(ptr_vector_t<BeadingPropagation>& node_beadings, ptr_vector_t<LineJunctions>& edge_junctions);
+- addToolpathSegment · function · L544-L544 — void addToolpathSegment(const ExtrusionJunction& from, const ExtrusionJunction& to, bool is_odd, bool force_new_path, bool from_is_3way, bool to_is_3way);
+- connectJunctions · function · L549-L549 — void connectJunctions(ptr_vector_t<LineJunctions>& edge_junctions);
+- generateLocalMaximaSingleBeads · function · L554-L554 — void generateLocalMaximaSingleBeads();

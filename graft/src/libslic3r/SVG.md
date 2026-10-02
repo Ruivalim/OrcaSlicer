@@ -1,0 +1,62 @@
+# src/libslic3r/SVG.hpp
+
+- SVG · class · L13-L178 — class SVG
+- SVG · function · L22-L22 — SVG() = default;
+- SVG · function · L23-L25 — SVG(const char* afilename) :
+- SVG · function · L26-L28 — SVG(const char* afilename, const BoundingBox &bbox, const coord_t bbox_offset = scale_(1.), bool flipY = true) :
+- SVG · function · L29-L31 — SVG(const std::string &filename) :
+- SVG · function · L32-L34 — SVG(const std::string &filename, const BoundingBox &bbox, const coord_t bbox_offset = scale_(1.), bool flipY = true) :
+- open · function · L37-L37 — bool open(const char* filename);
+- open · function · L38-L38 — bool open(const char* filename, const BoundingBox &bbox, const coord_t bbox_offset = scale_(1.), bool flipY = true);
+- open · function · L39-L40 — bool open(const std::string &filename)
+- open · function · L41-L42 — bool open(const std::string &filename, const BoundingBox &bbox, const coord_t bbox_offset = scale_(1.), bool flipY = true)
+- is_opened · function · L43-L43 — bool is_opened() { return f != NULL; }
+- draw · function · L45-L45 — void draw(const Line &line, std::string stroke = "black", coordf_t stroke_width = 0);
+- draw · function · L46-L46 — void draw(const ThickLine &line, const std::string &fill, const std::string &stroke, coordf_t stroke_width = 0);
+- draw · function · L47-L47 — void draw(const Lines &lines, std::string stroke = "black", coordf_t stroke_width = 0);
+- draw · function · L49-L49 — void draw(const ExPolygon &expolygon, std::string fill = "grey", const float fill_opacity=1.f);
+- draw_outline · function · L50-L50 — void draw_outline(const ExPolygon &polygon, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0);
+- draw · function · L51-L51 — void draw(const ExPolygons &expolygons, std::string fill = "grey", const float fill_opacity=1.f);
+- draw_outline · function · L52-L52 — void draw_outline(const ExPolygons &polygons, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0);
+- draw · function · L54-L54 — void draw(const Surface &surface, std::string fill = "grey", const float fill_opacity=1.f);
+- draw_outline · function · L55-L55 — void draw_outline(const Surface &surface, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0);
+- draw · function · L56-L56 — void draw(const Surfaces &surfaces, std::string fill = "grey", const float fill_opacity=1.f);
+- draw_outline · function · L57-L57 — void draw_outline(const Surfaces &surfaces, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0);
+- draw · function · L58-L58 — void draw(const SurfacesPtr &surfaces, std::string fill = "grey", const float fill_opacity=1.f);
+- draw_outline · function · L59-L59 — void draw_outline(const SurfacesPtr &surfaces, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0);
+- draw · function · L61-L61 — void draw(const Polygon &polygon, std::string fill = "grey");
+- draw_outline · function · L62-L62 — void draw_outline(const Polygon &polygon, std::string stroke = "black", coordf_t stroke_width = 0);
+- draw · function · L63-L63 — void draw(const Polygons &polygons, std::string fill = "grey");
+- draw_outline · function · L64-L64 — void draw_outline(const Polygons &polygons, std::string stroke = "black", coordf_t stroke_width = 0);
+- draw · function · L65-L65 — void draw(const Polyline &polyline, std::string stroke = "black", coordf_t stroke_width = 0);
+- draw · function · L66-L66 — void draw(const Polylines &polylines, std::string stroke = "black", coordf_t stroke_width = 0);
+- draw · function · L67-L67 — void draw(const ThickLines &thicklines, const std::string &fill = "lime", const std::string &stroke = "black", coordf_t stroke_width = 0);
+- draw · function · L68-L68 — void draw(const ThickPolylines &polylines, const std::string &stroke = "black", coordf_t stroke_width = 0);
+- draw · function · L69-L69 — void draw(const ThickPolylines &thickpolylines, const std::string &fill, const std::string &stroke, coordf_t stroke_width);
+- draw · function · L70-L70 — void draw(const Point &point, std::string fill = "black", coord_t radius = 0);
+- draw · function · L71-L71 — void draw(const Points &points, std::string fill = "black", coord_t radius = 0);
+- draw · function · L74-L74 — void draw(const ClipperLib::Path  &polygon, double scale, std::string fill = "grey", coordf_t stroke_width = 0);
+- draw · function · L75-L75 — void draw(const ClipperLib::Paths &polygons, double scale, std::string fill = "grey", coordf_t stroke_width = 0);
+- draw_text · function · L77-L77 — void draw_text(const Point &pt, const char *text, const char *color, int font_size = 20);
+- draw_legend · function · L78-L78 — void draw_legend(const Point &pt, const char *text, const char *color);
+- draw_grid · function · L80-L80 — void draw_grid(const BoundingBox& bbox, const std::string& stroke = "black", coordf_t stroke_width = scale_(0.05), coordf_t step=scale_(1.0));
+- add_comment · function · L81-L81 — void add_comment(const std::string comment);
+- Close · function · L83-L83 — void Close();
+- path · function · L89-L89 — void path(const std::string &d, bool fill, coordf_t stroke_width, const float fill_opacity);
+- get_path_d · function · L90-L90 — std::string get_path_d(const MultiPoint &mp, bool closed = false) const;
+- get_path_d · function · L91-L91 — std::string get_path_d(const ClipperLib::Path &mp, double scale, bool closed = false) const;
+- export_expolygons · function · L94-L94 — static void export_expolygons(const char *path, const BoundingBox &bbox, const Slic3r::ExPolygons &expolygons, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0);
+- export_expolygons · function · L95-L96 — static void export_expolygons(const std::string &path, const BoundingBox &bbox, const Slic3r::ExPolygons &expolygons, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0)
+- export_expolygons · function · L97-L98 — static void export_expolygons(const char *path, const Slic3r::ExPolygons &expolygons, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0)
+- export_expolygons · function · L99-L100 — static void export_expolygons(const std::string &path, const Slic3r::ExPolygons &expolygons, std::string stroke_outer = "black", std::string stroke_holes = "blue", coordf_t stroke_width = 0)
+- ExPolygonAttributes · class · L102-L161 — struct ExPolygonAttributes
+- ExPolygonAttributes · function · L104-L104 — ExPolygonAttributes() : ExPolygonAttributes("gray", "black", "blue") {}
+- ExPolygonAttributes · function · L105-L106 — ExPolygonAttributes(const std::string &color) :
+- ExPolygonAttributes · function · L108-L123 — ExPolygonAttributes(
+- ExPolygonAttributes · function · L125-L142 — ExPolygonAttributes(
+- ExPolygonAttributes · function · L144-L151 — ExPolygonAttributes(
+- export_expolygons · function · L170-L170 — static void export_expolygons(const char *path, const std::vector<std::pair<Slic3r::ExPolygons, ExPolygonAttributes>> &expolygons_with_attributes);
+- export_expolygons · function · L171-L172 — static void export_expolygons(const std::string &path, const std::vector<std::pair<Slic3r::ExPolygons, ExPolygonAttributes>> &expolygons_with_attributes)
+- to_svg_coord · function · L175-L175 — static float    to_svg_coord(float x) throw() { return unscale<float>(x) * 10.f; }
+- to_svg_x · function · L176-L176 — static float    to_svg_x(float x) throw() { return to_svg_coord(x); }
+- to_svg_y · function · L177-L177 — float           to_svg_y(float x) const throw() { return flipY ? this->height - to_svg_coord(x) : to_svg_coord(x); }

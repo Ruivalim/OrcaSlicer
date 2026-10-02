@@ -1,0 +1,90 @@
+# src/libslic3r/calib.hpp
+
+- GCode · class · L12-L12 — class GCode;
+- Model · class · L13-L13 — class Model;
+- ModelObject · class · L14-L14 — class ModelObject;
+- CalibMode · type · L16-L30 — enum class CalibMode : int
+- CalibState · type · L32-L32 — enum class CalibState { Start = 0, Preset, Calibration, CoarseSave, FineCalibration, Save, Finish };
+- Calib_Params · class · L34-L53 — struct Calib_Params
+- Calib_Params · function · L36-L36 — Calib_Params() : mode(CalibMode::Calib_None){};
+- FlowRatioCalibrationType · type · L61-L64 — enum FlowRatioCalibrationType
+- X1CCalibInfos · class · L66-L88 — class X1CCalibInfos
+- X1CCalibInfo · class · L69-L84 — struct X1CCalibInfo
+- CaliPresetInfo · class · L90-L103 — class CaliPresetInfo
+- PrinterCaliInfo · class · L105-L112 — struct PrinterCaliInfo
+- PACalibResult · class · L114-L137 — class PACalibResult
+- CalibResult · type · L117-L121 — enum CalibResult
+- PACalibIndexInfo · class · L139-L151 — struct PACalibIndexInfo
+- PACalibExtruderInfo · class · L153-L163 — struct PACalibExtruderInfo
+- PACalibTabInfo · class · L165-L170 — struct PACalibTabInfo
+- FlowRatioCalibResult · class · L172-L181 — class FlowRatioCalibResult
+- DrawBoxOptArgs · class · L183-L194 — struct DrawBoxOptArgs
+- DrawBoxOptArgs · function · L185-L186 — DrawBoxOptArgs(int num_perimeters, double height, double line_width, double speed)
+- DrawBoxOptArgs · function · L187-L187 — DrawBoxOptArgs() = default;
+- CalibPressureAdvance · class · L195-L248 — class CalibPressureAdvance
+- find_optimal_PA_speed · function · L198-L198 — static float find_optimal_PA_speed(const DynamicPrintConfig &config, double line_width, double layer_height, int extruder_id = 0, int filament_idx = 0);
+- CalibPressureAdvance · function · L201-L201 — CalibPressureAdvance()  = default;
+- CalibPressureAdvance · function · L202-L202 — CalibPressureAdvance(const DynamicPrintConfig& config) : m_config(config){};
+- CalibPressureAdvance · function · L203-L203 — CalibPressureAdvance(const FullPrintConfig &config) { m_config.apply(config); };
+- DrawDigitMode · type · L206-L206 — enum class DrawDigitMode { Left_To_Right, Bottom_To_Top };
+- delta_scale_bed_ext · function · L208-L208 — void delta_scale_bed_ext(BoundingBoxf &bed_ext) const { bed_ext.scale(1.0f / 1.41421f); }
+- move_to · function · L210-L210 — std::string move_to(Vec2d pt, GCodeWriter &writer, std::string comment = std::string(), double z = 0, double layer_height = -1);
+- e_per_mm · function · L211-L211 — double e_per_mm(double line_width, double layer_height, float nozzle_diameter, float filament_diameter, float print_flow_ratio) const;
+- speed_adjust · function · L212-L212 — double speed_adjust(int speed) const { return speed * 60; };
+- convert_number_to_string · function · L214-L214 — std::string convert_number_to_string(double num, unsigned precision = 0) const;
+- number_spacing · function · L215-L215 — double      number_spacing() const { return m_digit_segment_len + m_digit_gap_len; };
+- draw_digit · function · L216-L222 — std::string draw_digit(double                              startx,
+- draw_number · function · L223-L230 — std::string draw_number(double                              startx,
+- draw_line · function · L232-L233 — std::string draw_line(
+- draw_box · function · L234-L234 — std::string draw_box(GCodeWriter &writer, double min_x, double min_y, double size_x, double size_y, DrawBoxOptArgs opt_args);
+- to_radians · function · L236-L236 — double to_radians(double degrees) const { return degrees * M_PI / 180; };
+- get_distance · function · L237-L237 — double get_distance(Vec2d from, Vec2d to) const;
+- CalibPressureAdvanceLine · class · L250-L289 — class CalibPressureAdvanceLine : public CalibPressureAdvance
+- CalibPressureAdvanceLine · function · L253-L253 — CalibPressureAdvanceLine(GCode* gcodegen);
+- print_extents · function · L256-L256 — BoundingBoxf print_extents(const BoundingBoxf &bed_ext) const;
+- generate_test · function · L258-L258 — std::string generate_test(double start_pa = 0, double step_pa = 0.002, int count = 50);
+- set_speed · function · L260-L264 — void set_speed(double fast = 100.0, double slow = 20.0)
+- line_width · function · L266-L266 — const double &line_width() { return m_line_width; };
+- height_layer · function · L267-L267 — const double &height_layer() { return m_height_layer; };
+- is_delta · function · L268-L268 — bool          is_delta() const;
+- draw_numbers · function · L269-L269 — bool         &draw_numbers() { return m_draw_numbers; }
+- print_pa_lines · function · L272-L272 — std::string print_pa_lines(double start_x, double start_y, double start_pa, double step_pa, int num);
+- delta_modify_start · function · L274-L274 — void delta_modify_start(double &startx, double &starty, int count);
+- SuggestedConfigCalibPAPattern · class · L291-L300 — struct SuggestedConfigCalibPAPattern
+- CalibPressureAdvancePattern · class · L302-L380 — class CalibPressureAdvancePattern : public CalibPressureAdvance
+- CalibPressureAdvancePattern · function · L307-L308 — CalibPressureAdvancePattern(
+- handle_xy_size · function · L310-L310 — double handle_xy_size() const { return m_handle_xy_size; };
+- handle_spacing · function · L311-L311 — double handle_spacing() const { return m_handle_spacing; };
+- handle_pos_offset · function · L312-L312 — Vec3d handle_pos_offset() const;
+- print_size_x · function · L313-L313 — double print_size_x() const { return object_size_x() + pattern_shift(); };
+- print_size_y · function · L314-L314 — double print_size_y() const { return object_size_y(); };
+- max_layer_z · function · L315-L315 — double max_layer_z() const { return height_first_layer() + ((m_num_layers - 1) * height_layer()); };
+- flow_val · function · L316-L316 — double flow_val() const;
+- generate_custom_gcodes · function · L318-L318 — CustomGCode::Info generate_custom_gcodes(const DynamicPrintConfig &config, bool is_bbl_machine, const ModelObject &object, const Vec3d &origin);
+- set_start_offset · function · L320-L320 — void set_start_offset(const Vec3d &offset);
+- get_start_offset · function · L321-L321 — Vec3d get_start_offset();
+- speed_first_layer · function · L325-L325 — double speed_first_layer() const { return m_config.get_abs_value_at("initial_layer_speed", m_params.extruder_id); };
+- speed_perimeter · function · L326-L326 — double speed_perimeter() const { return m_config.get_abs_value_at("outer_wall_speed", m_params.extruder_id); };
+- accel_perimeter · function · L327-L327 — double accel_perimeter() const { return m_config.get_abs_value_at("outer_wall_acceleration", m_params.extruder_id); }
+- line_width_first_layer · function · L328-L328 — double line_width_first_layer() const;
+- line_width · function · L329-L329 — double line_width() const;
+- wall_count · function · L330-L330 — int    wall_count() const { return m_config.option<ConfigOptionInt>("wall_loops")->value; };
+- refresh_setup · function · L333-L333 — void refresh_setup(const DynamicPrintConfig &config, bool is_bbl_machine, const ModelObject &object, const Vec3d &origin);
+- _refresh_starting_point · function · L334-L334 — void _refresh_starting_point(const ModelObject &object);
+- _refresh_writer · function · L335-L335 — void _refresh_writer(bool is_bbl_machine, const ModelObject &object, const Vec3d &origin);
+- height_first_layer · function · L337-L337 — double    height_first_layer() const { return m_config.option<ConfigOptionFloat>("initial_layer_print_height")->value; };
+- height_z_offset · function · L338-L338 — double    height_z_offset() const { return m_config.option<ConfigOptionFloat>("z_offset")->value; };
+- height_layer · function · L339-L339 — double    height_layer() const { return m_config.option<ConfigOptionFloat>("layer_height")->value; };
+- get_num_patterns · function · L340-L340 — const int get_num_patterns() const { return std::ceil((m_params.end - m_params.start) / m_params.step + 1); }
+- line_spacing · function · L348-L348 — double line_spacing() const { return line_width() - height_layer() * (1 - M_PI / 4); };
+- line_spacing_first_layer · function · L349-L349 — double line_spacing_first_layer() const { return line_width_first_layer() - height_first_layer() * (1 - M_PI / 4); };
+- line_spacing_angle · function · L350-L350 — double line_spacing_angle() const { return line_spacing() / std::sin(to_radians(m_corner_angle) / 2); };
+- object_size_x · function · L352-L352 — double object_size_x() const;
+- object_size_y · function · L353-L353 — double object_size_y() const;
+- frame_size_y · function · L354-L354 — double frame_size_y() const { return std::sin(to_radians(double(m_corner_angle) / 2)) * m_wall_side_length * 2; };
+- glyph_start_x · function · L356-L356 — double glyph_start_x(int pattern_i = 0) const;
+- glyph_length_x · function · L357-L357 — double glyph_length_x() const;
+- glyph_tab_max_x · function · L358-L358 — double glyph_tab_max_x() const;
+- max_numbering_height · function · L359-L359 — double max_numbering_height() const;
+- max_numbering_length · function · L360-L360 — size_t max_numbering_length() const;
+- pattern_shift · function · L362-L362 — double pattern_shift() const;

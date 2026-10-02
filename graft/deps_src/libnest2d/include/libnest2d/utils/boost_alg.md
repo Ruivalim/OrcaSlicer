@@ -1,0 +1,43 @@
+# deps_src/libnest2d/include/libnest2d/utils/boost_alg.hpp
+
+- get · function · L82-L84 — static inline bp2d::Coord get(bp2d::PointImpl const& a)
+- set · function · L86-L89 — static inline void set(bp2d::PointImpl& a,
+- get · function · L94-L96 — static inline bp2d::Coord get(bp2d::PointImpl const& a)
+- set · function · L98-L101 — static inline void set(bp2d::PointImpl& a,
+- get · function · L118-L120 — static inline bp2d::Coord get(bp2d::Box const& box)
+- set · function · L121-L123 — static inline void set(bp2d::Box &box, bp2d::Coord const& coord)
+- get · function · L127-L129 — static inline bp2d::Coord get(bp2d::Box const& box)
+- set · function · L130-L132 — static inline void set(bp2d::Box &box, bp2d::Coord const& coord)
+- get · function · L136-L138 — static inline bp2d::Coord get(bp2d::Box const& box)
+- set · function · L139-L141 — static inline void set(bp2d::Box &box, bp2d::Coord const& coord)
+- get · function · L145-L147 — static inline bp2d::Coord get(bp2d::Box const& box)
+- set · function · L148-L150 — static inline void set(bp2d::Box &box, bp2d::Coord const& coord)
+- get · function · L166-L168 — static inline bp2d::Coord get(bp2d::Segment const& seg)
+- set · function · L169-L171 — static inline void set(bp2d::Segment &seg, bp2d::Coord const& coord)
+- get · function · L175-L177 — static inline bp2d::Coord get(bp2d::Segment const& seg)
+- set · function · L178-L180 — static inline void set(bp2d::Segment &seg, bp2d::Coord const& coord)
+- get · function · L184-L186 — static inline bp2d::Coord get(bp2d::Segment const& seg)
+- set · function · L187-L189 — static inline void set(bp2d::Segment &seg, bp2d::Coord const& coord)
+- get · function · L193-L195 — static inline bp2d::Coord get(bp2d::Segment const& seg)
+- set · function · L196-L198 — static inline void set(bp2d::Segment &seg, bp2d::Coord const& coord)
+- ToBoostOrienation · class · L208-L208 — template<bp2d::Orientation> struct ToBoostOrienation {};
+- ToBoostClosure · class · L220-L220 — template<bp2d::Closure> struct ToBoostClosure {};
+- get · function · L255-L255 — static inline bp2d::PathImpl& get(bp2d::PolygonImpl& p)
+- get · function · L259-L259 — static inline bp2d::PathImpl const& get(bp2d::PolygonImpl const& p)
+- get · function · L283-L284 — static inline libnest2d::THolesContainer<bp2d::PolygonImpl>& get(
+- get · function · L289-L290 — static inline const libnest2d::THolesContainer<bp2d::PolygonImpl>& get(
+- intersects · function · L342-L346 — template<>
+- intersects · function · L349-L353 — template<>
+- intersects · function · L356-L360 — template<>
+- area · function · L363-L367 — template<>
+- isInside · function · L370-L375 — template<>
+- isInside · function · L377-L382 — template<>
+- touches · function · L384-L388 — template<>
+- touches · function · L390-L394 — template<>
+- boundingBox · function · L398-L404 — template<>
+- convexHull · function · L417-L423 — template<>
+- convexHull · function · L425-L432 — template<>
+- offset · function · L436-L441 — template<>
+- isValid · function · L494-L500 — template<> inline std::pair<bool, std::string> isValid(const PolygonImpl& sh)
+- merge · method · L508-L515 — template<>
+- merge · method · L517-L523 — template<>

@@ -1,0 +1,66 @@
+# src/libslic3r/GCode/WipeTower2.hpp
+
+- WipeTowerWriter2 · class · L18-L18 — class WipeTowerWriter2;
+- PrintRegionConfig · class · L19-L19 — class PrintRegionConfig;
+- ConfigBase · class · L20-L20 — class ConfigBase;
+- WipeTower2 · class · L22-L444 — class WipeTower2
+- never_skip_tag · function · L25-L25 — static const std::string never_skip_tag() { return "_GCODE_WIPE_TOWER_NEVER_SKIP_TAG"; }
+- wait_for_temp_tag · function · L28-L28 — static const std::string wait_for_temp_tag() { return ";_WAIT_FOR_TEMP_ON_WIPE_TOWER"; }
+- get_wipe_tower_cone_base · function · L29-L29 — static std::pair<double, double> get_wipe_tower_cone_base(double width, double height, double depth, double angle_deg);
+- cone_base_polygon · function · L33-L33 — static Polygon cone_base_polygon(double width, double depth, double height, double angle_deg);
+- extract_wipe_volumes · function · L34-L34 — static std::vector<std::vector<float>> extract_wipe_volumes(const ConfigBase& config);
+- estimate_semm_flush_volume · function · L37-L37 — static float estimate_semm_flush_volume(const ConfigBase& config, size_t filaments_cnt);
+- construct_tcr · function · L42-L46 — WipeTower::ToolChangeResult construct_tcr(WipeTowerWriter2& writer,
+- use_gap_wall · function · L50-L50 — static bool use_gap_wall(const PrintConfig& config);
+- wait_for_temp_enabled · function · L55-L55 — static bool wait_for_temp_enabled(const PrintConfig& config);
+- WipeTower2 · function · L61-L65 — WipeTower2(const PrintConfig& config,
+- set_extruder · function · L69-L69 — void set_extruder(size_t idx, const PrintConfig& config);
+- plan_toolchange · function · L73-L73 — void plan_toolchange(float z_par, float layer_height_par, unsigned int old_tool, unsigned int new_tool, float wipe_volume = 0.f);
+- generate · function · L76-L76 — void generate(std::vector<std::vector<WipeTower::ToolChangeResult>> &result);
+- get_depth · function · L78-L78 — float get_depth() const { return m_wipe_tower_depth; }
+- get_z_and_depth_pairs · function · L79-L79 — std::vector<std::pair<float, float>> get_z_and_depth_pairs() const;
+- get_brim_width · function · L80-L80 — float get_brim_width() const { return m_wipe_tower_brim_width_real; }
+- get_wipe_tower_height · function · L81-L81 — float get_wipe_tower_height() const { return m_wipe_tower_height; }
+- get_bbx · function · L85-L91 — BoundingBoxf get_bbx() const
+- get_rib_offset · function · L94-L94 — Vec2f get_rib_offset() const { return m_rib_offset; }
+- get_rib_width · function · L95-L95 — float get_rib_width() const { return m_rib_width; }
+- get_rib_length · function · L96-L96 — float get_rib_length() const { return m_rib_length; }
+- set_layer · function · L99-L133 — void set_layer(
+- position · function · L136-L136 — const Vec2f& 		 position() const { return m_wipe_tower_pos; }
+- width · function · L138-L138 — float     		 width()    const { return m_wipe_tower_width; }
+- finished · function · L140-L140 — bool 	  		 finished() const { return m_max_color_changes == 0; }
+- prime · function · L143-L150 — std::vector<WipeTower::ToolChangeResult> prime(
+- tool_change · function · L154-L154 — WipeTower::ToolChangeResult tool_change(size_t new_tool);
+- finish_layer · function · L158-L158 — WipeTower::ToolChangeResult finish_layer();
+- layer_finished · function · L161-L163 — bool 			 layer_finished() const
+- get_used_filament · function · L165-L165 — std::vector<float> get_used_filament() const { return m_used_filament_length; }
+- get_used_filament_until_layer · function · L166-L166 — std::vector<std::pair<float, std::vector<float>>> get_used_filament_until_layer() const { return m_used_filament_length_until_layer; }
+- get_number_of_toolchanges · function · L167-L167 — int get_number_of_toolchanges() const { return m_num_tool_changes; }
+- FilamentParameters · class · L169-L203 — struct FilamentParameters
+- wipe_shape · type · L206-L210 — enum wipe_shape // A fill-in direction
+- filament_area · function · L214-L216 — float filament_area() const
+- is_first_layer · function · L307-L307 — bool is_first_layer() const { return size_t(m_layer_info - m_plan.begin()) == m_first_layer_idx; }
+- wipe_row_spacing · function · L310-L310 — float wipe_row_spacing(bool first_layer) const { return (first_layer ? m_extra_flow : m_extra_spacing_wipe) * m_perimeter_width; }
+- wipe_line_width · function · L311-L311 — float wipe_line_width() const { return m_perimeter_width * m_extra_flow; }
+- tool_ramming_enabled · function · L314-L314 — bool tool_ramming_enabled(size_t tool) const { return (m_semm && m_enable_filament_ramming) || m_filpar[tool].multitool_ramming; }
+- boundary_wipe_start_enabled · function · L318-L318 — bool boundary_wipe_start_enabled(size_t tool) const { return tool_ramming_enabled(tool) && !m_semm && m_use_gap_wall; }
+- wipe_start_offset_after_ram · function · L322-L325 — float wipe_start_offset_after_ram(float ramming_depth, bool first_layer) const
+- toolchange_entry_pos · function · L332-L338 — Vec2f toolchange_entry_pos(float depth_traversed, float ramming_depth, bool first_layer) const
+- extrusion_flow · function · L341-L346 — float extrusion_flow(float layer_height = -1.f) const	// negative layer_height - return current m_extrusion_flow
+- plan_tower · function · L350-L350 — void plan_tower();
+- save_on_last_wipe · function · L353-L353 — void save_on_last_wipe();
+- WipeTowerInfo · class · L356-L377 — struct WipeTowerInfo
+- ToolChange · class · L357-L367 — struct ToolChange
+- ToolChange · function · L365-L366 — ToolChange(size_t old, size_t newtool, float depth=0.f, float ramming_depth=0.f, float fwl=0.f, float wv=0.f)
+- toolchanges_depth · function · L371-L371 — float toolchanges_depth() const { float sum = 0.f; for (const auto &a : tool_changes) sum += a.required_depth; return sum; }
+- WipeTowerInfo · function · L375-L376 — WipeTowerInfo(float z_par, float layer_height_par)
+- first_toolchange_to_nonsoluble_nonsupport · function · L393-L394 — int first_toolchange_to_nonsoluble_nonsupport(
+- toolchange_Unload · function · L396-L401 — void toolchange_Unload(
+- toolchange_Change · function · L403-L408 — void toolchange_Change(
+- toolchange_Load · function · L410-L412 — void toolchange_Load(
+- toolchange_Wipe · function · L414-L420 — void toolchange_Wipe(
+- generate_support_rib_wall · function · L423-L428 — Polygon generate_support_rib_wall(WipeTowerWriter2&                 writer,
+- generate_support_cone_wall · function · L430-L435 — Polygon generate_support_cone_wall(
+- generate_rib_polygon · function · L437-L437 — Polygon generate_rib_polygon(const WipeTower::box_coordinates& wt_box);
+- compute_wall_skip_points · function · L439-L439 — void compute_wall_skip_points();
+- set_toolchange · function · L443-L443 — WipeTowerInfo::ToolChange set_toolchange(size_t old_tool, size_t new_tool, float layer_height, float wipe_volume, bool first_layer_plan);

@@ -1,0 +1,18 @@
+# src/libslic3r/CSGMesh/TriangleMeshAdapter.hpp
+
+- get_operation · function · L13-L16 — inline CSGType get_operation(const indexed_triangle_set &part)
+- get_stack_operation · function · L18-L21 — inline CSGStackOp get_stack_operation(const indexed_triangle_set &part)
+- get_mesh · function · L23-L23 — inline const indexed_triangle_set * get_mesh(const indexed_triangle_set &part)
+- get_transform · function · L28-L31 — inline Transform3f get_transform(const indexed_triangle_set &part)
+- get_operation · function · L33-L36 — inline CSGType get_operation(const indexed_triangle_set *const part)
+- get_stack_operation · function · L38-L41 — inline CSGStackOp get_stack_operation(const indexed_triangle_set *const part)
+- get_mesh · function · L43-L43 — inline const indexed_triangle_set * get_mesh(const indexed_triangle_set *const part)
+- get_transform · function · L48-L51 — inline Transform3f get_transform(const indexed_triangle_set *const part)
+- get_operation · function · L53-L56 — inline CSGType get_operation(const TriangleMesh &part)
+- get_stack_operation · function · L58-L61 — inline CSGStackOp get_stack_operation(const TriangleMesh &part)
+- get_mesh · function · L63-L63 — inline const indexed_triangle_set * get_mesh(const TriangleMesh &part)
+- get_transform · function · L68-L71 — inline Transform3f get_transform(const TriangleMesh &part)
+- get_operation · function · L73-L76 — inline CSGType get_operation(const TriangleMesh * const part)
+- get_stack_operation · function · L78-L81 — inline CSGStackOp get_stack_operation(const TriangleMesh * const part)
+- get_mesh · function · L83-L83 — inline const indexed_triangle_set * get_mesh(const TriangleMesh * const part)
+- get_transform · function · L88-L91 — inline Transform3f get_transform(const TriangleMesh * const part)

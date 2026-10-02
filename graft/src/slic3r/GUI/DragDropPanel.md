@@ -1,0 +1,39 @@
+# src/slic3r/GUI/DragDropPanel.hpp
+
+- Hex2Color · function · L19-L19 — wxColor Hex2Color(const std::string& str);
+- ColorPanel · class · L21-L21 — class ColorPanel;
+- DragDropPanel · class · L22-L50 — class DragDropPanel : public wxPanel
+- DragDropPanel · function · L25-L25 — DragDropPanel(wxWindow *parent, const wxString &label, bool is_auto, bool has_title = true, bool is_sub = false);
+- AddColorBlock · function · L27-L27 — void AddColorBlock(const wxColour &color, const std::string &type, int filament_id, bool update_ui = true);
+- RemoveColorBlock · function · L28-L28 — void RemoveColorBlock(ColorPanel *panel, bool update_ui = true);
+- DoDragDrop · function · L29-L29 — void DoDragDrop(ColorPanel *panel, const wxColour &color, const std::string &type, int filament_id);
+- UpdateLabel · function · L30-L30 — void UpdateLabel(const wxString &label);
+- GetAllFilaments · function · L32-L32 — std::vector<int> GetAllFilaments() const;
+- set_is_draging · function · L34-L34 — void set_is_draging(bool is_draging) { m_is_draging = is_draging; }
+- is_draging · function · L35-L35 — bool is_draging() const { return m_is_draging; }
+- get_filament_blocks · function · L37-L37 — std::vector<ColorPanel *> get_filament_blocks() const { return m_filament_blocks; }
+- NotifyDragDropCompleted · function · L47-L47 — void NotifyDragDropCompleted();
+- ColorPanel · class · L54-L73 — class ColorPanel : public wxPanel
+- ColorPanel · function · L57-L57 — ColorPanel(DragDropPanel *parent, const wxColour &color, int filament_id, const std::string& type);
+- GetColor · function · L59-L59 — wxColour GetColor() const { return m_color; }
+- GetFilamentId · function · L60-L60 — int      GetFilamentId() const { return m_filament_id; }
+- GetType · function · L61-L61 — std::string GetType() const { return m_type; }
+- OnLeftDown · function · L64-L64 — void OnLeftDown(wxMouseEvent &event);
+- OnLeftUp · function · L65-L65 — void OnLeftUp(wxMouseEvent &event);
+- OnPaint · function · L66-L66 — void OnPaint(wxPaintEvent &event);
+- SeparatedDragDropPanel · class · L78-L115 — class SeparatedDragDropPanel : public wxPanel
+- SeparatedDragDropPanel · function · L81-L81 — SeparatedDragDropPanel(wxWindow *parent, const wxString &label, bool use_separation = false);
+- AddColorBlock · function · L83-L83 — void AddColorBlock(const wxColour &color, const std::string &type, int filament_id, bool is_high_flow = false, bool update_ui = true);
+- RemoveColorBlock · function · L84-L84 — void RemoveColorBlock(ColorPanel *panel, bool update_ui = true);
+- GetAllFilaments · function · L86-L86 — std::vector<int> GetAllFilaments() const;
+- GetHighFlowFilaments · function · L87-L87 — std::vector<int> GetHighFlowFilaments() const;
+- GetStandardFilaments · function · L88-L88 — std::vector<int> GetStandardFilaments() const;
+- GetTPUHighFlowFilaments · function · L89-L89 — std::vector<int> GetTPUHighFlowFilaments() const;
+- get_filament_blocks · function · L91-L91 — std::vector<ColorPanel *> get_filament_blocks() const;
+- get_high_flow_blocks · function · L92-L92 — std::vector<ColorPanel *> get_high_flow_blocks() const;
+- get_standard_blocks · function · L93-L93 — std::vector<ColorPanel *> get_standard_blocks() const;
+- SetUseSeparation · function · L95-L95 — void SetUseSeparation(bool use_separation);
+- IsUseSeparation · function · L96-L96 — bool IsUseSeparation() const { return m_use_separation; }
+- ClearAllBlocks · function · L97-L97 — void ClearAllBlocks();
+- UpdateLabel · function · L98-L98 — void UpdateLabel(const wxString &label);
+- UpdateLayout · function · L101-L101 — void UpdateLayout();

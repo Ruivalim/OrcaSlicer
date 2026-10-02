@@ -1,0 +1,23 @@
+# tests/libslic3r/test_marchingsquares.cpp
+
+- rstPoint · function · L31-L48 — Point rstPoint(const sla::RasterGrayscaleAA& rst, const size_t c, const size_t r)
+- rstPixel · function · L51-L55 — static Point rstPixel(const sla::RasterGrayscaleAA& rst)
+- rstSize · function · L58-L63 — static Point rstSize(const sla::RasterGrayscaleAA& rst)
+- rstBBox · function · L66-L70 — static BoundingBox rstBBox(const sla::RasterGrayscaleAA& rst)
+- rstGetPolys · function · L73-L102 — static ExPolygons rstGetPolys(sla::RasterGrayscaleAA& rst)
+- len · function · L105-L105 — static double len(const Point& v) { return unscaled(v.norm()); }
+- area · function · L107-L107 — static double area(const Point& v) { return unscaled(v.x()) * unscaled(v.y()); }
+- find_closest_ext · function · L110-L120 — static int find_closest_ext(const ExPolygons& exts, ExPolygon ref)
+- create_raster · function · L122-L132 — static Slic3r::sla::RasterGrayscaleAA create_raster(const sla::Resolution& res, double disp_w = 100., double disp_h = 100.)
+- square · function · L134-L143 — static ExPolygon square(double a, Point center = {0, 0})
+- square_with_hole · function · L145-L156 — static ExPolygon square_with_hole(double a, Point center = {0, 0})
+- circle_with_hole · function · L158-L177 — static ExPolygons circle_with_hole(double r, Point center = {0, 0})
+- test_expolys · function · L182-L269 — template<class Rst>
+- recreate_object_from_rasters · function · L421-L475 — static void recreate_object_from_rasters(const std::string& objname, float lh)
+- set_period · function · L491-L495 — void set_period(float len = 10.0)
+- reset_stats · function · L502-L508 — void reset_stats()
+- get · function · L519-L527 — static float get(const size_t& layer, size_t row, size_t col)
+- rows · function · L530-L530 — static size_t rows(const size_t& layer) { return std::round(gsizef / psizef); }
+- cols · function · L531-L531 — static size_t cols(const size_t& layer) { return std::round(gsizef / psizef); }
+- get_gyroids · function · L534-L543 — Rings get_gyroids(size_t l)
+- benchmark_gyroid · function · L547-L560 — void benchmark_gyroid(float period)

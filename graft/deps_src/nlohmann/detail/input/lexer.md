@@ -1,0 +1,35 @@
+# deps_src/nlohmann/detail/input/lexer.hpp
+
+- lexer_base · class · L25-L96 — template<typename BasicJsonType>
+- token_type · type · L30-L49 — enum class token_type
+- token_type_name · function · L54-L54 — static const char* token_type_name(const token_type t) noexcept
+- lexer · class · L102-L1302 — template<typename BasicJsonType, typename InputAdapterType>
+- lexer · function · L115-L119 — explicit lexer(InputAdapterType&& adapter, bool ignore_comments_ = false) noexcept
+- lexer · function · L122-L122 — lexer(const lexer&) = delete;
+- lexer · function · L123-L123 — lexer(lexer&&) = default; // NOLINT(hicpp-noexcept-move,performance-noexcept-move-constructor)
+- get_decimal_point · function · L134-L140 — JSON_HEDLEY_PURE
+- get_codepoint · function · L161-L192 — int get_codepoint()
+- next_byte_in_range · function · L209-L229 — bool next_byte_in_range(std::initializer_list<char_int_type> ranges)
+- scan_string · function · L246-L830 — token_type scan_string()
+- scan_comment · function · L836-L901 — bool scan_comment()
+- strtof · function · L904-L907 — static void strtof(float& f, const char* str, char** endptr) noexcept
+- strtof · function · L910-L913 — static void strtof(double& f, const char* str, char** endptr) noexcept
+- strtof · function · L916-L919 — static void strtof(long double& f, const char* str, char** endptr) noexcept
+- scan_number · function · L961-L1284 — token_type scan_number()  // lgtm [cpp/use-of-goto]
+- scan_literal · function · L1292-L1293 — token_type scan_literal(const char_type* literal_text, const std::size_t length,
+- JSON_ASSERT · function · L1295-L1295 — JSON_ASSERT(std::char_traits<char_type>::to_char_type(current) == literal_text[0]);
+- for · function · L1296-L1296 — for (std::size_t i = 1; i < length; ++i)
+- reset · function · L1312-L1317 — void reset() noexcept
+- get · function · L1329-L1356 — char_int_type get()
+- unget · function · L1366-L1390 — void unget()
+- add · function · L1393-L1396 — void add(char_int_type c)
+- get_number_integer · function · L1404-L1404 — constexpr number_integer_t get_number_integer() const noexcept
+- get_number_unsigned · function · L1410-L1413 — constexpr number_unsigned_t get_number_unsigned() const noexcept
+- get_number_float · function · L1416-L1419 — constexpr number_float_t get_number_float() const noexcept
+- get_string · function · L1422-L1422 — string_t& get_string()
+- get_position · function · L1432-L1435 — constexpr position_t get_position() const noexcept
+- get_token_string · function · L1440-L1461 — std::string get_token_string() const
+- get_error_message · function · L1465-L1465 — constexpr const char* get_error_message() const noexcept
+- skip_bom · function · L1478-L1490 — bool skip_bom()
+- skip_whitespace · function · L1492-L1499 — void skip_whitespace()
+- scan · function · L1501-L1587 — token_type scan()

@@ -1,0 +1,90 @@
+# src/slic3r/GUI/ReleaseNote.hpp
+
+- ReleaseNoteDialog · class · L55-L66 — class ReleaseNoteDialog : public DPIDialog
+- ReleaseNoteDialog · function · L58-L58 — ReleaseNoteDialog(Plater *plater = nullptr);
+- on_dpi_changed · function · L61-L61 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- update_release_note · function · L62-L62 — void update_release_note(wxString release_note, std::string version);
+- UpdatePluginDialog · class · L68-L80 — class UpdatePluginDialog : public DPIDialog
+- UpdatePluginDialog · function · L71-L71 — UpdatePluginDialog(wxWindow* parent = nullptr);
+- on_dpi_changed · function · L74-L74 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- update_info · function · L75-L75 — void update_info(std::string json_path);
+- UpdateVersionDialog · class · L82-L112 — class UpdateVersionDialog : public DPIDialog
+- UpdateVersionDialog · function · L85-L85 — UpdateVersionDialog(wxWindow *parent = nullptr);
+- CreateTipView · function · L88-L88 — wxWebView* CreateTipView(wxWindow* parent);
+- OnLoaded · function · L89-L89 — void OnLoaded(wxWebViewEvent& event);
+- OnTitleChanged · function · L90-L90 — void OnTitleChanged(wxWebViewEvent& event);
+- OnError · function · L91-L91 — void OnError(wxWebViewEvent& event);
+- ShowReleaseNote · function · L92-L92 — bool ShowReleaseNote(std::string content);
+- RunScript · function · L93-L93 — void RunScript(std::string script);
+- on_dpi_changed · function · L94-L94 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- update_version_info · function · L95-L95 — void update_version_info(wxString release_note, wxString version);
+- splitWithStl · function · L96-L96 — std::vector<std::string> splitWithStl(std::string str, std::string pattern);
+- SecondaryCheckDialog · class · L114-L164 — class SecondaryCheckDialog : public DPIFrame
+- VisibleButtons · type · L119-L127 — enum VisibleButtons { // ORCA VisibleButtons instead ButtonStyle
+- SecondaryCheckDialog · function · L128-L137 — SecondaryCheckDialog(
+- VisibleButtons · type · L132-L132 — enum VisibleButtons btn_style = CONFIRM_AND_CANCEL, // ORCA VisibleButtons instead ButtonStyle
+- update_text · function · L138-L138 — void update_text(wxString text);
+- on_show · function · L139-L139 — void on_show();
+- on_hide · function · L140-L140 — void on_hide();
+- update_btn_label · function · L141-L141 — void update_btn_label(wxString ok_btn_text, wxString cancel_btn_text);
+- update_title_style · function · L142-L142 — void update_title_style(wxString title, SecondaryCheckDialog::VisibleButtons style, wxWindow* parent = nullptr); // ORCA VisibleButtons instead ButtonStyle
+- post_event · function · L143-L143 — void post_event(wxCommandEvent&& event);
+- rescale · function · L144-L144 — void rescale();
+- on_dpi_changed · function · L146-L146 — void on_dpi_changed(const wxRect& suggested_rect);
+- msw_rescale · function · L147-L147 — void msw_rescale();
+- PrintErrorDialog · class · L166-L229 — class PrintErrorDialog : public DPIFrame
+- PrintErrorButton · type · L171-L197 — enum PrintErrorButton : int
+- PrintErrorDialog · function · L198-L205 — PrintErrorDialog(
+- update_text_image · function · L206-L206 — void update_text_image(const wxString& text, const wxString& error_code,const wxString& image_url);
+- on_show · function · L207-L207 — void on_show();
+- on_hide · function · L208-L208 — void on_hide();
+- update_title_style · function · L209-L209 — void update_title_style(wxString title, std::vector<int> style, wxWindow* parent = nullptr);
+- post_event · function · L210-L210 — void post_event(wxCommandEvent& event);
+- post_event · function · L211-L211 — void post_event(wxCommandEvent&& event);
+- rescale · function · L212-L212 — void rescale();
+- on_dpi_changed · function · L214-L214 — void on_dpi_changed(const wxRect& suggested_rect);
+- msw_rescale · function · L215-L215 — void msw_rescale();
+- init_button · function · L216-L216 — void init_button(PrintErrorButton style, wxString buton_text);
+- init_button_list · function · L217-L217 — void init_button_list();
+- on_webrequest_state · function · L218-L218 — void on_webrequest_state(wxWebRequestEvent& evt);
+- ConfirmBeforeSendInfo · class · L231-L242 — struct ConfirmBeforeSendInfo
+- InfoLevel · type · L234-L237 — enum InfoLevel
+- ConfirmBeforeSendInfo · function · L241-L241 — ConfirmBeforeSendInfo(const wxString& txt, const wxString& url = wxEmptyString, InfoLevel lev = Normal) : text(txt), wiki_url(url), level(lev){}
+- ConfirmBeforeSendDialog · class · L244-L288 — class ConfirmBeforeSendDialog : public DPIDialog
+- VisibleButtons · type · L247-L251 — enum VisibleButtons { // ORCA VisibleButtons instead ButtonStyle
+- ConfirmBeforeSendDialog · function · L252-L261 — ConfirmBeforeSendDialog(
+- VisibleButtons · type · L256-L256 — enum VisibleButtons btn_style = CONFIRM_AND_CANCEL, // ORCA VisibleButtons instead ButtonStyle
+- update_text · function · L262-L262 — void update_text(wxString text);
+- update_text · function · L263-L263 — void update_text(std::vector<ConfirmBeforeSendInfo> texts, bool enable_warning_clr = true);
+- on_show · function · L264-L264 — void on_show();
+- on_hide · function · L265-L265 — void on_hide();
+- update_btn_label · function · L266-L266 — void update_btn_label(wxString ok_btn_text, wxString cancel_btn_text);
+- rescale · function · L267-L267 — void rescale();
+- on_dpi_changed · function · L268-L268 — void on_dpi_changed(const wxRect& suggested_rect);
+- show_update_nozzle_button · function · L269-L269 — void show_update_nozzle_button(bool show = false);
+- hide_button_ok · function · L270-L270 — void hide_button_ok();
+- edit_cancel_button_txt · function · L271-L271 — void edit_cancel_button_txt(const wxString& txt, bool switch_green = false);
+- disable_button_ok · function · L272-L272 — void disable_button_ok();
+- enable_button_ok · function · L273-L273 — void enable_button_ok();
+- format_text · function · L274-L274 — wxString format_text(wxString str, int warp);
+- InputIpAddressDialog · class · L290-L358 — class InputIpAddressDialog : public DPIDialog
+- InputIpAddressDialog · function · L308-L308 — InputIpAddressDialog(wxWindow* parent = nullptr);
+- switch_input_panel · function · L342-L342 — void switch_input_panel(int index);
+- on_cancel · function · L343-L343 — void on_cancel();
+- update_title · function · L344-L344 — void update_title(wxString title);
+- set_machine_obj · function · L345-L345 — void set_machine_obj(MachineObject* obj);
+- update_test_msg · function · L346-L346 — void update_test_msg(wxString msg, bool connected);
+- isIp · function · L347-L347 — bool isIp(std::string ipstr);
+- check_ip_address_failed · function · L348-L348 — void check_ip_address_failed(int result);
+- on_check_ip_address_failed · function · L349-L349 — void on_check_ip_address_failed(wxCommandEvent& evt);
+- on_ok · function · L350-L350 — void on_ok(wxMouseEvent& evt);
+- on_send_retry · function · L351-L351 — void on_send_retry();
+- update_test_msg_event · function · L352-L352 — void update_test_msg_event(wxCommandEvent &evt);
+- post_update_test_msg · function · L353-L353 — void post_update_test_msg(std::weak_ptr<InputIpAddressDialog> w, wxString text, bool beconnect);
+- workerThreadFunc · function · L354-L354 — void workerThreadFunc(std::string str_ip, std::string str_access_code, std::string sn, std::string model_id, std::string name);
+- OnTimer · function · L355-L355 — void OnTimer(wxTimerEvent& event);
+- on_text · function · L356-L356 — void on_text(wxCommandEvent& evt);
+- on_dpi_changed · function · L357-L357 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- SendFailedConfirm · class · L360-L368 — class SendFailedConfirm : public DPIDialog
+- SendFailedConfirm · function · L363-L363 — SendFailedConfirm(wxWindow *parent = nullptr);
+- on_dpi_changed · function · L367-L367 — void on_dpi_changed(const wxRect &suggested_rect) override;

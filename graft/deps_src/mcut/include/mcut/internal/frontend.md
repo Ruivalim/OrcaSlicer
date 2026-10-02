@@ -1,0 +1,62 @@
+# deps_src/mcut/include/mcut/internal/frontend.h
+
+- create_context_impl · function · L81-L82 — extern "C" void create_context_impl(
+- debug_message_callback_impl · function · L84-L87 — extern "C" void debug_message_callback_impl(
+- get_debug_message_log_impl · function · L89-L92 — extern "C" void get_debug_message_log_impl(McContext context,
+- debug_message_control_impl · function · L94-L99 — extern "C" void debug_message_control_impl(
+- get_info_impl · function · L101-L106 — extern "C" void get_info_impl(
+- bind_state_impl · function · L108-L112 — extern "C" void bind_state_impl(
+- create_user_event_impl · function · L114-L114 — extern "C" void create_user_event_impl(McEvent* event, McContext context);
+- set_user_event_status_impl · function · L116-L116 — extern "C" void set_user_event_status_impl(McEvent event, McInt32 execution_status);
+- get_event_info_impl · function · L118-L123 — extern "C" void get_event_info_impl(
+- set_event_callback_impl · function · L125-L128 — extern "C" void set_event_callback_impl(
+- wait_for_events_impl · function · L130-L133 — extern "C" void wait_for_events_impl(
+- dispatch_impl · function · L135-L150 — extern "C" void dispatch_impl(
+- dispatch_planar_section_impl · function · L152-L164 — extern "C" void dispatch_planar_section_impl(
+- get_connected_components_impl · function · L166-L174 — extern "C" void get_connected_components_impl(
+- get_connected_component_data_impl · function · L176-L185 — extern "C" void get_connected_component_data_impl(
+- release_connected_components_impl · function · L187-L190 — extern "C" void release_connected_components_impl(
+- release_context_impl · function · L192-L193 — extern "C" void release_context_impl(
+- release_events_impl · function · L195-L195 — extern "C" void release_events_impl(uint32_t numEvents, const McEvent* pEvents);
+- connected_component_t · class · L198-L199 — struct connected_component_t
+- event_t · class · L283-L328 — struct event_t
+- event_t · function · L346-L347 — explicit event_t(McEvent user_handle, McCommandType command_type)
+- m_responsible_thread_id · function · L348-L348 — , m_responsible_thread_id(UINT32_MAX)
+- m_runtime_exec_status · function · L349-L349 — , m_runtime_exec_status(MC_NO_ERROR)
+- m_timestamp_submit · function · L350-L350 — , m_timestamp_submit(0)
+- m_timestamp_start · function · L351-L351 — , m_timestamp_start(0)
+- m_timestamp_end · function · L352-L352 — , m_timestamp_end(0)
+- m_command_exec_status · function · L353-L353 — , m_command_exec_status(MC_RESULT_MAX_ENUM)
+- m_profiling_enabled · function · L354-L354 — , m_profiling_enabled(true)
+- m_command_type · function · L355-L355 — , m_command_type(command_type)
+- m_user_API_command_task_emulator · function · L356-L356 — , m_user_API_command_task_emulator(nullptr)
+- m_context · function · L357-L357 — , m_context(nullptr)
+- get_time_since_epoch · function · L378-L378 — inline std::size_t get_time_since_epoch()
+- log_submit_time · function · L383-L383 — inline void log_submit_time()
+- log_start_time · function · L393-L393 — inline void log_start_time()
+- log_end_time · function · L402-L402 — inline void log_end_time()
+- lock · function · L411-L413 — void set_callback_data(McEvent handle, pfn_McEvent_CALLBACK fn_ptr, McVoid* data_ptr)
+- set_callback_data · function · L411-L411 — void set_callback_data(McEvent handle, pfn_McEvent_CALLBACK fn_ptr, McVoid* data_ptr)
+- notify_task_complete · function · L428-L428 — void notify_task_complete(McResult exec_status)
+- m_done · function · L517-L517 — : m_done(false)
+- m_flags · function · L519-L519 — , m_flags(flags)
+- m_general_position_enforcement_constant · function · L520-L520 — , m_general_position_enforcement_constant(1e-4)
+- m_max_num_perturbation_attempts · function · L521-L521 — , m_max_num_perturbation_attempts(1 << 2),
+- m_connected_component_winding_order · function · L522-L522 — m_connected_component_winding_order(McConnectedComponentFaceWindingOrder::MC_CONNECTED_COMPONENT_FACE_WINDING_ORDER_AS_GIVEN)
+- m_user_handle · function · L523-L523 — , m_user_handle(handle)
+- dbgCallbackBitfieldSource · function · L524-L524 — , dbgCallbackBitfieldSource(0)
+- dbgCallbackBitfieldType · function · L525-L525 — , dbgCallbackBitfieldType(0)
+- dbgCallbackBitfieldSeverity · function · L526-L526 — , dbgCallbackBitfieldSeverity(0)
+- shutdown · function · L559-L574 — void shutdown()
+- get_flags · function · L579-L579 — const McFlags& get_flags() const
+- get_general_position_enforcement_constant · function · L586-L586 — McDouble get_general_position_enforcement_constant() const
+- set_general_position_enforcement_constant · function · L591-L594 — void set_general_position_enforcement_constant(McDouble new_value)
+- get_general_position_enforcement_attempts · function · L598-L598 — McUint32 get_general_position_enforcement_attempts() const
+- set_general_position_enforcement_attempts · function · L603-L606 — void set_general_position_enforcement_attempts(McUint32 new_value)
+- get_connected_component_winding_order · function · L608-L608 — McConnectedComponentFaceWindingOrder get_connected_component_winding_order() const
+- set_connected_component_winding_order · function · L613-L616 — void set_connected_component_winding_order(McConnectedComponentFaceWindingOrder new_value)
+- event_waitlist · function · L650-L650 — const std::vector<McEvent> event_waitlist(pEventWaitList, pEventWaitList + numEventsInWaitlist);
+- api_fn · function · L735-L736 — try
+- set_debug_callback_data · function · L786-L791 — void set_debug_callback_data(pfn_mcDebugOutput_CALLBACK cb, const McVoid* data_ptr)
+- debug_log_msg_t · class · L793-L798 — struct debug_log_msg_t
+- dbg_cb · function · L803-L841 — void dbg_cb(McDebugSource source,

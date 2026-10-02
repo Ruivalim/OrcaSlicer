@@ -1,0 +1,37 @@
+# deps_src/qhull/src/libqhullcpp/QhullPoint.h
+
+- Iterator · type · L38-L38 — typedef QhullPoint::iterator        Iterator;
+- ConstIterator · type · L39-L39 — typedef QhullPoint::const_iterator  ConstIterator;
+- point_coordinates · function · L55-L55 — QhullPoint(int pointDimension, coordT *c) : point_coordinates(c), qh_qh(0), point_dimension(pointDimension) { QHULL_ASSERT(pointDimension>0); }
+- point_dimension · function · L55-L55 — QhullPoint(int pointDimension, coordT *c) : point_coordinates(c), qh_qh(0), point_dimension(pointDimension) { QHULL_ASSERT(pointDimension>0); }
+- QhullPoint · function · L56-L56 — explicit            QhullPoint(const Qhull &q);
+- point_dimension · function · L60-L60 — explicit            QhullPoint(QhullQh *qqh) : point_coordinates(0), qh_qh(qqh), point_dimension(qqh->hull_dim) {}
+- qh_qh · function · L60-L61 — explicit            QhullPoint(QhullQh *qqh) : point_coordinates(0), qh_qh(qqh), point_dimension(qqh->hull_dim) {}
+- QhullPoint · function · L60-L60 — explicit            QhullPoint(QhullQh *qqh) : point_coordinates(0), qh_qh(qqh), point_dimension(qqh->hull_dim) {}
+- point_dimension · function · L61-L61 — QhullPoint(QhullQh *qqh, coordT *c) : point_coordinates(c), qh_qh(qqh), point_dimension(qqh->hull_dim) { QHULL_ASSERT(qqh->hull_dim>0); }
+- QhullPoint · function · L61-L61 — QhullPoint(QhullQh *qqh, coordT *c) : point_coordinates(c), qh_qh(qqh), point_dimension(qqh->hull_dim) { QHULL_ASSERT(qqh->hull_dim>0); }
+- point_coordinates · function · L65-L67 — QhullPoint(const QhullPoint &other) : point_coordinates(other.point_coordinates), qh_qh(other.qh_qh), point_dimension(other.point_dimension) {}
+- point_dimension · function · L65-L65 — QhullPoint(const QhullPoint &other) : point_coordinates(other.point_coordinates), qh_qh(other.qh_qh), point_dimension(other.point_dimension) {}
+- coordinates · function · L82-L82 — const coordT *      coordinates() const { return point_coordinates; }  //!< 0 if undefined
+- coordinates · function · L83-L83 — coordT *            coordinates() { return point_coordinates; }        //!< 0 if undefined
+- defineAs · function · L84-L84 — void                defineAs(coordT *c) { QHULL_ASSERT(point_dimension>0); point_coordinates= c; }
+- defineAs · function · L85-L85 — void                defineAs(int pointDimension, coordT *c) { QHULL_ASSERT(pointDimension>=0); point_coordinates= c; point_dimension= pointDimension; }
+- defineAs · function · L86-L86 — void                defineAs(QhullPoint &other) { point_coordinates= other.point_coordinates; qh_qh= other.qh_qh; point_dimension= other.point_dimension; }
+- dimension · function · L87-L87 — int                 dimension() const { return point_dimension; }
+- getBaseT · function · L88-L88 — coordT *            getBaseT() const { return point_coordinates; } // for QhullPointSet
+- id · function · L89-L89 — countT              id() const { return qh_pointid(qh_qh, point_coordinates); } // NOerrors
+- isValid · function · L90-L90 — bool                isValid() const { return (point_coordinates!=0 && point_dimension>0); };
+- qh · function · L95-L95 — QhullQh *           qh() { return qh_qh; }
+- setCoordinates · function · L96-L96 — void                setCoordinates(coordT *c) { point_coordinates= c; }
+- setDimension · function · L97-L97 — void                setDimension(int pointDimension) { point_dimension= pointDimension; }
+- begin · function · L100-L100 — iterator            begin() { return point_coordinates; }
+- begin · function · L101-L101 — const_iterator      begin() const { return point_coordinates; }
+- constBegin · function · L102-L102 — const_iterator      constBegin() const { return point_coordinates; }
+- constEnd · function · L103-L103 — const_iterator      constEnd() const { return (point_coordinates ? point_coordinates+point_dimension : 0); }
+- count · function · L104-L104 — int                 count() { return (point_coordinates ? point_dimension : 0); }
+- end · function · L105-L105 — iterator            end() { return (point_coordinates ? point_coordinates+point_dimension : 0); }
+- end · function · L106-L106 — const_iterator      end() const { return (point_coordinates ? point_coordinates+point_dimension : 0); }
+- size · function · L107-L107 — size_t              size() { return (size_t)(point_coordinates ? point_dimension : 0); }
+- advancePoint · function · L110-L110 — void                advancePoint(countT idx) { if(point_coordinates) { point_coordinates += idx*point_dimension; } }
+- distance · function · L111-L111 — double              distance(const QhullPoint &p) const;
+- PrintPoint · class · L115-L122 — struct PrintPoint

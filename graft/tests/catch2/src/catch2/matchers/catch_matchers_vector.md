@@ -1,0 +1,30 @@
+# tests/catch2/src/catch2/matchers/catch_matchers_vector.hpp
+
+- VectorContainsElementMatcher · class · L19-L40 — template<typename T, typename Alloc>
+- VectorContainsElementMatcher · function · L24-L26 — VectorContainsElementMatcher(T const& comparator):
+- match · function · L28-L35 — bool match(std::vector<T, Alloc> const& v) const override
+- describe · function · L37-L39 — std::string describe() const override
+- ContainsMatcher · class · L42-L72 — template<typename T, typename AllocComp, typename AllocMatch>
+- ContainsMatcher · function · L47-L49 — ContainsMatcher(std::vector<T, AllocComp> const& comparator):
+- match · function · L51-L68 — bool match(std::vector<T, AllocMatch> const& v) const override
+- describe · function · L69-L71 — std::string describe() const override
+- EqualsMatcher · class · L74-L97 — template<typename T, typename AllocComp, typename AllocMatch>
+- EqualsMatcher · function · L79-L81 — EqualsMatcher(std::vector<T, AllocComp> const& comparator):
+- match · function · L83-L93 — bool match(std::vector<T, AllocMatch> const& v) const override
+- describe · function · L94-L96 — std::string describe() const override
+- ApproxMatcher · class · L99-L135 — template<typename T, typename AllocComp, typename AllocMatch>
+- ApproxMatcher · function · L105-L107 — ApproxMatcher(std::vector<T, AllocComp> const& comparator):
+- match · function · L109-L116 — bool match(std::vector<T, AllocMatch> const& v) const override
+- describe · function · L117-L119 — std::string describe() const override
+- epsilon · function · L121-L121 — ApproxMatcher& epsilon( T const& newEpsilon )
+- margin · function · L126-L126 — ApproxMatcher& margin( T const& newMargin )
+- scale · function · L131-L131 — ApproxMatcher& scale( T const& newScale )
+- UnorderedEqualsMatcher · class · L137-L155 — template<typename T, typename AllocComp, typename AllocMatch>
+- UnorderedEqualsMatcher · function · L142-L144 — UnorderedEqualsMatcher(std::vector<T, AllocComp> const& target):
+- match · function · L145-L150 — bool match(std::vector<T, AllocMatch> const& vec) const override
+- describe · function · L152-L154 — std::string describe() const override
+- Contains · function · L162-L165 — template<typename T, typename AllocComp = std::allocator<T>, typename AllocMatch = AllocComp>
+- VectorContains · function · L168-L171 — template<typename T, typename Alloc = std::allocator<T>>
+- Equals · function · L174-L177 — template<typename T, typename AllocComp = std::allocator<T>, typename AllocMatch = AllocComp>
+- Approx · function · L180-L183 — template<typename T, typename AllocComp = std::allocator<T>, typename AllocMatch = AllocComp>
+- UnorderedEquals · function · L186-L189 — template<typename T, typename AllocComp = std::allocator<T>, typename AllocMatch = AllocComp>

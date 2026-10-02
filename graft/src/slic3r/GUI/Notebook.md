@@ -1,0 +1,66 @@
+# src/slic3r/GUI/Notebook.hpp
+
+- ScalableButton · class · L13-L13 — class ScalableButton;
+- Button · class · L14-L14 — class Button;
+- ButtonsListCtrl · class · L19-L60 — class ButtonsListCtrl : public wxControl
+- ButtonsListCtrl · function · L23-L23 — ButtonsListCtrl(wxWindow* parent, wxBoxSizer* side_tools = NULL);
+- OnPaint · function · L26-L26 — void OnPaint(wxPaintEvent&);
+- SetSelection · function · L27-L27 — void SetSelection(int sel);
+- UpdateMode · function · L28-L28 — void UpdateMode();
+- Rescale · function · L29-L29 — void Rescale();
+- InsertPage · function · L30-L30 — bool InsertPage(size_t n, const wxString &text, bool bSelect = false, const std::string &bmp_name = "", const wxBitmap &bmp = wxNullBitmap);
+- RemovePage · function · L31-L31 — void RemovePage(size_t n);
+- SetPageImage · function · L32-L32 — bool SetPageImage(size_t n, const std::string& bmp_name) const;
+- SetPageText · function · L33-L33 — void SetPageText(size_t n, const wxString& strText);
+- SetCompact · function · L34-L34 — void SetCompact(size_t n, bool compact); // ORCA
+- GetPageText · function · L35-L35 — wxString GetPageText(size_t n) const;
+- GetPageLabel · function · L37-L37 — wxString GetPageLabel(size_t n) const;
+- GetPageIcon · function · L39-L39 — const std::string& GetPageIcon(size_t n) const
+- GetBtnsSizer · function · L44-L44 — wxFlexGridSizer* GetBtnsSizer(){return m_buttons_sizer;}; // ORCA
+- SetOverflowButton · function · L47-L47 — void SetOverflowButton(wxWindow* button);
+- Notebook · class · L62-L498 — class Notebook : public wxBookCtrlBase
+- Notebook · function · L65-L75 — Notebook(wxWindow * parent,
+- Create · function · L77-L114 — bool Create(wxWindow * parent,
+- ShowNewPage · function · L121-L124 — bool ShowNewPage(wxWindow * page)
+- SetEffects · function · L128-L132 — void SetEffects(wxShowEffect showEffect, wxShowEffect hideEffect)
+- SetEffect · function · L135-L138 — void SetEffect(wxShowEffect effect)
+- SetEffectsTimeouts · function · L141-L145 — void SetEffectsTimeouts(unsigned showTimeout, unsigned hideTimeout)
+- SetEffectTimeout · function · L147-L150 — void SetEffectTimeout(unsigned timeout)
+- AddPage · function · L158-L166 — bool AddPage(const wxString& id,
+- AddPage · function · L168-L172 — bool AddPage(wxWindow* page, const wxString& text, bool bSelect = false, int imageId = NO_IMAGE) override
+- InsertPage · function · L174-L196 — bool InsertPage(size_t n,
+- InsertPage · function · L198-L205 — virtual bool InsertPage(size_t n,
+- WXUNUSED · function · L202-L202 — int WXUNUSED(imageId) = NO_IMAGE) override
+- SetSelection · function · L207-L228 — virtual int SetSelection(size_t n) override
+- ChangeSelection · function · L230-L234 — virtual int ChangeSelection(size_t n) override
+- SetPageText · function · L238-L245 — virtual bool SetPageText(size_t n, const wxString & strText) override
+- GetPageText · function · L247-L251 — virtual wxString GetPageText(size_t n) const override
+- GetPageLabel · function · L254-L258 — wxString GetPageLabel(size_t n) const
+- GetPageIcon · function · L261-L265 — std::string GetPageIcon(size_t n) const
+- SetPageImage · function · L267-L270 — virtual bool SetPageImage(size_t WXUNUSED(n), int WXUNUSED(imageId)) override
+- WXUNUSED · function · L267-L267 — virtual bool SetPageImage(size_t WXUNUSED(n), int WXUNUSED(imageId)) override
+- WXUNUSED · function · L267-L267 — virtual bool SetPageImage(size_t WXUNUSED(n), int WXUNUSED(imageId)) override
+- GetPageImage · function · L272-L275 — virtual int GetPageImage(size_t WXUNUSED(n)) const override
+- WXUNUSED · function · L272-L272 — virtual int GetPageImage(size_t WXUNUSED(n)) const override
+- SetPageImage · function · L277-L280 — bool SetPageImage(size_t n, const std::string& bmp_name)
+- SetFocus · function · L283-L288 — virtual void SetFocus() override
+- DeleteAllPages · function · L292-L296 — virtual bool DeleteAllPages() override
+- GetBtnsListCtrl · function · L298-L298 — ButtonsListCtrl* GetBtnsListCtrl() const { return static_cast<ButtonsListCtrl*>(m_bookctrl); }
+- SetOverflowButton · function · L299-L299 — void SetOverflowButton(wxWindow* button) { GetBtnsListCtrl()->SetOverflowButton(button); }
+- PositionAfter · function · L303-L309 — size_t PositionAfter(std::initializer_list<const char*> ids) const
+- FindPageByName · function · L311-L319 — int FindPageByName(const wxString& id) const
+- GetPageByName · function · L321-L321 — wxWindow* GetPageByName(const wxString& id) const
+- SelectPageByName · function · L327-L334 — bool SelectPageByName(const wxString& id)
+- GetPageName · function · L338-L341 — wxString GetPageName(size_t n) const
+- GetSelectedPageName · function · L343-L347 — wxString GetSelectedPageName() const
+- UpdateMode · function · L349-L352 — void UpdateMode()
+- Rescale · function · L354-L357 — void Rescale()
+- OnNavigationKey · function · L359-L440 — void OnNavigationKey(wxNavigationKeyEvent& event)
+- UpdateSelectedPage · function · L443-L447 — virtual void UpdateSelectedPage(size_t WXUNUSED(newsel)) override
+- WXUNUSED · function · L443-L443 — virtual void UpdateSelectedPage(size_t WXUNUSED(newsel)) override
+- CreatePageChangingEvent · function · L449-L449 — virtual wxBookCtrlEvent * CreatePageChangingEvent() const override
+- MakeChangedEvent · function · L455-L458 — virtual void MakeChangedEvent(wxBookCtrlEvent & event) override
+- DoRemovePage · function · L460-L460 — virtual wxWindow * DoRemovePage(size_t page) override
+- DoSize · function · L473-L478 — virtual void DoSize() override
+- DoShowPage · function · L480-L486 — virtual void DoShowPage(wxWindow * page, bool show) override
+- Init · function · L489-L489 — void Init();

@@ -1,0 +1,228 @@
+# deps_src/nlohmann/json.hpp
+
+- parser · function · L204-L214 — template<typename InputAdapterType>
+- get_allocator · function · L322-L325 — static allocator_type get_allocator()
+- meta · method · L353-L407 — JSON_HEDLEY_WARN_UNUSED_RESULT
+- create · function · L929-L929 — static T* create(Args&& ... args)
+- json_value · class · L974-L1232 — union json_value
+- json_value · function · L994-L994 — json_value() = default;
+- json_value · function · L996-L996 — json_value(boolean_t v) noexcept : boolean(v) {}
+- json_value · function · L998-L998 — json_value(number_integer_t v) noexcept : number_integer(v) {}
+- json_value · function · L1000-L1000 — json_value(number_unsigned_t v) noexcept : number_unsigned(v) {}
+- json_value · function · L1002-L1002 — json_value(number_float_t v) noexcept : number_float(v) {}
+- json_value · function · L1004-L1073 — json_value(value_t t)
+- json_value · function · L1076-L1079 — json_value(const string_t& value)
+- json_value · function · L1082-L1085 — json_value(string_t&& value)
+- json_value · function · L1088-L1091 — json_value(const object_t& value)
+- json_value · function · L1094-L1097 — json_value(object_t&& value)
+- json_value · function · L1100-L1103 — json_value(const array_t& value)
+- json_value · function · L1106-L1109 — json_value(array_t&& value)
+- json_value · function · L1112-L1115 — json_value(const typename binary_t::container_type& value)
+- json_value · function · L1118-L1121 — json_value(typename binary_t::container_type&& value)
+- json_value · function · L1124-L1127 — json_value(const binary_t& value)
+- json_value · function · L1130-L1133 — json_value(binary_t&& value)
+- destroy · function · L1135-L1231 — void destroy(value_t t)
+- assert_invariant · function · L1253-L1253 — void assert_invariant(bool check_parents = true) const noexcept
+- JSON_CATCH · function · L1269-L1269 — JSON_CATCH(...) {} // LCOV_EXCL_LINE
+- set_parents · function · L1274-L1309 — void set_parents()
+- set_parents · function · L1311-L1322 — iterator set_parents(iterator it, typename iterator::difference_type count)
+- set_parent · function · L1324-L1360 — reference set_parent(reference j, std::size_t old_capacity = std::size_t(-1))
+- basic_json · function · L1474-L1478 — basic_json(const value_t v)
+- basic_json · function · L1498-L1502 — basic_json(std::nullptr_t = nullptr) noexcept
+- basic_json · function · L1566-L1577 — template < typename CompatibleType,
+- basic_json · function · L1605-L1656 — template < typename BasicJsonType,
+- basic_json · function · L1732-L1783 — basic_json(initializer_list_t init,
+- binary · method · L1812-L1819 — JSON_HEDLEY_WARN_UNUSED_RESULT
+- binary · method · L1849-L1856 — JSON_HEDLEY_WARN_UNUSED_RESULT
+- binary · method · L1859-L1866 — JSON_HEDLEY_WARN_UNUSED_RESULT
+- binary · method · L1869-L1876 — JSON_HEDLEY_WARN_UNUSED_RESULT
+- array · method · L1915-L1919 — JSON_HEDLEY_WARN_UNUSED_RESULT
+- object · method · L1959-L1963 — JSON_HEDLEY_WARN_UNUSED_RESULT
+- basic_json · function · L1987-L1993 — basic_json(size_type cnt, const basic_json& val)
+- basic_json · function · L2050-L2153 — template < class InputIT, typename std::enable_if <
+- basic_json · function · L2160-L2163 — template<typename JsonRef,
+- basic_json · function · L2190-L2254 — basic_json(const basic_json& other)
+- basic_json · function · L2282-L2295 — basic_json(basic_json&& other) noexcept
+- dump · function · L2418-L2421 — string_t dump(const int indent = -1,
+- type · function · L2471-L2474 — constexpr value_t type() const noexcept
+- is_primitive · function · L2502-L2505 — constexpr bool is_primitive() const noexcept
+- is_structured · function · L2529-L2532 — constexpr bool is_structured() const noexcept
+- is_null · function · L2551-L2554 — constexpr bool is_null() const noexcept
+- is_boolean · function · L2573-L2576 — constexpr bool is_boolean() const noexcept
+- is_number · function · L2603-L2606 — constexpr bool is_number() const noexcept
+- is_number_integer · function · L2632-L2635 — constexpr bool is_number_integer() const noexcept
+- is_number_unsigned · function · L2660-L2663 — constexpr bool is_number_unsigned() const noexcept
+- is_number_float · function · L2688-L2691 — constexpr bool is_number_float() const noexcept
+- is_object · function · L2710-L2713 — constexpr bool is_object() const noexcept
+- is_array · function · L2732-L2735 — constexpr bool is_array() const noexcept
+- is_string · function · L2754-L2757 — constexpr bool is_string() const noexcept
+- is_binary · function · L2776-L2779 — constexpr bool is_binary() const noexcept
+- is_discarded · function · L2803-L2806 — constexpr bool is_discarded() const noexcept
+- get_impl · function · L2842-L2842 — boolean_t get_impl(boolean_t* /*unused*/) const
+- get_impl_ptr · function · L2853-L2853 — object_t* get_impl_ptr(object_t* /*unused*/) noexcept
+- get_impl_ptr · function · L2859-L2859 — constexpr const object_t* get_impl_ptr(const object_t* /*unused*/) const noexcept
+- get_impl_ptr · function · L2865-L2865 — array_t* get_impl_ptr(array_t* /*unused*/) noexcept
+- get_impl_ptr · function · L2871-L2871 — constexpr const array_t* get_impl_ptr(const array_t* /*unused*/) const noexcept
+- get_impl_ptr · function · L2877-L2877 — string_t* get_impl_ptr(string_t* /*unused*/) noexcept
+- get_impl_ptr · function · L2883-L2883 — constexpr const string_t* get_impl_ptr(const string_t* /*unused*/) const noexcept
+- get_impl_ptr · function · L2889-L2889 — boolean_t* get_impl_ptr(boolean_t* /*unused*/) noexcept
+- get_impl_ptr · function · L2895-L2895 — constexpr const boolean_t* get_impl_ptr(const boolean_t* /*unused*/) const noexcept
+- get_impl_ptr · function · L2901-L2901 — number_integer_t* get_impl_ptr(number_integer_t* /*unused*/) noexcept
+- get_impl_ptr · function · L2907-L2907 — constexpr const number_integer_t* get_impl_ptr(const number_integer_t* /*unused*/) const noexcept
+- get_impl_ptr · function · L2913-L2913 — number_unsigned_t* get_impl_ptr(number_unsigned_t* /*unused*/) noexcept
+- get_impl_ptr · function · L2919-L2919 — constexpr const number_unsigned_t* get_impl_ptr(const number_unsigned_t* /*unused*/) const noexcept
+- get_impl_ptr · function · L2925-L2925 — number_float_t* get_impl_ptr(number_float_t* /*unused*/) noexcept
+- get_impl_ptr · function · L2931-L2931 — constexpr const number_float_t* get_impl_ptr(const number_float_t* /*unused*/) const noexcept
+- get_impl_ptr · function · L2937-L2937 — binary_t* get_impl_ptr(binary_t* /*unused*/) noexcept
+- get_impl_ptr · function · L2943-L2943 — constexpr const binary_t* get_impl_ptr(const binary_t* /*unused*/) const noexcept
+- get_ref_impl · function · L2959-L2971 — template<typename ReferenceType, typename ThisType>
+- get_ptr · function · L3016-L3023 — template < typename PointerType, typename std::enable_if <
+- noexcept · function · L3069-L3075 — ValueType get_impl(detail::priority_tag<0> /*unused*/) const noexcept(noexcept(
+- get_impl · function · L3107-L3115 — template < typename ValueType,
+- get_impl · function · L3132-L3139 — template < typename BasicJsonType,
+- get_impl · function · L3155-L3162 — template<typename BasicJsonType,
+- get_impl · function · L3168-L3177 — template<typename PointerType,
+- get · function · L3207-L3209 — auto get() const noexcept(
+- get · function · L3246-L3252 — template<typename PointerType, typename std::enable_if<
+- get_to · function · L3292-L3293 — ValueType & get_to(ValueType& v) const noexcept(noexcept(
+- get_to · function · L3305-L3305 — ValueType & get_to(ValueType& v) const
+- get_to · function · L3311-L3322 — template <
+- get_ref · function · L3350-L3356 — template<typename ReferenceType, typename std::enable_if<
+- get_ref · function · L3362-L3369 — template < typename ReferenceType, typename std::enable_if <
+- get_binary · function · L3428-L3428 — binary_t& get_binary()
+- get_binary · function · L3439-L3439 — const binary_t& get_binary() const
+- at · function · L3486-L3500 — reference at(size_type idx)
+- JSON_CATCH · function · L3495-L3499 — JSON_CATCH (std::out_of_range&)
+- at · function · L3533-L3547 — const_reference at(size_type idx) const
+- JSON_CATCH · function · L3542-L3546 — JSON_CATCH (std::out_of_range&)
+- at · function · L3584-L3598 — reference at(const typename object_t::key_type& key)
+- JSON_CATCH · function · L3593-L3597 — JSON_CATCH (std::out_of_range&)
+- at · function · L3635-L3649 — const_reference at(const typename object_t::key_type& key) const
+- JSON_CATCH · function · L3644-L3648 — JSON_CATCH (std::out_of_range&)
+- value · function · L3986-L4005 — template < class ValueType, typename std::enable_if <
+- value · function · L4011-L4014 — string_t value(const typename object_t::key_type& key, const char* default_value) const
+- value · function · L4059-L4075 — template<class ValueType, typename std::enable_if<
+- JSON_INTERNAL_CATCH · function · L4071-L4074 — JSON_INTERNAL_CATCH (out_of_range&)
+- value · function · L4085-L4088 — string_t value(const json_pointer& ptr, const char* default_value) const
+- front · function · L4115-L4118 — reference front()
+- front · function · L4123-L4126 — const_reference front() const
+- back · function · L4159-L4164 — reference back()
+- back · function · L4169-L4174 — const_reference back() const
+- erase · function · L4222-L4289 — template < class IteratorType, typename std::enable_if <
+- erase · function · L4337-L4407 — template < class IteratorType, typename std::enable_if <
+- erase · function · L4438-L4447 — size_type erase(const typename object_t::key_type& key)
+- erase · function · L4473-L4489 — void erase(const size_type idx)
+- find · function · L4525-L4536 — template<typename KeyT>
+- find · function · L4542-L4553 — template<typename KeyT>
+- count · function · L4576-L4581 — template<typename KeyT>
+- contains · function · L4608-L4613 — template < typename KeyT, typename std::enable_if <
+- contains · function · L4641-L4644 — bool contains(const json_pointer& ptr) const
+- begin · function · L4680-L4685 — iterator begin() noexcept
+- begin · function · L4690-L4693 — const_iterator begin() const noexcept
+- cbegin · function · L4720-L4725 — const_iterator cbegin() const noexcept
+- end · function · L4751-L4756 — iterator end() noexcept
+- end · function · L4761-L4764 — const_iterator end() const noexcept
+- cend · function · L4791-L4796 — const_iterator cend() const noexcept
+- rbegin · function · L4821-L4824 — reverse_iterator rbegin() noexcept
+- rbegin · function · L4829-L4832 — const_reverse_iterator rbegin() const noexcept
+- rend · function · L4858-L4861 — reverse_iterator rend() noexcept
+- rend · function · L4866-L4869 — const_reverse_iterator rend() const noexcept
+- crbegin · function · L4895-L4898 — const_reverse_iterator crbegin() const noexcept
+- crend · function · L4924-L4927 — const_reverse_iterator crend() const noexcept
+- iterator_wrapper · function · L4988-L4991 — static iteration_proxy<iterator> iterator_wrapper(reference ref) noexcept
+- iterator_wrapper · function · L4997-L5000 — static iteration_proxy<const_iterator> iterator_wrapper(const_reference ref) noexcept
+- items · function · L5070-L5073 — iteration_proxy<iterator> items() noexcept
+- items · function · L5078-L5081 — iteration_proxy<const_iterator> items() const noexcept
+- empty · function · L5135-L5170 — bool empty() const noexcept
+- size · function · L5215-L5250 — size_type size() const noexcept
+- max_size · function · L5293-L5323 — size_type max_size() const noexcept
+- clear · function · L5372-L5429 — void clear() noexcept
+- push_back · function · L5451-L5472 — void push_back(basic_json&& val)
+- push_back · function · L5488-L5508 — void push_back(const basic_json& val)
+- push_back · function · L5540-L5559 — void push_back(const typename object_t::value_type& val)
+- push_back · function · L5596-L6436 — void push_back(initializer_list_t init)
+- push_back · function · L5601-L5607 — push_back(typename object_t::value_type(
+- begin · function · L5602-L5602 — std::move(key.get_ref<string_t&>()), (init.begin() + 1)->moved_or_copied()));
+- emplace_back · function · L5643-L5664 — template<class... Args>
+- emplace · function · L5693-L5720 — template<class... Args>
+- insert_iterator · function · L5725-L5741 — template<typename... Args>
+- insert · function · L5765-L5781 — iterator insert(const_iterator pos, const basic_json& val)
+- insert · function · L5787-L5790 — iterator insert(const_iterator pos, basic_json&& val)
+- insert · function · L5816-L5832 — iterator insert(const_iterator pos, size_type cnt, const basic_json& val)
+- insert · function · L5864-L5891 — iterator insert(const_iterator pos, const_iterator first, const_iterator last)
+- insert · function · L5917-L5933 — iterator insert(const_iterator pos, initializer_list_t ilist)
+- insert · function · L5958-L5979 — void insert(const_iterator first, const_iterator last)
+- update · function · L6000-L6026 — void update(const_reference j)
+- update · function · L6054-L6089 — void update(const_iterator first, const_iterator last)
+- swap · function · L6108-L6121 — void swap(reference other) noexcept (
+- swap · function · L6141-L6149 — friend void swap(reference left, reference right) noexcept (
+- swap · function · L6171-L6182 — void swap(array_t& other) // NOLINT(bugprone-exception-escape)
+- swap · function · L6204-L6215 — void swap(object_t& other) // NOLINT(bugprone-exception-escape)
+- swap · function · L6237-L6248 — void swap(string_t& other) // NOLINT(bugprone-exception-escape)
+- swap · function · L6270-L6281 — void swap(binary_t& other) // NOLINT(bugprone-exception-escape)
+- swap · function · L6284-L6295 — void swap(typename binary_t::container_type& other) // NOLINT(bugprone-exception-escape)
+- parse · method · L6895-L6905 — template<typename InputType>
+- parse · method · L6933-L6944 — template<typename IteratorType>
+- parse · function · L6948-L6956 — static basic_json parse(detail::span_input_adapter&& i,
+- accept · function · L6988-L6993 — template<typename InputType>
+- accept · function · L6995-L7000 — template<typename IteratorType>
+- accept · function · L7004-L7008 — static bool accept(detail::span_input_adapter&& i,
+- sax_parse · function · L7050-L7061 — template <typename InputType, typename SAX>
+- sax_parse · function · L7063-L7074 — template<class IteratorType, class SAX>
+- sax_parse · function · L7077-L7077 — JSON_HEDLEY_DEPRECATED_FOR(3.8.0, sax_parse(ptr, ptr + len, ...))
+- sax_parse · function · L7079-L7090 — static bool sax_parse(detail::span_input_adapter&& i, SAX* sax,
+- type_name · function · L7175-L7175 — const char* type_name() const noexcept
+- to_cbor · function · L7326-L7326 — static std::vector<std::uint8_t> to_cbor(const basic_json& j)
+- to_cbor · function · L7333-L7336 — static void to_cbor(const basic_json& j, detail::output_adapter<std::uint8_t> o)
+- to_cbor · function · L7338-L7341 — static void to_cbor(const basic_json& j, detail::output_adapter<char> o)
+- to_msgpack · function · L7421-L7426 — static std::vector<std::uint8_t> to_msgpack(const basic_json& j)
+- to_msgpack · function · L7428-L7431 — static void to_msgpack(const basic_json& j, detail::output_adapter<std::uint8_t> o)
+- to_msgpack · function · L7433-L7436 — static void to_msgpack(const basic_json& j, detail::output_adapter<char> o)
+- to_ubjson · function · L7524-L7531 — static std::vector<std::uint8_t> to_ubjson(const basic_json& j,
+- to_ubjson · function · L7533-L7537 — static void to_ubjson(const basic_json& j, detail::output_adapter<std::uint8_t> o,
+- to_ubjson · function · L7539-L7543 — static void to_ubjson(const basic_json& j, detail::output_adapter<char> o,
+- to_bson · function · L7602-L7607 — static std::vector<std::uint8_t> to_bson(const basic_json& j)
+- to_bson · function · L7617-L7620 — static void to_bson(const basic_json& j, detail::output_adapter<std::uint8_t> o)
+- to_bson · function · L7625-L7628 — static void to_bson(const basic_json& j, detail::output_adapter<char> o)
+- from_cbor · method · L7733-L7745 — template<typename InputType>
+- sdp · function · L7741-L7741 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_cbor · method · L7750-L7762 — template<typename IteratorType>
+- sdp · function · L7758-L7758 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_cbor · function · L7767-L7773 — static basic_json from_cbor(const T* ptr, std::size_t len,
+- from_cbor · function · L7778-L7789 — static basic_json from_cbor(detail::span_input_adapter&& i,
+- sdp · function · L7784-L7784 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_msgpack · method · L7877-L7888 — template<typename InputType>
+- sdp · function · L7884-L7884 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_msgpack · method · L7893-L7904 — template<typename IteratorType>
+- sdp · function · L7900-L7900 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_msgpack · function · L7910-L7915 — static basic_json from_msgpack(const T* ptr, std::size_t len,
+- from_msgpack · function · L7919-L7929 — static basic_json from_msgpack(detail::span_input_adapter&& i,
+- sdp · function · L7924-L7924 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_ubjson · method · L7994-L8005 — template<typename InputType>
+- sdp · function · L8001-L8001 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_ubjson · method · L8010-L8021 — template<typename IteratorType>
+- sdp · function · L8017-L8017 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_ubjson · function · L8026-L8031 — static basic_json from_ubjson(const T* ptr, std::size_t len,
+- from_ubjson · function · L8035-L8045 — static basic_json from_ubjson(detail::span_input_adapter&& i,
+- sdp · function · L8040-L8040 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_bson · method · L8108-L8119 — template<typename InputType>
+- sdp · function · L8115-L8115 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_bson · method · L8124-L8135 — template<typename IteratorType>
+- sdp · function · L8131-L8131 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- from_bson · function · L8140-L8145 — static basic_json from_bson(const T* ptr, std::size_t len,
+- from_bson · function · L8149-L8159 — static basic_json from_bson(detail::span_input_adapter&& i,
+- sdp · function · L8154-L8154 — detail::json_sax_dom_parser<basic_json> sdp(result, allow_exceptions);
+- at · function · L8273-L8276 — reference at(const json_pointer& ptr)
+- at · function · L8316-L8319 — const_reference at(const json_pointer& ptr) const
+- flatten · function · L8343-L8348 — basic_json flatten() const
+- result · function · L8345-L8345 — basic_json result(value_t::object);
+- unflatten · function · L8380-L8383 — basic_json unflatten() const
+- patch · function · L8441-L8973 — basic_json patch(const basic_json& json_patch) const
+- patch_operations · type · L8447-L8447 — enum class patch_operations {add, remove, replace, move, copy, test, invalid};
+- ptr · function · L8622-L8622 — json_pointer ptr(path);
+- from_ptr · function · L8648-L8648 — json_pointer from_ptr(from_path);
+- from_ptr · function · L8665-L8665 — const json_pointer from_ptr(from_path);
+- diff · method · L8746-L8877 — JSON_HEDLEY_WARN_UNUSED_RESULT
+- result · function · L8751-L8751 — basic_json result(value_t::array);
+- merge_patch · function · L8930-L8954 — void merge_patch(const basic_json& apply_patch)
+- key · function · L8946-L8946 — operator[](it.key()).merge_patch(it.value());

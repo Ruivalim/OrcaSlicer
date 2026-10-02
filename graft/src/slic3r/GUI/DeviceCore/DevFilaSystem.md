@@ -1,0 +1,59 @@
+# src/slic3r/GUI/DeviceCore/DevFilaSystem.h
+
+- reset · function · L98-L98 — void reset();
+- UpdateColorFromStr · function · L99-L99 — void UpdateColorFromStr(const std::string& color);
+- set_hold_count · function · L100-L100 — void set_hold_count() { hold_count = HOLD_COUNT_MAX; }
+- decode_color · function · L103-L106 — bool is_tray_info_ready() const;
+- is_tray_info_ready · function · L103-L103 — bool is_tray_info_ready() const;
+- is_unset_third_filament · function · L104-L104 — bool is_unset_third_filament() const;
+- get_color · function · L106-L106 — wxColour    get_color()  const { return decode_color(color); };
+- get_display_filament_type · function · L108-L108 — std::string get_display_filament_type() const;
+- get_filament_type · function · L108-L109 — std::string get_display_filament_type() const;
+- decode_color · function · L112-L112 — static wxColour decode_color(const std::string& color);
+- get_ams_drying_preset · function · L114-L114 — std::optional<DevFilamentDryingPreset> get_ams_drying_preset() const;
+- class · type · L152-L152 — enum class DryCtrlMode : int
+- class · type · L159-L159 — enum class DryStatus : char
+- class · type · L171-L171 — enum class DrySubStatus
+- class · type · L178-L178 — enum class DryFanStatus : char
+- class · type · L184-L297 — enum class CannotDryReason : int
+- DrySettings · class · L198-L203 — struct DrySettings
+- GetAmsId · function · L211-L211 — std::string GetAmsId() const { return m_ams_id; }
+- GetDisplayName · function · L212-L215 — wxString    GetDisplayName() const; // display
+- SetAmsType · function · L214-L214 — void     SetAmsType(int type) { m_ams_type = (AmsType)type; }
+- SetAmsType · function · L215-L215 — void     SetAmsType(AmsType type) { m_ams_type = type; }
+- GetAmsType · function · L218-L218 — AmsType  GetAmsType() const { return m_ams_type == AMS_LITE_MIXED ? AMS_LITE : m_ams_type; }
+- IsExist · function · L221-L221 — bool  IsExist() const { return m_exist; }
+- IsAmsLiteMixed · function · L224-L224 — bool  IsAmsLiteMixed() const { return m_ams_type == AMS_LITE_MIXED; }
+- GetSlotCount · function · L227-L232 — int   GetSlotCount() const;
+- GetTray · function · L228-L228 — DevAmsTray* GetTray(const std::string& tray_id) const;
+- GetTrays · function · L229-L229 — const std::map<std::string, DevAmsTray*>& GetTrays() const { return m_trays; }
+- GetExtruderId · function · L232-L232 — int   GetExtruderId() const { return m_ext_id; }
+- GetBindedExtruderSet · function · L236-L236 — const std::set<int>& GetBindedExtruderSet() const { return m_binded_extruder_set; }
+- GetCurrentTemperature · function · L249-L249 — float GetCurrentTemperature() const { return m_current_temperature; }
+- SupportHumidity · function · L251-L251 — bool  SupportHumidity() const { return (m_ams_type == AMS) || (m_ams_type == N3F) || (m_ams_type == N3S);}
+- GetHumidityLevel · function · L252-L252 — int   GetHumidityLevel() const { return m_humidity_level; }
+- GetHumidityPercent · function · L253-L253 — int   GetHumidityPercent() const { return m_humidity_percent; }
+- SupportDrying · function · L255-L255 — bool  SupportDrying() const { return m_ams_type == DevAmsType::N3F || m_ams_type == DevAmsType::N3S; }
+- GetLeftDryTime · function · L256-L256 — int   GetLeftDryTime() const { return m_left_dry_time; }
+- IsSupportRemoteDry · function · L259-L259 — bool IsSupportRemoteDry(const MachineObject* obj) const;
+- AmsIsDrying · function · L267-L267 — bool AmsIsDrying();
+- GetOwner · function · L337-L337 — MachineObject* GetOwner() const { return m_owner; }
+- HasAms · function · L339-L339 — bool        HasAms() const { return !amsList.empty(); }
+- IsAmsSettingUp · function · L340-L345 — bool        IsAmsSettingUp() const;
+- GetAmsById · function · L343-L343 — DevAms*                         GetAmsById(const std::string& ams_id) const;
+- GetAmsList · function · L344-L344 — std::map<std::string, DevAms*, NumericStrCompare>& GetAmsList() { return amsList; }
+- GetAmsCount · function · L345-L345 — int                             GetAmsCount() const { return amsList.size(); }
+- GetAmsTray · function · L348-L348 — DevAmsTray* GetAmsTray(const std::string& ams_id, const std::string& tray_id) const;
+- CollectAmsColors · function · L349-L349 — void        CollectAmsColors(std::vector<wxColour>& ams_colors) const;
+- GetExtruderIdByAmsId · function · L356-L356 — int  GetExtruderIdByAmsId(const std::string& ams_id) const;
+- IsDetectOnPowerupEnabled · function · L364-L364 — bool                 IsDetectOnPowerupEnabled() const { return m_ams_system_setting.IsDetectOnPowerupEnabled(); }
+- IsDetectRemainEnabled · function · L365-L365 — bool                 IsDetectRemainEnabled() const { return m_ams_system_setting.IsDetectRemainEnabled(); }
+- IsAutoRefillEnabled · function · L366-L366 — bool                 IsAutoRefillEnabled() const { return m_ams_system_setting.IsAutoRefillEnabled(); }
+- GetFilamentChangeSteps · function · L373-L373 — const std::vector<DevFilamentStep>& GetFilamentChangeSteps() const { return m_filament_change_steps; }
+- CtrlAmsReset · function · L377-L377 — int  CtrlAmsReset() const;
+- CtrlAmsStartDryingHour · function · L380-L380 — int  CtrlAmsStartDryingHour(int ams_id, std::string filament_type, int tag_temp, int tag_duration_hour, bool rotate_tray, int cooling_temp, bool close_power_conflict = false) const;
+- CtrlAmsStopDrying · function · L381-L381 — int  CtrlAmsStopDrying(int ams_id) const;
+- IsBBL_Filament · function · L384-L384 — static bool IsBBL_Filament(std::string tag_uid);
+- ParseV1_0 · function · L417-L417 — static void ParseV1_0(const json& print_json, MachineObject* obj, DevFilaSystem* system, bool key_field_only);
+- ParseAgentFilament · function · L419-L419 — static void ParseAgentFilament(const json& data, MachineObject* obj, DevFilaSystem* system);
+- DevFilamentDryingPreset · class · L422-L434 — struct DevFilamentDryingPreset

@@ -1,0 +1,154 @@
+# src/slic3r/GUI/ConfigWizard_private.hpp
+
+- Technology · type · L56-L61 — enum Technology
+- Bundle · class · L63-L81 — struct Bundle
+- Bundle · function · L71-L71 — Bundle() = default;
+- Bundle · function · L72-L72 — Bundle(Bundle&& other);
+- load · function · L78-L78 — bool load(fs::path dir, const std::string &vendor_name, bool is_in_resources, bool is_bbl_bundle = false);
+- vendor_id · function · L80-L80 — const std::string& vendor_id() const { return vendor_profile->id; }
+- BundleMap · class · L83-L90 — struct BundleMap : std::unordered_map<std::string /* = vendor ID */, Bundle>
+- load · function · L85-L85 — static BundleMap load();
+- bbl_bundle · function · L88-L88 — Bundle& bbl_bundle();
+- bbl_bundle · function · L89-L89 — const Bundle& bbl_bundle() const;
+- Materials · class · L92-L159 — struct Materials
+- Materials · function · L102-L102 — Materials(Technology technology) : technology(technology) {}
+- push · function · L104-L104 — void push(const Preset *preset);
+- add_printer · function · L105-L105 — void add_printer(const Preset* preset);
+- clear · function · L106-L106 — void clear();
+- containts · function · L107-L112 — bool containts(const Preset *preset) const
+- get_omnipresent · function · L114-L116 — bool get_omnipresent(const Preset* preset)
+- get_presets_by_alias · function · L118-L125 — const std::vector<const Preset*> get_presets_by_alias(const std::string name)
+- get_printer_counter · function · L129-L135 — size_t get_printer_counter(const Preset* preset)
+- appconfig_section · function · L137-L137 — const std::string& appconfig_section() const;
+- get_type · function · L138-L138 — const std::string& get_type(const Preset *preset) const;
+- get_vendor · function · L139-L139 — const std::string& get_vendor(const Preset *preset) const;
+- filter_presets · function · L141-L152 — template<class F> void filter_presets(const Preset* printer, const std::string& type, const std::string& vendor, F cb)
+- get_filament_type · function · L155-L155 — static const std::string& get_filament_type(const Preset *preset);
+- get_filament_vendor · function · L156-L156 — static const std::string& get_filament_vendor(const Preset *preset);
+- get_material_type · function · L157-L157 — static const std::string& get_material_type(const Preset *preset);
+- get_material_vendor · function · L158-L158 — static const std::string& get_material_vendor(const Preset *preset);
+- ModelFilter · type · L166-L166 — typedef std::function<bool(const VendorProfile::PrinterModel&)> ModelFilter;
+- PrinterPicker · class · L168-L203 — struct PrinterPicker: wxPanel //TO check
+- Checkbox · class · L170-L180 — struct Checkbox : wxCheckBox
+- Checkbox · function · L172-L176 — Checkbox(wxWindow *parent, const wxString &label, const std::string &model, const std::string &variant) :
+- PrinterPicker · function · L186-L186 — PrinterPicker(wxWindow *parent, const VendorProfile &vendor, wxString title, size_t max_cols, const AppConfig &appconfig, const ModelFilter &filter);
+- PrinterPicker · function · L187-L187 — PrinterPicker(wxWindow *parent, const VendorProfile &vendor, wxString title, size_t max_cols, const AppConfig &appconfig);
+- select_all · function · L189-L189 — void select_all(bool select, bool alternates = false);
+- select_one · function · L190-L190 — void select_one(size_t i, bool select);
+- any_selected · function · L191-L191 — bool any_selected() const;
+- get_selected_models · function · L192-L192 — std::set<std::string> get_selected_models() const ;
+- get_width · function · L194-L194 — int get_width() const { return width; }
+- get_button_indexes · function · L195-L195 — const std::vector<int>& get_button_indexes() { return m_button_indexes; }
+- on_checkbox · function · L202-L202 — void on_checkbox(const Checkbox *cbox, bool checked);
+- ConfigWizardPage · class · L205-L230 — struct ConfigWizardPage: wxPanel
+- ConfigWizardPage · function · L212-L212 — ConfigWizardPage(ConfigWizard *parent, wxString title, wxString shortname, unsigned indent = 0);
+- append · function · L216-L216 — T* append(T *thing, int proportion = 0, int flag = wxEXPAND|wxTOP|wxBOTTOM, int border = 10)
+- append_text · function · L222-L222 — wxStaticText* append_text(wxString text);
+- append_spacer · function · L223-L223 — void append_spacer(int space);
+- wizard_p · function · L225-L225 — ConfigWizard::priv *wizard_p() const { return parent->p.get(); }
+- apply_custom_config · function · L227-L227 — virtual void apply_custom_config(DynamicPrintConfig &config) {}
+- set_run_reason · function · L228-L228 — virtual void set_run_reason(ConfigWizard::RunReason run_reason) {}
+- on_activate · function · L229-L229 — virtual void on_activate() {}
+- PageWelcome · class · L232-L244 — struct PageWelcome: ConfigWizardPage
+- PageWelcome · function · L238-L238 — PageWelcome(ConfigWizard *parent);
+- reset_user_profile · function · L240-L240 — bool reset_user_profile() const { return cbox_reset != nullptr ? cbox_reset->GetValue() : false; }
+- integrate_desktop · function · L241-L241 — bool integrate_desktop() const { return cbox_integrate != nullptr ? cbox_integrate->GetValue() : false; }
+- set_run_reason · function · L243-L243 — virtual void set_run_reason(ConfigWizard::RunReason run_reason) override;
+- PagePrinters · class · L246-L269 — struct PagePrinters: ConfigWizardPage //TO check
+- PagePrinters · function · L252-L256 — PagePrinters(ConfigWizard *parent,
+- select_all · function · L258-L258 — void select_all(bool select, bool alternates = false);
+- get_width · function · L259-L259 — int get_width() const;
+- any_selected · function · L260-L260 — bool any_selected() const;
+- get_selected_models · function · L261-L261 — std::set<std::string> get_selected_models();
+- get_vendor_id · function · L263-L263 — std::string get_vendor_id() const { return printer_pickers.empty() ? "" : printer_pickers[0]->vendor_id; }
+- set_run_reason · function · L265-L265 — virtual void set_run_reason(ConfigWizard::RunReason run_reason) override;
+- DataList · class · L273-L323 — template<class T, class D> struct DataList : public T
+- DataList · function · L275-L275 — DataList(wxWindow *parent) : T(parent, wxID_ANY) {}
+- DataList · function · L276-L276 — DataList(wxWindow* parent, int style) : T(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0, NULL, style) {}
+- append · function · L281-L284 — int append(const std::string &label, const D *data)
+- append · function · L286-L289 — int append(const wxString &label, const D *data)
+- get_data · function · L291-L291 — const D& get_data(int n)
+- find · function · L295-L301 — int find(const D &data)
+- size · function · L303-L303 — int size() { return this->GetCount(); }
+- on_mouse_move · function · L305-L322 — void on_mouse_move(const wxPoint& position)
+- StringList · type · L325-L325 — typedef DataList<wxListBox, std::string> StringList;
+- PresetList · type · L326-L326 — typedef DataList<wxCheckListBox, std::string> PresetList;
+- ProfilePrintData · class · L328-L334 — struct ProfilePrintData
+- ProfilePrintData · function · L333-L333 — ProfilePrintData(const std::string& n, bool o, bool c) : name(n), omnipresent(o), checked(c) {}
+- PageMaterials · class · L336-L374 — struct PageMaterials: ConfigWizardPage
+- PageMaterials · function · L354-L354 — PageMaterials(ConfigWizard *parent, Materials *materials, wxString title, wxString shortname, wxString list1name);
+- reload_presets · function · L356-L356 — void reload_presets();
+- update_lists · function · L357-L357 — void update_lists(int sel_type, int sel_vendor, int last_selected_printer = -1);
+- on_material_highlighted · function · L358-L358 — void on_material_highlighted(int sel_material);
+- on_material_hovered · function · L359-L359 — void on_material_hovered(int sel_material);
+- select_material · function · L360-L360 — void select_material(int i);
+- select_all · function · L361-L361 — void select_all(bool select);
+- clear · function · L362-L362 — void clear();
+- set_compatible_printers_html_window · function · L363-L363 — void set_compatible_printers_html_window(const std::vector<std::string>& printer_names, bool all_printers = false);
+- clear_compatible_printers_label · function · L364-L364 — void clear_compatible_printers_label();
+- sort_list_data · function · L366-L366 — void sort_list_data(StringList* list, bool add_All_item, bool material_type_ordering);
+- sort_list_data · function · L367-L367 — void sort_list_data(PresetList* list, const std::vector<ProfilePrintData>& data);
+- on_paint · function · L369-L369 — void on_paint();
+- on_mouse_move_on_profiles · function · L370-L370 — void on_mouse_move_on_profiles(wxMouseEvent& evt);
+- on_mouse_enter_profiles · function · L371-L371 — void on_mouse_enter_profiles(wxMouseEvent& evt);
+- on_mouse_leave_profiles · function · L372-L372 — void on_mouse_leave_profiles(wxMouseEvent& evt);
+- on_activate · function · L373-L373 — virtual void on_activate() override;
+- PageCustom · class · L376-L390 — struct PageCustom: ConfigWizardPage
+- PageCustom · function · L378-L378 — PageCustom(ConfigWizard *parent);
+- custom_wanted · function · L380-L380 — bool custom_wanted() const { return cb_custom->GetValue(); }
+- profile_name · function · L381-L381 — std::string profile_name() const { return into_u8(tc_profile_name->GetValue()); }
+- PageFirmware · class · L429-L436 — struct PageFirmware: ConfigWizardPage
+- PageFirmware · function · L434-L434 — PageFirmware(ConfigWizard *parent);
+- apply_custom_config · function · L435-L435 — virtual void apply_custom_config(DynamicPrintConfig &config);
+- PageBedShape · class · L438-L444 — struct PageBedShape : ConfigWizardPage
+- PageBedShape · function · L442-L442 — PageBedShape(ConfigWizard* parent);
+- apply_custom_config · function · L443-L443 — virtual void apply_custom_config(DynamicPrintConfig& config);
+- PageDiameters · class · L446-L453 — struct PageDiameters: ConfigWizardPage
+- PageDiameters · function · L451-L451 — PageDiameters(ConfigWizard *parent);
+- apply_custom_config · function · L452-L452 — virtual void apply_custom_config(DynamicPrintConfig &config);
+- PageTemperatures · class · L455-L462 — struct PageTemperatures: ConfigWizardPage
+- PageTemperatures · function · L460-L460 — PageTemperatures(ConfigWizard *parent);
+- apply_custom_config · function · L461-L461 — virtual void apply_custom_config(DynamicPrintConfig &config);
+- Pages3rdparty · type · L465-L467 — typedef std::map<std::string /* = vendor ID */,
+- ConfigWizardIndex · class · L470-L519 — class ConfigWizardIndex: public wxPanel
+- ConfigWizardIndex · function · L473-L473 — ConfigWizardIndex(wxWindow *parent);
+- add_page · function · L475-L475 — void add_page(ConfigWizardPage *page);
+- add_label · function · L476-L476 — void add_label(wxString label, unsigned indent = 0);
+- active_item · function · L478-L478 — size_t active_item() const { return item_active; }
+- active_page · function · L479-L479 — ConfigWizardPage* active_page() const;
+- active_is_last · function · L480-L480 — bool active_is_last() const { return item_active < items.size() && item_active == last_page; }
+- go_prev · function · L482-L482 — void go_prev();
+- go_next · function · L483-L483 — void go_next();
+- go_to · function · L484-L484 — void go_to(size_t i);
+- go_to · function · L485-L485 — void go_to(const ConfigWizardPage *page);
+- clear · function · L487-L487 — void clear();
+- msw_rescale · function · L488-L488 — void msw_rescale();
+- em · function · L490-L490 — int em() const { return em_w; }
+- Item · class · L494-L501 — struct Item
+- item_height · function · L515-L515 — int item_height() const { return std::max(bullet_black.bmp().GetSize().GetHeight(), em_w) + em_w; }
+- on_paint · function · L517-L517 — void on_paint(wxPaintEvent &evt);
+- on_mouse_move · function · L518-L518 — void on_mouse_move(wxMouseEvent &evt);
+- PresetAliases · type · L527-L527 — typedef std::map<std::string, std::set<std::string>> PresetAliases;
+- priv · function · L581-L586 — priv(ConfigWizard *q)
+- load_pages · function · L588-L588 — void load_pages();
+- init_dialog_size · function · L589-L589 — void init_dialog_size();
+- load_vendors · function · L591-L591 — void load_vendors();
+- add_page · function · L592-L592 — void add_page(ConfigWizardPage *page);
+- enable_next · function · L593-L593 — void enable_next(bool enable);
+- set_start_page · function · L594-L594 — void set_start_page(ConfigWizard::StartPage start_page);
+- create_3rdparty_pages · function · L595-L595 — void create_3rdparty_pages();
+- set_run_reason · function · L596-L596 — void set_run_reason(RunReason run_reason);
+- update_materials · function · L597-L597 — void update_materials(Technology technology);
+- on_custom_setup · function · L599-L599 — void on_custom_setup(const bool custom_wanted);
+- on_printer_pick · function · L600-L600 — void on_printer_pick(PagePrinters *page, const PrinterPickerEvent &evt);
+- select_default_materials_for_printer_model · function · L601-L601 — void select_default_materials_for_printer_model(const VendorProfile::PrinterModel &printer_model, Technology technology);
+- select_default_materials_for_printer_models · function · L602-L602 — void select_default_materials_for_printer_models(Technology technology, const std::set<const VendorProfile::PrinterModel*> &printer_models);
+- on_3rdparty_install · function · L603-L603 — void on_3rdparty_install(const VendorProfile *vendor, bool install);
+- on_bnt_finish · function · L605-L605 — bool on_bnt_finish();
+- check_and_install_missing_materials · function · L606-L606 — bool check_and_install_missing_materials(Technology technology, const std::string &only_for_model_id = std::string());
+- apply_config · function · L607-L607 — bool apply_config(AppConfig *app_config, PresetBundle *preset_bundle, const PresetUpdater *updater, bool& apply_keeped_changes);
+- update_presets_in_config · function · L609-L609 — void update_presets_in_config(const std::string& section, const std::string& alias_key, bool add);
+- perform_desktop_integration · function · L611-L611 — void perform_desktop_integration() const;
+- check_fff_selected · function · L613-L613 — bool check_fff_selected();        // Used to decide whether to display Filaments page
+- check_sla_selected · function · L614-L614 — bool check_sla_selected();        // Used to decide whether to display SLA Materials page
+- em · function · L616-L616 — int em() const { return 10; }

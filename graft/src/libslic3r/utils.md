@@ -1,0 +1,119 @@
+# src/libslic3r/utils.cpp
+
+- level_to_boost · function · L109-L125 — static boost::log::trivial::severity_level level_to_boost(unsigned level)
+- set_logging_level · function · L127-L144 — void set_logging_level(unsigned int level)
+- set_logging_file · function · L146-L149 — void set_logging_file(const std::string &file)
+- level_string_to_boost · function · L151-L162 — unsigned int level_string_to_boost(std::string level)
+- get_string_logging_level · function · L164-L175 — std::string get_string_logging_level(unsigned level)
+- get_logging_level · function · L177-L188 — unsigned get_logging_level()
+- RunOnInit · class · L196-L201 — static struct RunOnInit
+- RunOnInit · function · L197-L200 — RunOnInit()
+- trace · function · L203-L209 — void trace(unsigned int level, const char *message)
+- disable_multi_threading · function · L211-L220 — void disable_multi_threading()
+- set_var_dir · function · L224-L227 — void set_var_dir(const std::string &dir)
+- var_dir · function · L229-L229 — const std::string& var_dir()
+- var · function · L234-L243 — std::string var(const std::string &file_name)
+- set_resources_dir · function · L247-L250 — void set_resources_dir(const std::string &dir)
+- resources_dir · function · L252-L252 — const std::string& resources_dir()
+- set_temporary_dir · function · L259-L262 — void set_temporary_dir(const std::string &dir)
+- temporary_dir · function · L264-L264 — const std::string& temporary_dir()
+- set_local_dir · function · L271-L274 — void set_local_dir(const std::string &dir)
+- localization_dir · function · L276-L276 — const std::string& localization_dir()
+- set_sys_shapes_dir · function · L283-L286 — void set_sys_shapes_dir(const std::string &dir)
+- sys_shapes_dir · function · L288-L288 — const std::string& sys_shapes_dir()
+- set_custom_gcodes_dir · function · L295-L298 — void set_custom_gcodes_dir(const std::string &dir)
+- custom_gcodes_dir · function · L300-L300 — const std::string& custom_gcodes_dir()
+- set_data_dir · function · L309-L319 — void set_data_dir(const std::string &dir)
+- data_dir · function · L321-L321 — const std::string& data_dir()
+- custom_shapes_dir · function · L326-L329 — std::string custom_shapes_dir()
+- handy_models_dir · function · L331-L334 — std::string handy_models_dir()
+- debug_out_path · function · L338-L361 — std::string debug_out_path(const char *name, ...)
+- buf · function · L355-L355 — std::string buf(buffer);
+- shutdown_console_logging · function · L370-L379 — void shutdown_console_logging()
+- set_log_path_and_level · function · L381-L435 — void set_log_path_and_level(const std::string& file, unsigned int level)
+- flush_logs · function · L437-L443 — void flush_logs()
+- get_log_file_name · function · L446-L451 — boost::filesystem::path get_log_file_name()
+- ScopedHandle · class · L457-L481 — template <typename HandleTraits>
+- handle_type · type · L459-L459 — typedef typename HandleTraits::handle_type handle_type;
+- ScopedHandle · function · L461-L461 — ScopedHandle(const ScopedHandle &other) = delete;
+- ScopedHandle · function · L464-L464 — ScopedHandle() : Handle(HandleTraits::GetInvalid()) {}
+- ScopedHandle · function · L465-L465 — explicit ScopedHandle(handle_type h) : Handle(h) {}
+- take · function · L467-L471 — handle_type take()
+- CommonHandleTraits · class · L483-L488 — struct CommonHandleTraits
+- handle_type · type · L484-L484 — typedef HANDLE handle_type;
+- GetInvalid · function · L485-L485 — static handle_type GetInvalid() { return INVALID_HANDLE_VALUE; }
+- Close · function · L486-L486 — static void Close(handle_type h) { ::CloseHandle(h); }
+- IsValid · function · L487-L487 — static bool IsValid(handle_type h) { return h != GetInvalid(); }
+- ScopedFileHandle · type · L490-L490 — typedef ScopedHandle<CommonHandleTraits> ScopedFileHandle;
+- map_windows_error · function · L492-L549 — std::error_code map_windows_error(unsigned windows_error_code)
+- rename_internal · function · L551-L569 — static std::error_code rename_internal(HANDLE from_handle, const std::wstring &wide_to, bool replace_if_exists)
+- real_path_from_handle · function · L571-L584 — static std::error_code real_path_from_handle(HANDLE H, std::wstring &buffer)
+- rename · function · L586-L697 — std::error_code rename(const std::string &from, const std::string &to)
+- rename_file · function · L702-L710 — std::error_code rename_file(const std::string &from, const std::string &to)
+- copy_file_linux_read_write · function · L715-L758 — int copy_file_linux_read_write(int infile, int outfile, uintmax_t file_size)
+- copy_file_linux · function · L764-L903 — bool copy_file_linux(const boost::filesystem::path &from, const boost::filesystem::path &to, boost::system::error_code &ec)
+- fd_wrapper · class · L768-L774 — struct fd_wrapper
+- fd_wrapper · function · L771-L771 — fd_wrapper() = default;
+- fd_wrapper · function · L772-L772 — explicit fd_wrapper(int fd) throw() : fd(fd) {}
+- copy_file_inner · function · L906-L941 — CopyFileResult copy_file_inner(const std::string& from, const std::string& to, std::string& error_message)
+- source · function · L908-L908 — const boost::filesystem::path source(from);
+- target · function · L909-L909 — const boost::filesystem::path target(to);
+- copy_file · function · L943-L989 — CopyFileResult copy_file(const std::string &from, const std::string &to, std::string& error_message, const bool with_check)
+- copy_framework · function · L991-L1017 — bool copy_framework(const std::string &from, const std::string &to)
+- src · function · L993-L993 — boost::filesystem::path src(from), dst(to);
+- it · function · L1000-L1000 — for (boost::filesystem::directory_iterator it(src); it != boost::filesystem::directory_iterator(); ++it)
+- check_copy · function · L1019-L1054 — CopyFileResult check_copy(const std::string &origin, const std::string &copy)
+- is_plain_file · function · L1057-L1067 — bool is_plain_file(const boost::filesystem::directory_entry &dir_entry)
+- is_ini_file · function · L1069-L1072 — bool is_ini_file(const boost::filesystem::directory_entry &dir_entry)
+- is_idx_file · function · L1074-L1077 — bool is_idx_file(const boost::filesystem::directory_entry &dir_entry)
+- is_gcode_file · function · L1080-L1083 — bool is_gcode_file(const std::string &path)
+- is_json_file · function · L1086-L1089 — bool is_json_file(const std::string& path)
+- is_path_within_root · function · L1091-L1113 — bool is_path_within_root(const std::string &rel_path, const boost::filesystem::path &root)
+- is_img_file · function · L1115-L1118 — bool is_img_file(const std::string &path)
+- is_gallery_file · function · L1120-L1123 — bool is_gallery_file(const boost::filesystem::directory_entry& dir_entry, char const* type)
+- is_gallery_file · function · L1125-L1128 — bool is_gallery_file(const std::string &path, char const* type)
+- is_shapes_dir · function · L1130-L1133 — bool is_shapes_dir(const std::string& dir)
+- get_utf8_sequence_length · function · L1146-L1150 — size_t get_utf8_sequence_length(const std::string& text, size_t pos)
+- get_utf8_sequence_length · function · L1152-L1214 — size_t get_utf8_sequence_length(const char *seq, size_t size)
+- encode_path · function · L1217-L1232 — std::string encode_path(const char *src)
+- decode_path · function · L1236-L1251 — std::string decode_path(const char *src)
+- normalize_utf8_nfc · function · L1253-L1257 — std::string normalize_utf8_nfc(const char *src)
+- split_string · function · L1259-L1269 — std::vector<std::string> split_string(const std::string &str, char delimiter)
+- ss · function · L1262-L1262 — std::stringstream ss(str);
+- path_to_filename · function · L1273-L1273 — std::string path_to_filename(const char *src)       { return boost::filesystem::path(src).filename().string(); }
+- path_to_stem · function · L1275-L1275 — std::string path_to_stem(const char *src)           { return boost::filesystem::path(src).stem().string(); }
+- path_to_extension · function · L1277-L1277 — std::string path_to_extension(const char *src)      { return boost::filesystem::path(src).extension().string(); }
+- path_to_parent_path · function · L1279-L1279 — std::string path_to_parent_path(const char *src)    { return boost::filesystem::path(src).parent_path().string(); }
+- string_printf · function · L1283-L1303 — std::string string_printf(const char *format, ...)
+- header_slic3r_generated · function · L1305-L1308 — std::string header_slic3r_generated()
+- header_gcodeviewer_generated · function · L1310-L1313 — std::string header_gcodeviewer_generated()
+- get_current_pid · function · L1315-L1322 — unsigned get_current_pid()
+- per_user_temp_id · function · L1324-L1331 — std::string per_user_temp_id()
+- per_user_temp_dir · function · L1333-L1340 — std::string per_user_temp_dir(const std::string &base, const std::string &user_id)
+- resolve_cli_input_path · function · L1342-L1353 — std::string resolve_cli_input_path(const std::string &path)
+- input · function · L1344-L1344 — const boost::filesystem::path input(path);
+- get_process_name · function · L1356-L1393 — std::string get_process_name(int pid)
+- xml_escape · function · L1396-L1421 — std::string xml_escape(std::string text, bool is_marked/* = false*/)
+- xml_escape_double_quotes_attribute_value · function · L1426-L1449 — std::string xml_escape_double_quotes_attribute_value(std::string text)
+- xml_unescape · function · L1451-L1485 — std::string xml_unescape(std::string s)
+- format_memsize_MB · function · L1487-L1511 — std::string format_memsize_MB(size_t n)
+- format_memsize · function · L1513-L1547 — std::string format_memsize(size_t bytes, unsigned int decimals)
+- format_diameter_to_str · function · L1549-L1556 — std::string format_diameter_to_str(double diameter, int precision)
+- log_memory_info · function · L1561-L1627 — std::string log_memory_info(bool ignore_loglevel)
+- _PROCESS_MEMORY_COUNTERS_EX · class · L1568-L1580 — typedef struct _PROCESS_MEMORY_COUNTERS_EX
+- total_physical_memory · function · L1631-L1698 — size_t total_physical_memory()
+- makedir · function · L1700-L1712 — bool makedir(const std::string path)
+- bbl_calc_md5 · function · L1714-L1733 — bool bbl_calc_md5(std::string &filename, std::string &md5_out)
+- ifs · function · L1719-L1719 — boost::nowide::ifstream ifs(filename, std::ios::binary);
+- copy_directory_recursively · function · L1736-L1770 — void copy_directory_recursively(const boost::filesystem::path& source,
+- cache_covers · function · L1780-L1783 — static bool cache_covers(const Semver& cache_ver, const Semver& profile_ver)
+- is_vendor_installed · function · L1785-L1793 — bool is_vendor_installed(const std::string& vendor)
+- installed_vendor_version · function · L1795-L1806 — Semver installed_vendor_version(const std::string& vendor)
+- remove_installed_vendor · function · L1808-L1815 — void remove_installed_vendor(const std::string& vendor)
+- vendor_names_in · function · L1817-L1826 — std::set<std::string> vendor_names_in(const boost::filesystem::path& dir)
+- installable_cache_version · function · L1835-L1842 — static Semver installable_cache_version(const boost::filesystem::path& dir, const std::string& vendor)
+- resource_vendor_version · function · L1844-L1849 — Semver resource_vendor_version(const std::string& vendor)
+- install_vendor_bundles_from_resources · function · L1851-L1964 — bool install_vendor_bundles_from_resources(
+- save_string_file · function · L1966-L1972 — void save_string_file(const boost::filesystem::path& p, const std::string& str)
+- load_string_file · function · L1974-L1982 — void load_string_file(const boost::filesystem::path& p, std::string& str)
+- check_layer_id_pattern · function · L1987-L2068 — bool check_layer_id_pattern(const std::string& pattern, int layer_id)

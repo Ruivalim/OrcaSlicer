@@ -1,0 +1,36 @@
+# src/slic3r/GUI/Monitor.hpp
+
+- MediaFilePanel · class · L56-L56 — class MediaFilePanel;
+- AddMachinePanel · class · L58-L73 — class AddMachinePanel : public wxPanel
+- on_add_machine · function · L65-L65 — void on_add_machine(wxCommandEvent& event);
+- AddMachinePanel · function · L69-L69 — AddMachinePanel(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL, const wxString& name = wxEmptyString);
+- msw_rescale · function · L72-L72 — void msw_rescale();
+- MonitorPanel · class · L75-L156 — class MonitorPanel : public wxPanel
+- MonitorPanel · function · L104-L104 — MonitorPanel(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- PrinterTab · type · L107-L114 — enum PrinterTab
+- init_bitmap · function · L116-L116 — void init_bitmap();
+- init_timer · function · L117-L117 — void init_timer();
+- init_tabpanel · function · L118-L118 — void init_tabpanel();
+- get_tabpanel · function · L119-L119 — Tabbook* get_tabpanel() { return m_tabpanel; };
+- set_default · function · L120-L120 — void set_default();
+- create_side_tools · function · L121-L121 — wxWindow* create_side_tools();
+- on_sys_color_changed · function · L123-L123 — void on_sys_color_changed();
+- msw_rescale · function · L124-L124 — void msw_rescale();
+- get_status_panel · function · L126-L126 — StatusPanel* get_status_panel() {return m_status_info_panel;};
+- select_machine · function · L127-L127 — void select_machine(std::string machine_sn);
+- on_timer · function · L128-L128 — void on_timer(wxTimerEvent& event);
+- on_select_printer · function · L129-L129 — void on_select_printer(wxCommandEvent& event);
+- on_printer_clicked · function · L130-L130 — void on_printer_clicked(wxMouseEvent &event);
+- on_size · function · L131-L131 — void on_size(wxSizeEvent &event);
+- update_all · function · L135-L135 — void update_all();
+- update_hms_tag · function · L137-L137 — void update_hms_tag();
+- Show · function · L138-L138 — bool Show(bool show);
+- show_status · function · L140-L140 — void show_status(int status);
+- get_string_from_tab · function · L142-L142 — std::string get_string_from_tab(PrinterTab tab);
+- stop_update · function · L147-L147 — void stop_update() {update_flag = false;};
+- start_update · function · L148-L148 — void start_update() {update_flag = true;};
+- jump_to_HMS · function · L151-L151 — void jump_to_HMS();
+- jump_to_Upgrade · function · L152-L152 — void jump_to_Upgrade();
+- jump_to_LiveView · function · L153-L153 — void jump_to_LiveView();
+- jump_to_Rack · function · L154-L154 — void jump_to_Rack();
+- update_network_version_footer · function · L155-L155 — void update_network_version_footer();

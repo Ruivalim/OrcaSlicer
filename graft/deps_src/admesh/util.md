@@ -1,0 +1,25 @@
+# deps_src/admesh/util.cpp
+
+- stl_verify_neighbors · function · L32-L67 — void stl_verify_neighbors(stl_file *stl)
+- stl_edge · class · L38-L42 — struct stl_edge
+- stl_translate · function · L69-L78 — void stl_translate(stl_file *stl, float x, float y, float z)
+- new_min · function · L71-L71 — stl_vertex new_min(x, y, z);
+- stl_translate_relative · function · L81-L89 — void stl_translate_relative(stl_file *stl, float x, float y, float z)
+- shift · function · L83-L83 — stl_vertex shift(x, y, z);
+- stl_scale_versor · function · L91-L106 — void stl_scale_versor(stl_file *stl, const stl_vertex &versor)
+- calculate_normals · function · L108-L116 — static void calculate_normals(stl_file *stl)
+- rotate_point_2d · function · L118-L124 — static inline void rotate_point_2d(float &x, float &y, const double c, const double s)
+- stl_rotate_x · function · L126-L136 — void stl_rotate_x(stl_file *stl, float angle)
+- stl_rotate_y · function · L138-L148 — void stl_rotate_y(stl_file *stl, float angle)
+- stl_rotate_z · function · L150-L160 — void stl_rotate_z(stl_file *stl, float angle)
+- its_rotate_x · function · L162-L169 — void its_rotate_x(indexed_triangle_set &its, float angle)
+- its_rotate_y · function · L171-L178 — void its_rotate_y(indexed_triangle_set& its, float angle)
+- its_rotate_z · function · L180-L187 — void its_rotate_z(indexed_triangle_set& its, float angle)
+- stl_get_size · function · L189-L204 — void stl_get_size(stl_file *stl)
+- stl_mirror_xy · function · L206-L218 — void stl_mirror_xy(stl_file *stl)
+- stl_mirror_yz · function · L220-L232 — void stl_mirror_yz(stl_file *stl)
+- stl_mirror_xz · function · L234-L246 — void stl_mirror_xz(stl_file *stl)
+- get_area · function · L248-L274 — float get_area(stl_facet *facet)
+- get_volume · function · L276-L288 — static float get_volume(stl_file *stl)
+- stl_calculate_volume · function · L290-L297 — void stl_calculate_volume(stl_file *stl)
+- stl_repair · function · L299-L399 — void stl_repair(

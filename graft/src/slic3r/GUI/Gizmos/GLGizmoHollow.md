@@ -1,0 +1,34 @@
+# src/slic3r/GUI/Gizmos/GLGizmoHollow.hpp
+
+- ConfigOption · class · L16-L16 — class ConfigOption;
+- ConfigOptionDef · class · L17-L17 — class ConfigOptionDef;
+- SLAGizmoEventType · type · L21-L21 — enum class SLAGizmoEventType : unsigned char;
+- GLGizmoHollow · class · L23-L104 — class GLGizmoHollow : public GLGizmoBase
+- unproject_on_mesh · function · L26-L26 — bool unproject_on_mesh(const Vec2d& mouse_pos, std::pair<Vec3f, Vec3f>& pos_and_normal);
+- GLGizmoHollow · function · L30-L30 — GLGizmoHollow(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- set_sla_support_data · function · L32-L32 — void set_sla_support_data(ModelObject* model_object, const Selection& selection);
+- gizmo_event · function · L33-L33 — bool gizmo_event(SLAGizmoEventType action, const Vec2d& mouse_position, bool shift_down, bool alt_down, bool control_down);
+- delete_selected_points · function · L34-L34 — void delete_selected_points();
+- is_selection_rectangle_dragging · function · L35-L37 — bool is_selection_rectangle_dragging() const
+- on_init · function · L40-L40 — bool on_init() override;
+- on_update · function · L41-L41 — void on_update(const UpdateData& data) override;
+- on_render · function · L42-L42 — void on_render() override;
+- render_points · function · L44-L44 — void render_points(const Selection& selection, bool picking = false);
+- hollow_mesh · function · L45-L45 — void hollow_mesh(bool postpone_error_messages = false);
+- unsaved_changes · function · L46-L46 — bool unsaved_changes() const;
+- get_config_options · function · L78-L78 — std::vector<std::pair<const ConfigOption*, const ConfigOptionDef*>> get_config_options(const std::vector<std::string>& keys) const;
+- is_mesh_point_clipped · function · L79-L79 — bool is_mesh_point_clipped(const Vec3d& point) const;
+- select_point · function · L87-L87 — void select_point(int i);
+- unselect_point · function · L88-L88 — void unselect_point(int i);
+- reload_cache · function · L89-L89 — void reload_cache();
+- on_set_state · function · L92-L92 — void on_set_state() override;
+- on_set_hover_id · function · L93-L93 — void on_set_hover_id() override;
+- on_start_dragging · function · L94-L94 — void on_start_dragging() override;
+- on_stop_dragging · function · L95-L95 — void on_stop_dragging() override;
+- on_render_input_window · function · L96-L96 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_get_requirements · function · L97-L97 — virtual CommonGizmosDataID on_get_requirements() const override;
+- on_get_name · function · L99-L99 — std::string on_get_name() const override;
+- on_is_activable · function · L100-L100 — bool on_is_activable() const override;
+- on_is_selectable · function · L101-L101 — bool on_is_selectable() const override;
+- on_load · function · L102-L102 — void on_load(cereal::BinaryInputArchive& ar) override;
+- on_save · function · L103-L103 — void on_save(cereal::BinaryOutputArchive& ar) const override;

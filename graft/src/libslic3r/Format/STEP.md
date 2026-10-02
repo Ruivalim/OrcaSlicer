@@ -1,0 +1,30 @@
+# src/libslic3r/Format/STEP.hpp
+
+- TriangleMesh · class · L15-L15 — class TriangleMesh;
+- ModelObject · class · L16-L16 — class ModelObject;
+- ImportStepProgressFn · type · L25-L25 — typedef std::function<void(int load_stage, int current, int total, bool& cancel)> ImportStepProgressFn;
+- StepIsUtf8Fn · type · L26-L26 — typedef std::function<void(bool isUtf8)> StepIsUtf8Fn;
+- NamedSolid · class · L28-L36 — struct NamedSolid
+- NamedSolid · function · L30-L32 — NamedSolid(const TopoDS_Shape& s,
+- load_step · function · L39-L46 — extern bool load_step(const char *path, Model *model,
+- StepPreProcessor · class · L54-L71 — class StepPreProcessor
+- EncodedType · type · L55-L60 — enum class EncodedType : unsigned char
+- preprocess · function · L63-L63 — bool preprocess(const char* path, std::string &output_path);
+- isUtf8File · function · L64-L64 — static bool isUtf8File(const char* path);
+- isUtf8 · function · L65-L65 — static bool isUtf8(const std::string str);
+- isGBK · function · L67-L67 — static bool isGBK(const std::string str);
+- preNum · function · L68-L68 — static int preNum(const unsigned char byte);
+- StepProgressIncdicator · class · L73-L85 — class StepProgressIncdicator : public Message_ProgressIndicator
+- StepProgressIncdicator · function · L76-L76 — StepProgressIncdicator(std::atomic<bool>& stop_flag) : should_stop(stop_flag){}
+- UserBreak · function · L78-L78 — Standard_Boolean UserBreak() override { return should_stop.load(); }
+- Show · function · L80-L82 — void Show(const Message_ProgressScope&, const Standard_Boolean) override
+- Step · class · L87-L120 — class Step
+- Step_Status · type · L90-L96 — enum class Step_Status
+- Step · function · L97-L97 — Step(fs::path path, ImportStepProgressFn stepFn = nullptr, StepIsUtf8Fn isUtf8Fn = nullptr);
+- Step · function · L98-L98 — Step(std::string path, ImportStepProgressFn stepFn = nullptr, StepIsUtf8Fn isUtf8Fn = nullptr);
+- load · function · L100-L100 — Step_Status load();
+- get_triangle_num · function · L101-L101 — unsigned int get_triangle_num(double linear_deflection, double angle_deflection);
+- get_triangle_num_tbb · function · L102-L102 — unsigned int get_triangle_num_tbb(double linear_deflection, double angle_deflection);
+- clean_mesh_data · function · L103-L103 — void clean_mesh_data();
+- mesh · function · L104-L108 — Step_Status mesh(Model* model,
+- update_process · function · L111-L111 — void update_process(int load_stage, int current, int total, bool& cancel);

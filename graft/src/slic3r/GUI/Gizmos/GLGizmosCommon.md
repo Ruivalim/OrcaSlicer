@@ -1,0 +1,107 @@
+# src/slic3r/GUI/Gizmos/GLGizmosCommon.hpp
+
+- ModelObject · class · L12-L12 — class ModelObject;
+- ModelInstance · class · L13-L13 — class ModelInstance;
+- SLAPrintObject · class · L14-L14 — class SLAPrintObject;
+- ModelVolume · class · L15-L15 — class ModelVolume;
+- GLCanvas3D · class · L19-L19 — class GLCanvas3D;
+- SLAGizmoEventType · type · L21-L43 — enum class SLAGizmoEventType : unsigned char
+- CommonGizmosDataBase · class · L47-L47 — class CommonGizmosDataBase;
+- AssembleViewDataBase · class · L48-L48 — class AssembleViewDataBase;
+- SelectionInfo · class · L50-L50 — class SelectionInfo;
+- InstancesHider · class · L51-L51 — class InstancesHider;
+- HollowedMesh · class · L52-L52 — class HollowedMesh;
+- Raycaster · class · L53-L53 — class Raycaster;
+- ObjectClipper · class · L54-L54 — class ObjectClipper;
+- SupportsClipper · class · L55-L55 — class SupportsClipper;
+- ModelObjectsInfo · class · L59-L59 — class ModelObjectsInfo;
+- ModelObjectsClipper · class · L60-L60 — class ModelObjectsClipper;
+- CommonGizmosDataID · type · L71-L78 — enum class CommonGizmosDataID
+- CommonGizmosDataPool · class · L84-L111 — class CommonGizmosDataPool
+- CommonGizmosDataPool · function · L86-L86 — explicit CommonGizmosDataPool(GLCanvas3D* canvas);
+- update · function · L90-L90 — void update(CommonGizmosDataID required);
+- selection_info · function · L93-L93 — CommonGizmosDataObjects::SelectionInfo* selection_info() const;
+- instances_hider · function · L94-L94 — CommonGizmosDataObjects::InstancesHider* instances_hider() const;
+- raycaster_ptr · function · L96-L96 — CommonGizmosDataObjects::Raycaster *  raycaster_ptr();
+- raycaster · function · L97-L97 — CommonGizmosDataObjects::Raycaster* raycaster() const;
+- object_clipper · function · L98-L98 — CommonGizmosDataObjects::ObjectClipper* object_clipper() const;
+- get_canvas · function · L102-L102 — GLCanvas3D* get_canvas() const { return m_canvas; }
+- check_dependencies · function · L109-L109 — bool check_dependencies(CommonGizmosDataID required) const;
+- CommonGizmosDataBase · class · L119-L151 — class CommonGizmosDataBase
+- CommonGizmosDataBase · function · L123-L124 — explicit CommonGizmosDataBase(CommonGizmosDataPool* cgdp)
+- update · function · L128-L128 — void update() { on_update(); m_is_valid = true; }
+- release · function · L131-L131 — void release() { on_release(); m_is_valid = false; }
+- is_valid · function · L134-L134 — bool is_valid() const { return m_is_valid; }
+- get_dependencies · function · L140-L140 — virtual CommonGizmosDataID get_dependencies() const { return CommonGizmosDataID::None; }
+- on_release · function · L144-L144 — virtual void on_release() = 0;
+- on_update · function · L145-L145 — virtual void on_update() = 0;
+- get_pool · function · L146-L146 — CommonGizmosDataPool* get_pool() const { return m_common; }
+- SelectionInfo · class · L160-L178 — class SelectionInfo : public CommonGizmosDataBase
+- SelectionInfo · function · L163-L164 — explicit SelectionInfo(CommonGizmosDataPool* cgdp)
+- model_object · function · L166-L166 — ModelObject* model_object() const { return m_model_object; }
+- get_active_instance · function · L167-L167 — int get_active_instance() const;
+- get_sla_shift · function · L168-L168 — float get_sla_shift() const { return m_z_shift; }
+- on_update · function · L171-L171 — void on_update() override;
+- on_release · function · L172-L172 — void on_release() override;
+- InstancesHider · class · L182-L200 — class InstancesHider : public CommonGizmosDataBase
+- InstancesHider · function · L185-L186 — explicit InstancesHider(CommonGizmosDataPool* cgdp)
+- get_dependencies · function · L188-L188 — CommonGizmosDataID get_dependencies() const override { return CommonGizmosDataID::SelectionInfo; }
+- render_cut · function · L191-L191 — void render_cut() const;
+- on_update · function · L194-L194 — void on_update() override;
+- on_release · function · L195-L195 — void on_release() override;
+- Raycaster · class · L204-L225 — class Raycaster : public CommonGizmosDataBase
+- Raycaster · function · L207-L208 — explicit Raycaster(CommonGizmosDataPool* cgdp)
+- get_dependencies · function · L210-L210 — CommonGizmosDataID get_dependencies() const override { return CommonGizmosDataID::SelectionInfo; }
+- raycaster · function · L213-L213 — const MeshRaycaster* raycaster() const { assert(m_raycasters.size() == 1); return m_raycasters.front().get(); }
+- raycasters · function · L214-L214 — std::vector<const MeshRaycaster*> raycasters() const;
+- set_only_support_model_part_flag · function · L215-L215 — void  set_only_support_model_part_flag(bool);
+- on_update · function · L218-L218 — void on_update() override;
+- on_release · function · L219-L219 — void on_release() override;
+- ObjectClipper · class · L229-L263 — class ObjectClipper : public CommonGizmosDataBase
+- ObjectClipper · function · L232-L233 — explicit ObjectClipper(CommonGizmosDataPool* cgdp)
+- get_dependencies · function · L235-L235 — CommonGizmosDataID get_dependencies() const override { return CommonGizmosDataID::SelectionInfo; }
+- get_position · function · L237-L237 — double get_position() const { return m_clp_ratio; }
+- set_position_to_init_layer · function · L238-L238 — void set_position_to_init_layer();
+- get_clipping_plane · function · L239-L239 — const ClippingPlane* get_clipping_plane(bool ignore_hide_clipped = false) const;
+- render_cut · function · L240-L240 — void render_cut(const std::vector<size_t>* ignore_idxs = nullptr) const;
+- set_position_by_ratio · function · L241-L241 — void set_position_by_ratio(double pos, bool keep_normal, bool vertical_normal=false);
+- set_range_and_pos · function · L242-L242 — void set_range_and_pos(const Vec3d& cpl_normal, double cpl_offset, double pos);
+- set_behavior · function · L243-L243 — void set_behavior(bool hide_clipped, bool fill_cut, double contour_width);
+- get_number_of_contours · function · L245-L245 — int get_number_of_contours() const;
+- point_per_contour · function · L246-L246 — std::vector<Vec3d> point_per_contour() const;
+- is_projection_inside_cut · function · L248-L248 — int is_projection_inside_cut(const Vec3d& point_in) const;
+- has_valid_contour · function · L249-L249 — bool has_valid_contour() const;
+- on_update · function · L253-L253 — void on_update() override;
+- on_release · function · L254-L254 — void on_release() override;
+- AssembleViewDataID · type · L268-L272 — enum class AssembleViewDataID
+- AssembleViewDataPool · class · L274-L295 — class AssembleViewDataPool
+- AssembleViewDataPool · function · L276-L276 — AssembleViewDataPool(GLCanvas3D* canvas);
+- update · function · L280-L280 — void update(AssembleViewDataID required);
+- model_objects_info · function · L283-L283 — AssembleViewDataObjects::ModelObjectsInfo* model_objects_info() const;
+- model_objects_clipper · function · L284-L284 — AssembleViewDataObjects::ModelObjectsClipper* model_objects_clipper() const;
+- get_canvas · function · L286-L286 — GLCanvas3D* get_canvas() const { return m_canvas; }
+- check_dependencies · function · L293-L293 — bool check_dependencies(AssembleViewDataID required) const;
+- AssembleViewDataBase · class · L299-L332 — class AssembleViewDataBase
+- AssembleViewDataBase · function · L303-L304 — explicit AssembleViewDataBase(AssembleViewDataPool* cgdp)
+- update · function · L308-L308 — void update() { on_update(); m_is_valid = true; }
+- release · function · L311-L311 — void release() { on_release(); m_is_valid = false; }
+- is_valid · function · L314-L314 — bool is_valid() const { return m_is_valid; }
+- get_dependencies · function · L320-L320 — virtual AssembleViewDataID get_dependencies() const { return AssembleViewDataID::None; }
+- on_release · function · L324-L324 — virtual void on_release() = 0;
+- on_update · function · L325-L325 — virtual void on_update() = 0;
+- get_pool · function · L326-L326 — AssembleViewDataPool* get_pool() const { return m_common; }
+- ModelObjectsInfo · class · L336-L353 — class ModelObjectsInfo : public AssembleViewDataBase
+- ModelObjectsInfo · function · L339-L340 — explicit ModelObjectsInfo(AssembleViewDataPool* cgdp)
+- model_objects · function · L342-L342 — ModelObjectPtrs model_objects() const { return m_model_objects; }
+- get_sla_shift · function · L344-L344 — float get_sla_shift() const { return m_z_shift; }
+- on_update · function · L347-L347 — void on_update() override;
+- on_release · function · L348-L348 — void on_release() override;
+- ModelObjectsClipper · class · L355-L380 — class ModelObjectsClipper : public AssembleViewDataBase
+- ModelObjectsClipper · function · L358-L359 — explicit ModelObjectsClipper(AssembleViewDataPool* cgdp)
+- get_dependencies · function · L361-L361 — AssembleViewDataID get_dependencies() const override { return AssembleViewDataID::ModelObjectsInfo; }
+- set_position · function · L364-L364 — void set_position(double pos, bool keep_normal);
+- get_position · function · L365-L365 — double get_position() const { return m_clp_ratio; }
+- get_clipping_plane · function · L366-L366 — ClippingPlane* get_clipping_plane() const { return m_clp.get(); }
+- render_cut · function · L367-L367 — void render_cut() const;
+- on_update · function · L371-L371 — void on_update() override;
+- on_release · function · L372-L372 — void on_release() override;

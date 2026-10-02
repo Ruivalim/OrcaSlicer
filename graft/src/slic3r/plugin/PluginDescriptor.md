@@ -1,0 +1,27 @@
+# src/slic3r/plugin/PluginDescriptor.hpp
+
+- CloudPluginState · class · L16-L24 — struct CloudPluginState
+- PluginUpdateStatus · type · L26-L31 — enum class PluginUpdateStatus
+- PluginChangelog · class · L33-L39 — struct PluginChangelog
+- sort_plugin_changelog · function · L41-L48 — inline void sort_plugin_changelog(std::vector<PluginChangelog>& changelog)
+- PluginDescriptor · class · L51-L146 — struct PluginDescriptor
+- is_cloud_plugin · function · L81-L81 — bool is_cloud_plugin() const { return cloud.has_value(); }
+- cloud_uuid · function · L82-L82 — std::string cloud_uuid() const { return cloud.has_value() ? cloud->uuid : std::string{}; }
+- has_local_package · function · L83-L83 — bool has_local_package() const { return !is_cloud_plugin() || cloud->installed || !plugin_root.empty() || !entry_path.empty(); }
+- is_metadata_valid · function · L84-L84 — bool is_metadata_valid() const { return metadata_valid; }
+- is_invalid_package · function · L92-L92 — bool is_invalid_package() const { return !metadata_valid && has_local_package(); }
+- normalized_error · function · L94-L102 — std::string normalized_error() const
+- has_error · function · L104-L104 — bool has_error() const { return !normalized_error().empty(); }
+- get_update_status · function · L106-L117 — PluginUpdateStatus get_update_status() const
+- has_update_available · function · L119-L119 — bool has_update_available() const { return get_update_status() == PluginUpdateStatus::UpdateAvailable; }
+- is_unauthorized · function · L120-L120 — bool is_unauthorized() const { return get_update_status() == PluginUpdateStatus::Unauthorized; }
+- latest_available_version · function · L121-L126 — std::string latest_available_version() const
+- set_metadata_valid · function · L128-L133 — void set_metadata_valid(bool is_valid)
+- set_unauthorized · function · L135-L142 — void set_unauthorized(bool unauthorized)
+- clear_error · function · L144-L144 — void clear_error() { error.clear(); }
+- set_error · function · L145-L145 — void set_error(std::string message) { error = std::move(message); }
+- apply_plugin_metadata_fallbacks · function · L148-L162 — inline void apply_plugin_metadata_fallbacks(PluginDescriptor& target, const PluginDescriptor& fallback)
+- filesystem_safe_escape · function · L166-L179 — inline std::string filesystem_safe_escape(const std::string& value)
+- sanitize_plugin_name · function · L186-L190 — inline std::string sanitize_plugin_name(std::string name)
+- is_uuid · function · L193-L207 — inline bool is_uuid(const std::string& s)
+- make_local_plugin_key · function · L213-L216 — inline std::string make_local_plugin_key(const std::string& stem)

@@ -1,0 +1,45 @@
+# src/slic3r/Utils/CalibUtils.hpp
+
+- ProgressIndicator · class · L9-L9 — class ProgressIndicator;
+- Preset · class · L10-L10 — class Preset;
+- CalibInfo · class · L16-L35 — class CalibInfo
+- CalibUtils · class · L37-L91 — class CalibUtils
+- CalibUtils · function · L40-L40 — CalibUtils(){};
+- get_calib_mode_by_name · function · L43-L43 — static CalibMode get_calib_mode_by_name(const std::string name, int &cali_stage);
+- calib_PA · function · L45-L45 — static void calib_PA(const X1CCalibInfos& calib_infos, int mode, wxString& error_message);
+- emit_get_PA_calib_results · function · L47-L47 — static void emit_get_PA_calib_results(float nozzle_diameter);
+- get_PA_calib_results · function · L48-L48 — static bool get_PA_calib_results(std::vector<PACalibResult> &pa_calib_results);
+- emit_get_PA_calib_infos · function · L50-L50 — static void emit_get_PA_calib_infos(const PACalibExtruderInfo &cali_info);
+- get_PA_calib_tab · function · L51-L51 — static bool get_PA_calib_tab(std::vector<PACalibResult> &pa_calib_infos);
+- set_PA_calib_result · function · L53-L53 — static void set_PA_calib_result(const std::vector<PACalibResult>& pa_calib_values, bool is_auto_cali);
+- select_PA_calib_result · function · L54-L54 — static void select_PA_calib_result(const PACalibIndexInfo &pa_calib_info);
+- delete_PA_calib_result · function · L55-L55 — static void delete_PA_calib_result(const PACalibIndexInfo &pa_calib_info);
+- calib_flowrate_X1C · function · L57-L57 — static void calib_flowrate_X1C(const X1CCalibInfos& calib_infos, wxString& error_message);
+- emit_get_flow_ratio_calib_results · function · L58-L58 — static void emit_get_flow_ratio_calib_results(float nozzle_diameter);
+- get_flow_ratio_calib_results · function · L59-L59 — static bool get_flow_ratio_calib_results(std::vector<FlowRatioCalibResult> &flow_ratio_calib_results);
+- calib_flowrate · function · L60-L60 — static bool calib_flowrate(int pass, const CalibInfo &calib_info, wxString &error_message);
+- calib_pa_pattern · function · L62-L62 — static void calib_pa_pattern(const CalibInfo &calib_info, Model &model);
+- set_for_auto_pa_model_and_config · function · L64-L64 — static void set_for_auto_pa_model_and_config(const std::vector<CalibInfo> &calib_info, DynamicPrintConfig &full_config, Model &model);
+- calib_generic_auto_pa_cali · function · L66-L66 — static bool calib_generic_auto_pa_cali(const std::vector<CalibInfo> &calib_info, wxString & error_message);
+- calib_generic_PA · function · L67-L67 — static bool calib_generic_PA(const CalibInfo &calib_info, wxString &error_message);
+- calib_temptue · function · L68-L68 — static void calib_temptue(const CalibInfo &calib_info, wxString &error_message);
+- calib_max_vol_speed · function · L69-L69 — static void calib_max_vol_speed(const CalibInfo &calib_info, wxString &error_message);
+- calib_VFA · function · L70-L70 — static void calib_VFA(const CalibInfo &calib_info, wxString &error_message);
+- calib_retraction · function · L71-L71 — static void calib_retraction(const CalibInfo &calib_info, wxString &error_message);
+- is_support_auto_pa_cali · function · L74-L74 — static bool is_support_auto_pa_cali(std::string filament_id);
+- get_selected_calib_idx · function · L76-L76 — static int get_selected_calib_idx(const std::vector<PACalibResult> &pa_calib_values, int cali_idx);
+- get_pa_k_n_value_by_cali_idx · function · L77-L77 — static bool get_pa_k_n_value_by_cali_idx(const MachineObject* obj, int cali_idx, float& out_k, float& out_n);
+- validate_input_name · function · L79-L79 — static bool validate_input_name(wxString name);
+- validate_input_k_value · function · L80-L80 — static bool validate_input_k_value(wxString k_text, float* output_value);
+- validate_input_flow_ratio · function · L81-L81 — static bool validate_input_flow_ratio(wxString flow_ratio, float* output_value);
+- check_printable_status_before_cali · function · L83-L83 — static bool check_printable_status_before_cali(const MachineObject *obj, const X1CCalibInfos &cali_infos, wxString &error_message);
+- check_printable_status_before_cali · function · L84-L84 — static bool check_printable_status_before_cali(const MachineObject *obj, const CalibInfo &cali_info, wxString &error_message);
+- check_printable_status_before_cali · function · L85-L85 — static bool check_printable_status_before_cali(const MachineObject *obj, const std::vector<CalibInfo> &cali_infos, wxString &error_message);
+- process_and_store_3mf · function · L88-L88 — static bool process_and_store_3mf(Model* model, const DynamicPrintConfig& full_config, const Calib_Params& params, wxString& error_message);
+- send_to_print · function · L89-L89 — static void send_to_print(const CalibInfo &calib_info, wxString& error_message, int flow_ratio_mode = 0); // 0: none  1: coarse  2: fine
+- send_to_print · function · L90-L90 — static void send_to_print(const std::vector<CalibInfo> &calib_infos, wxString &error_message, int flow_ratio_mode = 0); // 0: none  1: coarse  2: fine
+- get_tray_ams_and_slot_id · function · L93-L93 — extern void get_tray_ams_and_slot_id(MachineObject* obj, int in_tray_id, int &ams_id, int &slot_id, int &tray_id);
+- get_default_k_n_value · function · L95-L95 — extern void get_default_k_n_value(const std::string &filament_id, float &k, float &n);
+- get_nozzle_volume_type_name · function · L96-L96 — extern wxString get_nozzle_volume_type_name(NozzleVolumeType type);
+- update_speed_parameter · function · L98-L98 — extern void update_speed_parameter(const std::string &key);
+- generate_max_speed_parameter_value · function · L99-L99 — extern std::vector<double> generate_max_speed_parameter_value(const std::string &key, bool linear, int pass);

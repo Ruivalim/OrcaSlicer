@@ -1,0 +1,61 @@
+# src/slic3r/GUI/Gizmos/GLGizmoBrimEars.hpp
+
+- ConfigOption · class · L13-L13 — class ConfigOption;
+- SLAGizmoEventType · type · L17-L17 — enum class SLAGizmoEventType : unsigned char;
+- GLGizmoBrimEars · class · L19-L185 — class GLGizmoBrimEars : public GLGizmoBase
+- unproject_on_mesh · function · L24-L24 — bool unproject_on_mesh(const Vec2d& mouse_pos, std::pair<Vec3f, Vec3f>& pos_and_normal);
+- unproject_on_mesh2 · function · L25-L25 — bool unproject_on_mesh2(const Vec2d& mouse_pos, std::pair<Vec3f, Vec3f>& pos_and_normal);
+- CacheEntry · class · L29-L74 — class CacheEntry
+- CacheEntry · function · L31-L37 — CacheEntry() :
+- CacheEntry · function · L39-L41 — CacheEntry(const BrimPoint &point, bool sel = false, const Vec3f &norm = Vec3f(0, 0, 1), bool hover = false, bool error = false)
+- pos_is_zero · function · L51-L53 — inline bool pos_is_zero()
+- set_empty · function · L55-L61 — void set_empty()
+- serialize · function · L69-L73 — template<class Archive>
+- GLGizmoBrimEars · function · L77-L77 — GLGizmoBrimEars(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- data_changed · function · L79-L79 — void data_changed(bool is_serializing) override;
+- set_brim_data · function · L80-L80 — void set_brim_data();
+- on_mouse · function · L81-L81 — bool on_mouse(const wxMouseEvent& mouse_event) override;
+- gizmo_event · function · L82-L82 — bool gizmo_event(SLAGizmoEventType action, const Vec2d& mouse_position, bool shift_down, bool alt_down, bool control_down);
+- delete_selected_points · function · L83-L83 — void delete_selected_points();
+- has_selected_points · function · L84-L84 — bool has_selected_points() const;
+- update_model_object · function · L85-L85 — void update_model_object();
+- is_selection_rectangle_dragging · function · L88-L88 — bool is_selection_rectangle_dragging() const override { return m_selection_rectangle.is_dragging(); }
+- wants_enter_leave_snapshots · function · L90-L90 — bool wants_enter_leave_snapshots() const override { return true; }
+- get_gizmo_entering_text · function · L91-L91 — std::string get_gizmo_entering_text() const override { return _u8L("Entering Brim Ears"); }
+- get_gizmo_leaving_text · function · L92-L92 — std::string get_gizmo_leaving_text() const override { return _u8L("Leaving Brim Ears"); }
+- on_init · function · L95-L95 — bool on_init() override;
+- on_dragging · function · L96-L96 — void on_dragging(const UpdateData& data) override;
+- on_render · function · L97-L97 — void on_render() override;
+- render_points · function · L99-L99 — void render_points(const Selection& selection);
+- get_config_options · function · L134-L134 — std::vector<const ConfigOption*> get_config_options(const std::vector<std::string>& keys) const;
+- is_mesh_point_clipped · function · L135-L135 — bool is_mesh_point_clipped(const Vec3d& point) const;
+- select_point · function · L143-L143 — void select_point(int i);
+- unselect_point · function · L144-L144 — void unselect_point(int i);
+- reload_cache · function · L145-L145 — void reload_cache();
+- generate_points · function · L146-L146 — Points generate_points(Polygon &obj_polygon, float ear_detection_length, float brim_ears_max_angle, bool is_outer);
+- auto_generate · function · L147-L147 — void auto_generate();
+- first_layer_slicer · function · L148-L148 — void first_layer_slicer();
+- get_detection_radius_max · function · L149-L149 — void get_detection_radius_max();
+- update_raycasters · function · L150-L150 — void update_raycasters();
+- begin_radius_change · function · L152-L152 — void begin_radius_change(float initial_value);
+- update_cache_radius · function · L153-L153 — void update_cache_radius();
+- apply_radius_change · function · L154-L154 — void apply_radius_change();
+- on_set_state · function · L157-L157 — void on_set_state() override;
+- on_set_hover_id · function · L158-L163 — void on_set_hover_id() override
+- on_start_dragging · function · L164-L164 — void on_start_dragging() override;
+- on_stop_dragging · function · L165-L165 — void on_stop_dragging() override;
+- on_render_input_window · function · L166-L166 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_get_name · function · L168-L168 — std::string on_get_name() const override;
+- on_is_activable · function · L169-L169 — bool on_is_activable() const override;
+- render_follows_cursor · function · L171-L171 — bool render_follows_cursor() const override { return render_hover_point.has_value(); }
+- on_get_requirements · function · L173-L173 — virtual CommonGizmosDataID on_get_requirements() const override;
+- on_load · function · L174-L174 — void on_load(cereal::BinaryInputArchive& ar) override;
+- on_save · function · L175-L175 — void on_save(cereal::BinaryOutputArchive& ar) const override;
+- on_register_raycasters_for_picking · function · L176-L176 — virtual void on_register_raycasters_for_picking() override;
+- on_unregister_raycasters_for_picking · function · L177-L177 — virtual void on_unregister_raycasters_for_picking() override;
+- register_single_mesh_pick · function · L178-L178 — void register_single_mesh_pick();
+- reset_all_pick · function · L180-L180 — void reset_all_pick();
+- add_point_to_cache · function · L181-L181 — bool add_point_to_cache(Vec3f pos, float head_radius, bool selected, Vec3f normal);
+- get_brim_default_radius · function · L182-L182 — float get_brim_default_radius() const;
+- make_polygon · function · L183-L183 — ExPolygon make_polygon(BrimPoint point, const Geometry::Transformation &trsf);
+- find_single · function · L184-L184 — void find_single();

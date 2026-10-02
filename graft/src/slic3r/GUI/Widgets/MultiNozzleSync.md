@@ -1,0 +1,71 @@
+# src/slic3r/GUI/Widgets/MultiNozzleSync.hpp
+
+- wxStaticText · class · L34-L34 — class wxStaticText;
+- wxStaticBitmap · class · L35-L35 — class wxStaticBitmap;
+- Button · class · L36-L36 — class Button; // global widget (src/slic3r/GUI/Widgets/Button.hpp), not in the Slic3r::GUI namespace
+- Label · class · L37-L37 — class Label;  // global widget (src/slic3r/GUI/Widgets/Label.hpp)
+- StaticBox · class · L38-L38 — class StaticBox;
+- ComboBox · class · L39-L39 — class ComboBox;
+- PresetBundle · class · L42-L42 — class PresetBundle;
+- MachineObject · class · L43-L43 — class MachineObject;
+- NozzleOption · class · L50-L54 — struct NozzleOption
+- NozzleOption · class · L56-L60 — struct NozzleOption
+- ManualNozzleCountDialog · class · L64-L77 — class ManualNozzleCountDialog : public DPIDialog
+- ManualNozzleCountDialog · function · L67-L67 — ManualNozzleCountDialog(wxWindow *parent, NozzleVolumeType volume_type, int standard_count, int highflow_count, int max_nozzle_count, bool force_no_zero);
+- on_dpi_changed · function · L69-L69 — void on_dpi_changed(const wxRect &suggested_rect) override {}
+- GetNozzleCount · function · L70-L70 — int  GetNozzleCount(NozzleVolumeType volume_type) const;
+- ExtruderBadge · class · L79-L99 — class ExtruderBadge : public wxPanel
+- ExtruderBadge · function · L82-L82 — ExtruderBadge(wxWindow* parent);
+- SetExtruderInfo · function · L83-L83 — void SetExtruderInfo(int extruder_id, const std::string& label, const NozzleVolumeType& flow);
+- UnMarkRelatedItems · function · L84-L84 — void UnMarkRelatedItems(const NozzleOption& option);
+- MarkRelatedItems · function · L85-L85 — void MarkRelatedItems(const NozzleOption& option);
+- SetExtruderValid · function · L86-L86 — void SetExtruderValid(bool right_on);
+- SetExtruderStatus · function · L88-L88 — void SetExtruderStatus(bool left_selected, bool right_selected);
+- HotEndTable · class · L101-L128 — class HotEndTable : public wxPanel
+- HotEndTable · function · L104-L104 — HotEndTable(wxWindow* parent);
+- UpdateRackInfo · function · L105-L105 — void UpdateRackInfo(std::weak_ptr<DevNozzleRack> rack);
+- MarkRelatedItems · function · L106-L106 — void MarkRelatedItems(const NozzleOption& option);
+- UnMarkRelatedItems · function · L107-L107 — void UnMarkRelatedItems(const NozzleOption& option);
+- CreateNozzleBox · function · L109-L109 — StaticBox* CreateNozzleBox(const std::vector<int>& nozzle_indices);
+- UpdateNozzleItems · function · L110-L111 — void UpdateNozzleItems(const std::unordered_map<int, wgtDeviceNozzleRackNozzleItem*>& nozzle_items,
+- HotEndAttr · class · L114-L118 — struct HotEndAttr
+- FilterHotEnds · function · L120-L120 — std::vector<int> FilterHotEnds(const NozzleOption& option);
+- OnPaint · function · L127-L127 — void OnPaint(wxPaintEvent& event);
+- NozzleListTable · class · L133-L149 — class NozzleListTable : public wxPanel
+- NozzleListTable · function · L136-L136 — NozzleListTable(wxWindow* parent);
+- GetSelectIdx · function · L137-L137 — int GetSelectIdx();
+- SetOptions · function · L138-L138 — void SetOptions(const std::vector<NozzleOption>& options,int default_select);
+- BuildTableObjStr · function · L140-L140 — wxString BuildTableObjStr();
+- BuildTextObjStr · function · L141-L141 — wxString BuildTextObjStr();
+- SendSelectionChangedEvent · function · L144-L144 — void SendSelectionChangedEvent();
+- MultiNozzleStatusTable · class · L151-L161 — class MultiNozzleStatusTable : public wxPanel
+- MultiNozzleStatusTable · function · L154-L154 — MultiNozzleStatusTable(wxWindow* parent);
+- UpdateRackInfo · function · L155-L155 — void UpdateRackInfo(std::weak_ptr<DevNozzleRack> rack);
+- MarkRelatedItems · function · L156-L156 — void MarkRelatedItems(const NozzleOption& option);
+- UnMarkRelatedItems · function · L157-L157 — void UnMarkRelatedItems(const NozzleOption& option);
+- MultiNozzleSyncDialog · class · L164-L207 — class MultiNozzleSyncDialog : public DPIDialog
+- MultiNozzleSyncDialog · function · L167-L167 — MultiNozzleSyncDialog(wxWindow* parent, std::weak_ptr<DevNozzleRack> rack);
+- on_dpi_changed · function · L168-L168 — virtual void on_dpi_changed(const wxRect& suggested_rect) override {};
+- GetNozzleOptions · function · L169-L169 — std::vector<NozzleOption> GetNozzleOptions(const std::vector<MultiNozzleUtils::NozzleGroupInfo>& group_infos);
+- GetSelectedOption · function · L171-L175 — std::optional<NozzleOption> GetSelectedOption()
+- ShowModal · function · L177-L177 — int ShowModal() override;
+- UpdateRackInfo · function · L180-L180 — void UpdateRackInfo(std::weak_ptr<DevNozzleRack> rack);
+- hasMultiDiameters · function · L182-L182 — bool hasMultiDiameters(const std::vector<MultiNozzleUtils::NozzleGroupInfo>& group_infos);
+- OnSelectRadio · function · L183-L183 — void OnSelectRadio(int select_idx);
+- UpdateUi · function · L185-L185 — bool UpdateUi(std::weak_ptr<DevNozzleRack> rack, bool ignore_unknown=false, bool ignore_unreliable=false);
+- UpdateOptionList · function · L187-L187 — bool UpdateOptionList(std::weak_ptr<DevNozzleRack> rack, bool ignore_unknown, bool ignore_unreliable);
+- UpdateTip · function · L188-L188 — void UpdateTip(std::weak_ptr<DevNozzleRack> rack, bool ignore_unknown, bool ignore_unreliable);
+- UpdateButton · function · L189-L189 — void UpdateButton(std::weak_ptr<DevNozzleRack> rack, bool ignore_unknown, bool ignore_unreliable);
+- OnRackStatusReadingFinished · function · L190-L190 — void OnRackStatusReadingFinished(wxEvent& evt);
+- OnRefreshTimer · function · L191-L191 — void OnRefreshTimer(wxTimerEvent& event);
+- tryPopUpMultiNozzleDialog · function · L212-L212 — std::optional<NozzleOption> tryPopUpMultiNozzleDialog(MachineObject* obj);
+- setExtruderNozzleCount · function · L217-L217 — void setExtruderNozzleCount(PresetBundle *preset_bundle, int extruder_id, NozzleVolumeType type, int nozzle_count, bool clear_all);
+- getExtruderNozzleCount · function · L221-L221 — int getExtruderNozzleCount(PresetBundle *preset_bundle, int extruder_id, NozzleVolumeType volume_type);
+- getExtruderNozzleCountTotal · function · L222-L222 — int getExtruderNozzleCountTotal(PresetBundle *preset_bundle, int extruder_id);
+- updateNozzleCountDisplay · function · L226-L226 — void updateNozzleCountDisplay(PresetBundle *preset_bundle, int extruder_id, NozzleVolumeType volume_type);
+- seedExtruderNozzleStats · function · L232-L232 — void seedExtruderNozzleStats(PresetBundle *preset_bundle);
+- onNozzleVolumeTypeSwitch · function · L237-L237 — void onNozzleVolumeTypeSwitch(PresetBundle *preset_bundle, int extruder_id, NozzleVolumeType type);
+- setNozzleStatsFromMachine · function · L240-L240 — void setNozzleStatsFromMachine(bool from_machine);
+- nozzle_diameter_supports_tpu_high_flow · function · L245-L245 — bool nozzle_diameter_supports_tpu_high_flow(double nozzle_diameter);
+- extruder_supports_tpu_high_flow · function · L247-L247 — bool extruder_supports_tpu_high_flow(PresetBundle *preset_bundle, int extruder_id);
+- manuallySetNozzleCount · function · L251-L251 — void manuallySetNozzleCount(int extruder_id);

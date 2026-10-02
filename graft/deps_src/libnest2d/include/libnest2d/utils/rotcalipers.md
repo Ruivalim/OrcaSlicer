@@ -1,0 +1,22 @@
+# deps_src/libnest2d/include/libnest2d/utils/rotcalipers.hpp
+
+- RotatedBox · class · L13-L45 — template<class Pt, class Unit = TCompute<Pt>> class RotatedBox
+- RotatedBox · function · L18-L18 — RotatedBox() = default;
+- RotatedBox · function · L19-L20 — RotatedBox(const Pt& axis, Unit b, Unit r):
+- area · function · L22-L25 — inline long double area() const
+- width · function · L27-L29 — inline long double width() const
+- height · function · L31-L33 — inline long double height() const
+- bottom_extent · function · L35-L35 — inline Unit bottom_extent() const { return bottom_; }
+- right_extent · function · L36-L36 — inline Unit right_extent() const { return right_;  }
+- axis · function · L37-L37 — inline const Pt& axis() const { return axis_; }
+- angleToX · function · L39-L44 — inline Radians angleToX() const
+- removeCollinearPoints · function · L47-L69 — template <class Poly, class Pt = TPoint<Poly>, class Unit = TCompute<Pt>>
+- rectarea · function · L72-L82 — template<class Pt, class Unit = TCompute<Pt>, class R = TCompute<Pt>>
+- rectarea · function · L84-L91 — template<class Pt,
+- rectarea · function · L93-L101 — template<class Pt, class Unit = TCompute<Pt>, class R = TCompute<Pt>>
+- rectarea · function · L103-L107 — template<class R, class Pt, class Unit>
+- rotcalipers · function · L111-L270 — template <class RawShape,
+- edgemask · function · L250-L250 — std::vector<bool> edgemask(count, false);
+- minAreaBoundingBox · function · L274-L294 — template <class S,
+- minAreaBoundingBoxRotation · function · L296-L299 — template <class RawShape> Radians minAreaBoundingBoxRotation(const RawShape& sh)
+- fitIntoBoxRotation · function · L310-L368 — template<class S, class Unit = TCompute<S>, class Ratio = TCompute<S>>

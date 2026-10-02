@@ -1,0 +1,43 @@
+# src/libslic3r/Arachne/utils/ExtrusionLine.hpp
+
+- ThickPolyline · class · L28-L28 — class ThickPolyline;
+- Flow · class · L29-L29 — class Flow;
+- colinear_vertex_tolerance · function · L41-L41 — inline coord_t colinear_vertex_tolerance() { return coord_t(SCALED_EPSILON); }
+- ExtrusionLine · class · L50-L210 — struct ExtrusionLine
+- size · function · L77-L77 — size_t size() const { return junctions.size(); }
+- empty · function · L82-L82 — bool empty() const { return junctions.empty(); }
+- ExtrusionLine · function · L91-L91 — ExtrusionLine(const size_t inset_idx, const bool is_odd);
+- ExtrusionLine · function · L92-L92 — ExtrusionLine() : inset_idx(-1), is_odd(true), is_closed(false) {}
+- ExtrusionLine · function · L93-L93 — ExtrusionLine(const ExtrusionLine &other) : inset_idx(other.inset_idx), is_odd(other.is_odd), is_closed(other.is_closed), junctions(other.junctions) {}
+- begin · function · L113-L113 — std::vector<ExtrusionJunction>::const_iterator begin() const { return junctions.begin(); }
+- end · function · L114-L114 — std::vector<ExtrusionJunction>::const_iterator end() const { return junctions.end(); }
+- rbegin · function · L115-L115 — std::vector<ExtrusionJunction>::const_reverse_iterator rbegin() const { return junctions.rbegin(); }
+- rend · function · L116-L116 — std::vector<ExtrusionJunction>::const_reverse_iterator rend() const { return junctions.rend(); }
+- front · function · L117-L117 — std::vector<ExtrusionJunction>::const_reference front() const { return junctions.front(); }
+- back · function · L118-L118 — std::vector<ExtrusionJunction>::const_reference back() const { return junctions.back(); }
+- begin · function · L121-L121 — std::vector<ExtrusionJunction>::iterator begin() { return junctions.begin(); }
+- end · function · L122-L122 — std::vector<ExtrusionJunction>::iterator end() { return junctions.end(); }
+- front · function · L123-L123 — std::vector<ExtrusionJunction>::reference front() { return junctions.front(); }
+- back · function · L124-L124 — std::vector<ExtrusionJunction>::reference back() { return junctions.back(); }
+- emplace_back · function · L126-L126 — template<typename... Args> void emplace_back(Args &&...args) { junctions.emplace_back(args...); }
+- remove · function · L127-L127 — void remove(unsigned int index) { junctions.erase(junctions.begin() + index); }
+- insert · function · L128-L128 — void insert(size_t index, const ExtrusionJunction &p) { junctions.insert(junctions.begin() + index, p); }
+- insert · function · L130-L134 — template<class iterator>
+- clear · function · L136-L136 — void clear() { junctions.clear(); }
+- reverse · function · L137-L137 — void reverse() { std::reverse(junctions.begin(), junctions.end()); }
+- getLength · function · L142-L142 — int64_t getLength() const;
+- polylineLength · function · L143-L143 — int64_t polylineLength() const { return getLength(); }
+- toPolygon · function · L150-L157 — Polygon toPolygon() const
+- simplify · function · L193-L193 — void simplify(int64_t smallest_line_segment_squared, int64_t allowed_error_distance_squared, int64_t maximum_extrusion_area_deviation);
+- calculateExtrusionAreaDeviationError · function · L205-L205 — static int64_t calculateExtrusionAreaDeviationError(ExtrusionJunction A, ExtrusionJunction B, ExtrusionJunction C);
+- is_contour · function · L207-L207 — bool is_contour() const;
+- area · function · L209-L209 — double area() const;
+- to_thick_polyline · function · L212-L231 — template<class PathType>
+- to_polygon · function · L233-L242 — static inline Polygon to_polygon(const ExtrusionLine &line)
+- to_points · function · L244-L251 — static Points to_points(const ExtrusionLine &extrusion_line)
+- get_extents · function · L254-L260 — static BoundingBox get_extents(const ExtrusionLine &extrusion_line)
+- get_extents · function · L262-L268 — static BoundingBox get_extents(const std::vector<ExtrusionLine> &extrusion_lines)
+- get_extents · function · L270-L278 — static BoundingBox get_extents(const std::vector<const ExtrusionLine *> &extrusion_lines)
+- to_points · function · L280-L288 — static std::vector<Points> to_points(const std::vector<const ExtrusionLine *> &extrusion_lines)
+- extrusion_paths_append · function · L297-L297 — void extrusion_paths_append(ExtrusionPaths &dst, const ClipperLib_Z::Paths &extrusion_paths, const ExtrusionRole role, const Flow &flow);
+- extrusion_paths_append · function · L298-L298 — void extrusion_paths_append(ExtrusionPaths &dst, const Arachne::ExtrusionLine &extrusion, const ExtrusionRole role, const Flow &flow);

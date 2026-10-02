@@ -1,0 +1,21 @@
+# src/slic3r/Utils/Moonraker.hpp
+
+- DynamicPrintConfig · class · L14-L14 — class DynamicPrintConfig;
+- Http · class · L15-L15 — class Http;
+- Moonraker · class · L30-L59 — class Moonraker : public PrintHost
+- Moonraker · function · L33-L33 — Moonraker(DynamicPrintConfig *config);
+- get_name · function · L36-L36 — const char* get_name() const override;
+- test · function · L38-L38 — bool test(wxString &curl_msg) const override;
+- get_test_ok_msg · function · L39-L39 — wxString get_test_ok_msg() const override;
+- get_test_failed_msg · function · L40-L40 — wxString get_test_failed_msg(wxString &msg) const override;
+- upload · function · L41-L41 — bool upload(PrintHostUpload upload_data, ProgressFn progress_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- has_auto_discovery · function · L42-L42 — bool has_auto_discovery() const override { return false; }
+- can_test · function · L43-L43 — bool can_test() const override { return true; }
+- get_post_upload_actions · function · L44-L44 — PrintHostPostUploadActions get_post_upload_actions() const override { return PrintHostPostUploadAction::StartPrint; }
+- get_host · function · L45-L45 — std::string get_host() const override { return m_host; }
+- get_storage · function · L46-L46 — bool get_storage(wxArrayString &storage_path, wxArrayString &storage_name) const override;
+- get_apikey · function · L47-L47 — const std::string& get_apikey() const { return m_apikey; }
+- get_cafile · function · L48-L48 — const std::string& get_cafile() const { return m_cafile; }
+- set_auth · function · L56-L56 — void set_auth(Http &http) const;
+- make_url · function · L57-L57 — std::string make_url(const std::string &path) const;
+- start_print · function · L58-L58 — bool start_print(wxString &error_msg, const std::string &filename) const;

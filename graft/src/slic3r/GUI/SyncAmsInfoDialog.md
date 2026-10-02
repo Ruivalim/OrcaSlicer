@@ -1,0 +1,125 @@
+# src/slic3r/GUI/SyncAmsInfoDialog.hpp
+
+- Button · class · L13-L13 — class Button;
+- CheckBox · class · L14-L14 — class CheckBox;
+- Label · class · L15-L15 — class Label;
+- CapsuleButton · class · L17-L17 — class CapsuleButton;
+- SyncAmsInfoDialog · class · L18-L334 — class SyncAmsInfoDialog : public DPIDialog
+- PageType · type · L20-L20 — enum PageType { ptColorMap = 0, ptOverride };
+- check_empty_project · function · L151-L151 — void check_empty_project();
+- reinit_dialog · function · L152-L152 — void reinit_dialog();
+- init_bind · function · L153-L153 — void init_bind();
+- init_timer · function · L154-L154 — void init_timer();
+- show_print_failed_info · function · L155-L155 — void show_print_failed_info(bool show, int code = 0, wxString description = wxEmptyString, wxString extra = wxEmptyString);
+- check_fcous_state · function · L156-L156 — void check_fcous_state(wxWindow *window);
+- popup_filament_backup · function · L157-L157 — void popup_filament_backup();
+- prepare_mode · function · L159-L159 — void     prepare_mode(bool refresh_button = true);
+- finish_mode · function · L160-L160 — void     finish_mode();
+- sync_ams_mapping_result · function · L161-L161 — void     sync_ams_mapping_result(std::vector<FilamentInfo> &result);
+- prepare · function · L162-L162 — void     prepare(int print_plate_idx);
+- show_status · function · L163-L163 — void     show_status(PrintDialogStatus status, std::vector<wxString> params = std::vector<wxString>());
+- reset_timeout · function · L164-L164 — void     reset_timeout();
+- update_user_printer · function · L165-L165 — void     update_user_printer();
+- reset_ams_material · function · L166-L166 — void     reset_ams_material();
+- reset_all_ams_info · function · L167-L167 — void     reset_all_ams_info();
+- reset_one_ams_material · function · L168-L168 — void     reset_one_ams_material(const std::string & index_str,bool reset_to_first =false);
+- update_show_status · function · L169-L169 — void     update_show_status();
+- update_printer_combobox · function · L170-L170 — void     update_printer_combobox(wxCommandEvent &event);
+- on_cancel · function · L171-L171 — void     on_cancel(wxCloseEvent &event);
+- show_errors · function · L172-L172 — void     show_errors(wxString &info);
+- Enable_Auto_Refill · function · L173-L173 — void     Enable_Auto_Refill(bool enable);
+- on_refresh · function · L174-L174 — void     on_refresh(wxCommandEvent &event);
+- on_set_finish_mapping · function · L175-L175 — void     on_set_finish_mapping(wxCommandEvent &evt);
+- on_print_job_cancel · function · L176-L176 — void     on_print_job_cancel(wxCommandEvent &evt);
+- reset_and_sync_ams_list · function · L177-L177 — void     reset_and_sync_ams_list();
+- generate_override_fix_ams_list · function · L178-L178 — void     generate_override_fix_ams_list();
+- clone_thumbnail_data · function · L179-L179 — void     clone_thumbnail_data();
+- record_edge_pixels_data · function · L180-L180 — void     record_edge_pixels_data();
+- adjust_color_for_render · function · L181-L181 — wxColour adjust_color_for_render(const wxColour &color);
+- final_deal_edge_pixels_data · function · L182-L182 — void     final_deal_edge_pixels_data(ThumbnailData &data);
+- updata_thumbnail_data_after_connected_printer · function · L183-L183 — void     updata_thumbnail_data_after_connected_printer();
+- show_ams_controls · function · L184-L184 — void     show_ams_controls(bool flag);
+- show_advanced_settings · function · L185-L185 — void     show_advanced_settings(bool flag, bool update_layout = true);
+- update_thumbnail_data_accord_plate_index · function · L186-L186 — void     update_thumbnail_data_accord_plate_index(bool allow_clone_ams_color);
+- update_final_thumbnail_data · function · L187-L187 — void     update_final_thumbnail_data();
+- unify_deal_thumbnail_data · function · L188-L188 — void     unify_deal_thumbnail_data(ThumbnailData &input_data, ThumbnailData &no_light_data,bool allow_clone_ams_color);
+- change_default_normal · function · L189-L189 — void     change_default_normal(int old_filament_id, wxColour temp_ams_color);
+- on_timer · function · L190-L190 — void     on_timer(wxTimerEvent &event);
+- update_user_machine_list · function · L191-L191 — void     update_user_machine_list();
+- update_lan_machine_list · function · L192-L192 — void     update_lan_machine_list();
+- stripWhiteSpace · function · L193-L193 — void     stripWhiteSpace(std::string &str);
+- update_ams_status_msg · function · L194-L194 — void     update_ams_status_msg(wxString msg, bool is_warning = false);
+- update_priner_status_msg · function · L195-L195 — void     update_priner_status_msg(wxString msg, bool is_warning = false);
+- update_print_status_msg · function · L196-L196 — void     update_print_status_msg(wxString msg, bool is_warning = false, bool is_printer = true);
+- update_print_error_info · function · L197-L197 — void     update_print_error_info(int code, std::string msg, std::string extra);
+- has_timelapse_warning · function · L198-L198 — bool     has_timelapse_warning();
+- update_timelapse_enable_status · function · L199-L199 — void     update_timelapse_enable_status();
+- is_same_printer_model · function · L200-L200 — bool     is_same_printer_model();
+- is_blocking_printing · function · L201-L201 — bool     is_blocking_printing(MachineObject *obj_);
+- is_same_nozzle_type · function · L202-L202 — bool     is_same_nozzle_type(std::string &filament_type, NozzleType &tag_nozzle_type);
+- is_timeout · function · L203-L203 — bool     is_timeout();
+- update_print_required_data · function · L204-L204 — int  update_print_required_data(Slic3r::DynamicPrintConfig config, Slic3r::Model model, Slic3r::PlateDataPtrs plate_data_list, std::string file_name, std::string file_path);
+- set_print_type · function · L205-L205 — void set_print_type(PrintFromType type) { m_print_type = type; };
+- do_ams_mapping · function · L206-L206 — bool do_ams_mapping(MachineObject *obj_);
+- has_selector · function · L208-L208 — bool has_selector(MachineObject *obj_) const;
+- deal_only_exist_ext_spool · function · L209-L209 — void deal_only_exist_ext_spool(MachineObject *obj_);
+- show_thumbnail_page · function · L210-L210 — void show_thumbnail_page();
+- get_ams_mapping_result · function · L211-L211 — bool get_ams_mapping_result(std::string &mapping_array_str, std::string &mapping_array_str2, std::string &ams_mapping_info);
+- build_nozzles_info · function · L212-L212 — bool build_nozzles_info(std::string &nozzles_info);
+- auto_supply_with_ext · function · L213-L213 — void auto_supply_with_ext(std::vector<DevAmsTray> slots);
+- is_nozzle_type_match · function · L214-L214 — bool is_nozzle_type_match(DevExtderSystem data, wxString &error_message) const;
+- convert_filament_map_nozzle_id_to_task_nozzle_id · function · L215-L215 — int  convert_filament_map_nozzle_id_to_task_nozzle_id(int nozzle_id);
+- get_print_type · function · L217-L217 — PrintFromType            get_print_type() { return m_print_type; };
+- format_text · function · L218-L218 — wxString                 format_text(wxString &m_msg);
+- get_status · function · L219-L219 — PrintDialogStatus        get_status() { return m_print_status; }
+- sort_string · function · L220-L220 — std::vector<std::string> sort_string(std::vector<std::string> strArray);
+- get_ams_mapping_result · function · L222-L222 — const std::vector<FilamentInfo> &get_ams_mapping_result() { return m_ams_mapping_result; }
+- SyncInfo · class · L225-L231 — struct SyncInfo
+- SyncResult · class · L232-L237 — struct SyncResult
+- SyncAmsInfoDialog · function · L238-L238 — SyncAmsInfoDialog(wxWindow *parent, SyncInfo &info);
+- set_info · function · L240-L240 — void set_info(SyncInfo &info);
+- on_dpi_changed · function · L241-L241 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- get_result · function · L242-L242 — const SyncResult &get_result() { return m_result; }
+- Show · function · L245-L245 — bool Show(bool show) override;
+- updata_ui_data_after_connected_printer · function · L246-L246 — void updata_ui_data_after_connected_printer();
+- set_default · function · L247-L247 — void set_default(bool hide_some = false);
+- update_select_layout · function · L248-L248 — void update_select_layout(MachineObject *obj);
+- set_default_normal · function · L249-L249 — void set_default_normal(const ThumbnailData &);
+- is_must_finish_slice_then_connected_printer · function · L250-L250 — bool is_must_finish_slice_then_connected_printer() ;
+- hide_no_use_controls · function · L251-L251 — void hide_no_use_controls();
+- show_sizer · function · L252-L252 — void show_sizer(wxSizer *sizer, bool show);
+- deal_ok · function · L253-L253 — void deal_ok();
+- get_is_double_extruder · function · L254-L254 — bool get_is_double_extruder();
+- is_dirty_filament · function · L255-L255 — bool is_dirty_filament();
+- is_need_show · function · L256-L256 — bool is_need_show();
+- set_check_dirty_fialment · function · L257-L257 — void set_check_dirty_fialment(bool flag) { m_check_dirty_fialment = flag; };
+- create_sizer_thumbnail · function · L260-L260 — wxBoxSizer *create_sizer_thumbnail(wxButton *image_button, bool left);
+- update_when_change_plate · function · L261-L261 — void        update_when_change_plate(int);
+- update_when_change_map_mode · function · L262-L262 — void        update_when_change_map_mode(int);
+- update_plate_combox · function · L263-L263 — void        update_plate_combox();
+- update_map_when_change_map_mode · function · L264-L264 — void        update_map_when_change_map_mode();
+- decode_ams_color · function · L265-L265 — wxColour    decode_ams_color(const std::string &color);
+- update_when_change_map_mode · function · L266-L266 — void        update_when_change_map_mode(wxCommandEvent &e);
+- update_panel_status · function · L267-L267 — void        update_panel_status(PageType page);
+- show_color_panel · function · L268-L268 — void        show_color_panel(bool,bool update_layout = true);
+- update_more_setting · function · L269-L269 — void        update_more_setting(bool layout = true,bool from_more_seting_text = false);
+- add_two_image_control · function · L270-L270 — void        add_two_image_control();
+- to_next_plate · function · L271-L271 — void        to_next_plate(wxCommandEvent &event);
+- to_previous_plate · function · L272-L272 — void        to_previous_plate(wxCommandEvent &event);
+- update_swipe_button_state · function · L273-L273 — void        update_swipe_button_state();
+- updata_ui_when_priner_not_same · function · L274-L274 — void        updata_ui_when_priner_not_same();
+- init_bitmaps · function · L275-L275 — void        init_bitmaps();
+- MapModeEnum · type · L329-L332 — enum class MapModeEnum
+- SyncNozzleAndAmsDialog · class · L336-L354 — class SyncNozzleAndAmsDialog : public Slic3r::GUI::BaseTransparentDPIFrame
+- InputInfo · class · L339-L344 — struct InputInfo
+- SyncNozzleAndAmsDialog · function · L345-L345 — SyncNozzleAndAmsDialog(InputInfo &input_info);
+- deal_ok · function · L347-L347 — void deal_ok() override;
+- deal_cancel · function · L348-L348 — void deal_cancel() override;
+- update_info · function · L349-L349 — void update_info(InputInfo& info);
+- Layout · function · L350-L350 — bool Layout() override;
+- FinishSyncAmsDialog · class · L356-L373 — class FinishSyncAmsDialog : public Slic3r::GUI::BaseTransparentDPIFrame
+- InputInfo · class · L359-L364 — struct InputInfo
+- FinishSyncAmsDialog · function · L365-L365 — FinishSyncAmsDialog(InputInfo &input_info);
+- deal_ok · function · L367-L367 — void deal_ok() override;
+- update_info · function · L368-L368 — void update_info(InputInfo& info);
+- Layout · function · L369-L369 — bool Layout() override;

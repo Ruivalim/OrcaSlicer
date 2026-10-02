@@ -1,0 +1,144 @@
+# src/slic3r/GUI/GLToolbar.hpp
+
+- wxEvtHandler · class · L12-L12 — class wxEvtHandler;
+- GLCanvas3D · class · L17-L17 — class GLCanvas3D;
+- GLToolbarItem · class · L63-L241 — class GLToolbarItem
+- ActionCallback · type · L66-L66 — typedef std::function<void()> ActionCallback;
+- VisibilityCallback · type · L67-L67 — typedef std::function<bool()> VisibilityCallback;
+- EnablingCallback · type · L68-L68 — typedef std::function<bool()> EnablingCallback;
+- RenderCallback · type · L69-L69 — typedef std::function<void(float, float, float, float)> RenderCallback;
+- EType · type · L71-L80 — enum EType : unsigned char
+- EActionType · type · L82-L88 — enum EActionType : unsigned char
+- EState · type · L90-L99 — enum EState : unsigned char
+- EHighlightState · type · L101-L107 — enum EHighlightState : unsigned char
+- Data · class · L109-L164 — struct Data
+- Option · class · L111-L120 — struct Option
+- Option · function · L117-L117 — Option();
+- can_render · function · L119-L119 — bool can_render() const { return toggable && (render_callback != nullptr); }
+- Data · function · L144-L144 — Data();
+- Data · function · L146-L163 — Data(const GLToolbarItem::Data& data)
+- GLToolbarItem · function · L181-L181 — GLToolbarItem(EType type, const Data& data);
+- get_state · function · L183-L183 — EState get_state() const { return m_state; }
+- set_state · function · L184-L184 — void set_state(EState state) { m_state = state; }
+- get_highlight · function · L186-L186 — EHighlightState get_highlight() const { return m_highlight_state; }
+- set_highlight · function · L187-L187 — void set_highlight(EHighlightState state) { m_highlight_state = state; }
+- get_name · function · L189-L189 — const std::string& get_name() const { return m_data.name; }
+- get_icon_filename · function · L190-L190 — const std::string& get_icon_filename() const { return m_data.icon_filename; }
+- set_icon_filename · function · L191-L191 — void set_icon_filename(const std::string& filename) { m_data.icon_filename = filename; }
+- get_tooltip · function · L192-L192 — const std::string& get_tooltip() const { return m_data.tooltip; }
+- get_additional_tooltip · function · L193-L193 — const std::string& get_additional_tooltip() const { return m_data.additional_tooltip; }
+- set_additional_tooltip · function · L194-L194 — void set_additional_tooltip(const std::string& text) { m_data.additional_tooltip = text; }
+- set_tooltip · function · L195-L195 — void set_tooltip(const std::string& text)            { m_data.tooltip = text; }
+- do_left_action · function · L197-L197 — void do_left_action() { m_last_action_type = Left; m_data.left.action_callback(); }
+- do_right_action · function · L198-L198 — void do_right_action() { m_last_action_type = Right; m_data.right.action_callback(); }
+- is_enabled · function · L200-L200 — bool is_enabled() const { return (m_state != Disabled) && (m_state != HoverDisabled); }
+- is_disabled · function · L201-L201 — bool is_disabled() const { return (m_state == Disabled) || (m_state == HoverDisabled); }
+- is_hovered · function · L202-L202 — bool is_hovered() const { return (m_state == Hover) || (m_state == HoverPressed) || (m_state == HoverDisabled); }
+- is_pressed · function · L203-L203 — bool is_pressed() const { return (m_state == Pressed) || (m_state == HoverPressed); }
+- is_visible · function · L204-L204 — bool is_visible() const { return m_data.visible; }
+- is_separator · function · L205-L205 — bool is_separator() const { return m_type == Separator; }
+- is_left_toggable · function · L207-L207 — bool is_left_toggable() const { return m_data.left.toggable; }
+- is_right_toggable · function · L208-L208 — bool is_right_toggable() const { return m_data.right.toggable; }
+- has_left_render_callback · function · L210-L210 — bool has_left_render_callback() const { return m_data.left.render_callback != nullptr; }
+- has_right_render_callback · function · L211-L211 — bool has_right_render_callback() const { return m_data.right.render_callback != nullptr; }
+- get_last_action_type · function · L213-L213 — EActionType get_last_action_type() const { return m_last_action_type; }
+- reset_last_action_type · function · L214-L214 — void reset_last_action_type() { m_last_action_type = Undefined; }
+- update_visibility · function · L217-L217 — bool update_visibility();
+- update_enabled_state · function · L219-L219 — bool update_enabled_state();
+- is_action · function · L222-L222 — bool is_action() const { return m_type == Action; }
+- is_action_with_text · function · L223-L223 — bool is_action_with_text() const { return m_type == ActionWithText; }
+- is_action_with_text_image · function · L224-L224 — bool is_action_with_text_image() const { return m_type == ActionWithTextImage; }
+- get_button_text · function · L225-L225 — const std::string& get_button_text() const { return m_data.button_text; }
+- set_button_text · function · L226-L226 — void set_button_text(const std::string& text) { m_data.button_text = text; }
+- get_extra_size_ratio · function · L227-L227 — float get_extra_size_ratio() const { return m_data.extra_size_ratio; }
+- set_extra_size_ratio · function · L228-L228 — void set_extra_size_ratio(const float ratio) { m_data.extra_size_ratio = ratio; }
+- render_text · function · L229-L229 — void render_text(float left, float right, float bottom, float top) const;
+- generate_texture · function · L230-L230 — int generate_texture(wxFont& font);
+- generate_image_texture · function · L231-L231 — int generate_image_texture();
+- render · function · L233-L233 — void render(unsigned int tex_id, float left, float right, float bottom, float top, unsigned int tex_width, unsigned int tex_height, unsigned int icon_size) const;
+- render_window · function · L235-L235 — void render_window(float left, float right, float bottom, float top) const;
+- render_image · function · L236-L236 — void render_image(unsigned int tex_id, float left, float right, float bottom, float top, unsigned int tex_width, unsigned int tex_height, unsigned int icon_size) const;
+- set_visible · function · L238-L238 — void set_visible(bool visible) { m_data.visible = visible; }
+- BackgroundTexture · class · L243-L263 — struct BackgroundTexture
+- Metadata · class · L245-L259 — struct Metadata
+- Metadata · function · L258-L258 — Metadata();
+- GLToolbar · class · L265-L456 — class GLToolbar
+- EType · type · L270-L275 — enum EType : unsigned char
+- Layout · class · L277-L321 — struct Layout
+- EType · type · L279-L284 — enum EType : unsigned char
+- EHorizontalOrientation · type · L286-L292 — enum EHorizontalOrientation : unsigned char
+- EVerticalOrientation · type · L294-L300 — enum EVerticalOrientation : unsigned char
+- Layout · function · L320-L320 — Layout();
+- ItemsList · type · L324-L324 — typedef std::vector<GLToolbarItem*> ItemsList;
+- MouseCapture · class · L338-L349 — struct MouseCapture
+- MouseCapture · function · L345-L345 — MouseCapture() { reset(); }
+- any · function · L347-L347 — bool any() const { return left || middle || right; }
+- reset · function · L348-L348 — void reset() { left = middle = right = false; parent = nullptr; }
+- GLToolbar · function · L355-L355 — GLToolbar(EType type, const std::string& name);
+- init · function · L358-L358 — bool init(const BackgroundTexture::Metadata& background_texture);
+- init_arrow · function · L360-L360 — bool init_arrow(const std::string& filename);
+- get_layout_type · function · L362-L362 — Layout::EType get_layout_type() const;
+- set_layout_type · function · L363-L363 — void set_layout_type(Layout::EType type);
+- set_icon_dirty · function · L364-L364 — void set_icon_dirty() { m_icons_texture_dirty = true; }
+- get_horizontal_orientation · function · L365-L365 — Layout::EHorizontalOrientation get_horizontal_orientation() const { return m_layout.horizontal_orientation; }
+- set_horizontal_orientation · function · L366-L366 — void set_horizontal_orientation(Layout::EHorizontalOrientation orientation) { m_layout.horizontal_orientation = orientation; }
+- get_vertical_orientation · function · L367-L367 — Layout::EVerticalOrientation get_vertical_orientation() const { return m_layout.vertical_orientation; }
+- set_vertical_orientation · function · L368-L368 — void set_vertical_orientation(Layout::EVerticalOrientation orientation) { m_layout.vertical_orientation = orientation; }
+- set_position · function · L370-L370 — void set_position(float top, float left);
+- set_border · function · L371-L371 — void set_border(float border);
+- set_separator_size · function · L372-L372 — void set_separator_size(float size);
+- set_gap_size · function · L373-L373 — void set_gap_size(float size);
+- set_icons_size · function · L374-L374 — void set_icons_size(float size);
+- set_text_size · function · L375-L375 — void set_text_size(float size);
+- set_scale · function · L376-L376 — void set_scale(float scale);
+- is_enabled · function · L378-L378 — bool is_enabled() const { return m_enabled; }
+- set_enabled · function · L379-L379 — void set_enabled(bool enable) { m_enabled = enable; }
+- add_item · function · L382-L382 — bool add_item(const GLToolbarItem::Data& data, GLToolbarItem::EType type = GLToolbarItem::Action);
+- add_separator · function · L383-L383 — bool add_separator();
+- del_all_item · function · L384-L384 — bool del_all_item();
+- get_icons_size · function · L386-L386 — float get_icons_size() { return m_layout.icons_size; }
+- get_width · function · L387-L387 — float get_width();
+- get_height · function · L388-L388 — float get_height();
+- select_item · function · L390-L390 — void select_item(const std::string& name);
+- is_item_pressed · function · L392-L392 — bool is_item_pressed(const std::string& name) const;
+- is_item_disabled · function · L393-L393 — bool is_item_disabled(const std::string& name) const;
+- is_item_visible · function · L394-L394 — bool is_item_visible(const std::string& name) const;
+- is_any_item_pressed · function · L396-L396 — bool is_any_item_pressed() const;
+- get_items_count · function · L398-L398 — unsigned int get_items_count() const { return (unsigned int)m_items.size(); }
+- get_item_id · function · L399-L399 — int get_item_id(const std::string& name) const;
+- force_left_action · function · L401-L401 — void force_left_action(int item_id, GLCanvas3D& parent) { do_action(GLToolbarItem::Left, item_id, parent, false); }
+- force_right_action · function · L402-L402 — void force_right_action(int item_id, GLCanvas3D& parent) { do_action(GLToolbarItem::Right, item_id, parent, false); }
+- get_tooltip · function · L404-L404 — std::string get_tooltip() const;
+- get_additional_tooltip · function · L406-L406 — void get_additional_tooltip(int item_id, std::string& text);
+- set_additional_tooltip · function · L407-L407 — void set_additional_tooltip(int item_id, const std::string& text);
+- set_tooltip · function · L408-L408 — void set_tooltip(int item_id, const std::string& text);
+- get_visible_items_cnt · function · L409-L409 — int  get_visible_items_cnt() const;
+- update_items_state · function · L412-L412 — bool update_items_state();
+- render · function · L414-L414 — void render(const GLCanvas3D& parent,GLToolbarItem::EType type = GLToolbarItem::Action);
+- render_item_windows · function · L416-L416 — void render_item_windows(const GLCanvas3D& parent);
+- get_state_hash · function · L418-L418 — size_t get_state_hash() const;
+- render_arrow · function · L419-L419 — void render_arrow(const GLCanvas3D& parent, GLToolbarItem* highlighted_item);
+- on_mouse · function · L421-L421 — bool on_mouse(wxMouseEvent& evt, GLCanvas3D& parent);
+- get_item · function · L423-L423 — GLToolbarItem* get_item(const std::string& item_name);
+- generate_button_text_textures · function · L426-L426 — int generate_button_text_textures(wxFont& font);
+- generate_image_textures · function · L427-L427 — int generate_image_textures();
+- get_scaled_icon_size · function · L428-L428 — float get_scaled_icon_size();
+- calc_layout · function · L431-L431 — void calc_layout();
+- get_width_horizontal · function · L432-L432 — float get_width_horizontal() const;
+- get_width_vertical · function · L433-L433 — float get_width_vertical() const;
+- get_height_horizontal · function · L434-L434 — float get_height_horizontal() const;
+- get_height_vertical · function · L435-L435 — float get_height_vertical() const;
+- get_main_size · function · L436-L436 — float get_main_size() const;
+- do_action · function · L437-L437 — void do_action(GLToolbarItem::EActionType type, int item_id, GLCanvas3D& parent, bool check_hover);
+- update_hover_state · function · L438-L438 — void update_hover_state(const Vec2d& mouse_pos, GLCanvas3D& parent);
+- update_hover_state_horizontal · function · L439-L439 — void update_hover_state_horizontal(const Vec2d& mouse_pos, GLCanvas3D& parent);
+- update_hover_state_vertical · function · L440-L440 — void update_hover_state_vertical(const Vec2d& mouse_pos, GLCanvas3D& parent);
+- contains_mouse · function · L442-L442 — int contains_mouse(const Vec2d& mouse_pos, const GLCanvas3D& parent) const;
+- contains_mouse_horizontal · function · L443-L443 — int contains_mouse_horizontal(const Vec2d& mouse_pos, const GLCanvas3D& parent) const;
+- contains_mouse_vertical · function · L444-L444 — int contains_mouse_vertical(const Vec2d& mouse_pos, const GLCanvas3D& parent) const;
+- render_background · function · L446-L446 — void render_background(float left, float top, float right, float bottom, float border_w, float border_h) const;
+- render_horizontal · function · L447-L447 — void render_horizontal(const GLCanvas3D &parent, GLToolbarItem::EType type, bool draw_icons);
+- render_vertical · function · L448-L448 — void render_vertical(const GLCanvas3D& parent, bool draw_icons);
+- generate_icons_texture · function · L450-L450 — bool generate_icons_texture();
+- update_items_visibility · function · L453-L453 — bool update_items_visibility();
+- update_items_enabled_state · function · L455-L455 — bool update_items_enabled_state();

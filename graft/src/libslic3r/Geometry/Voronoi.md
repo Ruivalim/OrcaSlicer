@@ -1,0 +1,30 @@
+# src/libslic3r/Geometry/Voronoi.hpp
+
+- VoronoiDiagram · class · L32-L192 — class VoronoiDiagram
+- IssueType · type · L54-L62 — enum class IssueType
+- State · type · L64-L69 — enum class State
+- VoronoiDiagram · function · L71-L71 — VoronoiDiagram() = default;
+- get_issue_type · function · L75-L75 — IssueType get_issue_type() const { return m_issue_type; }
+- get_state · function · L77-L77 — State get_state() const { return m_state; }
+- is_valid · function · L79-L79 — bool is_valid() const { return m_state != State::REPAIR_UNSUCCESSFUL; }
+- clear · function · L81-L81 — void clear();
+- vertices · function · L83-L83 — const vertex_container_type &vertices() const { return m_is_modified ? m_vertices : m_voronoi_diagram.vertices(); }
+- edges · function · L85-L85 — const edge_container_type &edges() const { return m_is_modified ? m_edges : m_voronoi_diagram.edges(); }
+- cells · function · L87-L87 — const cell_container_type &cells() const { return m_is_modified ? m_cells : m_voronoi_diagram.cells(); }
+- num_vertices · function · L89-L89 — std::size_t num_vertices() const { return m_is_modified ? m_vertices.size() : m_voronoi_diagram.num_vertices(); }
+- num_edges · function · L91-L91 — std::size_t num_edges() const { return m_is_modified ? m_edges.size() : m_voronoi_diagram.num_edges(); }
+- num_cells · function · L93-L93 — std::size_t num_cells() const { return m_is_modified ? m_cells.size() : m_voronoi_diagram.num_cells(); }
+- construct_voronoi · function · L95-L100 — template<typename SegmentIterator>
+- construct_voronoi · function · L102-L112 — template<typename PointIterator>
+- construct_voronoi · function · L114-L127 — template<typename PointIterator, typename SegmentIterator>
+- detect_known_issues · function · L131-L136 — template<typename SegmentIterator>
+- try_to_repair_degenerated_voronoi_diagram_by_rotation · function · L138-L143 — template<typename SegmentIterator>
+- try_to_repair_degenerated_voronoi_diagram · function · L145-L150 — template<typename SegmentIterator>
+- Segment · class · L153-L160 — struct Segment
+- Segment · function · L158-L158 — Segment() = delete;
+- Segment · function · L159-L159 — explicit Segment(const Point &from, const Point &to) : from(from), to(to) {}
+- copy_to_local · function · L162-L162 — void copy_to_local(voronoi_diagram_type &voronoi_diagram);
+- detect_known_voronoi_cell_issues · function · L168-L173 — template<typename SegmentIterator>
+- detect_known_voronoi_edge_issues · function · L178-L178 — static IssueType detect_known_voronoi_edge_issues(const VoronoiDiagram &voronoi_diagram);
+- type · type · L199-L199 — typedef segment_concept type;
+- get · function · L208-L208 — static inline point_type get(const segment_type &segment, direction_1d dir) { return dir.to_int() ? segment.to : segment.from; }

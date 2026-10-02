@@ -1,0 +1,39 @@
+# src/slic3r/GUI/Widgets/DropDown.hpp
+
+- DropDown · class · L20-L143 — class DropDown : public PopupWindow
+- Item · class · L23-L36 — struct Item
+- DropDown · function · L73-L73 — DropDown(std::vector<Item> &items);
+- DropDown · function · L75-L75 — DropDown(wxWindow *parent, std::vector<Item> &items, long style = 0);
+- Create · function · L77-L77 — void Create(wxWindow * parent, long style = 0);
+- Invalidate · function · L80-L80 — void Invalidate(bool clear = false);
+- GetSelection · function · L82-L82 — int GetSelection() const { return selection; }
+- SetSelection · function · L84-L84 — void SetSelection(int n);
+- GetValue · function · L86-L86 — wxString GetValue() const;
+- SetValue · function · L87-L87 — void     SetValue(const wxString &value);
+- SetCornerRadius · function · L90-L90 — void SetCornerRadius(double radius);
+- SetBorderColor · function · L92-L92 — void SetBorderColor(StateColor const & color);
+- SetSelectorBorderColor · function · L94-L94 — void SetSelectorBorderColor(StateColor const & color);
+- SetTextColor · function · L96-L96 — void SetTextColor(StateColor const &color);
+- SetSelectorBackgroundColor · function · L98-L98 — void SetSelectorBackgroundColor(StateColor const &color);
+- SetUseContentWidth · function · L100-L100 — void SetUseContentWidth(bool use, bool limit_max_content_width = false);
+- SetAlignIcon · function · L102-L102 — void SetAlignIcon(bool align);
+- Rescale · function · L105-L105 — void Rescale();
+- HasDismissLongTime · function · L107-L107 — bool HasDismissLongTime();
+- Popup · function · L109-L109 — void Popup(wxWindow *focus = nullptr) override;
+- Dismiss · function · L112-L112 — void Dismiss() override;
+- OnDismiss · function · L114-L114 — void OnDismiss() override;
+- ShouldDismissOnTopWindowDeactivate · function · L116-L116 — bool ShouldDismissOnTopWindowDeactivate() override;
+- paintEvent · function · L119-L119 — void paintEvent(wxPaintEvent& evt);
+- paintNow · function · L120-L120 — void paintNow();
+- render · function · L122-L122 — void render(wxDC& dc);
+- hoverIndex · function · L124-L124 — int hoverIndex();
+- selectedItem · function · L126-L126 — int selectedItem();
+- messureSize · function · L129-L129 — void messureSize();
+- autoPosition · function · L130-L130 — void autoPosition();
+- mouseDown · function · L133-L133 — void mouseDown(wxMouseEvent& event);
+- mouseReleased · function · L134-L134 — void mouseReleased(wxMouseEvent &event);
+- mouseCaptureLost · function · L135-L135 — void mouseCaptureLost(wxMouseCaptureLostEvent &event);
+- mouseMove · function · L136-L136 — void mouseMove(wxMouseEvent &event);
+- mouseWheelMoved · function · L137-L137 — void mouseWheelMoved(wxMouseEvent &event);
+- sendDropDownEvent · function · L139-L139 — void sendDropDownEvent();
+- DECLARE_EVENT_TABLE · function · L142-L142 — DECLARE_EVENT_TABLE()

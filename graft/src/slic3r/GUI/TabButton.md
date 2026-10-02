@@ -1,0 +1,25 @@
+# src/slic3r/GUI/TabButton.hpp
+
+- TabButton · class · L7-L64 — class TabButton : public StaticBox
+- TabButton · function · L21-L21 — TabButton();
+- TabButton · function · L23-L23 — TabButton(wxWindow *parent, wxString text, ScalableBitmap &icon, long style = 0, int iconSize = 0);
+- Create · function · L25-L25 — bool Create(wxWindow *parent, wxString text, ScalableBitmap &icon, long style = 0, int iconSize = 0);
+- SetLabel · function · L27-L27 — void SetLabel(const wxString& label) override;
+- SetMinSize · function · L29-L29 — void SetMinSize(const wxSize& size) override;
+- SetPaddingSize · function · L31-L31 — void SetPaddingSize(const wxSize& size);
+- GetPaddingSize · function · L33-L33 — const wxSize& GetPaddingSize();
+- SetTextColor · function · L35-L35 — void SetTextColor(StateColor const &color);
+- SetBorderColor · function · L37-L37 — void SetBorderColor(StateColor const &color);
+- SetBGColor · function · L39-L39 — void SetBGColor(StateColor const &color);
+- SetBitmap · function · L41-L41 — void SetBitmap(ScalableBitmap &bitmap);
+- Enable · function · L43-L43 — bool Enable(bool enable = true) override;
+- Rescale · function · L45-L45 — void Rescale();
+- ShowNewTag · function · L47-L47 — void ShowNewTag(bool tag = false) {show_new_tag = tag; Refresh();};
+- GetShowNewTag · function · L48-L48 — bool GetShowNewTag() const { return show_new_tag; };
+- paintEvent · function · L51-L51 — void paintEvent(wxPaintEvent& evt);
+- render · function · L53-L53 — void render(wxDC& dc);
+- messureSize · function · L55-L55 — void messureSize();
+- mouseDown · function · L58-L58 — void mouseDown(wxMouseEvent& event);
+- mouseReleased · function · L59-L59 — void mouseReleased(wxMouseEvent& event);
+- sendButtonEvent · function · L61-L61 — void sendButtonEvent();
+- DECLARE_EVENT_TABLE · function · L63-L63 — DECLARE_EVENT_TABLE()

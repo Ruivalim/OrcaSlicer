@@ -1,0 +1,21 @@
+# src/slic3r/GUI/Project.hpp
+
+- project_file · class · L56-L60 — struct project_file
+- ProjectPanel · class · L62-L102 — class ProjectPanel : public wxPanel
+- show_info_editor · function · L76-L76 — void show_info_editor(bool show);
+- ProjectPanel · function · L80-L80 — ProjectPanel(wxWindow *parent, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- shutdown · function · L82-L82 — void shutdown();
+- onWebNavigating · function · L85-L85 — void onWebNavigating(wxWebViewEvent& evt);
+- on_reload · function · L86-L86 — void on_reload(wxCommandEvent& evt);
+- on_size · function · L87-L87 — void on_size(wxSizeEvent &event);
+- on_navigated · function · L88-L88 — void on_navigated(wxWebViewEvent& event);
+- msw_rescale · function · L90-L90 — void msw_rescale();
+- update_model_data · function · L91-L91 — void update_model_data();
+- clear_model_info · function · L92-L92 — void clear_model_info();
+- init_auxiliary · function · L93-L93 — void init_auxiliary() { m_auxiliary->init_auxiliary(); }
+- Show · function · L95-L95 — bool Show(bool show);
+- OnScriptMessage · function · L96-L96 — void OnScriptMessage(wxWebViewEvent& evt);
+- RunScript · function · L97-L97 — void RunScript(std::string content);
+- Reload · function · L99-L99 — std::map<std::string, std::vector<json>> Reload(wxString aux_path);
+- formatBytes · function · L100-L100 — std::string formatBytes(unsigned long bytes);
+- to_base64 · function · L101-L101 — wxString to_base64(std::string path);

@@ -1,0 +1,37 @@
+# src/slic3r/plugin/pluginTypes/printerAgent/PrinterAgentPluginCapability.hpp
+
+- PrinterAgentPluginCapability · class · L19-L81 — class PrinterAgentPluginCapability : public PluginCapabilityInterface, public IPrinterAgent
+- RegisterBindings · function · L22-L22 — static void RegisterBindings(pybind11::module_& module);
+- get_type · function · L24-L24 — PluginCapabilityType get_type() const override { return PluginCapabilityType::PrinterConnection; }
+- set_cloud_agent · function · L29-L29 — void set_cloud_agent(std::shared_ptr<ICloudServiceAgent> cloud) final override { (void) cloud; }
+- get_agent_info · function · L31-L31 — AgentInfo get_agent_info() override = 0;
+- connect_printer · function · L33-L34 — int connect_printer(
+- send_message · function · L35-L35 — int send_message(std::string dev_id, std::string json_str, int qos, int flag) override                           = 0;
+- send_message_to_printer · function · L36-L36 — int send_message_to_printer(std::string dev_id, std::string json_str, int qos, int flag) override                = 0;
+- start_discovery · function · L37-L37 — bool start_discovery(bool start, bool sending) override                                                          = 0;
+- bind_detect · function · L38-L38 — int bind_detect(std::string dev_ip, std::string sec_link, detectResult& detect) override                         = 0;
+- get_user_selected_machine · function · L39-L39 — std::string get_user_selected_machine() override                                                                 = 0;
+- set_user_selected_machine · function · L40-L40 — int set_user_selected_machine(std::string dev_id) override                                                       = 0;
+- start_send_gcode_to_sdcard · function · L41-L44 — int start_send_gcode_to_sdcard(PrintParams params,
+- start_local_print · function · L45-L45 — int start_local_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) override          = 0;
+- get_filament_sync_mode · function · L46-L46 — FilamentSyncMode get_filament_sync_mode() const override                                                          = 0;
+- fetch_filament_info · function · L47-L47 — bool fetch_filament_info(std::string dev_id) override                                                            = 0;
+- check_cert · function · L49-L49 — int check_cert() override                                                                                        = 0;
+- install_device_cert · function · L50-L50 — void install_device_cert(std::string dev_id, bool lan_only) override                                             = 0;
+- ping_bind · function · L51-L51 — int ping_bind(std::string ping_code) override                                                                    = 0;
+- bind · function · L52-L58 — int bind(std::string dev_ip,
+- unbind · function · L59-L59 — int unbind(std::string dev_id) override                                                                          = 0;
+- request_bind_ticket · function · L63-L63 — int request_bind_ticket(std::string* ticket) override                                                            = 0;
+- get_hms_snapshot · function · L64-L64 — int get_hms_snapshot(std::string dev_id, std::string file_name, std::function<void(std::string, int)> callback) override = 0;
+- set_server_callback · function · L65-L65 — int set_server_callback(OnServerErrFn fn) override                                                               = 0;
+- start_print · function · L66-L66 — int start_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override = 0;
+- start_local_print_with_record · function · L67-L70 — int start_local_print_with_record(PrintParams params,
+- start_sdcard_print · function · L71-L71 — int start_sdcard_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) override         = 0;
+- set_on_ssdp_msg_fn · function · L73-L73 — int set_on_ssdp_msg_fn(OnMsgArrivedFn fn) override                                                               = 0;
+- set_on_printer_connected_fn · function · L74-L74 — int set_on_printer_connected_fn(OnPrinterConnectedFn fn) override                                                = 0;
+- set_on_subscribe_failure_fn · function · L75-L75 — int set_on_subscribe_failure_fn(GetSubscribeFailureFn fn) override                                               = 0;
+- set_on_message_fn · function · L76-L76 — int set_on_message_fn(OnMessageFn fn) override                                                                   = 0;
+- set_on_user_message_fn · function · L77-L77 — int set_on_user_message_fn(OnMessageFn fn) override                                                              = 0;
+- set_on_local_connect_fn · function · L78-L78 — int set_on_local_connect_fn(OnLocalConnectedFn fn) override                                                      = 0;
+- set_on_local_message_fn · function · L79-L79 — int set_on_local_message_fn(OnMessageFn fn) override                                                             = 0;
+- set_queue_on_main_fn · function · L80-L80 — int set_queue_on_main_fn(QueueOnMainFn fn) override                                                              = 0;

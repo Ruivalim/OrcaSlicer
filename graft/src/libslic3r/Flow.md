@@ -1,0 +1,44 @@
+# src/libslic3r/Flow.hpp
+
+- PrintObject · class · L11-L11 — class PrintObject;
+- FlowRole · type · L16-L25 — enum FlowRole
+- FlowError · class · L27-L32 — class FlowError : public Slic3r::InvalidArgument
+- FlowError · function · L30-L30 — FlowError(const std::string& what_arg) : Slic3r::InvalidArgument(what_arg) {}
+- FlowError · function · L31-L31 — FlowError(const char* what_arg) : Slic3r::InvalidArgument(what_arg) {}
+- FlowErrorNegativeSpacing · class · L34-L38 — class FlowErrorNegativeSpacing : public FlowError
+- FlowErrorNegativeSpacing · function · L37-L37 — FlowErrorNegativeSpacing();
+- FlowErrorNegativeFlow · class · L40-L44 — class FlowErrorNegativeFlow : public FlowError
+- FlowErrorNegativeFlow · function · L43-L43 — FlowErrorNegativeFlow();
+- FlowErrorMissingVariable · class · L46-L50 — class FlowErrorMissingVariable : public FlowError
+- FlowErrorMissingVariable · function · L49-L49 — FlowErrorMissingVariable(const std::string& what_arg) : FlowError(what_arg) {}
+- Flow · class · L52-L140 — class Flow
+- Flow · function · L55-L55 — Flow() = default;
+- Flow · function · L56-L57 — Flow(float width, float height, float nozzle_diameter) :
+- width · function · L61-L61 — float   width()           const { return m_width; }
+- scaled_width · function · L62-L62 — coord_t scaled_width()    const { return coord_t(scale_(m_width)); }
+- height · function · L65-L65 — float   height()          const { return m_height; }
+- spacing · function · L67-L67 — float   spacing()         const { return m_spacing; }
+- set_spacing · function · L68-L68 — void    set_spacing(float spacing) { m_spacing = spacing; }
+- scaled_spacing · function · L69-L69 — coord_t scaled_spacing()  const { return coord_t(scale_(m_spacing)); }
+- nozzle_diameter · function · L71-L71 — float   nozzle_diameter() const { return m_nozzle_diameter; }
+- bridge · function · L73-L73 — bool    bridge()          const { return m_bridge; }
+- mm3_per_mm · function · L75-L75 — double  mm3_per_mm()      const;
+- scaled_elephant_foot_spacing · function · L81-L81 — coord_t scaled_elephant_foot_spacing() const { return coord_t(0.5f * float(this->scaled_width() + 0.6f * this->scaled_spacing())); }
+- with_width · function · L92-L95 — Flow        with_width (float width)  const
+- with_height · function · L96-L99 — Flow        with_height(float height) const
+- with_spacing · function · L101-L101 — Flow        with_spacing(float spacing) const;
+- with_cross_section · function · L103-L103 — Flow        with_cross_section(float area) const;
+- with_flow_ratio · function · L104-L104 — Flow        with_flow_ratio(double ratio) const { return this->with_cross_section(this->mm3_per_mm() * ratio); }
+- bridging_flow · function · L106-L106 — static Flow bridging_flow(float dmr, float nozzle_diameter) { return Flow { dmr, dmr, bridge_extrusion_spacing(dmr), nozzle_diameter, true }; }
+- new_from_config_width · function · L108-L108 — static Flow new_from_config_width(FlowRole role, const ConfigOptionFloatOrPercent &width, float nozzle_diameter, float height);
+- rounded_rectangle_extrusion_spacing · function · L111-L111 — static float rounded_rectangle_extrusion_spacing(float width, float height);
+- rounded_rectangle_extrusion_width_from_spacing · function · L113-L113 — static float rounded_rectangle_extrusion_width_from_spacing(float spacing, float height);
+- bridge_extrusion_spacing · function · L115-L115 — static float bridge_extrusion_spacing(float dmr);
+- auto_extrusion_width · function · L119-L119 — static float auto_extrusion_width(FlowRole role, float nozzle_diameter);
+- extrusion_width · function · L124-L124 — static double extrusion_width(const std::string &opt_key, const ConfigOptionFloatOrPercent *opt, const ConfigOptionResolver &config, const unsigned int first_printing_extruder = 0);
+- extrusion_width · function · L125-L125 — static double extrusion_width(const std::string &opt_key, const ConfigOptionResolver &config, const unsigned int first_printing_extruder = 0);
+- Flow · function · L128-L133 — Flow(float width, float height, float spacing, float nozzle_diameter, bool bridge) :
+- support_material_flow · function · L142-L142 — extern Flow support_material_flow(const PrintObject* object, float layer_height = 0.f);
+- support_transition_flow · function · L143-L143 — extern Flow support_transition_flow(const PrintObject *object); //BBS
+- support_material_1st_layer_flow · function · L144-L144 — extern Flow support_material_1st_layer_flow(const PrintObject *object, float layer_height = 0.f);
+- support_material_interface_flow · function · L145-L145 — extern Flow support_material_interface_flow(const PrintObject *object, float layer_height = 0.f);

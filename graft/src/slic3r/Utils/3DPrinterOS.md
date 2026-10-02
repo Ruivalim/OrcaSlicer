@@ -1,0 +1,32 @@
+# src/slic3r/Utils/3DPrinterOS.hpp
+
+- DynamicPrintConfig · class · L16-L16 — class DynamicPrintConfig;
+- Http · class · L17-L17 — class Http;
+- C3DPrinterOS · class · L20-L76 — class C3DPrinterOS : public PrintHost
+- C3DPrinterOS · function · L23-L23 — C3DPrinterOS(DynamicPrintConfig *config);
+- get_name · function · L26-L26 — const char* get_name() const override;
+- test · function · L27-L27 — bool test(wxString &curl_msg) const override;
+- login · function · L28-L28 — bool login(wxString &msg) const;
+- get_test_ok_msg · function · L29-L29 — wxString get_test_ok_msg () const override;
+- get_test_failed_msg · function · L30-L30 — wxString get_test_failed_msg (wxString &msg) const override;
+- upload · function · L31-L31 — bool upload(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- has_auto_discovery · function · L32-L32 — bool has_auto_discovery() const override { return false; }
+- can_test · function · L33-L33 — bool can_test() const override { return true; }
+- is_cloud · function · L34-L34 — bool is_cloud() const override { return true; }
+- log_out · function · L35-L35 — void log_out() const override;
+- is_logged_in · function · L36-L36 — bool is_logged_in() const override { return !m_apikey.empty(); }
+- get_post_upload_actions · function · L37-L37 — PrintHostPostUploadActions get_post_upload_actions() const override { return PrintHostPostUploadAction::StartPrint | PrintHostPostUploadAction::QueuePrint; }
+- get_host · function · L38-L38 — std::string        get_host() const override { return m_host; }
+- default_host · function · L39-L39 — static std::string default_host() { return "https://cloud.3dprinteros.com"; }
+- validate_version_text · function · L42-L42 — bool validate_version_text(const boost::optional<std::string> &version_text) const;
+- load_api_session · function · L53-L53 — void load_api_session();
+- save_api_session · function · L54-L54 — bool save_api_session(const std::string &session, const std::string &email) const;
+- parse_printer_model · function · L55-L55 — std::string parse_printer_model(const std::string& input) const;
+- make_url · function · L56-L56 — std::string make_url(const std::string &path) const;
+- get_api_auth_token · function · L57-L57 — std::string get_api_auth_token(wxString &err) const;
+- login_with_token · function · L58-L58 — void login_with_token(boost::property_tree::ptree &resp, const std::string &token) const;
+- check_session · function · L59-L59 — bool check_session(wxString &msg) const;
+- send_form · function · L60-L64 — void send_form(
+- get_cloud_projects_list · function · L67-L67 — void get_cloud_projects_list(boost::property_tree::ptree &response) const;
+- get_cloud_printer_types · function · L68-L68 — void get_cloud_printer_types(boost::property_tree::ptree &response, const std::string &querry) const;
+- update_file · function · L69-L74 — void update_file(

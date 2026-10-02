@@ -1,0 +1,101 @@
+# src/libslic3r/Color.hpp
+
+- color_is_equal · function · L13-L13 — bool  color_is_equal(const RGBA a, const RGBA &b);
+- ColorRGB · class · L14-L75 — class ColorRGB
+- ColorRGB · function · L19-L19 — ColorRGB() = default;
+- ColorRGB · function · L20-L20 — ColorRGB(float r, float g, float b);
+- ColorRGB · function · L21-L21 — ColorRGB(unsigned char r, unsigned char g, unsigned char b);
+- ColorRGB · function · L22-L22 — ColorRGB(const ColorRGB& other) = default;
+- data · function · L34-L34 — const float* const data() const { return m_data.data(); }
+- r · function · L36-L36 — float r() const { return m_data[0]; }
+- g · function · L37-L37 — float g() const { return m_data[1]; }
+- b · function · L38-L38 — float b() const { return m_data[2]; }
+- r · function · L40-L40 — void r(float r) { m_data[0] = std::clamp(r, 0.0f, 1.0f); }
+- g · function · L41-L41 — void g(float g) { m_data[1] = std::clamp(g, 0.0f, 1.0f); }
+- b · function · L42-L42 — void b(float b) { m_data[2] = std::clamp(b, 0.0f, 1.0f); }
+- set · function · L44-L47 — void set(unsigned int comp, float value)
+- r_uchar · function · L49-L49 — unsigned char r_uchar() const { return static_cast<unsigned char>(m_data[0] * 255.0f); }
+- g_uchar · function · L50-L50 — unsigned char g_uchar() const { return static_cast<unsigned char>(m_data[1] * 255.0f); }
+- b_uchar · function · L51-L51 — unsigned char b_uchar() const { return static_cast<unsigned char>(m_data[2] * 255.0f); }
+- BLACK · function · L53-L53 — static const ColorRGB BLACK()       { return { 0.0f, 0.0f, 0.0f }; }
+- BLUE · function · L54-L54 — static const ColorRGB BLUE()        { return { 0.0f, 0.0f, 1.0f }; }
+- BLUEISH · function · L55-L55 — static const ColorRGB BLUEISH()     { return { 0.5f, 0.5f, 1.0f }; }
+- CYAN · function · L56-L56 — static const ColorRGB CYAN()        { return { 0.0f, 1.0f, 1.0f }; }
+- DARK_GRAY · function · L57-L57 — static const ColorRGB DARK_GRAY()   { return { 0.25f, 0.25f, 0.25f }; }
+- DARK_YELLOW · function · L58-L58 — static const ColorRGB DARK_YELLOW() { return { 0.5f, 0.5f, 0.0f }; }
+- GRAY · function · L59-L59 — static const ColorRGB GRAY()        { return { 0.5f, 0.5f, 0.5f }; }
+- GREEN · function · L60-L60 — static const ColorRGB GREEN()       { return { 0.0f, 1.0f, 0.0f }; }
+- GREENISH · function · L61-L61 — static const ColorRGB GREENISH()    { return { 0.5f, 1.0f, 0.5f }; }
+- LIGHT_GRAY · function · L62-L62 — static const ColorRGB LIGHT_GRAY()  { return { 0.75f, 0.75f, 0.75f }; }
+- MAGENTA · function · L63-L63 — static const ColorRGB MAGENTA()     { return { 1.0f, 0.0f, 1.0f }; }
+- ORANGE · function · L64-L64 — static const ColorRGB ORANGE()      { return { 0.92f, 0.50f, 0.26f }; }
+- RED · function · L65-L65 — static const ColorRGB RED()         { return { 1.0f, 0.0f, 0.0f }; }
+- REDISH · function · L66-L66 — static const ColorRGB REDISH()      { return { 1.0f, 0.5f, 0.5f }; }
+- YELLOW · function · L67-L67 — static const ColorRGB YELLOW()      { return { 1.0f, 1.0f, 0.0f }; }
+- WHITE · function · L68-L68 — static const ColorRGB WHITE()       { return { 1.0f, 1.0f, 1.0f }; }
+- ORCA · function · L69-L69 — static const ColorRGB ORCA()		{ return {0.0f, 150.f / 255.0f, 136.0f / 255}; }
+- WARNING · function · L70-L70 — static const ColorRGB WARNING()     { return {241.0f / 255, 117.f / 255.0f, 78.0f / 255}; }
+- X · function · L72-L72 — static const ColorRGB X()           { return { 255 / 255.f, 60  / 255.f, 91  / 255.f};}
+- Y · function · L73-L73 — static const ColorRGB Y()           { return { 100 / 255.f, 200 / 255.f, 24  / 255.f};}
+- Z · function · L74-L74 — static const ColorRGB Z()           { return { 47  / 255.f, 136 / 255.f, 233 / 255.f};}
+- ColorRGBA · class · L77-L146 — class ColorRGBA
+- ColorRGBA · function · L82-L82 — ColorRGBA() = default;
+- ColorRGBA · function · L83-L83 — ColorRGBA(float r, float g, float b, float a);
+- ColorRGBA · function · L84-L84 — ColorRGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
+- ColorRGBA · function · L85-L85 — ColorRGBA(const ColorRGBA& other) = default;
+- data · function · L101-L101 — const float* const data() const { return m_data.data(); }
+- r · function · L103-L103 — float r() const { return m_data[0]; }
+- g · function · L104-L104 — float g() const { return m_data[1]; }
+- b · function · L105-L105 — float b() const { return m_data[2]; }
+- a · function · L106-L106 — float a() const { return m_data[3]; }
+- r · function · L108-L108 — void r(float r) { m_data[0] = std::clamp(r, 0.0f, 1.0f); }
+- g · function · L109-L109 — void g(float g) { m_data[1] = std::clamp(g, 0.0f, 1.0f); }
+- b · function · L110-L110 — void b(float b) { m_data[2] = std::clamp(b, 0.0f, 1.0f); }
+- a · function · L111-L111 — void a(float a) { m_data[3] = std::clamp(a, 0.0f, 1.0f); }
+- set · function · L113-L116 — void set(unsigned int comp, float value)
+- r_uchar · function · L118-L118 — unsigned char r_uchar() const { return static_cast<unsigned char>(m_data[0] * 255.0f); }
+- g_uchar · function · L119-L119 — unsigned char g_uchar() const { return static_cast<unsigned char>(m_data[1] * 255.0f); }
+- b_uchar · function · L120-L120 — unsigned char b_uchar() const { return static_cast<unsigned char>(m_data[2] * 255.0f); }
+- a_uchar · function · L121-L121 — unsigned char a_uchar() const { return static_cast<unsigned char>(m_data[3] * 255.0f); }
+- is_transparent · function · L123-L123 — bool is_transparent() const { return m_data[3] < 1.0f; }
+- BLACK · function · L125-L125 — static const ColorRGBA BLACK()       { return { 0.0f, 0.0f, 0.0f, 1.0f }; }
+- BLUE · function · L126-L126 — static const ColorRGBA BLUE()        { return { 0.0f, 0.0f, 1.0f, 1.0f }; }
+- BLUEISH · function · L127-L127 — static const ColorRGBA BLUEISH()     { return { 0.5f, 0.5f, 1.0f, 1.0f }; }
+- CYAN · function · L128-L128 — static const ColorRGBA CYAN()        { return { 0.0f, 1.0f, 1.0f, 1.0f }; }
+- DARK_GRAY · function · L129-L129 — static const ColorRGBA DARK_GRAY()   { return { 0.25f, 0.25f, 0.25f, 1.0f }; }
+- DARK_YELLOW · function · L130-L130 — static const ColorRGBA DARK_YELLOW() { return { 0.5f, 0.5f, 0.0f, 1.0f }; }
+- GRAY · function · L131-L131 — static const ColorRGBA GRAY()		 { return { 0.5f, 0.5f, 0.5f, 1.0f }; }
+- GREEN · function · L132-L132 — static const ColorRGBA GREEN()		 { return { 0.0f, 1.0f, 0.0f, 1.0f }; }
+- GREENISH · function · L133-L133 — static const ColorRGBA GREENISH()    { return { 0.5f, 1.0f, 0.5f, 1.0f }; }
+- LIGHT_GRAY · function · L134-L134 — static const ColorRGBA LIGHT_GRAY()  { return { 0.75f, 0.75f, 0.75f, 1.0f }; }
+- MAGENTA · function · L135-L135 — static const ColorRGBA MAGENTA()     { return { 1.0f, 0.0f, 1.0f, 1.0f }; }
+- ORANGE · function · L136-L136 — static const ColorRGBA ORANGE()      { return { 0.923f, 0.504f, 0.264f, 1.0f }; }
+- RED · function · L137-L137 — static const ColorRGBA RED()         { return { 1.0f, 0.0f, 0.0f, 1.0f }; }
+- REDISH · function · L138-L138 — static const ColorRGBA REDISH()      { return { 1.0f, 0.5f, 0.5f, 1.0f }; }
+- YELLOW · function · L139-L139 — static const ColorRGBA YELLOW()      { return { 1.0f, 1.0f, 0.0f, 1.0f }; }
+- WHITE · function · L140-L140 — static const ColorRGBA WHITE()       { return { 1.0f, 1.0f, 1.0f, 1.0f }; }
+- ORCA · function · L141-L141 — static const ColorRGBA ORCA()        { return {0.0f, 150.f / 255.0f, 136.0f / 255, 1.0f}; }
+- X · function · L143-L143 — static const ColorRGBA X()           { return { ColorRGB::X().r(), ColorRGB::X().g(), ColorRGB::X().b(), 1.f };}
+- Y · function · L144-L144 — static const ColorRGBA Y()           { return { ColorRGB::Y().r(), ColorRGB::Y().g(), ColorRGB::Y().b(), 1.f };}
+- Z · function · L145-L145 — static const ColorRGBA Z()           { return { ColorRGB::Z().r(), ColorRGB::Z().g(), ColorRGB::Z().b(), 1.f };}
+- lerp · function · L151-L151 — ColorRGB lerp(const ColorRGB& a, const ColorRGB& b, float t);
+- lerp · function · L152-L152 — ColorRGBA lerp(const ColorRGBA& a, const ColorRGBA& b, float t);
+- complementary · function · L154-L154 — ColorRGB complementary(const ColorRGB& color);
+- complementary · function · L155-L155 — ColorRGBA complementary(const ColorRGBA& color);
+- saturate · function · L157-L157 — ColorRGB saturate(const ColorRGB& color, float factor);
+- saturate · function · L158-L158 — ColorRGBA saturate(const ColorRGBA& color, float factor);
+- opposite · function · L160-L160 — ColorRGB opposite(const ColorRGB& color);
+- opposite · function · L161-L161 — ColorRGB opposite(const ColorRGB& a, const ColorRGB& b);
+- can_decode_color · function · L163-L163 — bool can_decode_color(const std::string& color);
+- decode_color · function · L165-L165 — bool decode_color(const std::string& color_in, ColorRGB& color_out);
+- decode_color · function · L166-L166 — bool decode_color(const std::string& color_in, ColorRGBA& color_out);
+- decode_colors · function · L168-L168 — bool decode_colors(const std::vector<std::string>& colors_in, std::vector<ColorRGB>& colors_out);
+- decode_colors · function · L169-L169 — bool decode_colors(const std::vector<std::string>& colors_in, std::vector<ColorRGBA>& colors_out);
+- encode_color · function · L171-L171 — std::string encode_color(const ColorRGB& color);
+- encode_color · function · L172-L172 — std::string encode_color(const ColorRGBA& color);
+- to_rgb · function · L174-L174 — ColorRGB  to_rgb(const ColorRGBA& other_rgba);
+- to_rgba · function · L175-L175 — ColorRGBA to_rgba(const ColorRGB& other_rgb);
+- to_rgba · function · L176-L176 — ColorRGBA to_rgba(const ColorRGB& other_rgb, float alpha);
+- picking_decode · function · L178-L178 — ColorRGBA picking_decode(unsigned int id);
+- picking_encode · function · L179-L179 — unsigned int picking_encode(unsigned char r, unsigned char g, unsigned char b);
+- picking_checksum_alpha_channel · function · L182-L182 — unsigned char picking_checksum_alpha_channel(unsigned char red, unsigned char green, unsigned char blue);

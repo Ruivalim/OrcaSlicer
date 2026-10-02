@@ -1,0 +1,530 @@
+# deps_src/imgui/imgui_internal.h
+
+- ImGuiLayoutType · type · L141-L141 — typedef int ImGuiLayoutType;            // -> enum ImGuiLayoutType_         // Enum: Horizontal or vertical
+- ImGuiItemFlags · type · L142-L142 — typedef int ImGuiItemFlags;             // -> enum ImGuiItemFlags_          // Flags: for PushItemFlag()
+- ImGuiItemAddFlags · type · L143-L143 — typedef int ImGuiItemAddFlags;          // -> enum ImGuiItemAddFlags_       // Flags: for ItemAdd()
+- ImGuiItemStatusFlags · type · L144-L144 — typedef int ImGuiItemStatusFlags;       // -> enum ImGuiItemStatusFlags_    // Flags: for DC.LastItemStatusFlags
+- ImGuiOldColumnFlags · type · L145-L145 — typedef int ImGuiOldColumnFlags;        // -> enum ImGuiOldColumnFlags_     // Flags: for BeginColumns()
+- ImGuiNavHighlightFlags · type · L146-L146 — typedef int ImGuiNavHighlightFlags;     // -> enum ImGuiNavHighlightFlags_  // Flags: for RenderNavHighlight()
+- ImGuiNavDirSourceFlags · type · L147-L147 — typedef int ImGuiNavDirSourceFlags;     // -> enum ImGuiNavDirSourceFlags_  // Flags: for GetNavInputAmount2d()
+- ImGuiNavMoveFlags · type · L148-L148 — typedef int ImGuiNavMoveFlags;          // -> enum ImGuiNavMoveFlags_       // Flags: for navigation requests
+- ImGuiNextItemDataFlags · type · L149-L149 — typedef int ImGuiNextItemDataFlags;     // -> enum ImGuiNextItemDataFlags_  // Flags: for SetNextItemXXX() functions
+- ImGuiNextWindowDataFlags · type · L150-L150 — typedef int ImGuiNextWindowDataFlags;   // -> enum ImGuiNextWindowDataFlags_// Flags: for SetNextWindowXXX() functions
+- ImGuiSeparatorFlags · type · L151-L151 — typedef int ImGuiSeparatorFlags;        // -> enum ImGuiSeparatorFlags_     // Flags: for SeparatorEx()
+- ImGuiTextFlags · type · L152-L152 — typedef int ImGuiTextFlags;             // -> enum ImGuiTextFlags_          // Flags: for TextEx()
+- ImGuiTooltipFlags · type · L153-L153 — typedef int ImGuiTooltipFlags;          // -> enum ImGuiTooltipFlags_       // Flags: for BeginTooltipEx()
+- ImHashData · function · L285-L285 — IMGUI_API ImGuiID       ImHashData(const void* data, size_t data_size, ImU32 seed = 0);
+- ImHashStr · function · L286-L286 — IMGUI_API ImGuiID       ImHashStr(const char* data, size_t data_size = 0, ImU32 seed = 0);
+- ImHash · function · L288-L288 — static inline ImGuiID   ImHash(const void* data, int size, ImU32 seed = 0) { return size ? ImHashData(data, (size_t)size, seed) : ImHashStr((const char*)data, 0, seed); } // [moved to ImHashStr/ImHashData in 1.68]
+- ImAlphaBlendColors · function · L295-L295 — IMGUI_API ImU32         ImAlphaBlendColors(ImU32 col_a, ImU32 col_b);
+- ImIsPowerOfTwo · function · L298-L298 — static inline bool      ImIsPowerOfTwo(int v)           { return v != 0 && (v & (v - 1)) == 0; }
+- ImIsPowerOfTwo · function · L299-L299 — static inline bool      ImIsPowerOfTwo(ImU64 v)         { return v != 0 && (v & (v - 1)) == 0; }
+- ImUpperPowerOfTwo · function · L300-L300 — static inline int       ImUpperPowerOfTwo(int v)        { v--; v |= v >> 1; v |= v >> 2; v |= v >> 4; v |= v >> 8; v |= v >> 16; v++; return v; }
+- ImStricmp · function · L303-L303 — IMGUI_API int           ImStricmp(const char* str1, const char* str2);
+- ImStrnicmp · function · L304-L304 — IMGUI_API int           ImStrnicmp(const char* str1, const char* str2, size_t count);
+- ImStrncpy · function · L305-L305 — IMGUI_API void          ImStrncpy(char* dst, const char* src, size_t count);
+- ImStrdup · function · L306-L306 — IMGUI_API char*         ImStrdup(const char* str);
+- ImStrdupcpy · function · L307-L307 — IMGUI_API char*         ImStrdupcpy(char* dst, size_t* p_dst_size, const char* str);
+- ImStrchrRange · function · L308-L308 — IMGUI_API const char*   ImStrchrRange(const char* str_begin, const char* str_end, char c);
+- ImStrlenW · function · L309-L309 — IMGUI_API int           ImStrlenW(const ImWchar* str);
+- ImStreolRange · function · L310-L310 — IMGUI_API const char*   ImStreolRange(const char* str, const char* str_end);                // End end-of-line
+- ImStrbolW · function · L311-L311 — IMGUI_API const ImWchar*ImStrbolW(const ImWchar* buf_mid_line, const ImWchar* buf_begin);   // Find beginning-of-line
+- ImStristr · function · L312-L312 — IMGUI_API const char*   ImStristr(const char* haystack, const char* haystack_end, const char* needle, const char* needle_end);
+- ImStrTrimBlanks · function · L313-L313 — IMGUI_API void          ImStrTrimBlanks(char* str);
+- ImStrSkipBlank · function · L314-L314 — IMGUI_API const char*   ImStrSkipBlank(const char* str);
+- ImFormatString · function · L315-L315 — IMGUI_API int           ImFormatString(char* buf, size_t buf_size, const char* fmt, ...) IM_FMTARGS(3);
+- ImFormatStringV · function · L316-L316 — IMGUI_API int           ImFormatStringV(char* buf, size_t buf_size, const char* fmt, va_list args) IM_FMTLIST(3);
+- ImParseFormatFindStart · function · L317-L317 — IMGUI_API const char*   ImParseFormatFindStart(const char* format);
+- ImParseFormatFindEnd · function · L318-L318 — IMGUI_API const char*   ImParseFormatFindEnd(const char* format);
+- ImParseFormatTrimDecorations · function · L319-L319 — IMGUI_API const char*   ImParseFormatTrimDecorations(const char* format, char* buf, size_t buf_size);
+- ImParseFormatPrecision · function · L320-L320 — IMGUI_API int           ImParseFormatPrecision(const char* format, int default_value);
+- ImCharIsBlankA · function · L321-L321 — static inline bool      ImCharIsBlankA(char c)          { return c == ' ' || c == '\t'; }
+- ImCharIsBlankW · function · L322-L322 — static inline bool      ImCharIsBlankW(unsigned int c)  { return c == ' ' || c == '\t' || c == 0x3000; }
+- ImTextStrToUtf8 · function · L325-L325 — IMGUI_API int           ImTextStrToUtf8(char* buf, int buf_size, const ImWchar* in_text, const ImWchar* in_text_end);      // return output UTF-8 bytes count
+- ImTextCharFromUtf8 · function · L326-L326 — IMGUI_API int           ImTextCharFromUtf8(unsigned int* out_char, const char* in_text, const char* in_text_end);          // read one character. return input UTF-8 bytes count
+- ImTextStrFromUtf8 · function · L327-L327 — IMGUI_API int           ImTextStrFromUtf8(ImWchar* buf, int buf_size, const char* in_text, const char* in_text_end, const char** in_remaining = NULL);   // return input UTF-8 bytes count
+- ImTextCountCharsFromUtf8 · function · L328-L328 — IMGUI_API int           ImTextCountCharsFromUtf8(const char* in_text, const char* in_text_end);                            // return number of UTF-8 code-points (NOT bytes count)
+- ImTextCountUtf8BytesFromChar · function · L329-L329 — IMGUI_API int           ImTextCountUtf8BytesFromChar(const char* in_text, const char* in_text_end);                        // return number of bytes to express one char in UTF-8
+- ImTextCountUtf8BytesFromStr · function · L330-L330 — IMGUI_API int           ImTextCountUtf8BytesFromStr(const ImWchar* in_text, const ImWchar* in_text_end);                   // return number of bytes to express string in UTF-8
+- ImVec2 · function · L338-L338 — static inline ImVec2 operator/(const ImVec2& lhs, const float rhs)              { return ImVec2(lhs.x / rhs, lhs.y / rhs); }
+- ImVec2 · function · L342-L342 — static inline ImVec2 operator/(const ImVec2& lhs, const ImVec2& rhs)            { return ImVec2(lhs.x / rhs.x, lhs.y / rhs.y); }
+- ImFileOpen · function · L359-L359 — static inline ImFileHandle  ImFileOpen(const char*, const char*)                    { return NULL; }
+- ImFileClose · function · L360-L360 — static inline bool          ImFileClose(ImFileHandle)                               { return false; }
+- ImFileGetSize · function · L361-L361 — static inline ImU64         ImFileGetSize(ImFileHandle)                             { return (ImU64)-1; }
+- ImFileRead · function · L362-L362 — static inline ImU64         ImFileRead(void*, ImU64, ImU64, ImFileHandle)           { return 0; }
+- ImFileWrite · function · L363-L363 — static inline ImU64         ImFileWrite(const void*, ImU64, ImU64, ImFileHandle)    { return 0; }
+- ImFileOpen · function · L367-L367 — IMGUI_API ImFileHandle      ImFileOpen(const char* filename, const char* mode);
+- ImFileClose · function · L368-L368 — IMGUI_API bool              ImFileClose(ImFileHandle file);
+- ImFileGetSize · function · L369-L369 — IMGUI_API ImU64             ImFileGetSize(ImFileHandle file);
+- ImFileRead · function · L370-L370 — IMGUI_API ImU64             ImFileRead(void* data, ImU64 size, ImU64 count, ImFileHandle file);
+- ImFileWrite · function · L371-L371 — IMGUI_API ImU64             ImFileWrite(const void* data, ImU64 size, ImU64 count, ImFileHandle file);
+- ImFileLoadToMemory · function · L375-L375 — IMGUI_API void*             ImFileLoadToMemory(const char* filename, const char* mode, size_t* out_file_size = NULL, int padding_bytes = 0);
+- ImPow · function · L391-L391 — static inline float  ImPow(float x, float y)    { return powf(x, y); }          // DragBehaviorT/SliderBehaviorT uses ImPow with either float/double and need the precision
+- ImPow · function · L392-L392 — static inline double ImPow(double x, double y)  { return pow(x, y); }
+- ImLog · function · L393-L393 — static inline float  ImLog(float x)             { return logf(x); }             // DragBehaviorT/SliderBehaviorT uses ImLog with either float/double and need the precision
+- ImLog · function · L394-L394 — static inline double ImLog(double x)            { return logf(x); }
+- ImAbs · function · L395-L395 — static inline int    ImAbs(int x)               { return x < 0 ? -x : x; }
+- ImAbs · function · L396-L396 — static inline float  ImAbs(float x)             { return fabsf(x); }
+- ImAbs · function · L397-L397 — static inline double ImAbs(double x)            { return fabs(x); }
+- ImSign · function · L398-L398 — static inline float  ImSign(float x)            { return (x < 0.0f) ? -1.0f : ((x > 0.0f) ? 1.0f : 0.0f); } // Sign operator - returns -1, 0 or 1 based on sign of argument
+- ImSign · function · L399-L399 — static inline double ImSign(double x)           { return (x < 0.0) ? -1.0 : ((x > 0.0) ? 1.0 : 0.0); }
+- ImRsqrt · function · L401-L401 — static inline float  ImRsqrt(float x)           { return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_set_ss(x))); }
+- ImRsqrt · function · L403-L403 — static inline float  ImRsqrt(float x)           { return 1.0f / sqrtf(x); }
+- ImRsqrt · function · L405-L405 — static inline double ImRsqrt(double x)          { return 1.0 / sqrt(x); }
+- ImMin · function · L409-L409 — template<typename T> static inline T ImMin(T lhs, T rhs)                        { return lhs < rhs ? lhs : rhs; }
+- ImMax · function · L410-L410 — template<typename T> static inline T ImMax(T lhs, T rhs)                        { return lhs >= rhs ? lhs : rhs; }
+- ImClamp · function · L411-L411 — template<typename T> static inline T ImClamp(T v, T mn, T mx)                   { return (v < mn) ? mn : (v > mx) ? mx : v; }
+- ImLerp · function · L412-L412 — template<typename T> static inline T ImLerp(T a, T b, float t)                  { return (T)(a + (b - a) * t); }
+- ImSwap · function · L413-L413 — template<typename T> static inline void ImSwap(T& a, T& b)                      { T tmp = a; a = b; b = tmp; }
+- ImAddClampOverflow · function · L414-L414 — template<typename T> static inline T ImAddClampOverflow(T a, T b, T mn, T mx)   { if (b < 0 && (a < mn - b)) return mn; if (b > 0 && (a > mx - b)) return mx; return a + b; }
+- ImSubClampOverflow · function · L415-L415 — template<typename T> static inline T ImSubClampOverflow(T a, T b, T mn, T mx)   { if (b > 0 && (a < mn + b)) return mn; if (b < 0 && (a > mx + b)) return mx; return a - b; }
+- ImMin · function · L417-L417 — static inline ImVec2 ImMin(const ImVec2& lhs, const ImVec2& rhs)                { return ImVec2(lhs.x < rhs.x ? lhs.x : rhs.x, lhs.y < rhs.y ? lhs.y : rhs.y); }
+- ImMax · function · L418-L418 — static inline ImVec2 ImMax(const ImVec2& lhs, const ImVec2& rhs)                { return ImVec2(lhs.x >= rhs.x ? lhs.x : rhs.x, lhs.y >= rhs.y ? lhs.y : rhs.y); }
+- ImClamp · function · L419-L419 — static inline ImVec2 ImClamp(const ImVec2& v, const ImVec2& mn, ImVec2 mx)      { return ImVec2((v.x < mn.x) ? mn.x : (v.x > mx.x) ? mx.x : v.x, (v.y < mn.y) ? mn.y : (v.y > mx.y) ? mx.y : v.y); }
+- ImLerp · function · L420-L420 — static inline ImVec2 ImLerp(const ImVec2& a, const ImVec2& b, float t)          { return ImVec2(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t); }
+- ImLerp · function · L421-L421 — static inline ImVec2 ImLerp(const ImVec2& a, const ImVec2& b, const ImVec2& t)  { return ImVec2(a.x + (b.x - a.x) * t.x, a.y + (b.y - a.y) * t.y); }
+- ImLerp · function · L422-L422 — static inline ImVec4 ImLerp(const ImVec4& a, const ImVec4& b, float t)          { return ImVec4(a.x + (b.x - a.x) * t, a.y + (b.y - a.y) * t, a.z + (b.z - a.z) * t, a.w + (b.w - a.w) * t); }
+- ImSaturate · function · L423-L423 — static inline float  ImSaturate(float f)                                        { return (f < 0.0f) ? 0.0f : (f > 1.0f) ? 1.0f : f; }
+- ImLengthSqr · function · L424-L424 — static inline float  ImLengthSqr(const ImVec2& lhs)                             { return (lhs.x * lhs.x) + (lhs.y * lhs.y); }
+- ImLengthSqr · function · L425-L425 — static inline float  ImLengthSqr(const ImVec4& lhs)                             { return (lhs.x * lhs.x) + (lhs.y * lhs.y) + (lhs.z * lhs.z) + (lhs.w * lhs.w); }
+- ImInvLength · function · L426-L426 — static inline float  ImInvLength(const ImVec2& lhs, float fail_value)           { float d = (lhs.x * lhs.x) + (lhs.y * lhs.y); if (d > 0.0f) return ImRsqrt(d); return fail_value; }
+- ImFloor · function · L427-L427 — static inline float  ImFloor(float f)                                           { return (float)(int)(f); }
+- ImFloorSigned · function · L428-L428 — static inline float  ImFloorSigned(float f)                                     { return (float)((f >= 0 || (int)f == f) ? (int)f : (int)f - 1); } // Decent replacement for floorf()
+- ImFloor · function · L429-L429 — static inline ImVec2 ImFloor(const ImVec2& v)                                   { return ImVec2((float)(int)(v.x), (float)(int)(v.y)); }
+- ImModPositive · function · L430-L430 — static inline int    ImModPositive(int a, int b)                                { return (a + b) % b; }
+- ImDot · function · L431-L431 — static inline float  ImDot(const ImVec2& a, const ImVec2& b)                    { return a.x * b.x + a.y * b.y; }
+- ImRotate · function · L432-L432 — static inline ImVec2 ImRotate(const ImVec2& v, float cos_a, float sin_a)        { return ImVec2(v.x * cos_a - v.y * sin_a, v.x * sin_a + v.y * cos_a); }
+- ImLinearSweep · function · L433-L433 — static inline float  ImLinearSweep(float current, float target, float speed)    { if (current < target) return ImMin(current + speed, target); if (current > target) return ImMax(current - speed, target); return current; }
+- ImMul · function · L434-L434 — static inline ImVec2 ImMul(const ImVec2& lhs, const ImVec2& rhs)                { return ImVec2(lhs.x * rhs.x, lhs.y * rhs.y); }
+- ImBezierCubicCalc · function · L438-L438 — IMGUI_API ImVec2     ImBezierCubicCalc(const ImVec2& p1, const ImVec2& p2, const ImVec2& p3, const ImVec2& p4, float t);
+- ImTriangleContainsPoint · function · L443-L443 — IMGUI_API bool       ImTriangleContainsPoint(const ImVec2& a, const ImVec2& b, const ImVec2& c, const ImVec2& p);
+- ImTriangleBarycentricCoords · function · L445-L445 — IMGUI_API void       ImTriangleBarycentricCoords(const ImVec2& a, const ImVec2& b, const ImVec2& c, const ImVec2& p, float& out_u, float& out_v, float& out_w);
+- ImTriangleArea · function · L446-L446 — inline float         ImTriangleArea(const ImVec2& a, const ImVec2& b, const ImVec2& c) { return ImFabs((a.x * (b.y - c.y)) + (b.x * (c.y - a.y)) + (c.x * (a.y - b.y))) * 0.5f; }
+- ImGetDirQuadrantFromDelta · function · L447-L447 — IMGUI_API ImGuiDir   ImGetDirQuadrantFromDelta(float dx, float dy);
+- ImVec2ih · class · L460-L464 — struct ImVec2ih
+- ImVec2ih · function · L465-L465 — explicit ImVec2ih(const ImVec2& rhs) { x = (short)rhs.x; y = (short)rhs.y; }
+- Max · function · L477-L477 — ImRect(const ImVec4& v)                         : Min(v.x, v.y), Max(v.z, v.w)      {}
+- Min · function · L477-L480 — ImRect(const ImVec4& v)                         : Min(v.x, v.y), Max(v.z, v.w)      {}
+- ImRect · function · L478-L478 — ImRect(float x1, float y1, float x2, float y2)  : Min(x1, y1), Max(x2, y2)          {}
+- Max · function · L478-L478 — ImRect(float x1, float y1, float x2, float y2)  : Min(x1, y1), Max(x2, y2)          {}
+- GetCenter · function · L480-L480 — ImVec2      GetCenter() const                   { return ImVec2((Min.x + Max.x) * 0.5f, (Min.y + Max.y) * 0.5f); }
+- GetSize · function · L481-L481 — ImVec2      GetSize() const                     { return ImVec2(Max.x - Min.x, Max.y - Min.y); }
+- GetWidth · function · L482-L482 — float       GetWidth() const                    { return Max.x - Min.x; }
+- GetHeight · function · L483-L483 — float       GetHeight() const                   { return Max.y - Min.y; }
+- GetArea · function · L484-L484 — float       GetArea() const                     { return (Max.x - Min.x) * (Max.y - Min.y); }
+- GetTL · function · L485-L485 — ImVec2      GetTL() const                       { return Min; }                   // Top-left
+- GetTR · function · L486-L486 — ImVec2      GetTR() const                       { return ImVec2(Max.x, Min.y); }  // Top-right
+- GetBL · function · L487-L487 — ImVec2      GetBL() const                       { return ImVec2(Min.x, Max.y); }  // Bottom-left
+- GetBR · function · L488-L488 — ImVec2      GetBR() const                       { return Max; }                   // Bottom-right
+- Contains · function · L489-L489 — bool        Contains(const ImVec2& p) const     { return p.x     >= Min.x && p.y     >= Min.y && p.x     <  Max.x && p.y     <  Max.y; }
+- Contains · function · L490-L490 — bool        Contains(const ImRect& r) const     { return r.Min.x >= Min.x && r.Min.y >= Min.y && r.Max.x <= Max.x && r.Max.y <= Max.y; }
+- Overlaps · function · L491-L491 — bool        Overlaps(const ImRect& r) const     { return r.Min.y <  Max.y && r.Max.y >  Min.y && r.Min.x <  Max.x && r.Max.x >  Min.x; }
+- Add · function · L492-L492 — void        Add(const ImVec2& p)                { if (Min.x > p.x)     Min.x = p.x;     if (Min.y > p.y)     Min.y = p.y;     if (Max.x < p.x)     Max.x = p.x;     if (Max.y < p.y)     Max.y = p.y; }
+- Add · function · L493-L493 — void        Add(const ImRect& r)                { if (Min.x > r.Min.x) Min.x = r.Min.x; if (Min.y > r.Min.y) Min.y = r.Min.y; if (Max.x < r.Max.x) Max.x = r.Max.x; if (Max.y < r.Max.y) Max.y = r.Max.y; }
+- Expand · function · L494-L494 — void        Expand(const float amount)          { Min.x -= amount;   Min.y -= amount;   Max.x += amount;   Max.y += amount; }
+- Expand · function · L495-L495 — void        Expand(const ImVec2& amount)        { Min.x -= amount.x; Min.y -= amount.y; Max.x += amount.x; Max.y += amount.y; }
+- Translate · function · L496-L496 — void        Translate(const ImVec2& d)          { Min.x += d.x; Min.y += d.y; Max.x += d.x; Max.y += d.y; }
+- TranslateX · function · L497-L497 — void        TranslateX(float dx)                { Min.x += dx; Max.x += dx; }
+- TranslateY · function · L498-L498 — void        TranslateY(float dy)                { Min.y += dy; Max.y += dy; }
+- ClipWith · function · L499-L499 — void        ClipWith(const ImRect& r)           { Min = ImMax(Min, r.Min); Max = ImMin(Max, r.Max); }                   // Simple version, may lead to an inverted rectangle, which is fine for Contains/Overlaps test but not for display.
+- ClipWithFull · function · L500-L500 — void        ClipWithFull(const ImRect& r)       { Min = ImClamp(Min, r.Min, r.Max); Max = ImClamp(Max, r.Min, r.Max); } // Full version, ensure both points are fully clipped.
+- Floor · function · L501-L501 — void        Floor()                             { Min.x = IM_FLOOR(Min.x); Min.y = IM_FLOOR(Min.y); Max.x = IM_FLOOR(Max.x); Max.y = IM_FLOOR(Max.y); }
+- IsInverted · function · L502-L502 — bool        IsInverted() const                  { return Min.x > Max.x || Min.y > Max.y; }
+- ToVec4 · function · L503-L503 — ImVec4      ToVec4() const                      { return ImVec4(Min.x, Min.y, Max.x, Max.y); }
+- ImBitArrayTestBit · function · L505-L508 — IM_MSVC_RUNTIME_CHECKS_RESTORE
+- ImBitArrayClearBit · function · L509-L509 — inline void     ImBitArrayClearBit(ImU32* arr, int n)           { ImU32 mask = (ImU32)1 << (n & 31); arr[n >> 5] &= ~mask; }
+- ImBitArraySetBit · function · L510-L510 — inline void     ImBitArraySetBit(ImU32* arr, int n)             { ImU32 mask = (ImU32)1 << (n & 31); arr[n >> 5] |= mask; }
+- ImBitArraySetBitRange · function · L511-L522 — inline void     ImBitArraySetBitRange(ImU32* arr, int n, int n2) // Works on range [n..n2)
+- ClearAllBits · function · L531-L531 — void            ClearAllBits()              { memset(Storage, 0, sizeof(Storage)); }
+- SetAllBits · function · L532-L532 — void            SetAllBits()                { memset(Storage, 255, sizeof(Storage)); }
+- TestBit · function · L533-L533 — bool            TestBit(int n) const        { IM_ASSERT(n < BITCOUNT); return ImBitArrayTestBit(Storage, n); }
+- SetBit · function · L534-L534 — void            SetBit(int n)               { IM_ASSERT(n < BITCOUNT); ImBitArraySetBit(Storage, n); }
+- ClearBit · function · L535-L535 — void            ClearBit(int n)             { IM_ASSERT(n < BITCOUNT); ImBitArrayClearBit(Storage, n); }
+- SetBitRange · function · L536-L536 — void            SetBitRange(int n, int n2)  { ImBitArraySetBitRange(Storage, n, n2); } // Works on range [n..n2)
+- Create · function · L544-L544 — void            Create(int sz)              { Storage.resize((sz + 31) >> 5); memset(Storage.Data, 0, (size_t)Storage.Size * sizeof(Storage.Data[0])); }
+- Clear · function · L545-L545 — void            Clear()                     { Storage.clear(); }
+- TestBit · function · L546-L546 — bool            TestBit(int n) const        { IM_ASSERT(n < (Storage.Size << 5)); return ImBitArrayTestBit(Storage.Data, n); }
+- SetBit · function · L547-L547 — void            SetBit(int n)               { IM_ASSERT(n < (Storage.Size << 5)); ImBitArraySetBit(Storage.Data, n); }
+- ClearBit · function · L548-L548 — void            ClearBit(int n)             { IM_ASSERT(n < (Storage.Size << 5)); ImBitArrayClearBit(Storage.Data, n); }
+- set · function · L564-L564 — inline void         set(T* data, int size)      { Data = data; DataEnd = data + size; }
+- set · function · L565-L565 — inline void         set(T* data, T* data_end)   { Data = data; DataEnd = data_end; }
+- size · function · L566-L566 — inline int          size() const                { return (int)(ptrdiff_t)(DataEnd - Data); }
+- size_in_bytes · function · L567-L567 — inline int          size_in_bytes() const       { return (int)(ptrdiff_t)(DataEnd - Data) * (int)sizeof(T); }
+- begin · function · L571-L571 — inline T*           begin()                     { return Data; }
+- begin · function · L572-L572 — inline const T*     begin() const               { return Data; }
+- end · function · L573-L573 — inline T*           end()                       { return DataEnd; }
+- end · function · L574-L574 — inline const T*     end() const                 { return DataEnd; }
+- index_from_ptr · function · L577-L577 — inline int  index_from_ptr(const T* it) const   { IM_ASSERT(it >= Data && it < DataEnd); const ptrdiff_t off = it - Data; return (int)off; }
+- Reserve · function · L593-L593 — inline void  Reserve(int n, size_t sz, int a=4) { IM_ASSERT(n == CurrIdx && n < CHUNKS); CurrOff = IM_MEMALIGN(CurrOff, a); Offsets[n] = CurrOff; Sizes[n] = (int)sz; CurrIdx++; CurrOff += (int)sz; }
+- GetArenaSizeInBytes · function · L594-L594 — inline int   GetArenaSizeInBytes()              { return CurrOff; }
+- SetArenaBasePtr · function · L595-L595 — inline void  SetArenaBasePtr(void* base_ptr)    { BasePtr = (char*)base_ptr; }
+- GetSpanPtrBegin · function · L596-L596 — inline void* GetSpanPtrBegin(int n)             { IM_ASSERT(n >= 0 && n < CHUNKS && CurrIdx == CHUNKS); return (void*)(BasePtr + Offsets[n]); }
+- GetSpanPtrEnd · function · L597-L597 — inline void* GetSpanPtrEnd(int n)               { IM_ASSERT(n >= 0 && n < CHUNKS && CurrIdx == CHUNKS); return (void*)(BasePtr + Offsets[n] + Sizes[n]); }
+- GetSpan · function · L599-L599 — inline void  GetSpan(int n, ImSpan<T>* span)    { span->set((T*)GetSpanPtrBegin(n), (T*)GetSpanPtrEnd(n)); }
+- ImPoolIdx · type · L605-L605 — typedef int ImPoolIdx;
+- GetByKey · function · L615-L615 — T*          GetByKey(ImGuiID key)               { int idx = Map.GetInt(key, -1); return (idx != -1) ? &Buf[idx] : NULL; }
+- GetByIndex · function · L616-L616 — T*          GetByIndex(ImPoolIdx n)             { return &Buf[n]; }
+- GetIndex · function · L617-L617 — ImPoolIdx   GetIndex(const T* p) const          { IM_ASSERT(p >= Buf.Data && p < Buf.Data + Buf.Size); return (ImPoolIdx)(p - Buf.Data); }
+- GetOrAddByKey · function · L618-L618 — T*          GetOrAddByKey(ImGuiID key)          { int* p_idx = Map.GetIntRef(key, -1); if (*p_idx != -1) return &Buf[*p_idx]; *p_idx = FreeIdx; return Add(); }
+- Contains · function · L619-L619 — bool        Contains(const T* p) const          { return (p >= Buf.Data && p < Buf.Data + Buf.Size); }
+- Clear · function · L620-L620 — void        Clear()                             { for (int n = 0; n < Map.Data.Size; n++) { int idx = Map.Data[n].val_i; if (idx != -1) Buf[idx].~T(); } Map.Clear(); Buf.clear(); FreeIdx = 0; }
+- Add · function · L621-L621 — T*          Add()                               { int idx = FreeIdx; if (idx == Buf.Size) { Buf.resize(Buf.Size + 1); FreeIdx++; } else { FreeIdx = *(int*)&Buf[idx]; } IM_PLACEMENT_NEW(&Buf[idx]) T(); return &Buf[idx]; }
+- Remove · function · L622-L622 — void        Remove(ImGuiID key, const T* p)     { Remove(key, GetIndex(p)); }
+- Remove · function · L623-L623 — void        Remove(ImGuiID key, ImPoolIdx idx)  { Buf[idx].~T(); *(int*)&Buf[idx] = FreeIdx; FreeIdx = idx; Map.SetInt(key, -1); }
+- Reserve · function · L624-L624 — void        Reserve(int capacity)               { Buf.reserve(capacity); Map.Data.reserve(capacity); }
+- GetSize · function · L625-L625 — int         GetSize() const                     { return Buf.Size; }
+- clear · function · L638-L638 — void    clear()                     { Buf.clear(); }
+- empty · function · L639-L639 — bool    empty() const               { return Buf.Size == 0; }
+- size · function · L640-L640 — int     size() const                { return Buf.Size; }
+- alloc_chunk · function · L641-L641 — T*      alloc_chunk(size_t sz)      { size_t HDR_SZ = 4; sz = IM_MEMALIGN(HDR_SZ + sz, 4u); int off = Buf.Size; Buf.resize(off + (int)sz); ((int*)(void*)(Buf.Data + off))[0] = (int)sz; return (T*)(void*)(Buf.Data + off + (int)HDR_SZ); }
+- begin · function · L642-L642 — T*      begin()                     { size_t HDR_SZ = 4; if (!Buf.Data) return NULL; return (T*)(void*)(Buf.Data + HDR_SZ); }
+- next_chunk · function · L643-L643 — T*      next_chunk(T* p)            { size_t HDR_SZ = 4; IM_ASSERT(p >= begin() && p < end()); p = (T*)(void*)((char*)(void*)p + chunk_size(p)); if (p == (T*)(void*)((char*)end() + HDR_SZ)) return (T*)0; IM_ASSERT(p < end()); return p; }
+- chunk_size · function · L644-L644 — int     chunk_size(const T* p)      { return ((const int*)p)[-1]; }
+- end · function · L645-L645 — T*      end()                       { return (T*)(void*)(Buf.Data + Buf.Size); }
+- offset_from_ptr · function · L646-L646 — int     offset_from_ptr(const T* p) { IM_ASSERT(p >= begin() && p < end()); const ptrdiff_t off = (const char*)p - Buf.Data; return (int)off; }
+- ptr_from_offset · function · L647-L647 — T*      ptr_from_offset(int off)    { IM_ASSERT(off >= 4 && off < Buf.Size); return (T*)(void*)(Buf.Data + off); }
+- swap · function · L648-L648 — void    swap(ImChunkStream<T>& rhs) { rhs.Buf.swap(Buf); }
+- SetCircleTessellationMaxError · function · L701-L701 — void SetCircleTessellationMaxError(float max_error);
+- ImDrawDataBuilder · class · L704-L709 — struct ImDrawDataBuilder
+- GetDrawListCount · function · L710-L983 — int  GetDrawListCount() const   { int count = 0; for (int n = 0; n < IM_ARRAYSIZE(Layers); n++) count += Layers[n].Size; return count; }
+- ImGuiStyleMod · function · L982-L982 — ImGuiStyleMod(ImGuiStyleVar idx, float v)   { VarIdx = idx; BackupFloat[0] = v; }
+- Update · function · L1010-L1010 — void        Update(int count, float spacing, bool clear);
+- DeclColumns · function · L1011-L1011 — float       DeclColumns(float w0, float w1, float w2);
+- CalcExtraSpace · function · L1012-L1012 — float       CalcExtraSpace(float avail_w) const;
+- ClearText · function · L1037-L1037 — void        ClearText()                 { CurLenW = CurLenA = 0; TextW[0] = 0; TextA[0] = 0; CursorClamp(); }
+- ClearFreeMemory · function · L1038-L1038 — void        ClearFreeMemory()           { TextW.clear(); TextA.clear(); InitialTextA.clear(); }
+- GetUndoAvailCount · function · L1039-L1039 — int         GetUndoAvailCount() const   { return Stb.undostate.undo_point; }
+- GetRedoAvailCount · function · L1040-L1040 — int         GetRedoAvailCount() const   { return STB_TEXTEDIT_UNDOSTATECOUNT - Stb.undostate.redo_point; }
+- OnKeyPressed · function · L1041-L1041 — void        OnKeyPressed(int key);      // Cannot be inline because we call in code in stb_textedit.h implementation
+- CursorAnimReset · function · L1044-L1044 — void        CursorAnimReset()           { CursorAnim = -0.30f; }                                   // After a user-input the cursor stays on for a while without blinking
+- CursorClamp · function · L1045-L1045 — void        CursorClamp()               { Stb.cursor = ImMin(Stb.cursor, CurLenW); Stb.select_start = ImMin(Stb.select_start, CurLenW); Stb.select_end = ImMin(Stb.select_end, CurLenW); }
+- HasSelection · function · L1046-L1046 — bool        HasSelection() const        { return Stb.select_start != Stb.select_end; }
+- ClearSelection · function · L1047-L1047 — void        ClearSelection()            { Stb.select_start = Stb.select_end = Stb.cursor; }
+- SelectAll · function · L1048-L1048 — void        SelectAll()                 { Stb.select_start = 0; Stb.cursor = Stb.select_end = CurLenW; Stb.has_preferred_x = 0; }
+- ImGuiPopupData · class · L1052-L1076 — struct ImGuiPopupData
+- ImGuiNavItemData · class · L1065-L1075 — struct ImGuiNavItemData
+- ImGuiNextWindowDataFlags_ · type · L1079-L1090 — enum ImGuiNextWindowDataFlags_
+- ImGuiNextWindowData · class · L1093-L1112 — struct ImGuiNextWindowData
+- ImGuiNextItemDataFlags_ · type · L1115-L1120 — enum ImGuiNextItemDataFlags_
+- ImGuiNextItemData · class · L1122-L1131 — struct ImGuiNextItemData
+- ImGuiShrinkWidthItem · class · L1134-L1138 — struct ImGuiShrinkWidthItem
+- ImGuiPtrOrIndex · class · L1140-L1146 — struct ImGuiPtrOrIndex
+- ImGuiOldColumnFlags_ · type · L1154-L1172 — enum ImGuiOldColumnFlags_
+- ImGuiOldColumnData · class · L1174-L1181 — struct ImGuiOldColumnData
+- ImGuiOldColumns · class · L1184-L1202 — struct ImGuiOldColumns
+- CalcWorkRectPos · function · L1243-L1243 — ImVec2  CalcWorkRectPos(const ImVec2& off_min) const                            { return ImVec2(Pos.x + off_min.x, Pos.y + off_min.y); }
+- CalcWorkRectSize · function · L1244-L1244 — ImVec2  CalcWorkRectSize(const ImVec2& off_min, const ImVec2& off_max) const    { return ImVec2(ImMax(0.0f, Size.x - off_min.x + off_max.x), ImMax(0.0f, Size.y - off_min.y + off_max.y)); }
+- UpdateWorkRect · function · L1245-L1245 — void    UpdateWorkRect()            { WorkPos = CalcWorkRectPos(WorkOffsetMin); WorkSize = CalcWorkRectSize(WorkOffsetMin, WorkOffsetMax); } // Update public fields
+- GetMainRect · function · L1248-L1248 — ImRect  GetMainRect() const         { return ImRect(Pos.x, Pos.y, Pos.x + Size.x, Pos.y + Size.y); }
+- GetWorkRect · function · L1249-L1249 — ImRect  GetWorkRect() const         { return ImRect(WorkPos.x, WorkPos.y, WorkPos.x + WorkSize.x, WorkPos.y + WorkSize.y); }
+- GetBuildWorkRect · function · L1250-L1250 — ImRect  GetBuildWorkRect() const    { ImVec2 pos = CalcWorkRectPos(BuildWorkOffsetMin); ImVec2 size = CalcWorkRectSize(BuildWorkOffsetMin, BuildWorkOffsetMax); return ImRect(pos.x, pos.y, pos.x + size.x, pos.y + size.y); }
+- ImRect · function · L1250-L1250 — ImRect  GetBuildWorkRect() const    { ImVec2 pos = CalcWorkRectPos(BuildWorkOffsetMin); ImVec2 size = CalcWorkRectSize(BuildWorkOffsetMin, BuildWorkOffsetMax); return ImRect(pos.x, pos.y, pos.x + size.x, pos.y + size.y); }
+- ImGuiWindowSettings · class · L1260-L1269 — struct ImGuiWindowSettings
+- GetName · function · L1269-L1269 — char* GetName()             { return (char*)(this + 1); }
+- ImGuiSettingsHandler · class · L1272-L1284 — struct ImGuiSettingsHandler
+- SetToCurrentState · function · L1324-L1324 — void SetToCurrentState();
+- CompareWithCurrentState · function · L1325-L1325 — void CompareWithCurrentState();
+- ImGuiContextHookType · type · L1333-L1333 — enum ImGuiContextHookType { ImGuiContextHookType_NewFramePre, ImGuiContextHookType_NewFramePost, ImGuiContextHookType_EndFramePre, ImGuiContextHookType_EndFramePost, ImGuiContextHookType_RenderPre, ImGuiContextHookType_RenderPost, ImGuiContextHookType_Shutdown, ImGuiContextHookType_PendingRemoval_ };
+- ImGuiContextHook · class · L1335-L1343 — struct ImGuiContextHook
+- ImGuiContext · class · L1350-L1741 — struct ImGuiContext
+- GetID · function · L1902-L1902 — ImGuiID     GetID(const char* str, const char* str_end = NULL);
+- GetID · function · L1903-L1903 — ImGuiID     GetID(const void* ptr);
+- GetID · function · L1904-L1904 — ImGuiID     GetID(int n);
+- GetIDNoKeepAlive · function · L1905-L1905 — ImGuiID     GetIDNoKeepAlive(const char* str, const char* str_end = NULL);
+- GetIDNoKeepAlive · function · L1906-L1906 — ImGuiID     GetIDNoKeepAlive(const void* ptr);
+- GetIDNoKeepAlive · function · L1907-L1907 — ImGuiID     GetIDNoKeepAlive(int n);
+- GetIDFromRectangle · function · L1908-L1908 — ImGuiID     GetIDFromRectangle(const ImRect& r_abs);
+- Rect · function · L1911-L1911 — ImRect      Rect() const            { return ImRect(Pos.x, Pos.y, Pos.x + Size.x, Pos.y + Size.y); }
+- CalcFontSize · function · L1912-L1912 — float       CalcFontSize() const    { ImGuiContext& g = *GImGui; float scale = g.FontBaseSize * FontWindowScale; if (ParentWindow) scale *= ParentWindow->FontWindowScale; return scale; }
+- TitleBarHeight · function · L1913-L1913 — float       TitleBarHeight() const  { ImGuiContext& g = *GImGui; return (Flags & ImGuiWindowFlags_NoTitleBar) ? 0.0f : CalcFontSize() + g.Style.FramePadding.y * 2.0f; }
+- TitleBarRect · function · L1914-L1914 — ImRect      TitleBarRect() const    { return ImRect(Pos, ImVec2(Pos.x + SizeFull.x, Pos.y + TitleBarHeight())); }
+- MenuBarHeight · function · L1915-L1915 — float       MenuBarHeight() const   { ImGuiContext& g = *GImGui; return (Flags & ImGuiWindowFlags_MenuBar) ? DC.MenuBarOffset.y + CalcFontSize() + g.Style.FramePadding.y * 2.0f : 0.0f; }
+- MenuBarHeight · function · L1916-L1916 — ImRect      MenuBarRect() const     { float y1 = Pos.y + TitleBarHeight(); return ImRect(Pos.x, y1, Pos.x + SizeFull.x, y1 + MenuBarHeight()); }
+- MenuBarRect · function · L1916-L1929 — ImRect      MenuBarRect() const     { float y1 = Pos.y + TitleBarHeight(); return ImRect(Pos.x, y1, Pos.x + SizeFull.x, y1 + MenuBarHeight()); }
+- Backup · function · L1928-L1928 — void Backup()           { ImGuiWindow* window = GImGui->CurrentWindow; LastItemId = window->DC.LastItemId; LastItemStatusFlags = window->DC.LastItemStatusFlags; LastItemRect = window->DC.LastItemRect; LastItemDisplayRect = window->DC.LastItemDisplayRect; }
+- Restore · function · L1929-L1929 — void Restore() const    { ImGuiWindow* window = GImGui->CurrentWindow; window->DC.LastItemId = LastItemId; window->DC.LastItemStatusFlags = LastItemStatusFlags; window->DC.LastItemRect = LastItemRect; window->DC.LastItemDisplayRect = LastItemDisplayRect; }
+- ImGuiTabBarFlagsPrivate_ · type · L1937-L1942 — enum ImGuiTabBarFlagsPrivate_
+- ImGuiTabItemFlagsPrivate_ · type · L1945-L1950 — enum ImGuiTabItemFlagsPrivate_
+- ImGuiTabItem · class · L1953-L1968 — struct ImGuiTabItem
+- ImGuiTabBar · class · L1971-L2011 — struct ImGuiTabBar
+- GetTabName · function · L2007-L2007 — const char*         GetTabName(const ImGuiTabItem* tab) const
+- ImGuiTableColumnIdx · type · L2023-L2023 — typedef ImS8 ImGuiTableColumnIdx;
+- ImGuiTableDrawChannelIdx · type · L2024-L2024 — typedef ImU8 ImGuiTableDrawChannelIdx;
+- ImGuiTableCellData · class · L2088-L2092 — struct ImGuiTableCellData
+- ImGuiTable · class · L2095-L2200 — struct ImGuiTable
+- ImGuiTableTempData · class · L2207-L2226 — struct ImGuiTableTempData
+- ImGuiTableSettings · class · L2254-L2264 — struct ImGuiTableSettings
+- GetColumnSettings · function · L2264-L2264 — ImGuiTableColumnSettings*   GetColumnSettings()     { return (ImGuiTableColumnSettings*)(this + 1); }
+- GetCurrentWindowRead · function · L2279-L2279 — inline    ImGuiWindow*  GetCurrentWindowRead()      { ImGuiContext& g = *GImGui; return g.CurrentWindow; }
+- GetCurrentWindow · function · L2280-L2280 — inline    ImGuiWindow*  GetCurrentWindow()          { ImGuiContext& g = *GImGui; g.CurrentWindow->WriteAccessed = true; return g.CurrentWindow; }
+- FindWindowByID · function · L2281-L2281 — IMGUI_API ImGuiWindow*  FindWindowByID(ImGuiID id);
+- FindWindowByName · function · L2282-L2282 — IMGUI_API ImGuiWindow*  FindWindowByName(const char* name);
+- UpdateWindowParentAndRootLinks · function · L2283-L2283 — IMGUI_API void          UpdateWindowParentAndRootLinks(ImGuiWindow* window, ImGuiWindowFlags flags, ImGuiWindow* parent_window);
+- IsWindowChildOf · function · L2285-L2285 — IMGUI_API bool          IsWindowChildOf(ImGuiWindow* window, ImGuiWindow* potential_parent);
+- IsWindowAbove · function · L2286-L2286 — IMGUI_API bool          IsWindowAbove(ImGuiWindow* potential_above, ImGuiWindow* potential_below);
+- IsWindowNavFocusable · function · L2287-L2287 — IMGUI_API bool          IsWindowNavFocusable(ImGuiWindow* window);
+- SetWindowPos · function · L2289-L2289 — IMGUI_API void          SetWindowPos(ImGuiWindow* window, const ImVec2& pos, ImGuiCond cond = 0);
+- SetWindowSize · function · L2290-L2290 — IMGUI_API void          SetWindowSize(ImGuiWindow* window, const ImVec2& size, ImGuiCond cond = 0);
+- SetWindowCollapsed · function · L2291-L2291 — IMGUI_API void          SetWindowCollapsed(ImGuiWindow* window, bool collapsed, ImGuiCond cond = 0);
+- SetWindowHitTestHole · function · L2292-L2292 — IMGUI_API void          SetWindowHitTestHole(ImGuiWindow* window, const ImVec2& pos, const ImVec2& size);
+- FocusWindow · function · L2295-L2295 — IMGUI_API void          FocusWindow(ImGuiWindow* window);
+- FocusTopMostWindowUnderOne · function · L2296-L2296 — IMGUI_API void          FocusTopMostWindowUnderOne(ImGuiWindow* under_this_window, ImGuiWindow* ignore_window);
+- BringWindowToFocusFront · function · L2297-L2297 — IMGUI_API void          BringWindowToFocusFront(ImGuiWindow* window);
+- BringWindowToDisplayFront · function · L2298-L2298 — IMGUI_API void          BringWindowToDisplayFront(ImGuiWindow* window);
+- BringWindowToDisplayBack · function · L2299-L2299 — IMGUI_API void          BringWindowToDisplayBack(ImGuiWindow* window);
+- SetCurrentFont · function · L2302-L2302 — IMGUI_API void          SetCurrentFont(ImFont* font);
+- GetDefaultFont · function · L2303-L2303 — inline ImFont*          GetDefaultFont() { ImGuiContext& g = *GImGui; return g.IO.FontDefault ? g.IO.FontDefault : g.IO.Fonts->Fonts[0]; }
+- GetForegroundDrawList · function · L2304-L2304 — inline ImDrawList*      GetForegroundDrawList(ImGuiWindow* window) { IM_UNUSED(window); return GetForegroundDrawList(); } // This seemingly unnecessary wrapper simplifies compatibility between the 'master' and 'docking' branches.
+- Initialize · function · L2309-L2309 — IMGUI_API void          Initialize(ImGuiContext* context);
+- Shutdown · function · L2310-L2310 — IMGUI_API void          Shutdown(ImGuiContext* context);    // Since 1.60 this is a _private_ function. You can call DestroyContext() to destroy the context created by CreateContext().
+- UpdateHoveredWindowAndCaptureFlags · function · L2313-L2313 — IMGUI_API void          UpdateHoveredWindowAndCaptureFlags();
+- StartMouseMovingWindow · function · L2314-L2314 — IMGUI_API void          StartMouseMovingWindow(ImGuiWindow* window);
+- UpdateMouseMovingWindowNewFrame · function · L2315-L2315 — IMGUI_API void          UpdateMouseMovingWindowNewFrame();
+- UpdateMouseMovingWindowEndFrame · function · L2316-L2316 — IMGUI_API void          UpdateMouseMovingWindowEndFrame();
+- AddContextHook · function · L2319-L2319 — IMGUI_API ImGuiID       AddContextHook(ImGuiContext* context, const ImGuiContextHook* hook);
+- RemoveContextHook · function · L2320-L2320 — IMGUI_API void          RemoveContextHook(ImGuiContext* context, ImGuiID hook_to_remove);
+- CallContextHooks · function · L2321-L2321 — IMGUI_API void          CallContextHooks(ImGuiContext* context, ImGuiContextHookType type);
+- MarkIniSettingsDirty · function · L2324-L2324 — IMGUI_API void                  MarkIniSettingsDirty();
+- MarkIniSettingsDirty · function · L2325-L2325 — IMGUI_API void                  MarkIniSettingsDirty(ImGuiWindow* window);
+- ClearIniSettings · function · L2326-L2326 — IMGUI_API void                  ClearIniSettings();
+- CreateNewWindowSettings · function · L2327-L2327 — IMGUI_API ImGuiWindowSettings*  CreateNewWindowSettings(const char* name);
+- FindWindowSettings · function · L2328-L2328 — IMGUI_API ImGuiWindowSettings*  FindWindowSettings(ImGuiID id);
+- FindOrCreateWindowSettings · function · L2329-L2329 — IMGUI_API ImGuiWindowSettings*  FindOrCreateWindowSettings(const char* name);
+- FindSettingsHandler · function · L2330-L2330 — IMGUI_API ImGuiSettingsHandler* FindSettingsHandler(const char* type_name);
+- SetNextWindowScroll · function · L2333-L2333 — IMGUI_API void          SetNextWindowScroll(const ImVec2& scroll); // Use -1.0f on one axis to leave as-is
+- SetScrollX · function · L2334-L2334 — IMGUI_API void          SetScrollX(ImGuiWindow* window, float scroll_x);
+- SetScrollY · function · L2335-L2335 — IMGUI_API void          SetScrollY(ImGuiWindow* window, float scroll_y);
+- SetScrollFromPosX · function · L2336-L2336 — IMGUI_API void          SetScrollFromPosX(ImGuiWindow* window, float local_x, float center_x_ratio);
+- SetScrollFromPosY · function · L2337-L2337 — IMGUI_API void          SetScrollFromPosY(ImGuiWindow* window, float local_y, float center_y_ratio);
+- ScrollToBringRectIntoView · function · L2338-L2338 — IMGUI_API ImVec2        ScrollToBringRectIntoView(ImGuiWindow* window, const ImRect& item_rect);
+- GetItemID · function · L2341-L2341 — inline ImGuiID          GetItemID()     { ImGuiContext& g = *GImGui; return g.CurrentWindow->DC.LastItemId; }   // Get ID of last item (~~ often same ImGui::GetID(label) beforehand)
+- GetItemStatusFlags · function · L2342-L2342 — inline ImGuiItemStatusFlags GetItemStatusFlags() { ImGuiContext& g = *GImGui; return g.CurrentWindow->DC.LastItemStatusFlags; }
+- GetActiveID · function · L2343-L2343 — inline ImGuiID          GetActiveID()   { ImGuiContext& g = *GImGui; return g.ActiveId; }
+- GetFocusID · function · L2344-L2344 — inline ImGuiID          GetFocusID()    { ImGuiContext& g = *GImGui; return g.NavId; }
+- GetItemFlags · function · L2345-L2345 — inline ImGuiItemFlags   GetItemFlags()  { ImGuiContext& g = *GImGui; return g.CurrentItemFlags; }
+- SetActiveID · function · L2346-L2346 — IMGUI_API void          SetActiveID(ImGuiID id, ImGuiWindow* window);
+- SetFocusID · function · L2347-L2347 — IMGUI_API void          SetFocusID(ImGuiID id, ImGuiWindow* window);
+- ClearActiveID · function · L2348-L2348 — IMGUI_API void          ClearActiveID();
+- SetHoveredID · function · L2350-L2350 — IMGUI_API void          SetHoveredID(ImGuiID id);
+- KeepAliveID · function · L2351-L2351 — IMGUI_API void          KeepAliveID(ImGuiID id);
+- MarkItemEdited · function · L2352-L2352 — IMGUI_API void          MarkItemEdited(ImGuiID id);     // Mark data associated to given item as "edited", used by IsItemDeactivatedAfterEdit() function.
+- PushOverrideID · function · L2353-L2353 — IMGUI_API void          PushOverrideID(ImGuiID id);     // Push given value as-is at the top of the ID stack (whereas PushID combines old and new hashes)
+- GetIDWithSeed · function · L2354-L2354 — IMGUI_API ImGuiID       GetIDWithSeed(const char* str_id_begin, const char* str_id_end, ImGuiID seed);
+- ItemSize · function · L2357-L2357 — IMGUI_API void          ItemSize(const ImVec2& size, float text_baseline_y = -1.0f);
+- ItemSize · function · L2358-L2358 — IMGUI_API void          ItemSize(const ImRect& bb, float text_baseline_y = -1.0f);
+- ItemAdd · function · L2359-L2359 — IMGUI_API bool          ItemAdd(const ImRect& bb, ImGuiID id, const ImRect* nav_bb = NULL, ImGuiItemAddFlags flags = 0);
+- ItemHoverable · function · L2360-L2360 — IMGUI_API bool          ItemHoverable(const ImRect& bb, ImGuiID id);
+- ItemFocusable · function · L2361-L2361 — IMGUI_API void          ItemFocusable(ImGuiWindow* window, ImGuiID id);
+- IsClippedEx · function · L2362-L2362 — IMGUI_API bool          IsClippedEx(const ImRect& bb, ImGuiID id, bool clip_even_when_logged);
+- SetLastItemData · function · L2363-L2363 — IMGUI_API void          SetLastItemData(ImGuiWindow* window, ImGuiID item_id, ImGuiItemStatusFlags status_flags, const ImRect& item_rect);
+- CalcItemSize · function · L2364-L2364 — IMGUI_API ImVec2        CalcItemSize(ImVec2 size, float default_w, float default_h);
+- CalcWrapWidthForPos · function · L2365-L2365 — IMGUI_API float         CalcWrapWidthForPos(const ImVec2& pos, float wrap_pos_x);
+- PushMultiItemsWidths · function · L2366-L2366 — IMGUI_API void          PushMultiItemsWidths(int components, float width_full);
+- PushItemFlag · function · L2367-L2367 — IMGUI_API void          PushItemFlag(ImGuiItemFlags option, bool enabled);
+- PopItemFlag · function · L2368-L2368 — IMGUI_API void          PopItemFlag();
+- IsItemToggledSelection · function · L2369-L2369 — IMGUI_API bool          IsItemToggledSelection();                                   // Was the last item selection toggled? (after Selectable(), TreeNode() etc. We only returns toggle _event_ in order to handle clipping correctly)
+- ShrinkWidths · function · L2371-L2371 — IMGUI_API void          ShrinkWidths(ImGuiShrinkWidthItem* items, int count, float width_excess);
+- FocusableItemRegister · function · L2378-L2378 — inline bool FocusableItemRegister(ImGuiWindow* window, ImGuiID id)  { IM_ASSERT(0); IM_UNUSED(window); IM_UNUSED(id); return false; } // -> pass ImGuiItemAddFlags_Focusable flag to ItemAdd()
+- FocusableItemUnregister · function · L2379-L2379 — inline void FocusableItemUnregister(ImGuiWindow* window)            { IM_ASSERT(0); IM_UNUSED(window); }                              // -> unnecessary: TempInputText() uses ImGuiInputTextFlags_MergedItem
+- LogBegin · function · L2383-L2383 — IMGUI_API void          LogBegin(ImGuiLogType type, int auto_open_depth);           // -> BeginCapture() when we design v2 api, for now stay under the radar by using the old name.
+- LogToBuffer · function · L2384-L2384 — IMGUI_API void          LogToBuffer(int auto_open_depth = -1);                      // Start logging/capturing to internal buffer
+- LogRenderedText · function · L2385-L2385 — IMGUI_API void          LogRenderedText(const ImVec2* ref_pos, const char* text, const char* text_end = NULL);
+- LogSetNextTextDecoration · function · L2386-L2386 — IMGUI_API void          LogSetNextTextDecoration(const char* prefix, const char* suffix);
+- BeginChildEx · function · L2389-L2389 — IMGUI_API bool          BeginChildEx(const char* name, ImGuiID id, const ImVec2& size_arg, bool border, ImGuiWindowFlags flags);
+- OpenPopupEx · function · L2390-L2390 — IMGUI_API void          OpenPopupEx(ImGuiID id, ImGuiPopupFlags popup_flags = ImGuiPopupFlags_None);
+- ClosePopupToLevel · function · L2391-L2391 — IMGUI_API void          ClosePopupToLevel(int remaining, bool restore_focus_to_window_under_popup);
+- ClosePopupsOverWindow · function · L2392-L2392 — IMGUI_API void          ClosePopupsOverWindow(ImGuiWindow* ref_window, bool restore_focus_to_window_under_popup);
+- IsPopupOpen · function · L2393-L2393 — IMGUI_API bool          IsPopupOpen(ImGuiID id, ImGuiPopupFlags popup_flags);
+- BeginPopupEx · function · L2394-L2394 — IMGUI_API bool          BeginPopupEx(ImGuiID id, ImGuiWindowFlags extra_flags);
+- BeginTooltipEx · function · L2395-L2395 — IMGUI_API void          BeginTooltipEx(ImGuiWindowFlags extra_flags, ImGuiTooltipFlags tooltip_flags);
+- BeginTooltipEx2 · function · L2396-L2396 — IMGUI_API void          BeginTooltipEx2(ImGuiWindowFlags extra_flags, ImGuiTooltipFlags tooltip_flags,ImVec2 pos);
+- BeginViewportSideBar · function · L2400-L2400 — IMGUI_API bool          BeginViewportSideBar(const char* name, ImGuiViewport* viewport, ImGuiDir dir, float size, ImGuiWindowFlags window_flags);
+- NavInitWindow · function · L2403-L2403 — IMGUI_API void          NavInitWindow(ImGuiWindow* window, bool force_reinit);
+- NavMoveRequestButNoResultYet · function · L2404-L2404 — IMGUI_API bool          NavMoveRequestButNoResultYet();
+- NavMoveRequestCancel · function · L2405-L2405 — IMGUI_API void          NavMoveRequestCancel();
+- NavMoveRequestForward · function · L2406-L2406 — IMGUI_API void          NavMoveRequestForward(ImGuiDir move_dir, ImGuiDir clip_dir, const ImRect& bb_rel, ImGuiNavMoveFlags move_flags);
+- NavMoveRequestTryWrapping · function · L2407-L2407 — IMGUI_API void          NavMoveRequestTryWrapping(ImGuiWindow* window, ImGuiNavMoveFlags move_flags);
+- GetNavInputAmount · function · L2408-L2408 — IMGUI_API float         GetNavInputAmount(ImGuiNavInput n, ImGuiInputReadMode mode);
+- GetNavInputAmount2d · function · L2409-L2409 — IMGUI_API ImVec2        GetNavInputAmount2d(ImGuiNavDirSourceFlags dir_sources, ImGuiInputReadMode mode, float slow_factor = 0.0f, float fast_factor = 0.0f);
+- CalcTypematicRepeatAmount · function · L2410-L2410 — IMGUI_API int           CalcTypematicRepeatAmount(float t0, float t1, float repeat_delay, float repeat_rate);
+- ActivateItem · function · L2411-L2411 — IMGUI_API void          ActivateItem(ImGuiID id);   // Remotely activate a button, checkbox, tree node etc. given its unique ID. activation is queued and processed on the next frame when the item is encountered again.
+- SetNavID · function · L2412-L2412 — IMGUI_API void          SetNavID(ImGuiID id, ImGuiNavLayer nav_layer, ImGuiID focus_scope_id, const ImRect& rect_rel);
+- PushFocusScope · function · L2417-L2417 — IMGUI_API void          PushFocusScope(ImGuiID id);
+- PopFocusScope · function · L2418-L2418 — IMGUI_API void          PopFocusScope();
+- GetFocusedFocusScope · function · L2419-L2419 — inline ImGuiID          GetFocusedFocusScope()          { ImGuiContext& g = *GImGui; return g.NavFocusScopeId; }                            // Focus scope which is actually active
+- GetFocusScope · function · L2420-L2420 — inline ImGuiID          GetFocusScope()                 { ImGuiContext& g = *GImGui; return g.CurrentWindow->DC.NavFocusScopeIdCurrent; }   // Focus scope we are outputting into, set by PushFocusScope()
+- SetItemUsingMouseWheel · function · L2424-L2424 — IMGUI_API void          SetItemUsingMouseWheel();
+- IsActiveIdUsingNavDir · function · L2425-L2425 — inline bool             IsActiveIdUsingNavDir(ImGuiDir dir)                         { ImGuiContext& g = *GImGui; return (g.ActiveIdUsingNavDirMask & (1 << dir)) != 0; }
+- IsActiveIdUsingNavInput · function · L2426-L2426 — inline bool             IsActiveIdUsingNavInput(ImGuiNavInput input)                { ImGuiContext& g = *GImGui; return (g.ActiveIdUsingNavInputMask & (1 << input)) != 0; }
+- IsActiveIdUsingKey · function · L2427-L2427 — inline bool             IsActiveIdUsingKey(ImGuiKey key)                            { ImGuiContext& g = *GImGui; IM_ASSERT(key < 64); return (g.ActiveIdUsingKeyInputMask & ((ImU64)1 << key)) != 0; }
+- IsMouseDragPastThreshold · function · L2428-L2428 — IMGUI_API bool          IsMouseDragPastThreshold(ImGuiMouseButton button, float lock_threshold = -1.0f);
+- IsKeyPressedMap · function · L2429-L2429 — inline bool             IsKeyPressedMap(ImGuiKey key, bool repeat = true)           { ImGuiContext& g = *GImGui; const int key_index = g.IO.KeyMap[key]; return (key_index >= 0) ? IsKeyPressed(key_index, repeat) : false; }
+- IsNavInputDown · function · L2430-L2430 — inline bool             IsNavInputDown(ImGuiNavInput n)                             { ImGuiContext& g = *GImGui; return g.IO.NavInputs[n] > 0.0f; }
+- IsNavInputTest · function · L2431-L2431 — inline bool             IsNavInputTest(ImGuiNavInput n, ImGuiInputReadMode rm)      { return (GetNavInputAmount(n, rm) > 0.0f); }
+- BeginDragDropTargetCustom · function · L2435-L2435 — IMGUI_API bool          BeginDragDropTargetCustom(const ImRect& bb, ImGuiID id);
+- ClearDragDrop · function · L2436-L2436 — IMGUI_API void          ClearDragDrop();
+- IsDragDropPayloadBeingAccepted · function · L2437-L2437 — IMGUI_API bool          IsDragDropPayloadBeingAccepted();
+- SetWindowClipRectBeforeSetChannel · function · L2440-L2440 — IMGUI_API void          SetWindowClipRectBeforeSetChannel(ImGuiWindow* window, const ImRect& clip_rect);
+- BeginColumns · function · L2441-L2441 — IMGUI_API void          BeginColumns(const char* str_id, int count, ImGuiOldColumnFlags flags = 0); // setup number of columns. use an identifier to distinguish multiple column sets. close with EndColumns().
+- EndColumns · function · L2442-L2442 — IMGUI_API void          EndColumns();                                                               // close columns
+- PushColumnClipRect · function · L2443-L2443 — IMGUI_API void          PushColumnClipRect(int column_index);
+- PushColumnsBackground · function · L2444-L2444 — IMGUI_API void          PushColumnsBackground();
+- PopColumnsBackground · function · L2445-L2445 — IMGUI_API void          PopColumnsBackground();
+- GetColumnsID · function · L2446-L2446 — IMGUI_API ImGuiID       GetColumnsID(const char* str_id, int count);
+- FindOrCreateColumns · function · L2447-L2447 — IMGUI_API ImGuiOldColumns* FindOrCreateColumns(ImGuiWindow* window, ImGuiID id);
+- GetColumnOffsetFromNorm · function · L2448-L2448 — IMGUI_API float         GetColumnOffsetFromNorm(const ImGuiOldColumns* columns, float offset_norm);
+- GetColumnNormFromOffset · function · L2449-L2449 — IMGUI_API float         GetColumnNormFromOffset(const ImGuiOldColumns* columns, float offset);
+- TableOpenContextMenu · function · L2452-L2452 — IMGUI_API void          TableOpenContextMenu(int column_n = -1);
+- TableSetColumnWidth · function · L2453-L2453 — IMGUI_API void          TableSetColumnWidth(int column_n, float width);
+- TableSetColumnSortDirection · function · L2454-L2454 — IMGUI_API void          TableSetColumnSortDirection(int column_n, ImGuiSortDirection sort_direction, bool append_to_sort_specs);
+- TableGetHoveredColumn · function · L2455-L2455 — IMGUI_API int           TableGetHoveredColumn(); // May use (TableGetColumnFlags() & ImGuiTableColumnFlags_IsHovered) instead. Return hovered column. return -1 when table is not hovered. return columns_count if the unused space at the right of visible columns is hovered.
+- TableGetHeaderRowHeight · function · L2456-L2456 — IMGUI_API float         TableGetHeaderRowHeight();
+- TablePushBackgroundChannel · function · L2457-L2457 — IMGUI_API void          TablePushBackgroundChannel();
+- TablePopBackgroundChannel · function · L2458-L2458 — IMGUI_API void          TablePopBackgroundChannel();
+- GetCurrentTable · function · L2461-L2461 — inline    ImGuiTable*   GetCurrentTable() { ImGuiContext& g = *GImGui; return g.CurrentTable; }
+- TableFindByID · function · L2462-L2462 — IMGUI_API ImGuiTable*   TableFindByID(ImGuiID id);
+- BeginTableEx · function · L2463-L2463 — IMGUI_API bool          BeginTableEx(const char* name, ImGuiID id, int columns_count, ImGuiTableFlags flags = 0, const ImVec2& outer_size = ImVec2(0, 0), float inner_width = 0.0f);
+- TableBeginInitMemory · function · L2464-L2464 — IMGUI_API void          TableBeginInitMemory(ImGuiTable* table, int columns_count);
+- TableBeginApplyRequests · function · L2465-L2465 — IMGUI_API void          TableBeginApplyRequests(ImGuiTable* table);
+- TableSetupDrawChannels · function · L2466-L2466 — IMGUI_API void          TableSetupDrawChannels(ImGuiTable* table);
+- TableUpdateLayout · function · L2467-L2467 — IMGUI_API void          TableUpdateLayout(ImGuiTable* table);
+- TableUpdateBorders · function · L2468-L2468 — IMGUI_API void          TableUpdateBorders(ImGuiTable* table);
+- TableUpdateColumnsWeightFromWidth · function · L2469-L2469 — IMGUI_API void          TableUpdateColumnsWeightFromWidth(ImGuiTable* table);
+- TableDrawBorders · function · L2470-L2470 — IMGUI_API void          TableDrawBorders(ImGuiTable* table);
+- TableDrawContextMenu · function · L2471-L2471 — IMGUI_API void          TableDrawContextMenu(ImGuiTable* table);
+- TableMergeDrawChannels · function · L2472-L2472 — IMGUI_API void          TableMergeDrawChannels(ImGuiTable* table);
+- TableSortSpecsSanitize · function · L2473-L2473 — IMGUI_API void          TableSortSpecsSanitize(ImGuiTable* table);
+- TableSortSpecsBuild · function · L2474-L2474 — IMGUI_API void          TableSortSpecsBuild(ImGuiTable* table);
+- TableFixColumnSortDirection · function · L2476-L2476 — IMGUI_API void          TableFixColumnSortDirection(ImGuiTable* table, ImGuiTableColumn* column);
+- TableGetColumnWidthAuto · function · L2477-L2477 — IMGUI_API float         TableGetColumnWidthAuto(ImGuiTable* table, ImGuiTableColumn* column);
+- TableBeginRow · function · L2478-L2478 — IMGUI_API void          TableBeginRow(ImGuiTable* table);
+- TableEndRow · function · L2479-L2479 — IMGUI_API void          TableEndRow(ImGuiTable* table);
+- TableBeginCell · function · L2480-L2480 — IMGUI_API void          TableBeginCell(ImGuiTable* table, int column_n);
+- TableEndCell · function · L2481-L2481 — IMGUI_API void          TableEndCell(ImGuiTable* table);
+- TableGetCellBgRect · function · L2482-L2482 — IMGUI_API ImRect        TableGetCellBgRect(const ImGuiTable* table, int column_n);
+- TableGetColumnName · function · L2483-L2483 — IMGUI_API const char*   TableGetColumnName(const ImGuiTable* table, int column_n);
+- TableGetColumnResizeID · function · L2484-L2484 — IMGUI_API ImGuiID       TableGetColumnResizeID(const ImGuiTable* table, int column_n, int instance_no = 0);
+- TableGetMaxColumnWidth · function · L2485-L2485 — IMGUI_API float         TableGetMaxColumnWidth(const ImGuiTable* table, int column_n);
+- TableSetColumnWidthAutoSingle · function · L2486-L2486 — IMGUI_API void          TableSetColumnWidthAutoSingle(ImGuiTable* table, int column_n);
+- TableSetColumnWidthAutoAll · function · L2487-L2487 — IMGUI_API void          TableSetColumnWidthAutoAll(ImGuiTable* table);
+- TableRemove · function · L2488-L2488 — IMGUI_API void          TableRemove(ImGuiTable* table);
+- TableGcCompactTransientBuffers · function · L2489-L2489 — IMGUI_API void          TableGcCompactTransientBuffers(ImGuiTable* table);
+- TableGcCompactTransientBuffers · function · L2490-L2490 — IMGUI_API void          TableGcCompactTransientBuffers(ImGuiTableTempData* table);
+- TableGcCompactSettings · function · L2491-L2491 — IMGUI_API void          TableGcCompactSettings();
+- TableLoadSettings · function · L2494-L2494 — IMGUI_API void                  TableLoadSettings(ImGuiTable* table);
+- TableSaveSettings · function · L2495-L2495 — IMGUI_API void                  TableSaveSettings(ImGuiTable* table);
+- TableResetSettings · function · L2496-L2496 — IMGUI_API void                  TableResetSettings(ImGuiTable* table);
+- TableSettingsInstallHandler · function · L2498-L2498 — IMGUI_API void                  TableSettingsInstallHandler(ImGuiContext* context);
+- TableSettingsCreate · function · L2499-L2499 — IMGUI_API ImGuiTableSettings*   TableSettingsCreate(ImGuiID id, int columns_count);
+- TableSettingsFindByID · function · L2500-L2500 — IMGUI_API ImGuiTableSettings*   TableSettingsFindByID(ImGuiID id);
+- BeginTabBarEx · function · L2503-L2503 — IMGUI_API bool          BeginTabBarEx(ImGuiTabBar* tab_bar, const ImRect& bb, ImGuiTabBarFlags flags);
+- TabBarFindTabByID · function · L2504-L2504 — IMGUI_API ImGuiTabItem* TabBarFindTabByID(ImGuiTabBar* tab_bar, ImGuiID tab_id);
+- TabBarRemoveTab · function · L2505-L2505 — IMGUI_API void          TabBarRemoveTab(ImGuiTabBar* tab_bar, ImGuiID tab_id);
+- TabBarCloseTab · function · L2506-L2506 — IMGUI_API void          TabBarCloseTab(ImGuiTabBar* tab_bar, ImGuiTabItem* tab);
+- TabBarQueueReorder · function · L2507-L2507 — IMGUI_API void          TabBarQueueReorder(ImGuiTabBar* tab_bar, const ImGuiTabItem* tab, int offset);
+- TabBarQueueReorderFromMousePos · function · L2508-L2508 — IMGUI_API void          TabBarQueueReorderFromMousePos(ImGuiTabBar* tab_bar, const ImGuiTabItem* tab, ImVec2 mouse_pos);
+- TabBarProcessReorder · function · L2509-L2509 — IMGUI_API bool          TabBarProcessReorder(ImGuiTabBar* tab_bar);
+- TabItemEx · function · L2510-L2510 — IMGUI_API bool          TabItemEx(ImGuiTabBar* tab_bar, const char* label, bool* p_open, ImGuiTabItemFlags flags);
+- TabItemCalcSize · function · L2511-L2511 — IMGUI_API ImVec2        TabItemCalcSize(const char* label, bool has_close_button);
+- TabItemBackground · function · L2512-L2512 — IMGUI_API void          TabItemBackground(ImDrawList* draw_list, const ImRect& bb, ImGuiTabItemFlags flags, ImU32 col);
+- TabItemLabelAndCloseButton · function · L2513-L2513 — IMGUI_API void          TabItemLabelAndCloseButton(ImDrawList* draw_list, const ImRect& bb, ImGuiTabItemFlags flags, ImVec2 frame_padding, const char* label, ImGuiID tab_id, ImGuiID close_button_id, bool is_contents_visible, bool* out_just_closed, bool* out_text_clipped);
+- RenderText · function · L2518-L2518 — IMGUI_API void          RenderText(ImVec2 pos, const char* text, const char* text_end = NULL, bool hide_text_after_hash = true);
+- RenderTextWrapped · function · L2519-L2519 — IMGUI_API void          RenderTextWrapped(ImVec2 pos, const char* text, const char* text_end, float wrap_width);
+- RenderTextClipped · function · L2520-L2520 — IMGUI_API void          RenderTextClipped(const ImVec2& pos_min, const ImVec2& pos_max, const char* text, const char* text_end, const ImVec2* text_size_if_known, const ImVec2& align = ImVec2(0, 0), const ImRect* clip_rect = NULL);
+- RenderTextClippedEx · function · L2521-L2521 — IMGUI_API void          RenderTextClippedEx(ImDrawList* draw_list, const ImVec2& pos_min, const ImVec2& pos_max, const char* text, const char* text_end, const ImVec2* text_size_if_known, const ImVec2& align = ImVec2(0, 0), const ImRect* clip_rect = NULL);
+- RenderTextEllipsis · function · L2522-L2522 — IMGUI_API void          RenderTextEllipsis(ImDrawList* draw_list, const ImVec2& pos_min, const ImVec2& pos_max, float clip_max_x, float ellipsis_max_x, const char* text, const char* text_end, const ImVec2* text_size_if_known);
+- RenderFrame · function · L2523-L2523 — IMGUI_API void          RenderFrame(ImVec2 p_min, ImVec2 p_max, ImU32 fill_col, bool border = true, float rounding = 0.0f);
+- RenderFrameBorder · function · L2524-L2524 — IMGUI_API void          RenderFrameBorder(ImVec2 p_min, ImVec2 p_max, float rounding = 0.0f);
+- RenderColorRectWithAlphaCheckerboard · function · L2525-L2525 — IMGUI_API void          RenderColorRectWithAlphaCheckerboard(ImDrawList* draw_list, ImVec2 p_min, ImVec2 p_max, ImU32 fill_col, float grid_step, ImVec2 grid_off, float rounding = 0.0f, ImDrawFlags flags = 0);
+- RenderNavHighlight · function · L2526-L2526 — IMGUI_API void          RenderNavHighlight(const ImRect& bb, ImGuiID id, ImGuiNavHighlightFlags flags = ImGuiNavHighlightFlags_TypeDefault); // Navigation highlight
+- FindRenderedTextEnd · function · L2527-L2527 — IMGUI_API const char*   FindRenderedTextEnd(const char* text, const char* text_end = NULL); // Find the optional ## from which we stop displaying text.
+- RenderArrow · function · L2530-L2530 — IMGUI_API void          RenderArrow(ImDrawList* draw_list, ImVec2 pos, ImU32 col, ImGuiDir dir, float scale = 1.0f);
+- BBLRenderArrow · function · L2531-L2531 — IMGUI_API void          BBLRenderArrow(ImDrawList* draw_list, ImVec2 pos, ImU32 col, ImGuiDir dir, float thickness = 1.0f, float scale = 1.0f);
+- RenderBullet · function · L2532-L2532 — IMGUI_API void          RenderBullet(ImDrawList* draw_list, ImVec2 pos, ImU32 col);
+- RenderCheckMark · function · L2533-L2533 — IMGUI_API void          RenderCheckMark(ImDrawList* draw_list, ImVec2 pos, ImU32 col, float sz);
+- RenderMouseCursor · function · L2534-L2534 — IMGUI_API void          RenderMouseCursor(ImDrawList* draw_list, ImVec2 pos, float scale, ImGuiMouseCursor mouse_cursor, ImU32 col_fill, ImU32 col_border, ImU32 col_shadow);
+- RenderArrowPointingAt · function · L2535-L2535 — IMGUI_API void          RenderArrowPointingAt(ImDrawList* draw_list, ImVec2 pos, ImVec2 half_sz, ImGuiDir direction, ImU32 col);
+- RenderRectFilledRangeH · function · L2536-L2536 — IMGUI_API void          RenderRectFilledRangeH(ImDrawList* draw_list, const ImRect& rect, ImU32 col, float x_start_norm, float x_end_norm, float rounding);
+- RenderRectFilledWithHole · function · L2537-L2537 — IMGUI_API void          RenderRectFilledWithHole(ImDrawList* draw_list, ImRect outer, ImRect inner, ImU32 col, float rounding);
+- RenderArrow · function · L2541-L2541 — inline void RenderArrow(ImVec2 pos, ImGuiDir dir, float scale=1.0f) { ImGuiWindow* window = GetCurrentWindow(); RenderArrow(window->DrawList, pos, GetColorU32(ImGuiCol_Text), dir, scale); }
+- RenderBullet · function · L2542-L2542 — inline void RenderBullet(ImVec2 pos)                                { ImGuiWindow* window = GetCurrentWindow(); RenderBullet(window->DrawList, pos, GetColorU32(ImGuiCol_Text)); }
+- TextEx · function · L2546-L2546 — IMGUI_API void          TextEx(const char* text, const char* text_end = NULL, ImGuiTextFlags flags = 0);
+- ButtonEx · function · L2547-L2547 — IMGUI_API bool          ButtonEx(const char* label, const ImVec2& size_arg = ImVec2(0, 0), ImGuiButtonFlags flags = 0);
+- BBLButtonEx · function · L2548-L2548 — IMGUI_API bool          BBLButtonEx(const char* label, const ImVec2& size_arg = ImVec2(0, 0), ImGuiButtonFlags flags = 0);
+- CloseButton · function · L2549-L2549 — IMGUI_API bool          CloseButton(ImGuiID id, const ImVec2& pos);
+- CollapseButton · function · L2550-L2550 — IMGUI_API bool          CollapseButton(ImGuiID id, const ImVec2& pos);
+- ArrowButtonEx · function · L2551-L2551 — IMGUI_API bool          ArrowButtonEx(const char* str_id, ImGuiDir dir, ImVec2 size_arg, ImGuiButtonFlags flags = 0);
+- Scrollbar · function · L2552-L2552 — IMGUI_API void          Scrollbar(ImGuiAxis axis);
+- ScrollbarEx · function · L2553-L2553 — IMGUI_API bool          ScrollbarEx(const ImRect& bb, ImGuiID id, ImGuiAxis axis, float* p_scroll_v, float avail_v, float contents_v, ImDrawFlags flags);
+- ImageButtonEx · function · L2554-L2554 — IMGUI_API bool          ImageButtonEx(ImGuiID id, ImTextureID texture_id, const ImVec2& size, const ImVec2& uv0, const ImVec2& uv1, const ImVec2& padding, const ImVec4& bg_col, const ImVec4& tint_col);
+- ImageButtonEx2 · function · L2555-L2555 — IMGUI_API bool          ImageButtonEx2(ImGuiID id, ImTextureID texture_id, const ImVec2& size, const ImVec2& uv0, const ImVec2& uv1, const ImVec2& padding, const ImVec4& bg_col, const ImVec4& tint_col, const ImVec2& margin);
+- ImageButtonEx3 · function · L2556-L2556 — IMGUI_API bool          ImageButtonEx3(ImGuiID id, ImTextureID texture_id,ImTextureID texture_id_hover, const ImVec2& size, const ImVec2& uv0, const ImVec2& uv1, const ImVec2& padding, const ImVec4& bg_col, const ImVec4& tint_col, const ImVec2& margin);
+- BBLImageButtonEx · function · L2557-L2557 — IMGUI_API bool          BBLImageButtonEx(ImGuiID id, ImTextureID texture_id,ImTextureID texture_id_hover,ImTextureID texture_id_press, const ImVec2& size, bool &value, const ImVec2& uv0, const ImVec2& uv1, const ImVec2& padding, const ImVec4& bg_col, const ImVec4& tint_col, const ImVec2& margin);
+- GetWindowScrollbarRect · function · L2558-L2558 — IMGUI_API ImRect        GetWindowScrollbarRect(ImGuiWindow* window, ImGuiAxis axis);
+- GetWindowScrollbarID · function · L2559-L2559 — IMGUI_API ImGuiID       GetWindowScrollbarID(ImGuiWindow* window, ImGuiAxis axis);
+- GetWindowResizeCornerID · function · L2560-L2560 — IMGUI_API ImGuiID       GetWindowResizeCornerID(ImGuiWindow* window, int n); // 0..3: corners
+- GetWindowResizeBorderID · function · L2561-L2561 — IMGUI_API ImGuiID       GetWindowResizeBorderID(ImGuiWindow* window, ImGuiDir dir);
+- SeparatorEx · function · L2562-L2562 — IMGUI_API void          SeparatorEx(ImGuiSeparatorFlags flags);
+- CheckboxFlags · function · L2563-L2563 — IMGUI_API bool          CheckboxFlags(const char* label, ImS64* flags, ImS64 flags_value);
+- CheckboxFlags · function · L2564-L2564 — IMGUI_API bool          CheckboxFlags(const char* label, ImU64* flags, ImU64 flags_value);
+- ButtonBehavior · function · L2567-L2567 — IMGUI_API bool          ButtonBehavior(const ImRect& bb, ImGuiID id, bool* out_hovered, bool* out_held, ImGuiButtonFlags flags = 0);
+- DragBehavior · function · L2568-L2568 — IMGUI_API bool          DragBehavior(ImGuiID id, ImGuiDataType data_type, void* p_v, float v_speed, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags);
+- SliderBehavior · function · L2569-L2569 — IMGUI_API bool          SliderBehavior(const ImRect& bb, ImGuiID id, ImGuiDataType data_type, void* p_v, const void* p_min, const void* p_max, const char* format, ImGuiSliderFlags flags, ImRect* out_grab_bb);
+- SplitterBehavior · function · L2570-L2570 — IMGUI_API bool          SplitterBehavior(const ImRect& bb, ImGuiID id, ImGuiAxis axis, float* size1, float* size2, float min_size1, float min_size2, float hover_extend = 0.0f, float hover_visibility_delay = 0.0f);
+- TreeNodeBehavior · function · L2571-L2571 — IMGUI_API bool          TreeNodeBehavior(ImGuiID id, ImGuiTreeNodeFlags flags, const char* label, const char* label_end = NULL);
+- TreeNodeBehaviorIsOpen · function · L2572-L2572 — IMGUI_API bool          TreeNodeBehaviorIsOpen(ImGuiID id, ImGuiTreeNodeFlags flags = 0);                     // Consume previous SetNextItemOpen() data, if any. May return true when logging
+- TreePushOverrideID · function · L2573-L2573 — IMGUI_API void          TreePushOverrideID(ImGuiID id);
+- ScaleRatioFromValueT · function · L2578-L2578 — template<typename T, typename SIGNED_T, typename FLOAT_T>   IMGUI_API float ScaleRatioFromValueT(ImGuiDataType data_type, T v, T v_min, T v_max, bool is_logarithmic, float logarithmic_zero_epsilon, float zero_deadzone_size);
+- ScaleValueFromRatioT · function · L2579-L2579 — template<typename T, typename SIGNED_T, typename FLOAT_T>   IMGUI_API T     ScaleValueFromRatioT(ImGuiDataType data_type, float t, T v_min, T v_max, bool is_logarithmic, float logarithmic_zero_epsilon, float zero_deadzone_size);
+- DragBehaviorT · function · L2580-L2580 — template<typename T, typename SIGNED_T, typename FLOAT_T>   IMGUI_API bool  DragBehaviorT(ImGuiDataType data_type, T* v, float v_speed, T v_min, T v_max, const char* format, ImGuiSliderFlags flags);
+- SliderBehaviorT · function · L2581-L2581 — template<typename T, typename SIGNED_T, typename FLOAT_T>   IMGUI_API bool  SliderBehaviorT(const ImRect& bb, ImGuiID id, ImGuiDataType data_type, T* v, T v_min, T v_max, const char* format, ImGuiSliderFlags flags, ImRect* out_grab_bb);
+- RoundScalarWithFormatT · function · L2582-L2582 — template<typename T, typename SIGNED_T>                     IMGUI_API T     RoundScalarWithFormatT(const char* format, ImGuiDataType data_type, T v);
+- CheckboxFlagsT · function · L2583-L2583 — template<typename T>                                        IMGUI_API bool  CheckboxFlagsT(const char* label, T* flags, T flags_value);
+- DataTypeGetInfo · function · L2586-L2586 — IMGUI_API const ImGuiDataTypeInfo*  DataTypeGetInfo(ImGuiDataType data_type);
+- DataTypeFormatString · function · L2587-L2587 — IMGUI_API int           DataTypeFormatString(char* buf, int buf_size, ImGuiDataType data_type, const void* p_data, const char* format);
+- DataTypeApplyOp · function · L2588-L2588 — IMGUI_API void          DataTypeApplyOp(ImGuiDataType data_type, int op, void* output, const void* arg_1, const void* arg_2);
+- DataTypeApplyOpFromText · function · L2589-L2589 — IMGUI_API bool          DataTypeApplyOpFromText(const char* buf, const char* initial_value_buf, ImGuiDataType data_type, void* p_data, const char* format);
+- DataTypeCompare · function · L2590-L2590 — IMGUI_API int           DataTypeCompare(ImGuiDataType data_type, const void* arg_1, const void* arg_2);
+- DataTypeClamp · function · L2591-L2591 — IMGUI_API bool          DataTypeClamp(ImGuiDataType data_type, void* p_data, const void* p_min, const void* p_max);
+- InputTextEx · function · L2594-L2594 — IMGUI_API bool          InputTextEx(const char* label, const char* hint, char* buf, int buf_size, const ImVec2& size_arg, ImGuiInputTextFlags flags, ImGuiInputTextCallback callback = NULL, void* user_data = NULL);
+- TempInputText · function · L2595-L2595 — IMGUI_API bool          TempInputText(const ImRect& bb, ImGuiID id, const char* label, char* buf, int buf_size, ImGuiInputTextFlags flags);
+- TempInputScalar · function · L2596-L2596 — IMGUI_API bool          TempInputScalar(const ImRect& bb, ImGuiID id, const char* label, ImGuiDataType data_type, void* p_data, const char* format, const void* p_clamp_min = NULL, const void* p_clamp_max = NULL);
+- TempInputIsActive · function · L2597-L2597 — inline bool             TempInputIsActive(ImGuiID id)       { ImGuiContext& g = *GImGui; return (g.ActiveId == id && g.TempInputId == id); }
+- GetInputTextState · function · L2598-L2598 — inline ImGuiInputTextState* GetInputTextState(ImGuiID id)   { ImGuiContext& g = *GImGui; return (g.InputTextState.ID == id) ? &g.InputTextState : NULL; } // Get input text state if active
+- ColorTooltip · function · L2601-L2601 — IMGUI_API void          ColorTooltip(const char* text, const float* col, ImGuiColorEditFlags flags);
+- ColorEditOptionsPopup · function · L2602-L2602 — IMGUI_API void          ColorEditOptionsPopup(const float* col, ImGuiColorEditFlags flags);
+- ColorPickerOptionsPopup · function · L2603-L2603 — IMGUI_API void          ColorPickerOptionsPopup(const float* ref_col, ImGuiColorEditFlags flags);
+- PlotEx · function · L2606-L2606 — IMGUI_API int           PlotEx(ImGuiPlotType plot_type, const char* label, float (*values_getter)(void* data, int idx), void* data, int values_count, int values_offset, const char* overlay_text, float scale_min, float scale_max, ImVec2 frame_size);
+- ShadeVertsLinearColorGradientKeepAlpha · function · L2609-L2609 — IMGUI_API void          ShadeVertsLinearColorGradientKeepAlpha(ImDrawList* draw_list, int vert_start_idx, int vert_end_idx, ImVec2 gradient_p0, ImVec2 gradient_p1, ImU32 col0, ImU32 col1);
+- ShadeVertsLinearUV · function · L2610-L2610 — IMGUI_API void          ShadeVertsLinearUV(ImDrawList* draw_list, int vert_start_idx, int vert_end_idx, const ImVec2& a, const ImVec2& b, const ImVec2& uv_a, const ImVec2& uv_b, bool clamp);
+- GcCompactTransientMiscBuffers · function · L2613-L2613 — IMGUI_API void          GcCompactTransientMiscBuffers();
+- GcCompactTransientWindowBuffers · function · L2614-L2614 — IMGUI_API void          GcCompactTransientWindowBuffers(ImGuiWindow* window);
+- GcAwakeTransientWindowBuffers · function · L2615-L2615 — IMGUI_API void          GcAwakeTransientWindowBuffers(ImGuiWindow* window);
+- ErrorCheckEndFrameRecover · function · L2618-L2618 — IMGUI_API void          ErrorCheckEndFrameRecover(ImGuiErrorLogCallback log_callback, void* user_data = NULL);
+- DebugDrawItemRect · function · L2619-L2619 — inline void             DebugDrawItemRect(ImU32 col = IM_COL32(255,0,0,255))    { ImGuiContext& g = *GImGui; ImGuiWindow* window = g.CurrentWindow; GetForegroundDrawList(window)->AddRect(window->DC.LastItemRect.Min, window->DC.LastItemRect.Max, col); }
+- DebugStartItemPicker · function · L2620-L2620 — inline void             DebugStartItemPicker()                                  { ImGuiContext& g = *GImGui; g.DebugItemPickerActive = true; }
+- DebugNodeColumns · function · L2622-L2622 — IMGUI_API void          DebugNodeColumns(ImGuiOldColumns* columns);
+- DebugNodeDrawList · function · L2623-L2623 — IMGUI_API void          DebugNodeDrawList(ImGuiWindow* window, const ImDrawList* draw_list, const char* label);
+- DebugNodeDrawCmdShowMeshAndBoundingBox · function · L2624-L2624 — IMGUI_API void          DebugNodeDrawCmdShowMeshAndBoundingBox(ImDrawList* out_draw_list, const ImDrawList* draw_list, const ImDrawCmd* draw_cmd, bool show_mesh, bool show_aabb);
+- DebugNodeStorage · function · L2625-L2625 — IMGUI_API void          DebugNodeStorage(ImGuiStorage* storage, const char* label);
+- DebugNodeTabBar · function · L2626-L2626 — IMGUI_API void          DebugNodeTabBar(ImGuiTabBar* tab_bar, const char* label);
+- DebugNodeTable · function · L2627-L2627 — IMGUI_API void          DebugNodeTable(ImGuiTable* table);
+- DebugNodeTableSettings · function · L2628-L2628 — IMGUI_API void          DebugNodeTableSettings(ImGuiTableSettings* settings);
+- DebugNodeWindow · function · L2629-L2629 — IMGUI_API void          DebugNodeWindow(ImGuiWindow* window, const char* label);
+- DebugNodeWindowSettings · function · L2630-L2630 — IMGUI_API void          DebugNodeWindowSettings(ImGuiWindowSettings* settings);
+- DebugNodeViewport · function · L2632-L2632 — IMGUI_API void          DebugNodeViewport(ImGuiViewportP* viewport);
+- DebugRenderViewportThumbnail · function · L2633-L2633 — IMGUI_API void          DebugRenderViewportThumbnail(ImDrawList* draw_list, ImGuiViewportP* viewport, const ImRect& bb);
+- ImFontBuilderIO · class · L2643-L2646 — struct ImFontBuilderIO
+- ImFontAtlasBuildInit · function · L2650-L2650 — IMGUI_API void      ImFontAtlasBuildInit(ImFontAtlas* atlas);
+- ImFontAtlasBuildSetupFont · function · L2651-L2651 — IMGUI_API void      ImFontAtlasBuildSetupFont(ImFontAtlas* atlas, ImFont* font, ImFontConfig* font_config, float ascent, float descent);
+- ImFontAtlasBuildPackCustomRects · function · L2652-L2652 — IMGUI_API void      ImFontAtlasBuildPackCustomRects(ImFontAtlas* atlas, void* stbrp_context_opaque);
+- ImFontAtlasBuildFinish · function · L2653-L2653 — IMGUI_API void      ImFontAtlasBuildFinish(ImFontAtlas* atlas);
+- ImFontAtlasBuildRender8bppRectFromString · function · L2654-L2654 — IMGUI_API void      ImFontAtlasBuildRender8bppRectFromString(ImFontAtlas* atlas, int x, int y, int w, int h, const char* in_str, char in_marker_char, unsigned char in_marker_pixel_value);
+- ImFontAtlasBuildRender32bppRectFromString · function · L2655-L2655 — IMGUI_API void      ImFontAtlasBuildRender32bppRectFromString(ImFontAtlas* atlas, int x, int y, int w, int h, const char* in_str, char in_marker_char, unsigned int in_marker_pixel_value);
+- ImFontAtlasBuildMultiplyCalcLookupTable · function · L2656-L2656 — IMGUI_API void      ImFontAtlasBuildMultiplyCalcLookupTable(unsigned char out_table[256], float in_multiply_factor);
+- ImFontAtlasBuildMultiplyRectAlpha8 · function · L2657-L2657 — IMGUI_API void      ImFontAtlasBuildMultiplyRectAlpha8(const unsigned char table[256], unsigned char* pixels, int x, int y, int w, int h, int stride);
+- ImGuiTestEngineHook_ItemAdd · function · L2664-L2664 — extern void         ImGuiTestEngineHook_ItemAdd(ImGuiContext* ctx, const ImRect& bb, ImGuiID id);
+- ImGuiTestEngineHook_ItemInfo · function · L2665-L2665 — extern void         ImGuiTestEngineHook_ItemInfo(ImGuiContext* ctx, ImGuiID id, const char* label, ImGuiItemStatusFlags flags);
+- ImGuiTestEngineHook_IdInfo · function · L2666-L2666 — extern void         ImGuiTestEngineHook_IdInfo(ImGuiContext* ctx, ImGuiDataType data_type, ImGuiID id, const void* data_id);
+- ImGuiTestEngineHook_IdInfo · function · L2667-L2667 — extern void         ImGuiTestEngineHook_IdInfo(ImGuiContext* ctx, ImGuiDataType data_type, ImGuiID id, const void* data_id, const void* data_id_end);
+- ImGuiTestEngineHook_Log · function · L2668-L2668 — extern void         ImGuiTestEngineHook_Log(ImGuiContext* ctx, const char* fmt, ...);

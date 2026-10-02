@@ -1,0 +1,52 @@
+# src/libslic3r/ObjectID.hpp
+
+- StackImpl · class · L11-L11 — class StackImpl;
+- ObjectID · class · L21-L43 — class ObjectID
+- ObjectID · function · L24-L24 — ObjectID(size_t id) : id(id) {}
+- ObjectID · function · L26-L26 — ObjectID() : id(0) {}
+- valid · function · L35-L35 — bool valid() const { return id != 0; }
+- invalid · function · L36-L36 — bool invalid() const { return id == 0; }
+- serialize · function · L42-L42 — template<class Archive> void serialize(Archive &ar) { ar(id); }
+- ObjectInstanceID · class · L45-L55 — struct ObjectInstanceID
+- ObjectBase · class · L63-L109 — class ObjectBase
+- id · function · L68-L68 — ObjectID     		id() const { return m_id; }
+- timestamp · function · L73-L73 — virtual Timestamp	timestamp() const { return 0; }
+- ObjectBase · function · L78-L78 — ObjectBase() : m_id(generate_new_id()) {}
+- ObjectBase · function · L81-L81 — ObjectBase(int) : m_id(ObjectID(0)) {}
+- ObjectBase · function · L83-L83 — ObjectBase(const ObjectID id) : m_id(id) {}
+- set_new_unique_id · function · L88-L88 — void        set_new_unique_id() { m_id = generate_new_id(); }
+- set_invalid_id · function · L89-L89 — void        set_invalid_id()    { m_id = 0; }
+- copy_id · function · L91-L91 — void        copy_id(const ObjectBase &rhs) { m_id = rhs.id(); }
+- assign_new_unique_ids_recursive · function · L94-L94 — virtual void assign_new_unique_ids_recursive() { this->set_new_unique_id(); }
+- generate_new_id · function · L99-L99 — static inline ObjectID  generate_new_id() { return ObjectID(++ s_last_id); }
+- wipe_tower_object_id · function · L102-L102 — friend ObjectID wipe_tower_object_id();
+- wipe_tower_instance_id · function · L103-L103 — friend ObjectID wipe_tower_instance_id();
+- serialize · function · L107-L107 — template<class Archive> void serialize(Archive &ar) { ar(m_id); }
+- load_and_construct · function · L108-L108 — template<class Archive> static void load_and_construct(Archive & ar, cereal::construct<ObjectBase> &construct) { ObjectID id; ar(id); construct(id); }
+- ObjectWithTimestamp · class · L111-L144 — class ObjectWithTimestamp : public ObjectBase
+- ObjectWithTimestamp · function · L116-L116 — ObjectWithTimestamp() = default;
+- ObjectWithTimestamp · function · L119-L119 — ObjectWithTimestamp(int) : ObjectBase(-1) {}
+- copy_timestamp · function · L124-L124 — void                copy_timestamp(const ObjectWithTimestamp& rhs) { m_timestamp = rhs.m_timestamp; }
+- timestamp · function · L131-L131 — Timestamp	        timestamp() const throw() override { return m_timestamp; }
+- timestamp_matches · function · L132-L132 — bool 				timestamp_matches(const ObjectWithTimestamp &rhs) const throw() { return m_timestamp == rhs.m_timestamp; }
+- object_id_and_timestamp_match · function · L133-L133 — bool 				object_id_and_timestamp_match(const ObjectWithTimestamp &rhs) const throw() { return this->id() == rhs.id() && m_timestamp == rhs.m_timestamp; }
+- touch · function · L134-L134 — void 				touch() { m_timestamp = ++ s_last_timestamp; }
+- serialize · function · L143-L143 — template<class Archive> void serialize(Archive &ar) { ar(m_timestamp); }
+- CutObjectBase · class · L146-L208 — class CutObjectBase : public ObjectBase
+- CutObjectBase · function · L155-L155 — CutObjectBase() : ObjectBase(-1) {}
+- CutObjectBase · function · L158-L158 — CutObjectBase(int) : ObjectBase(-1) {}
+- CutObjectBase · function · L160-L160 — CutObjectBase(ObjectID id, size_t check_sum, size_t connectors_cnt) : ObjectBase(id), m_check_sum(check_sum), m_connectors_cnt(connectors_cnt) {}
+- copy · function · L167-L172 — void copy(const CutObjectBase &rhs)
+- CutObjectBase · function · L175-L175 — CutObjectBase(const CutObjectBase &) = default;
+- invalidate · function · L183-L188 — void invalidate()
+- init · function · L190-L190 — void init() { this->set_new_unique_id(); }
+- has_same_id · function · L191-L191 — bool has_same_id(const CutObjectBase &rhs) { return this->id() == rhs.id(); }
+- is_equal · function · L192-L192 — bool is_equal(const CutObjectBase &rhs) { return this->id() == rhs.id() && this->check_sum() == rhs.check_sum() && this->connectors_cnt() == rhs.connectors_cnt(); }
+- check_sum · function · L194-L194 — size_t check_sum() const { return m_check_sum; }
+- set_check_sum · function · L195-L195 — void   set_check_sum(size_t cs) { m_check_sum = cs; }
+- increase_check_sum · function · L196-L196 — void   increase_check_sum(size_t cnt) { m_check_sum += cnt; }
+- connectors_cnt · function · L198-L198 — size_t connectors_cnt() const { return m_connectors_cnt; }
+- increase_connectors_cnt · function · L199-L199 — void   increase_connectors_cnt(size_t connectors_cnt) { m_connectors_cnt += connectors_cnt; }
+- serialize · function · L203-L207 — template<class Archive> void serialize(Archive &ar)
+- wipe_tower_object_id · function · L212-L212 — extern ObjectID wipe_tower_object_id();
+- wipe_tower_instance_id · function · L213-L213 — extern ObjectID wipe_tower_instance_id();

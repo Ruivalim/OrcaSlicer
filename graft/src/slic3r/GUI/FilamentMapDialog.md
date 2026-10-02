@@ -1,0 +1,22 @@
+# src/slic3r/GUI/FilamentMapDialog.hpp
+
+- Button · class · L9-L9 — class Button;
+- DynamicPrintConfig · class · L12-L12 — class DynamicPrintConfig;
+- DragDropPanel · class · L15-L15 — class DragDropPanel;
+- Plater · class · L16-L16 — class Plater;
+- PartPlate · class · L17-L17 — class PartPlate;
+- SmartFilamentPanel · class · L18-L18 — class SmartFilamentPanel;
+- try_pop_up_before_slice · function · L31-L31 — bool try_pop_up_before_slice(bool is_slice_all, Plater* plater_ref, PartPlate* partplate_ref, bool force_pop_up = false);
+- FilamentMapDialog · class · L34-L100 — class FilamentMapDialog : public wxDialog
+- PageType · type · L36-L40 — enum PageType
+- FilamentMapDialog · function · L42-L52 — FilamentMapDialog(wxWindow *parent,
+- get_mode · function · L54-L54 — FilamentMapMode get_mode();
+- get_filament_maps · function · L55-L59 — std::vector<int> get_filament_maps() const
+- get_filament_volume_maps · function · L61-L65 — std::vector<int> get_filament_volume_maps() const
+- ShowModal · function · L67-L67 — int ShowModal();
+- set_modal_btn_labels · function · L68-L68 — void set_modal_btn_labels(const wxString& left_label, const wxString& right_label);
+- on_ok · function · L70-L70 — void on_ok(wxCommandEvent &event);
+- on_cancel · function · L71-L71 — void on_cancel(wxCommandEvent &event);
+- on_switch_mode · function · L72-L72 — void on_switch_mode(wxCommandEvent &event);
+- on_checkbox · function · L73-L73 — void on_checkbox(wxCommandEvent &event);
+- update_panel_status · function · L75-L75 — void update_panel_status(PageType page);

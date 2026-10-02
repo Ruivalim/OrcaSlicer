@@ -1,0 +1,31 @@
+# src/libslic3r/PrintObjectSlice.cpp
+
+- compute_slice_z · function · L24-L48 — static coordf_t compute_slice_z(PrintObject* print_object, size_t i_layer, coordf_t lo, coordf_t hi)
+- new_layers · function · L50-L74 — LayerPtrs new_layers(
+- slice_volume · function · L77-L96 — static std::vector<ExPolygons> slice_volume(
+- slice_volume · function · L100-L137 — static std::vector<ExPolygons> slice_volume(
+- model_volume_needs_slicing · function · L138-L142 — static inline bool model_volume_needs_slicing(const ModelVolume &mv)
+- slice_volumes_inner · function · L148-L229 — static std::vector<VolumeSlices> slice_volumes_inner(
+- volume_slices_find_by_id · function · L231-L231 — static inline VolumeSlices& volume_slices_find_by_id(std::vector<VolumeSlices> &volume_slices, const ObjectID id)
+- overlap_in_xy · function · L238-L242 — static inline bool overlap_in_xy(const PrintObjectRegions::BoundingBox &l, const PrintObjectRegions::BoundingBox &r)
+- layer_range_first · function · L244-L256 — static std::vector<PrintObjectRegions::LayerRangeRegions>::const_iterator layer_range_first(const std::vector<PrintObjectRegions::LayerRangeRegions> &layer_ranges, double z)
+- layer_range_next · function · L258-L267 — static std::vector<PrintObjectRegions::LayerRangeRegions>::const_iterator layer_range_next(
+- slices_to_regions · function · L269-L488 — static std::vector<std::vector<ExPolygons>> slices_to_regions(
+- RegionSlice · class · L359-L371 — struct RegionSlice
+- doesVolumeIntersect · function · L491-L521 — bool doesVolumeIntersect(VolumeSlices& vs1, VolumeSlices& vs2)
+- groupingVolumes · function · L524-L603 — bool groupingVolumes(std::vector<VolumeSlices> objSliceByVolume, std::vector<groupedVolumeSlices>& groups, double resolution, int firstLayerReplacedBy)
+- findPartVolumes · function · L606-L614 — std::vector<VolumeSlices> findPartVolumes(const std::vector<VolumeSlices>& objSliceByVolume, ModelVolumePtrs model_volumes)
+- applyNegtiveVolumes · function · L616-L633 — void applyNegtiveVolumes(ModelVolumePtrs model_volumes, const std::vector<VolumeSlices>& objSliceByVolume, std::vector<groupedVolumeSlices>& groups, double resolution)
+- reGroupingLayerPolygons · function · L635-L679 — void reGroupingLayerPolygons(std::vector<groupedVolumeSlices>& gvss, ExPolygons &eps, double resolution)
+- groupingVolumesForBrim · function · L805-L814 — void groupingVolumesForBrim(PrintObject* object, LayerPtrs& layers, int firstLayerReplacedBy)
+- slice · method · L824-L878 — void PrintObject::slice()
+- apply_mm_segmentation · function · L880-L1037 — template<typename ThrowOnCancel>
+- ByExtruder · class · L895-L898 — struct ByExtruder
+- ByRegion · class · L900-L903 — struct ByRegion
+- apply_fuzzy_skin_segmentation · function · L1039-L1145 — template<typename ThrowOnCancel>
+- ByRegion · class · L1046-L1050 — struct ByRegion
+- slice_volumes · method · L1156-L1399 — void PrintObject::slice_volumes()
+- apply_conical_overhang · method · L1401-L1516 — void PrintObject::apply_conical_overhang()
+- hole_poly · function · L1466-L1466 — ExPolygon hole_poly(hole);
+- _shrink_contour_holes · method · L1519-L1550 — ExPolygons PrintObject::_shrink_contour_holes(double contour_delta, double hole_delta, const ExPolygons& polys) const
+- slice_support_volumes · method · L1552-L1603 — std::vector<Polygons> PrintObject::slice_support_volumes(const ModelVolumeType model_volume_type) const

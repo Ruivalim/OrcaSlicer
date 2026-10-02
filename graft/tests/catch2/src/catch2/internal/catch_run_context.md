@@ -1,0 +1,44 @@
+# tests/catch2/src/catch2/internal/catch_run_context.hpp
+
+- IGeneratorTracker · class · L29-L29 — class IGeneratorTracker;
+- IConfig · class · L30-L30 — class IConfig;
+- IEventListener · class · L31-L31 — class IEventListener;
+- OutputRedirect · class · L33-L33 — class OutputRedirect;
+- RunContext · class · L37-L161 — class RunContext final : public IResultCapture
+- RunContext · function · L40-L40 — RunContext( RunContext const& ) = delete;
+- RunContext · function · L43-L43 — explicit RunContext( IConfig const* _config, IEventListenerPtr&& reporter );
+- runTest · function · L47-L47 — Totals runTest(TestCaseHandle const& testCase);
+- handleExpr · function · L52-L55 — void handleExpr
+- handleMessage · function · L56-L60 — void handleMessage
+- handleUnexpectedExceptionNotThrown · function · L61-L63 — void handleUnexpectedExceptionNotThrown
+- handleUnexpectedInflightException · function · L64-L67 — void handleUnexpectedInflightException
+- handleIncomplete · function · L68-L69 — void handleIncomplete
+- handleNonExpr · function · L70-L73 — void handleNonExpr
+- notifyAssertionStarted · function · L75-L75 — void notifyAssertionStarted( AssertionInfo const& info ) override;
+- sectionStarted · function · L76-L78 — bool sectionStarted( StringRef sectionName,
+- sectionEnded · function · L80-L80 — void sectionEnded( SectionEndInfo&& endInfo ) override;
+- sectionEndedEarly · function · L81-L81 — void sectionEndedEarly( SectionEndInfo&& endInfo ) override;
+- acquireGeneratorTracker · function · L84-L85 — acquireGeneratorTracker( StringRef generatorName,
+- createGeneratorTracker · function · L86-L89 — IGeneratorTracker* createGeneratorTracker(
+- benchmarkPreparing · function · L92-L92 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L93-L93 — void benchmarkStarting( BenchmarkInfo const& info ) override;
+- benchmarkEnded · function · L94-L94 — void benchmarkEnded( BenchmarkStats<> const& stats ) override;
+- benchmarkFailed · function · L95-L95 — void benchmarkFailed( StringRef error ) override;
+- getCurrentTestName · function · L97-L97 — std::string getCurrentTestName() const override;
+- getLastResult · function · L99-L99 — const AssertionResult* getLastResult() const override;
+- exceptionEarlyReported · function · L101-L101 — void exceptionEarlyReported() override;
+- handleFatalErrorCondition · function · L103-L103 — void handleFatalErrorCondition( StringRef message ) override;
+- lastAssertionPassed · function · L105-L105 — bool lastAssertionPassed() override;
+- aborting · function · L109-L109 — bool aborting() const;
+- assertionPassedFastPath · function · L112-L112 — void assertionPassedFastPath( SourceLineInfo lineInfo );
+- updateTotalsFromAtomics · function · L114-L114 — void updateTotalsFromAtomics();
+- runCurrentTest · function · L116-L116 — void runCurrentTest();
+- invokeActiveTestCase · function · L117-L117 — void invokeActiveTestCase();
+- testForMissingAssertions · function · L119-L119 — bool testForMissingAssertions( Counts& assertions );
+- assertionEnded · function · L121-L121 — void assertionEnded( AssertionResult&& result );
+- reportExpr · function · L122-L126 — void reportExpr
+- populateReaction · function · L128-L128 — void populateReaction( AssertionReaction& reaction, bool has_normal_disposition );
+- makeDummyAssertionInfo · function · L133-L133 — AssertionInfo makeDummyAssertionInfo();
+- handleUnfinishedSections · function · L137-L137 — void handleUnfinishedSections();
+- seedRng · function · L163-L163 — void seedRng(IConfig const& config);
+- rngSeed · function · L164-L164 — unsigned int rngSeed();

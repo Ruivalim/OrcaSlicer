@@ -1,0 +1,29 @@
+# src/slic3r/GUI/DeviceCore/DevUpgrade.h
+
+- IsUpgrading · function · L18-L18 — bool                    IsUpgrading() const { return m_upgrade_display_state == DevFirmwareUpgradeState::UpgradingInProgress; }
+- IsUpgradeAvaliable · function · L19-L19 — bool                    IsUpgradeAvaliable() const { return m_upgrade_display_state == DevFirmwareUpgradeState::UpgradingAvaliable; }
+- GetUpgradeState · function · L20-L20 — DevFirmwareUpgradeState GetUpgradeState() const { return m_upgrade_display_state; }
+- GetUpgradeStatusStr · function · L21-L21 — std::string             GetUpgradeStatusStr() const { return m_upgrade_status; }
+- IsUpgradeConsistencyRequest · function · L24-L24 — bool IsUpgradeConsistencyRequest() const { return m_upgrade_consistency_request; }
+- IsUpgradeForceUpgrade · function · L25-L25 — bool IsUpgradeForceUpgrade() const { return m_upgrade_force_upgrade; }
+- HasNewVersion · function · L27-L27 — bool                                          HasNewVersion() const { return m_upgrade_new_version_state == 1; }
+- GetOtaNewVersion · function · L28-L28 — std::string                                   GetOtaNewVersion() const { return m_ota_new_version_number; }
+- GetUpgradeModuleStr · function · L32-L32 — std::string GetUpgradeModuleStr() const { return m_upgrade_module; }
+- GetUpgradeProgressStr · function · L33-L33 — std::string GetUpgradeProgressStr() const { return m_upgrade_progress; }
+- GetUpgradeProgressInt · function · L34-L34 — int         GetUpgradeProgressInt() const;
+- GetUpgradeMessageStr · function · L35-L35 — std::string GetUpgradeMessageStr() const { return m_upgrade_message; }
+- GetUpgradeErrCodeStr · function · L36-L36 — wxString    GetUpgradeErrCodeStr() const;
+- CtrlUpgradeConfirm · function · L40-L40 — int CtrlUpgradeConfirm();
+- CtrlUpgradeConsistencyConfirm · function · L41-L41 — int CtrlUpgradeConsistencyConfirm();
+- CtrlUpgradeFirmware · function · L42-L42 — int CtrlUpgradeFirmware(FirmwareInfo info);
+- CtrlUpgradeModule · function · L43-L43 — int CtrlUpgradeModule(std::string url, std::string module_type, std::string version);
+- ParseUpgrade_V1_0 · function · L46-L46 — void ParseUpgrade_V1_0(const json &print_jj);
+- ParseUpgradeDisplayState · function · L47-L47 — void ParseUpgradeDisplayState(const json &upgrade_state_jj);
+- IsEmpty · function · L77-L77 — bool IsEmpty() const { m_module_version_map.empty();}
+- GetAirPumpVersionInfo · function · L79-L79 — DevFirmwareVersionInfo GetAirPumpVersionInfo() const { return m_air_pump_version_info; }
+- GetLaserVersionInfo · function · L80-L80 — DevFirmwareVersionInfo GetLaserVersionInfo() const { return m_laser_version_info; }
+- GetCuttingModuleVersionInfo · function · L81-L81 — DevFirmwareVersionInfo GetCuttingModuleVersionInfo() const { return m_cutting_module_version_info; }
+- GetExtinguishVersionInfo · function · L82-L82 — DevFirmwareVersionInfo GetExtinguishVersionInfo() const { return m_extinguish_version_info; }
+- GetRotaryVersionInfo · function · L83-L83 — DevFirmwareVersionInfo GetRotaryVersionInfo() const { return m_rotary_version_info; }
+- CtrlGetVersion · function · L87-L87 — int CtrlGetVersion(bool with_retry = true);
+- ParseGetVersion · function · L89-L89 — void ParseGetVersion(const json &print_jj);

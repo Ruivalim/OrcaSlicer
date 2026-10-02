@@ -1,0 +1,102 @@
+# src/libslic3r/Polygon.hpp
+
+- Polygon · class · L14-L14 — class Polygon;
+- contains · function · L20-L20 — bool contains(const Polygon& polygon, const Point& p, bool border_result = true);
+- contains · function · L21-L21 — bool contains(const Polygons& polygons, const Point& p, bool border_result = true);
+- Polygon · class · L23-L96 — class Polygon : public MultiPoint
+- Polygon · function · L26-L26 — Polygon() = default;
+- Polygon · function · L27-L27 — explicit Polygon(const Points &points) : MultiPoint(points) {}
+- Polygon · function · L28-L28 — Polygon(std::initializer_list<Point> points) : MultiPoint(points) {}
+- Polygon · function · L29-L29 — Polygon(const Polygon &other) : MultiPoint(other.points) {}
+- Polygon · function · L30-L30 — Polygon(Polygon &&other) : MultiPoint(std::move(other.points)) {}
+- new_scale · function · L31-L37 — static Polygon new_scale(const std::vector<Vec2d> &points)
+- last_point · function · L45-L45 — const Point& last_point() const { return this->points.front(); }
+- length · function · L47-L47 — double length() const;
+- lines · function · L48-L48 — Lines lines() const;
+- split_at_vertex · function · L49-L49 — Polyline split_at_vertex(const Point &point) const;
+- split_at_index · function · L51-L51 — Polyline split_at_index(int index) const;
+- split_at_first_point · function · L53-L53 — Polyline split_at_first_point() const { return this->split_at_index(0); }
+- equally_spaced_points · function · L54-L54 — Points   equally_spaced_points(double distance) const { return this->split_at_first_point().equally_spaced_points(distance); }
+- area · function · L56-L56 — static double area(const Points &pts);
+- area · function · L57-L57 — double area() const;
+- is_counter_clockwise · function · L58-L58 — bool is_counter_clockwise() const;
+- is_clockwise · function · L59-L59 — bool is_clockwise() const;
+- make_counter_clockwise · function · L60-L60 — bool make_counter_clockwise();
+- make_clockwise · function · L61-L61 — bool make_clockwise();
+- is_valid · function · L62-L62 — bool is_valid() const { return this->points.size() >= 3; }
+- douglas_peucker · function · L63-L63 — void douglas_peucker(double tolerance);
+- contains · function · L66-L66 — bool contains(const Point &point) const { return Slic3r::contains(*this, point, true); }
+- on_boundary · function · L68-L69 — bool on_boundary(const Point &point, double eps) const
+- simplify · function · L72-L72 — Polygons simplify(double tolerance) const;
+- densify · function · L73-L73 — void densify(float min_length, std::vector<float>* lengths = nullptr);
+- triangulate_convex · function · L74-L74 — void triangulate_convex(Polygons* polygons) const;
+- centroid · function · L75-L75 — Point centroid() const;
+- intersection · function · L77-L77 — bool intersection(const Line& line, Point* intersection) const;
+- first_intersection · function · L78-L78 — bool first_intersection(const Line& line, Point* intersection) const;
+- intersections · function · L79-L79 — bool intersections(const Line& line, Points* intersections) const;
+- overlaps · function · L80-L80 — bool overlaps(const Polygons& other) const;
+- convex_points · function · L85-L85 — Points convex_points(double angle_threshold = 0.) const;
+- concave_points · function · L86-L86 — Points concave_points(double angle_threshold = 0.) const;
+- point_projection · function · L88-L88 — Point point_projection(const Point &point) const;
+- parameter_by_length · function · L89-L89 — std::vector<float> parameter_by_length() const;
+- transform · function · L92-L92 — Polygon transform(const Transform3d& trafo) const;
+- get_extents · function · L101-L101 — BoundingBox get_extents(const Polygon &poly);
+- get_extents · function · L102-L102 — BoundingBox get_extents(const Polygons &polygons);
+- get_extents_rotated · function · L103-L103 — BoundingBox get_extents_rotated(const Polygon &poly, double angle);
+- get_extents_rotated · function · L104-L104 — BoundingBox get_extents_rotated(const Polygons &polygons, double angle);
+- get_extents_vector · function · L105-L105 — std::vector<BoundingBox> get_extents_vector(const Polygons &polygons);
+- polygon_is_convex · function · L108-L108 — bool        polygon_is_convex(const Points &poly);
+- polygon_is_convex · function · L109-L109 — inline bool polygon_is_convex(const Polygon &poly) { return polygon_is_convex(poly.points); }
+- has_duplicate_points · function · L112-L112 — inline bool has_duplicate_points(Polygon &&poly)      { return has_duplicate_points(std::move(poly.points)); }
+- has_duplicate_points · function · L113-L113 — inline bool has_duplicate_points(const Polygon &poly) { return has_duplicate_points(poly.points); }
+- has_duplicate_points · function · L114-L114 — bool        has_duplicate_points(const Polygons &polys);
+- remove_same_neighbor · function · L117-L117 — bool remove_same_neighbor(Polygon &polygon);
+- remove_same_neighbor · function · L118-L118 — bool remove_same_neighbor(Polygons &polygons);
+- total_length · function · L120-L125 — inline double total_length(const Polygons &polylines)
+- area · function · L127-L127 — inline double area(const Polygon &poly) { return poly.area(); }
+- area · function · L129-L135 — inline double area(const Polygons &polys)
+- remove_sticks · function · L138-L138 — bool remove_sticks(Polygon &poly);
+- remove_sticks · function · L139-L139 — bool remove_sticks(Polygons &polys);
+- remove_degenerate · function · L142-L142 — bool remove_degenerate(Polygons &polys);
+- remove_small · function · L143-L143 — bool remove_small(Polygons &polys, double min_area);
+- remove_collinear · function · L144-L144 — void remove_collinear(Polygon &poly);
+- remove_collinear · function · L145-L145 — void remove_collinear(Polygons &polys);
+- polygons_append · function · L148-L148 — inline void polygons_append(Polygons &dst, const Polygons &src) { dst.insert(dst.end(), src.begin(), src.end()); }
+- polygons_append · function · L150-L158 — inline void polygons_append(Polygons &dst, Polygons &&src)
+- polygons_simplify · function · L160-L160 — Polygons polygons_simplify(const Polygons &polys, double tolerance, bool strictly_simple = true);
+- polygons_rotate · function · L162-L168 — inline void polygons_rotate(Polygons &polys, double angle)
+- polygons_reverse · function · L170-L174 — inline void polygons_reverse(Polygons &polys)
+- to_points · function · L176-L179 — inline Points to_points(const Polygon &poly)
+- count_points · function · L181-L185 — inline size_t count_points(const Polygons &polys)
+- to_points · function · L187-L194 — inline Points to_points(const Polygons &polys)
+- to_lines · function · L196-L206 — inline Lines to_lines(const Polygon &poly)
+- to_lines · function · L208-L219 — inline Lines to_lines(const Polygons &polys)
+- to_polyline · function · L221-L228 — inline Polyline to_polyline(const Polygon &polygon)
+- to_polylines · function · L230-L237 — inline Polylines to_polylines(const Polygons &polygons)
+- to_polylines · function · L239-L251 — inline Polylines to_polylines(Polygons &&polys)
+- to_polygons · function · L254-L263 — inline Polygons to_polygons(const Polylines &polylines)
+- to_polygons · function · L265-L272 — inline Polygons to_polygons(const VecOfPoints &paths)
+- to_polygons · function · L274-L281 — inline Polygons to_polygons(VecOfPoints &&paths)
+- polygons_match · function · L285-L285 — bool polygons_match(const Polygon &l, const Polygon &r);
+- make_circle · function · L287-L287 — Polygon make_circle(double radius, double error);
+- make_circle_num_segments · function · L288-L288 — Polygon make_circle_num_segments(double radius, size_t num_segments);
+- PolygonPoint · class · L294-L302 — struct PolygonPoint
+- overlaps · function · L305-L305 — bool overlaps(const Polygons& polys1, const Polygons& polys2);
+- type · type · L312-L312 — struct geometry_concept<Slic3r::Polygon>{ typedef polygon_concept type; };
+- coordinate_type · type · L316-L316 — typedef coord_t coordinate_type;
+- iterator_type · type · L317-L317 — typedef Slic3r::Points::const_iterator iterator_type;
+- point_type · type · L318-L318 — typedef Slic3r::Point point_type;
+- begin_points · function · L321-L323 — static inline iterator_type begin_points(const Slic3r::Polygon& t)
+- end_points · function · L326-L328 — static inline iterator_type end_points(const Slic3r::Polygon& t)
+- size · function · L331-L333 — static inline std::size_t size(const Slic3r::Polygon& t)
+- winding · function · L336-L338 — static inline winding_direction winding(const Slic3r::Polygon& /* t */)
+- set_points · function · L345-L345 — static inline Slic3r::Polygon& set_points(Slic3r::Polygon& polygon, iT input_begin, iT input_end)
+- type · type · L359-L359 — struct geometry_concept<Slic3r::Polygons> { typedef polygon_set_concept type; };
+- coordinate_type · type · L364-L364 — typedef coord_t coordinate_type;
+- iterator_type · type · L365-L365 — typedef Slic3r::Polygons::const_iterator iterator_type;
+- operator_arg_type · type · L366-L366 — typedef Slic3r::Polygons operator_arg_type;
+- begin · function · L368-L370 — static inline iterator_type begin(const Slic3r::Polygons& polygon_set)
+- end · function · L372-L374 — static inline iterator_type end(const Slic3r::Polygons& polygon_set)
+- clean · function · L377-L377 — static inline bool clean(const Slic3r::Polygons& /* polygon_set */) { return false; }
+- sorted · function · L378-L378 — static inline bool sorted(const Slic3r::Polygons& /* polygon_set */) { return false; }
+- set · function · L383-L386 — template <typename input_iterator_type>

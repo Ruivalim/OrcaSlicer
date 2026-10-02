@@ -1,0 +1,64 @@
+# src/libslic3r/Support/TreeModelVolumes.hpp
+
+- BuildVolume · class · L26-L26 — class BuildVolume;
+- PrintObject · class · L27-L27 — class PrintObject;
+- TreeModelVolumes · class · L37-L551 — class TreeModelVolumes
+- TreeModelVolumes · function · L40-L40 — TreeModelVolumes() = default;
+- TreeModelVolumes · function · L41-L47 — explicit TreeModelVolumes(const PrintObject &print_object, const BuildVolume &build_volume,
+- TreeModelVolumes · function · L48-L48 — TreeModelVolumes(TreeModelVolumes&&) = default;
+- TreeModelVolumes · function · L51-L51 — TreeModelVolumes(const TreeModelVolumes&) = delete;
+- clear · function · L54-L58 — void clear()
+- clear_all_but_object_collision · function · L59-L71 — void clear_all_but_object_collision()
+- AvoidanceType · type · L73-L79 — enum class AvoidanceType : int8_t
+- precalculate · function · L87-L87 — void precalculate(const PrintObject& print_object, const coord_t max_layer, std::function<void()> throw_on_cancel);
+- getCollision · function · L100-L100 — const Polygons& getCollision(const coord_t radius, LayerIndex layer_idx, bool min_xy_dist) const;
+- get_collision_lower_bound_area · function · L105-L105 — std::optional<std::pair<coord_t, std::reference_wrapper<const Polygons>>> get_collision_lower_bound_area(LayerIndex layer_id, coord_t max_radius) const;
+- getAvoidance · function · L124-L124 — const Polygons& getAvoidance(coord_t radius, LayerIndex layer_idx, AvoidanceType type, bool to_model, bool min_xy_dist) const;
+- getPlaceableAreas · function · L131-L131 — const Polygons& getPlaceableAreas(coord_t radius, LayerIndex layer_idx, std::function<void()> throw_on_cancel) const;
+- getWallRestriction · function · L139-L139 — const Polygons& getWallRestriction(coord_t radius, LayerIndex layer_idx, bool min_xy_dist) const;
+- ceilRadius · function · L149-L155 — coord_t ceilRadius(const coord_t radius, const bool min_xy_dist) const
+- getRadiusNextCeil · function · L163-L168 — coord_t getRadiusNextCeil(coord_t radius, bool min_xy_dist) const
+- LayerPolygonCache · class · L174-L194 — class LayerPolygonCache
+- allocate · function · L176-L180 — void allocate(LayerIndex aidx_begin, LayerIndex aidx_end)
+- begin · function · L182-L182 — LayerIndex begin() const { return m_idx_begin; }
+- end · function · L183-L183 — LayerIndex end()   const { return m_idx_end; }
+- size · function · L184-L184 — size_t     size()  const { return m_polygons.size(); }
+- has · function · L186-L186 — bool      has(LayerIndex idx) const { return idx >= m_idx_begin && idx < m_idx_end; }
+- polygons_mutable · function · L188-L188 — std::vector<Polygons>& polygons_mutable() { return m_polygons; }
+- RadiusLayerPolygonCache · class · L200-L307 — class RadiusLayerPolygonCache
+- RadiusLayerPolygonCache · function · L207-L207 — RadiusLayerPolygonCache() = default;
+- RadiusLayerPolygonCache · function · L208-L208 — RadiusLayerPolygonCache(RadiusLayerPolygonCache &&rhs) : m_data(std::move(rhs.m_data)) {}
+- RadiusLayerPolygonCache · function · L211-L211 — RadiusLayerPolygonCache(const RadiusLayerPolygonCache&) = delete;
+- insert · function · L214-L218 — void insert(std::vector<std::pair<RadiusLayerPair, Polygons>> &&in)
+- guard · function · L215-L215 — std::lock_guard<std::mutex> guard(m_mutex);
+- insert · function · L220-L224 — void insert(std::vector<std::pair<coord_t, Polygons>> &&in, coord_t radius)
+- guard · function · L221-L221 — std::lock_guard<std::mutex> guard(m_mutex);
+- insert · function · L225-L230 — void insert(std::vector<Polygons> &&in, coord_t first_layer_idx, coord_t radius)
+- guard · function · L226-L226 — std::lock_guard<std::mutex> guard(m_mutex);
+- insert · function · L231-L237 — void insert(LayerPolygonCache &&in, coord_t radius)
+- guard · function · L232-L232 — std::lock_guard<std::mutex> guard(m_mutex);
+- getArea · function · L243-L251 — std::optional<std::reference_wrapper<const Polygons>> getArea(const TreeModelVolumes::RadiusLayerPair &key) const
+- guard · function · L244-L244 — std::lock_guard<std::mutex> guard(m_mutex);
+- get_lower_bound_area · function · L253-L267 — std::optional<std::pair<coord_t, std::reference_wrapper<const Polygons>>> get_lower_bound_area(const TreeModelVolumes::RadiusLayerPair &key) const
+- guard · function · L254-L254 — std::lock_guard<std::mutex> guard(m_mutex);
+- getMaxCalculatedLayer · function · L275-L283 — LayerIndex getMaxCalculatedLayer(coord_t radius) const
+- guard · function · L276-L276 — std::lock_guard<std::mutex> guard(m_mutex);
+- sorted · function · L286-L286 — [[nodiscard]] std::vector<std::pair<RadiusLayerPair, std::reference_wrapper<const Polygons>>> sorted() const;
+- clear · function · L288-L288 — void clear() { m_data.clear(); }
+- clear_all_but_radius0 · function · L289-L296 — void clear_all_but_radius0()
+- get_allocate_layer_data · function · L299-L299 — LayerData&          get_allocate_layer_data(LayerIndex layer_idx)
+- allocate_layers · function · L303-L303 — void                allocate_layers(size_t num_layers);
+- getCollisionHolefree · function · L322-L322 — const Polygons& getCollisionHolefree(coord_t radius, LayerIndex layer_idx) const;
+- ceilRadius · function · L329-L329 — coord_t ceilRadius(const coord_t radius) const;
+- calculateCollision · function · L338-L338 — void calculateCollision(const std::vector<RadiusLayerPair> &keys, std::function<void()> throw_on_cancel);
+- calculateCollision · function · L339-L339 — void calculateCollision(const coord_t radius, const LayerIndex max_layer_idx, std::function<void()> throw_on_cancel);
+- calculateCollisionHolefree · function · L348-L348 — void calculateCollisionHolefree(const std::vector<RadiusLayerPair> &keys, std::function<void()> throw_on_cancel);
+- calculateCollisionHolefree · function · L358-L361 — void calculateCollisionHolefree(RadiusLayerPair key)
+- calculateAvoidance · function · L370-L370 — void calculateAvoidance(const std::vector<RadiusLayerPair> &keys, bool to_build_plate, bool to_model, std::function<void()> throw_on_cancel);
+- calculateAvoidance · function · L379-L382 — void calculateAvoidance(RadiusLayerPair key, bool to_build_plate, bool to_model)
+- calculatePlaceables · function · L389-L389 — void calculatePlaceables(const coord_t radius, const LayerIndex max_required_layer, std::function<void()> throw_on_cancel);
+- calculatePlaceables · function · L397-L397 — void calculatePlaceables(const std::vector<RadiusLayerPair> &keys, std::function<void()> throw_on_cancel);
+- calculateWallRestrictions · function · L406-L406 — void calculateWallRestrictions(const std::vector<RadiusLayerPair> &keys, std::function<void()> throw_on_cancel);
+- calculateWallRestrictions · function · L413-L416 — void calculateWallRestrictions(RadiusLayerPair key)
+- avoidance_cache · function · L515-L515 — RadiusLayerPolygonCache& avoidance_cache(const AvoidanceType type, const bool to_model)
+- avoidance_cache · function · L534-L534 — const RadiusLayerPolygonCache& avoidance_cache(const AvoidanceType type, const bool to_model) const

@@ -1,0 +1,50 @@
+# src/slic3r/GUI/MeshUtils.hpp
+
+- ClippingPlane · class · L25-L70 — class ClippingPlane
+- ClippingPlane · function · L30-L32 — ClippingPlane()
+- ClippingPlane · function · L34-L37 — ClippingPlane(const Vec3d& direction, double offset)
+- distance · function · L44-L47 — double distance(const Vec3d& pt) const
+- is_point_clipped · function · L49-L49 — bool is_point_clipped(const Vec3d& point) const { return distance(point) < 0.; }
+- set_normal · function · L50-L55 — void set_normal(const Vec3d& normal)
+- set_offset · function · L56-L56 — void set_offset(double offset) { m_data[3] = offset; }
+- get_offset · function · L57-L57 — double get_offset() const { return m_data[3]; }
+- get_normal · function · L58-L58 — Vec3d get_normal() const { return Vec3d(m_data[0], m_data[1], m_data[2]); }
+- invert_normal · function · L59-L59 — void invert_normal() { m_data[0] *= -1.0; m_data[1] *= -1.0; m_data[2] *= -1.0; }
+- inverted_normal · function · L60-L60 — ClippingPlane inverted_normal() const { return ClippingPlane(-get_normal(), get_offset()); }
+- is_active · function · L61-L61 — bool is_active() const { return m_data[3] != DBL_MAX; }
+- ClipsNothing · function · L62-L62 — static ClippingPlane ClipsNothing() { return ClippingPlane(Vec3d(0., 0., 1.), DBL_MAX); }
+- get_data · function · L63-L63 — const std::array<double, 4>& get_data() const { return m_data; }
+- serialize · function · L66-L69 — template <class Archive>
+- MeshClipper · class · L74-L153 — class MeshClipper
+- set_behaviour · function · L79-L79 — void set_behaviour(bool fill_cut, double contour_width);
+- set_plane · function · L83-L83 — void set_plane(const ClippingPlane& plane);
+- set_limiting_plane · function · L88-L88 — void set_limiting_plane(const ClippingPlane& plane);
+- set_mesh · function · L92-L92 — void set_mesh(const indexed_triangle_set& mesh);
+- set_mesh · function · L93-L93 — void set_mesh(AnyPtr<const indexed_triangle_set> &&ptr);
+- set_negative_mesh · function · L95-L95 — void set_negative_mesh(const indexed_triangle_set &mesh);
+- set_negative_mesh · function · L96-L96 — void set_negative_mesh(AnyPtr<const indexed_triangle_set> &&ptr);
+- set_mesh · function · L98-L110 — template<class It>
+- set_transformation · function · L114-L114 — void set_transformation(const Geometry::Transformation& trafo);
+- render_cut · function · L118-L118 — void render_cut(const ColorRGBA& color, const std::vector<size_t>* ignore_idxs = nullptr);
+- render_contour · function · L119-L119 — void render_contour(const ColorRGBA& color, const std::vector<size_t>* ignore_idxs = nullptr);
+- is_projection_inside_cut · function · L122-L122 — int is_projection_inside_cut(const Vec3d& point) const;
+- has_valid_contour · function · L123-L123 — bool has_valid_contour() const;
+- get_number_of_contours · function · L124-L124 — int get_number_of_contours() const { return m_result ? m_result->cut_islands.size() : 0; }
+- point_per_contour · function · L125-L125 — std::vector<Vec3d> point_per_contour() const;
+- recalculate_triangles · function · L128-L128 — void recalculate_triangles();
+- CutIsland · class · L138-L145 — struct CutIsland
+- ClipResult · class · L146-L149 — struct ClipResult
+- MeshRaycaster · class · L159-L232 — class MeshRaycaster
+- MeshRaycaster · function · L161-L167 — explicit MeshRaycaster(std::shared_ptr<const TriangleMesh> mesh)
+- MeshRaycaster · function · L169-L171 — explicit MeshRaycaster(const TriangleMesh &mesh)
+- line_from_mouse_pos · function · L174-L175 — static void line_from_mouse_pos(const Vec2d& mouse_pos, const Transform3d& trafo, const Camera& camera,
+- unproject_on_mesh · function · L178-L187 — bool unproject_on_mesh(
+- get_aabb_mesh · function · L189-L189 — const AABBMesh &get_aabb_mesh() const { return m_emesh; }
+- intersects_line · function · L193-L193 — bool intersects_line(Vec3d point, Vec3d direction, const Transform3d& trafo) const;
+- get_unobscured_idxs · function · L198-L203 — std::vector<unsigned> get_unobscured_idxs(
+- closest_hit · function · L208-L216 — bool closest_hit(
+- get_closest_point · function · L221-L221 — Vec3f get_closest_point(const Vec3f& point, Vec3f* normal = nullptr) const;
+- get_closest_facet · function · L224-L224 — int get_closest_facet(const Vec3f &point) const;
+- get_triangle_normal · function · L226-L226 — Vec3f get_triangle_normal(size_t facet_idx) const;
+- PickingModel · class · L234-L243 — struct PickingModel
+- reset · function · L239-L242 — void reset()

@@ -1,0 +1,67 @@
+# src/slic3r/GUI/WebViewDialog.hpp
+
+- NetworkAgent · class · L31-L31 — class NetworkAgent;
+- WebViewPanel · class · L36-L157 — class WebViewPanel : public wxPanel
+- WebViewPanel · function · L39-L39 — WebViewPanel(wxWindow *parent);
+- load_url · function · L42-L42 — void load_url(wxString& url);
+- UpdateState · function · L44-L44 — void UpdateState();
+- OnIdle · function · L45-L45 — void OnIdle(wxIdleEvent& evt);
+- OnUrl · function · L46-L46 — void OnUrl(wxCommandEvent& evt);
+- OnBack · function · L47-L47 — void OnBack(wxCommandEvent& evt);
+- OnForward · function · L48-L48 — void OnForward(wxCommandEvent& evt);
+- OnStop · function · L49-L49 — void OnStop(wxCommandEvent& evt);
+- OnReload · function · L50-L50 — void OnReload(wxCommandEvent& evt);
+- OnNavigationRequest · function · L51-L51 — void OnNavigationRequest(wxWebViewEvent& evt);
+- OnNavigationComplete · function · L52-L52 — void OnNavigationComplete(wxWebViewEvent& evt);
+- OnDocumentLoaded · function · L53-L53 — void OnDocumentLoaded(wxWebViewEvent& evt);
+- OnTitleChanged · function · L54-L54 — void OnTitleChanged(wxWebViewEvent &evt);
+- OnNewWindow · function · L55-L55 — void OnNewWindow(wxWebViewEvent& evt);
+- OnScriptMessage · function · L56-L56 — void OnScriptMessage(wxWebViewEvent& evt);
+- OnScriptResponseMessage · function · L57-L57 — void OnScriptResponseMessage(wxCommandEvent& evt);
+- OnViewSourceRequest · function · L58-L58 — void OnViewSourceRequest(wxCommandEvent& evt);
+- OnViewTextRequest · function · L59-L59 — void OnViewTextRequest(wxCommandEvent& evt);
+- OnToolsClicked · function · L60-L60 — void OnToolsClicked(wxCommandEvent& evt);
+- OnError · function · L61-L61 — void OnError(wxWebViewEvent& evt);
+- OnCut · function · L62-L62 — void OnCut(wxCommandEvent& evt);
+- OnCopy · function · L63-L63 — void OnCopy(wxCommandEvent& evt);
+- OnPaste · function · L64-L64 — void OnPaste(wxCommandEvent& evt);
+- OnUndo · function · L65-L65 — void OnUndo(wxCommandEvent& evt);
+- OnRedo · function · L66-L66 — void OnRedo(wxCommandEvent& evt);
+- OnMode · function · L67-L67 — void OnMode(wxCommandEvent& evt);
+- RunScript · function · L68-L68 — void RunScript(const wxString& javascript);
+- OnRunScriptString · function · L69-L69 — void OnRunScriptString(wxCommandEvent& evt);
+- OnRunScriptInteger · function · L70-L70 — void OnRunScriptInteger(wxCommandEvent& evt);
+- OnRunScriptDouble · function · L71-L71 — void OnRunScriptDouble(wxCommandEvent& evt);
+- OnRunScriptBool · function · L72-L72 — void OnRunScriptBool(wxCommandEvent& evt);
+- OnRunScriptObject · function · L73-L73 — void OnRunScriptObject(wxCommandEvent& evt);
+- OnRunScriptArray · function · L74-L74 — void OnRunScriptArray(wxCommandEvent& evt);
+- OnRunScriptDOM · function · L75-L75 — void OnRunScriptDOM(wxCommandEvent& evt);
+- OnRunScriptUndefined · function · L76-L76 — void OnRunScriptUndefined(wxCommandEvent& evt);
+- OnRunScriptNull · function · L77-L77 — void OnRunScriptNull(wxCommandEvent& evt);
+- OnRunScriptDate · function · L78-L78 — void OnRunScriptDate(wxCommandEvent& evt);
+- OnRunScriptMessage · function · L79-L79 — void OnRunScriptMessage(wxCommandEvent& evt);
+- OnRunScriptCustom · function · L80-L80 — void OnRunScriptCustom(wxCommandEvent& evt);
+- OnAddUserScript · function · L81-L81 — void OnAddUserScript(wxCommandEvent& evt);
+- OnSetCustomUserAgent · function · L82-L82 — void OnSetCustomUserAgent(wxCommandEvent& evt);
+- OnClearSelection · function · L83-L83 — void OnClearSelection(wxCommandEvent& evt);
+- OnDeleteSelection · function · L84-L84 — void OnDeleteSelection(wxCommandEvent& evt);
+- OnSelectAll · function · L85-L85 — void OnSelectAll(wxCommandEvent& evt);
+- OnLoadScheme · function · L86-L86 — void OnLoadScheme(wxCommandEvent& evt);
+- OnUseMemoryFS · function · L87-L87 — void OnUseMemoryFS(wxCommandEvent& evt);
+- OnEnableContextMenu · function · L88-L88 — void OnEnableContextMenu(wxCommandEvent& evt);
+- OnEnableDevTools · function · L89-L89 — void OnEnableDevTools(wxCommandEvent& evt);
+- OnClose · function · L90-L90 — void OnClose(wxCloseEvent& evt);
+- OnFreshLoginStatus · function · L93-L93 — void OnFreshLoginStatus(wxTimerEvent &event);
+- SendRecentList · function · L96-L96 — void SendRecentList(int images);
+- SetLoginPanelVisibility · function · L97-L97 — void SetLoginPanelVisibility(bool bshow);
+- SendDesignStaffpick · function · L98-L98 — void SendDesignStaffpick(bool on);
+- OpenModelDetail · function · L99-L99 — void OpenModelDetail(std::string id, NetworkAgent *agent);
+- SendLoginInfo · function · L100-L100 — void SendLoginInfo();
+- ShowNetpluginTip · function · L101-L101 — void ShowNetpluginTip();
+- SendCloudProvidersInfo · function · L102-L102 — void SendCloudProvidersInfo();
+- get_design_staffpick · function · L104-L104 — void get_design_staffpick(int offset, int limit, std::function<void(std::string)> callback);
+- get_model_mall_detail_url · function · L105-L105 — int  get_model_mall_detail_url(std::string *url, std::string id);
+- update_mode · function · L107-L107 — void update_mode();
+- DECLARE_EVENT_TABLE · function · L156-L156 — DECLARE_EVENT_TABLE()
+- SourceViewDialog · class · L159-L163 — class SourceViewDialog : public wxDialog
+- SourceViewDialog · function · L162-L162 — SourceViewDialog(wxWindow* parent, wxString source);

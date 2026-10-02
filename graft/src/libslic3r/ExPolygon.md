@@ -1,0 +1,120 @@
+# src/libslic3r/ExPolygon.hpp
+
+- ExPolygon · class · L12-L12 — class ExPolygon;
+- ExPolygon · class · L15-L83 — class ExPolygon
+- ExPolygon · function · L18-L18 — ExPolygon() = default;
+- ExPolygon · function · L19-L19 — ExPolygon(const ExPolygon &other) = default;
+- ExPolygon · function · L20-L20 — ExPolygon(ExPolygon &&other) = default;
+- ExPolygon · function · L21-L21 — explicit ExPolygon(const Polygon &contour) : contour(contour) {}
+- ExPolygon · function · L22-L22 — explicit ExPolygon(Polygon &&contour) : contour(std::move(contour)) {}
+- ExPolygon · function · L23-L23 — explicit ExPolygon(const Points &contour) : contour(contour) {}
+- ExPolygon · function · L24-L24 — explicit ExPolygon(Points &&contour) : contour(std::move(contour)) {}
+- ExPolygon · function · L25-L25 — explicit ExPolygon(const Polygon &contour, const Polygon &hole) : contour(contour) { holes.emplace_back(hole); }
+- ExPolygon · function · L26-L26 — explicit ExPolygon(Polygon &&contour, Polygon &&hole) : contour(std::move(contour)) { holes.emplace_back(std::move(hole)); }
+- ExPolygon · function · L27-L27 — explicit ExPolygon(const Points &contour, const Points &hole) : contour(contour) { holes.emplace_back(hole); }
+- ExPolygon · function · L28-L28 — explicit ExPolygon(Points &&contour, Polygon &&hole) : contour(std::move(contour)) { holes.emplace_back(std::move(hole)); }
+- ExPolygon · function · L29-L29 — ExPolygon(std::initializer_list<Point> contour) : contour(contour) {}
+- ExPolygon · function · L30-L30 — ExPolygon(std::initializer_list<Point> contour, std::initializer_list<Point> hole) : contour(contour), holes({ hole }) {}
+- clear · function · L38-L38 — void clear() { contour.points.clear(); holes.clear(); }
+- scale · function · L39-L39 — void scale(double factor);
+- scale · function · L40-L40 — void scale(double factor_x, double factor_y);
+- translate · function · L41-L41 — void translate(double x, double y) { this->translate(Point(coord_t(x), coord_t(y))); }
+- translate · function · L42-L42 — void translate(const Point &vector);
+- rotate · function · L43-L43 — void rotate(double angle);
+- rotate · function · L44-L44 — void rotate(double angle, const Point &center);
+- area · function · L45-L45 — double area() const;
+- empty · function · L46-L46 — bool empty() const { return contour.points.empty(); }
+- is_valid · function · L47-L47 — bool is_valid() const;
+- douglas_peucker · function · L48-L48 — void douglas_peucker(double tolerance);
+- contains · function · L51-L51 — bool contains(const Line &line) const;
+- contains · function · L52-L52 — bool contains(const Polyline &polyline) const;
+- contains · function · L53-L53 — bool contains(const Polylines &polylines) const;
+- contains · function · L54-L54 — bool contains(const Point &point, bool border_result = true) const;
+- on_boundary · function · L56-L56 — bool on_boundary(const Point &point, double eps) const;
+- point_projection · function · L58-L58 — Point point_projection(const Point &point) const;
+- symmetric_y · function · L59-L59 — void symmetric_y(const coord_t &y_axis);
+- overlaps · function · L67-L67 — bool overlaps(const ExPolygon &other) const;
+- simplify_p · function · L69-L69 — void simplify_p(double tolerance, Polygons* polygons) const;
+- simplify_p · function · L70-L70 — Polygons simplify_p(double tolerance) const;
+- simplify · function · L71-L71 — ExPolygons simplify(double tolerance) const;
+- simplify · function · L72-L72 — void simplify(double tolerance, ExPolygons* expolygons) const;
+- medial_axis · function · L73-L73 — void medial_axis(double min_width, double max_width, ThickPolylines* polylines) const;
+- medial_axis · function · L74-L74 — void medial_axis(double min_width, double max_width, Polylines* polylines) const;
+- medial_axis · function · L75-L76 — Polylines medial_axis(double min_width, double max_width) const
+- lines · function · L77-L77 — Lines lines() const;
+- num_contours · function · L80-L80 — size_t   		num_contours() const { return this->holes.size() + 1; }
+- contour_or_hole · function · L81-L81 — Polygon& 		contour_or_hole(size_t idx) 		{ return (idx == 0) ? this->contour : this->holes[idx - 1]; }
+- contour_or_hole · function · L82-L82 — const Polygon& 	contour_or_hole(size_t idx) const 	{ return (idx == 0) ? this->contour : this->holes[idx - 1]; }
+- count_points · function · L88-L97 — inline size_t count_points(const ExPolygons &expolys)
+- count_points · function · L99-L105 — inline size_t count_points(const ExPolygon &expoly)
+- number_polygons · function · L109-L115 — inline size_t number_polygons(const ExPolygons &expolys)
+- to_lines · function · L117-L128 — inline Lines to_lines(const ExPolygon &src)
+- to_lines · function · L130-L143 — inline Lines to_lines(const ExPolygons &src)
+- to_linesf · function · L147-L173 — inline Linesf to_linesf(const ExPolygons &src, uint32_t count_lines = 0)
+- to_unscaled_linesf · function · L175-L193 — inline Linesf to_unscaled_linesf(const ExPolygons &src)
+- to_unscaled_linesf3 · function · L195-L213 — inline Linesf3 to_unscaled_linesf3(const ExPolygons& src)
+- to_points · function · L215-L226 — inline Points to_points(const ExPolygons &src)
+- to_polylines · function · L228-L243 — inline Polylines to_polylines(const ExPolygon &src)
+- to_polylines · function · L245-L262 — inline Polylines to_polylines(const ExPolygons &src)
+- to_polylines · function · L264-L279 — inline Polylines to_polylines(ExPolygon &&src)
+- to_polylines · function · L281-L298 — inline Polylines to_polylines(ExPolygons &&src)
+- to_polygons · function · L300-L307 — inline Polygons to_polygons(const ExPolygon &src)
+- to_polygons · function · L309-L318 — inline Polygons to_polygons(const ExPolygons &src)
+- to_polygon_ptrs · function · L320-L328 — inline ConstPolygonPtrs to_polygon_ptrs(const ExPolygon &src)
+- to_polygon_ptrs · function · L330-L340 — inline ConstPolygonPtrs to_polygon_ptrs(const ExPolygons &src)
+- to_polygons · function · L342-L351 — inline Polygons to_polygons(ExPolygon &&src)
+- to_polygons · function · L353-L364 — inline Polygons to_polygons(ExPolygons &&src)
+- to_expolygons · function · L366-L373 — inline ExPolygons to_expolygons(const Polygons &polys)
+- to_expolygons · function · L375-L382 — inline ExPolygons to_expolygons(Polygons &&polys)
+- to_points · function · L384-L392 — inline Points to_points(const ExPolygon &expoly)
+- translate · function · L394-L397 — inline void translate(ExPolygons &expolys, const Point &p)
+- polygons_append · function · L399-L404 — inline void polygons_append(Polygons &dst, const ExPolygon &src)
+- polygons_append · function · L406-L413 — inline void polygons_append(Polygons &dst, const ExPolygons &src)
+- polygons_append · function · L415-L422 — inline void polygons_append(Polygons &dst, ExPolygon &&src)
+- polygons_append · function · L424-L433 — inline void polygons_append(Polygons &dst, ExPolygons &&src)
+- expolygons_append · function · L435-L438 — inline void expolygons_append(ExPolygons &dst, const ExPolygons &src)
+- expolygons_append · function · L440-L449 — inline void expolygons_append(ExPolygons &dst, ExPolygons &&src)
+- expolygons_rotate · function · L451-L455 — inline void expolygons_rotate(ExPolygons &expolys, double angle)
+- expolygons_contain · function · L457-L463 — inline bool expolygons_contain(ExPolygons &expolys, const Point &pt, bool border_result = true)
+- expolygons_simplify · function · L465-L472 — inline ExPolygons expolygons_simplify(const ExPolygons &expolys, double tolerance)
+- expolygons_match · function · L476-L476 — bool expolygons_match(const ExPolygon &l, const ExPolygon &r);
+- overlaps · function · L478-L478 — bool overlaps(const ExPolygons& expolys1, const ExPolygons& expolys2);
+- overlaps · function · L479-L479 — bool overlaps(const ExPolygons& expolys, const ExPolygon& expoly);
+- projection_onto · function · L481-L481 — Point projection_onto(const ExPolygons& expolys, const Point& pt);
+- get_extents · function · L483-L483 — BoundingBox get_extents(const ExPolygon &expolygon);
+- get_extents · function · L484-L484 — BoundingBox get_extents(const ExPolygons &expolygons);
+- get_extents_rotated · function · L485-L485 — BoundingBox get_extents_rotated(const ExPolygon &poly, double angle);
+- get_extents_rotated · function · L486-L486 — BoundingBox get_extents_rotated(const ExPolygons &polygons, double angle);
+- get_extents_vector · function · L487-L487 — std::vector<BoundingBox> get_extents_vector(const ExPolygons &polygons);
+- has_duplicate_points · function · L490-L490 — bool has_duplicate_points(const ExPolygon &expoly);
+- has_duplicate_points · function · L491-L491 — bool has_duplicate_points(const ExPolygons &expolys);
+- remove_same_neighbor · function · L494-L494 — bool remove_same_neighbor(ExPolygons &expolys);
+- remove_sticks · function · L496-L496 — bool remove_sticks(ExPolygon &poly);
+- keep_largest_contour_only · function · L497-L497 — void keep_largest_contour_only(ExPolygons &polygons);
+- area · function · L499-L499 — inline double      area(const ExPolygon &poly) { return poly.area(); }
+- area · function · L500-L500 — inline double      area(const ExPolygons &polys) { double s = 0.; for (auto &p : polys) s += p.area(); return s; }
+- remove_small_and_small_holes · function · L503-L503 — bool        remove_small_and_small_holes(ExPolygons &expolygons, double min_area);
+- coordinate_type · type · L512-L512 — typedef coord_t coordinate_type;
+- iterator_type · type · L513-L513 — typedef Slic3r::Points::const_iterator iterator_type;
+- point_type · type · L514-L514 — typedef Slic3r::Point point_type;
+- begin_points · function · L517-L519 — static inline iterator_type begin_points(const Slic3r::ExPolygon& t)
+- end_points · function · L522-L524 — static inline iterator_type end_points(const Slic3r::ExPolygon& t)
+- size · function · L527-L529 — static inline std::size_t size(const Slic3r::ExPolygon& t)
+- winding · function · L532-L534 — static inline winding_direction winding(const Slic3r::ExPolygon& /* t */)
+- set_points · function · L541-L541 — static inline Slic3r::ExPolygon& set_points(Slic3r::ExPolygon& expolygon, iT input_begin, iT input_end)
+- type · type · L551-L551 — struct geometry_concept<Slic3r::ExPolygon> { typedef polygon_with_holes_concept type; };
+- iterator_holes_type · type · L555-L555 — typedef Slic3r::Polygons::const_iterator iterator_holes_type;
+- hole_type · type · L556-L556 — typedef Slic3r::Polygon hole_type;
+- begin_holes · function · L557-L559 — static inline iterator_holes_type begin_holes(const Slic3r::ExPolygon& t)
+- end_holes · function · L560-L562 — static inline iterator_holes_type end_holes(const Slic3r::ExPolygon& t)
+- size_holes · function · L563-L565 — static inline unsigned int size_holes(const Slic3r::ExPolygon& t)
+- set_holes · function · L571-L571 — static inline Slic3r::ExPolygon& set_holes(Slic3r::ExPolygon& t, iT inputBegin, iT inputEnd)
+- type · type · L579-L579 — struct geometry_concept<Slic3r::ExPolygons> { typedef polygon_set_concept type; };
+- coordinate_type · type · L584-L584 — typedef coord_t coordinate_type;
+- iterator_type · type · L585-L585 — typedef Slic3r::ExPolygons::const_iterator iterator_type;
+- operator_arg_type · type · L586-L586 — typedef Slic3r::ExPolygons operator_arg_type;
+- begin · function · L588-L590 — static inline iterator_type begin(const Slic3r::ExPolygons& polygon_set)
+- end · function · L592-L594 — static inline iterator_type end(const Slic3r::ExPolygons& polygon_set)
+- clean · function · L597-L597 — static inline bool clean(const Slic3r::ExPolygons& /* polygon_set */) { return false; }
+- sorted · function · L598-L598 — static inline bool sorted(const Slic3r::ExPolygons& /* polygon_set */) { return false; }
+- set · function · L603-L606 — template <typename input_iterator_type>

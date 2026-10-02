@@ -1,0 +1,21 @@
+# src/libslic3r/Feature/Interlocking/VoxelUtils.hpp
+
+- DilationKernel · class · L20-L55 — struct DilationKernel
+- Type · type · L44-L49 — enum class Type
+- DilationKernel · function · L54-L54 — DilationKernel(GridPoint3 kernel_size, Type type);
+- VoxelUtils · class · L62-L208 — class VoxelUtils
+- VoxelUtils · function · L69-L72 — VoxelUtils(Vec3crd cell_size)
+- walkLine · function · L82-L82 — bool walkLine(Vec3crd start, Vec3crd end, const std::function<bool(GridPoint3)>& process_cell_func) const;
+- walkPolygons · function · L94-L94 — bool walkPolygons(const ExPolygon& polys, coord_t z, const std::function<bool(GridPoint3)>& process_cell_func) const;
+- walkDilatedPolygons · function · L107-L107 — bool walkDilatedPolygons(const ExPolygon& polys, coord_t z, const DilationKernel& kernel, const std::function<bool(GridPoint3)>& process_cell_func) const;
+- walkDilatedPolygons · function · L108-L117 — bool walkDilatedPolygons(const ExPolygons& polys, coord_t z, const DilationKernel& kernel, const std::function<bool(GridPoint3)>& process_cell_func) const
+- _walkAreas · function · L123-L123 — bool _walkAreas(const ExPolygon& polys, coord_t z, const std::function<bool(GridPoint3)>& process_cell_func) const;
+- walkAreas · function · L136-L136 — bool walkAreas(const ExPolygon& polys, coord_t z, const std::function<bool(GridPoint3)>& process_cell_func) const;
+- walkDilatedAreas · function · L149-L149 — bool walkDilatedAreas(const ExPolygon& polys, coord_t z, const DilationKernel& kernel, const std::function<bool(GridPoint3)>& process_cell_func) const;
+- walkDilatedAreas · function · L150-L159 — bool walkDilatedAreas(const ExPolygons& polys, coord_t z, const DilationKernel& kernel, const std::function<bool(GridPoint3)>& process_cell_func) const
+- dilate · function · L171-L171 — std::function<bool(GridPoint3)> dilate(const DilationKernel& kernel, const std::function<bool(GridPoint3)>& process_cell_func) const;
+- toGridPoint · function · L173-L176 — GridPoint3 toGridPoint(const Vec3crd& point) const
+- toGridCoord · function · L178-L182 — grid_coord_t toGridCoord(const coord_t& coord, const size_t dim) const
+- toLowerCorner · function · L184-L187 — Vec3crd toLowerCorner(const GridPoint3& location) const
+- toLowerCoord · function · L189-L193 — coord_t toLowerCoord(const grid_coord_t& grid_coord, const size_t dim) const
+- toPolygon · function · L198-L207 — Polygon toPolygon(const GridPoint3 p) const

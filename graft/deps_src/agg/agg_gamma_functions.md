@@ -1,0 +1,25 @@
+# deps_src/agg/agg_gamma_functions.h
+
+- gamma_none · class · L25-L27 — struct gamma_none
+- m_gamma · function · L36-L36 — gamma_power(double g) : m_gamma(g) {}
+- gamma · function · L38-L38 — void gamma(double g) { m_gamma = g; }
+- gamma · function · L39-L39 — double gamma() const { return m_gamma; }
+- operator · function · L41-L41 — double operator() (double x) const
+- m_threshold · function · L56-L56 — gamma_threshold(double t) : m_threshold(t) {}
+- threshold · function · L58-L58 — void threshold(double t) { m_threshold = t; }
+- threshold · function · L59-L59 — double threshold() const { return m_threshold; }
+- operator · function · L61-L61 — double operator() (double x) const
+- m_end · function · L76-L76 — gamma_linear(double s, double e) : m_start(s), m_end(e) {}
+- m_start · function · L76-L78 — gamma_linear(double s, double e) : m_start(s), m_end(e) {}
+- set · function · L78-L78 — void set(double s, double e) { m_start = s; m_end = e; }
+- start · function · L79-L79 — void start(double s) { m_start = s; }
+- end · function · L80-L80 — void end(double e) { m_end = e; }
+- start · function · L81-L81 — double start() const { return m_start; }
+- end · function · L82-L82 — double end() const { return m_end; }
+- operator · function · L84-L84 — double operator() (double x) const
+- m_mul · function · L102-L102 — gamma_multiply(double v) : m_mul(v) {}
+- value · function · L104-L104 — void value(double v) { m_mul = v; }
+- value · function · L105-L105 — double value() const { return m_mul; }
+- operator · function · L107-L107 — double operator() (double x) const
+- sRGB_to_linear · function · L118-L121 — inline double sRGB_to_linear(double x)
+- linear_to_sRGB · function · L123-L126 — inline double linear_to_sRGB(double x)

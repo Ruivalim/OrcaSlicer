@@ -1,0 +1,159 @@
+# src/libslic3r/GCode.hpp
+
+- GCode · class · L41-L41 — class GCode;
+- ConstPrintObjectPtrsAdaptor · class · L46-L46 — class ConstPrintObjectPtrsAdaptor;
+- OozePrevention · class · L48-L58 — class OozePrevention
+- OozePrevention · function · L52-L52 — OozePrevention() : enable(false) {}
+- pre_toolchange · function · L53-L53 — std::string pre_toolchange(GCode &gcodegen);
+- post_toolchange · function · L54-L54 — std::string post_toolchange(GCode &gcodegen);
+- _get_temp · function · L57-L57 — int _get_temp(const GCode &gcodegen) const;
+- Wipe · class · L60-L81 — class Wipe
+- RetractionValues · class · L66-L70 — struct RetractionValues
+- Wipe · function · L72-L72 — Wipe() : enable(false) {}
+- has_path · function · L73-L73 — bool has_path() const { return !this->path.points.empty(); }
+- reset_path · function · L74-L74 — void reset_path() { this->path = Polyline(); }
+- wipe · function · L75-L75 — std::string wipe(GCode &gcodegen, double length, bool toolchange = false, bool is_last = false);
+- calculateWipeRetractionLengths · function · L78-L78 — RetractionValues calculateWipeRetractionLengths(GCode& gcodegen, bool toolchange);
+- update_path · function · L80-L80 — void update_path(const ExtrusionPaths &paths, bool reverse = false);
+- WipeTowerIntegration · class · L83-L180 — class WipeTowerIntegration
+- WipeTowerIntegration · function · L85-L121 — WipeTowerIntegration(
+- prime · function · L123-L123 — std::string prime(GCode &gcodegen);
+- next_layer · function · L124-L124 — void next_layer() { ++ m_layer_idx; m_tool_change_idx = 0; }
+- tool_change · function · L125-L125 — std::string tool_change(GCode &gcodegen, int extruder_id, bool finish_layer);
+- is_empty_wipe_tower_gcode · function · L126-L126 — bool is_empty_wipe_tower_gcode(GCode &gcodegen, int extruder_id, bool finish_layer);
+- finalize · function · L127-L127 — std::string finalize(GCode &gcodegen);
+- used_filament_length · function · L128-L128 — std::vector<float> used_filament_length() const;
+- is_first_print · function · L130-L130 — bool is_first_print() const { return m_is_first_print;}
+- set_is_first_print · function · L131-L131 — void set_is_first_print(bool is) { m_is_first_print = is; }
+- enable_timelapse_print · function · L133-L133 — bool enable_timelapse_print() const { return m_enable_timelapse_print; }
+- set_wipe_tower_depth · function · L134-L134 — void set_wipe_tower_depth(float depth) { m_wipe_tower_depth = depth; }
+- set_wipe_tower_bbx · function · L135-L135 — void set_wipe_tower_bbx(const BoundingBoxf & bbx) { m_wipe_tower_bbx = bbx; }
+- set_rib_offset · function · L136-L136 — void set_rib_offset(const Vec2f &rib_offset) { m_rib_offset = rib_offset; }
+- append_tcr · function · L140-L140 — std::string append_tcr(GCode &gcodegen, const WipeTower::ToolChangeResult &tcr, int new_extruder_id, double z = -1.) const;
+- generate_path_to_wipe_tower · function · L141-L141 — Polyline generate_path_to_wipe_tower(const Point &start_pos, const Point &end_pos, const BoundingBox &avoid_polygon, const Polygons &bed_polygons) const;
+- append_tcr2 · function · L142-L142 — std::string append_tcr2(GCode &gcodegen, const WipeTower::ToolChangeResult &tcr, int new_extruder_id, double z = -1.) const;
+- travel_to_tower_gap · function · L143-L143 — std::string travel_to_tower_gap(GCode &gcodegen, const Point &route_start, const Point &start_wipe_pos) const;
+- transform_wt2_pt · function · L144-L144 — Vec2f transform_wt2_pt(const Vec2f &pt) const;
+- shared_printable_area · function · L145-L145 — Polygons shared_printable_area(GCode &gcodegen) const;
+- post_process_wipe_tower_moves · function · L148-L148 — std::string post_process_wipe_tower_moves(const WipeTower::ToolChangeResult& tcr, const Vec2f& translation, float angle) const;
+- ColorPrintColors · class · L182-L187 — class ColorPrintColors
+- get · function · L186-L186 — static const std::vector<std::string>& get() { return Colors; }
+- LayerResult · class · L189-L201 — struct LayerResult
+- make_nop_layer_result · function · L200-L200 — static LayerResult make_nop_layer_result() { return {"", std::numeric_limits<size_t>::max(), false, false, true}; }
+- GCode · class · L203-L821 — class GCode
+- GCode · function · L206-L231 — GCode() :
+- do_export · function · L236-L236 — void            do_export(Print* print, const char* path, GCodeProcessorResult* result = nullptr, ThumbnailsGeneratorCallback thumbnail_cb = nullptr);
+- export_layer_filaments · function · L237-L237 — void            export_layer_filaments(GCodeProcessorResult* result);
+- set_gcode_offset · function · L239-L239 — void set_gcode_offset(double x, double y) { m_writer.set_xy_offset(x, y); m_processor.set_xy_offset(x, y);}
+- origin · function · L242-L242 — const Vec2d&    origin() const { return m_origin; }
+- set_origin · function · L243-L243 — void            set_origin(const Vec2d &pointf);
+- set_origin · function · L244-L244 — void            set_origin(const coordf_t x, const coordf_t y) { this->set_origin(Vec2d(x, y)); }
+- last_pos · function · L245-L245 — Point           last_pos() const { return m_last_pos.to_point(); }
+- point_to_gcode · function · L246-L246 — Vec2d           point_to_gcode(const Point &point) const;
+- point_to_gcode · function · L247-L247 — Vec3d                    point_to_gcode(const Point3& point) const;
+- gcode_to_point · function · L248-L248 — Point           gcode_to_point(const Vec2d &point) const;
+- point_to_gcode_quantized · function · L249-L249 — Vec2d point_to_gcode_quantized(const Point& point) const;
+- point_to_gcode_quantized · function · L250-L250 — Vec3d                    point_to_gcode_quantized(const Point3& point) const;
+- config · function · L251-L251 — const FullPrintConfig &config() const { return m_config; }
+- layer · function · L252-L252 — const Layer*    layer() const { return m_layer; }
+- writer · function · L253-L253 — GCodeWriter&    writer() { return m_writer; }
+- writer · function · L254-L254 — const GCodeWriter& writer() const { return m_writer; }
+- placeholder_parser · function · L255-L255 — PlaceholderParser& placeholder_parser() { return m_placeholder_parser_integration.parser; }
+- placeholder_parser · function · L256-L256 — const PlaceholderParser& placeholder_parser() const { return m_placeholder_parser_integration.parser; }
+- placeholder_parser_process · function · L259-L259 — std::string     placeholder_parser_process(const std::string &name, const std::string &templ, unsigned int current_filament_id, const DynamicConfig *config_override = nullptr);
+- enable_cooling_markers · function · L260-L260 — bool            enable_cooling_markers() const { return m_enable_cooling_markers; }
+- extrusion_role_to_string_for_parser · function · L261-L261 — std::string     extrusion_role_to_string_for_parser(const ExtrusionRole &);
+- interpolate_value_across_layers · function · L266-L266 — float interpolate_value_across_layers(float start_value, float end_value, float step = 0.0f) const;
+- layer_count · function · L269-L269 — unsigned int    layer_count() const { return m_layer_count; }
+- set_layer_count · function · L270-L270 — void            set_layer_count(unsigned int value) { m_layer_count = value; }
+- apply_print_config · function · L271-L271 — void            apply_print_config(const PrintConfig &print_config);
+- travel_to · function · L273-L273 — std::string     travel_to(const Point& point, ExtrusionRole role, std::string comment, double z = DBL_MAX);
+- needs_retraction · function · L274-L274 — bool            needs_retraction(const Polyline& travel, ExtrusionRole role, LiftType& lift_type);
+- retract · function · L275-L275 — std::string     retract(bool toolchange = false, bool is_last_retraction = false, LiftType lift_type = LiftType::NormalLift, bool apply_instantly = false, ExtrusionRole role = erNone);
+- unretract · function · L277-L277 — std::string     unretract(float extra_retract = 0.f) { return m_writer.unlift() + m_writer.unretract(extra_retract); }
+- set_extruder · function · L278-L278 — std::string     set_extruder(unsigned int extruder_id, double print_z, bool by_object=false, int toolchange_temp_override = -1, bool defer_temp_wait = false);
+- is_BBL_Printer · function · L279-L279 — bool is_BBL_Printer();
+- wipe_tower_type · function · L280-L280 — WipeTowerType wipe_tower_type();
+- set_object_info · function · L283-L283 — std::string set_object_info(Print* print);
+- append_full_config · function · L286-L286 — static void append_full_config(const Print& print, std::string& str);
+- get_filament_config_index · function · L291-L291 — size_t get_filament_config_index(int filament_id) const;
+- get_nozzle_config_index · function · L292-L292 — size_t get_nozzle_config_index(int filament_id) const;
+- LayerToPrint · class · L296-L333 — struct LayerToPrint
+- LayerToPrint · function · L298-L298 — LayerToPrint() : object_layer(nullptr), support_layer(nullptr), original_object(nullptr) {}
+- layer · function · L302-L302 — const Layer* 		layer()   const
+- object · function · L313-L313 — const PrintObject* 	object()   const
+- print_z · function · L317-L332 — coordf_t            print_z() const
+- GCodeOutputStream · class · L336-L362 — class GCodeOutputStream
+- GCodeOutputStream · function · L338-L338 — GCodeOutputStream(FILE *f, GCodeProcessor &processor) : f(f), m_processor(processor) {}
+- is_open · function · L341-L341 — bool is_open() const { return f; }
+- is_error · function · L342-L342 — bool is_error() const;
+- flush · function · L344-L344 — void flush();
+- close · function · L345-L345 — void close();
+- write · function · L348-L348 — void write(const std::string& what) { this->write(what.c_str()); }
+- write · function · L349-L349 — void write(const char* what);
+- writeln · function · L354-L354 — void writeln(const std::string& what);
+- write_format · function · L357-L357 — void write_format(const char* format, ...);
+- _do_export · function · L363-L363 — void            _do_export(Print &print, GCodeOutputStream &file, ThumbnailsGeneratorCallback thumbnail_cb);
+- collect_layers_to_print · function · L365-L365 — static std::vector<LayerToPrint>        		                   collect_layers_to_print(const PrintObject &object);
+- collect_layers_to_print · function · L366-L366 — static std::vector<std::pair<coordf_t, std::vector<LayerToPrint>>> collect_layers_to_print(const Print &print);
+- generate_skirt · function · L368-L375 — std::string generate_skirt(const Print &print,
+- generate_object_skirt_group · function · L376-L381 — std::string generate_object_skirt_group(const Print &print,
+- generate_object_brim · function · L382-L385 — std::string generate_object_brim(const Print &print,
+- process_layer · function · L387-L401 — LayerResult process_layer(
+- process_layers · function · L405-L410 — void process_layers(
+- process_layers · function · L414-L421 — void process_layers(
+- check_placeholder_parser_failed · function · L424-L424 — void check_placeholder_parser_failed();
+- cur_extruder_index · function · L425-L425 — size_t cur_extruder_index() const;
+- get_extruder_id · function · L426-L426 — size_t get_extruder_id(unsigned int filament_id) const;
+- update_placeholder_parser_with_variant_params · function · L427-L427 — void   update_placeholder_parser_with_variant_params();
+- set_last_pos · function · L429-L429 — void            set_last_pos(const Point &pos) { m_last_pos = Point3(pos, 0); m_last_pos_defined = true; }
+- set_last_pos · function · L430-L430 — void            set_last_pos(const Point3 &pos) { m_last_pos = pos; m_last_pos_defined = true; }
+- last_pos_defined · function · L431-L431 — bool            last_pos_defined() const { return m_last_pos_defined; }
+- set_extruders · function · L432-L432 — void            set_extruders(const std::vector<unsigned int> &extruder_ids);
+- preamble · function · L433-L433 — std::string     preamble();
+- change_layer · function · L435-L435 — std::string     change_layer(coordf_t print_z);
+- mass_load_limited_machine_acceleration · function · L439-L440 — void            mass_load_limited_machine_acceleration(const PrintStatistics &curr_print_statistics, const Print &print,
+- extrude_entity · function · L443-L447 — std::string extrude_entity(const ExtrusionEntity&      entity,
+- extrude_loop · function · L450-L455 — std::string extrude_loop(const ExtrusionLoop&        loop,
+- extrude_multi_path · function · L456-L456 — std::string extrude_multi_path(const ExtrusionMultiPath& multipath, const std::string& description = "", double speed = -1.);
+- extrude_path · function · L457-L457 — std::string extrude_path(const ExtrusionPath& path, const std::string& description = "", double speed = -1.);
+- ObjectByExtruder · class · L475-L510 — struct ObjectByExtruder
+- ObjectByExtruder · function · L477-L477 — ObjectByExtruder() : support(nullptr), support_extrusion_role(erNone) {}
+- Island · class · L482-L508 — struct Island
+- Region · class · L484-L501 — struct Region
+- Type · type · L494-L497 — enum Type
+- append · function · L500-L500 — void append(const Type type, const ExtrusionEntityCollection* eec, const WipingExtrusions::ExtruderPerCopy* copy_extruders);
+- by_region_per_copy · function · L507-L507 — const std::vector<Region>& by_region_per_copy(std::vector<Region> &by_region_per_copy_cache, unsigned int copy, unsigned int extruder, bool wiping_entities = false) const;
+- InstanceToPrint · class · L512-L526 — struct InstanceToPrint
+- InstanceToPrint · function · L514-L515 — InstanceToPrint(ObjectByExtruder &object_by_extruder, size_t layer_id, const PrintObject &print_object, size_t instance_id, size_t label_object_id) :
+- sort_print_object_instances · function · L528-L535 — std::vector<InstanceToPrint> sort_print_object_instances(
+- extrude_perimeters · function · L537-L537 — std::string     extrude_perimeters(const Print& print, const std::vector<ObjectByExtruder::Island::Region>& by_region, bool is_first_layer, bool is_infill_first, bool unsupported_loops_only = false);
+- extrude_infill · function · L538-L538 — std::string     extrude_infill(const Print& print, const std::vector<ObjectByExtruder::Island::Region>& by_region, bool ironing);
+- extrude_support · function · L539-L539 — std::string     extrude_support(const ExtrusionEntityCollection& support_fills, const ExtrusionRole support_extrusion_role);
+- compute_farthest_point · function · L542-L543 — void compute_farthest_point(const std::vector<LayerToPrint> &layers, int most_used_extruder,
+- generate_timelapse_gcode · function · L548-L551 — std::string     generate_timelapse_gcode(const Print &print, coordf_t print_z, int most_used_extruder,
+- to_lift_type · function · L554-L554 — LiftType to_lift_type(ZHopType z_hop_types);
+- InstanceVisit · class · L562-L571 — struct InstanceVisit
+- IslandOrderNode · class · L574-L587 — struct IslandOrderNode
+- PlaceholderParserIntegration · class · L607-L635 — struct PlaceholderParserIntegration
+- reset · function · L608-L608 — void reset();
+- init · function · L609-L609 — void init(const GCodeWriter &config);
+- update_from_gcodewriter · function · L610-L610 — void update_from_gcodewriter(const GCodeWriter &writer);
+- validate_output_vector_variables · function · L611-L611 — void validate_output_vector_variables();
+- FarthestPointTimelapseContext · class · L648-L665 — struct FarthestPointTimelapseContext
+- _encode_label_ids_to_base64 · function · L678-L678 — std::string _encode_label_ids_to_base64(std::vector<size_t> ids);
+- get_bed_temperature · function · L782-L782 — int get_bed_temperature(const int extruder_id, const bool is_first_layer, const BedType bed_type) const;
+- get_highest_bed_temperature · function · L783-L783 — int get_highest_bed_temperature(const bool is_first_layer,const Print &print) const;
+- update_layer_related_config · function · L785-L785 — void update_layer_related_config(int layer_id);
+- calc_max_volumetric_speed · function · L787-L787 — double      calc_max_volumetric_speed(const double layer_height, const double line_width, const std::string co_str);
+- _extrude · function · L788-L788 — std::string _extrude(const ExtrusionPath &path, std::string description = "", double speed = -1);
+- _needSAFC · function · L789-L789 — bool _needSAFC(const ExtrusionPath &path);
+- print_machine_envelope · function · L790-L790 — void print_machine_envelope(GCodeOutputStream& file, Print& print);
+- _print_first_layer_bed_temperature · function · L791-L791 — void _print_first_layer_bed_temperature(GCodeOutputStream &file, Print &print, const std::string &gcode, unsigned int first_printing_extruder_id, bool wait);
+- _print_first_layer_extruder_temperatures · function · L792-L792 — void _print_first_layer_extruder_temperatures(GCodeOutputStream &file, Print &print, const std::string &gcode, unsigned int first_printing_extruder_id, bool wait);
+- on_first_layer · function · L795-L795 — bool    on_first_layer() const { return m_layer != nullptr && m_layer->id() == 0 && abs(m_layer->bottom_z()) < EPSILON; }
+- layer_id · function · L796-L800 — int layer_id() const
+- object_layer_over_raft · function · L802-L802 — bool                                object_layer_over_raft() const { return m_object_layer_over_raft; }
+- object_by_extruder · function · L804-L808 — friend ObjectByExtruder& object_by_extruder(
+- object_islands_by_extruder · function · L809-L814 — friend std::vector<ObjectByExtruder::Island>& object_islands_by_extruder(
+- sort_object_instances_by_model_order · function · L823-L823 — std::vector<const PrintInstance*> sort_object_instances_by_model_order(const Print& print, bool init_order = false);

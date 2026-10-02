@@ -1,0 +1,37 @@
+# deps_src/agg/agg_trans_affine.h
+
+- trans_affine · class · L87-L196 — struct trans_affine
+- operator · function · L214-L217 — trans_affine operator * (const trans_affine& m) const
+- operator · function · L221-L224 — trans_affine operator / (const trans_affine& m) const
+- operator · function · L227-L237 — trans_affine operator ~ () const
+- operator · function · L234-L234 — bool operator == (const trans_affine& m) const
+- operator · function · L240-L243 — bool operator != (const trans_affine& m) const
+- transform · function · L247-L247 — void transform(double* x, double* y) const;
+- transform_2x2 · function · L250-L250 — void transform_2x2(double* x, double* y) const;
+- inverse_transform · function · L255-L255 — void inverse_transform(double* x, double* y) const;
+- determinant · function · L259-L259 — double determinant() const
+- determinant_reciprocal · function · L265-L265 — double determinant_reciprocal() const
+- scale · function · L273-L409 — double scale() const;
+- is_valid · function · L276-L276 — bool is_valid(double epsilon = affine_epsilon) const;
+- is_identity · function · L279-L279 — bool is_identity(double epsilon = affine_epsilon) const;
+- is_equal · function · L282-L282 — bool is_equal(const trans_affine& m, double epsilon = affine_epsilon) const;
+- rotation · function · L286-L286 — double rotation() const;
+- translation · function · L287-L287 — void   translation(double* dx, double* dy) const;
+- scaling · function · L288-L288 — void   scaling(double* x, double* y) const;
+- scaling_abs · function · L289-L289 — void   scaling_abs(double* x, double* y) const;
+- transform · function · L293-L293 — inline void trans_affine::transform(double* x, double* y) const
+- transform_2x2 · function · L301-L301 — inline void trans_affine::transform_2x2(double* x, double* y) const
+- inverse_transform · function · L309-L309 — inline void trans_affine::inverse_transform(double* x, double* y) const
+- scale · function · L319-L319 — inline double trans_affine::scale() const
+- translate · function · L327-L327 — inline const trans_affine& trans_affine::translate(double x, double y)
+- rotate · function · L335-L335 — inline const trans_affine& trans_affine::rotate(double a)
+- scale · function · L352-L352 — inline const trans_affine& trans_affine::scale(double x, double y)
+- scale · function · L366-L366 — inline const trans_affine& trans_affine::scale(double s)
+- premultiply · function · L379-L379 — inline const trans_affine& trans_affine::premultiply(const trans_affine& m)
+- multiply_inv · function · L386-L386 — inline const trans_affine& trans_affine::multiply_inv(const trans_affine& m)
+- premultiply_inv · function · L394-L394 — inline const trans_affine& trans_affine::premultiply_inv(const trans_affine& m)
+- scaling_abs · function · L402-L402 — inline void trans_affine::scaling_abs(double* x, double* y) const
+- trans_affine · function · L420-L444 — trans_affine(cos(a), sin(a), -sin(a), cos(a), 0.0, 0.0)
+- trans_affine_scaling · function · L426-L443 — class trans_affine_scaling : public trans_affine
+- trans_affine_reflection_unit · function · L505-L505 — trans_affine_reflection_unit(cos(a), sin(a))
+- trans_affine_reflection · function · L509-L510 — trans_affine_reflection(double x, double y) :

@@ -1,0 +1,232 @@
+# src/slic3r/GUI/Widgets/AMSItem.hpp
+
+- AMSModel · type · L40-L46 — enum AMSModel
+- AMSModelOriginType · type · L48-L51 — enum AMSModelOriginType
+- ActionButton · type · L53-L58 — enum ActionButton
+- AMSRoadMode · type · L60-L68 — enum class AMSRoadMode : int
+- AMSPanelPos · type · L70-L74 — enum class AMSPanelPos : int
+- AMSRoadShowMode · type · L76-L83 — enum class AMSRoadShowMode : int
+- AMSPassRoadMode · type · L85-L92 — enum class AMSPassRoadMode : int
+- AMSAction · type · L94-L102 — enum class AMSAction : int
+- AMSPassRoadSTEP · type · L104-L113 — enum class AMSPassRoadSTEP : int
+- AMSPassRoadType · type · L115-L119 — enum class AMSPassRoadType : int
+- AMSCanType · type · L121-L127 — enum class AMSCanType : int
+- FilamentStep · type · L129-L140 — enum FilamentStep
+- FilamentStepType · type · L143-L147 — enum FilamentStepType
+- Caninfo · class · L180-L214 — struct Caninfo
+- AMSinfo · class · L216-L283 — struct AMSinfo
+- parse_ams_info · function · L270-L270 — bool parse_ams_info(MachineObject* obj, DevAms *ams, bool remain_flag = false, bool humidity_flag = false);
+- parse_ext_info · function · L271-L271 — void parse_ext_info(MachineObject* obj, DevAmsTray tray);
+- support_drying · function · L273-L273 — bool support_drying() const { return (ams_type == AMSModel::N3S_AMS) || (ams_type == AMSModel::N3F_AMS); };
+- support_humidity · function · L274-L274 — bool support_humidity() const { return  1 <= get_humidity_display_idx() && get_humidity_display_idx() <= 5; }
+- get_caninfo · function · L275-L275 — Caninfo get_caninfo(const std::string& can_id, bool& found) const;
+- get_humidity_display_idx · function · L277-L277 — int  get_humidity_display_idx() const;
+- routes_to_main_extruder · function · L282-L282 — bool routes_to_main_extruder() const;
+- AMSExtText · class · L289-L299 — class AMSExtText : public wxWindow
+- msw_rescale · function · L292-L292 — void msw_rescale();
+- paintEvent · function · L293-L293 — void paintEvent(wxPaintEvent& evt);
+- render · function · L295-L295 — void            render(wxDC& dc);
+- doRender · function · L296-L296 — void            doRender(wxDC& dc);
+- AMSExtText · function · L297-L297 — AMSExtText(wxWindow* parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- AMSrefresh · class · L306-L361 — class AMSrefresh : public wxWindow
+- AMSrefresh · function · L309-L309 — AMSrefresh();
+- AMSrefresh · function · L310-L310 — AMSrefresh(wxWindow *parent, std::string ams_id, wxString can_id, Caninfo info, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- AMSrefresh · function · L311-L311 — AMSrefresh(wxWindow *parent, std::string ams_id, int can_id, Caninfo info, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- UpdateInfo · function · L315-L315 — void        UpdateInfo(std::string ams_id, Caninfo info);
+- GetCanId · function · L317-L317 — std::string GetCanId() const { return m_info.can_id; };
+- PlayLoading · function · L319-L319 — void    PlayLoading();
+- StopLoading · function · L320-L320 — void    StopLoading();
+- msw_rescale · function · L322-L322 — void    msw_rescale();
+- create · function · L325-L325 — void create(wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size);
+- on_timer · function · L327-L327 — void on_timer(wxTimerEvent &event);
+- OnEnterWindow · function · L328-L328 — void OnEnterWindow(wxMouseEvent &evt);
+- OnLeaveWindow · function · L329-L329 — void OnLeaveWindow(wxMouseEvent &evt);
+- OnClick · function · L330-L330 — void OnClick(wxMouseEvent &evt);
+- post_event · function · L331-L331 — void post_event(wxCommandEvent &&event);
+- paintEvent · function · L332-L332 — void paintEvent(wxPaintEvent &evt);
+- DoSetSize · function · L358-L358 — virtual void     DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO);
+- AMSextruderImage · class · L366-L384 — class AMSextruderImage: public wxWindow
+- OnAmsLoading · function · L369-L369 — void OnAmsLoading(bool load, wxColour col);
+- TurnOff · function · L370-L370 — void TurnOff();
+- setShowState · function · L371-L371 — void setShowState(bool show_state) { m_show_state = show_state; };
+- msw_rescale · function · L372-L372 — void msw_rescale();
+- paintEvent · function · L373-L373 — void paintEvent(wxPaintEvent &evt);
+- render · function · L375-L375 — void            render(wxDC &dc);
+- doRender · function · L381-L381 — void            doRender(wxDC &dc);
+- AMSextruderImage · function · L382-L382 — AMSextruderImage(wxWindow *parent, wxWindowID id, string file_name, const wxSize& size, const wxPoint &pos = wxDefaultPosition);
+- AMSExtImage · class · L387-L415 — class AMSExtImage : public wxWindow
+- AMSExtImage · function · L402-L402 — AMSExtImage(wxWindow *parent, AMSPanelPos ext_pos, int total_ext_num, bool over_ext, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition);
+- msw_rescale · function · L405-L405 — void msw_rescale();
+- setShowAmsExt · function · L406-L406 — void setShowAmsExt(bool show);
+- setTotalExtNum · function · L407-L407 — void setTotalExtNum(const std::string &series_name, const std::string &printer_type, int num);
+- paintEvent · function · L410-L410 — void paintEvent(wxPaintEvent &evt);
+- render · function · L411-L411 — void render(wxDC &dc);
+- doRender · function · L412-L412 — void doRender(wxDC &dc);
+- get_bmp · function · L414-L414 — const wxBitmap &get_bmp(const std::string &printer_type, bool is_ams_ext, AMSPanelPos pos);
+- SwitcherImage · class · L419-L435 — class SwitcherImage: public wxWindow
+- setShowState · function · L422-L422 — void setShowState(bool show_state) { m_show_state = show_state; };
+- paintEvent · function · L424-L424 — void paintEvent(wxPaintEvent &evt);
+- render · function · L426-L426 — void            render(wxDC &dc);
+- doRender · function · L432-L432 — void            doRender(wxDC &dc);
+- SwitcherImage · function · L433-L433 — SwitcherImage(wxWindow *parent, wxWindowID id, string file_name, const wxSize& size, const wxPoint &pos = wxDefaultPosition);
+- AMSextruder · class · L438-L471 — class AMSextruder : public wxWindow
+- TurnOn · function · L445-L445 — void TurnOn(wxColour col);
+- TurnOff · function · L446-L446 — void TurnOff();
+- OnVamsLoading · function · L447-L447 — void OnVamsLoading(bool load, wxColour col = AMS_CONTROL_GRAY500);
+- OnAmsLoading · function · L448-L448 — void OnAmsLoading(bool load, int nozzle_id = 0, wxColour col = AMS_CONTROL_GRAY500);
+- msw_rescale · function · L449-L449 — void msw_rescale();
+- has_ams · function · L450-L450 — void has_ams(bool hams) {m_has_vams = hams; Refresh();};
+- no_ams_mode · function · L451-L451 — void no_ams_mode(bool mode) {m_none_ams_mode = mode; Refresh();};
+- updateNozzleNum · function · L452-L452 — bool updateNozzleNum(int nozzle_num, const std::string& series_name = string());
+- AMSextruder · function · L466-L466 — AMSextruder(wxWindow *parent, wxWindowID id, int nozzle_num, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- create · function · L470-L470 — void create(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, int nozzle_num);
+- AMSLib · class · L476-L561 — class AMSLib : public wxWindow
+- AMSLib · function · L479-L479 — AMSLib(wxWindow *parent, std::string ams_idx, Caninfo info, AMSModelOriginType ext_type = AMSModelOriginType::GENERIC_EXT);
+- create · function · L481-L481 — void create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- GetLibColour · function · L483-L483 — wxColour     GetLibColour();
+- UpdateInfo · function · L495-L495 — void         UpdateInfo(Caninfo info, std::string ams_idx, bool refresh = true);
+- UnableSelected · function · L496-L496 — void         UnableSelected() { m_unable_selected = true; };
+- EableSelected · function · L497-L497 — void         EableSelected() { m_unable_selected = false; };
+- OnSelected · function · L498-L498 — void         OnSelected();
+- UnSelected · function · L499-L499 — void         UnSelected();
+- is_selected · function · L500-L500 — bool         is_selected() {return m_selected;};
+- post_event · function · L501-L501 — void         post_event(wxCommandEvent &&event);
+- show_kn_value · function · L502-L502 — void         show_kn_value(bool show) { m_show_kn = show; };
+- support_cali · function · L503-L503 — void         support_cali(bool sup) { m_support_cali = sup; Refresh(); };
+- Enable · function · L504-L504 — virtual bool Enable(bool enable = true);
+- set_disable_mode · function · L505-L505 — void         set_disable_mode(bool disable) { m_disable_mode = disable; }
+- set_view_only · function · L508-L508 — void         set_view_only(bool view_only) { if (m_view_only != view_only) { m_view_only = view_only; Refresh(); } }
+- msw_rescale · function · L509-L509 — void         msw_rescale();
+- on_pass_road · function · L510-L510 — void         on_pass_road(bool pass);
+- on_enter_window · function · L551-L551 — void on_enter_window(wxMouseEvent &evt);
+- on_leave_window · function · L552-L552 — void on_leave_window(wxMouseEvent &evt);
+- on_left_down · function · L553-L553 — void on_left_down(wxMouseEvent &evt);
+- paintEvent · function · L554-L554 — void paintEvent(wxPaintEvent &evt);
+- render · function · L555-L555 — void render(wxDC &dc);
+- render_lite_text · function · L556-L556 — void render_lite_text(wxDC& dc);
+- render_generic_text · function · L557-L557 — void render_generic_text(wxDC& dc);
+- doRender · function · L558-L558 — void doRender(wxDC& dc);
+- render_lite_lib · function · L559-L559 — void render_lite_lib(wxDC& dc);
+- render_generic_lib · function · L560-L560 — void render_generic_lib(wxDC& dc);
+- AMSRoad · class · L566-L603 — class AMSRoad : public wxWindow
+- AMSRoad · function · L569-L569 — AMSRoad();
+- AMSRoad · function · L570-L570 — AMSRoad(wxWindow *parent, wxWindowID id, Caninfo info, int canindex, int maxcan, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- create · function · L571-L571 — void create(wxWindow *parent, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- UpdateInfo · function · L584-L584 — void                         UpdateInfo(AMSinfo amsinfo, Caninfo info, int canindex, int maxcan);
+- OnVamsLoading · function · L594-L594 — void OnVamsLoading(bool load, wxColour col = AMS_CONTROL_GRAY500);
+- SetPassRoadColour · function · L595-L595 — void SetPassRoadColour(wxColour col);
+- SetMode · function · L596-L596 — void SetMode(AMSRoadMode mode);
+- OnPassRoad · function · L597-L597 — void OnPassRoad(std::vector<AMSPassRoadMode> prord_list);
+- UpdatePassRoad · function · L598-L598 — void UpdatePassRoad(int tag_index, AMSPassRoadType type, AMSPassRoadSTEP step);
+- paintEvent · function · L600-L600 — void paintEvent(wxPaintEvent &evt);
+- render · function · L601-L601 — void render(wxDC &dc);
+- doRender · function · L602-L602 — void doRender(wxDC &dc);
+- AMSRoadUpPart · class · L609-L650 — class AMSRoadUpPart : public wxWindow
+- AMSRoadUpPart · function · L612-L612 — AMSRoadUpPart();
+- AMSRoadUpPart · function · L613-L613 — AMSRoadUpPart(wxWindow* parent, wxWindowID id, AMSinfo info, AMSModel mode, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- create · function · L614-L614 — void create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- UpdateInfo · function · L617-L617 — void UpdateInfo(AMSinfo amsinfo);
+- OnVamsLoading · function · L619-L619 — void OnVamsLoading(bool load, wxColour col = AMS_CONTROL_GRAY500);
+- SetPassRoadColour · function · L620-L620 — void SetPassRoadColour(wxColour col);
+- SetMode · function · L621-L621 — void SetMode(AMSRoadShowMode mode);
+- OnPassRoad · function · L622-L622 — void OnPassRoad(std::vector<AMSPassRoadMode> prord_list);
+- UpdatePassRoad · function · L623-L623 — void UpdatePassRoad(std::string ams_index, std::string slot_index, AMSPassRoadType type, AMSPassRoadSTEP step);
+- paintEvent · function · L625-L625 — void paintEvent(wxPaintEvent& evt);
+- render · function · L626-L626 — void render(wxDC& dc);
+- doRender · function · L627-L627 — void doRender(wxDC& dc);
+- msw_rescale · function · L629-L629 — void msw_rescale();
+- AMSRoadDownPart · class · L656-L691 — class AMSRoadDownPart : public wxWindow
+- AMSRoadDownPart · function · L659-L659 — AMSRoadDownPart();
+- AMSRoadDownPart · function · L660-L660 — AMSRoadDownPart(wxWindow* parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- create · function · L661-L661 — void create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- UpdateLeft · function · L665-L665 — void UpdateLeft(int nozzle_num, AMSRoadShowMode mode);
+- UpdateRight · function · L666-L666 — void UpdateRight(int nozzle_num, AMSRoadShowMode mode);
+- OnVamsLoading · function · L668-L668 — void OnVamsLoading(bool load, wxColour col = AMS_CONTROL_GRAY500);
+- SetPassRoadColour · function · L669-L669 — void SetPassRoadColour(bool left, wxColour col);
+- SetShowMode · function · L670-L670 — void SetShowMode(AMSRoadShowMode left_mode, AMSRoadShowMode right_mode);
+- UpdatePassRoad · function · L671-L671 — void UpdatePassRoad(AMSPanelPos pos, int len, AMSPassRoadSTEP step);
+- paintEvent · function · L673-L673 — void paintEvent(wxPaintEvent& evt);
+- render · function · L674-L674 — void render(wxDC& dc);
+- doRender · function · L675-L675 — void doRender(wxDC& dc);
+- msw_rescale · function · L677-L677 — void msw_rescale();
+- AMSPreview · class · L696-L741 — class AMSPreview : public wxWindow
+- AMSPreview · function · L699-L699 — AMSPreview();
+- AMSPreview · function · L700-L700 — AMSPreview(wxWindow *parent, wxWindowID id, AMSinfo amsinfo, AMSModel itemType = AMSModel::GENERIC_AMS, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- Open · function · L703-L703 — void Open();
+- Close · function · L704-L704 — void Close();
+- UpdateInfo · function · L706-L706 — void         UpdateInfo(AMSinfo amsinfo);
+- create · function · L707-L707 — void         create(wxWindow *parent, wxWindowID id, const wxPoint &pos, const wxSize &size);
+- OnEnterWindow · function · L708-L708 — void         OnEnterWindow(wxMouseEvent &evt);
+- OnLeaveWindow · function · L709-L709 — void         OnLeaveWindow(wxMouseEvent &evt);
+- OnSelected · function · L710-L710 — void         OnSelected();
+- UnSelected · function · L711-L711 — void         UnSelected();
+- Enable · function · L712-L712 — virtual bool Enable(bool enable = true);
+- msw_rescale · function · L713-L713 — void         msw_rescale();
+- IsSelected · function · L714-L714 — bool         IsSelected() const;
+- get_ams_id · function · L717-L717 — std::string  get_ams_id() const { return m_amsinfo.ams_id; };
+- get_nozzle_id · function · L718-L718 — int          get_nozzle_id() const { return m_amsinfo.nozzle_id; };
+- paintEvent · function · L738-L738 — void         paintEvent(wxPaintEvent &evt);
+- render · function · L739-L739 — void         render(wxDC &dc);
+- doRender · function · L740-L740 — void         doRender(wxDC &dc);
+- AMSHumidity · class · L747-L780 — class AMSHumidity : public wxWindow
+- AMSHumidity · function · L750-L750 — AMSHumidity();
+- AMSHumidity · function · L751-L751 — AMSHumidity(wxWindow* parent, wxWindowID id, AMSinfo info, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- create · function · L752-L752 — void create(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- UpdateInfo · function · L759-L759 — void                         UpdateInfo(AMSinfo amsinfo);
+- paintEvent · function · L773-L773 — void paintEvent(wxPaintEvent& evt);
+- render · function · L774-L774 — void render(wxDC& dc);
+- doRender · function · L775-L775 — void doRender(wxDC& dc);
+- msw_rescale · function · L776-L776 — void msw_rescale();
+- update_size · function · L779-L779 — void update_size();
+- AmsItem · class · L786-L860 — class AmsItem : public wxWindow
+- AmsItem · function · L789-L789 — AmsItem(wxWindow *parent, AMSinfo info, AMSModel model, AMSPanelPos pos);
+- UpdateInfo · function · L792-L792 — void     UpdateInfo(AMSinfo info);
+- create · function · L793-L793 — void     create(wxWindow *parent);
+- AddCan · function · L794-L794 — void     AddCan(Caninfo caninfo, int canindex, int maxcan, wxBoxSizer* sizer);
+- AddLiteCan · function · L795-L795 — void     AddLiteCan(Caninfo caninfo, int canindex, wxGridSizer* sizer);
+- SetDefSelectCan · function · L796-L796 — void     SetDefSelectCan();
+- SelectCan · function · L797-L797 — void     SelectCan(std::string canid);
+- PlayRridLoading · function · L798-L798 — void     PlayRridLoading(wxString canid);
+- StopRridLoading · function · L799-L799 — void     StopRridLoading(wxString canid);
+- msw_rescale · function · L800-L800 — void     msw_rescale();
+- ShowRoad · function · L803-L803 — bool     ShowRoad(bool show);
+- show_sn_value · function · L804-L804 — void     show_sn_value(bool show);
+- SetAmsStepExtra · function · L805-L805 — void     SetAmsStepExtra(wxString canid, AMSPassRoadType type, AMSPassRoadSTEP step);
+- SetAmsStep · function · L806-L806 — void     SetAmsStep(std::string amsid, std::string canid, AMSPassRoadType type, AMSPassRoadSTEP step);
+- SetAmsStep · function · L807-L807 — void     SetAmsStep(std::string can_id);
+- paintEvent · function · L808-L808 — void     paintEvent(wxPaintEvent& evt);
+- render · function · L809-L809 — void     render(wxDC& dc);
+- doRender · function · L810-L810 — void     doRender(wxDC& dc);
+- RenderLiteRoad · function · L811-L811 — void     RenderLiteRoad(wxDC& dc, wxSize size);
+- GetTagColr · function · L812-L812 — wxColour GetTagColr(wxString canid);
+- GetCurrentCan · function · L813-L813 — std::string GetCurrentCan();
+- get_ams_info · function · L816-L816 — AMSinfo             get_ams_info() const { return m_info; };
+- get_ams_id · function · L818-L818 — std::string         get_ams_id() const { return m_info.ams_id; };
+- get_ams_model · function · L819-L819 — AMSModel            get_ams_model() const { return m_info.ams_type; };
+- get_ext_type · function · L821-L821 — AMSModelOriginType  get_ext_type() const { return m_info.ext_type; };
+- get_ext_image · function · L822-L822 — AMSExtImage        *get_ext_image() const { return m_ext_image; };
+- get_can_count · function · L824-L824 — size_t                         get_can_count() const { return m_info.cans.size(); };
+- get_can_lib_list · function · L825-L825 — std::map<std::string, AMSLib*> get_can_lib_list() const { return m_can_lib_list; };
+- get_selection · function · L827-L827 — int  get_selection() const { return m_selection; };
+- set_selection · function · L828-L828 — void set_selection(int selection) { m_selection = selection; };
+- get_panel_pos · function · L830-L830 — AMSPanelPos get_panel_pos() const { return m_panel_pos; };
+- get_nozzle_id · function · L831-L831 — int         get_nozzle_id() const { return m_info.nozzle_id; };
+- routes_to_main_extruder · function · L833-L833 — bool        routes_to_main_extruder() const { return m_info.routes_to_main_extruder(); };
+- DevExtruderState · type · L880-L885 — enum class DevExtruderState
+- DevExtruderImage · class · L887-L948 — class DevExtruderImage : public wxWindow
+- DevExtruderImage · function · L908-L911 — DevExtruderImage(wxWindow *parent, wxWindowID id,
+- update · function · L916-L919 — void update(DevExtruderState single_state)
+- update · function · L920-L924 — void update(DevExtruderState left_state, DevExtruderState right_state)
+- msw_rescale · function · L926-L926 — void msw_rescale();
+- setExtruderCount · function · L927-L930 — void setExtruderCount(int extruder_num)
+- setExtruderUsed · function · L931-L936 — void setExtruderUsed(const std::string& loc)
+- paintEvent · function · L938-L942 — void paintEvent(wxPaintEvent &evt)
+- render · function · L943-L943 — void render(wxDC &dc);
+- doRender · function · L944-L944 — void   doRender(wxDC &dc);
+- FeedDirectionDialog · class · L954-L983 — class FeedDirectionDialog : public wxDialog
+- FeedDirectionDialog · function · L957-L957 — FeedDirectionDialog(wxWindow* parent, const int extruderNum, const std::string& printer_type = "");
+- GetExtruderID · function · L959-L959 — std::optional<int> GetExtruderID();
+- SetExtruderMapping · function · L961-L964 — void SetExtruderMapping(MachineObject* obj,
+- calcTrayName · function · L967-L967 — static wxString calcTrayName(MachineObject* obj, const std::string& amsID, const std::string& slotID);
+- OnConfirm · function · L980-L980 — void OnConfirm(wxCommandEvent& event);
+- OnRadioClicked · function · L981-L981 — void OnRadioClicked(wxCommandEvent& evt);

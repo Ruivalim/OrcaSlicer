@@ -1,0 +1,34 @@
+# deps_src/mcut/source/math.cpp
+
+- square_root · function · L30-L39 — double square_root(const double& number)
+- out · function · L35-L35 — arbitrary_precision_number_t out(number);
+- absolute_value · function · L41-L50 — double absolute_value(const double& number)
+- out · function · L46-L46 — double out(number);
+- sign · function · L52-L74 — sign_t sign(const double& number)
+- out · function · L64-L64 — double out(number);
+- cross_product · function · L86-L92 — vec3 cross_product(const vec3& a, const vec3& b)
+- orient2d · function · L94-L101 — double orient2d(const vec2& pa, const vec2& pb, const vec2& pc)
+- orient3d · function · L103-L112 — double orient3d(const vec3& pa, const vec3& pb, const vec3& pc,
+- polygon_normal · function · L115-L122 — void polygon_normal(vec3& normal, const vec3* vertices, const int num_vertices)
+- compute_polygon_plane_coefficients · function · L125-L153 — int compute_polygon_plane_coefficients(vec3& normal, double& d_coeff,
+- compute_segment_plane_intersection · function · L163-L201 — char compute_segment_plane_intersection(vec3& p, const vec3& normal, const double& d_coeff,
+- determine_three_noncollinear_vertices · function · L203-L256 — bool determine_three_noncollinear_vertices(int& i, int& j, int& k, const std::vector<vec3>& polygon_vertices,
+- compute_segment_plane_intersection_type · function · L258-L293 — char compute_segment_plane_intersection_type(const vec3& q, const vec3& r,
+- compute_segment_line_plane_intersection_type · function · L295-L339 — char compute_segment_line_plane_intersection_type(const vec3& q, const vec3& r,
+- compute_line_plane_intersection · function · L358-L407 — char compute_line_plane_intersection(vec3& p, // intersection point
+- compute_point_in_polygon_test · function · L416-L567 — char compute_point_in_polygon_test(const vec2& q, const std::vector<vec2>& polygon_vertices)
+- vertices · function · L508-L508 — std::vector<vec2> vertices(polygon_vertex_count, vec2());
+- calculate_projection_matrix · function · L573-L656 — matrix_t<double> calculate_projection_matrix(const vec3& polygon_normal,
+- project_to_2d · function · L659-L680 — void project_to_2d(std::vector<vec2>& out, const std::vector<vec3>& polygon_vertices, const vec3& polygon_normal)
+- projected · function · L673-L676 — const vec2 projected(
+- project_to_2d · function · L682-L709 — void project_to_2d(std::vector<vec2>& out, const std::vector<vec3>& polygon_vertices,
+- compute_point_in_polygon_test · function · L712-L760 — char compute_point_in_polygon_test(const vec3& p, const std::vector<vec3>& polygon_vertices,
+- polygon_vertices2d · function · L735-L735 — std::vector<vec2> polygon_vertices2d(polygon_vertex_count, vec2());
+- Between · function · L762-L772 — inline bool Between(const vec2& a, const vec2& b, const vec2& c)
+- coplaner · function · L774-L791 — bool coplaner(const vec3& pa, const vec3& pb, const vec3& pc,
+- collinear · function · L793-L797 — bool collinear(const vec2& a, const vec2& b, const vec2& c, double& predResult)
+- collinear · function · L799-L802 — bool collinear(const vec2& a, const vec2& b, const vec2& c)
+- Parallellnt · function · L804-L831 — char Parallellnt(const vec2& a, const vec2& b, const vec2& c, const vec2& d, vec2& p)
+- compute_segment_intersection · function · L833-L881 — char compute_segment_intersection(
+- point_in_bounding_box · function · L883-L891 — inline bool point_in_bounding_box(const vec2& point, const bounding_box_t<vec2>& bbox)
+- point_in_bounding_box · function · L893-L902 — inline bool point_in_bounding_box(const vec3& point, const bounding_box_t<vec3>& bbox)

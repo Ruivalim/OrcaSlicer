@@ -1,0 +1,80 @@
+# src/libslic3r/SLA/SupportTreeBuilder.hpp
+
+- distance · function · L53-L55 — template<class Vec> double distance(const Vec& p)
+- distance · function · L57-L60 — template<class Vec> double distance(const Vec& pp1, const Vec& pp2)
+- SupportTreeNode · class · L64-L69 — struct SupportTreeNode
+- Head · class · L72-L118 — struct Head: public SupportTreeNode
+- invalidate · function · L87-L87 — inline void invalidate() { id = ID_UNSET; }
+- is_valid · function · L88-L88 — inline bool is_valid() const { return id >= 0; }
+- Head · function · L90-L96 — Head(double r_big_mm,
+- real_width · function · L98-L101 — inline double real_width() const
+- fullwidth · function · L103-L106 — inline double fullwidth() const
+- junction_point · function · L108-L111 — inline Vec3d junction_point() const
+- request_pillar_radius · function · L113-L117 — inline double request_pillar_radius(double radius) const
+- Junction · class · L121-L126 — struct Junction: public SupportTreeNode
+- Junction · function · L125-L125 — Junction(const Vec3d &tr, double r_mm) : r(r_mm), pos(tr) {}
+- Pillar · class · L128-L151 — struct Pillar: public SupportTreeNode
+- Pillar · function · L142-L143 — Pillar(const Vec3d &endp, double h, double radius = 1.):
+- startpoint · function · L145-L148 — Vec3d startpoint() const
+- endpoint · function · L150-L150 — const Vec3d& endpoint() const { return endpt; }
+- Pedestal · class · L154-L161 — struct Pedestal: public SupportTreeNode
+- Pedestal · function · L158-L160 — Pedestal(const Vec3d &p, double h, double rbottom, double rtop)
+- Anchor · class · L165-L165 — struct Anchor: public Head { using Head::Head; };
+- Bridge · class · L168-L179 — struct Bridge: public SupportTreeNode
+- Bridge · function · L172-L175 — Bridge(const Vec3d &j1,
+- get_length · function · L177-L177 — double get_length() const { return (endp - startp).norm(); }
+- get_dir · function · L178-L178 — Vec3d  get_dir() const { return (endp - startp).normalized(); }
+- DiffBridge · class · L181-L187 — struct DiffBridge: public Bridge
+- DiffBridge · function · L184-L186 — DiffBridge(const Vec3d &p_s, const Vec3d &p_e, double r_s, double r_e)
+- Pad · class · L190-L204 — struct Pad
+- Pad · function · L195-L195 — Pad() = default;
+- Pad · function · L197-L201 — Pad(const indexed_triangle_set &support_mesh,
+- empty · function · L203-L203 — bool empty() const { return tmesh.indices.size() == 0; }
+- SupportTreeBuilder · class · L220-L446 — class SupportTreeBuilder: public SupportTree
+- _add_bridge · function · L242-L242 — const BridgeT& _add_bridge(std::vector<BridgeT> &br, Args&&... args)
+- lk · function · L244-L244 — std::lock_guard<Mutex> lk(m_mutex);
+- SupportTreeBuilder · function · L254-L254 — SupportTreeBuilder() = default;
+- SupportTreeBuilder · function · L255-L255 — SupportTreeBuilder(SupportTreeBuilder &&o);
+- SupportTreeBuilder · function · L256-L256 — SupportTreeBuilder(const SupportTreeBuilder &o);
+- add_head · function · L260-L260 — template<class...Args> Head& add_head(unsigned id, Args&&... args)
+- lk · function · L262-L262 — std::lock_guard<Mutex> lk(m_mutex);
+- add_pillar · function · L273-L293 — template<class...Args> long add_pillar(long headid, double length)
+- lk · function · L275-L275 — std::lock_guard<Mutex> lk(m_mutex);
+- add_pillar_base · function · L295-L295 — void add_pillar_base(long pid, double baseheight = 3, double radius = 2);
+- add_anchor · function · L297-L297 — template<class...Args> const Anchor& add_anchor(Args&&...args)
+- lk · function · L299-L299 — std::lock_guard<Mutex> lk(m_mutex);
+- increment_bridges · function · L306-L313 — void increment_bridges(const Pillar& pillar)
+- lk · function · L308-L308 — std::lock_guard<Mutex> lk(m_mutex);
+- increment_links · function · L315-L322 — void increment_links(const Pillar& pillar)
+- lk · function · L317-L317 — std::lock_guard<Mutex> lk(m_mutex);
+- bridgecount · function · L324-L328 — unsigned bridgecount(const Pillar &pillar) const
+- lk · function · L325-L325 — std::lock_guard<Mutex> lk(m_mutex);
+- add_pillar · function · L330-L342 — template<class...Args> long add_pillar(Args&&...args)
+- lk · function · L332-L332 — std::lock_guard<Mutex> lk(m_mutex);
+- add_junction · function · L344-L344 — template<class...Args> const Junction& add_junction(Args&&... args)
+- lk · function · L346-L346 — std::lock_guard<Mutex> lk(m_mutex);
+- add_bridge · function · L353-L353 — const Bridge& add_bridge(const Vec3d &s, const Vec3d &e, double r)
+- add_bridge · function · L358-L358 — const Bridge& add_bridge(long headid, const Vec3d &endp)
+- lk · function · L360-L360 — std::lock_guard<Mutex> lk(m_mutex);
+- add_crossbridge · function · L372-L372 — template<class...Args> const Bridge& add_crossbridge(Args&&... args)
+- add_diffbridge · function · L377-L377 — template<class...Args> const DiffBridge& add_diffbridge(Args&&... args)
+- head · function · L382-L382 — Head &head(unsigned id)
+- lk · function · L384-L384 — std::lock_guard<Mutex> lk(m_mutex);
+- pillarcount · function · L391-L394 — inline size_t pillarcount() const
+- lk · function · L392-L392 — std::lock_guard<Mutex> lk(m_mutex);
+- pillars · function · L396-L396 — inline const std::vector<Pillar> &pillars() const { return m_pillars; }
+- heads · function · L397-L397 — inline const std::vector<Head>   &heads() const { return m_heads; }
+- bridges · function · L398-L398 — inline const std::vector<Bridge> &bridges() const { return m_bridges; }
+- crossbridges · function · L399-L399 — inline const std::vector<Bridge> &crossbridges() const { return m_crossbridges; }
+- pillar · function · L401-L408 — template<class T> inline IntegerOnly<T, const Pillar&> pillar(T id) const
+- lk · function · L403-L403 — std::lock_guard<Mutex> lk(m_mutex);
+- pillar · function · L410-L417 — template<class T> inline IntegerOnly<T, Pillar&> pillar(T id)
+- lk · function · L412-L412 — std::lock_guard<Mutex> lk(m_mutex);
+- pad · function · L419-L419 — const Pad& pad() const { return m_pad; }
+- merged_mesh · function · L422-L422 — const indexed_triangle_set &merged_mesh(size_t steps = 45) const;
+- full_height · function · L425-L425 — double full_height() const;
+- mesh_height · function · L428-L432 — inline double mesh_height() const
+- merge_and_cleanup · function · L435-L435 — const indexed_triangle_set & merge_and_cleanup();
+- add_pad · function · L439-L440 — const indexed_triangle_set &add_pad(const ExPolygons &modelbase,
+- remove_pad · function · L442-L442 — void remove_pad() override { m_pad = Pad(); }
+- retrieve_mesh · function · L444-L445 — virtual const indexed_triangle_set &retrieve_mesh(

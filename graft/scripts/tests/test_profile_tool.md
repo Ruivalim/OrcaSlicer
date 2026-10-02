@@ -1,0 +1,108 @@
+# scripts/tests/test_profile_tool.py
+
+- Tree · class · L29-L109 — class Tree
+- __init__ · method · L38-L41 — def __init__(self)
+- cleanup · method · L43-L44 — def cleanup(self)
+- index_path · method · L46-L47 — def index_path(self, vendor)
+- add_vendor · method · L49-L54 — def add_vendor(self, vendor)
+- write_index · method · L56-L59 — def write_index(self, vendor, index)
+- read_index · method · L61-L63 — def read_index(self, vendor)
+- index · method · L65-L69 — def index(self, vendor, section, name, sub_path)
+- path · method · L71-L72 — def path(self, vendor, rel)
+- write · method · L74-L82 — def write(self, vendor, rel, data)
+- write_raw · method · L84-L90 — def write_raw(self, vendor, rel, raw)
+- read · method · L92-L94 — def read(self, vendor, rel)
+- raw · method · L96-L98 — def raw(self, vendor, rel)
+- bytes_map · method · L100-L109 — def bytes_map(self)
+- TreeCase · class · L112-L122 — class TreeCase(unittest.TestCase)
+- setUp · method · L113-L115 — def setUp(self)
+- run_command · method · L117-L122 — def run_command(self, *argv)
+- TestObsoleteKeys · class · L129-L140 — class TestObsoleteKeys(unittest.TestCase)
+- test_obsolete_keys_match_the_loader_ignore_set · method · L130-L140 — def test_obsolete_keys_match_the_loader_ignore_set(self)
+- TestNormalize · class · L143-L281 — class TestNormalize(TreeCase)
+- test_a_missing_type_is_filled_in_from_the_directory · method · L144-L150 — def test_a_missing_type_is_filled_in_from_the_directory(self)
+- test_the_machine_folder_splits_on_the_preset_name · method · L152-L160 — def test_the_machine_folder_splits_on_the_preset_name(self): # Orca keeps machine models in machine/ next to the nozzle variants that # are machines; only the name tells them apart.
+- test_dropped_keys_go_and_filament_vectors_are_arrayified · method · L162-L177 — def test_dropped_keys_go_and_filament_vectors_are_arrayified(self)
+- test_obsolete_keys_are_removed_from_every_profile_type · method · L179-L194 — def test_obsolete_keys_are_removed_from_every_profile_type(self)
+- test_the_larger_extruder_clearance_wins · method · L196-L211 — def test_the_larger_extruder_clearance_wins(self): # Keeping the smaller one would licence a toolhead collision.
+- test_a_rewritten_file_leads_with_its_identifying_keys · method · L213-L220 — def test_a_rewritten_file_leads_with_its_identifying_keys(self)
+- test_a_conforming_tree_is_left_byte_identical · method · L222-L236 — def test_a_conforming_tree_is_left_byte_identical(self)
+- test_force_rewrites_even_a_conforming_file · method · L238-L244 — def test_force_rewrites_even_a_conforming_file(self)
+- test_dry_run_writes_nothing · method · L246-L252 — def test_dry_run_writes_nothing(self)
+- test_profile_type_confines_the_run · method · L254-L260 — def test_profile_type_confines_the_run(self)
+- test_an_unreadable_profile_is_reported_not_swallowed · method · L262-L267 — def test_an_unreadable_profile_is_reported_not_swallowed(self)
+- test_a_directory_without_an_index_is_not_a_bundle · method · L269-L281 — def test_a_directory_without_an_index_is_not_a_bundle(self): # resources/profiles also holds non-bundle entries (blacklist.json, the # untracked user/ directory); only a directory WITH an index is a vendor.
+- TestTrim · class · L288-L374 — class TestTrim(TreeCase)
+- bundle · method · L289-L293 — def bundle(self)
+- test_an_unindexed_preset_is_removed · method · L295-L301 — def test_an_unindexed_preset_is_removed(self)
+- test_a_dotted_sub_path_still_names_its_file · method · L303-L311 — def test_a_dotted_sub_path_still_names_its_file(self): # Index entries are hand-written; "filament/./X.json" is the same file.
+- test_an_unparsable_file_is_kept_and_reported · method · L313-L318 — def test_an_unparsable_file_is_kept_and_reported(self)
+- test_a_data_file_is_not_a_preset · method · L320-L326 — def test_a_data_file_is_not_a_preset(self)
+- test_an_inherited_base_is_kept_and_reported · method · L328-L345 — def test_an_inherited_base_is_kept_and_reported(self): # Neither file loads -- the loader only reads indexed sub_paths -- but # deleting the parent destroys the only record of what the indexed child # was written against, so that is a maintainer's call, not trim's.
+- test_a_stale_copy_of_an_indexed_profile_is_removed · method · L347-L365 — def test_a_stale_copy_of_an_indexed_profile_is_removed(self): # "inherits" resolves by preset name, so the indexed base is the parent the # child actually gets; the unindexed twin is a leftover the loader never # reaches, and being named in an inherits does not earn it a reprieve.
+- test_dry_run_deletes_nothing · method · L367-L374 — def test_dry_run_deletes_nothing(self)
+- TestUpdateIndex · class · L381-L471 — class TestUpdateIndex(TreeCase)
+- test_every_profile_on_disk_lands_in_its_own_section · method · L382-L397 — def test_every_profile_on_disk_lands_in_its_own_section(self)
+- test_parents_are_listed_before_their_children · method · L399-L412 — def test_parents_are_listed_before_their_children(self): # The loader resolves inherits in one pass over the list.
+- test_a_profile_with_no_usable_type_is_reported_not_dropped · method · L414-L420 — def test_a_profile_with_no_usable_type_is_reported_not_dropped(self)
+- test_two_profiles_claiming_one_name_leave_the_index_alone · method · L422-L434 — def test_two_profiles_claiming_one_name_leave_the_index_alone(self): # The bundle holds one profile per name, so a rebuild would pick a winner by # directory order and drop the other without a word.
+- test_profile_type_rebuilds_only_that_section · method · L436-L443 — def test_profile_type_rebuilds_only_that_section(self)
+- test_an_up_to_date_index_is_left_byte_identical · method · L445-L451 — def test_an_up_to_date_index_is_left_byte_identical(self)
+- test_dry_run_writes_nothing · method · L453-L459 — def test_dry_run_writes_nothing(self)
+- test_a_json_file_with_no_bundle_is_never_touched · method · L461-L471 — def test_a_json_file_with_no_bundle_is_never_touched(self): # resources/profiles/blacklist.json is a .json with no directory beside # it. Enumerating vendors by stem once wrote four empty *_list keys into it.
+- TestCheck · class · L478-L794 — class TestCheck(TreeCase)
+- bundle · method · L479-L487 — def bundle(self)
+- per_vendor_errors · method · L489-L502 — def per_vendor_errors(self, *argv)
+- test_a_clean_bundle_reports_nothing · method · L504-L507 — def test_a_clean_bundle_reports_nothing(self)
+- test_an_instantiated_filament_needs_compatible_printers · method · L509-L514 — def test_an_instantiated_filament_needs_compatible_printers(self)
+- test_a_library_filament_may_leave_compatible_printers_empty · method · L516-L523 — def test_a_library_filament_may_leave_compatible_printers_empty(self): # The shared library is exempt from that rule and nothing else.
+- test_the_library_is_checked_like_any_other_bundle · method · L525-L533 — def test_the_library_is_checked_like_any_other_bundle(self): # A file the library's own index does not reference must fail plain # `check`, now that the per-vendor pass no longer skips it.
+- test_a_duplicate_key_is_an_error · method · L535-L540 — def test_a_duplicate_key_is_an_error(self)
+- test_the_index_and_the_file_must_agree_on_the_name · method · L542-L548 — def test_the_index_and_the_file_must_agree_on_the_name(self)
+- test_an_index_entry_with_no_file_is_an_error · method · L550-L555 — def test_an_index_entry_with_no_file_is_an_error(self)
+- test_a_vector_option_may_not_be_a_scalar · method · L557-L562 — def test_a_vector_option_may_not_be_a_scalar(self)
+- test_renamed_and_old_option_may_not_co_exist · method · L564-L570 — def test_renamed_and_old_option_may_not_co_exist(self)
+- test_the_length_rule_only_binds_indexed_presets · method · L572-L582 — def test_the_length_rule_only_binds_indexed_presets(self): # A file the index never loads cannot break AMS matching, and some # bundles ship such orphans from before the rule existed.
+- test_obsolete_key_warnings_exclude_active_and_renamed_options · method · L584-L593 — def test_obsolete_key_warnings_exclude_active_and_renamed_options(self)
+- test_obsolete_key_warnings_run_without_a_flag · method · L595-L602 — def test_obsolete_key_warnings_run_without_a_flag(self)
+- test_a_default_material_must_exist_somewhere · method · L604-L612 — def test_a_default_material_must_exist_somewhere(self)
+- test_a_default_material_fails_check_without_a_flag · method · L614-L624 — def test_a_default_material_fails_check_without_a_flag(self): # The reference check is part of the default run, not an opt-in: a # dangling name has to fail plain `check`.
+- test_the_stray_user_directory_is_not_a_vendor · method · L626-L634 — def test_the_stray_user_directory_is_not_a_vendor(self): # A local validator run leaves resources/profiles/user/ behind; an # unscoped check must not count it as a bundle and warn about it.
+- names · method · L636-L641 — def names(self, vendor="V")
+- test_one_bundle_may_not_hold_two_profiles_of_a_name · method · L643-L648 — def test_one_bundle_may_not_hold_two_profiles_of_a_name(self)
+- test_an_unindexed_twin_counts_as_a_duplicate · method · L650-L662 — def test_an_unindexed_twin_counts_as_a_duplicate(self): # The case this check was written for: a stale copy of a base profile in # machine/, which no per-vendor check walked, one index edit away from # silently deciding which of the two a whole bundle inherits from.
+- test_one_name_in_two_types_is_not_a_clash · method · L664-L668 — def test_one_name_in_two_types_is_not_a_clash(self)
+- test_a_name_is_per_bundle_not_global · method · L670-L679 — def test_a_name_is_per_bundle_not_global(self): # fdm_machine_common exists in 60 shipped bundles; the name is scoped to the # bundle that resolves it, so sharing one across vendors is not a clash.
+- machine_models · method · L681-L686 — def machine_models(self)
+- test_two_bundles_may_not_declare_one_machine_model_name · method · L688-L700 — def test_two_bundles_may_not_declare_one_machine_model_name(self): # The name keys the global printer-type lookup: Preset::get_printer_type # matches a preset's printer_model against every vendor's model names, so a # copy of another vendor's model is ambiguous, not merely duplicated.
+- test_distinct_machine_model_names_are_left_alone · method · L702-L707 — def test_distinct_machine_model_names_are_left_alone(self)
+- coverage · method · L709-L714 — def coverage(self, vendor="V")
+- test_a_file_no_list_references_is_an_error · method · L716-L722 — def test_a_file_no_list_references_is_an_error(self)
+- test_a_file_with_no_type_is_its_own_category · method · L724-L730 — def test_a_file_with_no_type_is_its_own_category(self): # update-index cannot place it, so "add it to the index" is not the remedy.
+- test_an_unparsable_unlisted_file_is_reported_too · method · L732-L736 — def test_an_unparsable_unlisted_file_is_reported_too(self)
+- test_a_dotted_sub_path_still_counts_as_listed · method · L738-L744 — def test_a_dotted_sub_path_still_counts_as_listed(self)
+- test_a_data_file_is_not_expected_in_the_index · method · L746-L750 — def test_a_data_file_is_not_expected_in_the_index(self)
+- test_a_bundle_with_no_index_is_left_to_the_name_check · method · L752-L758 — def test_a_bundle_with_no_index_is_left_to_the_name_check(self): # Every file unlisted because there is no list at all is one problem, not # one per file; check_name_consistency reports the missing index.
+- test_the_remedy_is_printed_once_not_once_per_file · method · L760-L771 — def test_the_remedy_is_printed_once_not_once_per_file(self)
+- test_setting_id_uniqueness_is_tree_wide · method · L773-L784 — def test_setting_id_uniqueness_is_tree_wide(self): # Two presets sharing vendor/type/name mint one id, so the collision # only shows up in a pass that has seen the whole tree.
+- test_a_base_profile_must_not_carry_a_setting_id · method · L786-L794 — def test_a_base_profile_must_not_carry_a_setting_id(self)
+- TestNormalized · class · L801-L893 — class TestNormalized(TreeCase)
+- normalize · method · L804-L810 — def normalize(self)
+- normalized · method · L812-L816 — def normalized(self, vendor="V")
+- test_a_bundle_the_two_commands_just_wrote_reports_nothing · method · L818-L823 — def test_a_bundle_the_two_commands_just_wrote_reports_nothing(self)
+- test_a_profile_fix_would_rewrite_is_an_error · method · L825-L835 — def test_a_profile_fix_would_rewrite_is_an_error(self)
+- test_an_index_update_index_would_rebuild_is_an_error · method · L837-L852 — def test_an_index_update_index_would_rebuild_is_an_error(self)
+- test_an_unbuildable_index_is_left_to_the_checks_that_name_it · method · L854-L862 — def test_an_unbuildable_index_is_left_to_the_checks_that_name_it(self): # update-index refuses to rebuild a bundle where two files claim one name, # so "would be rebuilt" on top of the duplicate-name error would be noise.
+- test_a_bundle_with_no_index_still_has_its_files_checked · method · L864-L871 — def test_a_bundle_with_no_index_still_has_its_files_checked(self)
+- test_the_shared_base_bundle_is_covered_too · method · L873-L880 — def test_the_shared_base_bundle_is_covered_too(self): # normalize and update-index own the shape of every bundle, the shared # library included.
+- test_each_remedy_is_printed_once_for_the_whole_run · method · L882-L893 — def test_each_remedy_is_printed_once_for_the_whole_run(self)
+- TestDispatch · class · L900-L934 — class TestDispatch(TreeCase)
+- test_each_command_reaches_its_own_writer · method · L901-L909 — def test_each_command_reaches_its_own_writer(self)
+- test_an_option_belongs_to_one_command_only · method · L911-L920 — def test_an_option_belongs_to_one_command_only(self)
+- test_an_unknown_vendor_stops_the_run · method · L922-L928 — def test_an_unknown_vendor_stops_the_run(self)
+- test_an_empty_vendor_means_every_vendor · method · L930-L934 — def test_an_empty_vendor_means_every_vendor(self)
+- TestRealTree · class · L942-L966 — class TestRealTree(unittest.TestCase)
+- test_check_passes · method · L943-L948 — def test_check_passes(self): # The exact CI invocation, return code included.
+- test_the_shipped_tree_needs_no_fix · method · L950-L955 — def test_the_shipped_tree_needs_no_fix(self)
+- test_the_shipped_indexes_need_no_rebuild · method · L957-L962 — def test_the_shipped_indexes_need_no_rebuild(self)
+- test_no_shipped_bundle_is_a_stray_json_file · method · L964-L966 — def test_no_shipped_bundle_is_a_stray_json_file(self): # blacklist.json has no directory beside it, so it is not a vendor.

@@ -1,0 +1,55 @@
+# deps_src/libigl/igl/copyleft/cgal/SelfIntersectMesh.h
+
+- Kernel · type · L54-L63 — typedef
+- Segment_3 · type · L67-L67 — typedef CGAL::Segment_3<Kernel>  Segment_3;
+- Triangle_3 · type · L68-L68 — typedef CGAL::Triangle_3<Kernel> Triangle_3;
+- Plane_3 · type · L69-L69 — typedef CGAL::Plane_3<Kernel>    Plane_3;
+- Tetrahedron_3 · type · L70-L70 — typedef CGAL::Tetrahedron_3<Kernel> Tetrahedron_3;
+- Point_2 · type · L72-L72 — typedef CGAL::Point_2<Kernel>    Point_2;
+- Segment_2 · type · L73-L73 — typedef CGAL::Segment_2<Kernel>  Segment_2;
+- Triangle_2 · type · L74-L74 — typedef CGAL::Triangle_2<Kernel> Triangle_2;
+- Itag · type · L76-L76 — typedef CGAL::Exact_intersections_tag Itag;
+- Triangles · type · L78-L78 — typedef std::vector<Triangle_3> Triangles;
+- TrianglesIterator · type · L79-L79 — typedef typename Triangles::iterator TrianglesIterator;
+- TrianglesConstIterator · type · L80-L80 — typedef typename Triangles::const_iterator TrianglesConstIterator;
+- Box · type · L81-L83 — typedef
+- DerivedF · type · L89-L89 — typedef typename DerivedF::Index Index;
+- Index · type · L91-L91 — typedef std::vector<std::pair<Index, CGAL::Object>> ObjectList;
+- IndexList · type · L94-L94 — typedef std::vector<Index> IndexList;
+- Index · type · L100-L100 — typedef std::pair<Index,Index> EMK;
+- EMV · type · L103-L103 — typedef std::vector<Index> EMV;
+- EMK · type · L105-L105 — typedef std::map<EMK,EMV> EdgeMap;
+- mark_offensive · function · L140-L140 — inline void mark_offensive(const Index f);
+- count_intersection · function · L145-L145 — inline void count_intersection( const Index fa, const Index fb);
+- intersect · function · L156-L160 — inline bool intersect(
+- single_shared_vertex · function · L174-L180 — inline bool single_shared_vertex(
+- single_shared_vertex · function · L189-L194 — inline bool single_shared_vertex(
+- double_shared_vertex · function · L206-L211 — inline bool double_shared_vertex(
+- box_intersect · function · L220-L220 — inline void box_intersect(const Box& a, const Box& b);
+- process_intersecting_boxes · function · L222-L222 — inline void process_intersecting_boxes();
+- box_intersect_static · function · L231-L234 — static inline void box_intersect_static(
+- box_intersect · function · L284-L297 — inline void igl::copyleft::cgal::SelfIntersectMesh<
+- box_intersect_static · function · L292-L295 — DerivedIM>::box_intersect_static(
+- process_intersecting_boxes · function · L386-L387 — try
+- mark_offensive · function · L454-L454 — DerivedIM>::mark_offensive(const Index f)
+- guard · function · L474-L486 — inline void igl::copyleft::cgal::SelfIntersectMesh<
+- count_intersection · function · L482-L484 — DerivedIM>::count_intersection(
+- do_intersect · function · L507-L524 — inline bool igl::copyleft::cgal::SelfIntersectMesh<
+- intersect · function · L515-L519 — DerivedIM>::intersect(
+- single_shared_vertex · function · L549-L567 — inline bool igl::copyleft::cgal::SelfIntersectMesh<
+- single_shared_vertex · function · L557-L563 — DerivedIM>::single_shared_vertex(
+- single_shared_vertex · function · L589-L594 — DerivedIM>::single_shared_vertex(
+- sa · function · L598-L600 — Segment_3 sa(
+- vertex · function · L599-L599 — A.vertex((va+1)%3),
+- double_shared_vertex · function · L658-L663 — DerivedIM>::double_shared_vertex(
+- do_intersect · function · L699-L702 — const Triangle_3 & A, const Index a2, const Triangle_3 & B)
+- vertex · function · L702-L702 — return CGAL::do_intersect(A.vertex(a2),B);
+- sa · function · L708-L711 — const Triangle_3 & A, const Index va,
+- vertex · function · L711-L711 — Segment_3 sa( A.vertex((va+1)%3), A.vertex((va+2)%3));
+- sb · function · L712-L712 — Segment_3 sb( B.vertex((vb+1)%3), B.vertex((vb+2)%3));
+- vertex · function · L712-L712 — Segment_3 sb( B.vertex((vb+1)%3), B.vertex((vb+2)%3));
+- push_back · function · L790-L802 — inline void igl::copyleft::cgal::SelfIntersectMesh<
+- box_intersect · function · L798-L800 — DerivedIM>::box_intersect(
+- process_intersecting_boxes · function · L822-L822 — DerivedIM>::process_intersecting_boxes()
+- threads · function · L937-L939 — for (auto& t : threads)
+- joinable · function · L939-L939 — if (t.joinable()) t.join();

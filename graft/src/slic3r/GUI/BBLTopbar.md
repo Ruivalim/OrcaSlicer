@@ -1,0 +1,45 @@
+# src/slic3r/GUI/BBLTopbar.hpp
+
+- CenteredTitle · class · L13-L28 — class CenteredTitle : public wxControl
+- CenteredTitle · function · L16-L16 — CenteredTitle(wxWindow* parent);
+- SetTitle · function · L17-L17 — void SetTitle(const wxString& title);
+- DoGetBestSize · function · L19-L19 — wxSize DoGetBestSize() const override;
+- MSWWindowProc · function · L23-L23 — WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) override;
+- BBLTopbar · class · L30-L113 — class BBLTopbar : public wxAuiToolBar
+- BBLTopbar · function · L33-L33 — BBLTopbar(wxWindow* pwin, wxFrame* parent);
+- BBLTopbar · function · L34-L34 — BBLTopbar(wxFrame* parent);
+- Init · function · L35-L35 — void Init(wxFrame *parent);
+- UpdateToolbarWidth · function · L37-L37 — void UpdateToolbarWidth(int width);
+- Rescale · function · L38-L38 — void Rescale();
+- OnIconize · function · L39-L39 — void OnIconize(wxAuiToolBarEvent& event);
+- OnFullScreen · function · L40-L40 — void OnFullScreen(wxAuiToolBarEvent& event);
+- OnCloseFrame · function · L41-L41 — void OnCloseFrame(wxAuiToolBarEvent& event);
+- OnFileToolItem · function · L42-L42 — void OnFileToolItem(wxAuiToolBarEvent& evt);
+- OnDropdownToolItem · function · L43-L43 — void OnDropdownToolItem(wxAuiToolBarEvent& evt);
+- OnCalibToolItem · function · L44-L44 — void OnCalibToolItem(wxAuiToolBarEvent &evt);
+- OnMouseLeftDClock · function · L45-L45 — void OnMouseLeftDClock(wxMouseEvent& mouse);
+- OnMouseLeftDown · function · L46-L46 — void OnMouseLeftDown(wxMouseEvent& event);
+- OnMouseLeftUp · function · L47-L47 — void OnMouseLeftUp(wxMouseEvent& event);
+- OnMouseMotion · function · L48-L48 — void OnMouseMotion(wxMouseEvent& event);
+- OnMouseCaptureLost · function · L49-L49 — void OnMouseCaptureLost(wxMouseCaptureLostEvent& event);
+- OnMenuClose · function · L50-L50 — void OnMenuClose(wxMenuEvent& event);
+- OnOpenProject · function · L51-L51 — void OnOpenProject(wxAuiToolBarEvent& event);
+- OnSaveProject · function · L53-L53 — void OnSaveProject(wxAuiToolBarEvent& event);
+- OnUndo · function · L54-L54 — void OnUndo(wxAuiToolBarEvent& event);
+- OnRedo · function · L55-L55 — void OnRedo(wxAuiToolBarEvent& event);
+- OnModelStoreClicked · function · L56-L56 — void OnModelStoreClicked(wxAuiToolBarEvent& event);
+- OnPublishClicked · function · L57-L57 — void OnPublishClicked(wxAuiToolBarEvent &event);
+- FindToolByCurrentPosition · function · L59-L59 — wxAuiToolBarItem* FindToolByCurrentPosition();
+- SetFileMenu · function · L61-L61 — void SetFileMenu(wxMenu* file_menu);
+- AddDropDownSubMenu · function · L62-L62 — void AddDropDownSubMenu(wxMenu* sub_menu, const wxString& title);
+- AddDropDownMenuItem · function · L63-L63 — void AddDropDownMenuItem(wxMenuItem* menu_item);
+- GetTopMenu · function · L64-L64 — wxMenu *GetTopMenu();
+- GetCalibMenu · function · L65-L65 — wxMenu *GetCalibMenu();
+- SetTitle · function · L66-L66 — void SetTitle(wxString title);
+- SetMaximizedSize · function · L67-L67 — void SetMaximizedSize();
+- SetWindowSize · function · L68-L68 — void SetWindowSize();
+- EnableUndoRedoItems · function · L70-L70 — void EnableUndoRedoItems();
+- DisableUndoRedoItems · function · L71-L71 — void DisableUndoRedoItems();
+- SaveNormalRect · function · L73-L73 — void SaveNormalRect();
+- ShowCalibrationButton · function · L75-L75 — void ShowCalibrationButton(bool show = true);
+- MSWWindowProc · function · L79-L79 — WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) override;

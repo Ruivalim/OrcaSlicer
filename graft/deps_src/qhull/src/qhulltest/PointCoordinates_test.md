@@ -1,0 +1,40 @@
+# deps_src/qhull/src/qhulltest/PointCoordinates_test.cpp
+
+- PointCoordinates_test · class · L27-L44 — class PointCoordinates_test : public RoadTest
+- t_construct_q · function · L33-L33 — void t_construct_q();
+- t_construct_qh · function · L34-L34 — void t_construct_qh();
+- t_convert · function · L35-L35 — void t_convert();
+- t_getset · function · L36-L36 — void t_getset();
+- t_element · function · L37-L37 — void t_element();
+- t_foreach · function · L38-L38 — void t_foreach();
+- t_search · function · L39-L39 — void t_search();
+- t_modify · function · L40-L40 — void t_modify();
+- t_append_points · function · L41-L41 — void t_append_points();
+- t_coord_iterator · function · L42-L42 — void t_coord_iterator();
+- t_io · function · L43-L43 — void t_io();
+- add_PointCoordinates_test · function · L46-L50 — void
+- t_construct_q · method · L52-L121 — void PointCoordinates_test::
+- pc · function · L56-L56 — PointCoordinates pc(q);
+- pc6 · function · L107-L107 — PointCoordinates pc6(pc5); // Makes copy of point_coordinates
+- pc8 · function · L117-L117 — PointCoordinates pc8(q);
+- t_construct_qh · method · L123-L192 — void PointCoordinates_test::
+- pc6 · function · L178-L178 — PointCoordinates pc6(pc5); // Makes copy of point_coordinates
+- t_convert · method · L194-L216 — void PointCoordinates_test::
+- t_getset · method · L218-L248 — void PointCoordinates_test::
+- pc2 · function · L232-L232 — PointCoordinates pc2(pc);
+- t_element · method · L250-L266 — void PointCoordinates_test::
+- t_foreach · method · L268-L314 — void PointCoordinates_test::
+- foreach · function · L298-L301 — foreach(QhullPoint p3, pc){ //Qt only
+- t_search · method · L316-L329 — void PointCoordinates_test::
+- t_modify · method · L331-L390 — void PointCoordinates_test::
+- p · function · L351-L351 — QhullPoint p(pc[0]);
+- pc4 · function · L387-L387 — PointCoordinates pc4(pc3);
+- t_append_points · method · L392-L400 — void PointCoordinates_test::
+- t_coord_iterator · method · L402-L458 — void PointCoordinates_test::
+- i · function · L408-L408 — PointCoordinatesIterator i(c);
+- p0 · function · L409-L409 — QhullPoint p0(c[0]);
+- p1 · function · L410-L410 — QhullPoint p1(c[1]);
+- p2 · function · L411-L411 — QhullPoint p2(c[2]);
+- c3 · function · L437-L437 — PointCoordinates c3(q);
+- t_io · method · L460-L474 — void PointCoordinates_test::
+- c · function · L464-L464 — PointCoordinates c(q);

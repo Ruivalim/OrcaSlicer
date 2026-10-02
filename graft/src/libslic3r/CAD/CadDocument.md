@@ -1,0 +1,111 @@
+# src/libslic3r/CAD/CadDocument.hpp
+
+- CadFeatureType · type · L22-L22 — enum class CadFeatureType { Sketch, Extrude, Fillet, Chamfer, Hole, Thread, Shell, Revolve, Sweep, Pattern, Plane, Loft, Draft, Import, Boolean, Cut, Mirror, Axis, CoordSys, Helix, Transform, Thicken, Project, DeleteFace, Rib, SurfaceExtrude, SurfaceRevolve, ThickenSurface, SurfaceOffset, SurfaceLoft, SurfaceFill, Mate };
+- SketchShape · type · L23-L23 — enum class SketchShape    { Rectangle, Circle };
+- PlaneType · type · L24-L24 — enum class PlaneType      { Offset, Angle, Midplane, Tangent, TwoEdges, Coincident };
+- AxisType · type · L25-L25 — enum class AxisType       { TwoPoints, FaceNormal, CylinderCenterline, PlaneIntersection, AlongEdge };
+- CoordSysType · type · L26-L26 — enum class CoordSysType   { PointWorld, FaceAndDirection };
+- BooleanMode · type · L27-L27 — enum class BooleanMode    { New, Add, Cut, Intersect };
+- ExtrudeEnd · type · L29-L29 — enum class ExtrudeEnd { Blind, Symmetric, TwoSided, ThroughAll, UpToFace, UpToVertex };
+- brep_to_string · function · L33-L33 — std::string brep_to_string(const TopoDS_Shape& s);
+- brep_from_string · function · L34-L34 — TopoDS_Shape brep_from_string(const std::string& d);
+- CadFeature · class · L36-L402 — struct CadFeature
+- save · function · L323-L361 — template<class Archive>
+- load · function · L362-L401 — template<class Archive>
+- brep_to_string · function · L405-L405 — std::string brep_to_string(const TopoDS_Shape& s);
+- brep_from_string · function · L406-L406 — TopoDS_Shape brep_from_string(const std::string& d);
+- CadBody · class · L409-L430 — struct CadBody
+- CadDocument · class · L433-L772 — class CadDocument
+- add_sketch · function · L470-L472 — int  add_sketch(SketchShape shape, const SketchPlane& plane,
+- add_sketch_profile · function · L473-L474 — int  add_sketch_profile(const SketchProfile& profile, const SketchPlane& plane,
+- add_sketch_entities · function · L477-L479 — int  add_sketch_entities(const std::vector<SketchEntity>& entities,
+- add_project_edges · function · L482-L483 — int  add_project_edges(int source_body, const std::vector<int>& edge_ids, int face,
+- project_edges_into_sketch · function · L489-L490 — int  project_edges_into_sketch(int sketch_feature, int source_body,
+- add_bridge · function · L495-L496 — int add_bridge(int sketch_ref, int ent_a, int end_a, int ent_b, int end_b,
+- solve_sketch_feature · function · L500-L500 — bool solve_sketch_feature(int index);
+- add_extrude · function · L501-L502 — int  add_extrude(int sketch_ref, double distance, bool symmetric,
+- add_extrude_entities · function · L504-L506 — int  add_extrude_entities(const std::vector<SketchEntity>& entities,
+- add_extrude_face · function · L508-L509 — int  add_extrude_face(int src_face, double distance, bool symmetric,
+- add_fillet · function · L510-L510 — int  add_fillet(double radius, FaceGroup faces, const std::string& name);
+- add_fillet · function · L511-L511 — int  add_fillet(double radius, int edge_id, const std::string& name);
+- add_chamfer · function · L512-L512 — int  add_chamfer(double distance, FaceGroup faces, const std::string& name);
+- add_chamfer · function · L513-L513 — int  add_chamfer(double distance, int edge_id, const std::string& name);
+- add_hole · function · L514-L516 — int  add_hole(double diameter, double depth, bool through,
+- add_hole_styled · function · L517-L521 — int  add_hole_styled(double diameter, double depth, bool through,
+- add_hole_standard · function · L522-L524 — int  add_hole_standard(const std::string& designation, int style, bool through,
+- add_thread · function · L525-L527 — int  add_thread(double radius, double pitch, double height, double depth,
+- add_revolve · function · L528-L529 — int  add_revolve(int sketch_ref, double angle, int axis, bool flip,
+- add_revolve_entities · function · L531-L533 — int  add_revolve_entities(const std::vector<SketchEntity>& entities,
+- add_pattern · function · L535-L536 — int  add_pattern(bool circular, int count, double spacing, int dir,
+- add_pattern_on_curve · function · L538-L539 — int  add_pattern_on_curve(int count, int curve_sketch, int curve_entity, int target,
+- add_sweep · function · L540-L541 — int  add_sweep(int profile_sketch_ref, int path_sketch_ref, BooleanMode mode,
+- add_loft · function · L543-L544 — int  add_loft(const std::vector<int>& profile_refs, bool ruled, BooleanMode mode,
+- add_surface_loft · function · L546-L546 — int  add_surface_loft(const std::vector<int>& profile_refs, bool ruled, const std::string& name);
+- add_surface_fill · function · L548-L548 — int  add_surface_fill(int sketch_ref, const std::string& name);
+- add_shell · function · L549-L549 — int  add_shell(double thickness, int face, int target_body, const std::string& name);
+- add_rib · function · L552-L553 — int  add_rib(int sketch_ref, int entity, double thickness, double depth,
+- add_draft · function · L554-L554 — int  add_draft(double angle, int face, int target_body, const std::string& name);
+- add_boolean · function · L558-L559 — int  add_boolean(BooleanMode op, int target_body, int tool_body, bool keep_tool,
+- add_cut · function · L563-L564 — int  add_cut(const SketchPlane& plane, double offset, bool flip,
+- add_split_by_face · function · L567-L568 — int add_split_by_face(int target_body, int face_body, int face,
+- add_mirror · function · L569-L570 — int  add_mirror(const SketchPlane& plane, int target_body, BooleanMode mode,
+- add_transform · function · L573-L574 — int add_transform(int target_body, const Vec3d& translate, const Vec3d& axis,
+- add_thicken · function · L577-L577 — int add_thicken(int target_body, int face, double thickness, bool flip, const std::string& name);
+- add_thicken_surface · function · L579-L579 — int add_thicken_surface(int target_body, double thickness, bool flip, const std::string& name);
+- add_surface_offset · function · L581-L581 — int add_surface_offset(int target_body, double offset, const std::string& name);
+- add_delete_face · function · L582-L583 — int add_delete_face(int target_body, const std::vector<int>& faces,
+- add_surface_extrude · function · L584-L584 — int add_surface_extrude(int sketch_ref, double distance, const std::string& name);
+- add_surface_revolve · function · L585-L585 — int add_surface_revolve(int sketch_ref, double angle_deg, int axis, const std::string& name);
+- add_plane · function · L588-L589 — int  add_plane(int base, double offset, double angle_tilt, int axis,
+- add_axis · function · L591-L591 — int  add_axis(AxisType axis_type, const std::string& name);
+- add_coordsys · function · L593-L593 — int  add_coordsys(CoordSysType type, const Vec3d& point, const std::string& name);
+- add_mate · function · L594-L595 — int  add_mate(int kind, int cs_a, int cs_b, double offset, double angle_deg, bool flip,
+- MateOption · class · L598-L602 — struct MateOption
+- mate_options · function · L606-L606 — std::vector<MateOption> mate_options(int cs_a, int cs_b) const;
+- add_helix · function · L608-L609 — int  add_helix(const SketchPlane& plane, double radius, double pitch, double height,
+- build_helix_wire · function · L611-L611 — TopoDS_Wire build_helix_wire(const CadFeature& f, std::string& err) const;
+- resolve_datum_planes · function · L614-L614 — std::vector<std::pair<std::string, SketchPlane>> resolve_datum_planes() const;
+- plane_of_face · function · L621-L621 — bool plane_of_face(int body_idx, int face_idx, SketchPlane& out) const;
+- DatumAxis · class · L623-L624 — struct DatumAxis { std::string name; Vec3d origin{0,0,0}; Vec3d direction{0,0,1};
+- resolve_datum_axes · function · L625-L625 — std::vector<DatumAxis> resolve_datum_axes() const;
+- DatumCoordSys · class · L627-L628 — struct DatumCoordSys { std::string name; Vec3d origin{0,0,0}; Vec3d x{1,0,0};
+- resolve_datum_coordsys · function · L629-L629 — std::vector<DatumCoordSys> resolve_datum_coordsys() const;
+- clear · function · L630-L630 — void clear();
+- recompute · function · L631-L631 — bool recompute();   // replay features -> body + display_mesh; false on error
+- serialize_recipe · function · L653-L653 — std::string serialize_recipe() const;
+- deserialize_recipe · function · L654-L654 — bool deserialize_recipe(const std::string& blob);
+- export_step · function · L659-L661 — bool export_step(const std::string& path,
+- body_mass_properties · function · L663-L663 — GeometryEngine::MassProps body_mass_properties(int body_index) const;
+- Interference · class · L666-L666 — struct Interference { int body_a{-1}; int body_b{-1}; double volume{0}; };
+- check_interference · function · L670-L670 — std::vector<Interference> check_interference(double min_volume = 1e-6) const;
+- is_sheet_shape · function · L673-L673 — static bool is_sheet_shape(const TopoDS_Shape& s); // true if TopExp finds no TopAbs_SOLID
+- checkpoint · function · L681-L681 — void checkpoint();   // snapshot `features` for undo + invalidate redo
+- abandon_checkpoint · function · L686-L686 — void abandon_checkpoint();
+- can_undo · function · L687-L687 — bool can_undo() const { return !m_undo.empty(); }
+- can_redo · function · L688-L688 — bool can_redo() const { return !m_redo.empty(); }
+- undo_depth · function · L689-L689 — size_t undo_depth() const { return m_undo.size(); }
+- redo_depth · function · L690-L690 — size_t redo_depth() const { return m_redo.size(); }
+- undo · function · L691-L691 — bool undo();   // restore the previous feature list + recompute(); false if no history
+- redo · function · L692-L692 — bool redo();   // re-apply the most recently undone change; false if none
+- remove_feature · function · L704-L704 — bool remove_feature(int index);
+- move_feature · function · L705-L705 — bool move_feature(int index, int delta);
+- replace_feature · function · L706-L706 — bool replace_feature(int index, const CadFeature& edited);
+- replace_sketch_extrude · function · L711-L711 — bool replace_sketch_extrude(int sketch_idx, int extrude_idx, const CadFeature& edited);
+- preview · function · L717-L717 — bool preview(const CadFeature& candidate, TriangleMesh& out_mesh, std::string& err) const;
+- preview · function · L721-L722 — bool preview(const CadFeature& candidate, TriangleMesh& out_mesh,
+- build_sketch_wire · function · L725-L725 — TopoDS_Wire build_sketch_wire(const CadFeature& sketch, bool closed_only = false) const;
+- build_sketch_face · function · L729-L729 — TopoDS_Face build_sketch_face(const CadFeature& sketch) const;
+- apply_feature · function · L734-L735 — void apply_feature(TopoDS_Shape& result, bool& have_body,
+- route_feature · function · L739-L739 — void route_feature(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- apply_boolean · function · L744-L744 — void apply_boolean(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- apply_cut · function · L745-L745 — void apply_cut(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- apply_mirror · function · L746-L746 — void apply_mirror(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- apply_transform · function · L747-L747 — void apply_transform(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- apply_thicken · function · L748-L748 — void apply_thicken(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- apply_thicken_surface · function · L749-L749 — void apply_thicken_surface(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- apply_surface_offset · function · L750-L750 — void apply_surface_offset(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- apply_project · function · L751-L751 — void apply_project(const std::vector<CadBody>& bodies, CadFeature& f) const;
+- datum_frame · function · L752-L752 — static DatumCoordSys datum_frame(const std::vector<CadBody>& bodies, const CadFeature& f);
+- apply_mate · function · L753-L753 — void apply_mate(std::vector<CadBody>& bodies, const CadFeature& f) const;
+- detect_mate_conflicts · function · L754-L754 — void detect_mate_conflicts();   // refills mate_conflicts from the feature list alone
+- Snapshot · class · L765-L768 — struct Snapshot

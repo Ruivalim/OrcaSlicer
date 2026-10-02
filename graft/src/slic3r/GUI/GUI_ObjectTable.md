@@ -1,0 +1,172 @@
+# src/slic3r/GUI/GUI_ObjectTable.hpp
+
+- ComboBox · class · L28-L28 — class ComboBox;
+- TextInput · class · L29-L29 — class TextInput;
+- ObjectTablePanel · class · L36-L36 — class ObjectTablePanel;
+- GridCellIconRenderer · class · L38-L55 — class GridCellIconRenderer : public wxGridCellRenderer
+- Draw · function · L41-L46 — virtual void Draw(wxGrid& grid,
+- GetBestSize · function · L48-L52 — virtual wxSize GetBestSize(wxGrid& WXUNUSED(grid),
+- WXUNUSED · function · L48-L48 — virtual wxSize GetBestSize(wxGrid& WXUNUSED(grid),
+- WXUNUSED · function · L51-L51 — int WXUNUSED(row),
+- WXUNUSED · function · L52-L52 — int WXUNUSED(col)) wxOVERRIDE;
+- Clone · function · L54-L54 — virtual GridCellIconRenderer *Clone() const wxOVERRIDE;
+- GridCellTextEditor · class · L57-L76 — class GridCellTextEditor : public wxGridCellTextEditor
+- GridCellTextEditor · function · L60-L60 — GridCellTextEditor();
+- Create · function · L63-L63 — virtual void Create(wxWindow *parent, wxWindowID id, wxEvtHandler *evtHandler) wxOVERRIDE;
+- StartingKey · function · L64-L64 — void         StartingKey(wxKeyEvent &event) wxOVERRIDE;
+- SetSize · function · L65-L65 — virtual void SetSize(const wxRect &rect) wxOVERRIDE;
+- BeginEdit · function · L66-L66 — virtual void BeginEdit(int row, int col, wxGrid *grid) wxOVERRIDE;
+- EndEdit · function · L67-L67 — virtual bool EndEdit(int row, int col, const wxGrid *grid, const wxString &oldval, wxString *newval) wxOVERRIDE;
+- ApplyEdit · function · L68-L68 — virtual void ApplyEdit(int row, int col, wxGrid *grid) wxOVERRIDE;
+- Text · function · L71-L71 — ::TextInput *Text() const { return (::TextInput *) m_control; }
+- wxDECLARE_NO_COPY_CLASS · function · L72-L72 — wxDECLARE_NO_COPY_CLASS(GridCellTextEditor);
+- GridCellFilamentsEditor · class · L79-L113 — class  GridCellFilamentsEditor : public wxGridCellChoiceEditor
+- GridCellFilamentsEditor · function · L82-L85 — GridCellFilamentsEditor(size_t count = 0,
+- GridCellFilamentsEditor · function · L86-L88 — GridCellFilamentsEditor(const wxArrayString& choices,
+- Create · function · L90-L92 — virtual void Create(wxWindow* parent,
+- SetSize · function · L93-L93 — virtual void SetSize(const wxRect& rect) wxOVERRIDE;
+- Clone · function · L95-L95 — virtual wxGridCellEditor *Clone() const wxOVERRIDE;
+- BeginEdit · function · L97-L97 — virtual void BeginEdit(int row, int col, wxGrid* grid) wxOVERRIDE;
+- EndEdit · function · L98-L99 — virtual bool EndEdit(int row, int col, const wxGrid* grid,
+- TryActivate · function · L101-L101 — virtual wxGridActivationResult TryActivate(int row, int col, wxGrid* grid, const wxGridActivationSource& actSource) wxOVERRIDE;
+- DoActivate · function · L102-L102 — virtual void DoActivate(int row, int col, wxGrid* grid) wxOVERRIDE;
+- Combo · function · L105-L105 — ::ComboBox *Combo() const { return (::ComboBox *)m_control; }
+- OnComboCloseUp · function · L106-L106 — void OnComboCloseUp(wxCommandEvent& evt);
+- wxDECLARE_NO_COPY_CLASS · function · L110-L110 — wxDECLARE_NO_COPY_CLASS(GridCellFilamentsEditor);
+- GridCellFilamentsRenderer · class · L116-L133 — class GridCellFilamentsRenderer : public wxGridCellChoiceRenderer
+- Draw · function · L119-L124 — virtual void Draw(wxGrid& grid,
+- GetBestSize · function · L126-L130 — virtual wxSize GetBestSize(wxGrid& WXUNUSED(grid),
+- WXUNUSED · function · L126-L126 — virtual wxSize GetBestSize(wxGrid& WXUNUSED(grid),
+- WXUNUSED · function · L129-L129 — int WXUNUSED(row),
+- WXUNUSED · function · L130-L130 — int WXUNUSED(col)) wxOVERRIDE;
+- Clone · function · L132-L132 — virtual GridCellFilamentsRenderer *Clone() const wxOVERRIDE;
+- GridCellChoiceEditor · class · L136-L160 — class GridCellChoiceEditor : public wxGridCellChoiceEditor
+- GridCellChoiceEditor · function · L139-L139 — GridCellChoiceEditor(size_t count = 0, const wxString choices[] = NULL);
+- GridCellChoiceEditor · function · L140-L140 — GridCellChoiceEditor(const wxArrayString &choices);
+- Create · function · L142-L142 — virtual void Create(wxWindow *parent, wxWindowID id, wxEvtHandler *evtHandler) wxOVERRIDE;
+- SetSize · function · L143-L143 — virtual void SetSize(const wxRect &rect) wxOVERRIDE;
+- Clone · function · L145-L145 — virtual wxGridCellEditor *Clone() const wxOVERRIDE;
+- BeginEdit · function · L147-L147 — virtual void BeginEdit(int row, int col, wxGrid *grid) wxOVERRIDE;
+- EndEdit · function · L148-L148 — virtual bool EndEdit(int row, int col, const wxGrid *grid, const wxString &oldval, wxString *newval) wxOVERRIDE;
+- TryActivate · function · L150-L150 — virtual wxGridActivationResult TryActivate(int row, int col, wxGrid *grid, const wxGridActivationSource &actSource) wxOVERRIDE;
+- DoActivate · function · L151-L151 — virtual void                   DoActivate(int row, int col, wxGrid *grid) wxOVERRIDE;
+- Combo · function · L154-L154 — ::ComboBox *Combo() const { return (::ComboBox *) m_control; }
+- OnComboCloseUp · function · L155-L155 — void        OnComboCloseUp(wxCommandEvent &evt);
+- wxDECLARE_NO_COPY_CLASS · function · L156-L156 — wxDECLARE_NO_COPY_CLASS(GridCellChoiceEditor);
+- GridCellComboBoxRenderer · class · L163-L171 — class GridCellComboBoxRenderer : public wxGridCellChoiceRenderer
+- Draw · function · L166-L166 — virtual void Draw(wxGrid &grid, wxGridCellAttr &attr, wxDC &dc, const wxRect &rect, int row, int col, bool isSelected) wxOVERRIDE;
+- GetBestSize · function · L168-L168 — virtual wxSize GetBestSize(wxGrid &WXUNUSED(grid), wxGridCellAttr &attr, wxDC &dc, int WXUNUSED(row), int WXUNUSED(col)) wxOVERRIDE;
+- WXUNUSED · function · L168-L168 — virtual wxSize GetBestSize(wxGrid &WXUNUSED(grid), wxGridCellAttr &attr, wxDC &dc, int WXUNUSED(row), int WXUNUSED(col)) wxOVERRIDE;
+- WXUNUSED · function · L168-L168 — virtual wxSize GetBestSize(wxGrid &WXUNUSED(grid), wxGridCellAttr &attr, wxDC &dc, int WXUNUSED(row), int WXUNUSED(col)) wxOVERRIDE;
+- WXUNUSED · function · L168-L168 — virtual wxSize GetBestSize(wxGrid &WXUNUSED(grid), wxGridCellAttr &attr, wxDC &dc, int WXUNUSED(row), int WXUNUSED(col)) wxOVERRIDE;
+- Clone · function · L170-L170 — virtual GridCellComboBoxRenderer *Clone() const wxOVERRIDE;
+- GridCellSupportEditor · class · L173-L193 — class GridCellSupportEditor : public wxGridCellBoolEditor
+- GridCellSupportEditor · function · L176-L176 — GridCellSupportEditor() { }
+- DoActivate · function · L177-L177 — virtual void DoActivate(int row, int col, wxGrid* grid) wxOVERRIDE;
+- SetValueFromGrid · function · L180-L180 — void SetValueFromGrid(int row, int col, wxGrid* grid);
+- SetGridFromValue · function · L181-L181 — void SetGridFromValue(int row, int col, wxGrid* grid) const;
+- GetStringValue · function · L183-L183 — wxString GetStringValue() const { return GetStringValue(m_value); }
+- GetStringValue · function · L185-L186 — static
+- wxDECLARE_NO_COPY_CLASS · function · L192-L192 — wxDECLARE_NO_COPY_CLASS(GridCellSupportEditor);
+- GridCellSupportRenderer · class · L195-L212 — class GridCellSupportRenderer : public wxGridCellBoolRenderer
+- Draw · function · L198-L203 — virtual void Draw(wxGrid& grid,
+- GetBestSize · function · L205-L209 — virtual wxSize GetBestSize(wxGrid& WXUNUSED(grid),
+- WXUNUSED · function · L205-L205 — virtual wxSize GetBestSize(wxGrid& WXUNUSED(grid),
+- WXUNUSED · function · L208-L208 — int WXUNUSED(row),
+- WXUNUSED · function · L209-L209 — int WXUNUSED(col)) wxOVERRIDE;
+- Clone · function · L211-L211 — virtual GridCellSupportRenderer *Clone() const wxOVERRIDE;
+- ObjectGrid · class · L216-L267 — class ObjectGrid : public wxGrid
+- ObjectGrid · function · L219-L227 — ObjectGrid(wxWindow *parent,
+- OnCellLeftClick · function · L244-L244 — bool OnCellLeftClick(wxGridEvent& event, int row, int col, ConfigOptionType type);
+- OnRangeSelected · function · L245-L245 — void OnRangeSelected(wxGridRangeSelectEvent& ev);
+- OnColHeadLeftClick · function · L246-L246 — void OnColHeadLeftClick(wxGridEvent& event);
+- DrawColLabels · function · L248-L248 — virtual void DrawColLabels( wxDC& dc, const wxArrayInt& cols );
+- DrawColLabel · function · L249-L249 — virtual void DrawColLabel( wxDC& dc, int col );
+- OnKeyDown · function · L259-L259 — void OnKeyDown( wxKeyEvent& );
+- OnKeyUp · function · L260-L260 — void OnKeyUp( wxKeyEvent& );
+- OnChar · function · L261-L261 — void OnChar( wxKeyEvent& );
+- wxDECLARE_EVENT_TABLE · function · L264-L264 — wxDECLARE_EVENT_TABLE();
+- paste_data · function · L266-L266 — void paste_data( wxTextDataObject& text_data );
+- ObjectGridTable · class · L269-L544 — class ObjectGridTable : public wxGridTableBase
+- GridRowType · type · L274-L278 — enum GridRowType
+- GridColType · type · L279-L321 — enum GridColType
+- ObjectGridRow · class · L323-L406 — struct ObjectGridRow
+- ObjectGridRow · function · L353-L357 — ObjectGridRow(int obj_id, int vol_id, GridRowType type)
+- compare_row_func · type · L407-L407 — typedef std::function<bool(ObjectGridRow* row1, ObjectGridRow* row2)> compare_row_func;
+- ObjectGridCol · class · L409-L436 — struct ObjectGridCol
+- ObjectGridCol · function · L423-L431 — ObjectGridCol(ConfigOptionType option_type, std::string key_str, std::string cat, bool only_object, bool icon, bool edit, bool config, int ho_align)
+- ObjectGridTable · function · L437-L437 — ObjectGridTable(ObjectTablePanel* panel): m_panel(panel) { }
+- release_object_configs · function · L440-L440 — void release_object_configs();
+- convert_filament_string · function · L441-L441 — wxString convert_filament_string(int index, wxString& filament_str);
+- GetNumberRows · function · L443-L443 — virtual int GetNumberRows() wxOVERRIDE;
+- GetNumberCols · function · L444-L444 — virtual int GetNumberCols() wxOVERRIDE;
+- IsEmptyCell · function · L445-L445 — virtual bool IsEmptyCell( int row, int col ) wxOVERRIDE;
+- GetTypeName · function · L450-L450 — virtual wxString GetTypeName( int row, int col ) wxOVERRIDE;
+- CanGetValueAs · function · L451-L451 — virtual bool CanGetValueAs( int row, int col, const wxString& typeName ) wxOVERRIDE;
+- CanSetValueAs · function · L452-L452 — virtual bool CanSetValueAs( int row, int col, const wxString& typeName ) wxOVERRIDE;
+- GetValue · function · L454-L454 — virtual wxString GetValue( int row, int col ) wxOVERRIDE;
+- SetValue · function · L455-L455 — virtual void SetValue( int row, int col, const wxString& value ) wxOVERRIDE;
+- GetValueAsLong · function · L457-L457 — virtual long GetValueAsLong( int row, int col ) wxOVERRIDE;
+- GetValueAsBool · function · L458-L458 — virtual bool GetValueAsBool( int row, int col ) wxOVERRIDE;
+- GetValueAsDouble · function · L459-L459 — virtual double GetValueAsDouble (int row, int col) wxOVERRIDE;
+- SetValueAsLong · function · L461-L461 — virtual void SetValueAsLong( int row, int col, long value ) wxOVERRIDE;
+- SetValueAsBool · function · L462-L462 — virtual void SetValueAsBool( int row, int col, bool value ) wxOVERRIDE;
+- SetValueAsDouble · function · L463-L463 — virtual void SetValueAsDouble (int row, int col, double value) wxOVERRIDE;
+- SetColLabelValue · function · L465-L465 — void SetColLabelValue( int col, const wxString& ) wxOVERRIDE;
+- GetColLabelValue · function · L466-L466 — wxString GetColLabelValue( int col ) wxOVERRIDE;
+- get_object_config_value · function · L468-L468 — template<typename TYPE> const TYPE* get_object_config_value(const DynamicPrintConfig& global_config, ModelConfig* obj_config, std::string& config_option)
+- get_volume_config_value · function · L479-L479 — template<typename TYPE> const TYPE* get_volume_config_value(const DynamicPrintConfig& global_config, ModelConfig* obj_config, ModelConfig* volume_config, std::string& config_option)
+- get_row_count · function · L492-L492 — int get_row_count() { return m_grid_data.size() + 1; }
+- get_col_count · function · L493-L493 — int get_col_count() { return m_col_data.size(); }
+- get_grid_col · function · L494-L494 — ObjectGridCol* get_grid_col(int col) { return m_col_data[col]; }
+- get_grid_row · function · L495-L495 — ObjectGridRow* get_grid_row(int row) { return m_grid_data[row]; }
+- construct_object_configs · function · L496-L496 — void           construct_object_configs(ObjectGrid* object_grid);
+- update_value_to_config · function · L497-L497 — void update_value_to_config(ModelConfig* config, std::string& key, ConfigOption& new_value,  ConfigOption& ori_value);
+- update_filament_to_config · function · L498-L498 — void update_filament_to_config(ModelConfig* config, std::string& key, ConfigOption& new_value,  ConfigOption& ori_value, bool is_object);
+- update_volume_values_from_object · function · L499-L499 — void update_volume_values_from_object(int row, int col);
+- update_value_to_object · function · L500-L500 — void update_value_to_object(Model* model, ObjectGridRow* grid_row, int col);
+- get_undo_bitmap · function · L501-L501 — wxBitmap& get_undo_bitmap(bool selected = false);
+- get_color_bitmap · function · L502-L502 — wxBitmap* get_color_bitmap(int color_index);
+- OnCellLeftClick · function · L503-L503 — bool OnCellLeftClick(int row, int col, ConfigOptionType &type);
+- OnSelectCell · function · L504-L504 — void OnSelectCell(int row, int col);
+- OnRangeSelected · function · L505-L505 — void OnRangeSelected(int row, int col, int row_count, int col_count);
+- OnCellValueChanged · function · L508-L508 — void OnCellValueChanged(int row, int col);
+- SetSelection · function · L510-L510 — void SetSelection(int object_id, int volume_id);
+- sort_by_default · function · L512-L512 — void sort_by_default();
+- sort_by_col · function · L513-L513 — void sort_by_col(int col);
+- reload_object_data · function · L516-L516 — void reload_object_data(ObjectGridRow* grid_row, const std::string& category, DynamicPrintConfig&  global_config);
+- reload_part_data · function · L517-L517 — void reload_part_data(ObjectGridRow* volume_row, ObjectGridRow* object_row, const std::string& category, DynamicPrintConfig&  global_config);
+- reload_cell_data · function · L518-L518 — void reload_cell_data(int row, const std::string& category);
+- resetValuesInCurrentCell · function · L519-L519 — void resetValuesInCurrentCell(wxEvent& WXUNUSED(event));
+- WXUNUSED · function · L519-L519 — void resetValuesInCurrentCell(wxEvent& WXUNUSED(event));
+- enable_reset_all_button · function · L520-L520 — void enable_reset_all_button(bool enable);
+- init_cols · function · L535-L535 — void init_cols(ObjectGrid *object_grid);
+- sort_row_data · function · L537-L537 — void sort_row_data(compare_row_func sort_func);
+- update_row_properties · function · L539-L539 — void update_row_properties();
+- ObjectTablePanel · class · L548-L615 — class ObjectTablePanel : public wxPanel
+- OnCellLeftClick · function · L556-L556 — void OnCellLeftClick( wxGridEvent& );
+- OnRowSize · function · L557-L557 — void OnRowSize( wxGridSizeEvent& );
+- OnColSize · function · L558-L558 — void OnColSize( wxGridSizeEvent& );
+- OnSelectCell · function · L559-L559 — void OnSelectCell( wxGridEvent& );
+- OnRangeSelected · function · L560-L560 — void OnRangeSelected( wxGridRangeSelectEvent& );
+- OnCellValueChanged · function · L563-L563 — void OnCellValueChanged( wxGridEvent& );
+- ObjectTablePanel · function · L566-L566 — ObjectTablePanel( wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size, long style, const wxString& name, Plater* platerObj, Model *modelObj );
+- load_data · function · L569-L569 — void load_data();
+- SetSelection · function · L570-L570 — void SetSelection(int object_id, int volume_id);
+- sort_by_default · function · L571-L571 — void sort_by_default() { m_object_grid_table->sort_by_default(); }
+- get_init_size · function · L572-L572 — wxSize get_init_size();
+- resetAllValuesInSideWindow · function · L573-L573 — void resetAllValuesInSideWindow(int row, bool is_object, ModelObject* object, ModelConfig* config, const std::string& category);
+- msw_rescale · function · L574-L574 — void msw_rescale();
+- set_default_filaments_and_colors · function · L582-L587 — void set_default_filaments_and_colors()
+- init_bitmap · function · L604-L604 — int init_bitmap();
+- init_filaments_and_colors · function · L605-L605 — int init_filaments_and_colors();
+- wxDECLARE_ABSTRACT_CLASS · function · L613-L613 — wxDECLARE_ABSTRACT_CLASS(ObjectGrid);
+- wxDECLARE_EVENT_TABLE · function · L614-L614 — wxDECLARE_EVENT_TABLE();
+- ObjectTableDialog · class · L617-L640 — class ObjectTableDialog : public GUI::DPIDialog
+- ObjectTableDialog · function · L630-L630 — ObjectTableDialog(wxWindow* parent, Plater* platerObj, Model *modelObj, wxSize maxSize);
+- Popup · function · L632-L632 — void Popup(int obj_idx = -1, int vol_idx = -1, wxPoint position = wxDefaultPosition);
+- OnClose · function · L633-L633 — void OnClose(wxCloseEvent &evt);
+- OnText · function · L634-L634 — void OnText(wxKeyEvent &evt);
+- OnSize · function · L635-L635 — void OnSize(wxSizeEvent& event);
+- on_dpi_changed · function · L638-L638 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_sys_color_changed · function · L639-L639 — void on_sys_color_changed() override;

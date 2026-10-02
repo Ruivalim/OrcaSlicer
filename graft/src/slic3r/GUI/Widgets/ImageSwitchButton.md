@@ -1,0 +1,42 @@
+# src/slic3r/GUI/Widgets/ImageSwitchButton.hpp
+
+- ImageSwitchButton · class · L12-L51 — class ImageSwitchButton : public StaticBox
+- ImageSwitchButton · function · L15-L15 — ImageSwitchButton(wxWindow *parent, ScalableBitmap &img_on, ScalableBitmap &img_off, long style = 0);
+- SetLabels · function · L17-L17 — void SetLabels(wxString const & lbl_on, wxString const & lbl_off);
+- SetImages · function · L18-L18 — void SetImages(ScalableBitmap &img_on, ScalableBitmap &img_off);
+- SetTextColor · function · L19-L19 — void SetTextColor(StateColor const &color);
+- SetValue · function · L20-L20 — void SetValue(bool value);
+- SetPadding · function · L21-L21 — void SetPadding(int padding);
+- GetValue · function · L23-L23 — bool GetValue() { return m_on_off; }
+- Rescale · function · L24-L24 — void Rescale();
+- messureSize · function · L27-L27 — void messureSize();
+- paintEvent · function · L28-L28 — void paintEvent(wxPaintEvent &evt);
+- render · function · L29-L29 — void render(wxDC& dc);
+- mouseDown · function · L30-L30 — void mouseDown(wxMouseEvent &event);
+- mouseReleased · function · L31-L31 — void mouseReleased(wxMouseEvent &event);
+- mouseEnterWindow · function · L32-L32 — void mouseEnterWindow(wxMouseEvent &event);
+- mouseLeaveWindow · function · L33-L33 — void mouseLeaveWindow(wxMouseEvent &event);
+- sendButtonEvent · function · L34-L34 — void sendButtonEvent();
+- DECLARE_EVENT_TABLE · function · L36-L36 — DECLARE_EVENT_TABLE()
+- FanSwitchButton · class · L53-L100 — class FanSwitchButton : public StaticBox
+- FanSwitchButton · function · L56-L56 — FanSwitchButton(wxWindow* parent, ScalableBitmap& img_on, ScalableBitmap& img_off, long style = 0);
+- SetLabels · function · L57-L57 — void SetLabels(wxString const& lbl_on, wxString const& lbl_off);
+- SetImages · function · L58-L58 — void SetImages(ScalableBitmap& img_on, ScalableBitmap& img_off);
+- SetTextColor · function · L59-L59 — void SetTextColor(StateColor const& color);
+- SetValue · function · L60-L60 — void SetValue(bool value);
+- SetPadding · function · L61-L61 — void SetPadding(int padding);
+- GetValue · function · L63-L63 — bool GetValue() { return m_on_off; }
+- Rescale · function · L64-L64 — void Rescale();
+- setFanValue · function · L65-L65 — void setFanValue(int val);
+- UseTextFan · function · L67-L67 — void UseTextFan();
+- UseTextAirCondition · function · L68-L68 — void UseTextAirCondition();
+- messureSize · function · L71-L71 — void messureSize();
+- paintEvent · function · L72-L72 — void paintEvent(wxPaintEvent& evt);
+- render · function · L73-L73 — void render(wxDC& dc);
+- mouseDown · function · L74-L74 — void mouseDown(wxMouseEvent& event);
+- mouseReleased · function · L75-L75 — void mouseReleased(wxMouseEvent& event);
+- mouseEnterWindow · function · L76-L76 — void mouseEnterWindow(wxMouseEvent& event);
+- mouseLeaveWindow · function · L77-L77 — void mouseLeaveWindow(wxMouseEvent& event);
+- sendButtonEvent · function · L78-L78 — void sendButtonEvent();
+- SetText · function · L80-L80 — void SetText(const wxString &text);
+- DECLARE_EVENT_TABLE · function · L82-L82 — DECLARE_EVENT_TABLE()

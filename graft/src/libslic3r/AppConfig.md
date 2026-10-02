@@ -1,0 +1,115 @@
+# src/libslic3r/AppConfig.hpp
+
+- BBLocalMachine · class · L71-L92 — struct BBLocalMachine
+- AppConfig · class · L94-L469 — class AppConfig
+- EAppMode · type · L97-L101 — enum class EAppMode : unsigned char
+- AppConfig · function · L104-L111 — explicit AppConfig() :
+- get_language_code · function · L113-L113 — std::string get_language_code();
+- get_hms_host · function · L114-L114 — std::string get_hms_host();
+- get_stealth_mode · function · L115-L115 — bool get_stealth_mode();
+- get_hide_login_side_panel · function · L116-L116 — bool get_hide_login_side_panel();
+- reset · function · L119-L119 — void 			   	reset();
+- set_defaults · function · L121-L121 — void 			   	set_defaults();
+- load · function · L125-L125 — std::string         load();
+- load_if_exists · function · L127-L127 — std::string         load_if_exists();
+- save · function · L129-L129 — void 			   	save();
+- dirty · function · L132-L132 — bool 				dirty() const { return m_dirty; }
+- set_dirty · function · L135-L135 — void				set_dirty() { m_dirty = true; }
+- get · function · L138-L149 — bool get(const std::string &section, const std::string &key, std::string &value) const
+- get · function · L150-L151 — std::string 		get(const std::string &section, const std::string &key) const
+- get · function · L152-L153 — std::string 		get(const std::string &key) const
+- get_bool · function · L154-L155 — bool				get_bool(const std::string &section, const std::string &key) const
+- get_bool · function · L156-L157 — bool				get_bool(const std::string &key) const
+- set · function · L158-L173 — void			    set(const std::string &section, const std::string &key, const std::string &value)
+- set_str · function · L175-L190 — void			    set_str(const std::string& section, const std::string& key, const std::string& value)
+- set · function · L192-L199 — void				set(const std::string& section, const std::string &key, bool value)
+- set · function · L202-L203 — void			    set(const std::string &key, const std::string &value)
+- set_bool · function · L205-L208 — void                set_bool(const std::string &key, const bool &value)
+- has · function · L210-L217 — bool				has(const std::string &section, const std::string &key) const
+- has · function · L218-L219 — bool				has(const std::string &key) const
+- erase · function · L221-L228 — void				erase(const std::string &section, const std::string &key)
+- has_section · function · L230-L231 — bool                has_section(const std::string &section) const
+- get_section · function · L232-L232 — const std::map<std::string, std::string>& get_section(const std::string &section) const
+- set_section · function · L234-L235 — void set_section(const std::string &section, const std::map<std::string, std::string>& data)
+- clear_section · function · L236-L237 — void 				clear_section(const std::string &section)
+- VendorMap · type · L239-L239 — typedef std::map<std::string, std::map<std::string, std::set<std::string>>> VendorMap;
+- get_variant · function · L240-L240 — bool                get_variant(const std::string &vendor, const std::string &model, const std::string &variant) const;
+- set_variant · function · L241-L241 — void                set_variant(const std::string &vendor, const std::string &model, const std::string &variant, bool enable);
+- set_vendors · function · L242-L242 — void                set_vendors(const AppConfig &from);
+- set_vendors · function · L243-L243 — void 				set_vendors(const VendorMap &vendors) { m_vendors = vendors; m_dirty = true; }
+- set_vendors · function · L244-L244 — void 				set_vendors(VendorMap &&vendors) { m_vendors = std::move(vendors); m_dirty = true; }
+- vendors · function · L245-L245 — const VendorMap&    vendors() const { return m_vendors; }
+- MachineSettingMap · type · L248-L248 — typedef std::map<std::string, nlohmann::json> MachineSettingMap;
+- has_printer_settings · function · L249-L251 — bool has_printer_settings(std::string printer) const
+- clear_printer_settings · function · L252-L255 — void clear_printer_settings(std::string printer)
+- has_printer_setting · function · L256-L262 — bool has_printer_setting(std::string printer, std::string name)
+- get_printer_setting · function · L263-L267 — std::string get_printer_setting(std::string printer, std::string name)
+- set_printer_setting · function · L268-L271 — void set_printer_setting(std::string printer, std::string name, std::string value)
+- get_local_machines · function · L273-L273 — const std::map<std::string, BBLocalMachine>& get_local_machines() const { return m_local_machines; }
+- erase_local_machine · function · L274-L281 — void erase_local_machine(std::string dev_id)
+- update_local_machine · function · L282-L295 — void update_local_machine(const BBLocalMachine& machine)
+- get_filament_presets · function · L297-L297 — const std::vector<std::string> &get_filament_presets() const { return m_filament_presets; }
+- set_filament_presets · function · L298-L301 — void set_filament_presets(const std::vector<std::string> &filament_presets)
+- get_filament_colors · function · L302-L302 — const std::vector<std::string> &get_filament_colors() const { return m_filament_colors; }
+- set_filament_colors · function · L303-L306 — void set_filament_colors(const std::vector<std::string> &filament_colors)
+- get_printer_cali_infos · function · L308-L308 — const std::vector<PrinterCaliInfo> &get_printer_cali_infos() const { return m_printer_cali_infos; }
+- save_printer_cali_infos · function · L309-L309 — void save_printer_cali_infos(const PrinterCaliInfo& cali_info, bool need_change_status = true);
+- get_last_dir · function · L312-L312 — std::string 		get_last_dir() const;
+- update_config_dir · function · L313-L313 — void 				update_config_dir(const std::string &dir);
+- update_skein_dir · function · L314-L314 — void 				update_skein_dir(const std::string &dir);
+- get_last_output_dir · function · L318-L318 — std::string 		get_last_output_dir(const std::string& alt, const bool removable = false) const;
+- update_last_output_dir · function · L319-L319 — void                update_last_output_dir(const std::string &dir, const bool removable = false);
+- get_last_backup_dir · function · L322-L322 — std::string 		get_last_backup_dir() const;
+- update_last_backup_dir · function · L323-L323 — void                update_last_backup_dir(const std::string &dir);
+- get_region · function · L325-L325 — std::string         get_region();
+- get_country_code · function · L326-L326 — std::string         get_country_code();
+- is_engineering_region · function · L327-L327 — bool				is_engineering_region();
+- save_custom_color_to_config · function · L329-L329 — void                save_custom_color_to_config(const std::vector<std::string> &colors);
+- get_custom_color_from_config · function · L330-L330 — std::vector<std::string> get_custom_color_from_config();
+- save_nozzle_volume_types_to_config · function · L332-L332 — void save_nozzle_volume_types_to_config(const std::string& printer_name, const std::string& nozzle_volume_types);
+- get_nozzle_volume_types_from_config · function · L333-L333 — std::string get_nozzle_volume_types_from_config(const std::string& printer_name);
+- reset_selections · function · L338-L338 — void                reset_selections();
+- config_path · function · L341-L341 — std::string			config_path();
+- legacy_datadir · function · L344-L344 — bool 				legacy_datadir() const { return m_legacy_datadir; }
+- set_legacy_datadir · function · L345-L345 — void 				set_legacy_datadir(bool value) { m_legacy_datadir = value; }
+- version_check_url · function · L349-L349 — std::string 		version_check_url() const;
+- profile_update_url · function · L352-L352 — std::string 		profile_update_url() const;
+- orig_version · function · L356-L356 — Semver 				orig_version() const { return m_orig_version; }
+- exists · function · L359-L359 — bool 				exists();
+- set_loading_path · function · L361-L361 — void                set_loading_path(const std::string& path) { m_loading_path = path; }
+- loading_path · function · L362-L362 — std::string         loading_path() { return (m_loading_path.empty() ? config_path() : m_loading_path); }
+- get_recent_projects · function · L364-L364 — std::vector<std::string> get_recent_projects() const;
+- set_recent_projects · function · L365-L365 — void set_recent_projects(const std::vector<std::string>& recent_projects);
+- set_mouse_device · function · L367-L367 — void set_mouse_device(const std::string& name, double translation_speed, double translation_deadzone, float rotation_speed, float rotation_deadzone, double zoom_speed, bool swap_yz, bool invert_x, bool invert_y, bool invert_z, bool invert_yaw, bool invert_pitch, bool invert_roll);
+- get_mouse_device_names · function · L368-L368 — std::vector<std::string> get_mouse_device_names() const;
+- get_mouse_device_translation_speed · function · L369-L370 — bool get_mouse_device_translation_speed(const std::string& name, double& speed) const
+- get_mouse_device_translation_deadzone · function · L371-L372 — bool get_mouse_device_translation_deadzone(const std::string& name, double& deadzone) const
+- get_mouse_device_rotation_speed · function · L373-L374 — bool get_mouse_device_rotation_speed(const std::string& name, float& speed) const
+- get_mouse_device_rotation_deadzone · function · L375-L376 — bool get_mouse_device_rotation_deadzone(const std::string& name, float& deadzone) const
+- get_mouse_device_zoom_speed · function · L377-L378 — bool get_mouse_device_zoom_speed(const std::string& name, double& speed) const
+- get_mouse_device_swap_yz · function · L379-L380 — bool get_mouse_device_swap_yz(const std::string& name, bool& swap) const
+- get_mouse_device_invert_x · function · L381-L382 — bool get_mouse_device_invert_x(const std::string& name, bool& invert) const
+- get_mouse_device_invert_y · function · L383-L384 — bool get_mouse_device_invert_y(const std::string& name, bool& invert) const
+- get_mouse_device_invert_z · function · L385-L386 — bool get_mouse_device_invert_z(const std::string& name, bool& invert) const
+- get_mouse_device_invert_yaw · function · L387-L388 — bool get_mouse_device_invert_yaw(const std::string& name, bool& invert) const
+- get_mouse_device_invert_pitch · function · L389-L390 — bool get_mouse_device_invert_pitch(const std::string& name, bool& invert) const
+- get_mouse_device_invert_roll · function · L391-L392 — bool get_mouse_device_invert_roll(const std::string& name, bool& invert) const
+- get_network_plugin_version · function · L398-L398 — std::string get_network_plugin_version() const;
+- set_network_plugin_version · function · L399-L399 — void set_network_plugin_version(const std::string& version);
+- get_plugin_pages_visible_count · function · L403-L403 — int get_plugin_pages_visible_count() const;
+- get_speed_dial_recent_count · function · L406-L406 — int get_speed_dial_recent_count() const;
+- get_skipped_network_versions · function · L408-L408 — std::vector<std::string> get_skipped_network_versions() const;
+- add_skipped_network_version · function · L409-L409 — void add_skipped_network_version(const std::string& version);
+- is_network_version_skipped · function · L410-L410 — bool is_network_version_skipped(const std::string& version) const;
+- clear_skipped_network_versions · function · L411-L411 — void clear_skipped_network_versions();
+- is_network_update_prompt_disabled · function · L413-L413 — bool is_network_update_prompt_disabled() const;
+- set_network_update_prompt_disabled · function · L414-L414 — void set_network_update_prompt_disabled(bool disabled);
+- should_remind_network_update_later · function · L416-L416 — bool should_remind_network_update_later() const;
+- set_remind_network_update_later · function · L417-L417 — void set_remind_network_update_later(bool remind);
+- clear_remind_network_update_later · function · L418-L418 — void clear_remind_network_update_later();
+- get_cloud_providers · function · L421-L421 — std::vector<std::string> get_cloud_providers() const;
+- set_cloud_providers · function · L422-L422 — void set_cloud_providers(const std::vector<std::string>& providers);
+- has_cloud_provider · function · L423-L423 — bool has_cloud_provider(const std::string& provider) const;
+- add_cloud_provider · function · L424-L424 — void add_cloud_provider(const std::string& provider);
+- remove_cloud_provider · function · L425-L425 — void remove_cloud_provider(const std::string& provider);
+- get_3dmouse_device_numeric_value · function · L428-L440 — template<typename T>

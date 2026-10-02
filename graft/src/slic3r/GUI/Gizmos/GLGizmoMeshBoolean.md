@@ -1,0 +1,27 @@
+# src/slic3r/GUI/Gizmos/GLGizmoMeshBoolean.hpp
+
+- MeshBooleanSelectingState · type · L12-L17 — enum class MeshBooleanSelectingState
+- MeshBooleanOperation · type · L18-L23 — enum class MeshBooleanOperation
+- VolumeInfo · class · L24-L39 — struct VolumeInfo
+- reset · function · L28-L32 — void reset()
+- serialize · function · L33-L36 — template<class Archive>
+- save_painting · function · L38-L38 — std::optional<TriangleSelector::SavedPainting> save_painting() const;
+- GLGizmoMeshBoolean · class · L40-L93 — class GLGizmoMeshBoolean : public GLGizmoBase
+- GLGizmoMeshBoolean · function · L43-L43 — GLGizmoMeshBoolean(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- set_enable · function · L46-L46 — void set_enable(bool enable) { m_enable = enable; }
+- get_enable · function · L47-L47 — bool get_enable() { return m_enable; }
+- get_selecting_state · function · L48-L48 — MeshBooleanSelectingState get_selecting_state() { return m_selecting_state; }
+- set_src_volume · function · L49-L53 — void set_src_volume(ModelVolume* mv)
+- set_tool_volume · function · L54-L58 — void set_tool_volume(ModelVolume* mv)
+- gizmo_event · function · L60-L60 — bool gizmo_event(SLAGizmoEventType action, const Vec2d &mouse_position, bool shift_down, bool alt_down, bool control_down);
+- on_mouse · function · L69-L69 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- on_init · function · L72-L72 — virtual bool on_init() override;
+- on_get_name · function · L73-L73 — virtual std::string on_get_name() const override;
+- on_is_activable · function · L74-L74 — virtual bool on_is_activable() const override;
+- on_render · function · L75-L75 — virtual void on_render() override;
+- on_set_state · function · L76-L76 — virtual void on_set_state() override;
+- on_get_requirements · function · L77-L77 — virtual CommonGizmosDataID on_get_requirements() const override;
+- on_render_input_window · function · L78-L78 — virtual void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_load · function · L80-L80 — void on_load(cereal::BinaryInputArchive &ar) override;
+- on_save · function · L81-L81 — void on_save(cereal::BinaryOutputArchive &ar) const override;
+- generate_new_volume · function · L92-L92 — void generate_new_volume(bool delete_input, TriangleMesh& mesh_result, const std::vector<std::optional<TriangleSelector::SavedPainting>>& saved_paintings);

@@ -1,0 +1,21 @@
+# src/libslic3r/SLA/SupportTree.hpp
+
+- TriangleMesh · class · L18-L18 — class TriangleMesh;
+- Model · class · L19-L19 — class Model;
+- ModelInstance · class · L20-L20 — class ModelInstance;
+- ModelObject · class · L21-L21 — class ModelObject;
+- PillarConnectionMode · type · L25-L30 — enum class PillarConnectionMode
+- SupportTreeConfig · class · L32-L108 — struct SupportTreeConfig
+- head_fullwidth · function · L87-L90 — double head_fullwidth() const
+- MeshType · type · L116-L116 — enum class MeshType { Support, Pad };
+- SupportableMesh · class · L118-L136 — struct SupportableMesh
+- SupportableMesh · function · L125-L129 — explicit SupportableMesh(const indexed_triangle_set & trmsh,
+- SupportableMesh · function · L131-L135 — explicit SupportableMesh(const IndexedMesh   &em,
+- SupportTree · class · L139-L168 — class SupportTree
+- create · function · L145-L146 — static UPtr create(const SupportableMesh &input,
+- retrieve_mesh · function · L150-L150 — virtual const indexed_triangle_set &retrieve_mesh(MeshType meshtype) const = 0;
+- add_pad · function · L157-L158 — virtual const indexed_triangle_set &add_pad(const ExPolygons &modelbase,
+- remove_pad · function · L160-L160 — virtual void remove_pad() = 0;
+- slice · function · L162-L163 — std::vector<ExPolygons> slice(const std::vector<float> &,
+- retrieve_full_mesh · function · L165-L165 — void retrieve_full_mesh(indexed_triangle_set &outmesh) const;
+- ctl · function · L167-L167 — const JobController &ctl() const { return m_ctl; }

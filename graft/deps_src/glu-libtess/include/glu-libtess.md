@@ -1,0 +1,33 @@
+# deps_src/glu-libtess/include/glu-libtess.h
+
+- GLenum · type · L53-L53 — typedef unsigned int GLenum;
+- GLboolean · type · L54-L54 — typedef unsigned char GLboolean;
+- GLbitfield · type · L55-L55 — typedef unsigned int GLbitfield;
+- GLbyte · type · L56-L56 — typedef signed char GLbyte;
+- GLshort · type · L57-L57 — typedef short GLshort;
+- GLint · type · L58-L58 — typedef int GLint;
+- GLsizei · type · L59-L59 — typedef int GLsizei;
+- GLubyte · type · L60-L60 — typedef unsigned char GLubyte;
+- GLushort · type · L61-L61 — typedef unsigned short GLushort;
+- GLuint · type · L62-L62 — typedef unsigned int GLuint;
+- GLfloat · type · L63-L63 — typedef float GLfloat;
+- GLclampf · type · L64-L64 — typedef float GLclampf;
+- GLdouble · type · L65-L65 — typedef double GLdouble;
+- GLclampd · type · L66-L66 — typedef double GLclampd;
+- GLvoid · type · L67-L67 — typedef void GLvoid;
+- GLUtesselator · type · L167-L167 — typedef struct GLUtesselator GLUtesselator;
+- GLUtesselatorObj · type · L170-L170 — typedef GLUtesselator GLUtesselatorObj;
+- GLUtriangulatorObj · type · L171-L171 — typedef GLUtesselator GLUtriangulatorObj;
+- gluBeginPolygon · function · L178-L178 — GLAPI void GLAPIENTRY gluBeginPolygon (GLUtesselator* tess);
+- gluDeleteTess · function · L179-L179 — GLAPI void GLAPIENTRY gluDeleteTess (GLUtesselator* tess);
+- gluEndPolygon · function · L180-L180 — GLAPI void GLAPIENTRY gluEndPolygon (GLUtesselator* tess);
+- gluGetTessProperty · function · L181-L181 — GLAPI void GLAPIENTRY gluGetTessProperty (GLUtesselator* tess, GLenum which, GLdouble* data);
+- gluNextContour · function · L183-L183 — GLAPI void GLAPIENTRY gluNextContour (GLUtesselator* tess, GLenum type);
+- gluTessBeginContour · function · L184-L184 — GLAPI void GLAPIENTRY gluTessBeginContour (GLUtesselator* tess);
+- gluTessBeginPolygon · function · L185-L185 — GLAPI void GLAPIENTRY gluTessBeginPolygon (GLUtesselator* tess, GLvoid* data);
+- gluTessCallback · function · L186-L186 — GLAPI void GLAPIENTRY gluTessCallback (GLUtesselator* tess, GLenum which, _GLUfuncptr CallBackFunc);
+- gluTessEndContour · function · L187-L187 — GLAPI void GLAPIENTRY gluTessEndContour (GLUtesselator* tess);
+- gluTessEndPolygon · function · L188-L188 — GLAPI void GLAPIENTRY gluTessEndPolygon (GLUtesselator* tess);
+- gluTessNormal · function · L189-L189 — GLAPI void GLAPIENTRY gluTessNormal (GLUtesselator* tess, GLdouble valueX, GLdouble valueY, GLdouble valueZ);
+- gluTessProperty · function · L190-L190 — GLAPI void GLAPIENTRY gluTessProperty (GLUtesselator* tess, GLenum which, GLdouble data);
+- gluTessVertex · function · L191-L191 — GLAPI void GLAPIENTRY gluTessVertex (GLUtesselator* tess, GLdouble *location, GLvoid* data);

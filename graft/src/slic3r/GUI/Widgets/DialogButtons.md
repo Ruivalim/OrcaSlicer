@@ -1,0 +1,26 @@
+# src/slic3r/GUI/Widgets/DialogButtons.hpp
+
+- DialogButtons · class · L16-L123 — class DialogButtons  : public wxPanel
+- DialogButtons · function · L19-L19 — DialogButtons(wxWindow* parent, std::vector<wxString> non_translated_labels, const wxString& primary_btn_label = "",  const int left_aligned_buttons_count = 0);
+- GetSizer · function · L21-L21 — wxBoxSizer* GetSizer() const { return m_sizer; }
+- GetButtonFromID · function · L23-L23 — Button* GetButtonFromID(wxStandardID id);
+- GetButtonFromLabel · function · L25-L25 — Button* GetButtonFromLabel(wxString label);
+- GetButtonFromIndex · function · L27-L27 — Button* GetButtonFromIndex(int index);
+- GetOK · function · L29-L29 — Button* GetOK();
+- GetYES · function · L30-L30 — Button* GetYES();
+- GetAPPLY · function · L31-L31 — Button* GetAPPLY();
+- GetCONFIRM · function · L32-L32 — Button* GetCONFIRM();
+- GetNO · function · L33-L33 — Button* GetNO();
+- GetCANCEL · function · L34-L34 — Button* GetCANCEL();
+- GetRETURN · function · L35-L35 — Button* GetRETURN();
+- GetNEXT · function · L36-L36 — Button* GetNEXT();
+- GetFIRST · function · L37-L37 — Button* GetFIRST();
+- GetLAST · function · L38-L38 — Button* GetLAST();
+- SetPrimaryButton · function · L40-L40 — void SetPrimaryButton(wxString label);
+- SetAlertButton · function · L42-L42 — void SetAlertButton(wxString label);
+- SetLeftAlignedButtonsCount · function · L44-L44 — void SetLeftAlignedButtonsCount(int left_aligned_buttons_count);
+- UpdateButtons · function · L46-L46 — void UpdateButtons();
+- PickFromList · function · L116-L116 — Button* PickFromList(std::set<wxStandardID> ID_list);
+- FromDIP · function · L118-L118 — int  FromDIP(int d);
+- on_dpi_changed · function · L120-L120 — void on_dpi_changed(wxDPIChangedEvent& event);
+- on_keydown · function · L122-L122 — void on_keydown(wxKeyEvent& event);

@@ -1,0 +1,31 @@
+# src/slic3r/GUI/ExtrusionCalibration.hpp
+
+- ExtrusionCalibration · class · L42-L142 — class ExtrusionCalibration : public DPIDialog
+- ExtrusionCalibration · function · L45-L45 — ExtrusionCalibration(wxWindow *parent, wxWindowID id);
+- create · function · L47-L47 — void create();
+- input_value_finish · function · L49-L49 — void input_value_finish();
+- update · function · L50-L50 — void update();
+- Show · function · L51-L51 — bool Show(bool show) override;
+- Popup · function · L52-L52 — void Popup();
+- post_select_event · function · L54-L54 — void post_select_event();
+- update_machine_obj · function · L55-L55 — void update_machine_obj(MachineObject* obj_) { obj = obj_; };
+- set_step · function · L58-L58 — void set_step(int step_index);
+- check_k_n_validation · function · L60-L60 — static bool check_k_n_validation(wxString k_text, wxString n_text);
+- check_k_validation · function · L61-L61 — static bool check_k_validation(wxString k_text);
+- init_bitmaps · function · L73-L73 — void init_bitmaps();
+- on_dpi_changed · function · L74-L74 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- paint · function · L75-L75 — void paint(wxPaintEvent&);
+- open_bitmap · function · L76-L76 — void open_bitmap(wxMouseEvent& event);
+- on_select_filament · function · L77-L77 — void on_select_filament(wxCommandEvent& evt);
+- on_select_bed_type · function · L78-L78 — void on_select_bed_type(wxCommandEvent& evt);
+- on_select_nozzle_dia · function · L79-L79 — void on_select_nozzle_dia(wxCommandEvent& evt);
+- on_click_cali · function · L80-L80 — void on_click_cali(wxCommandEvent& evt);
+- on_click_cancel · function · L81-L81 — void on_click_cancel(wxCommandEvent& evt);
+- on_click_save · function · L82-L82 — void on_click_save(wxCommandEvent& evt);
+- on_click_last · function · L83-L83 — void on_click_last(wxCommandEvent& evt);
+- on_click_next · function · L84-L84 — void on_click_next(wxCommandEvent& evt);
+- update_filament_info · function · L86-L86 — void update_filament_info();
+- update_combobox_filaments · function · L87-L87 — void update_combobox_filaments();
+- get_bed_type_incompatible · function · L88-L88 — wxString get_bed_type_incompatible(bool incompatible);
+- show_info · function · L89-L89 — void show_info(bool show, bool is_error, wxString text);
+- get_bed_temp · function · L91-L91 — int get_bed_temp(DynamicPrintConfig* config);

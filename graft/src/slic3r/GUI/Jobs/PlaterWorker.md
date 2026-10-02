@@ -1,0 +1,22 @@
+# src/slic3r/GUI/Jobs/PlaterWorker.hpp
+
+- PlaterWorker · class · L15-L154 — template<class WorkerSubclass>
+- PlaterJob · class · L20-L118 — class PlaterJob : public Job
+- process · function · L26-L72 — void process(Ctl &c) override
+- WakeUpCtl · class · L32-L63 — struct WakeUpCtl: Ctl
+- WakeUpCtl · function · L34-L34 — WakeUpCtl(Ctl &c) : ctl{c} {}
+- update_status · function · L36-L40 — void update_status(int st, const std::string &msg = "") override
+- was_canceled · function · L42-L42 — bool was_canceled() const override { return ctl.was_canceled(); }
+- call_on_main_thread · function · L44-L50 — std::future<void> call_on_main_thread(std::function<void()> fn) override
+- clear_percent · function · L52-L55 — void clear_percent() override
+- show_error_info · function · L57-L61 — void show_error_info(const std::string &msg, int code, const std::string &description, const std::string &extra) override
+- finalize · function · L74-L97 — void finalize(bool canceled, std::exception_ptr &eptr) override
+- PlaterJob · function · L99-L106 — PlaterJob(wxWindow *p, std::shared_ptr<Job> j)
+- PlaterWorker · function · L125-L134 — template<class... WorkerArgs>
+- push · function · L137-L140 — bool push(std::shared_ptr<Job> job) override
+- is_idle · function · L142-L142 — bool is_idle() const override { return m_w.is_idle(); }
+- cancel · function · L143-L143 — void cancel() override { m_w.cancel(); }
+- cancel_all · function · L144-L144 — void cancel_all() override { m_w.cancel_all(); }
+- process_events · function · L145-L145 — void process_events() override { m_w.process_events(); }
+- wait_for_current_job · function · L146-L149 — bool wait_for_current_job(unsigned timeout_ms = 0) override
+- wait_for_idle · function · L150-L153 — bool wait_for_idle(unsigned timeout_ms = 0) override

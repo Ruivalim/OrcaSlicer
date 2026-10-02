@@ -1,0 +1,36 @@
+# src/slic3r/GUI/BedShapeDialog.hpp
+
+- ConfigOptionsGroup · class · L20-L20 — class ConfigOptionsGroup;
+- BedShape · class · L25-L53 — struct BedShape
+- PageType · type · L27-L31 — enum class PageType
+- Parameter · type · L33-L37 — enum class Parameter
+- BedShape · function · L39-L39 — BedShape(const Pointfs& points);
+- is_custom · function · L41-L41 — bool            is_custom() { return m_build_volume.type() == BuildVolume_Type::Convex || m_build_volume.type() == BuildVolume_Type::Custom; }
+- append_option_line · function · L43-L43 — static void     append_option_line(ConfigOptionsGroupShp optgroup, Parameter param);
+- get_name · function · L44-L44 — static wxString get_name(PageType type);
+- get_page_type · function · L46-L46 — PageType        get_page_type();
+- get_full_name_with_params · function · L48-L48 — wxString        get_full_name_with_params();
+- apply_optgroup_values · function · L49-L49 — void            apply_optgroup_values(ConfigOptionsGroupShp optgroup);
+- BedShapePanel · class · L55-L93 — class BedShapePanel : public wxPanel
+- BedShapePanel · function · L67-L67 — BedShapePanel(wxWindow* parent) : wxPanel(parent, wxID_ANY), m_custom_texture(NONE), m_custom_model(NONE) {}
+- build_panel · function · L69-L69 — void build_panel(const Pointfs& default_pt, const std::string& custom_texture, const std::string& custom_model);
+- get_shape · function · L72-L72 — const Pointfs&     get_shape() const { return m_shape; }
+- get_custom_texture · function · L73-L73 — const std::string& get_custom_texture() const { return (m_custom_texture != NONE) ? m_custom_texture : EMPTY_STRING; }
+- get_custom_model · function · L74-L74 — const std::string& get_custom_model() const { return (m_custom_model != NONE) ? m_custom_model : EMPTY_STRING; }
+- init_shape_options_page · function · L77-L77 — ConfigOptionsGroupShp	init_shape_options_page(const wxString& title);
+- activate_options_page · function · L78-L78 — void	    activate_options_page(ConfigOptionsGroupShp options_group);
+- init_texture_panel · function · L79-L79 — wxPanel*    init_texture_panel();
+- init_model_panel · function · L80-L80 — wxPanel*    init_model_panel();
+- set_shape · function · L81-L81 — void		set_shape(const Pointfs& points);
+- update_preview · function · L82-L82 — void		update_preview();
+- update_shape · function · L83-L83 — void		update_shape();
+- load_stl · function · L84-L84 — void		load_stl();
+- load_texture · function · L85-L85 — void		load_texture();
+- load_model · function · L86-L86 — void		load_model();
+- BedShapeDialog · class · L95-L110 — class BedShapeDialog : public DPIDialog
+- BedShapeDialog · function · L99-L100 — BedShapeDialog(wxWindow* parent) : DPIDialog(parent, wxID_ANY, _(L("Bed Shape")),
+- build_dialog · function · L102-L102 — void build_dialog(const Pointfs& default_pt, const ConfigOptionString& custom_texture, const ConfigOptionString& custom_model);
+- get_shape · function · L104-L104 — const Pointfs&     get_shape() const { return m_panel->get_shape(); }
+- get_custom_texture · function · L105-L105 — const std::string& get_custom_texture() const { return m_panel->get_custom_texture(); }
+- get_custom_model · function · L106-L106 — const std::string& get_custom_model() const { return m_panel->get_custom_model(); }
+- on_dpi_changed · function · L109-L109 — void on_dpi_changed(const wxRect &suggested_rect) override;

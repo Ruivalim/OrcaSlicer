@@ -1,0 +1,24 @@
+# deps_src/nlohmann/detail/json_pointer.hpp
+
+- json_pointer · class · L18-L388 — template<typename BasicJsonType>
+- basic_json · class · L23-L23 — friend class basic_json;
+- json_pointer · function · L47-L49 — explicit json_pointer(const std::string& s = "")
+- to_string · function · L65-L73 — std::string to_string() const
+- parent_pointer · function · L222-L232 — json_pointer parent_pointer() const
+- pop_back · function · L247-L255 — void pop_back()
+- back · function · L271-L271 — const std::string& back() const
+- push_back · function · L293-L296 — void push_back(const std::string& token)
+- push_back · function · L299-L302 — void push_back(std::string&& token)
+- empty · function · L318-L321 — bool empty() const noexcept
+- array_index · function · L334-L355 — static typename BasicJsonType::size_type array_index(const std::string& s)
+- JSON_CATCH · function · L356-L359 — JSON_CATCH(std::out_of_range&)
+- JSON_HEDLEY_UNLIKELY · function · L362-L362 — if (JSON_HEDLEY_UNLIKELY(processed_chars != s.size()))
+- size · function · L362-L362 — if (JSON_HEDLEY_UNLIKELY(processed_chars != s.size()))
+- get_and_create · function · L399-L399 — BasicJsonType& get_and_create(BasicJsonType& j) const
+- get_unchecked · function · L478-L478 — BasicJsonType& get_unchecked(BasicJsonType* ptr) const
+- get_checked · function · L545-L545 — BasicJsonType& get_checked(BasicJsonType* ptr) const
+- get_unchecked · function · L602-L602 — const BasicJsonType& get_unchecked(const BasicJsonType* ptr) const
+- get_checked · function · L650-L650 — const BasicJsonType& get_checked(const BasicJsonType* ptr) const
+- contains · function · L698-L775 — bool contains(const BasicJsonType* ptr) const
+- split · function · L786-L844 — static std::vector<std::string> split(const std::string& reference_string)
+- flatten · function · L854-L856 — static void flatten(const std::string& reference_string,

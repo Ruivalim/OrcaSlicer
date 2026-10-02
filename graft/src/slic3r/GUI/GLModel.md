@@ -1,0 +1,96 @@
+# src/slic3r/GUI/GLModel.hpp
+
+- TriangleMesh · class · L14-L14 — class TriangleMesh;
+- Polygon · class · L15-L15 — class Polygon;
+- GLShaderProgram · class · L16-L16 — class GLShaderProgram;
+- BuildVolume · class · L18-L18 — class BuildVolume;
+- GLModel · class · L22-L214 — class GLModel
+- Geometry · class · L25-L130 — struct Geometry
+- EPrimitiveType · type · L27-L36 — enum class EPrimitiveType : unsigned char
+- EVertexLayout · type · L38-L47 — enum class EVertexLayout : unsigned char
+- EIndexType · type · L49-L54 — enum class EIndexType : unsigned char
+- Format · class · L56-L60 — struct Format
+- reserve_vertices · function · L68-L68 — void reserve_vertices(size_t vertices_count) { vertices.reserve(vertices_count * vertex_stride_floats(format)); }
+- reserve_indices · function · L69-L69 — void reserve_indices(size_t indices_count) { indices.reserve(indices_count); }
+- add_vertex · function · L71-L71 — void add_vertex(const Vec2f& position);                                              // EVertexLayout::P2
+- add_vertex · function · L72-L72 — void add_vertex(const Vec2f& position, const Vec2f& tex_coord);                      // EVertexLayout::P2T2
+- add_vertex · function · L73-L73 — void add_vertex(const Vec3f& position);                                              // EVertexLayout::P3
+- add_vertex · function · L74-L74 — void add_vertex(const Vec3f& position, const Vec2f& tex_coord);                      // EVertexLayout::P3T2
+- add_vertex · function · L75-L75 — void add_vertex(const Vec3f& position, const Vec3f& normal);                         // EVertexLayout::P3N3
+- add_vertex · function · L76-L76 — void add_vertex(const Vec3f& position, const Vec3f& normal, const Vec2f& tex_coord); // EVertexLayout::P3N3T2
+- add_vertex · function · L77-L77 — void add_vertex(const Vec4f& position);                                              // EVertexLayout::P4
+- set_vertex · function · L79-L79 — void set_vertex(size_t id, const Vec3f& position, const Vec3f& normal); // EVertexLayout::P3N3
+- set_index · function · L81-L81 — void set_index(size_t id, unsigned int index);
+- add_index · function · L83-L83 — void add_index(unsigned int id);
+- add_line · function · L84-L84 — void add_line(unsigned int id1, unsigned int id2);
+- add_triangle · function · L85-L85 — void add_triangle(unsigned int id1, unsigned int id2, unsigned int id3);
+- extract_position_2 · function · L87-L87 — Vec2f extract_position_2(size_t id) const;
+- extract_position_3 · function · L88-L88 — Vec3f extract_position_3(size_t id) const;
+- extract_normal_3 · function · L89-L89 — Vec3f extract_normal_3(size_t id) const;
+- extract_tex_coord_2 · function · L90-L90 — Vec2f extract_tex_coord_2(size_t id) const;
+- extract_index · function · L92-L92 — unsigned int extract_index(size_t id) const;
+- remove_vertex · function · L94-L94 — void remove_vertex(size_t id);
+- is_empty · function · L96-L96 — bool is_empty() const { return vertices_count() == 0 || indices_count() == 0; }
+- vertices_count · function · L98-L98 — size_t vertices_count() const { return vertices.size() / vertex_stride_floats(format); }
+- indices_count · function · L99-L99 — size_t indices_count() const { return indices.size(); }
+- vertices_size_floats · function · L101-L101 — size_t vertices_size_floats() const { return vertices.size(); }
+- vertices_size_bytes · function · L102-L102 — size_t vertices_size_bytes() const  { return vertices_size_floats() * sizeof(float); }
+- indices_size_bytes · function · L103-L103 — size_t indices_size_bytes() const { return indices.size() * index_stride_bytes(*this); }
+- get_as_indexed_triangle_set · function · L105-L105 — indexed_triangle_set get_as_indexed_triangle_set() const;
+- vertex_stride_floats · function · L107-L107 — static size_t vertex_stride_floats(const Format& format);
+- vertex_stride_bytes · function · L108-L108 — static size_t vertex_stride_bytes(const Format& format) { return vertex_stride_floats(format) * sizeof(float); }
+- position_stride_floats · function · L110-L110 — static size_t position_stride_floats(const Format& format);
+- position_stride_bytes · function · L111-L111 — static size_t position_stride_bytes(const Format& format) { return position_stride_floats(format) * sizeof(float); }
+- position_offset_floats · function · L112-L112 — static size_t position_offset_floats(const Format& format);
+- position_offset_bytes · function · L113-L113 — static size_t position_offset_bytes(const Format& format) { return position_offset_floats(format) * sizeof(float); }
+- normal_stride_floats · function · L115-L115 — static size_t normal_stride_floats(const Format& format);
+- normal_stride_bytes · function · L116-L116 — static size_t normal_stride_bytes(const Format& format) { return normal_stride_floats(format) * sizeof(float); }
+- normal_offset_floats · function · L117-L117 — static size_t normal_offset_floats(const Format& format);
+- normal_offset_bytes · function · L118-L118 — static size_t normal_offset_bytes(const Format& format) { return normal_offset_floats(format) * sizeof(float); }
+- tex_coord_stride_floats · function · L120-L120 — static size_t tex_coord_stride_floats(const Format& format);
+- tex_coord_stride_bytes · function · L121-L121 — static size_t tex_coord_stride_bytes(const Format& format) { return tex_coord_stride_floats(format) * sizeof(float); }
+- tex_coord_offset_floats · function · L122-L122 — static size_t tex_coord_offset_floats(const Format& format);
+- tex_coord_offset_bytes · function · L123-L123 — static size_t tex_coord_offset_bytes(const Format& format) { return tex_coord_offset_floats(format) * sizeof(float); }
+- index_stride_bytes · function · L125-L125 — static size_t index_stride_bytes(const Geometry& data);
+- has_position · function · L127-L127 — static bool has_position(const Format& format);
+- has_normal · function · L128-L128 — static bool has_normal(const Format& format);
+- has_tex_coord · function · L129-L129 — static bool has_tex_coord(const Format& format);
+- RenderData · class · L132-L140 — struct RenderData
+- GLModel · function · L156-L156 — GLModel() = default;
+- vertices_count · function · L159-L160 — size_t vertices_count() const { return m_render_data.vertices_count > 0 ?
+- indices_count · function · L161-L162 — size_t indices_count() const { return m_render_data.indices_count > 0 ?
+- vertices_size_floats · function · L164-L164 — size_t vertices_size_floats() const { return vertices_count() * Geometry::vertex_stride_floats(m_render_data.geometry.format); }
+- vertices_size_bytes · function · L165-L165 — size_t vertices_size_bytes() const  { return vertices_size_floats() * sizeof(float); }
+- indices_size_bytes · function · L167-L167 — size_t indices_size_bytes() const { return indices_count() * Geometry::index_stride_bytes(m_render_data.geometry); }
+- get_geometry · function · L169-L169 — const Geometry& get_geometry() const { return m_render_data.geometry; }
+- init_from · function · L171-L171 — void init_from(Geometry&& data);
+- init_from · function · L172-L172 — void init_from(const TriangleMesh& mesh);
+- init_from · function · L173-L173 — void init_from(const indexed_triangle_set& its);
+- init_from · function · L174-L174 — void init_from(const Polygons& polygons, float z);
+- init_from_file · function · L175-L175 — bool init_from_file(const std::string& filename);
+- set_color · function · L177-L177 — void set_color(const ColorRGBA& color) { m_render_data.geometry.color = color; }
+- get_color · function · L178-L178 — const ColorRGBA& get_color() const { return m_render_data.geometry.color; }
+- reset · function · L180-L180 — void reset();
+- render · function · L181-L181 — void render(GLShaderProgram* shader = nullptr);
+- render · function · L182-L182 — void render(const std::pair<size_t, size_t>& range, GLShaderProgram* shader = nullptr);
+- render_instanced · function · L183-L183 — void render_instanced(unsigned int instances_vbo, unsigned int instances_count);
+- is_initialized · function · L185-L185 — bool is_initialized() const { return vertices_count() > 0 && indices_count() > 0; }
+- is_empty · function · L186-L186 — bool is_empty() const { return m_render_data.geometry.is_empty(); }
+- get_bounding_box · function · L188-L188 — const BoundingBoxf3& get_bounding_box() const { return m_bounding_box; }
+- get_filename · function · L189-L189 — const std::string& get_filename() const { return m_filename; }
+- is_render_disabled · function · L191-L191 — bool is_render_disabled() const { return m_render_disabled; }
+- enable_render · function · L192-L192 — void enable_render() { m_render_disabled = false; }
+- disable_render · function · L193-L193 — void disable_render() { m_render_disabled = true; }
+- cpu_memory_used · function · L195-L202 — size_t cpu_memory_used() const
+- gpu_memory_used · function · L203-L210 — size_t gpu_memory_used() const
+- send_to_gpu · function · L213-L213 — bool send_to_gpu();
+- contains · function · L215-L215 — bool contains(const BuildVolume& volume, const GLModel& model, bool ignore_bottom = true);
+- stilized_arrow · function · L221-L221 — GLModel::Geometry stilized_arrow(unsigned int resolution, float tip_radius, float tip_height, float stem_radius, float stem_height);
+- circular_arrow · function · L227-L227 — GLModel::Geometry circular_arrow(unsigned int resolution, float radius, float tip_height, float tip_width, float stem_width, float thickness);
+- straight_arrow · function · L233-L233 — GLModel::Geometry straight_arrow(float tip_width, float tip_height, float stem_width, float stem_height, float thickness);
+- diamond · function · L238-L238 — GLModel::Geometry diamond(unsigned int resolution);
+- smooth_sphere · function · L242-L242 — GLModel::Geometry smooth_sphere(unsigned int resolution, float radius);
+- smooth_cylinder · function · L246-L246 — GLModel::Geometry smooth_cylinder(unsigned int resolution, float radius, float height);
+- smooth_torus · function · L250-L250 — GLModel::Geometry smooth_torus(unsigned int primary_resolution, unsigned int secondary_resolution, float radius, float thickness);
+- init_plane_data · function · L252-L252 — GLModel::Geometry init_plane_data(const indexed_triangle_set &its, const std::vector<int> &triangle_indices,float normal_offset = 0.0f);
+- init_torus_data · function · L253-L259 — GLModel::Geometry init_torus_data(unsigned int       primary_resolution,

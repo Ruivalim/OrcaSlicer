@@ -1,0 +1,49 @@
+# src/slic3r/GUI/PluginsDialog.hpp
+
+- wxTimer · class · L30-L30 — class wxTimer;
+- PluginCapabilityInterface · class · L34-L34 — class PluginCapabilityInterface;
+- PluginCapabilityType · type · L36-L36 — enum class PluginCapabilityType;
+- refresh_plugin_metadata_blocking · function · L45-L45 — void refresh_plugin_metadata_blocking(bool fetch_cloud);
+- open_plugin_hub · function · L48-L48 — void open_plugin_hub();
+- install_local_plugin_package · function · L54-L54 — bool install_local_plugin_package(const boost::filesystem::path& package_file, wxWindow* parent, wxString& message);
+- run_off_thread_with_progress · function · L64-L123 — template<typename Run, typename OnFinish>
+- run_wait_with_progress · function · L127-L214 — template<typename Run>
+- WaitState · class · L148-L152 — struct WaitState
+- WaitState · class · L178-L183 — struct WaitState
+- PluginsDialog · class · L218-L316 — class PluginsDialog : public Slic3r::GUI::WebViewHostDialog
+- PluginsDialog · function · L221-L226 — PluginsDialog(wxWindow* parent,
+- set_open_terminal_dlg_fn · function · L230-L230 — void set_open_terminal_dlg_fn();
+- update_plugin_dialog_ui · function · L231-L231 — void update_plugin_dialog_ui();
+- open_plugin_on_cloud · function · L234-L234 — void open_plugin_on_cloud(const std::string& sharing_token);
+- open_plugin_hub · function · L235-L235 — void open_plugin_hub();
+- on_script_message · function · L236-L236 — void on_script_message(const nlohmann::json& payload) override;
+- handle_web_command · function · L238-L238 — void handle_web_command(const nlohmann::json& payload);
+- restore_z_order · function · L243-L243 — void restore_z_order();
+- send_plugins · function · L245-L245 — void send_plugins();
+- set_plugin_sort · function · L246-L246 — void set_plugin_sort(const std::string& sort_key, const std::string& sort_order);
+- build_plugins_payload · function · L247-L247 — nlohmann::json build_plugins_payload() const;
+- get_descriptor · function · L249-L249 — bool get_descriptor(const std::string& plugin_key, Slic3r::PluginDescriptor& descriptor) const;
+- refresh_plugin_metadata_async · function · L251-L251 — void refresh_plugin_metadata_async(const wxString& title, const wxString& message, bool fetch_cloud);
+- prompt_for_missing_plugins · function · L252-L252 — void prompt_for_missing_plugins();
+- refresh_plugins · function · L253-L253 — void refresh_plugins();
+- toggle_plugin · function · L254-L254 — void toggle_plugin(const std::string& plugin_key, bool enabled);
+- toggle_plugin_capability · function · L255-L255 — void toggle_plugin_capability(const std::string& plugin_key, PluginCapabilityType type, const std::string& capability_name, bool enabled);
+- handle_plugin_menu_action · function · L256-L256 — void handle_plugin_menu_action(const std::string& plugin_key, const std::string& action);
+- install_plugin_from_file · function · L258-L258 — void install_plugin_from_file();
+- install_plugin_package · function · L259-L259 — bool install_plugin_package(const std::string& package_path);
+- install_cloud_plugin · function · L260-L260 — bool install_cloud_plugin(const std::string& uuid, const std::string& version, const wxString& name);
+- run_script_plugin_capability · function · L261-L261 — void run_script_plugin_capability(const std::string& plugin_key, const std::string& capability_name);
+- send_capability_config · function · L265-L265 — void send_capability_config(const PluginCapabilityId& id);
+- save_capability_config · function · L266-L266 — void save_capability_config(const PluginCapabilityId& id, const nlohmann::json& config);
+- restore_capability_config · function · L267-L267 — void restore_capability_config(const PluginCapabilityId& id);
+- show_status · function · L270-L270 — void show_status(const wxString& message, const char* level);
+- plugin_display_name · function · L272-L272 — wxString plugin_display_name(const std::string& plugin_key) const;
+- resolve_pending_activation · function · L275-L275 — void resolve_pending_activation();
+- update_plugin · function · L276-L276 — void update_plugin(const std::string& plugin_key);
+- open_plugin_folder · function · L278-L278 — void open_plugin_folder(const Slic3r::PluginDescriptor& plugin);
+- delete_local_plugin · function · L279-L279 — void delete_local_plugin(const Slic3r::PluginDescriptor& plugin);
+- unsubscribe_cloud_plugin · function · L280-L280 — void unsubscribe_cloud_plugin(const Slic3r::PluginDescriptor& plugin);
+- reload_local_plugin · function · L281-L281 — void reload_local_plugin(const std::string& plugin_key, bool clear_cache);
+- reinstall_cloud_plugin · function · L282-L282 — void reinstall_cloud_plugin(const Slic3r::PluginDescriptor& plugin);
+- run_with_dialog · function · L285-L296 — template<typename Run, typename OnFinish>
+- run_with_dialog_wait · function · L298-L306 — template<typename Run>

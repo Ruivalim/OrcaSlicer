@@ -1,0 +1,25 @@
+# deps_src/agg/agg_renderer_scanline.h
+
+- base_ren_type · type · L112-L112 — typedef typename base_ren_type::color_type color_type;
+- renderer_scanline_aa_solid · function · L116-L116 — explicit renderer_scanline_aa_solid(base_ren_type& ren) : m_ren(&ren) {}
+- attach · function · L117-L120 — void attach(base_ren_type& ren)
+- color · function · L123-L123 — void color(const color_type& c) { m_color = c; }
+- color · function · L124-L124 — const color_type& color() const { return m_color; }
+- prepare · function · L127-L127 — void prepare() {}
+- alloc_type · type · L202-L202 — typedef SpanAllocator alloc_type;
+- span_gen_type · type · L203-L203 — typedef SpanGenerator span_gen_type;
+- attach · function · L214-L221 — void attach(base_ren_type& ren,
+- prepare · function · L224-L224 — void prepare() { m_span_gen->prepare(); }
+- ren_color · function · L278-L278 — typename BaseRenderer::color_type ren_color(color);
+- base_ren_type · type · L312-L312 — typedef typename base_ren_type::color_type color_type;
+- renderer_scanline_bin_solid · function · L316-L316 — explicit renderer_scanline_bin_solid(base_ren_type& ren) : m_ren(&ren) {}
+- attach · function · L317-L320 — void attach(base_ren_type& ren)
+- color · function · L323-L323 — void color(const color_type& c) { m_color = c; }
+- color · function · L324-L324 — const color_type& color() const { return m_color; }
+- prepare · function · L327-L327 — void prepare() {}
+- alloc_type · type · L393-L393 — typedef SpanAllocator alloc_type;
+- span_gen_type · type · L394-L394 — typedef SpanGenerator span_gen_type;
+- attach · function · L405-L412 — void attach(base_ren_type& ren,
+- prepare · function · L415-L415 — void prepare() { m_span_gen->prepare(); }
+- BaseRenderer · type · L499-L499 — typedef typename BaseRenderer::color_type color_type;
+- BaseRenderer · type · L684-L684 — typedef typename BaseRenderer::color_type color_type;

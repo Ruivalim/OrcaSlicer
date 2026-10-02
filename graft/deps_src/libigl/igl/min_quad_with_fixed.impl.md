@@ -1,0 +1,23 @@
+# deps_src/libigl/igl/min_quad_with_fixed.impl.h
+
+- rows · function · L457-L457 — MatrixXT BBeq(B.rows() + Beq.rows(),cols);
+- min_quad_with_fixed · function · L614-L620 — IGL_INLINE Eigen::Matrix<Scalar,n,1> igl::min_quad_with_fixed(
+- assert · function · L679-L686 — template <typename Scalar, int n, bool Hpd>
+- min_quad_with_fixed · function · L680-L684 — IGL_INLINE Eigen::Matrix<Scalar,n,1> igl::min_quad_with_fixed(
+- isApprox · function · L686-L686 — assert(H.isApprox(H.transpose(),1e-7));
+- transpose · function · L686-L686 — assert(H.isApprox(H.transpose(),1e-7));
+- Scalar · type · L701-L701 — typedef Eigen::Matrix<Scalar,n,n> MatrixSn;
+- Hpd · type · L702-L704 — typedef typename
+- static_assert · function · L818-L826 — template <typename Scalar, int n, int kcount, bool Hpd>
+- min_quad_with_fixed · function · L819-L823 — IGL_INLINE Eigen::Matrix<Scalar,n,1> igl::min_quad_with_fixed(
+- Scalar · type · L834-L834 — typedef Eigen::Matrix<Scalar,ucount,ucount> MatrixSuu;
+- Scalar · type · L835-L835 — typedef Eigen::Matrix<Scalar,ucount,kcount> MatrixSuk;
+- Scalar · type · L836-L836 — typedef Eigen::Matrix<Scalar,n,1>      VectorSn;
+- Scalar · type · L837-L837 — typedef Eigen::Matrix<Scalar,ucount,1> VectorSu;
+- Scalar · type · L838-L838 — typedef Eigen::Matrix<Scalar,kcount,1> VectorSk;
+- Huu · function · L844-L844 — MatrixSuu Huu(dyn_ucount,dyn_ucount);
+- Huk · function · L845-L845 — MatrixSuk Huk(dyn_ucount,dyn_kcount);
+- mrhs · function · L846-L846 — VectorSu mrhs(dyn_ucount);
+- bck · function · L847-L847 — VectorSk  bck(dyn_kcount);
+- Hpd · type · L879-L891 — typedef typename
+- x · function · L893-L893 — VectorSn x(dyn_n);

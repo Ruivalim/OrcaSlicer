@@ -1,0 +1,21 @@
+# src/slic3r/GUI/NetworkPluginDialog.hpp
+
+- network_version_label · function · L18-L18 — wxString network_version_label(const NetworkLibraryVersionInfo& ver);
+- NetworkPluginDownloadDialog · class · L20-L62 — class NetworkPluginDownloadDialog : public DPIDialog
+- Mode · type · L23-L27 — enum class Mode
+- NetworkPluginDownloadDialog · function · L29-L32 — NetworkPluginDownloadDialog(wxWindow* parent, Mode mode,
+- get_selected_version · function · L34-L34 — std::string get_selected_version() const;
+- ResultCode · type · L36-L42 — enum ResultCode
+- on_dpi_changed · function · L45-L45 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- create_missing_plugin_ui · function · L48-L48 — void create_missing_plugin_ui();
+- create_update_available_ui · function · L49-L49 — void create_update_available_ui(const std::string& current_version);
+- setup_version_selector · function · L50-L50 — void setup_version_selector();
+- on_download · function · L51-L51 — void on_download(wxCommandEvent& evt);
+- on_skip · function · L52-L52 — void on_skip(wxCommandEvent& evt);
+- on_remind_later · function · L53-L53 — void on_remind_later(wxCommandEvent& evt);
+- on_skip_version · function · L54-L54 — void on_skip_version(wxCommandEvent& evt);
+- on_dont_ask · function · L55-L55 — void on_dont_ask(wxCommandEvent& evt);
+- NetworkPluginRestartDialog · class · L64-L76 — class NetworkPluginRestartDialog : public DPIDialog
+- NetworkPluginRestartDialog · function · L67-L67 — NetworkPluginRestartDialog(wxWindow* parent);
+- should_restart_now · function · L69-L69 — bool should_restart_now() const { return m_restart_now; }
+- on_dpi_changed · function · L72-L72 — void on_dpi_changed(const wxRect& suggested_rect) override;

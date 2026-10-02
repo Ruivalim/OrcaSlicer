@@ -1,0 +1,27 @@
+# deps_src/semver/semver.h
+
+- semver_version_s · class · L23-L29 — typedef struct semver_version_s
+- semver_satisfies · function · L35-L36 — int
+- semver_satisfies_caret · function · L38-L39 — int
+- semver_satisfies_patch · function · L41-L42 — int
+- semver_compare · function · L44-L45 — int
+- semver_compare_version · function · L47-L48 — int
+- semver_compare_prerelease · function · L50-L51 — int
+- semver_gt · function · L53-L54 — int
+- semver_gte · function · L56-L57 — int
+- semver_lt · function · L59-L60 — int
+- semver_lte · function · L62-L63 — int
+- semver_eq · function · L65-L66 — int
+- semver_neq · function · L68-L69 — int
+- semver_parse · function · L71-L72 — int
+- semver_parse_version · function · L74-L75 — int
+- semver_render · function · L77-L78 — void
+- semver_numeric · function · L80-L81 — int
+- semver_bump · function · L83-L84 — void
+- semver_bump_minor · function · L86-L87 — void
+- semver_bump_patch · function · L89-L90 — void
+- semver_free · function · L92-L93 — void
+- semver_is_valid · function · L95-L96 — int
+- semver_clean · function · L98-L99 — int
+- semver_strdup · function · L102-L102 — semver_strdup(const char *src);
+- semver_copy · function · L104-L105 — semver_t

@@ -1,0 +1,74 @@
+# deps_src/qhull/src/libqhullcpp/QhullSet.h
+
+- qh_qh · function · L54-L54 — QhullSetBase(const QhullSetBase &other) : qh_set(other.qh_set), qh_qh(other.qh_qh) {}
+- qh_set · function · L54-L54 — QhullSetBase(const QhullSetBase &other) : qh_set(other.qh_set), qh_qh(other.qh_qh) {}
+- count · function · L64-L64 — countT              count() const { return QhullSetBase::count(qh_set); }
+- defineAs · function · L65-L65 — void                defineAs(setT *s) { qh_set= s ? s : &s_empty_set; } //!< Not type-safe since setT may contain any type
+- forceEmpty · function · L66-L66 — void                forceEmpty() { qh_set= &s_empty_set; }
+- getSetT · function · L67-L67 — setT *              getSetT() const { return qh_set; }
+- isEmpty · function · L68-L68 — bool                isEmpty() const { return SETempty_(qh_set); }
+- qh · function · L69-L69 — QhullQh *           qh() const { return qh_qh; }
+- referenceSetT · function · L70-L70 — setT **             referenceSetT() { return &qh_set; }
+- size · function · L71-L75 — size_t              size() const { return QhullSetBase::count(qh_set); }
+- beginPointer · function · L75-L75 — void **             beginPointer() const { return &qh_set->e[0].p; }
+- elementPointer · function · L76-L76 — void **             elementPointer(countT idx) const { QHULL_ASSERT(idx>=0 && idx<qh_set->maxsize); return &SETelem_(qh_set, idx); }
+- endPointer · function · L78-L78 — void **             endPointer() const { return qh_setendpointer(qh_set); }
+- count · function · L82-L82 — static countT       count(const setT *set);
+- isEmpty · function · L84-L84 — static bool         isEmpty(const setT *s) { return SETempty_(s); }
+- Iterator · type · L109-L109 — typedef typename QhullSet<T>::iterator Iterator;
+- ConstIterator · type · L110-L110 — typedef typename QhullSet<T>::const_iterator ConstIterator;
+- at · function · L144-L144 — const T             at(countT idx) const { return operator[](idx); }
+- back · function · L146-L146 — const T             back() const { return last(); }
+- back · function · L147-L147 — T                   back() { return last(); }
+- beginPointer · function · L149-L149 — const typename T::base_type * constData() const { return reinterpret_cast<const typename T::base_type *>(beginPointer()); }
+- constData · function · L149-L149 — const typename T::base_type * constData() const { return reinterpret_cast<const typename T::base_type *>(beginPointer()); }
+- data · function · L150-L150 — typename T::base_type *     data() { return reinterpret_cast<typename T::base_type *>(beginPointer()); }
+- beginPointer · function · L151-L151 — const typename T::base_type *data() const { return reinterpret_cast<const typename T::base_type *>(beginPointer()); }
+- data · function · L151-L151 — const typename T::base_type *data() const { return reinterpret_cast<const typename T::base_type *>(beginPointer()); }
+- endData · function · L152-L152 — typename T::base_type *     endData() { return reinterpret_cast<typename T::base_type *>(endPointer()); }
+- endData · function · L153-L153 — const typename T::base_type * endData() const { return reinterpret_cast<const typename T::base_type *>(endPointer()); }
+- endPointer · function · L153-L153 — const typename T::base_type * endData() const { return reinterpret_cast<const typename T::base_type *>(endPointer()); }
+- first · function · L155-L156 — const T             first() const { QHULL_ASSERT(!isEmpty()); return T(qh(), *data()); }
+- first · function · L156-L156 — T                   first() { QHULL_ASSERT(!isEmpty()); return T(qh(), *data()); }
+- front · function · L158-L158 — const T             front() const { return first(); }
+- front · function · L159-L159 — T                   front() { return first(); }
+- endData · function · L161-L161 — const T             last() const { QHULL_ASSERT(!isEmpty()); return T(qh(), *(endData()-1)); }
+- last · function · L161-L162 — const T             last() const { QHULL_ASSERT(!isEmpty()); return T(qh(), *(endData()-1)); }
+- last · function · L162-L162 — T                   last() { QHULL_ASSERT(!isEmpty()); return T(qh(), *(endData()-1)); }
+- second · function · L167-L167 — const T             second() const { return operator[](1); }
+- second · function · L168-L168 — T                   second() { return operator[](1); }
+- value · function · L169-L169 — T                   value(countT idx) const;
+- begin · function · L170-L175 — T                   value(countT idx, const T &defaultValue) const;
+- value · function · L170-L170 — T                   value(countT idx, const T &defaultValue) const;
+- begin · function · L176-L176 — const_iterator      begin() const { return const_iterator(qh(), data()); }
+- constBegin · function · L177-L177 — const_iterator      constBegin() const { return const_iterator(qh(), data()); }
+- constEnd · function · L178-L178 — const_iterator      constEnd() const { return const_iterator(qh(), endData()); }
+- end · function · L179-L179 — iterator            end() { return iterator(qh(), endData()); }
+- end · function · L180-L180 — const_iterator      end() const { return const_iterator(qh(), endData()); }
+- contains · function · L183-L183 — bool                contains(const T &t) const;
+- count · function · L184-L184 — countT              count(const T &t) const;
+- indexOf · function · L185-L185 — countT              indexOf(const T &t) const { /* no qh_qh */ return qh_setindex(getSetT(), t.getBaseT()); }
+- lastIndexOf · function · L186-L186 — countT              lastIndexOf(const T &t) const;
+- iterator_category · type · L197-L197 — typedef std::bidirectional_iterator_tag  iterator_category;
+- value_type · type · L198-L198 — typedef T               value_type;
+- i · function · L201-L201 — iterator(const iterator &o) : i(o.i), qh_qh(o.qh_qh) {}
+- qh_qh · function · L201-L201 — iterator(const iterator &o) : i(o.i), qh_qh(o.qh_qh) {}
+- iterator_category · type · L243-L243 — typedef std::random_access_iterator_tag  iterator_category;
+- value_type · type · L244-L244 — typedef T               value_type;
+- i · function · L247-L249 — const_iterator(const const_iterator &o) : i(o.i), qh_qh(o.qh_qh) {}
+- qh_qh · function · L247-L247 — const_iterator(const const_iterator &o) : i(o.i), qh_qh(o.qh_qh) {}
+- const_iterator · function · L248-L248 — const_iterator(const iterator &o) : i(o.i), qh_qh(o.qh_qh) {}
+- qh_qh · function · L248-L248 — const_iterator(const iterator &o) : i(o.i), qh_qh(o.qh_qh) {}
+- countRemaining · function · L300-L300 — countT              countRemaining() { return (countT)(end_i-i); } // WARN64
+- findNext · function · L303-L303 — bool                findNext(const T &t);
+- findPrevious · function · L304-L304 — bool                findPrevious(const T &t);
+- hasNext · function · L307-L307 — bool                hasNext() const { return i != end_i; }
+- hasPrevious · function · L308-L308 — bool                hasPrevious() const { return i != begin_i; }
+- next · function · L309-L309 — T                   next() { return T(qh_qh, *i++); }
+- peekNext · function · L310-L310 — T                   peekNext() const { return T(qh_qh, *i); }
+- peekPrevious · function · L311-L312 — T                   peekPrevious() const { const typename T::base_type *p = i; return T(qh_qh, *--p); }
+- previous · function · L312-L312 — T                   previous() { return T(qh_qh, *--i); }
+- toBack · function · L313-L313 — void                toBack() { i = end_i; }
+- toFront · function · L314-L314 — void                toFront() { i = begin_i; }
+- SETelem_ · function · L360-L360 — const typename T::base_type *p= reinterpret_cast<const typename T::base_type *>(&SETelem_(getSetT(), idx));
+- SETelem_ · function · L369-L369 — const typename T::base_type *p= reinterpret_cast<const typename T::base_type *>(&SETelem_(getSetT(), idx));

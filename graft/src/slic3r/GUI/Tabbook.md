@@ -1,0 +1,52 @@
+# src/slic3r/GUI/Tabbook.hpp
+
+- ScalableButton · class · L11-L11 — class ScalableButton;
+- TabButton · class · L12-L12 — class TabButton;
+- TabButtonsListCtrl · class · L17-L47 — class TabButtonsListCtrl : public wxControl
+- TabButtonsListCtrl · function · L21-L21 — TabButtonsListCtrl(wxWindow *parent, wxBoxSizer *side_tools = NULL);
+- OnPaint · function · L24-L24 — void OnPaint(wxPaintEvent&);
+- SetSelection · function · L25-L25 — void SetSelection(int sel);
+- showNewTag · function · L26-L26 — void showNewTag(int sel, bool show = false);
+- Rescale · function · L27-L27 — void Rescale();
+- InsertPage · function · L28-L28 — bool InsertPage(size_t n, const wxString& text, bool bSelect = false, const std::string& bmp_name = "");
+- RemovePage · function · L29-L29 — void RemovePage(size_t n);
+- SetPageImage · function · L30-L30 — bool SetPageImage(size_t n, const std::string& bmp_name);
+- SetPageText · function · L31-L31 — void SetPageText(size_t n, const wxString& strText);
+- GetPageText · function · L32-L32 — wxString GetPageText(size_t n) const;
+- GetPaddingSize · function · L33-L33 — const wxSize& GetPaddingSize(size_t n);
+- SetPaddingSize · function · L34-L34 — void SetPaddingSize(const wxSize& size);
+- SetFooterText · function · L35-L35 — void SetFooterText(const wxString& text);
+- Tabbook · class · L49-L402 — class Tabbook: public wxBookCtrlBase
+- Tabbook · function · L52-L62 — Tabbook(wxWindow *     parent,
+- Create · function · L64-L101 — bool Create(wxWindow * parent,
+- ShowNewPage · function · L108-L111 — bool ShowNewPage(wxWindow * page)
+- SetEffects · function · L114-L118 — void SetEffects(wxShowEffect showEffect, wxShowEffect hideEffect)
+- SetEffect · function · L121-L124 — void SetEffect(wxShowEffect effect)
+- SetEffectsTimeouts · function · L127-L131 — void SetEffectsTimeouts(unsigned showTimeout, unsigned hideTimeout)
+- SetEffectTimeout · function · L133-L136 — void SetEffectTimeout(unsigned timeout)
+- AddPage · function · L141-L148 — bool AddPage(wxWindow* page,
+- InsertPage · function · L151-L166 — virtual bool InsertPage(size_t n,
+- RemovePage · function · L168-L175 — bool RemovePage(size_t n) override
+- SetSelection · function · L177-L192 — virtual int SetSelection(size_t n) override
+- ChangeSelection · function · L194-L198 — virtual int ChangeSelection(size_t n) override
+- SetPageText · function · L202-L209 — virtual bool SetPageText(size_t n, const wxString & strText) override
+- GetPageText · function · L211-L215 — virtual wxString GetPageText(size_t n) const override
+- SetPageImage · function · L217-L220 — virtual bool SetPageImage(size_t WXUNUSED(n), int WXUNUSED(imageId)) override
+- WXUNUSED · function · L217-L217 — virtual bool SetPageImage(size_t WXUNUSED(n), int WXUNUSED(imageId)) override
+- WXUNUSED · function · L217-L217 — virtual bool SetPageImage(size_t WXUNUSED(n), int WXUNUSED(imageId)) override
+- GetPageImage · function · L222-L225 — virtual int GetPageImage(size_t WXUNUSED(n)) const override
+- WXUNUSED · function · L222-L222 — virtual int GetPageImage(size_t WXUNUSED(n)) const override
+- SetPageImage · function · L227-L230 — bool SetPageImage(size_t n, const std::string& bmp_name)
+- SetFocus · function · L233-L238 — virtual void SetFocus() override
+- GetBtnsListCtrl · function · L240-L240 — TabButtonsListCtrl *GetBtnsListCtrl() const { return static_cast<TabButtonsListCtrl *>(m_bookctrl); }
+- Rescale · function · L242-L245 — void Rescale()
+- SetFooterText · function · L247-L250 — void SetFooterText(const wxString& text)
+- OnNavigationKey · function · L252-L334 — void OnNavigationKey(wxNavigationKeyEvent& event)
+- UpdateSelectedPage · function · L337-L341 — virtual void UpdateSelectedPage(size_t WXUNUSED(newsel)) override
+- WXUNUSED · function · L337-L337 — virtual void UpdateSelectedPage(size_t WXUNUSED(newsel)) override
+- CreatePageChangingEvent · function · L343-L343 — virtual wxBookCtrlEvent * CreatePageChangingEvent() const override
+- MakeChangedEvent · function · L349-L352 — virtual void MakeChangedEvent(wxBookCtrlEvent & event) override
+- DoRemovePage · function · L354-L354 — virtual wxWindow * DoRemovePage(size_t page) override
+- DoSize · function · L366-L371 — virtual void DoSize() override
+- DoShowPage · function · L373-L379 — virtual void DoShowPage(wxWindow * page, bool show) override
+- Init · function · L382-L394 — void Init()

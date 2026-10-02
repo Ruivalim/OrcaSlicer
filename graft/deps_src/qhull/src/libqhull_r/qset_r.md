@@ -1,0 +1,44 @@
+# deps_src/qhull/src/libqhull_r/qset_r.h
+
+- setT · type · L33-L33 — typedef struct setT setT;   /* a set is a sorted or unsorted array of pointers */
+- qhT · type · L38-L38 — typedef struct qhT qhT;          /* defined in libqhull_r.h */
+- setelemT · type · L82-L82 — typedef union setelemT setelemT;
+- setT · class · L88-L95 — struct setT
+- qh_setaddsorted · function · L459-L459 — void  qh_setaddsorted(qhT *qh, setT **setp, void *elem);
+- qh_setaddnth · function · L460-L460 — void  qh_setaddnth(qhT *qh, setT **setp, int nth, void *newelem);
+- qh_setappend · function · L461-L461 — void  qh_setappend(qhT *qh, setT **setp, void *elem);
+- qh_setappend_set · function · L462-L462 — void  qh_setappend_set(qhT *qh, setT **setp, setT *setA);
+- qh_setappend2ndlast · function · L463-L463 — void  qh_setappend2ndlast(qhT *qh, setT **setp, void *elem);
+- qh_setcheck · function · L464-L464 — void  qh_setcheck(qhT *qh, setT *set, const char *tname, unsigned id);
+- qh_setcompact · function · L465-L465 — void  qh_setcompact(qhT *qh, setT *set);
+- qh_setcopy · function · L466-L466 — setT *qh_setcopy(qhT *qh, setT *set, int extra);
+- qh_setdel · function · L467-L467 — void *qh_setdel(setT *set, void *elem);
+- qh_setdellast · function · L468-L468 — void *qh_setdellast(setT *set);
+- qh_setdelnth · function · L469-L469 — void *qh_setdelnth(qhT *qh, setT *set, int nth);
+- qh_setdelnthsorted · function · L470-L470 — void *qh_setdelnthsorted(qhT *qh, setT *set, int nth);
+- qh_setdelsorted · function · L471-L471 — void *qh_setdelsorted(setT *set, void *newelem);
+- qh_setduplicate · function · L472-L472 — setT *qh_setduplicate(qhT *qh, setT *set, int elemsize);
+- qh_setendpointer · function · L473-L473 — void **qh_setendpointer(setT *set);
+- qh_setequal · function · L474-L474 — int   qh_setequal(setT *setA, setT *setB);
+- qh_setequal_except · function · L475-L475 — int   qh_setequal_except(setT *setA, void *skipelemA, setT *setB, void *skipelemB);
+- qh_setequal_skip · function · L476-L476 — int   qh_setequal_skip(setT *setA, int skipA, setT *setB, int skipB);
+- qh_setfree · function · L477-L477 — void  qh_setfree(qhT *qh, setT **set);
+- qh_setfree2 · function · L478-L478 — void  qh_setfree2(qhT *qh, setT **setp, int elemsize);
+- qh_setfreelong · function · L479-L479 — void  qh_setfreelong(qhT *qh, setT **set);
+- qh_setin · function · L480-L480 — int   qh_setin(setT *set, void *setelem);
+- qh_setindex · function · L481-L481 — int qh_setindex(setT *set, void *setelem);
+- qh_setlarger · function · L482-L482 — void  qh_setlarger(qhT *qh, setT **setp);
+- qh_setlast · function · L483-L483 — void *qh_setlast(setT *set);
+- qh_setnew · function · L484-L484 — setT *qh_setnew(qhT *qh, int size);
+- qh_setnew_delnthsorted · function · L485-L485 — setT *qh_setnew_delnthsorted(qhT *qh, setT *set, int size, int nth, int prepend);
+- qh_setprint · function · L486-L486 — void  qh_setprint(qhT *qh, FILE *fp, const char* string, setT *set);
+- qh_setreplace · function · L487-L487 — void  qh_setreplace(qhT *qh, setT *set, void *oldelem, void *newelem);
+- qh_setsize · function · L488-L488 — int qh_setsize(qhT *qh, setT *set);
+- qh_settemp · function · L489-L489 — setT *qh_settemp(qhT *qh, int setsize);
+- qh_settempfree · function · L490-L490 — void  qh_settempfree(qhT *qh, setT **set);
+- qh_settempfree_all · function · L491-L491 — void  qh_settempfree_all(qhT *qh);
+- qh_settemppop · function · L492-L492 — setT *qh_settemppop(qhT *qh);
+- qh_settemppush · function · L493-L493 — void  qh_settemppush(qhT *qh, setT *set);
+- qh_settruncate · function · L494-L494 — void  qh_settruncate(qhT *qh, setT *set, int size);
+- qh_setunique · function · L495-L495 — int   qh_setunique(qhT *qh, setT **set, void *elem);
+- qh_setzero · function · L496-L496 — void  qh_setzero(qhT *qh, setT *set, int idx, int size);

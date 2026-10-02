@@ -1,0 +1,78 @@
+# src/libslic3r/Fill/FillRectilinear.hpp
+
+- PrintRegionConfig · class · L10-L10 — class PrintRegionConfig;
+- Surface · class · L11-L11 — class Surface;
+- FillRectilinear · class · L13-L36 — class FillRectilinear : public Fill
+- clone · function · L16-L16 — Fill* clone() const override { return new FillRectilinear(*this); }
+- fill_surface · function · L18-L18 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- is_self_crossing · function · L19-L19 — bool is_self_crossing() override { return false; }
+- fill_surface_by_lines · function · L23-L23 — bool fill_surface_by_lines(const Surface *surface, const FillParams &params, float angleBase, float pattern_shift, Polylines &polylines_out);
+- SweepParams · class · L27-L30 — struct SweepParams
+- fill_surface_by_multilines · function · L31-L31 — bool fill_surface_by_multilines(const Surface *surface, FillParams params, const std::initializer_list<SweepParams> &sweep_params, Polylines &polylines_out);
+- fill_surface_trapezoidal · function · L32-L32 — bool fill_surface_trapezoidal(const Surface *surface, FillParams params, const std::initializer_list<SweepParams> &sweep_params, Polylines &polylines_out,int Pattern_type);
+- extended_object_bounding_box · function · L35-L35 — BoundingBox extended_object_bounding_box() const;
+- FillAlignedRectilinear · class · L38-L47 — class FillAlignedRectilinear : public FillRectilinear
+- clone · function · L41-L41 — Fill* clone() const override { return new FillAlignedRectilinear(*this); }
+- _layer_angle · function · L46-L46 — virtual float _layer_angle(size_t idx) const override { return 0.f; }
+- FillMonotonic · class · L49-L56 — class FillMonotonic : public FillRectilinear
+- clone · function · L52-L52 — Fill* clone() const override { return new FillMonotonic(*this); }
+- fill_surface · function · L54-L54 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- no_sort · function · L55-L55 — bool no_sort() const override { return true; }
+- FillMonotonicLine · class · L58-L65 — class FillMonotonicLine : public FillRectilinear
+- clone · function · L61-L61 — Fill* clone() const override { return new FillMonotonicLine(*this); }
+- fill_surface · function · L63-L63 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- no_sort · function · L64-L64 — bool no_sort() const override { return true; }
+- FillGrid · class · L67-L78 — class FillGrid : public FillRectilinear
+- clone · function · L70-L70 — Fill* clone() const override { return new FillGrid(*this); }
+- fill_surface · function · L72-L72 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- is_self_crossing · function · L73-L73 — bool is_self_crossing() override { return true; }
+- _layer_angle · function · L77-L77 — float _layer_angle(size_t idx) const override { return 0.f; }
+- FillLateralLattice · class · L80-L90 — class FillLateralLattice : public FillRectilinear
+- clone · function · L83-L83 — Fill* clone() const override { return new FillLateralLattice(*this); }
+- fill_surface · function · L85-L85 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- _layer_angle · function · L89-L89 — float _layer_angle(size_t idx) const override { return 0.f; }
+- FillTriangles · class · L92-L103 — class FillTriangles : public FillRectilinear
+- clone · function · L95-L95 — Fill* clone() const override { return new FillTriangles(*this); }
+- fill_surface · function · L97-L97 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- is_self_crossing · function · L98-L98 — bool is_self_crossing() override { return true; }
+- _layer_angle · function · L102-L102 — float _layer_angle(size_t idx) const override { return 0.f; }
+- FillStars · class · L105-L116 — class FillStars : public FillRectilinear
+- clone · function · L108-L108 — Fill* clone() const override { return new FillStars(*this); }
+- fill_surface · function · L110-L110 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- is_self_crossing · function · L111-L111 — bool is_self_crossing() override { return true; }
+- _layer_angle · function · L115-L115 — float _layer_angle(size_t idx) const override { return 0.f; }
+- FillCubic · class · L118-L129 — class FillCubic : public FillRectilinear
+- clone · function · L121-L121 — Fill* clone() const override { return new FillCubic(*this); }
+- fill_surface · function · L123-L123 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- is_self_crossing · function · L124-L124 — bool is_self_crossing() override { return true; }
+- _layer_angle · function · L128-L128 — float _layer_angle(size_t idx) const override { return 0.f; }
+- FillQuarterCubic · class · L132-L142 — class FillQuarterCubic : public FillRectilinear
+- clone · function · L135-L135 — Fill* clone() const override { return new FillQuarterCubic(*this); }
+- fill_surface · function · L137-L137 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- _layer_angle · function · L141-L141 — float _layer_angle(size_t idx) const override { return 0.f; }
+- FillLateralHoneycomb · class · L144-L150 — class FillLateralHoneycomb : public FillAlignedRectilinear
+- clone · function · L147-L147 — Fill* clone() const override { return new FillLateralHoneycomb(*this); }
+- fill_surface · function · L149-L149 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- FillSupportBase · class · L153-L163 — class FillSupportBase : public FillRectilinear
+- clone · function · L156-L156 — Fill* clone() const override { return new FillSupportBase(*this); }
+- fill_surface · function · L158-L158 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- _layer_angle · function · L162-L162 — float _layer_angle(size_t idx) const override { return 0.f; }
+- FillMonotonicLines · class · L167-L174 — class FillMonotonicLines : public FillRectilinear
+- clone · function · L170-L170 — Fill* clone() const override { return new FillMonotonicLines(*this); }
+- fill_surface · function · L172-L172 — Polylines fill_surface(const Surface *surface, const FillParams &params) override;
+- no_sort · function · L173-L173 — bool no_sort() const override { return true; }
+- FillZigZag · class · L192-L199 — class FillZigZag : public FillRectilinear
+- clone · function · L195-L195 — Fill* clone() const override { return new FillZigZag(*this); }
+- has_consistent_pattern · function · L198-L198 — bool has_consistent_pattern() const override { return true; }
+- FillCrossZag · class · L201-L208 — class FillCrossZag : public FillRectilinear
+- clone · function · L204-L204 — Fill *clone() const override { return new FillCrossZag(*this); }
+- has_consistent_pattern · function · L207-L207 — bool has_consistent_pattern() const override { return true; }
+- FillLockedZag · class · L210-L224 — class FillLockedZag : public FillRectilinear
+- clone · function · L213-L213 — Fill *clone() const override { return new FillLockedZag(*this); }
+- fill_surface_extrusion · function · L217-L217 — void fill_surface_extrusion(const Surface *surface, const FillParams &params, ExtrusionEntitiesPtr &out) override;
+- has_consistent_pattern · function · L219-L219 — bool has_consistent_pattern() const override { return true; }
+- set_lock_region_param · function · L220-L220 — void set_lock_region_param(const LockRegionParam &lock_param) override { this->lock_param = lock_param;};
+- fill_surface_locked_zag · function · L221-L223 — void fill_surface_locked_zag(const Surface *                          surface,
+- sample_grid_pattern · function · L226-L226 — Points sample_grid_pattern(const ExPolygon &expolygon, coord_t spacing, const BoundingBox &global_bounding_box);
+- sample_grid_pattern · function · L227-L227 — Points sample_grid_pattern(const ExPolygons &expolygons, coord_t spacing, const BoundingBox &global_bounding_box);
+- sample_grid_pattern · function · L228-L228 — Points sample_grid_pattern(const Polygons &polygons, coord_t spacing, const BoundingBox &global_bounding_box);

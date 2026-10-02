@@ -1,0 +1,34 @@
+# src/slic3r/GUI/CaliHistoryDialog.hpp
+
+- HistoryWindow · class · L13-L46 — class HistoryWindow : public DPIDialog
+- HistoryWindow · function · L15-L15 — HistoryWindow(wxWindow* parent, const std::vector<PACalibResult>& calib_results_history, bool& show);
+- on_dpi_changed · function · L17-L17 — void on_dpi_changed(const wxRect& suggested_rect) {}
+- on_select_nozzle · function · L18-L18 — void on_select_nozzle(wxCommandEvent& evt);
+- on_switch_extruder · function · L19-L19 — void on_switch_extruder(wxCommandEvent &evt);
+- reqeust_history_result · function · L20-L20 — void reqeust_history_result(MachineObject* obj);
+- sync_history_result · function · L21-L21 — void sync_history_result(MachineObject* obj);
+- on_device_connected · function · L22-L22 — void on_device_connected(MachineObject* obj);
+- on_timer · function · L23-L23 — void on_timer(wxTimerEvent& event);
+- update · function · L24-L24 — void update(MachineObject* obj);
+- sync_history_data · function · L26-L26 — void sync_history_data();
+- enbale_action_buttons · function · L27-L27 — void enbale_action_buttons(bool enable);
+- get_nozzle_value · function · L28-L28 — float get_nozzle_value();
+- get_extruder_id · function · L29-L29 — int get_extruder_id();
+- support_nozzle_id_column · function · L30-L30 — bool support_nozzle_id_column();
+- on_click_new_button · function · L32-L32 — void on_click_new_button(wxCommandEvent &event);
+- EditCalibrationHistoryDialog · class · L48-L68 — class EditCalibrationHistoryDialog : public DPIDialog
+- EditCalibrationHistoryDialog · function · L51-L51 — EditCalibrationHistoryDialog(wxWindow *parent, const PACalibResult &result, const MachineObject *obj, const std::vector<PACalibResult> history_results);
+- on_dpi_changed · function · L53-L53 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- get_result · function · L54-L54 — PACalibResult get_result();
+- on_save · function · L57-L57 — virtual void on_save(wxCommandEvent& event);
+- on_cancel · function · L58-L58 — virtual void on_cancel(wxCommandEvent& event);
+- NewCalibrationHistoryDialog · class · L70-L107 — class NewCalibrationHistoryDialog : public DPIDialog
+- NewCalibrationHistoryDialog · function · L73-L73 — NewCalibrationHistoryDialog(wxWindow *parent, const std::vector<PACalibResult> history_results);
+- on_dpi_changed · function · L75-L75 — void on_dpi_changed(const wxRect &suggested_rect) override{};
+- on_ok · function · L78-L78 — virtual void on_ok(wxCommandEvent &event);
+- on_cancel · function · L79-L79 — virtual void on_cancel(wxCommandEvent &event);
+- on_select_nozzle_pos · function · L80-L80 — void on_select_nozzle_pos(wxCommandEvent &event);
+- get_all_filaments · function · L83-L83 — wxArrayString get_all_filaments(const MachineObject *obj);
+- get_extruder_id · function · L84-L84 — int get_extruder_id(int extruder_index);  // extruder_index 0 : left, 1 : right
+- get_nozzle_combo_id_code · function · L85-L85 — int get_nozzle_combo_id_code() const;      // rack hotend position code, -1 if none
+- FilamentInfos · class · L101-L105 — struct FilamentInfos

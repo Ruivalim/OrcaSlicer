@@ -1,0 +1,310 @@
+# deps/EXPAT/expat/xmlparse.c
+
+- ICHAR · type · L151-L151 — typedef unsigned short ICHAR;
+- ICHAR · type · L159-L159 — typedef char ICHAR;
+- NAMED · type · L201-L203 — typedef struct
+- HASH_TABLE · type · L205-L211 — typedef struct
+- keylen · function · L213-L213 — static size_t keylen(KEY s);
+- copy_salt_to_sipkey · function · L215-L215 — static void copy_salt_to_sipkey(XML_Parser parser, struct sipkey *key);
+- HASH_TABLE_ITER · type · L230-L233 — typedef struct
+- binding · class · L244-L252 — typedef struct binding
+- prefix · class · L254-L257 — typedef struct prefix
+- TAG_NAME · type · L259-L266 — typedef struct
+- tag · class · L281-L289 — typedef struct tag
+- ENTITY · type · L291-L303 — typedef struct
+- CONTENT_SCAFFOLD · type · L305-L313 — typedef struct
+- XML_Content_Type · type · L306-L306 — enum XML_Content_Type type;
+- XML_Content_Quant · type · L307-L307 — enum XML_Content_Quant quant;
+- block · class · L317-L321 — typedef struct block
+- STRING_POOL · type · L323-L330 — typedef struct
+- attribute_id · class · L334-L339 — typedef struct attribute_id
+- DEFAULT_ATTRIBUTE · type · L341-L345 — typedef struct
+- NS_ATT · type · L347-L351 — typedef struct
+- ELEMENT_TYPE · type · L353-L360 — typedef struct
+- DTD · type · L362-L389 — typedef struct
+- open_internal_entity · class · L391-L398 — typedef struct open_internal_entity
+- XML_Account · type · L400-L405 — enum XML_Account
+- XmlBigCount · type · L408-L408 — typedef unsigned long long XmlBigCount;
+- accounting · class · L409-L415 — typedef struct accounting
+- entity_stats · class · L417-L422 — typedef struct entity_stats
+- XML_Error · type · L425-L426 — typedef enum XML_Error PTRCALL Processor(XML_Parser parser, const char *start,
+- XML_Error · type · L447-L448 — static enum XML_Error handleUnknownEncoding(XML_Parser parser,
+- XML_Error · type · L449-L450 — static enum XML_Error processXmlDecl(XML_Parser parser, int isGeneralTextEntity,
+- XML_Error · type · L451-L451 — static enum XML_Error initializeEncoding(XML_Parser parser);
+- XML_Error · type · L452-L456 — static enum XML_Error doProlog(XML_Parser parser, const ENCODING *enc,
+- XML_Account · type · L456-L456 — enum XML_Account account);
+- XML_Error · type · L457-L458 — static enum XML_Error processInternalEntity(XML_Parser parser, ENTITY *entity,
+- XML_Error · type · L459-L462 — static enum XML_Error doContent(XML_Parser parser, int startTagLevel,
+- XML_Account · type · L462-L462 — XML_Bool haveMore, enum XML_Account account);
+- XML_Error · type · L463-L466 — static enum XML_Error doCdataSection(XML_Parser parser, const ENCODING *,
+- XML_Account · type · L466-L466 — enum XML_Account account);
+- XML_Error · type · L468-L470 — static enum XML_Error doIgnoreSection(XML_Parser parser, const ENCODING *,
+- freeBindings · function · L473-L473 — static void freeBindings(XML_Parser parser, BINDING *bindings);
+- XML_Error · type · L474-L477 — static enum XML_Error storeAtts(XML_Parser parser, const ENCODING *,
+- XML_Account · type · L477-L477 — enum XML_Account account);
+- XML_Error · type · L478-L480 — static enum XML_Error addBinding(XML_Parser parser, PREFIX *prefix,
+- defineAttribute · function · L481-L483 — static int defineAttribute(ELEMENT_TYPE *type, ATTRIBUTE_ID *, XML_Bool isCdata,
+- XML_Error · type · L484-L487 — static enum XML_Error storeAttributeValue(XML_Parser parser, const ENCODING *,
+- XML_Account · type · L487-L487 — enum XML_Account account);
+- XML_Error · type · L488-L491 — static enum XML_Error appendAttributeValue(XML_Parser parser, const ENCODING *,
+- XML_Account · type · L491-L491 — enum XML_Account account);
+- getAttributeId · function · L492-L493 — static ATTRIBUTE_ID *getAttributeId(XML_Parser parser, const ENCODING *enc,
+- setElementTypePrefix · function · L494-L494 — static int setElementTypePrefix(XML_Parser parser, ELEMENT_TYPE *);
+- XML_Error · type · L495-L497 — static enum XML_Error storeEntityValue(XML_Parser parser, const ENCODING *enc,
+- XML_Account · type · L497-L497 — enum XML_Account account);
+- reportProcessingInstruction · function · L498-L499 — static int reportProcessingInstruction(XML_Parser parser, const ENCODING *enc,
+- reportComment · function · L500-L501 — static int reportComment(XML_Parser parser, const ENCODING *enc,
+- reportDefault · function · L502-L503 — static void reportDefault(XML_Parser parser, const ENCODING *enc,
+- getContext · function · L505-L505 — static const XML_Char *getContext(XML_Parser parser);
+- setContext · function · L506-L506 — static XML_Bool setContext(XML_Parser parser, const XML_Char *context);
+- dtdCreate · function · L510-L510 — static DTD *dtdCreate(const XML_Memory_Handling_Suite *ms);
+- dtdReset · function · L512-L512 — static void dtdReset(DTD *p, const XML_Memory_Handling_Suite *ms);
+- dtdDestroy · function · L513-L514 — static void dtdDestroy(DTD *p, XML_Bool isDocEntity,
+- dtdCopy · function · L515-L516 — static int dtdCopy(XML_Parser oldParser, DTD *newDtd, const DTD *oldDtd,
+- copyEntityTable · function · L517-L518 — static int copyEntityTable(XML_Parser oldParser, HASH_TABLE *, STRING_POOL *,
+- lookup · function · L519-L520 — static NAMED *lookup(XML_Parser parser, HASH_TABLE *table, KEY name,
+- hashTableInit · function · L521-L522 — static void FASTCALL hashTableInit(HASH_TABLE *,
+- hashTableIterInit · function · L525-L525 — static void FASTCALL hashTableIterInit(HASH_TABLE_ITER *, const HASH_TABLE *);
+- poolInit · function · L528-L529 — static void FASTCALL poolInit(STRING_POOL *,
+- poolAppend · function · L532-L533 — static XML_Char *poolAppend(STRING_POOL *pool, const ENCODING *enc,
+- poolStoreString · function · L534-L535 — static XML_Char *poolStoreString(STRING_POOL *pool, const ENCODING *enc,
+- poolCopyString · function · L537-L538 — static const XML_Char *FASTCALL poolCopyString(STRING_POOL *pool,
+- poolCopyStringN · function · L539-L540 — static const XML_Char *poolCopyStringN(STRING_POOL *pool, const XML_Char *s,
+- poolAppendString · function · L541-L542 — static const XML_Char *FASTCALL poolAppendString(STRING_POOL *pool,
+- nextScaffoldPart · function · L544-L544 — static int FASTCALL nextScaffoldPart(XML_Parser parser);
+- build_model · function · L545-L545 — static XML_Content *build_model(XML_Parser parser);
+- getElementType · function · L546-L547 — static ELEMENT_TYPE *getElementType(XML_Parser parser, const ENCODING *enc,
+- copyString · function · L549-L550 — static XML_Char *copyString(const XML_Char *s,
+- generate_hash_secret_salt · function · L552-L552 — static unsigned long generate_hash_secret_salt(XML_Parser parser);
+- startParsing · function · L553-L553 — static XML_Bool startParsing(XML_Parser parser);
+- parserCreate · function · L555-L557 — static XML_Parser parserCreate(const XML_Char *encodingName,
+- parserInit · function · L559-L559 — static void parserInit(XML_Parser parser, const XML_Char *encodingName);
+- accountingGetCurrentAmplification · function · L562-L562 — static float accountingGetCurrentAmplification(XML_Parser rootParser);
+- accountingReportStats · function · L563-L563 — static void accountingReportStats(XML_Parser originParser, const char *epilog);
+- accountingOnAbort · function · L564-L564 — static void accountingOnAbort(XML_Parser originParser);
+- accountingReportDiff · function · L565-L569 — static void accountingReportDiff(XML_Parser rootParser,
+- XML_Account · type · L569-L569 — enum XML_Account account);
+- accountingDiffTolerated · function · L570-L573 — static XML_Bool accountingDiffTolerated(XML_Parser originParser, int tok,
+- XML_Account · type · L573-L573 — enum XML_Account account);
+- entityTrackingReportStats · function · L575-L576 — static void entityTrackingReportStats(XML_Parser parser, ENTITY *entity,
+- entityTrackingOnOpen · function · L577-L578 — static void entityTrackingOnOpen(XML_Parser parser, ENTITY *entity,
+- entityTrackingOnClose · function · L579-L580 — static void entityTrackingOnClose(XML_Parser parser, ENTITY *entity,
+- getRootParserOf · function · L582-L583 — static XML_Parser getRootParserOf(XML_Parser parser,
+- getDebugLevel · function · L586-L587 — static unsigned long getDebugLevel(const char *variableName,
+- XML_ParserStruct · class · L601-L706 — struct XML_ParserStruct
+- XML_Error · type · L653-L653 — enum XML_Error m_errorCode;
+- XML_ParamEntityParsing · type · L699-L699 — enum XML_ParamEntityParsing m_paramEntityParsing;
+- XML_ParserCreate · function · L712-L715 — XML_Parser XMLCALL
+- XML_ParserCreateNS · function · L717-L721 — XML_Parser XMLCALL
+- writeRandomBytes_getrandom_nonblock · function · L741-L766 — static int
+- writeRandomBytes_dev_urandom · function · L773-L798 — static int
+- writeRandomBytes_arc4random · function · L806-L820 — static void
+- rand_s · function · L832-L832 — __declspec(dllimport) int rand_s(unsigned int *);
+- writeRandomBytes_rand_s · function · L839-L857 — static int
+- gather_time_entropy · function · L863-L884 — static unsigned long
+- ENTROPY_DEBUG · function · L888-L895 — static unsigned long
+- generate_hash_secret_salt · function · L897-L938 — static unsigned long
+- get_hash_secret_salt · function · L940-L945 — static unsigned long
+- startParsing · function · L947-L959 — static XML_Bool /* only valid for root parser */
+- XML_ParserCreate_MM · function · L961-L966 — XML_Parser XMLCALL
+- parserCreate · function · L968-L1089 — static XML_Parser
+- parserInit · function · L1091-L1173 — static void
+- moveToFreeBindingList · function · L1176-L1184 — static void FASTCALL
+- XML_ParserReset · function · L1186-L1225 — XML_Bool XMLCALL
+- XML_Status · type · L1227-L1252 — enum XML_Status XMLCALL
+- XML_ExternalEntityParserCreate · function · L1254-L1420 — XML_Parser XMLCALL
+- XML_ParamEntityParsing · type · L1287-L1287 — enum XML_ParamEntityParsing oldParamEntityParsing;
+- destroyBindings · function · L1422-L1432 — static void FASTCALL
+- XML_ParserFree · function · L1434-L1498 — void XMLCALL
+- XML_UseParserAsHandlerArg · function · L1500-L1504 — void XMLCALL
+- XML_Error · type · L1506-L1521 — enum XML_Error XMLCALL
+- XML_SetReturnNSTriplet · function · L1523-L1532 — void XMLCALL
+- XML_SetUserData · function · L1534-L1542 — void XMLCALL
+- XML_Status · type · L1544-L1556 — enum XML_Status XMLCALL
+- XML_GetBase · function · L1559-L1559 — XML_GetBase(XML_Parser parser)
+- XML_GetSpecifiedAttributeCount · function · L1565-L1570 — int XMLCALL
+- XML_GetIdAttributeIndex · function · L1572-L1577 — int XMLCALL
+- XML_GetAttributeInfo · function · L1581-L1581 — XML_GetAttributeInfo(XML_Parser parser)
+- XML_SetElementHandler · function · L1588-L1595 — void XMLCALL
+- XML_SetStartElementHandler · function · L1597-L1601 — void XMLCALL
+- XML_SetEndElementHandler · function · L1603-L1607 — void XMLCALL
+- XML_SetCharacterDataHandler · function · L1609-L1614 — void XMLCALL
+- XML_SetProcessingInstructionHandler · function · L1616-L1621 — void XMLCALL
+- XML_SetCommentHandler · function · L1623-L1627 — void XMLCALL
+- XML_SetCdataSectionHandler · function · L1629-L1637 — void XMLCALL
+- XML_SetStartCdataSectionHandler · function · L1639-L1644 — void XMLCALL
+- XML_SetEndCdataSectionHandler · function · L1646-L1651 — void XMLCALL
+- XML_SetDefaultHandler · function · L1653-L1659 — void XMLCALL
+- XML_SetDefaultHandlerExpand · function · L1661-L1667 — void XMLCALL
+- XML_SetDoctypeDeclHandler · function · L1669-L1676 — void XMLCALL
+- XML_SetStartDoctypeDeclHandler · function · L1678-L1683 — void XMLCALL
+- XML_SetEndDoctypeDeclHandler · function · L1685-L1689 — void XMLCALL
+- XML_SetUnparsedEntityDeclHandler · function · L1691-L1696 — void XMLCALL
+- XML_SetNotationDeclHandler · function · L1698-L1702 — void XMLCALL
+- XML_SetNamespaceDeclHandler · function · L1704-L1712 — void XMLCALL
+- XML_SetStartNamespaceDeclHandler · function · L1714-L1719 — void XMLCALL
+- XML_SetEndNamespaceDeclHandler · function · L1721-L1726 — void XMLCALL
+- XML_SetNotStandaloneHandler · function · L1728-L1733 — void XMLCALL
+- XML_SetExternalEntityRefHandler · function · L1735-L1740 — void XMLCALL
+- XML_SetExternalEntityRefHandlerArg · function · L1742-L1750 — void XMLCALL
+- XML_SetSkippedEntityHandler · function · L1752-L1757 — void XMLCALL
+- XML_SetUnknownEncodingHandler · function · L1759-L1766 — void XMLCALL
+- XML_SetElementDeclHandler · function · L1768-L1772 — void XMLCALL
+- XML_SetAttlistDeclHandler · function · L1774-L1778 — void XMLCALL
+- XML_SetEntityDeclHandler · function · L1780-L1784 — void XMLCALL
+- XML_SetXmlDeclHandler · function · L1786-L1790 — void XMLCALL
+- XML_SetParamEntityParsing · function · L1792-L1807 — int XMLCALL
+- XML_ParamEntityParsing · type · L1794-L1794 — enum XML_ParamEntityParsing peParsing)
+- XML_SetHashSalt · function · L1809-L1821 — int XMLCALL
+- XML_Status · type · L1823-L1975 — enum XML_Status XMLCALL
+- if · function · L1895-L1964 — else if (parser->m_bufferPtr == parser->m_bufferEnd)
+- XML_Status · type · L1898-L1898 — enum XML_Status result;
+- XML_Status · type · L1977-L2040 — enum XML_Status XMLCALL
+- XML_Status · type · L1980-L1980 — enum XML_Status result = XML_STATUS_OK;
+- XML_GetBuffer · function · L2043-L2043 — XML_GetBuffer(XML_Parser parser, int len)
+- XML_Status · type · L2165-L2193 — enum XML_Status XMLCALL
+- XML_Status · type · L2195-L2233 — enum XML_Status XMLCALL
+- XML_Status · type · L2197-L2197 — enum XML_Status result = XML_STATUS_OK;
+- XML_GetParsingStatus · function · L2235-L2241 — void XMLCALL
+- XML_Error · type · L2243-L2248 — enum XML_Error XMLCALL
+- XML_GetCurrentByteIndex · function · L2250-L2258 — XML_Index XMLCALL
+- XML_GetCurrentByteCount · function · L2260-L2267 — int XMLCALL
+- XML_GetInputContext · function · L2270-L2270 — XML_GetInputContext(XML_Parser parser, int *offset, int *size)
+- XML_GetCurrentLineNumber · function · L2289-L2299 — XML_Size XMLCALL
+- XML_GetCurrentColumnNumber · function · L2301-L2311 — XML_Size XMLCALL
+- XML_FreeContentModel · function · L2313-L2317 — void XMLCALL
+- XML_MemMalloc · function · L2320-L2320 — XML_MemMalloc(XML_Parser parser, size_t size)
+- XML_MemRealloc · function · L2327-L2327 — XML_MemRealloc(XML_Parser parser, void *ptr, size_t size)
+- XML_MemFree · function · L2333-L2337 — void XMLCALL
+- XML_DefaultCurrent · function · L2339-L2352 — void XMLCALL
+- XML_Error · type · L2355-L2355 — XML_ErrorString(enum XML_Error code)
+- XML_ErrorString · function · L2355-L2355 — XML_ErrorString(enum XML_Error code)
+- XML_SetBillionLaughsAttackProtectionMaximumAmplification · function · L2537-L2547 — XML_Bool XMLCALL
+- XML_SetBillionLaughsAttackProtectionActivationThreshold · function · L2549-L2557 — XML_Bool XMLCALL
+- storeRawNames · function · L2565-L2612 — static XML_Bool
+- XML_Error · type · L2614-L2625 — static enum XML_Error PTRCALL
+- XML_Error · type · L2617-L2619 — enum XML_Error result = doContent(
+- XML_Error · type · L2627-L2635 — static enum XML_Error PTRCALL
+- XML_Error · type · L2630-L2630 — enum XML_Error result = initializeEncoding(parser);
+- XML_Error · type · L2637-L2680 — static enum XML_Error PTRCALL
+- XML_Error · type · L2682-L2727 — static enum XML_Error PTRCALL
+- XML_Error · type · L2697-L2697 — enum XML_Error result;
+- XML_Error · type · L2729-L2741 — static enum XML_Error PTRCALL
+- XML_Error · type · L2732-L2735 — enum XML_Error result
+- XML_Error · type · L2743-L3211 — static enum XML_Error
+- XML_Account · type · L2746-L2746 — XML_Bool haveMore, enum XML_Account account)
+- XML_Error · type · L2871-L2871 — enum XML_Error result;
+- XML_Error · type · L2903-L2903 — enum XML_Error result;
+- XML_Convert_Result · type · L2934-L2936 — const enum XML_Convert_Result convert_res
+- XML_Error · type · L2972-L2972 — enum XML_Error result;
+- XML_Error · type · L3095-L3095 — enum XML_Error result;
+- XML_Convert_Result · type · L3163-L3164 — const enum XML_Convert_Result convert_res = XmlConvert(
+- freeBindings · function · L3217-L3233 — static void
+- XML_Error · type · L3245-L3712 — static enum XML_Error
+- XML_Account · type · L3248-L3248 — enum XML_Account account)
+- XML_Error · type · L3377-L3377 — enum XML_Error result;
+- XML_Error · type · L3412-L3413 — enum XML_Error result = addBinding(parser, attId->prefix, attId,
+- XML_Error · type · L3444-L3445 — enum XML_Error result = addBinding(parser, da->id->prefix, da->id,
+- is_rfc3986_uri_char · function · L3714-L3823 — static XML_Bool
+- XML_Error · type · L3828-L3990 — static enum XML_Error
+- XML_Error · type · L3995-L4013 — static enum XML_Error PTRCALL
+- XML_Error · type · L3998-L4000 — enum XML_Error result = doCdataSection(
+- XML_Error · type · L4018-L4135 — static enum XML_Error
+- XML_Account · type · L4021-L4021 — enum XML_Account account)
+- XML_Convert_Result · type · L4079-L4080 — const enum XML_Convert_Result convert_res = XmlConvert(
+- XML_Error · type · L4142-L4155 — static enum XML_Error PTRCALL
+- XML_Error · type · L4145-L4147 — enum XML_Error result
+- XML_Error · type · L4160-L4238 — static enum XML_Error
+- XML_Error · type · L4242-L4270 — static enum XML_Error
+- XML_Error · type · L4272-L4362 — static enum XML_Error
+- XML_Error · type · L4342-L4342 — enum XML_Error result;
+- XML_Error · type · L4364-L4396 — static enum XML_Error
+- XML_Error · type · L4398-L4406 — static enum XML_Error PTRCALL
+- XML_Error · type · L4401-L4401 — enum XML_Error result = initializeEncoding(parser);
+- XML_Error · type · L4410-L4428 — static enum XML_Error PTRCALL
+- XML_Error · type · L4413-L4413 — enum XML_Error result = initializeEncoding(parser);
+- XML_Error · type · L4430-L4512 — static enum XML_Error PTRCALL
+- XML_Error · type · L4465-L4465 — enum XML_Error result;
+- XML_Error · type · L4514-L4558 — static enum XML_Error PTRCALL
+- XML_Error · type · L4560-L4594 — static enum XML_Error PTRCALL
+- XML_Error · type · L4598-L4606 — static enum XML_Error PTRCALL
+- XML_Error · type · L4608-L5637 — static enum XML_Error
+- XML_Account · type · L4611-L4611 — XML_Bool allowClosingDoctype, enum XML_Account account)
+- XML_Content_Quant · type · L4647-L4647 — enum XML_Content_Quant quant;
+- XML_Error · type · L4721-L4721 — enum XML_Error result = processXmlDecl(parser, 0, s, next);
+- XML_Error · type · L4751-L4751 — enum XML_Error result = processXmlDecl(parser, 1, s, next);
+- XML_Error · type · L4992-L4995 — enum XML_Error result = storeAttributeValue(
+- XML_Error · type · L5028-L5030 — enum XML_Error result
+- XML_Error · type · L5272-L5272 — enum XML_Error result;
+- XML_Error · type · L5423-L5423 — enum XML_Error result;
+- XML_Error · type · L5639-L5708 — static enum XML_Error PTRCALL
+- XML_Error · type · L5710-L5772 — static enum XML_Error
+- XML_Error · type · L5714-L5714 — enum XML_Error result;
+- XML_Error · type · L5774-L5852 — static enum XML_Error PTRCALL
+- XML_Error · type · L5780-L5780 — enum XML_Error result;
+- XML_Error · type · L5854-L5861 — static enum XML_Error PTRCALL
+- XML_Error · type · L5863-L5876 — static enum XML_Error
+- XML_Account · type · L5866-L5866 — enum XML_Account account)
+- XML_Error · type · L5867-L5868 — enum XML_Error result
+- XML_Error · type · L5878-L6076 — static enum XML_Error
+- XML_Account · type · L5881-L5881 — enum XML_Account account)
+- XML_Error · type · L6038-L6038 — enum XML_Error result;
+- XML_Error · type · L6078-L6262 — static enum XML_Error
+- XML_Account · type · L6081-L6081 — enum XML_Account account)
+- XML_Error · type · L6084-L6084 — enum XML_Error result = XML_ERROR_NONE;
+- normalizeLines · function · L6264-L6283 — static void FASTCALL
+- reportProcessingInstruction · function · L6285-L6310 — static int
+- reportComment · function · L6312-L6330 — static int
+- reportDefault · function · L6332-L6376 — static void
+- XML_Convert_Result · type · L6336-L6336 — enum XML_Convert_Result convert_res;
+- defineAttribute · function · L6378-L6437 — static int
+- setElementTypePrefix · function · L6439-L6466 — static int
+- getAttributeId · function · L6469-L6470 — getAttributeId(XML_Parser parser, const ENCODING *enc, const char *start,
+- getContext · function · L6532-L6532 — getContext(XML_Parser parser)
+- setContext · function · L6627-L6685 — static XML_Bool
+- normalizePublicId · function · L6687-L6706 — static void FASTCALL
+- dtdCreate · function · L6709-L6709 — dtdCreate(const XML_Memory_Handling_Suite *ms)
+- dtdReset · function · L6740-L6779 — static void
+- dtdDestroy · function · L6781-L6806 — static void
+- dtdCopy · function · L6811-L6935 — static int
+- copyEntityTable · function · L6937-L6998 — static int
+- keyeq · function · L7002-L7008 — static XML_Bool FASTCALL
+- keylen · function · L7010-L7016 — static size_t
+- copy_salt_to_sipkey · function · L7018-L7022 — static void
+- hash · function · L7024-L7033 — static unsigned long FASTCALL
+- lookup · function · L7036-L7036 — lookup(XML_Parser parser, HASH_TABLE *table, KEY name, size_t createSize)
+- hashTableClear · function · L7124-L7132 — static void FASTCALL
+- hashTableDestroy · function · L7134-L7140 — static void FASTCALL
+- hashTableInit · function · L7142-L7149 — static void FASTCALL
+- hashTableIterInit · function · L7151-L7155 — static void FASTCALL
+- hashTableIterNext · function · L7158-L7158 — hashTableIterNext(HASH_TABLE_ITER *iter)
+- poolInit · function · L7167-L7175 — static void FASTCALL
+- poolClear · function · L7177-L7194 — static void FASTCALL
+- poolDestroy · function · L7196-L7210 — static void FASTCALL
+- poolAppend · function · L7213-L7214 — poolAppend(STRING_POOL *pool, const ENCODING *enc, const char *ptr,
+- XML_Convert_Result · type · L7218-L7219 — const enum XML_Convert_Result convert_res = XmlConvert(
+- poolCopyString · function · L7230-L7230 — poolCopyString(STRING_POOL *pool, const XML_Char *s)
+- poolCopyStringN · function · L7241-L7241 — poolCopyStringN(STRING_POOL *pool, const XML_Char *s, int n)
+- poolAppendString · function · L7266-L7266 — poolAppendString(STRING_POOL *pool, const XML_Char *s)
+- poolStoreString · function · L7276-L7277 — poolStoreString(STRING_POOL *pool, const ENCODING *enc, const char *ptr,
+- poolBytesToAllocateFor · function · L7286-L7312 — static size_t
+- poolGrow · function · L7314-L7416 — static XML_Bool FASTCALL
+- nextScaffoldPart · function · L7418-L7477 — static int FASTCALL
+- build_model · function · L7480-L7480 — build_model(XML_Parser parser)
+- getElementType · function · L7607-L7608 — getElementType(XML_Parser parser, const ENCODING *enc, const char *ptr,
+- copyString · function · L7630-L7630 — copyString(const XML_Char *s, const XML_Memory_Handling_Suite *memsuite)
+- accountingGetCurrentAmplification · function · L7652-L7664 — static float
+- accountingReportStats · function · L7666-L7683 — static void
+- accountingOnAbort · function · L7685-L7688 — static void
+- accountingReportDiff · function · L7690-L7725 — static void
+- XML_Account · type · L7694-L7694 — enum XML_Account account)
+- accountingDiffTolerated · function · L7727-L7780 — static XML_Bool
+- XML_Account · type · L7730-L7730 — enum XML_Account account)
+- testingAccountingGetCountBytesDirect · function · L7782-L7787 — unsigned long long
+- testingAccountingGetCountBytesIndirect · function · L7789-L7794 — unsigned long long
+- entityTrackingReportStats · function · L7796-L7818 — static void
+- entityTrackingOnOpen · function · L7820-L7833 — static void
+- entityTrackingOnClose · function · L7835-L7842 — static void
+- getRootParserOf · function · L7844-L7857 — static XML_Parser
+- unsignedCharToPrintable · function · L7860-L7860 — unsignedCharToPrintable(unsigned char c)
+- getDebugLevel · function · L8383-L8400 — static unsigned long

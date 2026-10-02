@@ -1,0 +1,42 @@
+# src/slic3r/GUI/GUI.hpp
+
+- any · class · L4-L4 — namespace boost { class any; }
+- path · class · L5-L5 — namespace boost::filesystem { class path; }
+- wxWindow · class · L12-L12 — class wxWindow;
+- wxMenuBar · class · L13-L13 — class wxMenuBar;
+- wxComboCtrl · class · L14-L14 — class wxComboCtrl;
+- wxFileDialog · class · L15-L15 — class wxFileDialog;
+- wxTopLevelWindow · class · L16-L16 — class wxTopLevelWindow;
+- AppConfig · class · L20-L20 — class AppConfig;
+- DynamicPrintConfig · class · L21-L21 — class DynamicPrintConfig;
+- Print · class · L22-L22 — class Print;
+- disable_screensaver · function · L26-L26 — void disable_screensaver();
+- enable_screensaver · function · L27-L27 — void enable_screensaver();
+- debugged · function · L28-L28 — bool debugged();
+- break_to_debugger · function · L29-L29 — void break_to_debugger();
+- shortkey_ctrl_prefix · function · L32-L32 — extern const std::string& shortkey_ctrl_prefix();
+- shortkey_alt_prefix · function · L33-L33 — extern const std::string& shortkey_alt_prefix();
+- shortkey_shift_prefix · function · L34-L34 — extern const std::string& shortkey_shift_prefix(); // Shift is the same on all platforms, but we provide a function for consistency with Ctrl/Alt prefixes
+- get_app_config · function · L36-L36 — extern AppConfig* get_app_config();
+- add_menus · function · L38-L38 — extern void add_menus(wxMenuBar *menu, int event_preferences_changed, int event_language_change);
+- change_opt_value · function · L41-L41 — void change_opt_value(DynamicPrintConfig& config, const t_config_option_key& opt_key, const boost::any& value, int opt_index = 0);
+- show_error · function · L45-L45 — void show_error(wxWindow* parent, const wxString& message, bool has_code_excerpts = false);
+- show_error · function · L46-L46 — void show_error(wxWindow* parent, const char* message, bool has_code_excerpts = false);
+- show_error · function · L47-L47 — inline void show_error(wxWindow* parent, const std::string& message, bool has_code_excerpts = false) { show_error(parent, message.c_str(), has_code_excerpts); }
+- show_error_id · function · L48-L48 — void show_error_id(int id, const std::string& message);   // For Perl
+- show_info · function · L49-L49 — void show_info(wxWindow* parent, const wxString& message, const wxString& title = wxString());
+- show_info · function · L50-L50 — void show_info(wxWindow* parent, const char* message, const char* title = nullptr);
+- show_info · function · L51-L51 — inline void show_info(wxWindow* parent, const std::string& message,const std::string& title = std::string()) { show_info(parent, message.c_str(), title.c_str()); }
+- warning_catcher · function · L52-L52 — void warning_catcher(wxWindow* parent, const wxString& message);
+- show_substitutions_info · function · L53-L53 — void show_substitutions_info(const PresetsConfigSubstitutions& presets_config_substitutions);
+- show_substitutions_info · function · L54-L54 — void show_substitutions_info(const ConfigSubstitutions& config_substitutions, const std::string& filename);
+- create_combochecklist · function · L59-L59 — void create_combochecklist(wxComboCtrl* comboCtrl, const std::string& text, const std::string& items);
+- combochecklist_get_flags · function · L63-L63 — unsigned int combochecklist_get_flags(wxComboCtrl* comboCtrl);
+- combochecklist_set_flags · function · L67-L67 — void combochecklist_set_flags(wxComboCtrl* comboCtrl, unsigned int flags);
+- from_u8 · function · L72-L72 — wxString	from_u8(const std::string &str);
+- into_u8 · function · L74-L74 — std::string	into_u8(const wxString &str);
+- from_path · function · L76-L76 — wxString	from_path(const boost::filesystem::path &path);
+- into_path · function · L78-L78 — boost::filesystem::path	into_path(const wxString &str);
+- about · function · L81-L81 — extern void about();
+- desktop_open_datadir_folder · function · L83-L83 — extern void desktop_open_datadir_folder();
+- desktop_open_any_folder · function · L85-L85 — extern void desktop_open_any_folder(const std::string& path);

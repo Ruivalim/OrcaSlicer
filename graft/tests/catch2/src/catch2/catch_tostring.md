@@ -1,0 +1,75 @@
+# tests/catch2/src/catch2/catch_tostring.hpp
+
+- Catch_global_namespace_dummy · class · L33-L33 — struct Catch_global_namespace_dummy{};
+- catch_strnlen · function · L43-L43 — std::size_t catch_strnlen(const char *str, std::size_t n);
+- formatTimeT · function · L45-L45 — std::string formatTimeT( std::time_t time );
+- convertIntoString · function · L50-L50 — std::string convertIntoString( StringRef string, bool escapeInvisibles );
+- convertIntoString · function · L54-L54 — std::string convertIntoString( StringRef string );
+- rawMemoryToString · function · L56-L56 — std::string rawMemoryToString( const void *object, std::size_t size );
+- rawMemoryToString · function · L58-L61 — template<typename T>
+- convertUnknownEnumToString · function · L72-L73 — template<typename E>
+- convertUnstreamable · function · L75-L80 — template<typename T>
+- convertUnstreamable · function · L81-L86 — template<typename T>
+- convertUnstreamable · function · L89-L94 — template<typename T>
+- StringMaker · class · L111-L134 — template <typename T, typename = void>
+- convert · function · L113-L122 — template <typename Fake = T>
+- convert · function · L124-L133 — template <typename Fake = T>
+- makeExceptionHappenedString · function · L138-L138 — std::string makeExceptionHappenedString();
+- stringify · function · L142-L147 — template <typename T>
+- convertUnknownEnumToString · function · L151-L154 — template<typename E>
+- convert · function · L169-L169 — static std::string convert(const std::string& str);
+- convert · function · L175-L175 — static std::string convert(std::string_view str);
+- convert · function · L181-L181 — static std::string convert(char const * str);
+- convert · function · L185-L185 — static std::string convert(char * str);
+- convert · function · L191-L191 — static std::string convert(const std::wstring& wstr);
+- convert · function · L197-L197 — static std::string convert(std::wstring_view str);
+- convert · function · L203-L203 — static std::string convert(wchar_t const * str);
+- convert · function · L207-L207 — static std::string convert(wchar_t * str);
+- convert · function · L213-L216 — static std::string convert(char const* str)
+- convert · function · L220-L224 — static std::string convert(signed char const* str)
+- convert · function · L228-L232 — static std::string convert(unsigned char const* str)
+- convert · function · L238-L238 — static std::string convert(std::byte value);
+- convert · function · L243-L243 — static std::string convert(int value);
+- convert · function · L247-L247 — static std::string convert(long value);
+- convert · function · L251-L251 — static std::string convert(long long value);
+- convert · function · L255-L255 — static std::string convert(unsigned int value);
+- convert · function · L259-L259 — static std::string convert(unsigned long value);
+- convert · function · L263-L263 — static std::string convert(unsigned long long value);
+- convert · function · L268-L271 — static std::string convert(bool b)
+- convert · function · L276-L276 — static std::string convert(char c);
+- convert · function · L280-L280 — static std::string convert(signed char value);
+- convert · function · L284-L284 — static std::string convert(unsigned char value);
+- convert · function · L289-L292 — static std::string convert(std::nullptr_t)
+- convert · function · L297-L297 — static std::string convert(float value);
+- convert · function · L303-L303 — static std::string convert(double value);
+- convert · function · L309-L316 — template <typename U>
+- convert · function · L321-L327 — static std::string convert(R C::* p)
+- convert · function · L333-L335 — static std::string convert( T^ ref )
+- rangeToString · function · L340-L351 — template<typename InputIterator, typename Sentinel = InputIterator>
+- convert · function · L373-L381 — static std::string convert(const std::pair<T1, T2>& pair)
+- convert · function · L391-L397 — static std::string convert(const std::optional<T>& optional)
+- convert · function · L401-L403 — static std::string convert(const std::nullopt_t&)
+- PrintTuple · function · L414-L424 — template <typename Tuple, std::size_t... Is>
+- convert · function · L430-L439 — static std::string convert( const std::tuple<Types...>& tuple )
+- convert · function · L449-L451 — static std::string convert(const std::monostate&)
+- convert · function · L456-L467 — static std::string convert(const std::variant<Elements...>& variant)
+- is_range_impl · class · L478-L479 — template <typename T, typename = void>
+- is_range · class · L485-L486 — template <typename T>
+- rangeToString · function · L495-L498 — template<typename Range>
+- rangeToString · function · L501-L515 — template<typename Allocator>
+- convert · function · L519-L521 — static std::string convert( R const& range )
+- convert · function · L526-L528 — static std::string convert(T const(&arr)[SZ])
+- ratio_string · class · L542-L550 — template <class Ratio>
+- symbol · function · L544-L549 — static std::string symbol()
+- symbol · function · L554-L554 — static char symbol() { return 'a'; }
+- symbol · function · L558-L558 — static char symbol() { return 'f'; }
+- symbol · function · L562-L562 — static char symbol() { return 'p'; }
+- symbol · function · L566-L566 — static char symbol() { return 'n'; }
+- symbol · function · L570-L570 — static char symbol() { return 'u'; }
+- symbol · function · L574-L574 — static char symbol() { return 'm'; }
+- convert · function · L581-L585 — static std::string convert(std::chrono::duration<Value, Ratio> const& duration)
+- convert · function · L589-L593 — static std::string convert(std::chrono::duration<Value, std::ratio<1>> const& duration)
+- convert · function · L597-L601 — static std::string convert(std::chrono::duration<Value, std::ratio<60>> const& duration)
+- convert · function · L605-L609 — static std::string convert(std::chrono::duration<Value, std::ratio<3600>> const& duration)
+- convert · function · L617-L619 — static std::string convert(std::chrono::time_point<Clock, Duration> const& time_point)
+- convert · function · L624-L629 — static std::string convert(std::chrono::time_point<std::chrono::system_clock, Duration> const& time_point)

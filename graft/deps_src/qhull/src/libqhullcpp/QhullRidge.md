@@ -1,0 +1,22 @@
+# deps_src/qhull/src/libqhullcpp/QhullRidge.h
+
+- QhullRidgeSet · type · L31-L31 — typedef QhullSet<QhullRidge>  QhullRidgeSet;
+- QhullRidgeSetIterator · type · L32-L32 — typedef QhullSetIterator<QhullRidge>  QhullRidgeSetIterator;
+- QhullRidge · function · L69-L69 — explicit            QhullRidge(const Qhull &q);
+- qh_qh · function · L71-L71 — explicit            QhullRidge(QhullQh *qqh) : qh_ridge(&s_empty_ridge), qh_qh(qqh) {}
+- QhullRidge · function · L71-L71 — explicit            QhullRidge(QhullQh *qqh) : qh_ridge(&s_empty_ridge), qh_qh(qqh) {}
+- qh_qh · function · L74-L74 — QhullRidge(const QhullRidge &other) : qh_ridge(other.qh_ridge), qh_qh(other.qh_qh) {}
+- qh_ridge · function · L74-L74 — QhullRidge(const QhullRidge &other) : qh_ridge(other.qh_ridge), qh_qh(other.qh_qh) {}
+- bottomFacet · function · L80-L80 — QhullFacet          bottomFacet() const { return QhullFacet(qh_qh, qh_ridge->bottom); }
+- dimension · function · L81-L81 — int                 dimension() const { return ((qh_qh && qh_qh->hull_dim) ? qh_qh->hull_dim-1 : 0); }
+- getBaseT · function · L82-L82 — ridgeT *            getBaseT() const { return getRidgeT(); } //!< For QhullSet<QhullRidge>
+- getRidgeT · function · L83-L83 — ridgeT *            getRidgeT() const { return qh_ridge; }
+- id · function · L84-L84 — countT              id() const { return qh_ridge->id; }
+- isValid · function · L85-L85 — bool                isValid() const { return (qh_qh && qh_ridge != &s_empty_ridge); }
+- otherFacet · function · L88-L88 — QhullFacet          otherFacet(const QhullFacet &f) const { return QhullFacet(qh_qh, (qh_ridge->top==f.getFacetT() ? qh_ridge->bottom : qh_ridge->top)); }
+- topFacet · function · L89-L89 — QhullFacet          topFacet() const { return QhullFacet(qh_qh, qh_ridge->top); }
+- hasNextRidge3d · function · L92-L92 — bool                hasNextRidge3d(const QhullFacet &f) const;
+- nextRidge3d · function · L93-L93 — QhullRidge          nextRidge3d(const QhullFacet &f) const { return nextRidge3d(f, 0); }
+- nextRidge3d · function · L94-L94 — QhullRidge          nextRidge3d(const QhullFacet &f, QhullVertex *nextVertex) const;
+- vertices · function · L95-L95 — QhullVertexSet      vertices() const { return QhullVertexSet(qh_qh, qh_ridge->vertices); }
+- PrintRidge · class · L99-L104 — struct PrintRidge

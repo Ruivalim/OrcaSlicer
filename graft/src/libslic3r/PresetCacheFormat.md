@@ -1,0 +1,25 @@
+# src/libslic3r/PresetCacheFormat.hpp
+
+- CacheDictionary · class · L37-L98 — class CacheDictionary
+- CacheDictionary · function · L40-L40 — CacheDictionary();
+- collect · function · L52-L52 — void collect(const DynamicPrintConfig& config);
+- key_index · function · L54-L54 — uint16_t key_index(const t_config_option_key& key) const;
+- enum_index · function · L56-L56 — uint16_t enum_index(const std::string& name) const;
+- def_at · function · L65-L65 — const ConfigOptionDef* def_at(uint16_t idx) const { return m_defs[idx]; }
+- type_at · function · L66-L66 — ConfigOptionType       type_at(uint16_t idx) const { return ConfigOptionType(m_types[idx]); }
+- enum_name_at · function · L67-L67 — const std::string&     enum_name_at(uint16_t idx) const { return m_enum_values[idx]; }
+- valid_key_index · function · L70-L70 — bool valid_key_index(uint16_t idx) const { return size_t(idx) < m_defs.size(); }
+- valid_enum_index · function · L71-L71 — bool valid_enum_index(uint16_t idx) const { return size_t(idx) < m_enum_values.size(); }
+- save · function · L78-L78 — void save(cereal::BinaryOutputArchive& ar) const;
+- load · function · L80-L80 — void load(cereal::BinaryInputArchive& ar);
+- save_config · function · L102-L102 — void save_config(cereal::BinaryOutputArchive& ar, const DynamicPrintConfig& config, const CacheDictionary& dict);
+- load_config · function · L105-L105 — void load_config(cereal::BinaryInputArchive& ar, DynamicPrintConfig& config, const CacheDictionary& dict);
+- skip_config · function · L108-L108 — void skip_config(cereal::BinaryInputArchive& ar, const CacheDictionary& dict);
+- CachedPreset · class · L118-L129 — struct CachedPreset
+- VendorCacheData · class · L133-L140 — struct VendorCacheData
+- VendorCacheFile · class · L148-L188 — class VendorCacheFile
+- save · function · L153-L154 — static bool save(const std::string& path, const std::string& vendor_name,
+- load · function · L163-L164 — static bool load(const std::string& path, const std::string& expected_vendor_name,
+- peek_version · function · L170-L170 — static std::string peek_version(const std::string& path, const std::string& expected_vendor_name);
+- usable_version · function · L178-L178 — static Semver usable_version(const std::string& path, const std::string& expected_vendor_name);
+- carries_preset · function · L186-L187 — static bool carries_preset(const std::string& path, const std::string& vendor_name,

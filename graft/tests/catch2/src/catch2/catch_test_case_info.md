@@ -1,0 +1,22 @@
+# tests/catch2/src/catch2/catch_test_case_info.hpp
+
+- Tag · class · L36-L44 — struct Tag
+- Tag · function · L37-L39 — constexpr Tag(StringRef original_):
+- ITestInvoker · class · L46-L46 — class ITestInvoker;
+- TestCaseProperties · type · L49-L57 — enum class TestCaseProperties : uint8_t
+- TestCaseInfo · class · L68-L100 — struct TestCaseInfo : Detail::NonCopyable
+- TestCaseInfo · function · L70-L72 — TestCaseInfo(StringRef _className,
+- isHidden · function · L74-L74 — bool isHidden() const;
+- throws · function · L75-L75 — bool throws() const;
+- okToFail · function · L76-L76 — bool okToFail() const;
+- expectedToFail · function · L77-L77 — bool expectedToFail() const;
+- addFilenameTag · function · L80-L80 — void addFilenameTag();
+- tagsAsString · function · L87-L87 — std::string tagsAsString() const;
+- internalAppendTag · function · L95-L95 — void internalAppendTag(StringRef tagString);
+- TestCaseHandle · class · L108-L130 — class TestCaseHandle
+- TestCaseHandle · function · L112-L113 — constexpr TestCaseHandle(TestCaseInfo* info, ITestInvoker* invoker) :
+- prepareTestCase · function · L115-L117 — void prepareTestCase() const
+- tearDownTestCase · function · L119-L121 — void tearDownTestCase() const
+- invoke · function · L123-L125 — void invoke() const
+- getTestCaseInfo · function · L127-L127 — constexpr TestCaseInfo const& getTestCaseInfo() const
+- makeTestCaseInfo · function · L132-L135 — Detail::unique_ptr<TestCaseInfo>

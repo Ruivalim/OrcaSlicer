@@ -1,0 +1,32 @@
+# deps_src/agg/agg_rasterizer_scanline_aa_nogamma.h
+
+- cell_aa · class · L45-L60 — struct cell_aa
+- not_equal · function · L62-L65 — int not_equal(int ex, int ey, const cell_aa&) const
+- status · type · L102-L108 — enum status
+- conv_type · type · L112-L112 — typedef typename Clip::conv_type  conv_type;
+- coord_type · type · L113-L113 — typedef typename Clip::coord_type coord_type;
+- aa_scale_e · type · L115-L122 — enum aa_scale_e
+- reset · function · L137-L137 — void reset();
+- reset_clipping · function · L138-L138 — void reset_clipping();
+- clip_box · function · L139-L139 — void clip_box(double x1, double y1, double x2, double y2);
+- filling_rule · function · L140-L140 — void filling_rule(filling_rule_e filling_rule);
+- auto_close · function · L141-L141 — void auto_close(bool flag) { m_auto_close = flag; }
+- apply_gamma · function · L144-L147 — unsigned apply_gamma(unsigned cover) const
+- move_to · function · L150-L150 — void move_to(int x, int y);
+- line_to · function · L151-L151 — void line_to(int x, int y);
+- move_to_d · function · L152-L152 — void move_to_d(double x, double y);
+- line_to_d · function · L153-L153 — void line_to_d(double x, double y);
+- close_polygon · function · L154-L154 — void close_polygon();
+- add_vertex · function · L155-L155 — void add_vertex(double x, double y, unsigned cmd);
+- edge · function · L157-L157 — void edge(int x1, int y1, int x2, int y2);
+- edge_d · function · L158-L158 — void edge_d(double x1, double y1, double x2, double y2);
+- min_x · function · L177-L177 — int min_x() const { return m_outline.min_x(); }
+- min_y · function · L178-L178 — int min_y() const { return m_outline.min_y(); }
+- max_x · function · L179-L179 — int max_x() const { return m_outline.max_x(); }
+- max_y · function · L180-L180 — int max_y() const { return m_outline.max_y(); }
+- sort · function · L183-L183 — void sort();
+- rewind_scanlines · function · L184-L184 — bool rewind_scanlines();
+- navigate_scanline · function · L185-L185 — bool navigate_scanline(int y);
+- calculate_alpha · function · L188-L203 — AGG_INLINE unsigned calculate_alpha(int area) const
+- hit_test · function · L264-L264 — bool hit_test(int tx, int ty);
+- sl · function · L471-L471 — scanline_hit_test sl(tx);

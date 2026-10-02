@@ -1,0 +1,34 @@
+# src/libslic3r/Optimize/Optimizer.hpp
+
+- Result · class · L16-L20 — template<size_t N> struct Result
+- Bound · class · L23-L34 — class Bound
+- Bound · function · L27-L30 — Bound(double min = std::numeric_limits<double>::min(),
+- min · function · L32-L32 — double min() const noexcept { return m_min; }
+- max · function · L33-L33 — double max() const noexcept { return m_max; }
+- StopCriteria · class · L41-L95 — class StopCriteria
+- abs_score_diff · function · L61-L61 — StopCriteria & abs_score_diff(double val)
+- abs_score_diff · function · L66-L66 — double abs_score_diff() const { return m_abs_score_diff; }
+- rel_score_diff · function · L68-L68 — StopCriteria & rel_score_diff(double val)
+- rel_score_diff · function · L73-L73 — double rel_score_diff() const { return m_rel_score_diff; }
+- stop_score · function · L75-L75 — StopCriteria & stop_score(double val)
+- stop_score · function · L80-L80 — double stop_score() const { return m_stop_score; }
+- max_iterations · function · L82-L82 — StopCriteria & max_iterations(double val)
+- max_iterations · function · L87-L87 — double max_iterations() const { return m_max_iterations; }
+- stop_condition · function · L89-L89 — template<class Fn> StopCriteria & stop_condition(Fn &&cond)
+- stop_condition · function · L94-L94 — bool stop_condition() { return m_stop_condition(); }
+- ScoreGradient · class · L98-L105 — template<size_t N> struct ScoreGradient
+- ScoreGradient · function · L102-L104 — ScoreGradient(double s, const std::array<double, N> &grad)
+- always_false · class · L108-L108 — template<class T> struct always_false { enum { value = false }; };
+- Optimizer · class · L111-L153 — template<class Method, class Enable = void> class Optimizer
+- Optimizer · function · L114-L118 — Optimizer(const StopCriteria &)
+- to_min · function · L121-L121 — Optimizer &to_min() { return *this; }
+- to_max · function · L124-L124 — Optimizer &to_max() { return *this; }
+- set_criteria · function · L127-L127 — Optimizer &set_criteria(const StopCriteria &) { return *this; }
+- get_criteria · function · L130-L130 — StopCriteria get_criteria() const { return {}; };
+- optimize · function · L146-L149 — template<class Func, size_t N>
+- seed · function · L152-L152 — void seed(long /*s*/) {}
+- to_arr · function · L159-L164 — template<size_t N, class T> auto to_arr(const T *a)
+- to_arr · function · L166-L169 — template<size_t N, class T> auto to_arr(const T (&a) [N])
+- bounds · function · L174-L174 — template<size_t N> Bounds<N> bounds(const Bound (&b) [N]) { return detail::to_arr(b); }
+- initvals · function · L175-L175 — template<size_t N> Input<N> initvals(const double (&a) [N]) { return detail::to_arr(a); }
+- score_gradient · function · L176-L179 — template<size_t N> auto score_gradient(double s, const double (&grad)[N])

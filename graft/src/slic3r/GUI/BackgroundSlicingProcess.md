@@ -1,0 +1,88 @@
+# src/slic3r/GUI/BackgroundSlicingProcess.hpp
+
+- path · class · L19-L19 — namespace boost { namespace filesystem { class path; } }
+- DynamicPrintConfig · class · L23-L23 — class DynamicPrintConfig;
+- Model · class · L24-L24 — class Model;
+- SLAPrint · class · L25-L25 — class SLAPrint;
+- SlicingStatusEvent · class · L27-L35 — class SlicingStatusEvent : public wxEvent
+- SlicingStatusEvent · function · L30-L31 — SlicingStatusEvent(wxEventType eventType, int winid, const PrintBase::SlicingStatus &status) :
+- Clone · function · L32-L32 — virtual wxEvent *Clone() const { return new SlicingStatusEvent(*this); }
+- SlicingProcessCompletedEvent · class · L37-L68 — class SlicingProcessCompletedEvent : public wxEvent
+- StatusType · type · L40-L44 — enum StatusType
+- SlicingProcessCompletedEvent · function · L46-L47 — SlicingProcessCompletedEvent(wxEventType eventType, int winid, StatusType status, std::exception_ptr exception) :
+- Clone · function · L48-L48 — virtual wxEvent* Clone() const { return new SlicingProcessCompletedEvent(*this); }
+- status · function · L50-L50 — StatusType 	status()    const { return m_status; }
+- finished · function · L51-L51 — bool 		finished()  const { return m_status == Finished; }
+- success · function · L52-L52 — bool 		success()   const { return m_status == Finished; }
+- cancelled · function · L53-L53 — bool 		cancelled() const { return m_status == Cancelled; }
+- error · function · L54-L54 — bool		error() 	const { return m_status == Error; }
+- critical_error · function · L56-L56 — bool 		critical_error() const;
+- invalidate_plater · function · L58-L58 — bool        invalidate_plater() const;
+- rethrow_exception · function · L60-L60 — void 		rethrow_exception() const { assert(this->error()); assert(m_exception); std::rethrow_exception(m_exception); }
+- format_error_message · function · L63-L63 — std::pair<std::string, std::vector<size_t>> format_error_message() const;
+- BackgroundSlicingProcessStep · type · L74-L76 — enum BackgroundSlicingProcessStep
+- BackgroundSlicingProcess · class · L80-L308 — class BackgroundSlicingProcess
+- BackgroundSlicingProcess · function · L83-L83 — BackgroundSlicingProcess();
+- set_fff_print · function · L87-L87 — void set_fff_print(Print *print) { m_fff_print = print; }
+- set_sla_print · function · L88-L88 — void set_sla_print(SLAPrint *print) { m_sla_print = print; m_sla_print->set_printer(&m_sla_archive); }
+- set_thumbnail_cb · function · L89-L89 — void set_thumbnail_cb(ThumbnailsGeneratorCallback cb) { m_thumbnail_cb = cb; }
+- set_gcode_result · function · L90-L90 — void set_gcode_result(GCodeProcessorResult* result) { m_gcode_result = result; }
+- switch_print_preprocess · function · L93-L93 — bool switch_print_preprocess();
+- can_switch_print · function · L94-L94 — bool can_switch_print();
+- set_current_plate · function · L95-L95 — void set_current_plate(GUI::PartPlate* plate) { m_current_plate = plate; }
+- get_current_plate · function · L96-L96 — GUI::PartPlate* get_current_plate() { return m_current_plate; }
+- get_current_gcode_result · function · L97-L97 — GCodeProcessorResult* get_current_gcode_result() { return m_gcode_result;}
+- set_slicing_completed_event · function · L102-L102 — void set_slicing_completed_event(int event_id) { m_event_slicing_completed_id = event_id; }
+- set_finished_event · function · L105-L105 — void set_finished_event(int event_id) { m_event_finished_id = event_id; }
+- set_export_began_event · function · L109-L109 — void set_export_began_event(int event_id) { m_event_export_began_id = event_id; }
+- set_export_finished_event · function · L112-L112 — void set_export_finished_event(int event_id) { m_event_export_finished_id = event_id; }
+- select_technology · function · L116-L116 — bool select_technology(PrinterTechnology tech);
+- current_printer_technology · function · L119-L119 — PrinterTechnology   current_printer_technology() const;
+- current_print · function · L121-L121 — const PrintBase*    current_print() const { return m_print; }
+- fff_print · function · L122-L122 — const Print* 		fff_print() const { return m_fff_print; }
+- fff_print · function · L123-L123 — Print* 				fff_print() { return m_fff_print; }
+- sla_print · function · L124-L124 — const SLAPrint* 	sla_print() const { return m_sla_print; }
+- output_filepath_for_project · function · L127-L127 — std::string 		output_filepath_for_project(const boost::filesystem::path &project_path);
+- start · function · L130-L130 — bool start();
+- stop · function · L133-L133 — bool stop();
+- reset · function · L136-L136 — bool reset();
+- apply · function · L140-L140 — PrintBase::ApplyStatus apply(const Model &model, const DynamicPrintConfig &config);
+- set_task · function · L143-L143 — void 		set_task(const PrintBase::TaskParams &params);
+- empty · function · L145-L145 — bool 		empty() const;
+- validate · function · L148-L148 — StringObjectException validate(std::vector<StringObjectException> *warnings = nullptr, Polygons* collison_polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr);
+- schedule_export · function · L152-L152 — void schedule_export(const std::string &path, bool export_path_on_removable_media);
+- schedule_upload · function · L155-L155 — void schedule_upload(Slic3r::PrintHostJob upload_job);
+- reset_export · function · L157-L157 — void reset_export();
+- is_export_scheduled · function · L159-L159 — bool is_export_scheduled() const { return ! m_export_path.empty(); }
+- is_upload_scheduled · function · L160-L160 — bool is_upload_scheduled() const { return ! m_upload_job.empty(); }
+- State · type · L162-L177 — enum State
+- state · function · L178-L178 — State 	state() 	const { return m_state; }
+- idle · function · L179-L179 — bool    idle() 		const { return m_state == STATE_IDLE; }
+- running · function · L180-L180 — bool    running() 	const { return m_state == STATE_STARTED || m_state == STATE_RUNNING || m_state == STATE_FINISHED || m_state == STATE_CANCELED; }
+- finished · function · L187-L187 — bool    finished() const { return m_print->finished() && !m_gcode_result->moves.empty(); }
+- is_internal_cancelled · function · L188-L188 — bool    is_internal_cancelled() { return m_internal_cancelled; }
+- thread_proc · function · L195-L195 — void 	thread_proc();
+- thread_proc_safe · function · L197-L197 — void 	thread_proc_safe() throw();
+- thread_proc_safe_seh · function · L201-L201 — unsigned long 	thread_proc_safe_seh() throw();
+- thread_proc_safe_seh_throw · function · L204-L204 — void 			thread_proc_safe_seh_throw() throw();
+- join_background_thread · function · L206-L206 — void 	join_background_thread();
+- stop_internal · function · L210-L210 — void	stop_internal();
+- process_fff · function · L213-L213 — void	process_fff();
+- process_sla · function · L216-L216 — void	process_sla();
+- call_process · function · L221-L221 — void    call_process(std::exception_ptr &ex) throw();
+- call_process_seh · function · L226-L226 — unsigned long call_process_seh(std::exception_ptr &ex) throw();
+- call_process_seh_throw · function · L229-L229 — void    	  call_process_seh_throw(std::exception_ptr &ex) throw();
+- UITask · class · L262-L271 — struct UITask
+- State · type · L263-L267 — enum State
+- set_step_started · function · L282-L282 — bool                set_step_started(BackgroundSlicingProcessStep step);
+- set_step_done · function · L283-L283 — void                set_step_done(BackgroundSlicingProcessStep step);
+- is_step_done · function · L284-L284 — bool 				is_step_done(BackgroundSlicingProcessStep step) const;
+- invalidate_step · function · L285-L285 — bool                invalidate_step(BackgroundSlicingProcessStep step);
+- invalidate_all_steps · function · L286-L286 — bool                invalidate_all_steps();
+- throw_if_canceled · function · L288-L288 — void                throw_if_canceled() const { if (m_print->canceled()) throw CanceledException(); }
+- finalize_gcode · function · L289-L289 — void				finalize_gcode();
+- export_gcode · function · L290-L290 — void				export_gcode();
+- prepare_upload · function · L291-L291 — void                prepare_upload();
+- render_thumbnails · function · L293-L293 — ThumbnailsList		render_thumbnails(const ThumbnailsParams &params);
+- execute_ui_task · function · L295-L295 — bool 				execute_ui_task(std::function<void()> task);
+- cancel_ui_task · function · L297-L297 — static void			cancel_ui_task(std::shared_ptr<BackgroundSlicingProcess::UITask> task);

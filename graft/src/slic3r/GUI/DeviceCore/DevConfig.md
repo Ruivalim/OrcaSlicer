@@ -1,0 +1,22 @@
+# src/slic3r/GUI/DeviceCore/DevConfig.h
+
+- HasChamber · function · L25-L25 — bool HasChamber() const { return m_has_chamber; }
+- SupportChamberTempDisplay · function · L26-L28 — bool SupportChamberTempDisplay() const;
+- SupportChamberEdit · function · L27-L27 — bool SupportChamberEdit() const { return m_support_chamber_edit; }
+- GetChamberTempEditMin · function · L28-L28 — int  GetChamberTempEditMin() const { return m_chamber_temp_edit_min; }
+- GetChamberTempEditMax · function · L29-L29 — int  GetChamberTempEditMax() const { return m_chamber_temp_edit_max; }
+- GetChamberTempSwitchHeat · function · L30-L30 — int  GetChamberTempSwitchHeat() const { return m_chamber_temp_switch_heat; }
+- SupportFirstLayerInspect · function · L33-L33 — bool SupportFirstLayerInspect() const { return m_support_first_layer_inspect; }
+- SupportSaveRemotePrintFileToStorage · function · L34-L34 — bool SupportSaveRemotePrintFileToStorage() const { return m_support_save_remote_print_file_to_storage; }
+- SupportAIMonitor · function · L35-L35 — bool SupportAIMonitor() const { return m_support_ai_monitor; }
+- SupportPrintWithoutSD · function · L37-L37 — bool SupportPrintWithoutSD() const { return m_support_print_without_sd; }
+- SupportPrintAllPlates · function · L38-L38 — bool SupportPrintAllPlates() const { return m_support_print_all; }
+- SupportCalibrationLidar · function · L41-L41 — bool SupportCalibrationLidar() const { return m_support_calibration_lidar; }
+- SupportCalibrationNozzleOffset · function · L42-L42 — bool SupportCalibrationNozzleOffset() const { return m_support_calibration_nozzle_offset; }
+- SupportCalibrationHighTempBed · function · L43-L43 — bool SupportCalibrationHighTempBed() const { return m_support_calibration_high_temp_bed; }
+- SupportCaliClumpPos · function · L44-L44 — bool SupportCaliClumpPos() const { return m_support_calibration_clump_pos; }
+- SupportCalibrationPA_FlowAuto · function · L46-L46 — bool SupportCalibrationPA_FlowAuto() const { return m_support_calibration_pa_flow_auto; }
+- ParseConfig · function · L50-L50 — void ParseConfig(const json& print_json);
+- ParseChamberConfig · function · L52-L52 — void ParseChamberConfig(const json& print_json); // chamber
+- ParsePrintOptionsConfig · function · L53-L53 — void ParsePrintOptionsConfig(const json& print_json); // print options
+- ParseCalibrationConfig · function · L54-L54 — void ParseCalibrationConfig(const json& print_json); //cali

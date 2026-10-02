@@ -1,0 +1,85 @@
+# src/slic3r/GUI/GUI_Preview.hpp
+
+- wxGLCanvas · class · L16-L16 — class wxGLCanvas;
+- wxBoxSizer · class · L17-L17 — class wxBoxSizer;
+- wxStaticText · class · L18-L18 — class wxStaticText;
+- wxComboBox · class · L19-L19 — class wxComboBox;
+- wxComboCtrl · class · L20-L20 — class wxComboCtrl;
+- wxCheckBox · class · L21-L21 — class wxCheckBox;
+- DynamicPrintConfig · class · L25-L25 — class DynamicPrintConfig;
+- Print · class · L26-L26 — class Print;
+- BackgroundSlicingProcess · class · L27-L27 — class BackgroundSlicingProcess;
+- Model · class · L28-L28 — class Model;
+- GLCanvas3D · class · L32-L32 — class GLCanvas3D;
+- GLToolbar · class · L33-L33 — class GLToolbar;
+- Bed3D · class · L34-L34 — class Bed3D;
+- Plater · class · L36-L36 — class Plater;
+- BitmapComboBox · class · L38-L38 — class BitmapComboBox;
+- View3D · class · L41-L85 — class View3D : public wxPanel
+- View3D · function · L47-L47 — View3D(wxWindow* parent, Bed3D& bed, Model* model, DynamicPrintConfig* config, BackgroundSlicingProcess* process);
+- get_wxglcanvas · function · L50-L50 — wxGLCanvas* get_wxglcanvas() { return m_canvas_widget; }
+- get_canvas3d · function · L51-L51 — GLCanvas3D* get_canvas3d() { return m_canvas; }
+- set_as_dirty · function · L53-L53 — void set_as_dirty();
+- bed_shape_changed · function · L54-L54 — void bed_shape_changed();
+- plates_count_changed · function · L55-L55 — void plates_count_changed();
+- select_view · function · L57-L57 — void select_view(const std::string& direction);
+- select_curr_plate_all · function · L60-L60 — void select_curr_plate_all();
+- select_object_from_idx · function · L61-L61 — void select_object_from_idx(std::vector<int> &object_idxs);
+- remove_curr_plate_all · function · L62-L62 — void remove_curr_plate_all();
+- select_all · function · L64-L64 — void select_all();
+- deselect_all · function · L65-L65 — void deselect_all();
+- exit_gizmo · function · L66-L66 — void exit_gizmo();
+- delete_selected · function · L67-L67 — void delete_selected();
+- center_selected · function · L68-L68 — void center_selected();
+- drop_selected · function · L69-L69 — void drop_selected();
+- center_selected_plate · function · L70-L70 — void center_selected_plate(const int plate_idx);
+- mirror_selection · function · L71-L71 — void mirror_selection(Axis axis);
+- is_layers_editing_enabled · function · L73-L73 — bool is_layers_editing_enabled() const;
+- is_layers_editing_allowed · function · L74-L74 — bool is_layers_editing_allowed() const;
+- enable_layers_editing · function · L75-L75 — void enable_layers_editing(bool enable);
+- is_dragging · function · L77-L77 — bool is_dragging() const;
+- is_reload_delayed · function · L78-L78 — bool is_reload_delayed() const;
+- reload_scene · function · L80-L80 — void reload_scene(bool refresh_immediately, bool force_full_scene_refresh = false);
+- render · function · L81-L81 — void render();
+- init · function · L84-L84 — bool init(wxWindow* parent, Bed3D& bed, Model* model, DynamicPrintConfig* config, BackgroundSlicingProcess* process);
+- Preview · class · L87-L176 — class Preview : public wxPanel
+- OptionType · type · L109-L123 — enum class OptionType : unsigned int
+- Preview · function · L125-L126 — Preview(wxWindow* parent, Bed3D& bed, Model* model, DynamicPrintConfig* config, BackgroundSlicingProcess* process,
+- update_gcode_result · function · L130-L130 — void update_gcode_result(GCodeProcessorResult* gcode_result);
+- get_wxglcanvas · function · L132-L132 — wxGLCanvas* get_wxglcanvas() { return m_canvas_widget; }
+- get_canvas3d · function · L133-L133 — GLCanvas3D* get_canvas3d() { return m_canvas; }
+- set_as_dirty · function · L135-L135 — void set_as_dirty();
+- bed_shape_changed · function · L137-L137 — void bed_shape_changed();
+- select_view · function · L138-L138 — void select_view(const std::string& direction);
+- set_drop_target · function · L139-L139 — void set_drop_target(wxDropTarget* target);
+- load_print · function · L142-L142 — void load_print(bool keep_z_range = false, bool only_gcode = false);
+- reload_print · function · L143-L143 — void reload_print(bool only_gcode = false);
+- load_shells · function · L145-L145 — void load_shells(const Print& print, bool force_previewing = false);
+- reset_shells · function · L146-L146 — void reset_shells();
+- msw_rescale · function · L148-L148 — void msw_rescale();
+- sys_color_changed · function · L149-L149 — void sys_color_changed();
+- is_loaded · function · L152-L152 — bool is_loaded() const { return (m_loaded_print != nullptr); }
+- on_tick_changed · function · L154-L154 — void on_tick_changed(Type type);
+- show_sliders · function · L156-L156 — void show_sliders(bool show = true);
+- show_moves_sliders · function · L157-L157 — void show_moves_sliders(bool show = true);
+- show_layers_sliders · function · L158-L158 — void show_layers_sliders(bool show = true);
+- set_reload_paint_after_background_process_apply · function · L159-L159 — void set_reload_paint_after_background_process_apply(bool flag) { m_reload_paint_after_background_process_apply = flag; }
+- get_reload_paint_after_background_process_apply · function · L160-L160 — bool get_reload_paint_after_background_process_apply() { return m_reload_paint_after_background_process_apply; }
+- init · function · L163-L163 — bool init(wxWindow* parent, Bed3D& bed, Model* model);
+- bind_event_handlers · function · L165-L165 — void bind_event_handlers();
+- unbind_event_handlers · function · L166-L166 — void unbind_event_handlers();
+- on_size · function · L167-L167 — void on_size(wxSizeEvent& evt);
+- check_layers_slider_values · function · L169-L170 — void check_layers_slider_values(std::vector<CustomGCode::Item>& ticks_from_model,
+- update_layers_slider · function · L172-L172 — void update_layers_slider(const std::vector<double>& layers_z, bool keep_z_range = false);
+- update_layers_slider_mode · function · L173-L173 — void update_layers_slider_mode();
+- load_print_as_fff · function · L175-L175 — void load_print_as_fff(bool keep_z_range = false, bool only_gcode = false);
+- AssembleView · class · L179-L199 — class AssembleView : public wxPanel
+- AssembleView · function · L184-L184 — AssembleView(wxWindow* parent, Bed3D& bed, Model* model, DynamicPrintConfig* config, BackgroundSlicingProcess* process);
+- get_wxglcanvas · function · L187-L187 — wxGLCanvas* get_wxglcanvas() { return m_canvas_widget; }
+- get_canvas3d · function · L188-L188 — GLCanvas3D* get_canvas3d() { return m_canvas; }
+- set_as_dirty · function · L190-L190 — void set_as_dirty();
+- render · function · L191-L191 — void render();
+- is_reload_delayed · function · L193-L193 — bool is_reload_delayed() const;
+- reload_scene · function · L194-L194 — void reload_scene(bool refresh_immediately, bool force_full_scene_refresh = false);
+- select_view · function · L195-L195 — void select_view(const std::string& direction);
+- init · function · L198-L198 — bool init(wxWindow* parent, Bed3D& bed, Model* model, DynamicPrintConfig* config, BackgroundSlicingProcess* process);

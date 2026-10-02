@@ -1,0 +1,32 @@
+# deps_src/qhull/src/qhulltest/QhullPointSet_test.cpp
+
+- QhullPointSet_test · class · L26-L41 — class QhullPointSet_test : public RoadTest
+- cleanup · function · L32-L32 — void cleanup();
+- t_construct · function · L33-L33 — void t_construct();
+- t_convert · function · L34-L34 — void t_convert();
+- t_element · function · L35-L35 — void t_element();
+- t_iterator · function · L36-L36 — void t_iterator();
+- t_const_iterator · function · L37-L37 — void t_const_iterator();
+- t_search · function · L38-L38 — void t_search();
+- t_pointset_iterator · function · L39-L39 — void t_pointset_iterator();
+- t_io · function · L40-L40 — void t_io();
+- add_QhullPointSet_test · function · L43-L47 — void
+- cleanup · method · L50-L54 — void QhullPointSet_test::
+- t_construct · method · L56-L81 — void QhullPointSet_test::
+- facetList · function · L63-L63 — foreach(QhullFacet f, q.facetList())
+- foreach · function · L63-L79 — foreach(QhullFacet f, q.facetList())
+- ps3 · function · L72-L72 — QhullPointSet ps3(ps2);
+- t_convert · method · L83-L100 — void QhullPointSet_test::
+- t_element · method · L105-L134 — void QhullPointSet_test::
+- p8 · function · L122-L122 — QhullPoint p8(q);
+- foreach · function · L130-L133 — foreach(QhullPoint p9, ps){  // Qt only
+- t_iterator · method · L136-L223 — void QhullPointSet_test::
+- i5 · function · L160-L160 — QhullPointSet::Iterator i5(i2);
+- t_const_iterator · method · L225-L268 — void QhullPointSet_test::
+- i5 · function · L252-L252 — QhullPointSet::ConstIterator i5(i2);
+- t_search · method · L271-L296 — void QhullPointSet_test::
+- p4 · function · L290-L290 — QhullPoint p4(q);
+- t_pointset_iterator · method · L298-L354 — void QhullPointSet_test::
+- i · function · L316-L316 — QhullPointSetIterator i(ps);
+- p2 · function · L334-L334 — QhullPoint p2(ps[0]);
+- t_io · method · L356-L374 — void QhullPointSet_test::

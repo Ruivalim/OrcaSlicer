@@ -1,0 +1,62 @@
+# src/slic3r/GUI/Gizmos/GLGizmoRotate.hpp
+
+- Selection · class · L10-L10 — class Selection;
+- GLGizmoRotate · class · L12-L115 — class GLGizmoRotate : public GLGizmoBase
+- Axis · type · L24-L29 — enum Axis : unsigned char
+- GrabberConnection · class · L48-L52 — struct GrabberConnection
+- GLGizmoRotate · function · L65-L65 — GLGizmoRotate(GLCanvas3D& parent, Axis axis);
+- get_angle · function · L68-L68 — double get_angle() const { return m_angle; }
+- set_angle · function · L69-L69 — void set_angle(double angle);
+- get_tooltip · function · L71-L71 — std::string get_tooltip() const override;
+- set_group_id · function · L73-L73 — void set_group_id(int group_id) { m_group_id = group_id; }
+- set_force_local_coordinate · function · L74-L74 — void set_force_local_coordinate(bool use) { m_force_local_coordinate = use; }
+- start_dragging · function · L76-L76 — void start_dragging();
+- stop_dragging · function · L77-L77 — void stop_dragging();
+- enable_grabber · function · L79-L79 — void enable_grabber();
+- disable_grabber · function · L80-L80 — void disable_grabber();
+- set_highlight_color · function · L82-L82 — void set_highlight_color(const ColorRGBA &color);
+- on_mouse · function · L90-L90 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- dragging · function · L91-L91 — void dragging(const UpdateData &data);
+- on_init · function · L94-L94 — bool on_init() override;
+- on_get_name · function · L95-L95 — std::string on_get_name() const override { return ""; }
+- on_start_dragging · function · L96-L96 — void on_start_dragging() override;
+- on_dragging · function · L97-L97 — void on_dragging(const UpdateData &data) override;
+- on_render · function · L98-L98 — void on_render() override;
+- render_circle · function · L101-L101 — void render_circle(const ColorRGBA& color, bool radius_changed);
+- render_scale · function · L102-L102 — void render_scale(const ColorRGBA& color, bool radius_changed);
+- render_snap_radii · function · L103-L103 — void render_snap_radii(const ColorRGBA& color, bool radius_changed);
+- render_reference_radius · function · L104-L104 — void render_reference_radius(const ColorRGBA& color, bool radius_changed);
+- render_angle_arc · function · L105-L105 — void render_angle_arc(const ColorRGBA& color, bool radius_changed);
+- render_grabber_connection · function · L106-L106 — void render_grabber_connection(const ColorRGBA& color, bool radius_changed);
+- render_grabber · function · L107-L107 — void render_grabber(const BoundingBoxf3& box);
+- local_transform · function · L109-L109 — Transform3d local_transform(const Selection& selection) const;
+- mouse_position_in_local_plane · function · L112-L112 — Vec3d mouse_position_in_local_plane(const Linef3& mouse_ray) const;
+- init_data_from_selection · function · L114-L114 — void init_data_from_selection(const Selection& selection);
+- GLGizmoRotate3D · class · L117-L208 — class GLGizmoRotate3D : public GLGizmoBase
+- GLGizmoRotate3D · function · L129-L129 — GLGizmoRotate3D(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id, GizmoObjectManipulation* obj_manipulation);
+- get_rotation · function · L131-L131 — Vec3d get_rotation() const { return Vec3d(m_gizmos[X].get_angle(), m_gizmos[Y].get_angle(), m_gizmos[Z].get_angle()); }
+- set_rotation · function · L132-L132 — void set_rotation(const Vec3d& rotation) { m_gizmos[X].set_angle(rotation.x()); m_gizmos[Y].set_angle(rotation.y()); m_gizmos[Z].set_angle(rotation.z()); }
+- get_tooltip · function · L134-L141 — std::string get_tooltip() const override
+- on_mouse · function · L148-L148 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- data_changed · function · L150-L150 — void data_changed(bool is_serializing) override;
+- on_init · function · L152-L152 — bool on_init() override;
+- on_get_name · function · L153-L153 — std::string on_get_name() const override;
+- on_set_state · function · L154-L154 — void on_set_state() override;
+- on_set_hover_id · function · L155-L159 — void on_set_hover_id() override
+- on_enable_grabber · function · L160-L163 — void on_enable_grabber(unsigned int id) override
+- on_disable_grabber · function · L164-L167 — void on_disable_grabber(unsigned int id) override
+- on_is_activable · function · L168-L168 — bool on_is_activable() const override;
+- on_start_dragging · function · L169-L169 — void on_start_dragging() override;
+- on_stop_dragging · function · L170-L170 — void on_stop_dragging() override;
+- on_dragging · function · L171-L171 — void on_dragging(const UpdateData &data) override;
+- on_render · function · L173-L173 — void on_render() override;
+- on_register_raycasters_for_picking · function · L174-L174 — virtual void on_register_raycasters_for_picking() override;
+- on_unregister_raycasters_for_picking · function · L175-L175 — virtual void on_unregister_raycasters_for_picking() override;
+- on_render_input_window · function · L177-L177 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- RotoptimzeWindow · class · L181-L203 — class RotoptimzeWindow
+- State · class · L186-L189 — struct State
+- Alignment · class · L191-L191 — struct Alignment { float x, y, bottom_limit; };
+- RotoptimzeWindow · function · L193-L195 — RotoptimzeWindow(ImGuiWrapper *   imgui,
+- RotoptimzeWindow · function · L199-L199 — RotoptimzeWindow(const RotoptimzeWindow&) = delete;
+- RotoptimzeWindow · function · L200-L200 — RotoptimzeWindow(RotoptimzeWindow &&) = delete;
+- load_rotoptimize_state · function · L207-L207 — void load_rotoptimize_state();

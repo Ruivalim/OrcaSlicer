@@ -1,0 +1,30 @@
+# src/libslic3r/MeshSplitImpl.hpp
+
+- create_face_neighbors_index · function · L16-L17 — template<class ExPolicy>
+- ItsWithNeighborsIndex_ · class · L21-L25 — template<class Its, class Enable = void> struct ItsWithNeighborsIndex_
+- get_its · function · L23-L23 — static const indexed_triangle_set &get_its(const Its &m) { return m.get_its();}
+- get_index · function · L24-L24 — static const Index &get_index(const Its &m) { return m.get_index(); }
+- get_its · function · L30-L30 — static const indexed_triangle_set &get_its(const indexed_triangle_set &its) noexcept { return its; }
+- get_index · function · L31-L34 — static Index get_index(const indexed_triangle_set &its) noexcept
+- NeighborVisitor · class · L38-L96 — template<class NeighborIndex>
+- NeighborVisitor · function · L40-L44 — NeighborVisitor(const indexed_triangle_set &its, const NeighborIndex &neighbor_index) :
+- NeighborVisitor · function · L45-L49 — NeighborVisitor(const indexed_triangle_set &its, NeighborIndex &&aneighbor_index) :
+- visit · function · L51-L78 — template<typename Visitor>
+- push · function · L91-L91 — void                         push(const stack_el &s) { m_facestack.emplace_back(s); }
+- pop · function · L92-L92 — stack_el                     pop() { stack_el ret = m_facestack.back(); m_facestack.pop_back(); return ret; }
+- ItsNeighborsWrapper · class · L101-L115 — template<class IndexT> struct ItsNeighborsWrapper
+- ItsNeighborsWrapper · function · L109-L109 — ItsNeighborsWrapper(const indexed_triangle_set &its, const IndexT &index) : its{its}, index_ref{index} {}
+- ItsNeighborsWrapper · function · L111-L111 — ItsNeighborsWrapper(const indexed_triangle_set &its, IndexT &&aindex) : its{its}, index_ref{index}, index(std::move(aindex)) {}
+- get_its · function · L113-L113 — const auto& get_its() const noexcept { return its; }
+- get_index · function · L114-L114 — const auto& get_index() const noexcept { return index_ref; }
+- SplitOutputFn · class · L119-L130 — template<class Fn>
+- SplitOutputFn · function · L124-L124 — SplitOutputFn(Fn f): fn{std::move(f)} {}
+- its_split · function · L133-L182 — template<class Its, class OutputIt>
+- VertexConv · class · L140-L143 — struct VertexConv
+- visitor · function · L146-L146 — meshsplit_detail::NeighborVisitor visitor(its, meshsplit_detail::ItsWithNeighborsIndex_<Its>::get_index(m));
+- its_split · function · L184-L191 — template<class Its>
+- its_is_splittable · function · L193-L205 — template<class Its>
+- visitor · function · L196-L196 — meshsplit_detail::NeighborVisitor visitor(meshsplit_detail::ItsWithNeighborsIndex_<Its>::get_its(m), meshsplit_detail::ItsWithNeighborsIndex_<Its>::get_index(m));
+- its_number_of_patches · function · L207-L221 — template<class Its>
+- visitor · function · L210-L210 — meshsplit_detail::NeighborVisitor visitor(meshsplit_detail::ItsWithNeighborsIndex_<Its>::get_its(m), meshsplit_detail::ItsWithNeighborsIndex_<Its>::get_index(m));
+- create_face_neighbors_index · function · L223-L273 — template<class ExPolicy>

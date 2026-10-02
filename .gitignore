@@ -53,3 +53,10 @@ __pycache__/
 *.pyc
 *.opc
 docs/superpowers/
+# graft: caches do grafo, cards versionados
+graft/.cache/
+graft/.graph/
+
+# sessões dos agentes
+.pi/
+ctest_results.xml

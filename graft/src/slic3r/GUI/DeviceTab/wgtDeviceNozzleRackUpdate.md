@@ -1,0 +1,23 @@
+# src/slic3r/GUI/DeviceTab/wgtDeviceNozzleRackUpdate.h
+
+- UpdateRackInfo · function · L42-L42 — void UpdateRackInfo(const std::shared_ptr<DevNozzleRack> rack);;
+- on_dpi_changed · function · L45-L45 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- UpdateRackInfo · function · L63-L63 — void UpdateRackInfo(const std::shared_ptr<DevNozzleRack> rack);
+- Rescale · function · L64-L64 — void Rescale();
+- CreateGui · function · L67-L67 — void CreateGui();
+- OnBtnReadAll · function · L69-L69 — void OnBtnReadAll(wxCommandEvent& e);
+- UpdateColourStyle · function · L87-L87 — void UpdateColourStyle(const wxColour& clr);
+- GetExtruderNozzleId · function · L90-L90 — int GetExtruderNozzleId() const { return m_ext_nozzle_id; }
+- SetExtruderNozzleId · function · L91-L91 — void SetExtruderNozzleId(int ext_nozzle_id) { m_ext_nozzle_id = ext_nozzle_id; }
+- UpdateExtruderNozzleInfo · function · L92-L92 — void UpdateExtruderNozzleInfo(const std::shared_ptr<DevNozzleRack> rack);
+- SetRackNozzleId · function · L95-L95 — void SetRackNozzleId(int rack_nozzle_id) { m_rack_nozzle_id = rack_nozzle_id; }
+- GetRackNozzleId · function · L96-L96 — int GetRackNozzleId() const { return m_rack_nozzle_id; }
+- UpdateRackNozzleInfo · function · L97-L97 — void UpdateRackNozzleInfo(const std::shared_ptr<DevNozzleRack> rack);
+- Rescale · function · L100-L100 — void Rescale();
+- CreateGui · function · L103-L103 — void CreateGui();
+- UpdateInfo · function · L105-L105 — void UpdateInfo(const DevNozzle& nozzle);
+- OnBitmapHoverEnter · function · L107-L107 — void OnBitmapHoverEnter(wxMouseEvent& event);
+- OnBitmapHoverLeave · function · L108-L108 — void OnBitmapHoverLeave(wxMouseEvent& event);
+- OnStatusIconClick · function · L109-L109 — void OnStatusIconClick(wxMouseEvent& event);
+- updateNozzleImage · function · L110-L110 — void updateNozzleImage(const DevNozzle& nozzle);
+- NozzleStatus · type · L113-L120 — enum NozzleStatus : int

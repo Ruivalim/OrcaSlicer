@@ -1,0 +1,33 @@
+# tests/catch2/src/catch2/interfaces/catch_interfaces_capture.hpp
+
+- AssertionResult · class · L21-L21 — class AssertionResult;
+- ITransientExpression · class · L31-L31 — class ITransientExpression;
+- IGeneratorTracker · class · L32-L32 — class IGeneratorTracker;
+- GeneratorUntypedBase · class · L37-L37 — class GeneratorUntypedBase;
+- IResultCapture · class · L42-L102 — class IResultCapture
+- notifyAssertionStarted · function · L46-L46 — virtual void notifyAssertionStarted( AssertionInfo const& info ) = 0;
+- sectionStarted · function · L47-L49 — virtual bool sectionStarted( StringRef sectionName,
+- sectionEnded · function · L50-L50 — virtual void sectionEnded( SectionEndInfo&& endInfo ) = 0;
+- sectionEndedEarly · function · L51-L51 — virtual void sectionEndedEarly( SectionEndInfo&& endInfo ) = 0;
+- acquireGeneratorTracker · function · L54-L55 — acquireGeneratorTracker( StringRef generatorName,
+- createGeneratorTracker · function · L57-L59 — createGeneratorTracker( StringRef generatorName,
+- benchmarkPreparing · function · L61-L61 — virtual void benchmarkPreparing( StringRef name ) = 0;
+- benchmarkStarting · function · L62-L62 — virtual void benchmarkStarting( BenchmarkInfo const& info ) = 0;
+- benchmarkEnded · function · L63-L63 — virtual void benchmarkEnded( BenchmarkStats<> const& stats ) = 0;
+- benchmarkFailed · function · L64-L64 — virtual void benchmarkFailed( StringRef error ) = 0;
+- pushScopedMessage · function · L66-L66 — static void pushScopedMessage( MessageInfo&& message );
+- popScopedMessage · function · L67-L67 — static void popScopedMessage( unsigned int messageId );
+- emplaceUnscopedMessage · function · L68-L68 — static void emplaceUnscopedMessage( MessageBuilder&& builder );
+- handleFatalErrorCondition · function · L70-L70 — virtual void handleFatalErrorCondition( StringRef message ) = 0;
+- handleExpr · function · L72-L75 — virtual void handleExpr
+- handleMessage · function · L76-L80 — virtual void handleMessage
+- handleUnexpectedExceptionNotThrown · function · L81-L83 — virtual void handleUnexpectedExceptionNotThrown
+- handleUnexpectedInflightException · function · L84-L87 — virtual void handleUnexpectedInflightException
+- handleIncomplete · function · L88-L89 — virtual void handleIncomplete
+- handleNonExpr · function · L90-L93 — virtual void handleNonExpr
+- lastAssertionPassed · function · L96-L96 — virtual bool lastAssertionPassed() = 0;
+- getCurrentTestName · function · L99-L99 — virtual std::string getCurrentTestName() const = 0;
+- getLastResult · function · L100-L100 — virtual const AssertionResult* getLastResult() const = 0;
+- exceptionEarlyReported · function · L101-L101 — virtual void exceptionEarlyReported() = 0;
+- missingCaptureInstance · function · L105-L106 — [[noreturn]]
+- getResultCapture · function · L108-L108 — inline IResultCapture& getResultCapture()

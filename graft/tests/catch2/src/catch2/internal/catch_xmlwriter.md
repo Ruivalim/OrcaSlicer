@@ -1,0 +1,30 @@
+# tests/catch2/src/catch2/internal/catch_xmlwriter.hpp
+
+- XmlFormatting · type · L20-L24 — enum class XmlFormatting : std::uint8_t
+- XmlEncode · class · L43-L58 — class XmlEncode
+- ForWhat · type · L45-L45 — enum ForWhat { ForTextNodes, ForAttributes };
+- XmlEncode · function · L47-L48 — constexpr XmlEncode( StringRef str CATCH_ATTR_LIFETIMEBOUND, ForWhat forWhat = ForTextNodes ):
+- encodeTo · function · L51-L51 — void encodeTo( std::ostream& os ) const;
+- XmlWriter · class · L60-L160 — class XmlWriter
+- ScopedElement · class · L63-L95 — class ScopedElement
+- ScopedElement · function · L65-L65 — ScopedElement( XmlWriter* writer CATCH_ATTR_LIFETIMEBOUND, XmlFormatting fmt );
+- ScopedElement · function · L67-L67 — ScopedElement( ScopedElement&& other ) noexcept;
+- writeText · function · L73-L75 — writeText( StringRef text,
+- writeAttribute · function · L77-L78 — ScopedElement& writeAttribute( StringRef name,
+- writeAttribute · function · L86-L87 — ScopedElement& writeAttribute( StringRef name,
+- XmlWriter · function · L97-L97 — XmlWriter( std::ostream& os CATCH_ATTR_LIFETIMEBOUND );
+- XmlWriter · function · L100-L100 — XmlWriter( XmlWriter const& ) = delete;
+- startElement · function · L103-L103 — XmlWriter& startElement( std::string const& name, XmlFormatting fmt = XmlFormatting::Newline | XmlFormatting::Indent);
+- scopedElement · function · L105-L105 — ScopedElement scopedElement( std::string const& name, XmlFormatting fmt = XmlFormatting::Newline | XmlFormatting::Indent);
+- endElement · function · L107-L107 — XmlWriter& endElement(XmlFormatting fmt = XmlFormatting::Newline | XmlFormatting::Indent);
+- writeAttribute · function · L110-L110 — XmlWriter& writeAttribute( StringRef name, StringRef attribute );
+- writeAttribute · function · L113-L113 — XmlWriter& writeAttribute( StringRef name, bool attribute );
+- writeAttribute · function · L116-L116 — XmlWriter& writeAttribute( StringRef name, char const* attribute );
+- writeAttribute · function · L127-L127 — XmlWriter& writeAttribute( StringRef name, T const& attribute )
+- writeText · function · L134-L136 — XmlWriter& writeText( StringRef text,
+- writeComment · function · L139-L141 — XmlWriter& writeComment( StringRef text,
+- writeStylesheetRef · function · L143-L143 — void writeStylesheetRef( StringRef url );
+- ensureTagClosed · function · L145-L145 — void ensureTagClosed();
+- applyFormatting · function · L149-L149 — void applyFormatting(XmlFormatting fmt);
+- writeDeclaration · function · L151-L151 — void writeDeclaration();
+- newlineIfNecessary · function · L153-L153 — void newlineIfNecessary();

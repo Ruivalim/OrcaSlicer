@@ -1,0 +1,21 @@
+# deps_src/libnest2d/include/libnest2d/placers/placer_boilerplate.hpp
+
+- EmptyConfig · class · L8-L8 — struct EmptyConfig {};
+- PlacerBoilerplate · class · L10-L129 — template<class Subclass, class RawShape, class TBin, class Cfg = EmptyConfig>
+- PackResult · class · L25-L49 — class PackResult
+- PackResult · function · L34-L38 — PackResult(Item& item):
+- PackResult · function · L40-L41 — PackResult(double overfit = 1.0):
+- overfit · function · L45-L45 — double overfit() const { return overfit_; }
+- score · function · L47-L47 — double score() { return score_; }
+- PlacerBoilerplate · function · L51-L54 — inline PlacerBoilerplate(const BinType& bin, unsigned cap = 50): bin_(bin)
+- bin · function · L56-L56 — inline const BinType& bin() const BP2D_NOEXCEPT { return bin_; }
+- bin · function · L58-L60 — template<class TB> inline void bin(TB&& b)
+- configure · function · L62-L64 — inline void configure(const Config& config) BP2D_NOEXCEPT
+- pack · function · L66-L70 — template<class Range = ConstItemRange<DefaultIter>>
+- preload · function · L72-L75 — void preload(const ItemGroup& packeditems)
+- accept · function · L77-L85 — void accept(PackResult& r)
+- unpackLast · function · L87-L90 — void unpackLast()
+- getItems · function · L92-L92 — inline const ItemGroup& getItems() const { return items_; }
+- clearItems · function · L94-L97 — inline void clearItems()
+- clearItems · function · L100-L108 — inline void clearItems(const std::function<bool(const Item &itm)> &clearFunc)
+- filledArea · function · L110-L122 — inline double filledArea() const

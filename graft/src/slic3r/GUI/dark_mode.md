@@ -1,0 +1,29 @@
+# src/slic3r/GUI/dark_mode.hpp
+
+- IsEnabled · function · L7-L7 — bool IsEnabled();
+- IsSupported · function · L8-L8 — bool IsSupported();
+- IsSystemMenuEnabled · function · L9-L9 — bool IsSystemMenuEnabled();
+- InvertLightness · function · L11-L11 — COLORREF InvertLightness(COLORREF c);
+- InvertLightnessSofter · function · L12-L12 — COLORREF InvertLightnessSofter(COLORREF c);
+- GetBackgroundColor · function · L14-L14 — COLORREF GetBackgroundColor();
+- GetSofterBackgroundColor · function · L15-L15 — COLORREF GetSofterBackgroundColor();
+- GetTextColor · function · L16-L16 — COLORREF GetTextColor();
+- GetDarkerTextColor · function · L17-L17 — COLORREF GetDarkerTextColor();
+- GetEdgeColor · function · L18-L18 — COLORREF GetEdgeColor();
+- GetBackgroundBrush · function · L20-L20 — HBRUSH GetBackgroundBrush();
+- GetSofterBackgroundBrush · function · L21-L21 — HBRUSH GetSofterBackgroundBrush();
+- OnSettingChange · function · L24-L24 — bool OnSettingChange(HWND hwnd, LPARAM lParam); // true if dark mode toggled
+- UAHWndProc · function · L28-L28 — bool UAHWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT* lr);
+- DrawUAHMenuNCBottomLine · function · L30-L30 — void DrawUAHMenuNCBottomLine(HWND hWnd);
+- InitDarkMode · function · L33-L33 — void InitDarkMode(bool set_dark_mode, bool set_sys_menu);
+- SetDarkMode · function · L34-L34 — void SetDarkMode(bool set_dark_mode);
+- SetSystemMenuForApp · function · L35-L35 — void SetSystemMenuForApp(bool set_sys_menu);
+- AllowDarkModeForApp · function · L36-L36 — void AllowDarkModeForApp(bool allow);
+- AllowDarkModeForWindow · function · L37-L37 — bool AllowDarkModeForWindow(HWND hWnd, bool allow);
+- RefreshTitleBarThemeColor · function · L38-L38 — void RefreshTitleBarThemeColor(HWND hWnd);
+- EnableDarkScrollBarForWindowAndChildren · function · L41-L41 — void EnableDarkScrollBarForWindowAndChildren(HWND hwnd);
+- SetDarkTitleBar · function · L43-L43 — void SetDarkTitleBar(HWND hwnd);
+- SetDarkExplorerTheme · function · L44-L44 — void SetDarkExplorerTheme(HWND hwnd);
+- SetDarkListView · function · L45-L45 — void SetDarkListView(HWND hwnd);
+- SetDarkListViewHeader · function · L46-L46 — void SetDarkListViewHeader(HWND hwnd);
+- AutoSubclassAndThemeChildControls · function · L47-L47 — void AutoSubclassAndThemeChildControls(HWND hwndParent, bool subclass = true, bool theme = true);

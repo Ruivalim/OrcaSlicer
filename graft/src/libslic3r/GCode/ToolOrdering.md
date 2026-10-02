@@ -1,0 +1,91 @@
+# src/libslic3r/GCode/ToolOrdering.hpp
+
+- Print · class · L22-L22 — class Print;
+- PrintObject · class · L23-L23 — class PrintObject;
+- LayerTools · class · L24-L24 — class LayerTools;
+- PrintRegion · class · L26-L26 — class PrintRegion;
+- WipingExtrusions · class · L31-L100 — class WipingExtrusions
+- is_anything_overridden · function · L34-L36 — bool is_anything_overridden() const {   // if there are no overrides, all the agenda can be skipped - this function can tell us if that's the case
+- ExtruderPerCopy · type · L39-L39 — typedef boost::container::small_vector<int32_t, 3> ExtruderPerCopy;
+- get_extruder_overrides · function · L42-L42 — const ExtruderPerCopy* get_extruder_overrides(const ExtrusionEntity* entity, const PrintObject* object, int correct_extruder_id, size_t num_of_copies);
+- get_support_extruder_overrides · function · L43-L43 — int get_support_extruder_overrides(const PrintObject* object);
+- get_support_interface_extruder_overrides · function · L44-L44 — int get_support_interface_extruder_overrides(const PrintObject* object);
+- mark_wiping_extrusions · function · L48-L48 — float mark_wiping_extrusions(const Print& print, unsigned int old_extruder, unsigned int new_extruder, float volume_to_wipe);
+- ensure_perimeters_infills_order · function · L50-L50 — void ensure_perimeters_infills_order(const Print& print);
+- is_overriddable · function · L52-L52 — bool is_overriddable(const ExtrusionEntityCollection& ee, const PrintConfig& print_config, const PrintObject& object, const PrintRegion& region) const;
+- is_overriddable_and_mark · function · L53-L57 — bool is_overriddable_and_mark(const ExtrusionEntityCollection& ee, const PrintConfig& print_config, const PrintObject& object, const PrintRegion& region)
+- is_support_overriddable · function · L60-L60 — bool is_support_overriddable(const ExtrusionRole role, const PrintObject& object) const;
+- is_support_overriddable_and_mark · function · L61-L65 — bool is_support_overriddable_and_mark(const ExtrusionRole role, const PrintObject& object)
+- is_support_overridden · function · L67-L69 — bool is_support_overridden(const PrintObject* object) const
+- is_support_interface_overridden · function · L71-L73 — bool is_support_interface_overridden(const PrintObject* object) const
+- set_layer_tools_ptr · function · L75-L75 — void set_layer_tools_ptr(const LayerTools* lt) { m_layer_tools = lt; }
+- first_nonsoluble_extruder_on_layer · function · L78-L78 — int first_nonsoluble_extruder_on_layer(const PrintConfig& print_config) const;
+- last_nonsoluble_extruder_on_layer · function · L79-L79 — int last_nonsoluble_extruder_on_layer(const PrintConfig& print_config) const;
+- set_extruder_override · function · L82-L82 — void set_extruder_override(const ExtrusionEntity* entity, const PrintObject* object, size_t copy_id, int extruder, size_t num_of_copies);
+- set_support_extruder_override · function · L84-L84 — void set_support_extruder_override(const PrintObject* object, size_t copy_id, int extruder, size_t num_of_copies);
+- set_support_interface_extruder_override · function · L85-L85 — void set_support_interface_extruder_override(const PrintObject* object, size_t copy_id, int extruder, size_t num_of_copies);
+- is_entity_overridden · function · L88-L91 — bool is_entity_overridden(const ExtrusionEntity* entity, const PrintObject *object, size_t copy_id) const
+- FilamentChangeStats · class · L103-L134 — struct FilamentChangeStats
+- clear · function · L113-L117 — void clear()
+- LayerTools · class · L137-L246 — class LayerTools
+- LayerTools · function · L140-L140 — LayerTools(const coordf_t z) : print_z(z) {}
+- is_extruder_order · function · L147-L147 — bool is_extruder_order(unsigned int a, unsigned int b) const;
+- has_extruder · function · L148-L148 — bool has_extruder(unsigned int extruder) const { return std::find(this->extruders.begin(), this->extruders.end(), extruder) != this->extruders.end(); }
+- wall_extruder_id · function · L151-L151 — unsigned int wall_extruder_id(const PrintRegion &region) const;
+- sparse_infill_filament_id · function · L152-L152 — unsigned int sparse_infill_filament_id(const PrintRegion &region) const;
+- internal_solid_filament_id · function · L153-L153 — unsigned int internal_solid_filament_id(const PrintRegion &region) const;
+- extruder · function · L155-L155 — unsigned int extruder(const ExtrusionEntityCollection &extrusions, const PrintRegion &region) const;
+- resolve_mixed · function · L183-L186 — unsigned int resolve_mixed(unsigned int filament_0based) const
+- MixedSubLayerGroup · class · L188-L224 — struct MixedSubLayerGroup
+- ObjectGradient · class · L196-L202 — struct ObjectGradient
+- VolumeKey · class · L211-L221 — struct VolumeKey
+- mixed_group_by_slot · function · L227-L227 — const MixedSubLayerGroup* mixed_group_by_slot(unsigned int slot_id) const
+- is_mixed_slot · function · L234-L236 — bool is_mixed_slot(unsigned int slot_id) const
+- wiping_extrusions · function · L238-L238 — WipingExtrusions& wiping_extrusions()
+- ToolOrdering · class · L248-L418 — class ToolOrdering
+- FilamentChangeMode · type · L251-L255 — enum FilamentChangeMode
+- ToolOrdering · function · L256-L256 — ToolOrdering() = default;
+- ToolOrdering · function · L260-L260 — ToolOrdering(const PrintObject &object, unsigned int first_extruder, bool prime_multi_material = false);
+- ToolOrdering · function · L264-L264 — ToolOrdering(const Print& print, unsigned int first_extruder, bool prime_multi_material = false);
+- handle_dontcare_extruder · function · L266-L266 — void handle_dontcare_extruder(const std::vector<unsigned int>& first_layer_tool_order);
+- handle_dontcare_extruder · function · L267-L267 — void handle_dontcare_extruder(unsigned int first_extruder);
+- sort_and_build_data · function · L269-L269 — void sort_and_build_data(const PrintObject &object, unsigned int first_extruder, bool prime_multi_material = false);
+- sort_and_build_data · function · L270-L270 — void sort_and_build_data(const Print& print, unsigned int first_extruder, bool prime_multi_material = false);
+- clear · function · L272-L277 — void    clear()
+- assign_custom_gcodes · function · L283-L283 — void 				assign_custom_gcodes(const Print &print);
+- first_extruder · function · L286-L286 — unsigned int   		first_extruder() const { return m_first_printing_extruder; }
+- last_extruder · function · L289-L289 — unsigned int   		last_extruder() const { return m_last_printing_extruder; }
+- all_extruders · function · L292-L292 — const std::vector<unsigned int>& all_extruders() const { return m_all_printing_extruders; }
+- used_mixed_filaments · function · L295-L295 — const std::vector<unsigned int>& used_mixed_filaments() const { return m_used_mixed_filaments; }
+- tools_for_layer · function · L298-L298 — const LayerTools&	tools_for_layer(coordf_t print_z) const;
+- tools_for_layer · function · L299-L299 — LayerTools&			tools_for_layer(coordf_t print_z) { return const_cast<LayerTools&>(std::as_const(*this).tools_for_layer(print_z)); }
+- front · function · L301-L301 — const LayerTools&   front()       const { return m_layer_tools.front(); }
+- back · function · L302-L302 — const LayerTools&   back()        const { return m_layer_tools.back(); }
+- begin · function · L303-L303 — std::vector<LayerTools>::const_iterator begin() const { return m_layer_tools.begin(); }
+- end · function · L304-L304 — std::vector<LayerTools>::const_iterator end()   const { return m_layer_tools.end(); }
+- empty · function · L305-L305 — bool 				empty()       const { return m_layer_tools.empty(); }
+- layer_tools · function · L306-L306 — std::vector<LayerTools>& layer_tools() { return m_layer_tools; }
+- has_wipe_tower · function · L307-L307 — bool 				has_wipe_tower() const { return ! m_layer_tools.empty() && m_first_printing_extruder != (unsigned int)-1 && m_layer_tools.front().has_wipe_tower; }
+- get_most_used_extruder · function · L309-L309 — int                 get_most_used_extruder() const { return most_used_extruder; }
+- get_layered_nozzle_group_result · function · L314-L314 — const MultiNozzleUtils::LayeredNozzleGroupResult &get_layered_nozzle_group_result() const { return m_nozzle_group_result; }
+- get_nozzle_status · function · L320-L320 — const MultiNozzleUtils::NozzleStatusRecorder &get_nozzle_status() const { return m_nozzle_status; }
+- set_nozzle_status · function · L321-L321 — void set_nozzle_status(const MultiNozzleUtils::NozzleStatusRecorder &status) { m_initial_nozzle_status = status; m_nozzle_status = status; }
+- get_recommended_filament_maps · function · L331-L331 — static MultiNozzleUtils::LayeredNozzleGroupResult get_recommended_filament_maps(const std::vector<std::vector<unsigned int>>& layer_filaments, const Print* print,const FilamentMapMode mode, const std::vector<std::set<int>>& physical_unprintables, const std::vector<std::set<int>>& geometric_unprintables, const std::map<int, std::set<NozzleVolumeType>>& unprintable_volumes = {}, const std::unordered_map<int, int>& nozzle_status = {});
+- build_sequential_group_result · function · L339-L347 — static MultiNozzleUtils::LayeredNozzleGroupResult build_sequential_group_result(
+- get_filament_change_stats · function · L350-L350 — FilamentChangeStats get_filament_change_stats(FilamentChangeMode mode);
+- cal_most_used_extruder · function · L351-L351 — void                cal_most_used_extruder(const PrintConfig &config);
+- cal_max_additional_fan · function · L352-L352 — float               cal_max_additional_fan(const PrintConfig &config);
+- cal_non_support_filaments · function · L353-L356 — bool                cal_non_support_filaments(const PrintConfig &config,
+- has_non_support_filament · function · L358-L358 — bool                has_non_support_filament(const PrintConfig &config);
+- initialize_layers · function · L361-L361 — void				initialize_layers(std::vector<coordf_t> &zs);
+- collect_extruders · function · L362-L362 — void 				collect_extruders(const PrintObject &object, const std::vector<std::pair<double, unsigned int>> &per_layer_extruder_switches);
+- fill_wipe_tower_partitions · function · L363-L363 — void 				fill_wipe_tower_partitions(const PrintConfig &config, coordf_t object_bottom_z, coordf_t max_layer_height);
+- insert_wipe_tower_extruder · function · L364-L364 — bool                insert_wipe_tower_extruder();
+- mark_skirt_layers · function · L365-L365 — void                mark_skirt_layers(const PrintConfig &config, coordf_t max_layer_height);
+- collect_extruder_statistics · function · L366-L366 — void 				collect_extruder_statistics(bool prime_multi_material);
+- reorder_extruders_for_minimum_flush_volume · function · L367-L367 — void                reorder_extruders_for_minimum_flush_volume(bool reorder_first_layer);
+- resolve_mixed_filaments · function · L368-L368 — void                resolve_mixed_filaments(const PrintConfig &config);
+- enforce_mixed_component_order · function · L369-L369 — void                enforce_mixed_component_order();
+- generate_first_layer_tool_order · function · L372-L372 — std::vector<unsigned int> generate_first_layer_tool_order(const Print& print);
+- generate_first_layer_tool_order · function · L373-L373 — std::vector<unsigned int> generate_first_layer_tool_order(const PrintObject& object);
+- parse_cyclic_order · function · L423-L423 — std::vector<unsigned int> parse_cyclic_order(const std::string& str, unsigned int number_of_extruders);

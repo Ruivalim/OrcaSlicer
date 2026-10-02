@@ -1,0 +1,34 @@
+# src/libslic3r/GCode/ConflictChecker.hpp
+
+- LineWithID · class · L15-L22 — struct LineWithID
+- LineWithID · function · L21-L21 — LineWithID(const Line &line, const void* id, ExtrusionRole role) : _line(line), _id(id), _role(role) {}
+- ExtrusionLayer · class · L26-L32 — struct ExtrusionLayer
+- ExtrusionLayersType · type · L34-L34 — enum class ExtrusionLayersType { INFILL, PERIMETERS, SUPPORT, WIPE_TOWER };
+- ExtrusionLayers · class · L36-L40 — class ExtrusionLayers : public std::vector<ExtrusionLayer>
+- ObjectExtrusions · class · L42-L52 — struct ObjectExtrusions
+- ObjectExtrusions · function · L47-L51 — ObjectExtrusions()
+- LinesBucket · class · L54-L103 — class LinesBucket
+- LinesBucket · function · L65-L65 — LinesBucket(ExtrusionLayers &&paths, const void* id, Point offset) : _piles(paths), _id(id), _offset(offset) {}
+- LinesBucket · function · L66-L66 — LinesBucket(LinesBucket &&) = default;
+- curRange · function · L68-L73 — std::pair<int, int> curRange() const
+- valid · function · L74-L74 — bool valid() const { return _curPileIdx < _piles.size(); }
+- raise · function · L75-L81 — void raise()
+- curBottomZ · function · L82-L82 — float curBottomZ() const { return _curBottomZ; }
+- curLines · function · L83-L98 — LineWithIDs curLines() const
+- LinesBucketPtrComp · class · L105-L108 — struct LinesBucketPtrComp
+- LinesBucketQueue · class · L110-L121 — class LinesBucketQueue
+- emplace_back_bucket · function · L117-L117 — void        emplace_back_bucket(ExtrusionLayers &&els, const void *objPtr, Point offset);
+- valid · function · L118-L118 — bool        valid() const { return line_bucket_ptr_queue.empty() == false; }
+- getCurrBottomZ · function · L119-L119 — float       getCurrBottomZ();
+- getCurLines · function · L120-L120 — LineWithIDs getCurLines() const;
+- getExtrusionPathsFromEntity · function · L123-L123 — void getExtrusionPathsFromEntity(const ExtrusionEntityCollection *entity, ExtrusionPaths &paths);
+- getExtrusionPathsFromLayer · function · L125-L125 — ExtrusionLayers getExtrusionPathsFromLayer(const LayerRegionPtrs layerRegionPtrs);
+- getExtrusionPathsFromSupportLayer · function · L127-L127 — ExtrusionLayer getExtrusionPathsFromSupportLayer(SupportLayer *supportLayer);
+- getAllLayersExtrusionPathsFromObject · function · L129-L129 — ObjectExtrusions getAllLayersExtrusionPathsFromObject(PrintObject *obj);
+- ConflictComputeResult · class · L131-L138 — struct ConflictComputeResult
+- ConflictComputeResult · function · L136-L136 — ConflictComputeResult(const void* o1, const void* o2) : _obj1(o1), _obj2(o2) {}
+- ConflictComputeResult · function · L137-L137 — ConflictComputeResult() = default;
+- ConflictChecker · class · L144-L149 — struct ConflictChecker
+- find_inter_of_lines_in_diff_objs · function · L146-L146 — static ConflictResultOpt  find_inter_of_lines_in_diff_objs(PrintObjectPtrs objs, std::optional<const FakeWipeTower *> wtdptr);
+- find_inter_of_lines · function · L147-L147 — static ConflictComputeOpt find_inter_of_lines(const LineWithIDs &lines);
+- line_intersect · function · L148-L148 — static ConflictComputeOpt line_intersect(const LineWithID &l1, const LineWithID &l2);

@@ -1,0 +1,21 @@
+# deps_src/libnest2d/include/libnest2d/backends/libslic3r/geometries.hpp
+
+- IsVec_ · class · L18-L18 — template<class T, class En = void> struct IsVec_ : public std::false_type {};
+- offset · function · L131-L137 — template<>
+- offset · function · L139-L144 — template<>
+- toString · function · L147-L168 — template<> inline std::string toString(const Slic3r::ExPolygon& sh)
+- create · function · L170-L178 — template<>
+- create · function · L180-L186 — template<> inline Slic3r::ExPolygon create(Slic3r::Polygon&& path, Slic3r::Polygons&& holes)
+- holes · function · L189-L189 — inline const THolesContainer<PolygonImpl>& holes(const Slic3r::ExPolygon& sh)
+- holes · function · L194-L194 — template<> inline THolesContainer<PolygonImpl>& holes(Slic3r::ExPolygon& sh)
+- hole · function · L200-L200 — inline Slic3r::Polygon& hole(Slic3r::ExPolygon& sh, unsigned long idx)
+- hole · function · L206-L206 — inline const Slic3r::Polygon& hole(const Slic3r::ExPolygon& sh, unsigned long idx)
+- holeCount · function · L211-L214 — template<> inline size_t holeCount(const Slic3r::ExPolygon& sh)
+- contour · function · L216-L216 — template<> inline Slic3r::Polygon& contour(Slic3r::ExPolygon& sh)
+- contour · function · L222-L222 — inline const Slic3r::Polygon& contour(const Slic3r::ExPolygon& sh)
+- reserve · function · L227-L231 — template<>
+- addVertex · function · L233-L237 — template<>
+- translate · function · L240-L244 — template<>
+- rotate · function · L247-L251 — template<>
+- merge · function · L258-L262 — template<>
+- subtract · function · L264-L264 — inline TMultiShape<PolygonImpl> subtract(const TMultiShape<PolygonImpl> &outerBinNfp, const TMultiShape<PolygonImpl> &shapes) { return Slic3r::diff_ex(outerBinNfp, shapes); }

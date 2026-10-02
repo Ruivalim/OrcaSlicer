@@ -1,0 +1,40 @@
+# src/libslic3r/Fill/FillBase.hpp
+
+- Surface · class · L26-L26 — class Surface;
+- InfillPattern · type · L27-L27 — enum InfillPattern : int;
+- InfillFailedException · class · L34-L37 — class InfillFailedException : public Slic3r::RuntimeError
+- InfillFailedException · function · L36-L36 — InfillFailedException() : Slic3r::RuntimeError("Infill failed") {}
+- LockRegionParam · class · L39-L46 — struct LockRegionParam
+- LockRegionParam · function · L41-L41 — LockRegionParam() {}
+- FillParams · class · L48-L117 — struct FillParams
+- full_infill · function · L50-L50 — bool        full_infill() const { return density > 0.9999f; }
+- dont_connect · function · L52-L52 — bool        dont_connect() const { return anchor_length_max < 0.05f; }
+- Fill · class · L120-L238 — class Fill
+- clone · function · L162-L162 — virtual Fill* clone() const = 0;
+- new_from_type · function · L164-L164 — static Fill* new_from_type(const InfillPattern type);
+- new_from_type · function · L165-L165 — static Fill* new_from_type(const std::string &type);
+- use_bridge_flow · function · L166-L166 — static bool  use_bridge_flow(const InfillPattern type);
+- set_bounding_box · function · L168-L168 — void         set_bounding_box(const Slic3r::BoundingBox &bbox) { bounding_box = bbox; }
+- extended_object_bounding_box · function · L169-L169 — BoundingBox  extended_object_bounding_box() const;
+- use_bridge_flow · function · L171-L171 — virtual bool use_bridge_flow() const { return false; }
+- no_sort · function · L174-L174 — virtual bool no_sort() const { return false; }
+- is_self_crossing · function · L176-L176 — virtual bool is_self_crossing() = 0;
+- has_consistent_pattern · function · L179-L179 — virtual bool has_consistent_pattern() const { return false; }
+- fill_surface · function · L182-L182 — virtual Polylines fill_surface(const Surface *surface, const FillParams &params);
+- fill_surface_arachne · function · L183-L183 — virtual ThickPolylines fill_surface_arachne(const Surface* surface, const FillParams& params);
+- set_lock_region_param · function · L184-L184 — virtual void set_lock_region_param(const LockRegionParam &lock_param){};
+- fill_surface_extrusion · function · L187-L187 — virtual void fill_surface_extrusion(const Surface *surface, const FillParams &params, ExtrusionEntitiesPtr &out);
+- Fill · function · L190-L202 — Fill() :
+- _fill_surface_single · function · L205-L210 — virtual void    _fill_surface_single(
+- _fill_surface_single · function · L213-L217 — virtual void _fill_surface_single(const FillParams& params,
+- _layer_angle · function · L219-L219 — virtual float _layer_angle(size_t idx) const { return fixed_angle ? 0.f : (idx & 1) ? float(M_PI/2.) : 0.f; }
+- _infill_direction · function · L221-L221 — virtual std::pair<float, Point> _infill_direction(const Surface *surface) const;
+- _create_gap_fill · function · L225-L225 — void _create_gap_fill(const Surface* surface, const FillParams& params, ExtrusionEntityCollection* out);
+- connect_infill · function · L228-L228 — static void connect_infill(Polylines &&infill_ordered, const ExPolygon &boundary, Polylines &polylines_out, const double spacing, const FillParams &params);
+- connect_infill · function · L229-L229 — static void connect_infill(Polylines &&infill_ordered, const Polygons &boundary, const BoundingBox& bbox, Polylines &polylines_out, const double spacing, const FillParams &params);
+- connect_infill · function · L230-L230 — static void connect_infill(Polylines &&infill_ordered, const std::vector<const Polygon*> &boundary, const BoundingBox &bbox, Polylines &polylines_out, double spacing, const FillParams &params);
+- chain_or_connect_infill · function · L232-L232 — static void chain_or_connect_infill(Polylines &&infill_ordered, const ExPolygon &boundary, Polylines &polylines_out, const double spacing, const FillParams &params);
+- connect_base_support · function · L234-L234 — static void connect_base_support(Polylines &&infill_ordered, const std::vector<const Polygon*> &boundary_src, const BoundingBox &bbox, Polylines &polylines_out, const double spacing, const FillParams &params);
+- connect_base_support · function · L235-L235 — static void connect_base_support(Polylines &&infill_ordered, const Polygons &boundary_src, const BoundingBox &bbox, Polylines &polylines_out, const double spacing, const FillParams &params);
+- _adjust_solid_spacing · function · L237-L237 — static coord_t  _adjust_solid_spacing(const coord_t width, const coord_t distance);
+- multiline_fill · function · L240-L240 — void multiline_fill(Polylines& polylines, const FillParams& params, float spacing);

@@ -1,0 +1,21 @@
+# deps_src/qhull/src/libqhullcpp/QhullVertex.h
+
+- QhullVertexList · type · L27-L27 — typedef QhullLinkedList<QhullVertex> QhullVertexList;
+- QhullVertexListIterator · type · L28-L28 — typedef QhullLinkedListIterator<QhullVertex> QhullVertexListIterator;
+- QhullVertex · function · L59-L59 — explicit            QhullVertex(const Qhull &q);
+- qh_qh · function · L61-L61 — explicit            QhullVertex(QhullQh *qqh) : qh_vertex(&s_empty_vertex), qh_qh(qqh) {}
+- QhullVertex · function · L61-L61 — explicit            QhullVertex(QhullQh *qqh) : qh_vertex(&s_empty_vertex), qh_qh(qqh) {}
+- qh_qh · function · L64-L64 — QhullVertex(const QhullVertex &other) : qh_vertex(other.qh_vertex), qh_qh(other.qh_qh) {}
+- qh_vertex · function · L64-L64 — QhullVertex(const QhullVertex &other) : qh_vertex(other.qh_vertex), qh_qh(other.qh_qh) {}
+- dimension · function · L70-L70 — int                 dimension() const { return (qh_qh ? qh_qh->hull_dim : 0); }
+- getBaseT · function · L71-L71 — vertexT *           getBaseT() const { return getVertexT(); } //!< For QhullSet<QhullVertex>
+- getVertexT · function · L72-L72 — vertexT *           getVertexT() const { return qh_vertex; }
+- id · function · L73-L73 — countT              id() const { return qh_vertex->id; }
+- isValid · function · L74-L74 — bool                isValid() const { return (qh_qh && qh_vertex != &s_empty_vertex); }
+- neighborFacetsDefined · function · L76-L76 — bool                neighborFacetsDefined() const { return qh_vertex->neighbors != 0; }
+- next · function · L77-L77 — QhullVertex         next() const { return QhullVertex(qh_qh, qh_vertex->next); }
+- point · function · L80-L80 — QhullPoint          point() const { return QhullPoint(qh_qh, qh_vertex->point); }
+- previous · function · L81-L81 — QhullVertex         previous() const { return QhullVertex(qh_qh, qh_vertex->previous); }
+- qh · function · L82-L82 — QhullQh *           qh() const { return qh_qh; }
+- neighborFacets · function · L86-L86 — QhullFacetSet       neighborFacets() const;
+- PrintVertex · class · L86-L101 — QhullFacetSet       neighborFacets() const;

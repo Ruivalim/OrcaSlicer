@@ -1,0 +1,48 @@
+# deps_src/pybind11/include/pybind11/detail/internals.h
+
+- get · function · L118-L118 — T *get() const { return reinterpret_cast<T *>(PYBIND11_TLS_GET_VALUE(key_)); }
+- make_default_metaclass · function · L142-L142 — inline PyTypeObject *make_default_metaclass();
+- make_object_base_type · function · L143-L143 — inline PyObject *make_object_base_type(PyTypeObject *metaclass);
+- translate_exception · function · L144-L144 — inline void translate_exception(std::exception_ptr p);
+- same_type · function · L153-L153 — inline bool same_type(const std::type_info &lhs, const std::type_info &rhs) { return lhs == rhs; }
+- same_type · function · L157-L159 — inline bool same_type(const std::type_info &lhs, const std::type_info &rhs)
+- type_hash · class · L161-L168 — struct type_hash
+- type_equal_to · class · L172-L175 — struct type_equal_to
+- override_hash · class · L182-L187 — struct override_hash
+- lock · function · L199-L199 — void lock() { PyMutex_Lock(&mutex); }
+- unlock · function · L200-L200 — void unlock() { PyMutex_Unlock(&mutex); }
+- instance_map_shard · class · L204-L209 — struct instance_map_shard
+- round_up_to_next_pow2 · function · L214-L226 — inline uint64_t round_up_to_next_pow2(uint64_t x)
+- internals · class · L234-L290 — struct internals
+- internals · function · L290-L290 — internals(const internals &other) = delete;
+- local_internals · class · L303-L307 — struct local_internals
+- class · type · L309-L532 — enum class holder_enum_t : uint8_t
+- type_info · class · L319-L348 — struct type_info
+- get_thread_state_unchecked · function · L358-L358 — inline PyThreadState *get_thread_state_unchecked()
+- get_num_interpreters_seen · function · L370-L373 — inline std::atomic<int> &get_num_interpreters_seen()
+- counter · function · L371-L371 — static std::atomic<int> counter(0);
+- raise_err · function · L395-L402 — inline bool raise_err(PyObject *exc_type, const char *msg)
+- translate_exception · function · L404-L461 — inline void translate_exception(std::exception_ptr p)
+- translate_local_exception · function · L464-L476 — inline void translate_local_exception(std::exception_ptr p)
+- get_python_state_dict · function · L479-L498 — inline object get_python_state_dict()
+- error_already_set · function · L495-L495 — throw error_already_set();
+- holder_id_ · function · L504-L515 — internals_pp_manager(char const *id, on_fetch_function *on_fetch)
+- on_fetch_ · function · L505-L505 — : holder_id_(id), on_fetch_(on_fetch) {}
+- get_pp · function · L509-L509 — std::unique_ptr<InternalsType> *get_pp()
+- if · function · L511-L511 — if (get_num_interpreters_seen() > 1)
+- unref · function · L535-L544 — void unref()
+- destroy · function · L546-L563 — void destroy()
+- error_already_set · function · L577-L577 — throw error_already_set();
+- check_internals_local_exception_translator · function · L608-L616 — inline void check_internals_local_exception_translator(internals *internals_ptr)
+- registered_exception_translators · function · L610-L611 — for (auto et : internals_ptr->registered_exception_translators)
+- get_internals_pp_manager · function · L620-L630 — inline internals_pp_manager<internals> &get_internals_pp_manager()
+- internals_pp_manager · function · L626-L627 — static internals_pp_manager<internals> internals_pp_manager(PYBIND11_INTERNALS_ID,
+- get_internals · function · L633-L649 — PYBIND11_NOINLINE internals &get_internals()
+- get_local_internals_pp_manager · function · L651-L660 — inline internals_pp_manager<local_internals> &get_local_internals_pp_manager()
+- local_internals_pp_manager · function · L657-L658 — static internals_pp_manager<local_internals> local_internals_pp_manager(
+- c_str · function · L658-L658 — this_module_idstr.c_str(), nullptr);
+- get_local_internals · function · L663-L670 — inline local_internals &get_local_internals()
+- mix64 · function · L698-L705 — inline std::uint64_t mix64(std::uint64_t z)
+- num_registered_instances · function · L733-L746 — inline size_t num_registered_instances()
+- get_shared_data · function · L768-L768 — PYBIND11_NOINLINE void *get_shared_data(const std::string &name)
+- set_shared_data · function · L776-L776 — PYBIND11_NOINLINE void *set_shared_data(const std::string &name, void *data)

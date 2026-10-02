@@ -1,0 +1,25 @@
+# resources/web/include/swiper/types/swiper-events.d.ts
+
+- SwiperEvents · interface · L27-L339 — interface SwiperEvents
+- SwiperEvents · interface · L341-L341 — interface SwiperEvents extends A11yEvents
+- SwiperEvents · interface · L342-L342 — interface SwiperEvents extends AutoplayEvents
+- SwiperEvents · interface · L343-L343 — interface SwiperEvents extends ControllerEvents
+- SwiperEvents · interface · L344-L344 — interface SwiperEvents extends CoverflowEffectEvents
+- SwiperEvents · interface · L345-L345 — interface SwiperEvents extends CubeEffectEvents
+- SwiperEvents · interface · L346-L346 — interface SwiperEvents extends FadeEffectEvents
+- SwiperEvents · interface · L347-L347 — interface SwiperEvents extends FlipEffectEvents
+- SwiperEvents · interface · L348-L348 — interface SwiperEvents extends CreativeEffectEvents
+- SwiperEvents · interface · L349-L349 — interface SwiperEvents extends CardsEffectEvents
+- SwiperEvents · interface · L350-L350 — interface SwiperEvents extends HashNavigationEvents
+- SwiperEvents · interface · L351-L351 — interface SwiperEvents extends HistoryEvents
+- SwiperEvents · interface · L352-L352 — interface SwiperEvents extends KeyboardEvents
+- SwiperEvents · interface · L353-L353 — interface SwiperEvents extends LazyEvents
+- SwiperEvents · interface · L354-L354 — interface SwiperEvents extends MousewheelEvents
+- SwiperEvents · interface · L355-L355 — interface SwiperEvents extends NavigationEvents
+- SwiperEvents · interface · L356-L356 — interface SwiperEvents extends PaginationEvents
+- SwiperEvents · interface · L357-L357 — interface SwiperEvents extends ParallaxEvents
+- SwiperEvents · interface · L358-L358 — interface SwiperEvents extends ScrollbarEvents
+- SwiperEvents · interface · L359-L359 — interface SwiperEvents extends ThumbsEvents
+- SwiperEvents · interface · L360-L360 — interface SwiperEvents extends VirtualEvents
+- SwiperEvents · interface · L361-L361 — interface SwiperEvents extends ZoomEvents
+- SwiperEvents · interface · L362-L362 — interface SwiperEvents extends FreeModeEvents

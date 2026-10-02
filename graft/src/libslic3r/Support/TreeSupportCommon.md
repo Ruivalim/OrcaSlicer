@@ -1,0 +1,34 @@
+# src/libslic3r/Support/TreeSupportCommon.hpp
+
+- InterfacePreference · type · L27-L34 — enum class InterfacePreference
+- TreeSupportMeshGroupSettings · class · L36-L258 — struct TreeSupportMeshGroupSettings
+- TreeSupportMeshGroupSettings · function · L37-L37 — TreeSupportMeshGroupSettings() = default;
+- TreeSupportMeshGroupSettings · function · L38-L93 — explicit TreeSupportMeshGroupSettings(const PrintObject &print_object)
+- TreeSupportSettings · class · L263-L589 — struct TreeSupportSettings
+- TreeSupportSettings · function · L266-L266 — TreeSupportSettings() = default; // required for the definition of the config variable in the TreeSupportGenerator class.
+- TreeSupportSettings · function · L267-L354 — explicit TreeSupportSettings(const TreeSupportMeshGroupSettings &mesh_group_settings, const SlicingParameters &slicing_params)
+- getRadius · function · L545-L552 — [[nodiscard]] inline coord_t getRadius(size_t distance_to_top, const double elephant_foot_increases = 0) const
+- recommendedMinRadius · function · L559-L563 — [[nodiscard]] inline coord_t recommendedMinRadius(LayerIndex layer_idx) const
+- getActualZ · function · L571-L574 — [[nodiscard]] inline coord_t getActualZ(LayerIndex layer_idx)
+- setActualZ · function · L581-L584 — void setActualZ(std::vector<coord_t>& z)
+- tiny_area_threshold · function · L593-L593 — inline double tiny_area_threshold() { return sqr(scaled<double>(0.001)); }
+- tree_supports_show_error · function · L595-L608 — inline void tree_supports_show_error(std::string_view message, bool critical)
+- layer_z · function · L610-L615 — inline double layer_z(const SlicingParameters &slicing_params, const TreeSupportSettings &config, const size_t layer_idx)
+- first_object_support_layer_z · function · L617-L620 — inline double first_object_support_layer_z(const SlicingParameters &slicing_params)
+- layer_idx_ceil · function · L625-L634 — inline LayerIndex layer_idx_ceil(const SlicingParameters &slicing_params, const TreeSupportSettings &config, const double z)
+- layer_idx_floor · function · L636-L645 — inline LayerIndex layer_idx_floor(const SlicingParameters &slicing_params, const TreeSupportSettings &config, const double z)
+- layer_initialize · function · L647-L651 — inline SupportGeneratorLayer& layer_initialize(
+- layer_allocate_unguarded · function · L660-L665 — inline SupportGeneratorLayer& layer_allocate_unguarded(
+- layer_allocate · function · L671-L676 — inline SupportGeneratorLayer& layer_allocate(
+- InterfacePlacer · class · L683-L762 — class InterfacePlacer
+- InterfacePlacer · function · L685-L696 — InterfacePlacer(
+- InterfacePlacer · function · L697-L700 — InterfacePlacer(const InterfacePlacer& rhs) :
+- top_contacts_mutable · function · L705-L705 — SupportGeneratorLayersPtr&  top_contacts_mutable() { return this->top_contacts; }
+- add_roofs · function · L709-L717 — void add_roofs(std::vector<Polygons> &&new_roofs, const size_t insert_layer_idx)
+- lock · function · L712-L712 — std::lock_guard<std::mutex> lock(m_mutex_layer_storage);
+- add_roof · function · L719-L723 — void add_roof(Polygons &&new_roof, const size_t insert_layer_idx, const size_t dtt_tip)
+- lock · function · L721-L721 — std::lock_guard<std::mutex> lock(m_mutex_layer_storage);
+- add_roof_build_plate · function · L726-L730 — void add_roof_build_plate(Polygons &&overhang_areas, size_t dtt_roof)
+- lock · function · L728-L728 — std::lock_guard<std::mutex> lock(m_mutex_layer_storage);
+- add_roof_unguarded · function · L732-L751 — void add_roof_unguarded(Polygons &&new_roofs, const size_t insert_layer_idx, const size_t dtt_roof)
+- LineStatus · type · L764-L772 — enum class LineStatus

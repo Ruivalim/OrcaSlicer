@@ -1,0 +1,53 @@
+# src/slic3r/Utils/bambu_networking.hpp
+
+- OnPrinterConnectedFn · type · L119-L119 — typedef std::function<void(std::string topic_str)>  OnPrinterConnectedFn;
+- OnLocalConnectedFn · type · L120-L120 — typedef std::function<void(int status, std::string dev_id, std::string msg)> OnLocalConnectedFn;
+- OnServerConnectedFn · type · L121-L121 — typedef std::function<void(int return_code, int reason_code)>                OnServerConnectedFn;
+- OnMessageFn · type · L122-L122 — typedef std::function<void(std::string dev_id, std::string msg)> OnMessageFn;
+- OnHttpErrorFn · type · L124-L124 — typedef std::function<void(unsigned http_code, std::string http_body)> OnHttpErrorFn;
+- GetCountryCodeFn · type · L125-L125 — typedef std::function<std::string()>                GetCountryCodeFn;
+- GetSubscribeFailureFn · type · L126-L126 — typedef std::function<void(std::string topic)>      GetSubscribeFailureFn;
+- OnUpdateStatusFn · type · L128-L128 — typedef std::function<void(int status, int code, std::string msg)> OnUpdateStatusFn;
+- WasCancelledFn · type · L129-L129 — typedef std::function<bool()>                       WasCancelledFn;
+- OnWaitFn · type · L130-L130 — typedef std::function<bool(int status, std::string job_info)> OnWaitFn;
+- OnUserLoginFn · type · L131-L131 — typedef std::function<void(int online_login, bool login)> OnUserLoginFn;
+- OnMsgArrivedFn · type · L133-L133 — typedef std::function<void(std::string dev_info_json_str)> OnMsgArrivedFn;
+- QueueOnMainFn · type · L135-L135 — typedef std::function<void(std::function<void()>)> QueueOnMainFn;
+- ProgressFn · type · L137-L137 — typedef std::function<void(int progress)> ProgressFn;
+- LoginFn · type · L138-L138 — typedef std::function<void(int retcode, std::string info)> LoginFn;
+- ResultFn · type · L139-L139 — typedef std::function<void(int result, std::string info)> ResultFn;
+- CancelFn · type · L140-L140 — typedef std::function<bool()> CancelFn;
+- CheckFn · type · L141-L141 — typedef std::function<bool(std::map<std::string, std::string> info)> CheckFn;
+- OnServerErrFn · type · L144-L144 — typedef std::function<void(std::string url, int status)> OnServerErrFn;
+- SendingPrintJobStage · type · L146-L156 — enum SendingPrintJobStage
+- PublishingStage · type · L158-L163 — enum PublishingStage
+- BindJobStage · type · L165-L172 — enum BindJobStage
+- ConnectStatus · type · L174-L178 — enum ConnectStatus
+- detectResult · class · L180-L189 — struct detectResult
+- PrintParams_Legacy · class · L192-L231 — struct PrintParams_Legacy
+- PrintParams_0203 · class · L237-L284 — struct PrintParams_0203
+- PrintParams · class · L287-L338 — struct PrintParams
+- TaskQueryParams · class · L340-L346 — struct TaskQueryParams
+- FilamentQueryParams · class · L348-L356 — struct FilamentQueryParams
+- FilamentDeleteParams · class · L358-L362 — struct FilamentDeleteParams
+- AmsSyncItem · class · L364-L383 — struct AmsSyncItem
+- AmsSyncParams · class · L385-L388 — struct AmsSyncParams
+- PublishParams · class · L390-L397 — struct PublishParams
+- CertificateInformation · class · L399-L405 — struct CertificateInformation
+- NetworkAbi · type · L410-L415 — enum class NetworkAbi
+- NetworkLibraryVersion · class · L417-L424 — struct NetworkLibraryVersion
+- get_latest_network_version · function · L439-L439 — inline const char* get_latest_network_version()
+- network_plugin_series · function · L450-L454 — inline std::string network_plugin_series(const std::string& version)
+- find_network_version_index · function · L460-L472 — inline size_t find_network_version_index(const std::string& version)
+- is_supported_network_version · function · L475-L477 — inline bool is_supported_network_version(const std::string& version)
+- network_plugin_abi · function · L481-L484 — inline NetworkAbi network_plugin_abi(const std::string& version)
+- NetworkLibraryVersionInfo · class · L486-L518 — struct NetworkLibraryVersionInfo
+- from_static · function · L500-L511 — static NetworkLibraryVersionInfo from_static(const NetworkLibraryVersion& v)
+- from_discovered · function · L513-L517 — static NetworkLibraryVersionInfo from_discovered(const std::string& full_version,
+- extract_base_version · function · L520-L523 — inline std::string extract_base_version(const std::string& full_version)
+- extract_suffix · function · L525-L528 — inline std::string extract_suffix(const std::string& full_version)
+- is_series_managed_version · function · L534-L538 — inline bool is_series_managed_version(const std::string& version)
+- get_all_available_versions · function · L542-L542 — std::vector<NetworkLibraryVersionInfo> get_all_available_versions();
+- get_all_available_versions · function · L545-L545 — std::vector<NetworkLibraryVersionInfo> get_all_available_versions(const std::string& loaded_version);
+- NetworkLibraryLoadError · class · L547-L552 — struct NetworkLibraryLoadError
+- MessageFlag · type · L554-L559 — enum class MessageFlag : int

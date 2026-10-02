@@ -1,0 +1,25 @@
+# src/libslic3r/GCode/SeamPlacer.hpp
+
+- PrintObject · class · L20-L20 — class PrintObject;
+- ExtrusionLoop · class · L21-L21 — class ExtrusionLoop;
+- Print · class · L22-L22 — class Print;
+- Layer · class · L23-L23 — class Layer;
+- Grid · class · L26-L26 — class Grid;
+- EnforcedBlockedSeamPoint · type · L35-L39 — enum class EnforcedBlockedSeamPoint
+- Perimeter · class · L42-L53 — struct Perimeter
+- SeamCandidate · class · L58-L77 — struct SeamCandidate
+- SeamCandidate · function · L59-L64 — SeamCandidate(const Vec3f &pos, Perimeter &perimeter,
+- SeamCandidateCoordinateFunctor · class · L79-L87 — struct SeamCandidateCoordinateFunctor
+- SeamCandidateCoordinateFunctor · function · L80-L82 — SeamCandidateCoordinateFunctor(const std::vector<SeamCandidate> &seam_candidates) :
+- PrintObjectSeamData · class · L90-L109 — struct PrintObjectSeamData
+- LayerSeams · class · L94-L99 — struct LayerSeams
+- clear · function · L105-L108 — void clear()
+- SeamPlacer · class · L111-L161 — class SeamPlacer
+- init · function · L144-L144 — void init(const Print &print, std::function<void(void)> throw_if_canceled_func);
+- place_seam · function · L146-L146 — void place_seam(const Layer *layer, ExtrusionLoop &loop, const Point &last_pos, float& overhang) const;
+- gather_seam_candidates · function · L148-L148 — void gather_seam_candidates(const PrintObject *po, const SeamPlacerImpl::GlobalModelInfo &global_model_info);
+- calculate_candidates_visibility · function · L149-L150 — void calculate_candidates_visibility(const PrintObject *po,
+- calculate_overhangs_and_layer_embedding · function · L151-L151 — void calculate_overhangs_and_layer_embedding(const PrintObject *po);
+- align_seam_points · function · L152-L152 — void align_seam_points(const PrintObject *po, const SeamPlacerImpl::SeamComparator &comparator);
+- find_seam_string · function · L153-L155 — std::vector<std::pair<size_t, size_t>> find_seam_string(const PrintObject *po,
+- find_next_seam_in_layer · function · L156-L160 — std::optional<std::pair<size_t, size_t>> find_next_seam_in_layer(

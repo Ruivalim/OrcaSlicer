@@ -1,0 +1,37 @@
+# src/libslic3r/BuildVolume.hpp
+
+- BuildVolume_Type · type · L15-L26 — enum class BuildVolume_Type : char
+- BuildVolume · class · L29-L162 — class BuildVolume
+- BuildExtruderVolume · class · L33-L39 — struct BuildExtruderVolume
+- BuildSharedVolume · class · L41-L53 — struct BuildSharedVolume
+- BuildVolume · function · L56-L56 — BuildVolume() {}
+- BuildVolume · function · L58-L58 — BuildVolume(const std::vector<Vec2d> &printable_area, const double printable_height, const std::vector<std::vector<Vec2d>> &extruder_areas, const std::vector<double>& extruder_printable_heights);
+- printable_area · function · L61-L61 — const std::vector<Vec2d>&   printable_area()         const { return m_bed_shape; }
+- printable_height · function · L62-L62 — double                      printable_height()  const { return m_max_print_height; }
+- extruder_areas · function · L63-L63 — const std::vector<std::vector<Vec2d>>& extruder_areas() const { return m_extruder_shapes; }
+- extruder_heights · function · L64-L64 — const std::vector<double>& extruder_heights() const { return m_extruder_printable_height; }
+- get_shared_volume · function · L65-L65 — const BuildSharedVolume& get_shared_volume() const { return m_shared_volume; }
+- type · function · L68-L68 — BuildVolume_Type                        type()              const { return m_type; }
+- type_name · function · L70-L70 — static std::string_view     type_name(BuildVolume_Type type);
+- type_name · function · L71-L71 — std::string_view            type_name()         const { return type_name(m_type); }
+- valid · function · L72-L72 — bool                        valid()             const { return m_type != BuildVolume_Type::Invalid; }
+- polygon · function · L74-L74 — const Polygon&              polygon()           const { return m_polygon; }
+- bounding_box · function · L76-L76 — const BoundingBox&          bounding_box()      const { return m_bbox; }
+- bounding_volume · function · L78-L78 — const BoundingBoxf3&        bounding_volume()   const { return m_bboxf; }
+- bounding_volume2d · function · L79-L79 — BoundingBoxf                bounding_volume2d() const { return { to_2d(m_bboxf.min), to_2d(m_bboxf.max) }; }
+- bounding_mesh · function · L80-L80 — indexed_triangle_set        bounding_mesh(bool scale=true) const;
+- bed_center · function · L83-L83 — Vec2d                       bed_center()        const { return to_2d(m_bboxf.center()); }
+- convex_hull · function · L85-L85 — const Polygon&              convex_hull()       const { return m_convex_hull; }
+- circle · function · L87-L87 — const Geometry::Circled&    circle()            const { return m_circle; }
+- ObjectState · type · L89-L102 — enum class ObjectState : unsigned char
+- object_state · function · L110-L110 — ObjectState  object_state(const indexed_triangle_set &its, const Transform3f &trafo, bool may_be_below_bed, bool ignore_bottom = true) const;
+- volume_state_bbox · function · L113-L113 — ObjectState  volume_state_bbox(const BoundingBoxf3& volume_bbox, bool ignore_bottom = true) const;
+- all_paths_inside · function · L120-L120 — bool         all_paths_inside(const GCodeProcessorResult& paths, const BoundingBoxf3& paths_bbox, bool ignore_bottom = true) const;
+- get_extruder_area_count · function · L122-L122 — int          get_extruder_area_count() const { return m_extruder_volumes.size(); }
+- get_extruder_area_volume · function · L123-L123 — const BuildExtruderVolume&  get_extruder_area_volume(int index) const;
+- check_object_state_with_extruder_area · function · L124-L124 — ObjectState  check_object_state_with_extruder_area(const indexed_triangle_set &its, const Transform3f &trafo, int index) const;
+- check_object_state_with_extruder_areas · function · L125-L125 — ObjectState  check_object_state_with_extruder_areas(const indexed_triangle_set &its, const Transform3f &trafo, std::vector<bool>& inside_extruders) const;
+- check_volume_bbox_state_with_extruder_area · function · L126-L126 — ObjectState  check_volume_bbox_state_with_extruder_area(const BoundingBoxf3& volume_bbox, int index) const;
+- check_volume_bbox_state_with_extruder_areas · function · L127-L127 — ObjectState  check_volume_bbox_state_with_extruder_areas(const BoundingBoxf3& volume_bbox, std::vector<bool>& inside_extruders) const;
+- top_bottom_convex_hull_decomposition_scene · function · L129-L129 — const std::pair<std::vector<Vec2d>, std::vector<Vec2d>>& top_bottom_convex_hull_decomposition_scene() const { return m_top_bottom_convex_hull_decomposition_scene; }
+- top_bottom_convex_hull_decomposition_bed · function · L130-L130 — const std::pair<std::vector<Vec2d>, std::vector<Vec2d>>& top_bottom_convex_hull_decomposition_bed() const { return m_top_bottom_convex_hull_decomposition_bed; }

@@ -1,0 +1,73 @@
+# src/slic3r/GUI/Camera.hpp
+
+- Camera · class · L16-L193 — struct Camera
+- EType · type · L27-L33 — enum class EType : unsigned char
+- ViewAngleType · type · L34-L45 — enum class ViewAngleType : unsigned char
+- Camera · function · L72-L72 — Camera() { set_default_orientation(); }
+- get_type · function · L74-L74 — EType get_type() const { return m_type; }
+- get_type_as_string · function · L75-L75 — std::string get_type_as_string() const;
+- set_type · function · L76-L76 — void set_type(EType type);
+- set_type · function · L78-L78 — void set_type(const std::string& type) { set_type((type == "true") ? EType::Perspective : EType::Ortho); }
+- select_next_type · function · L79-L79 — void select_next_type();
+- auto_type · function · L80-L80 — void auto_type(EType preferred_type);
+- enable_update_config_on_type_change · function · L82-L82 — void enable_update_config_on_type_change(bool enable) { m_update_config_on_type_change_enabled = enable; }
+- translate · function · L84-L84 — void translate(const Vec3d& displacement);
+- get_target · function · L85-L85 — const Vec3d& get_target()
+- set_target · function · L88-L88 — void set_target(const Vec3d& target);
+- get_distance · function · L90-L90 — double get_distance()  { return (get_position() - get_target()).norm(); }
+- get_gui_scale · function · L91-L91 — double get_gui_scale() const { return m_gui_scale; }
+- get_zenit · function · L92-L92 — float  get_zenit() const { return m_zenit; }
+- get_zoom · function · L94-L94 — double get_zoom() const { return m_zoom; }
+- get_inv_zoom · function · L95-L95 — double get_inv_zoom() const { assert(m_zoom != 0.0); return 1.0 / m_zoom; }
+- update_zoom · function · L96-L96 — void update_zoom(double delta_zoom) { set_zoom(m_zoom / (1.0 - std::max(std::min(delta_zoom, 4.0), -4.0) * ZoomUnit)); }
+- set_zoom · function · L97-L97 — void set_zoom(double zoom);
+- get_scene_box · function · L99-L99 — const BoundingBoxf3& get_scene_box() const { return m_scene_box; }
+- set_scene_box · function · L100-L100 — void set_scene_box(const BoundingBoxf3& box) { m_scene_box = box; }
+- select_view · function · L103-L103 — void select_view(const std::string& direction);
+- select_view · function · L104-L104 — void select_view(ViewAngleType type);
+- get_viewport · function · L105-L105 — const std::array<int, 4>& get_viewport() const { return m_viewport; }
+- get_view_matrix · function · L106-L106 — const Transform3d& get_view_matrix() const { return m_view_matrix; }
+- get_projection_matrix · function · L107-L107 — const Transform3d& get_projection_matrix() const { return m_projection_matrix; }
+- get_view_rotation · function · L110-L110 — const Eigen::Quaterniond& get_view_rotation() const {return m_view_rotation; }
+- get_dir_right · function · L112-L112 — Vec3d get_dir_right() const { return m_view_matrix.matrix().block(0, 0, 3, 3).row(0); }
+- get_dir_up · function · L113-L113 — Vec3d get_dir_up() const { return m_view_matrix.matrix().block(0, 0, 3, 3).row(1); }
+- get_dir_forward · function · L114-L114 — Vec3d get_dir_forward() const { return -m_view_matrix.matrix().block(0, 0, 3, 3).row(2); }
+- get_position · function · L117-L117 — Vec3d get_position() const { return m_view_matrix.matrix().inverse().block(0, 3, 3, 1); }
+- get_near_z · function · L119-L119 — double get_near_z() const { return m_frustrum_zs.first; }
+- get_far_z · function · L120-L120 — double get_far_z() const { return m_frustrum_zs.second; }
+- get_z_range · function · L121-L121 — const std::pair<double, double>& get_z_range() const { return m_frustrum_zs; }
+- get_near_left · function · L123-L123 — double get_near_left() const;
+- get_near_right · function · L124-L124 — double get_near_right() const;
+- get_near_top · function · L125-L125 — double get_near_top() const;
+- get_near_bottom · function · L126-L126 — double get_near_bottom() const;
+- get_near_width · function · L127-L127 — double get_near_width() const;
+- get_near_height · function · L128-L128 — double get_near_height() const;
+- get_fov · function · L130-L130 — double get_fov() const;
+- set_viewport · function · L132-L132 — void set_viewport(int x, int y, unsigned int w, unsigned int h);
+- apply_viewport · function · L133-L133 — void apply_viewport() const;
+- apply_projection · function · L136-L136 — void apply_projection(const BoundingBoxf3& box, double near_z = -1.0, double far_z = -1.0);
+- apply_projection · function · L138-L138 — void apply_projection(double left, double right, double bottom, double top, double near_z, double far_z);
+- zoom_to_box · function · L140-L140 — void zoom_to_box(const BoundingBoxf3& box, double margin_factor = DefaultZoomToBoxMarginFactor);
+- zoom_to_volumes · function · L141-L141 — void zoom_to_volumes(const GLVolumePtrs& volumes, double margin_factor = DefaultZoomToVolumesMarginFactor);
+- debug_render · function · L144-L144 — void debug_render() const;
+- translate_world · function · L148-L148 — void translate_world(const Vec3d& displacement) { set_target(m_target + displacement); }
+- rotate_on_sphere_with_target · function · L151-L151 — void rotate_on_sphere_with_target(double delta_azimut_rad, double delta_zenit_rad, bool apply_limits, Vec3d target);
+- rotate_local_with_target · function · L152-L152 — void rotate_local_with_target(const Vec3d& rotation_rad, Vec3d target);
+- rotate_on_sphere · function · L157-L157 — void rotate_on_sphere(double delta_azimut_rad, double delta_zenit_rad, bool apply_limits);
+- rotate_local_around_target · function · L160-L160 — void rotate_local_around_target(const Vec3d& rotation_rad);
+- set_rotation · function · L162-L162 — void set_rotation(const Transform3d& rotation);
+- is_looking_downward · function · L165-L165 — bool is_looking_downward() const { return get_dir_forward().dot(Vec3d::UnitZ()) < 0.0; }
+- is_looking_front · function · L166-L166 — bool is_looking_front() const { return abs(get_dir_up().dot(Vec3d::UnitZ())-1) < 0.001; }
+- recover_from_free_camera · function · L168-L171 — void recover_from_free_camera()
+- load_camera_view · function · L174-L174 — void load_camera_view(Camera& cam);
+- look_at · function · L176-L176 — void look_at(const Vec3d& position, const Vec3d& target, const Vec3d& up);
+- max_zoom · function · L178-L178 — double max_zoom() const { return 250.0; }
+- min_zoom · function · L179-L179 — double min_zoom() const { return 0.2 * calc_zoom_to_bounding_box_factor(m_scene_box); }
+- calc_tight_frustrum_zs_around · function · L184-L184 — std::pair<double, double> calc_tight_frustrum_zs_around(const BoundingBoxf3& box);
+- calc_zoom_to_bounding_box_factor · function · L185-L185 — double calc_zoom_to_bounding_box_factor(const BoundingBoxf3& box, double margin_factor = DefaultZoomToBoxMarginFactor) const;
+- calc_zoom_to_volumes_factor · function · L186-L186 — double calc_zoom_to_volumes_factor(const GLVolumePtrs& volumes, Vec3d& center, double margin_factor = DefaultZoomToVolumesMarginFactor) const;
+- set_distance · function · L187-L187 — void set_distance(double distance);
+- set_default_orientation · function · L189-L189 — void set_default_orientation();
+- validate_target · function · L190-L190 — Vec3d validate_target(const Vec3d& target) const;
+- update_zenit · function · L191-L191 — void update_zenit();
+- update_target · function · L192-L192 — void update_target();

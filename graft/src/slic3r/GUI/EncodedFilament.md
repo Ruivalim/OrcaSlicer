@@ -1,0 +1,37 @@
+# src/slic3r/GUI/EncodedFilament.hpp
+
+- FilamentColorCode · class · L20-L20 — class FilamentColorCode;
+- FilamentColorCodes · class · L21-L21 — class FilamentColorCodes;
+- FilamentColorCodeQuery · class · L22-L22 — class FilamentColorCodeQuery;
+- ColourHSV · class · L25-L28 — struct ColourHSV
+- wxColourToHSV · function · L30-L57 — inline ColourHSV wxColourToHSV(const wxColour& c)
+- wxColorSorter · class · L60-L71 — struct wxColorSorter
+- FilamentColor · class · L73-L134 — struct FilamentColor
+- ColorType · type · L75-L80 — enum class ColorType : char
+- ColorCount · function · L86-L86 — size_t ColorCount() const noexcept { return m_colors.size(); }
+- EndSet · function · L88-L105 — void EndSet(int ctype)
+- EncodedFilaColorEqual · class · L137-L140 — struct EncodedFilaColorEqual
+- FilamentColorCodeQuery · class · L145-L173 — class FilamentColorCodeQuery
+- FilamentColorCodeQuery · function · L148-L148 — FilamentColorCodeQuery();
+- GetFilaInfoMap · function · L152-L152 — FilamentColorCodes* GetFilaInfoMap(const wxString& fila_id) const;
+- GetFilaColorName · function · L153-L153 — wxString GetFilaColorName(const wxString& fila_id, const FilamentColor& colors) const;
+- GetFilaInfo · function · L156-L156 — FilamentColorCode* GetFilaInfo(const wxString& fila_id, const FilamentColor& colors) const;
+- LoadFromLocal · function · L159-L159 — void  LoadFromLocal();
+- CreateFilaCode · function · L162-L166 — void  CreateFilaCode(const wxString& fila_id,
+- FilamentColorCodes · class · L176-L198 — class FilamentColorCodes
+- FilamentColorCodes · function · L179-L179 — FilamentColorCodes(const wxString& fila_id, const wxString& fila_type);
+- GetFilaCode · function · L183-L183 — wxString GetFilaCode() const { return m_fila_id; }
+- GetFilaType · function · L184-L184 — wxString GetFilaType() const { return m_fila_type; }
+- GetFilamentColor2CodeMap · function · L186-L186 — FilamentColor2CodeMap* GetFilamentColor2CodeMap() const { return m_fila_colors_map; }
+- GetColorCode · function · L187-L187 — FilamentColorCode* GetColorCode(const FilamentColor& colors) const;
+- Debug · function · L189-L189 — void Debug(const char* prefix);
+- AddColorCode · function · L192-L192 — void AddColorCode(FilamentColorCode* code);
+- FilamentColorCode · class · L201-L226 — class FilamentColorCode
+- FilamentColorCode · function · L204-L204 — FilamentColorCode() = delete;
+- FilamentColorCode · function · L205-L205 — FilamentColorCode(const wxString& color_code, FilamentColorCodes* owner, FilamentColor&& color, std::unordered_map<wxString, wxString>&& name_map);
+- GetFilaCode · function · L209-L209 — wxString GetFilaCode() const { return m_owner->GetFilaCode(); }
+- GetFilaType · function · L210-L210 — wxString GetFilaType() const { return m_owner->GetFilaType(); }
+- GetFilaColorCode · function · L213-L213 — wxString         GetFilaColorCode() const { return m_fila_color_code; } // eg. Q01B00
+- GetFilaColor · function · L214-L214 — FilamentColor    GetFilaColor() const { return m_fila_color; }
+- GetFilaColorName · function · L215-L215 — wxString         GetFilaColorName() const;
+- Debug · function · L217-L217 — void Debug(const char* prefix);

@@ -1,0 +1,15 @@
+# scripts/CAD/check-sketch-engine.py
+
+- call · function · L31-L48 — def call(method, **params)
+- check · function · L51-L57 — def check(kind, cond, what)
+- near · function · L60-L61 — def near(a, b, tol=1e-6)
+- pt_near · function · L64-L65 — def pt_near(p, q, tol=1e-6)
+- fresh · function · L68-L73 — def fresh(plane="XY")
+- ents · function · L76-L77 — def ents()
+- rep · function · L80-L81 — def rep()
+- endpoints · function · L84-L88 — def endpoints(e)
+- tangent · function · L91-L104 — def tangent(e, at_end)
+- tangent_at_point · function · L107-L114 — def tangent_at_point(e, p)
+- smooth · function · L117-L121 — def smooth(e1, e2, p)
+- closed_one_loop · function · L124-L127 — def closed_one_loop(r, voids=0)
+- outer_loop · function · L130-L134 — def outer_loop(r)

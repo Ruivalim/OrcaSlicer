@@ -1,0 +1,63 @@
+# src/libslic3r/AABBTreeIndirect.hpp
+
+- Tree · class · L38-L214 — template<int ANumDimensions, typename ACoordType>
+-  · type · L47-L52 — enum : size_t
+- Node · class · L56-L72 — struct Node
+- is_valid · function · L63-L63 — bool 	is_valid() const { return this->idx != npos; }
+- is_inner · function · L64-L64 — bool 	is_inner() const { return this->idx == inner; }
+- is_leaf · function · L65-L65 — bool 	is_leaf()  const { return ! this->is_inner(); }
+- set · function · L67-L71 — template<typename SourceNode>
+- clear · function · L74-L74 — void clear() { m_nodes.clear(); }
+- build · function · L85-L90 — template<typename SourceNode>
+- build_modify_input · function · L92-L102 — template<typename SourceNode>
+- nodes · function · L104-L104 — const std::vector<Node>& 	nodes() const { return m_nodes; }
+- node · function · L105-L105 — const Node& 				node(size_t idx) const { return m_nodes[idx]; }
+- empty · function · L106-L106 — bool 						empty() const { return m_nodes.empty(); }
+- left_child_idx · function · L109-L109 — static size_t				left_child_idx(size_t idx) { return idx * 2 + 1; }
+- right_child_idx · function · L110-L110 — static size_t				right_child_idx(size_t idx) { return left_child_idx(idx) + 1; }
+- left_child · function · L111-L111 — const Node&					left_child(size_t idx) const { return m_nodes[left_child_idx(idx)]; }
+- right_child · function · L112-L112 — const Node&					right_child(size_t idx) const { return m_nodes[right_child_idx(idx)]; }
+- build · function · L114-L119 — template<typename SourceNode>
+- copy · function · L117-L117 — std::vector<SourceNode> copy(input);
+- build_recursive · function · L123-L150 — template<typename SourceNode>
+- partition_input · function · L156-L210 — template<typename SourceNode>
+- BoundingBoxWrapper · class · L223-L236 — class BoundingBoxWrapper
+- BoundingBoxWrapper · function · L226-L229 — BoundingBoxWrapper(const size_t idx, const Slic3r::BoundingBox &bbox) :
+- idx · function · L230-L230 — size_t             idx() const { return m_idx; }
+- bbox · function · L231-L231 — const BoundingBox& bbox() const { return m_bbox; }
+- centroid · function · L232-L232 — Point              centroid() const { return (m_bbox.min() + m_bbox.max()) / 2; }
+- RayIntersector · class · L239-L256 — template<typename AVertexType, typename AIndexedFaceType, typename ATreeType, typename AVectorType>
+- RayIntersectorHits · class · L258-L261 — template<typename VertexType, typename IndexedFaceType, typename TreeType, typename VectorType>
+- ray_box_intersect_invdir · function · L268-L306 — template <typename Derivedsource, typename Deriveddir, typename Scalar>
+- intersect_triangle · function · L314-L363 — template<typename V, typename W>
+- intersect_triangle · function · L365-L369 — template<typename V, typename W>
+- intersect_triangle · function · L371-L375 — template<typename V, typename W>
+- intersect_triangle · function · L377-L381 — template<typename V, typename W>
+- intersect_triangle_epsilon · function · L383-L393 — template<typename Tree>
+- intersect_ray_recursive_first_hit · function · L395-L440 — template<typename RayIntersectorType, typename Scalar>
+- intersect_ray_recursive_all_hits · function · L442-L471 — template<typename RayIntersectorType>
+- closest_point_to_triangle · function · L474-L521 — template<typename Vector>
+- IndexedTriangleSetDistancer · class · L525-L549 — template<typename AVertexType, typename AIndexedFaceType, typename ATreeType, typename AVectorType>
+- closest_point_to_origin · function · L539-L548 — inline VectorType closest_point_to_origin(size_t primitive_index,
+- squared_distance_to_indexed_primitives_recursive · function · L551-L632 — template<typename IndexedPrimitivesDistancerType, typename Scalar>
+- indexed_primitives_within_distance_squared_recurisve · function · L634-L663 — template<typename IndexedPrimitivesDistancerType, typename Scalar>
+- build_aabb_tree_over_indexed_triangle_set · function · L671-L717 — template<typename VertexType, typename IndexedFaceType>
+- InputType · class · L685-L693 — struct InputType
+- idx · function · L686-L686 — size_t 				idx()       const { return m_idx; }
+- bbox · function · L687-L687 — const BoundingBox& 	bbox()      const { return m_bbox; }
+- centroid · function · L688-L688 — const VectorType& 	centroid()  const { return m_centroid; }
+- veps · function · L697-L697 — const VectorType veps(eps, eps, eps);
+- intersect_ray_first_hit · function · L722-L747 — template<typename VertexType, typename IndexedFaceType, typename TreeType, typename VectorType>
+- intersect_ray_all_hits · function · L754-L788 — template<typename VertexType, typename IndexedFaceType, typename TreeType, typename VectorType>
+- squared_distance_to_indexed_triangle_set · function · L795-L815 — template<typename VertexType, typename IndexedFaceType, typename TreeType, typename VectorType>
+- is_any_triangle_in_radius · function · L821-L849 — template<typename VertexType, typename IndexedFaceType, typename TreeType, typename VectorType>
+- all_triangles_in_radius · function · L852-L876 — template<typename VertexType, typename IndexedFaceType, typename TreeType, typename VectorType>
+- get_candidate_idxs · function · L881-L902 — template<typename TreeType, typename VectorType>
+- Intersecting · class · L905-L905 — template<class G> struct Intersecting {};
+- Intersecting · function · L912-L912 — Intersecting(const Eigen::AlignedBox<CoordType, NumD> &bb): box{bb} {}
+- intersecting · function · L920-L920 — template<class G> auto intersecting(const G &g) { return Intersecting<G>{g}; }
+- Within · class · L922-L922 — template<class G> struct Within {};
+- Within · function · L929-L929 — Within(const Eigen::AlignedBox<CoordType, NumD> &bb): box{bb} {}
+- within · function · L937-L937 — template<class G> auto within(const G &g) { return Within<G>{g}; }
+- traverse_recurse · function · L943-L971 — template<int Dims, typename T, typename Pred, typename Fn>
+- traverse · function · L980-L987 — template<int Dims, typename T, typename Predicate, typename Fn>

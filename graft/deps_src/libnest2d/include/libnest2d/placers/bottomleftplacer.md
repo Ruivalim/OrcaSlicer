@@ -1,0 +1,23 @@
+# deps_src/libnest2d/include/libnest2d/placers/bottomleftplacer.hpp
+
+- DefaultEpsilon · class · L10-L10 — template<class T, class = T> struct DefaultEpsilon {};
+- BLConfig · class · L22-L35 — template<class RawShape>
+- DECLARE_MAIN_TYPES · function · L24-L24 — DECLARE_MAIN_TYPES(RawShape);
+- _BottomLeftPlacer · class · L37-L429 — template<class RawShape>
+- _BottomLeftPlacer · function · L49-L49 — explicit _BottomLeftPlacer(const BinType& bin): Base(bin) {}
+- trypack · function · L51-L62 — template<class Range = ConstItemRange<typename Base::DefaultIter>>
+- Dir · type · L64-L67 — enum class Dir
+- leftPoly · function · L69-L71 — inline RawShape leftPoly(const Item& item) const
+- downPoly · function · L73-L75 — inline RawShape downPoly(const Item& item) const
+- availableSpaceLeft · function · L77-L79 — inline Coord availableSpaceLeft(const Item& item)
+- availableSpaceDown · function · L81-L83 — inline Coord availableSpaceDown(const Item& item)
+- score · function · L85-L85 — double score() const { return score_; }
+- plateID · function · L87-L87 — void plateID(int id) { plate_id = id; }
+- plateID · function · L88-L88 — int plateID() { return plate_id; }
+- _trypack · function · L94-L127 — PackResult _trypack(Item& item)
+- setInitialPosition · function · L129-L139 — void setInitialPosition(Item& item)
+- isInTheWayOf · function · L141-L152 — template<class C = Coord>
+- isInTheWayOf · function · L154-L172 — template<class C = Coord>
+- itemsInTheWayOf · function · L174-L193 — ItemGroup itemsInTheWayOf(const Item& item, const Dir dir)
+- availableSpace · function · L195-L290 — Coord availableSpace(const Item& _item, const Dir dir)
+- toWallPoly · function · L298-L427 — RawShape toWallPoly(const Item& _item, const Dir dir) const

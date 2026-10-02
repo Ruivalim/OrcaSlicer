@@ -1,0 +1,25 @@
+# src/libslic3r/Arrange.hpp
+
+- BoundingBox · class · L12-L12 — class BoundingBox;
+- CircleBed · class · L17-L27 — class CircleBed
+- CircleBed · function · L22-L22 — inline CircleBed(): center_(0, 0), radius_(std::nan("")) {}
+- CircleBed · function · L23-L23 — explicit inline CircleBed(const Point& c, double r): center_(c), radius_(r) {}
+- radius · function · L25-L25 — inline double radius() const { return radius_; }
+- center · function · L26-L26 — inline const Point& center() const { return center_; }
+- InfiniteBed · class · L30-L33 — struct InfiniteBed
+- InfiniteBed · function · L32-L32 — explicit InfiniteBed(const Point &p = {0, 0}): center{p} {}
+- ArrangePolygon · class · L49-L104 — struct ArrangePolygon
+- apply · function · L86-L91 — void apply()
+- is_arranged · function · L94-L94 — bool is_arranged() const { return bed_idx != UNARRANGED; }
+- transformed_poly · function · L96-L103 — inline ExPolygon transformed_poly() const
+- ArrangeParams · class · L108-L178 — struct ArrangeParams
+- ArrangeParams · function · L155-L155 — ArrangeParams() = default;
+- ArrangeParams · function · L156-L156 — explicit ArrangeParams(coord_t md) : min_obj_distance(md) {}
+- to_json · function · L158-L176 — std::string to_json() const
+- update_arrange_params · function · L180-L180 — void update_arrange_params(ArrangeParams& params, const DynamicPrintConfig* print_cfg, const ArrangePolygons& selected);
+- update_selected_items_inflation · function · L182-L182 — void update_selected_items_inflation(ArrangePolygons& selected, const DynamicPrintConfig* print_cfg, ArrangeParams& params);
+- update_unselected_items_inflation · function · L184-L184 — void update_unselected_items_inflation(ArrangePolygons& unselected, const DynamicPrintConfig* print_cfg, const ArrangeParams& params);
+- update_selected_items_axis_align · function · L186-L186 — void update_selected_items_axis_align(ArrangePolygons& selected, const DynamicPrintConfig* print_cfg, const ArrangeParams& params);
+- get_shrink_bedpts · function · L188-L188 — Points get_shrink_bedpts(const DynamicPrintConfig* print_cfg, const ArrangeParams& params);
+- arrange · function · L201-L201 — template<class TBed> void arrange(ArrangePolygons &items, const ArrangePolygons &excludes, const TBed &bed, const ArrangeParams &params = {});
+- arrange · function · L204-L204 — template<> void arrange(ArrangePolygons &items, const ArrangePolygons &excludes, const Points &bed, const ArrangeParams &params);

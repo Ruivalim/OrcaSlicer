@@ -1,0 +1,80 @@
+# deps_src/fast_float/fast_float.h
+
+- chars_format · type · L44-L49 — enum chars_format
+- from_chars_result · class · L52-L55 — struct from_chars_result
+- parse_options · class · L57-L66 — struct parse_options
+- fastfloat_strncasecmp · function · L180-L187 — inline bool fastfloat_strncasecmp(const char *input1, const char *input2,
+- value128 · class · L199-L229 — struct value128
+- emulu · function · L234-L236 — fastfloat_really_inline uint64_t emulu(uint32_t x, uint32_t y)
+- _umul128 · function · L240-L250 — fastfloat_really_inline uint64_t _umul128(uint64_t ab, uint64_t cd,
+- full_multiplication · function · L257-L274 — fastfloat_really_inline value128 full_multiplication(uint64_t a,
+- adjusted_mantissa · class · L277-L278 — struct adjusted_mantissa
+- decimal · class · L289-L290 — struct decimal
+- mantissa_explicit_bits · function · L312-L312 — static inline constexpr int mantissa_explicit_bits();
+- minimum_exponent · function · L313-L313 — static inline constexpr int minimum_exponent();
+- infinite_power · function · L314-L314 — static inline constexpr int infinite_power();
+- sign_index · function · L315-L315 — static inline constexpr int sign_index();
+- min_exponent_fast_path · function · L316-L316 — static inline constexpr int min_exponent_fast_path();
+- max_exponent_fast_path · function · L317-L317 — static inline constexpr int max_exponent_fast_path();
+- max_exponent_round_to_even · function · L318-L318 — static inline constexpr int max_exponent_round_to_even();
+- min_exponent_round_to_even · function · L319-L319 — static inline constexpr int min_exponent_round_to_even();
+- max_mantissa_fast_path · function · L320-L320 — static inline constexpr uint64_t max_mantissa_fast_path();
+- largest_power_of_ten · function · L321-L321 — static inline constexpr int largest_power_of_ten();
+- smallest_power_of_ten · function · L322-L322 — static inline constexpr int smallest_power_of_ten();
+- exact_power_of_ten · function · L323-L323 — static inline constexpr T exact_power_of_ten(int64_t power);
+- mantissa_explicit_bits · function · L326-L328 — template <> inline constexpr int binary_format<double>::mantissa_explicit_bits()
+- mantissa_explicit_bits · function · L329-L331 — template <> inline constexpr int binary_format<float>::mantissa_explicit_bits()
+- max_exponent_round_to_even · function · L333-L335 — template <> inline constexpr int binary_format<double>::max_exponent_round_to_even()
+- max_exponent_round_to_even · function · L337-L339 — template <> inline constexpr int binary_format<float>::max_exponent_round_to_even()
+- min_exponent_round_to_even · function · L341-L343 — template <> inline constexpr int binary_format<double>::min_exponent_round_to_even()
+- min_exponent_round_to_even · function · L345-L347 — template <> inline constexpr int binary_format<float>::min_exponent_round_to_even()
+- minimum_exponent · function · L349-L351 — template <> inline constexpr int binary_format<double>::minimum_exponent()
+- minimum_exponent · function · L352-L354 — template <> inline constexpr int binary_format<float>::minimum_exponent()
+- infinite_power · function · L356-L358 — template <> inline constexpr int binary_format<double>::infinite_power()
+- infinite_power · function · L359-L361 — template <> inline constexpr int binary_format<float>::infinite_power()
+- sign_index · function · L363-L363 — template <> inline constexpr int binary_format<double>::sign_index() { return 63; }
+- sign_index · function · L364-L364 — template <> inline constexpr int binary_format<float>::sign_index() { return 31; }
+- min_exponent_fast_path · function · L366-L372 — template <> inline constexpr int binary_format<double>::min_exponent_fast_path()
+- min_exponent_fast_path · function · L373-L379 — template <> inline constexpr int binary_format<float>::min_exponent_fast_path()
+- max_exponent_fast_path · function · L381-L383 — template <> inline constexpr int binary_format<double>::max_exponent_fast_path()
+- max_exponent_fast_path · function · L384-L386 — template <> inline constexpr int binary_format<float>::max_exponent_fast_path()
+- max_mantissa_fast_path · function · L388-L390 — template <> inline constexpr uint64_t binary_format<double>::max_mantissa_fast_path()
+- max_mantissa_fast_path · function · L391-L393 — template <> inline constexpr uint64_t binary_format<float>::max_mantissa_fast_path()
+- exact_power_of_ten · function · L396-L398 — inline constexpr double binary_format<double>::exact_power_of_ten(int64_t power)
+- exact_power_of_ten · function · L400-L403 — inline constexpr float binary_format<float>::exact_power_of_ten(int64_t power)
+- largest_power_of_ten · function · L407-L409 — inline constexpr int binary_format<double>::largest_power_of_ten()
+- largest_power_of_ten · function · L411-L413 — inline constexpr int binary_format<float>::largest_power_of_ten()
+- smallest_power_of_ten · function · L416-L418 — inline constexpr int binary_format<double>::smallest_power_of_ten()
+- smallest_power_of_ten · function · L420-L422 — inline constexpr int binary_format<float>::smallest_power_of_ten()
+- is_integer · function · L453-L453 — fastfloat_really_inline bool is_integer(char c)  noexcept  { return c >= '0' && c <= '9'; }
+- byteswap · function · L455-L464 — fastfloat_really_inline uint64_t byteswap(uint64_t val)
+- read_u64 · function · L466-L474 — fastfloat_really_inline uint64_t read_u64(const char *chars)
+- write_u64 · function · L476-L482 — fastfloat_really_inline void write_u64(uint8_t *chars, uint64_t val)
+- parse_eight_digits_unrolled · function · L485-L493 — fastfloat_really_inline uint32_t  parse_eight_digits_unrolled(uint64_t val)
+- parse_eight_digits_unrolled · function · L495-L497 — fastfloat_really_inline uint32_t parse_eight_digits_unrolled(const char *chars)  noexcept
+- is_made_of_eight_digits_fast · function · L500-L503 — fastfloat_really_inline bool is_made_of_eight_digits_fast(uint64_t val)  noexcept
+- is_made_of_eight_digits_fast · function · L505-L507 — fastfloat_really_inline bool is_made_of_eight_digits_fast(const char *chars)  noexcept
+- parsed_number_string · class · L509-L516 — struct parsed_number_string
+- parse_number_string · function · L521-L758 — fastfloat_really_inline
+- parse_decimal · function · L661-L757 — fastfloat_really_inline decimal parse_decimal(const char *p, const char *pend, parse_options options) noexcept
+- compute_product_approximation · function · L1481-L1500 — value128 compute_product_approximation(int64_t q, uint64_t w)
+- power · function · L1518-L1520 — fastfloat_really_inline int power(int q)  noexcept
+- compute_float · function · L1531-L1628 — adjusted_mantissa compute_float(int64_t q, uint64_t w)  noexcept
+- is_integer · function · L1649-L1649 — fastfloat_really_inline bool is_integer(char c)  noexcept  { return c >= '0' && c <= '9'; }
+- byteswap · function · L1651-L1660 — fastfloat_really_inline uint64_t byteswap(uint64_t val)
+- read_u64 · function · L1662-L1670 — fastfloat_really_inline uint64_t read_u64(const char *chars)
+- write_u64 · function · L1672-L1678 — fastfloat_really_inline void write_u64(uint8_t *chars, uint64_t val)
+- parse_eight_digits_unrolled · function · L1681-L1689 — fastfloat_really_inline uint32_t  parse_eight_digits_unrolled(uint64_t val)
+- parse_eight_digits_unrolled · function · L1691-L1693 — fastfloat_really_inline uint32_t parse_eight_digits_unrolled(const char *chars)  noexcept
+- is_made_of_eight_digits_fast · function · L1696-L1699 — fastfloat_really_inline bool is_made_of_eight_digits_fast(uint64_t val)  noexcept
+- is_made_of_eight_digits_fast · function · L1701-L1703 — fastfloat_really_inline bool is_made_of_eight_digits_fast(const char *chars)  noexcept
+- parsed_number_string · class · L1705-L1712 — struct parsed_number_string
+- parse_number_string · function · L1717-L1954 — fastfloat_really_inline
+- parse_decimal · function · L1857-L1953 — fastfloat_really_inline decimal parse_decimal(const char *p, const char *pend, parse_options options) noexcept
+- trim · function · L1981-L1985 — inline void trim(decimal &h)
+- number_of_digits_decimal_left_shift · function · L1989-L2080 — inline uint32_t number_of_digits_decimal_left_shift(const decimal &h, uint32_t shift)
+- round · function · L2082-L2106 — inline uint64_t round(decimal &h)
+- decimal_left_shift · function · L2109-L2148 — inline void decimal_left_shift(decimal &h, uint32_t shift)
+- decimal_right_shift · function · L2151-L2195 — inline void decimal_right_shift(decimal &h, uint32_t shift)
+- to_float · function · L2379-L2394 — fastfloat_really_inline void to_float(bool negative, adjusted_mantissa am, T &value)
+- from_chars_advanced · function · L2401-L2403 — from_chars_result from_chars(const char *first, const char *last,

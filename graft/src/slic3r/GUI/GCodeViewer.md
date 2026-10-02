@@ -1,0 +1,111 @@
+# src/slic3r/GUI/GCodeViewer.hpp
+
+- Print · class · L25-L25 — class Print;
+- TriangleMesh · class · L26-L26 — class TriangleMesh;
+- PresetBundle · class · L27-L27 — class PresetBundle;
+- PartPlateList · class · L31-L31 — class PartPlateList;
+- OpenGLManager · class · L32-L32 — class OpenGLManager;
+- GCodeViewer · class · L40-L398 — class GCodeViewer
+- EViewType · type · L43-L43 — enum class EViewType : unsigned char;
+- SequentialView · class · L44-L160 — struct SequentialView
+- ActualSpeedImguiWidget · class · L47-L59 — struct ActualSpeedImguiWidget
+- Item · class · L51-L56 — struct Item
+- plot · function · L58-L58 — int plot(const char* label, const std::array<float, 2>& frame_size = { 0.0f, 0.0f });
+- Marker · class · L62-L109 — class Marker
+- init · function · L83-L83 — void init(std::string filename);
+- get_bounding_box · function · L85-L85 — const BoundingBoxf3& get_bounding_box() const { return m_model.get_bounding_box(); }
+- set_world_position · function · L87-L87 — void set_world_position(const Vec3f& position) { m_world_position = position; }
+- set_world_offset · function · L88-L88 — void set_world_offset(const Vec3f& offset) { m_world_offset = offset; }
+- set_z_offset · function · L89-L89 — void set_z_offset(float z_offset) { m_z_offset = z_offset; }
+- set_actual_speed_y_range · function · L92-L94 — void set_actual_speed_y_range(const std::pair<float, float>& y_range)
+- set_actual_speed_levels · function · L95-L97 — void set_actual_speed_levels(const std::vector<std::pair<float, ColorRGBA>>& levels)
+- set_actual_speed_data · function · L98-L100 — void set_actual_speed_data(const std::vector<ActualSpeedImguiWidget::Item>& data)
+- is_visible · function · L103-L103 — bool is_visible() const { return m_visible; }
+- set_visible · function · L104-L104 — void set_visible(bool visible) { m_visible = visible; }
+- render · function · L106-L106 — void render(int canvas_width, int canvas_height, const libvgcode::EViewType& view_type);
+- render_position_window · function · L107-L107 — void render_position_window(const libvgcode::Viewer* viewer, int canvas_width, int canvas_height, const libvgcode::EViewType& view_type);
+- on_change_color_mode · function · L108-L108 — void on_change_color_mode(bool is_dark) { m_is_dark = is_dark; }
+- GCodeWindow · class · L111-L150 — class GCodeWindow
+- Line · class · L113-L118 — struct Line
+- GCodeWindow · function · L131-L131 — GCodeWindow() = default;
+- load_gcode · function · L133-L133 — void load_gcode(const std::string& filename, const std::vector<size_t> &lines_ends);
+- reset · function · L134-L142 — void reset()
+- render · function · L146-L146 — void render(float top, float bottom, float right, uint64_t curr_line_id) const;
+- on_change_color_mode · function · L147-L147 — void on_change_color_mode(bool is_dark) { m_is_dark = is_dark; }
+- stop_mapping_file · function · L149-L149 — void stop_mapping_file();
+- render_marker · function · L157-L157 — void render_marker(const bool has_render_path, int canvas_width, int canvas_height, const libvgcode::EViewType& view_type);
+- render_overlay · function · L159-L159 — void render_overlay(const bool has_render_path, float legend_height, const libvgcode::Viewer* viewer, uint32_t gcode_id, int canvas_width, int canvas_height, int right_margin, const libvgcode::EViewType& view_type);
+- ExtruderFilament · class · L161-L167 — struct ExtruderFilament
+- Shells · class · L169-L177 — struct Shells
+- GCodeViewer · function · L253-L253 — GCodeViewer();
+- on_change_color_mode · function · L256-L256 — void on_change_color_mode(bool is_dark);
+- set_scale · function · L258-L258 — void set_scale(float scale = 1.0);
+- init · function · L259-L259 — void init(ConfigOptionMode mode, Slic3r::PresetBundle* preset_bundle);
+- update_by_mode · function · L260-L260 — void update_by_mode(ConfigOptionMode mode);
+- load_as_gcode · function · L264-L266 — void load_as_gcode(const GCodeProcessorResult& gcode_result, const Print& print, const std::vector<std::string>& str_tool_colors,
+- load_as_preview · function · L267-L267 — void load_as_preview(libvgcode::GCodeInputData&& data);
+- update_shells_color_by_extruder · function · L268-L268 — void update_shells_color_by_extruder(const DynamicPrintConfig* config);
+- set_shell_transparency · function · L269-L269 — void set_shell_transparency(float alpha = 0.15f);
+- reset · function · L271-L271 — void reset();
+- reset_shell · function · L273-L273 — void reset_shell();
+- load_shells · function · L274-L274 — void load_shells(const Print& print, bool initialized, bool force_previewing = false);
+- set_shells_on_preview · function · L275-L275 — void set_shells_on_preview(bool is_previewing) { m_shells.previewing = is_previewing; }
+- render_all_plates_stats · function · L277-L277 — void render_all_plates_stats(const std::vector<const GCodeProcessorResult*>& gcode_result_list, bool show = true) const;
+- render_scene · function · L280-L280 — void render_scene(int canvas_width, int canvas_height);
+- render_overlay · function · L282-L282 — void render_overlay(int canvas_width, int canvas_height, int right_margin);
+- render_shadow_casters · function · L285-L285 — void render_shadow_casters(const Transform3d& light_view_matrix, const Transform3d& light_projection_matrix, const Vec3d& light_position);
+- set_shadow_map · function · L286-L286 — void set_shadow_map(int texture_unit, const Transform3d& light_view_projection, float intensity, float texel_size);
+- set_tone · function · L289-L289 — void set_tone(float exposure, float saturation);
+- has_data · function · L294-L294 — bool has_data() const { return !m_viewer.get_extrusion_roles().empty(); }
+- can_export_toolpaths · function · L296-L296 — bool can_export_toolpaths() const;
+- get_plater_extruder · function · L297-L297 — std::vector<int> get_plater_extruder();
+- get_max_print_height · function · L299-L299 — const float                get_max_print_height() const { return m_max_print_height; }
+- get_paths_bounding_box · function · L300-L300 — const BoundingBoxf3& get_paths_bounding_box() const { return m_paths_bounding_box; }
+- get_max_bounding_box · function · L301-L301 — const BoundingBoxf3& get_max_bounding_box() const { return m_max_bounding_box; }
+- get_shell_bounding_box · function · L302-L302 — const BoundingBoxf3& get_shell_bounding_box() const { return m_shell_bounding_box; }
+- get_layers_zs · function · L303-L308 — std::vector<double> get_layers_zs() const
+- get_layers_times · function · L309-L309 — std::vector<float> get_layers_times() const { return m_viewer.get_layers_estimated_times(); }
+- get_layers_z_range · function · L311-L311 — const std::array<size_t,2> &get_layers_z_range() const { return m_viewer.get_layers_view_range(); }
+- get_sequential_view · function · L313-L313 — const SequentialView& get_sequential_view() const { return m_sequential_view; }
+- update_sequential_view_current · function · L314-L314 — void update_sequential_view_current(unsigned int first, unsigned int last);
+- get_moves_slider · function · L317-L317 — IMSlider *get_moves_slider() { return m_moves_slider; }
+- get_layers_slider · function · L318-L318 — IMSlider *get_layers_slider() { return m_layers_slider; }
+- enable_moves_slider · function · L319-L319 — void enable_moves_slider(bool enable) const;
+- update_moves_slider · function · L320-L320 — void update_moves_slider(bool set_to_max = false);
+- update_layers_slider_mode · function · L321-L321 — void update_layers_slider_mode();
+- get_gcode_view_full_range · function · L323-L323 — const libvgcode::Interval& get_gcode_view_full_range() const { return m_viewer.get_view_full_range(); }
+- get_gcode_view_enabled_range · function · L324-L324 — const libvgcode::Interval& get_gcode_view_enabled_range() const { return m_viewer.get_view_enabled_range(); }
+- get_gcode_view_visible_range · function · L325-L325 — const libvgcode::Interval& get_gcode_view_visible_range() const { return m_viewer.get_view_visible_range(); }
+- get_gcode_vertex_at · function · L326-L326 — const libvgcode::PathVertex& get_gcode_vertex_at(size_t id) const { return m_viewer.get_vertex_at(id); }
+- is_contained_in_bed · function · L328-L328 — bool is_contained_in_bed() const { return m_contained_in_bed; }
+- is_only_gcode_in_preview · function · L330-L330 — bool is_only_gcode_in_preview() const { return m_only_gcode_in_preview; }
+- set_view_type · function · L332-L334 — void set_view_type(libvgcode::EViewType type)
+- select_view_type · function · L336-L336 — void select_view_type(libvgcode::EViewType type);
+- apply_default_view_type · function · L338-L338 — void apply_default_view_type();
+- view_type_to_config_name · function · L341-L341 — static std::string view_type_to_config_name(libvgcode::EViewType type);
+- view_type_from_config_name · function · L342-L342 — static bool view_type_from_config_name(const std::string& name, libvgcode::EViewType& type);
+- default_view_type_choices · function · L344-L344 — static std::vector<std::pair<std::string, std::string>> default_view_type_choices();
+- reset_visible · function · L345-L355 — void reset_visible(libvgcode::EViewType type)
+- get_view_type · function · L357-L357 — libvgcode::EViewType get_view_type() const { return m_viewer.get_view_type(); }
+- set_dim_previous_layers · function · L360-L360 — void set_dim_previous_layers(bool value) { m_viewer.set_dim_previous_layers(value); }
+- is_dim_previous_layers · function · L361-L361 — bool is_dim_previous_layers() const { return m_viewer.is_dim_previous_layers(); }
+- set_dim_previous_layers_brightness · function · L363-L363 — void set_dim_previous_layers_brightness(float value) { m_viewer.set_dim_previous_layers_brightness(value); }
+- get_dim_previous_layers_brightness · function · L364-L364 — float get_dim_previous_layers_brightness() const { return m_viewer.get_dim_previous_layers_brightness(); }
+- set_layers_z_range · function · L366-L366 — void set_layers_z_range(const std::array<unsigned int, 2>& layers_z_range);
+- is_legend_shown · function · L368-L368 — bool is_legend_shown() const { return m_legend_visible && m_legend_enabled; }
+- show_legend · function · L369-L369 — void show_legend(bool show) { m_legend_visible = show; }
+- enable_legend · function · L370-L370 — void enable_legend(bool enable) { m_legend_enabled = enable; }
+- get_legend_height · function · L371-L371 — float get_legend_height() { return m_legend_height; }
+- export_toolpaths_to_obj · function · L373-L373 — void export_toolpaths_to_obj(const char* filename) const;
+- get_extruders_count · function · L375-L375 — size_t get_extruders_count() { return m_extruders_count; }
+- push_combo_style · function · L376-L376 — void push_combo_style();
+- pop_combo_style · function · L377-L377 — void pop_combo_style();
+- invalidate_legend · function · L379-L379 — void invalidate_legend() { /*TODO: m_legend_resizer.reset();*/ }
+- get_cog_marker_scale_factor · function · L382-L382 — float get_cog_marker_scale_factor() const { return m_viewer.get_cog_marker_scale_factor(); }
+- set_cog_marker_scale_factor · function · L383-L383 — void set_cog_marker_scale_factor(float factor) { return m_viewer.set_cog_marker_scale_factor(factor); }
+- sequential_view_height · function · L390-L390 — int sequential_view_height(int canvas_height) const;
+- render_toolpaths · function · L391-L391 — void render_toolpaths();
+- render_shells · function · L392-L392 — void render_shells(int canvas_width, int canvas_height);
+- render_legend · function · L395-L395 — void render_legend(float &legend_height, int canvas_width, int canvas_height, int right_margin);
+- render_legend_color_arr_recommen · function · L396-L396 — void render_legend_color_arr_recommen(float window_padding);
+- render_slider · function · L397-L397 — void render_slider(int canvas_width, int canvas_height);

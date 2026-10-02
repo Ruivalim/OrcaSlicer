@@ -1,0 +1,21 @@
+# src/slic3r/GUI/Gizmos/GLGizmoSeam.hpp
+
+- GLGizmoSeam · class · L8-L54 — class GLGizmoSeam : public GLGizmoPainterBase
+- GLGizmoSeam · function · L11-L11 — GLGizmoSeam(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- render_painter_gizmo · function · L13-L13 — void render_painter_gizmo() override;
+- on_tool_shortcut · function · L15-L15 — bool on_tool_shortcut(Shortcut shortcut) override;
+- on_set_state · function · L19-L19 — void on_set_state() override;
+- on_render_input_window · function · L22-L22 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_get_name · function · L23-L23 — std::string on_get_name() const override;
+- get_painter_type · function · L24-L24 — PainterGizmoType get_painter_type() const override;
+- tool_changed · function · L26-L26 — void tool_changed(wchar_t old_tool, wchar_t new_tool);
+- handle_snapshot_action_name · function · L28-L28 — wxString handle_snapshot_action_name(bool shift_down, Button button_down) const override;
+- get_gizmo_entering_text · function · L30-L30 — std::string get_gizmo_entering_text() const override { return _u8L("Entering seam painting"); }
+- get_gizmo_leaving_text · function · L31-L31 — std::string get_gizmo_leaving_text() const override { return _u8L("Leaving Seam painting"); }
+- get_action_snapshot_name · function · L32-L32 — std::string get_action_snapshot_name() const override { return _u8L("Paint-on seam editing"); }
+- get_cursor_radius_min · function · L35-L35 — const float get_cursor_radius_min() const override { return CursorRadiusMin; }
+- on_init · function · L38-L38 — bool on_init() override;
+- update_model_object · function · L41-L41 — void update_model_object() override;
+- update_from_model_object · function · L43-L43 — void update_from_model_object(bool first_update = false) override;
+- on_opening · function · L45-L45 — void on_opening() override {}
+- on_shutdown · function · L46-L46 — void on_shutdown() override;

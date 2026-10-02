@@ -1,0 +1,22 @@
+# src/slic3r/GUI/PhysicalPrinterDialog.hpp
+
+- wxTextCtrl · class · L13-L13 — class wxTextCtrl;
+- wxStaticText · class · L14-L14 — class wxStaticText;
+- Button · class · L15-L15 — class Button;
+- wxBoxSizer · class · L16-L16 — class wxBoxSizer;
+- ConfigOptionsGroup · class · L26-L26 — class ConfigOptionsGroup;
+- PhysicalPrinterDialog · class · L27-L73 — class PhysicalPrinterDialog : public DPIDialog
+- build_printhost_settings · function · L44-L44 — void build_printhost_settings(ConfigOptionsGroup* optgroup);
+- OnOK · function · L45-L45 — void OnOK(wxEvent& event);
+- PhysicalPrinterDialog · function · L48-L48 — PhysicalPrinterDialog(wxWindow* parent);
+- ValidationType · type · L51-L56 — enum ValidationType
+- update · function · L61-L61 — void        update(bool printer_change = false);
+- update_host_type · function · L62-L62 — void        update_host_type(bool printer_change);
+- update_preset_input · function · L63-L63 — void        update_preset_input();
+- update_printhost_buttons · function · L64-L64 — void        update_printhost_buttons();
+- update_printers · function · L65-L65 — void        update_printers();
+- update_ports · function · L66-L66 — void        update_ports();
+- update_webui · function · L67-L67 — void        update_webui();
+- on_dpi_changed · function · L70-L70 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_sys_color_changed · function · L71-L71 — void on_sys_color_changed() override {};
+- check_host_key_valid · function · L72-L72 — void check_host_key_valid();

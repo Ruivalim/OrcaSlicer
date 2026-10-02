@@ -1,0 +1,85 @@
+# deps_src/mcut/include/mcut/internal/hmesh.h
+
+- descriptor_t_ · function · L41-L41 — virtual ~descriptor_t_() { }
+- descriptor_t_ · function · L42-L45 — explicit descriptor_t_(index_type i = (std::numeric_limits<index_type>::max)())
+- i · function · L42-L42 — explicit descriptor_t_(index_type i = (std::numeric_limits<index_type>::max)())
+- index_type · function · L47-L47 — operator index_type() const { return m_value; }
+- reset · function · L49-L49 — void reset() { m_value = (std::numeric_limits<index_type>::max)(); }
+- is_valid · function · L51-L61 — bool is_valid() const
+- halfedge_descriptor_t · function · L127-L130 — explicit halfedge_descriptor_t(descriptor_t_<halfedge_descriptor_t>::index_type idx)
+- halfedge_descriptor_t · function · L132-L134 — virtual ~halfedge_descriptor_t()
+- edge_descriptor_t · function · L144-L147 — explicit edge_descriptor_t(descriptor_t_<edge_descriptor_t>::index_type idx)
+- edge_descriptor_t · function · L149-L151 — virtual ~edge_descriptor_t()
+- face_descriptor_t · function · L161-L164 — explicit face_descriptor_t(descriptor_t_<face_descriptor_t>::index_type idx)
+- face_descriptor_t · function · L166-L168 — virtual ~face_descriptor_t()
+- vertex_descriptor_t · function · L178-L181 — explicit vertex_descriptor_t(descriptor_t_<vertex_descriptor_t>::index_type idx)
+- vertex_descriptor_t · function · L183-L185 — virtual ~vertex_descriptor_t()
+- type · type · L190-L190 — typedef T type;
+- vertex_array_t · type · L225-L225 — typedef std::vector<vertex_data_t> vertex_array_t;
+- edge_array_t · type · L226-L226 — typedef std::vector<edge_data_t> edge_array_t;
+- halfedge_array_t · type · L227-L227 — typedef std::vector<halfedge_data_t> halfedge_array_t;
+- face_array_t · type · L228-L228 — typedef std::vector<face_data_t> face_array_t;
+- face_array_iterator_t · type · L230-L230 — typedef array_iterator_t<face_array_t> face_array_iterator_t;
+- vertex_array_iterator_t · type · L231-L231 — typedef array_iterator_t<vertex_array_t> vertex_array_iterator_t;
+- edge_array_iterator_t · type · L232-L232 — typedef array_iterator_t<edge_array_t> edge_array_iterator_t;
+- halfedge_array_iterator_t · type · L233-L233 — typedef array_iterator_t<halfedge_array_t> halfedge_array_iterator_t;
+- null_vertex · function · L260-L260 — static vertex_descriptor_t null_vertex();
+- null_halfedge · function · L261-L261 — static halfedge_descriptor_t null_halfedge();
+- null_edge · function · L262-L262 — static edge_descriptor_t null_edge();
+- null_face · function · L263-L263 — static face_descriptor_t null_face();
+- number_of_vertices · function · L269-L269 — int number_of_vertices() const;
+- set_next · function · L269-L280 — int number_of_vertices() const;
+- number_of_edges · function · L270-L270 — int number_of_edges() const;
+- number_of_halfedges · function · L271-L271 — int number_of_halfedges() const;
+- number_of_faces · function · L272-L272 — int number_of_faces() const;
+- source · function · L274-L274 — vertex_descriptor_t source(const halfedge_descriptor_t& h) const;
+- target · function · L275-L275 — vertex_descriptor_t target(const halfedge_descriptor_t& h) const;
+- opposite · function · L276-L276 — halfedge_descriptor_t opposite(const halfedge_descriptor_t& h) const;
+- prev · function · L277-L277 — halfedge_descriptor_t prev(const halfedge_descriptor_t& h) const;
+- next · function · L278-L278 — halfedge_descriptor_t next(const halfedge_descriptor_t& h) const;
+- set_previous · function · L281-L281 — void set_previous(const halfedge_descriptor_t& h, const halfedge_descriptor_t& prev);
+- edge · function · L283-L283 — edge_descriptor_t edge(const halfedge_descriptor_t& h) const;
+- is_border · function · L283-L288 — edge_descriptor_t edge(const halfedge_descriptor_t& h) const;
+- face · function · L284-L284 — face_descriptor_t face(const halfedge_descriptor_t& h) const;
+- vertex · function · L286-L286 — vertex_descriptor_t vertex(const edge_descriptor_t e, const int v) const;
+- is_border · function · L289-L289 — bool is_border(const edge_descriptor_t e);
+- halfedge · function · L291-L291 — halfedge_descriptor_t halfedge(const edge_descriptor_t e, const int i) const;
+- halfedge · function · L293-L293 — halfedge_descriptor_t halfedge(const vertex_descriptor_t s, const vertex_descriptor_t t, bool strict_check = false) const;
+- edge · function · L295-L295 — edge_descriptor_t edge(const vertex_descriptor_t s, const vertex_descriptor_t t, bool strict_check = false) const;
+- add_vertex · function · L297-L297 — vertex_descriptor_t add_vertex(const vec3& point);
+- add_vertex · function · L299-L299 — vertex_descriptor_t add_vertex(const double& x, const double& y, const double& z);
+- add_edge · function · L302-L302 — halfedge_descriptor_t add_edge(const vertex_descriptor_t v0, const vertex_descriptor_t v1);
+- add_face · function · L303-L303 — face_descriptor_t add_face(const std::vector<vertex_descriptor_t>& vi);
+- is_insertable · function · L307-L307 — bool is_insertable(const std::vector<vertex_descriptor_t> &vi) const;
+- remove_face · function · L310-L310 — void remove_face(const face_descriptor_t f);
+- remove_halfedge · function · L312-L312 — void remove_halfedge(halfedge_descriptor_t h);
+- remove_edge · function · L314-L314 — void remove_edge(const edge_descriptor_t e, bool remove_halfedges = true);
+- remove_vertex · function · L315-L315 — void remove_vertex(const vertex_descriptor_t v);
+- remove_elements · function · L316-L316 — void remove_elements();
+- reset · function · L318-L318 — void reset();
+- number_of_internal_faces · function · L320-L320 — int number_of_internal_faces() const;
+- number_of_internal_edges · function · L321-L321 — int number_of_internal_edges() const;
+- number_of_internal_halfedges · function · L322-L322 — int number_of_internal_halfedges() const;
+- number_of_internal_vertices · function · L323-L323 — int number_of_internal_vertices() const;
+- number_of_vertices_removed · function · L325-L325 — int number_of_vertices_removed() const;
+- number_of_edges_removed · function · L326-L326 — int number_of_edges_removed() const;
+- number_of_halfedges_removed · function · L327-L327 — int number_of_halfedges_removed() const;
+- number_of_faces_removed · function · L328-L328 — int number_of_faces_removed() const;
+- is_removed · function · L330-L330 — bool is_removed(face_descriptor_t f) const;
+- is_removed · function · L331-L331 — bool is_removed(edge_descriptor_t e) const;
+- is_removed · function · L332-L332 — bool is_removed(halfedge_descriptor_t h) const;
+- is_removed · function · L333-L333 — bool is_removed(vertex_descriptor_t v) const;
+- reserve_for_additional_vertices · function · L335-L335 — void reserve_for_additional_vertices(std::uint32_t n);
+- reserve_for_additional_edges · function · L336-L336 — void reserve_for_additional_edges(std::uint32_t n);
+- reserve_for_additional_halfedges · function · L337-L337 — void reserve_for_additional_halfedges(std::uint32_t n);
+- reserve_for_additional_faces · function · L338-L338 — void reserve_for_additional_faces(std::uint32_t n);
+- reserve_for_additional_elements · function · L339-L339 — void reserve_for_additional_elements(std::uint32_t additional_vertices);
+- get_removed_elements · function · L380-L381 — for (auto elem_descr : get_removed_elements(id_<array_iterator_t<I>> {}))
+- read_off · function · L446-L446 — void read_off(hmesh_t& mesh, const char* fpath);
+- std_iterator_base_class · type · L451-L451 — typedef typename V::const_iterator std_iterator_base_class;
+- element_descriptor_type · type · L452-L452 — typedef typename V::value_type::type element_descriptor_type;
+- const_iterator · function · L459-L467 — array_iterator_t(typename V::const_iterator it_, const hmesh_t* const mesh)
+- mesh_ptr · function · L461-L461 — , mesh_ptr(mesh)
+- get_mesh_ptr · function · L465-L465 — const hmesh_t* get_mesh_ptr() const
+- d · function · L473-L473 — element_descriptor_type d((std::uint32_t)raw_index);
+- raw_descriptor · function · L490-L490 — element_descriptor_type raw_descriptor((std::uint32_t)diff); // std::distance(cbegin<array_iterator_t<V>>(false), (*this)); // O(1) ??

@@ -1,0 +1,129 @@
+# src/slic3r/GUI/UnsavedChangesDialog.hpp
+
+- ScalableButton · class · L14-L14 — class ScalableButton;
+- wxStaticText · class · L15-L15 — class wxStaticText;
+- ModelNode · class · L26-L26 — class ModelNode;
+- PresetComboBox · class · L27-L27 — class PresetComboBox;
+- MainFrame · class · L28-L28 — class MainFrame;
+- ModelNode · class · L37-L112 — class ModelNode
+- get_bitmap · function · L52-L52 — wxIcon              get_bitmap(const wxString& color);
+- get_bitmap · function · L54-L54 — wxBitmap            get_bitmap(const wxString& color);
+- ModelNode · function · L85-L85 — ModelNode(Preset::Type preset_type, wxWindow* parent_win, const wxString& text, const std::string& icon_name);
+- ModelNode · function · L88-L88 — ModelNode(ModelNode* parent, const wxString& text, const std::string& icon_name);
+- ModelNode · function · L91-L91 — ModelNode(ModelNode* parent, const wxString& text);
+- ModelNode · function · L94-L94 — ModelNode(ModelNode* parent, const wxString& text, const wxString& old_value, const wxString& new_value);
+- IsContainer · function · L96-L96 — bool                IsContainer() const         { return m_container; }
+- IsToggled · function · L97-L97 — bool                IsToggled() const           { return m_toggle; }
+- Toggle · function · L98-L98 — void                Toggle(bool toggle = true)  { m_toggle = toggle; }
+- IsRoot · function · L99-L99 — bool                IsRoot() const              { return m_parent == nullptr; }
+- type · function · L100-L100 — Preset::Type        type() const                { return m_preset_type; }
+- text · function · L101-L101 — const wxString&     text() const                { return m_text; }
+- GetParent · function · L103-L103 — ModelNode*          GetParent()                 { return m_parent; }
+- GetChildren · function · L104-L104 — ModelNodePtrArray&  GetChildren()               { return m_children; }
+- GetNthChild · function · L105-L105 — ModelNode*          GetNthChild(unsigned int n) { return m_children[n].get(); }
+- GetChildCount · function · L106-L106 — unsigned int        GetChildCount() const       { return (unsigned int)(m_children.size()); }
+- Append · function · L108-L108 — void Append(std::unique_ptr<ModelNode> child)   { m_children.emplace_back(std::move(child)); }
+- UpdateEnabling · function · L110-L110 — void UpdateEnabling();
+- UpdateIcons · function · L111-L111 — void UpdateIcons();
+- DiffModel · class · L119-L182 — class DiffModel : public wxDataViewModel
+- AddOption · function · L126-L129 — ModelNode *AddOption(ModelNode *group_node,
+- AddOptionWithGroup · function · L130-L134 — ModelNode *AddOptionWithGroup(ModelNode *category_node,
+- AddOptionWithGroupAndCategory · function · L135-L141 — ModelNode *AddOptionWithGroupAndCategory(ModelNode *preset_node,
+- DiffModel · function · L152-L152 — DiffModel(wxWindow* parent);
+- SetAssociatedControl · function · L155-L155 — void            SetAssociatedControl(wxDataViewCtrl* ctrl) { m_ctrl = ctrl; }
+- AddPreset · function · L157-L157 — wxDataViewItem  AddPreset(Preset::Type type, wxString preset_name, PrinterTechnology pt);
+- AddOption · function · L158-L159 — wxDataViewItem  AddOption(Preset::Type type, wxString category_name, wxString group_name, wxString option_name,
+- UpdateItemEnabling · function · L161-L161 — void            UpdateItemEnabling(wxDataViewItem item);
+- IsEnabledItem · function · L162-L162 — bool            IsEnabledItem(const wxDataViewItem& item);
+- GetColumnCount · function · L164-L164 — unsigned int    GetColumnCount() const override { return colMax; }
+- GetColumnType · function · L165-L165 — wxString        GetColumnType(unsigned int col) const override;
+- Rescale · function · L166-L166 — void            Rescale();
+- Delete · function · L168-L168 — wxDataViewItem  Delete(const wxDataViewItem& item);
+- Clear · function · L169-L169 — void            Clear();
+- GetParent · function · L171-L171 — wxDataViewItem  GetParent(const wxDataViewItem& item) const override;
+- GetChildren · function · L172-L172 — unsigned int    GetChildren(const wxDataViewItem& parent, wxDataViewItemArray& array) const override;
+- GetValue · function · L174-L174 — void GetValue(wxVariant& variant, const wxDataViewItem& item, unsigned int col) const override;
+- SetValue · function · L175-L175 — bool SetValue(const wxVariant& variant, const wxDataViewItem& item, unsigned int col) override;
+- IsEnabled · function · L177-L177 — bool IsEnabled(const wxDataViewItem& item, unsigned int col) const override;
+- IsContainer · function · L178-L178 — bool IsContainer(const wxDataViewItem& item) const override;
+- HasContainerColumns · function · L181-L181 — bool HasContainerColumns(const wxDataViewItem& WXUNUSED(item)) const override { return true; }
+- WXUNUSED · function · L181-L181 — bool HasContainerColumns(const wxDataViewItem& WXUNUSED(item)) const override { return true; }
+- DiffViewCtrl · class · L189-L231 — class DiffViewCtrl : public wxDataViewCtrl
+- ItemData · class · L195-L203 — struct ItemData
+- DiffViewCtrl · function · L210-L210 — DiffViewCtrl(wxWindow* parent, wxSize size);
+- AppendBmpTextColumn · function · L215-L215 — void    AppendBmpTextColumn(const wxString& label, unsigned model_column, int width, bool set_expander = false);
+- AppendToggleColumn_ · function · L216-L216 — void    AppendToggleColumn_(const wxString& label, unsigned model_column, int width);
+- Rescale · function · L217-L217 — void    Rescale(int em = 0);
+- Append · function · L218-L219 — void    Append(const std::string& opt_key, Preset::Type type, wxString category_name, wxString group_name, wxString option_name,
+- Clear · function · L220-L220 — void    Clear();
+- get_short_string · function · L222-L222 — wxString    get_short_string(wxString full_string);
+- has_selection · function · L223-L223 — bool        has_selection() { return !m_empty_selection; }
+- context_menu · function · L224-L224 — void        context_menu(wxDataViewEvent& event);
+- item_value_changed · function · L225-L225 — void        item_value_changed(wxDataViewEvent& event);
+- set_em_unit · function · L226-L226 — void        set_em_unit(int em) { m_em_unit = em; }
+- has_unselected_options · function · L227-L227 — bool        has_unselected_options();
+- options · function · L229-L229 — std::vector<std::string> options(Preset::Type type, bool selected);
+- selected_options · function · L230-L230 — std::vector<std::string> selected_options();
+- ActionButtons · type · L234-L240 — enum ActionButtons
+- Action · type · L242-L247 — enum class Action
+- PresetItem · class · L254-L263 — struct PresetItem
+- UnsavedChangesDialog · class · L266-L401 — class UnsavedChangesDialog : public DPIDialog
+- PresetData · class · L304-L314 — struct PresetData
+- PresetData · function · L310-L313 — PresetData(std::string preset_name, Preset::Type preset_type, bool save_project)
+- getUpdateItemCount · function · L316-L316 — int getUpdateItemCount() { return m_presetitems.size(); }
+- SyncExtruderParams · class · L330-L337 — struct SyncExtruderParams
+- UnsavedChangesDialog · function · L340-L340 — UnsavedChangesDialog(Preset::Type type, PresetCollection* dependent_presets, const std::string& new_selected_preset, bool no_transfer = false);
+- UnsavedChangesDialog · function · L342-L342 — UnsavedChangesDialog(const wxString& caption, const wxString& header, const std::string& app_config_key, int act_buttons);
+- UnsavedChangesDialog · function · L343-L343 — UnsavedChangesDialog(const wxString &caption, const wxString &header, DynamicConfig *config, int from, int to, bool left_to_right, NozzleVolumeType nozzle);
+- ShowModal · function · L346-L346 — int ShowModal() override;
+- build · function · L348-L348 — void        build(Preset::Type type, PresetCollection *dependent_presets, const std::string &new_selected_preset, const wxString &header = "");
+- update · function · L349-L349 — void update(Preset::Type type, PresetCollection* dependent_presets, const std::string& new_selected_preset, const wxString& header);
+- update_list · function · L350-L350 — void update_list(SyncExtruderParams *params = nullptr);
+- subreplace · function · L351-L351 — std::string subreplace(std::string resource_str, std::string sub_str, std::string new_str);
+- update_tree · function · L352-L352 — void        update_tree(Preset::Type type, PresetCollection *presets);
+- update_tree · function · L353-L353 — void        update_tree(Preset::Type type, DynamicConfig *config, int from, int to);
+- show_info_line · function · L354-L354 — void show_info_line(Action action, std::string preset_name = "");
+- update_config · function · L355-L355 — void update_config(Action action);
+- close · function · L356-L356 — void close(Action action);
+- save · function · L358-L358 — bool save(PresetCollection* dependent_presets, bool show_save_preset_dialog = true);
+- save_preset · function · L360-L360 — bool save_preset() const        { return m_exit_action == Action::Save;     }
+- transfer_changes · function · L361-L361 — bool transfer_changes() const   { return m_exit_action == Action::Transfer; }
+- discard · function · L362-L362 — bool discard() const            { return m_exit_action == Action::Discard;  }
+- get_names_and_types · function · L366-L366 — const std::vector<UnsavedChangesDialog::PresetData>& get_names_and_types() { return names_and_types; }
+- get_save_to_project_option · function · L367-L367 — bool get_save_to_project_option() { return names_and_types[0].save_to_project; }
+- get_preset_name · function · L370-L370 — std::string get_preset_name() { return names_and_types[0].name; }
+- get_unselected_options · function · L372-L372 — std::vector<std::string> get_unselected_options(Preset::Type type) { /* return m_tree->options(type, false);*/return std::vector<std::string>();}
+- get_selected_options · function · L373-L383 — std::vector<std::string> get_selected_options  (Preset::Type type)
+- get_selected_options · function · L384-L394 — std::vector<std::string> get_selected_options()
+- has_unselected_options · function · L395-L395 — bool                     has_unselected_options()                   { /*return m_tree->has_unselected_options();*/return false;}
+- on_dpi_changed · function · L398-L398 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_sys_color_changed · function · L399-L399 — void on_sys_color_changed() override;
+- check_option_valid · function · L400-L400 — bool check_option_valid();
+- FullCompareDialog · class · L407-L413 — class FullCompareDialog : public wxDialog
+- FullCompareDialog · function · L410-L411 — FullCompareDialog(const wxString& option_name, const wxString& old_value, const wxString& new_value,
+- DiffPresetDialog · class · L419-L479 — class DiffPresetDialog : public DPIDialog
+- create_buttons · function · L435-L435 — void create_buttons();
+- create_edit_sizer · function · L436-L436 — void create_edit_sizer();
+- complete_dialog_creation · function · L437-L437 — void complete_dialog_creation();
+- create_presets_sizer · function · L438-L438 — void create_presets_sizer();
+- create_info_lines · function · L439-L439 — void create_info_lines();
+- create_tree · function · L440-L440 — void create_tree();
+- create_show_all_presets_chb · function · L441-L441 — void create_show_all_presets_chb();
+- update_bottom_info · function · L443-L443 — void update_bottom_info(wxString bottom_info = "");
+- update_tree · function · L444-L444 — void update_tree();
+- update_bundles_from_app · function · L445-L445 — void update_bundles_from_app();
+- update_controls_visibility · function · L446-L446 — void update_controls_visibility(Preset::Type type = Preset::TYPE_INVALID);
+- update_compatibility · function · L447-L447 — void update_compatibility(const std::string& preset_name, Preset::Type type, PresetBundle* preset_bundle);
+- button_event · function · L449-L449 — void button_event(Action act);
+- DiffPresets · class · L451-L456 — struct DiffPresets
+- DiffPresetDialog · function · L461-L461 — DiffPresetDialog(MainFrame*mainframe);
+- show · function · L464-L464 — void show(Preset::Type type = Preset::TYPE_INVALID);
+- update_presets · function · L465-L465 — void update_presets(Preset::Type type = Preset::TYPE_INVALID);
+- view_type · function · L467-L467 — Preset::Type        view_type() const           { return m_view_type; }
+- printer_technology · function · L468-L468 — PrinterTechnology   printer_technology() const  { return m_pr_technology; }
+- get_left_preset_name · function · L470-L470 — std::string get_left_preset_name(Preset::Type type);
+- get_right_preset_name · function · L471-L471 — std::string get_right_preset_name(Preset::Type type);
+- get_selected_options · function · L473-L473 — std::vector<std::string> get_selected_options(Preset::Type type) const { return m_tree->options(type, true); }
+- types_list · function · L475-L475 — std::array<Preset::Type, 3>         types_list() const;
+- on_dpi_changed · function · L477-L477 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_sys_color_changed · function · L478-L478 — void on_sys_color_changed() override;

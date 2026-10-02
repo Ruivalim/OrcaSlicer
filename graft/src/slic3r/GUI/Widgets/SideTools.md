@@ -1,0 +1,34 @@
+# src/slic3r/GUI/Widgets/SideTools.hpp
+
+- WifiSignal · type · L20-L26 — enum WifiSignal
+- MonitorStatus · type · L28-L35 — enum MonitorStatus
+- SideToolsPanel · class · L41-L91 — class SideToolsPanel : public wxPanel
+- SideToolsPanel · function · L71-L71 — SideToolsPanel(wxWindow *parent, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- set_none_printer_mode · function · L74-L74 — void set_none_printer_mode();
+- on_timer · function · L75-L75 — void on_timer(wxTimerEvent &event);
+- set_current_printer_name · function · L76-L76 — void set_current_printer_name(std::string dev_name);
+- set_current_printer_signal · function · L77-L77 — void set_current_printer_signal(WifiSignal sign);;
+- start_interval · function · L78-L78 — void start_interval();
+- stop_interval · function · L79-L79 — void stop_interval(wxTimerEvent &event);
+- is_in_interval · function · L80-L80 — bool is_in_interval();
+- msw_rescale · function · L81-L81 — void msw_rescale();
+- OnPaint · function · L84-L84 — void OnPaint(wxPaintEvent &event);
+- render · function · L85-L85 — void render(wxDC &dc);
+- doRender · function · L86-L86 — void doRender(wxDC &dc);
+- on_mouse_enter · function · L87-L87 — void on_mouse_enter(wxMouseEvent &evt);
+- on_mouse_leave · function · L88-L88 — void on_mouse_leave(wxMouseEvent &evt);
+- on_mouse_left_down · function · L89-L89 — void on_mouse_left_down(wxMouseEvent &evt);
+- on_mouse_left_up · function · L90-L90 — void on_mouse_left_up(wxMouseEvent &evt);
+- SideTools · class · L93-L128 — class SideTools : public wxPanel
+- SideTools · function · L96-L96 — SideTools(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- set_table_panel · function · L115-L115 — void set_table_panel(Tabbook* tb) {m_tabpanel = tb;};
+- msw_rescale · function · L116-L116 — void msw_rescale();
+- is_in_interval · function · L117-L117 — bool is_in_interval();
+- set_current_printer_name · function · L118-L118 — void set_current_printer_name(std::string dev_name);
+- set_current_printer_signal · function · L119-L119 — void set_current_printer_signal(WifiSignal sign);
+- set_none_printer_mode · function · L120-L120 — void set_none_printer_mode();
+- start_interval · function · L121-L121 — void start_interval();
+- update_status · function · L122-L122 — void update_status(MachineObject* obj);
+- update_connect_err_info · function · L123-L123 — void update_connect_err_info(int code, wxString desc, wxString info);
+- show_status · function · L124-L124 — void show_status(int status);
+- get_panel · function · L127-L127 — SideToolsPanel* get_panel() {return m_side_tools;};

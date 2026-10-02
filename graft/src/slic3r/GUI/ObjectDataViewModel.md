@@ -1,0 +1,201 @@
+# src/slic3r/GUI/ObjectDataViewModel.hpp
+
+- ModelObject · class · L12-L12 — class ModelObject;
+- ModelVolume · class · L13-L13 — class ModelVolume;
+- ModelVolumeType · type · L14-L14 — enum class ModelVolumeType : int;
+- PartPlate · class · L17-L17 — class PartPlate;
+- coordf_t · type · L19-L19 — typedef double                          coordf_t;
+- t_layer_height_range · type · L20-L20 — typedef std::pair<coordf_t, coordf_t>   t_layer_height_range;
+- ItemType · type · L25-L36 — enum ItemType
+- ColumnNumber · type · L38-L50 — enum ColumnNumber
+- PrintIndicator · type · L52-L57 — enum PrintIndicator
+- VaryHeightIndicator · type · L59-L63 — enum VaryHeightIndicator
+- InfoItemType · type · L65-L74 — enum class InfoItemType
+- ObjectDataViewModelNode · class · L76-L76 — class ObjectDataViewModelNode;
+- WX_DEFINE_ARRAY_PTR · function · L77-L77 — WX_DEFINE_ARRAY_PTR(ObjectDataViewModelNode*, MyObjectTreeModelNodePtrArray);
+- ObjectDataViewModelNode · class · L79-L327 — class ObjectDataViewModelNode
+- ObjectDataViewModelNode · function · L126-L139 — ObjectDataViewModelNode(const wxString& name,
+- ObjectDataViewModelNode · function · L141-L147 — ObjectDataViewModelNode(ObjectDataViewModelNode* parent,
+- ObjectDataViewModelNode · function · L149-L152 — ObjectDataViewModelNode(ObjectDataViewModelNode* parent,
+- ObjectDataViewModelNode · function · L154-L154 — ObjectDataViewModelNode(PartPlate* part_plate, wxString name);
+- ObjectDataViewModelNode · function · L157-L157 — ObjectDataViewModelNode(ObjectDataViewModelNode* parent, const ItemType type, const int plate_idx = -1);
+- ObjectDataViewModelNode · function · L159-L159 — ObjectDataViewModelNode(ObjectDataViewModelNode* parent, const InfoItemType type);
+- init_container · function · L176-L176 — void init_container();
+- IsContainer · function · L177-L180 — bool IsContainer() const
+- GetParent · function · L182-L182 — ObjectDataViewModelNode* GetParent()
+- GetChildren · function · L187-L187 — MyObjectTreeModelNodePtrArray& GetChildren()
+- GetNthChild · function · L191-L191 — ObjectDataViewModelNode* GetNthChild(unsigned int n)
+- GetChildIndex · function · L196-L205 — int GetChildIndex(ObjectDataViewModelNode* child) const
+- Insert · function · L207-L212 — void Insert(ObjectDataViewModelNode* child, unsigned int n)
+- Append · function · L213-L218 — void Append(ObjectDataViewModelNode* child)
+- RemoveAllChildren · function · L219-L231 — void RemoveAllChildren()
+- GetChildCount · function · L233-L236 — size_t GetChildCount() const
+- SetName · function · L237-L237 — void            SetName(const wxString &);
+- SetValue · function · L238-L238 — bool            SetValue(const wxVariant &variant, unsigned int col);
+- SetVolumeType · function · L239-L239 — void            SetVolumeType(ModelVolumeType type) { m_volume_type = type; }
+- SetBitmap · function · L240-L240 — void            SetBitmap(const wxBitmap &icon) { m_bmp = icon; }
+- SetExtruder · function · L241-L241 — void            SetExtruder(const wxString &extruder) { m_extruder = extruder; }
+- SetWarningIconName · function · L242-L242 — void            SetWarningIconName(const std::string& warning_icon_name) { m_warning_icon_name = warning_icon_name; }
+- SetLock · function · L243-L243 — void            SetLock(bool has_lock)                                   { m_has_lock = has_lock; }
+- GetBitmap · function · L244-L244 — const wxBitmap& GetBitmap() const               { return m_bmp; }
+- GetName · function · L245-L245 — const wxString& GetName() const                 { return m_name; }
+- GetType · function · L246-L246 — ItemType        GetType() const                 { return m_type; }
+- GetInfoItemType · function · L247-L247 — InfoItemType    GetInfoItemType() const         { return m_info_item_type; }
+- SetIdx · function · L248-L248 — void			SetIdx(const int& idx);
+- GetIdx · function · L249-L249 — int             GetIdx() const                  { return m_idx; }
+- SetPlateIdx · function · L251-L251 — void            SetPlateIdx(const int& idx);
+- GetPlateIdx · function · L252-L252 — int             GetPlateIdx() const             { return m_plate_idx; }
+- GetVolumeType · function · L253-L253 — ModelVolumeType GetVolumeType()                 { return m_volume_type; }
+- GetLayerRange · function · L254-L254 — t_layer_height_range    GetLayerRange() const   { return m_layer_range; }
+- GetExtruder · function · L255-L255 — wxString        GetExtruder()                   { return m_extruder; }
+- IsPrintable · function · L256-L256 — PrintIndicator  IsPrintable() const             { return m_printable; }
+- IsVaribaleHeight · function · L257-L257 — VaryHeightIndicator  IsVaribaleHeight() const   { return m_variable_height; }
+- HasColorPainting · function · L259-L259 — bool            HasColorPainting() const        { return m_color_enable; }
+- HasSupportPainting · function · L260-L260 — bool            HasSupportPainting() const      { return m_support_enable; }
+- HasSinking · function · L261-L261 — bool            HasSinking() const              { return m_sink_enable; }
+- IsActionEnabled · function · L262-L262 — bool            IsActionEnabled() const         { return m_action_enable; }
+- UpdateExtruderAndColorIcon · function · L263-L263 — void            UpdateExtruderAndColorIcon(wxString extruder = "");
+- AssignAllVal · function · L266-L274 — void AssignAllVal(ObjectDataViewModelNode& from_node)
+- SwapChildrens · function · L276-L291 — bool SwapChildrens(int frst_id, int scnd_id)
+- set_icons · function · L294-L294 — void        set_icons();
+- set_extruder_icon · function · L296-L296 — void        set_extruder_icon();
+- set_printable_icon · function · L298-L298 — void        set_printable_icon(PrintIndicator printable);
+- set_variable_height_icon · function · L299-L299 — void        set_variable_height_icon(VaryHeightIndicator vari_height);
+- set_action_icon · function · L300-L300 — void        set_action_icon(bool enable);
+- set_color_icon · function · L302-L302 — void        set_color_icon(bool enable, bool force = false);
+- set_support_icon · function · L303-L303 — void        set_support_icon(bool enable,bool force = false);
+- set_sinking_icon · function · L304-L304 — void        set_sinking_icon(bool enable, bool force = false);
+- set_warning_icon · function · L307-L307 — void        set_warning_icon(const std::string& warning_icon);
+- update_settings_digest_bitmaps · function · L309-L309 — void        update_settings_digest_bitmaps();
+- update_settings_digest · function · L310-L310 — bool        update_settings_digest(const std::vector<std::string>& categories);
+- volume_type · function · L311-L311 — int         volume_type() const { return int(m_volume_type); }
+- is_text_volume · function · L312-L312 — bool        is_text_volume() const { return m_is_text_volume; }
+- is_svg_volume · function · L313-L313 — bool        is_svg_volume() const { return m_is_svg_volume; }
+- sys_color_changed · function · L314-L314 — void        sys_color_changed();
+- msw_rescale · function · L315-L315 — void        msw_rescale();
+- valid · function · L318-L318 — bool 		valid();
+- invalid · function · L320-L320 — bool        invalid() const { return m_idx < -1; }
+- has_warning_icon · function · L321-L321 — bool        has_warning_icon() const { return !m_warning_icon_name.empty(); }
+- warning_icon_name · function · L322-L322 — std::string warning_icon_name() const { return m_warning_icon_name; }
+- has_lock · function · L323-L323 — bool        has_lock() const { return m_has_lock; }
+- ObjectDataViewModel · class · L337-L553 — class ObjectDataViewModel :public wxDataViewModel
+- ObjectDataViewModel · function · L358-L358 — ObjectDataViewModel();
+- Init · function · L361-L361 — void Init();
+- get_ui_and_3d_volume_map · function · L362-L362 — std::map<int, std::map<int, int>> &get_ui_and_3d_volume_map() { return m_ui_and_3d_volume_maps; }
+- get_real_volume_index_in_3d · function · L363-L370 — int   get_real_volume_index_in_3d(int ui_object_value, int ui_volume_value)
+- get_real_volume_index_in_ui · function · L371-L382 — int get_real_volume_index_in_ui(int ui_object_value, int _3d_value)
+- AddPlate · function · L383-L383 — wxDataViewItem AddPlate(PartPlate* part_plate, wxString name = wxEmptyString, bool refresh = true);
+- AddObject · function · L384-L384 — wxDataViewItem AddObject(ModelObject* model_object, std::string warning_bitmap, bool has_lock = false, bool refresh = true);
+- AddVolumeChild · function · L385-L392 — wxDataViewItem AddVolumeChild(  const wxDataViewItem &parent_item,
+- AddSettingsChild · function · L393-L393 — wxDataViewItem AddSettingsChild(const wxDataViewItem &parent_item);
+- AddInfoChild · function · L394-L394 — wxDataViewItem AddInfoChild(const wxDataViewItem &parent_item, InfoItemType info_type);
+- AddInstanceChild · function · L395-L395 — wxDataViewItem AddInstanceChild(const wxDataViewItem &parent_item, size_t num);
+- AddInstanceChild · function · L396-L396 — wxDataViewItem AddInstanceChild(const wxDataViewItem &parent_item, const std::vector<bool>& print_indicator, const std::vector<int>& plate_indicator);
+- AddLayersRoot · function · L397-L397 — wxDataViewItem AddLayersRoot(const wxDataViewItem &parent_item);
+- AddLayersChild · function · L398-L401 — wxDataViewItem AddLayersChild(  const wxDataViewItem &parent_item,
+- GetItemIndexForFirstVolume · function · L402-L402 — size_t         GetItemIndexForFirstVolume(ObjectDataViewModelNode* node_parent);
+- DeletePlate · function · L403-L403 — wxDataViewItem DeletePlate(const int plate_idx);
+- Delete · function · L404-L404 — wxDataViewItem Delete(const wxDataViewItem &item);
+- DeleteLastInstance · function · L405-L405 — wxDataViewItem DeleteLastInstance(const wxDataViewItem &parent_item, size_t num);
+- ResetAll · function · L406-L406 — void ResetAll();
+- DeleteChildren · function · L407-L407 — void DeleteChildren(wxDataViewItem& parent);
+- DeleteVolumeChildren · function · L408-L408 — void DeleteVolumeChildren(wxDataViewItem& parent);
+- DeleteSettings · function · L409-L409 — void DeleteSettings(const wxDataViewItem& parent);
+- GetItemByPlateId · function · L410-L410 — wxDataViewItem GetItemByPlateId(int plate_idx);
+- SetCurSelectedPlateFullName · function · L411-L411 — void           SetCurSelectedPlateFullName(int plate_idx,const std::string &);
+- GetItemById · function · L412-L412 — wxDataViewItem GetItemById(int obj_idx);
+- GetItemById · function · L413-L413 — wxDataViewItem GetItemById(const int obj_idx, const int sub_obj_idx, const ItemType parent_type);
+- GetItemByVolumeId · function · L414-L414 — wxDataViewItem GetItemByVolumeId(int obj_idx, int volume_idx);
+- GetItemByInstanceId · function · L415-L415 — wxDataViewItem GetItemByInstanceId(int obj_idx, int inst_idx);
+- GetItemByLayerId · function · L416-L416 — wxDataViewItem GetItemByLayerId(int obj_idx, int layer_idx);
+- GetItemByLayerRange · function · L417-L417 — wxDataViewItem GetItemByLayerRange(const int obj_idx, const t_layer_height_range& layer_range);
+- GetItemIdByLayerRange · function · L418-L418 — int  GetItemIdByLayerRange(const int obj_idx, const t_layer_height_range& layer_range);
+- GetIdByItem · function · L419-L419 — int  GetIdByItem(const wxDataViewItem& item) const;
+- GetPlateIdByItem · function · L420-L420 — int  GetPlateIdByItem(const wxDataViewItem& item) const;
+- GetIdByItemAndType · function · L421-L421 — int  GetIdByItemAndType(const wxDataViewItem& item, const ItemType type) const;
+- GetObjectIdByItem · function · L422-L422 — int  GetObjectIdByItem(const wxDataViewItem& item) const;
+- GetVolumeIdByItem · function · L423-L423 — int  GetVolumeIdByItem(const wxDataViewItem& item) const;
+- GetInstanceIdByItem · function · L424-L424 — int  GetInstanceIdByItem(const wxDataViewItem& item) const;
+- GetLayerIdByItem · function · L425-L425 — int  GetLayerIdByItem(const wxDataViewItem& item) const;
+- GetItemInfo · function · L426-L426 — void GetItemInfo(const wxDataViewItem& item, ItemType& type, int& obj_idx, int& idx);
+- GetRowByItem · function · L427-L427 — int  GetRowByItem(const wxDataViewItem& item) const;
+- IsEmpty · function · L428-L428 — bool IsEmpty() { return m_objects.empty(); }
+- InvalidItem · function · L429-L429 — bool InvalidItem(const wxDataViewItem& item);
+- GetName · function · L433-L433 — wxString    GetName(const wxDataViewItem &item) const;
+- GetBitmap · function · L434-L434 — wxBitmap&   GetBitmap(const wxDataViewItem &item) const;
+- GetExtruder · function · L435-L435 — wxString    GetExtruder(const wxDataViewItem &item) const;
+- GetExtruderNumber · function · L436-L436 — int         GetExtruderNumber(const wxDataViewItem &item) const;
+- GetColumnCount · function · L440-L440 — unsigned int    GetColumnCount() const override { return 3;}
+- GetColumnType · function · L441-L441 — wxString        GetColumnType(unsigned int col) const override;
+- GetValue · function · L443-L445 — void GetValue(  wxVariant &variant,
+- SetValue · function · L446-L448 — bool SetValue(  const wxVariant &variant,
+- SetValue · function · L449-L451 — bool SetValue(  const wxVariant &variant,
+- SetExtruder · function · L453-L453 — void SetExtruder(const wxString& extruder, wxDataViewItem item);
+- OnPlateChange · function · L454-L454 — void OnPlateChange(const int plate_idx, wxDataViewItem item);
+- SetPlateIdx · function · L455-L455 — void SetPlateIdx(const int plate_idx, wxDataViewItem item);
+- SetName · function · L456-L456 — bool SetName    (const wxString& new_name, wxDataViewItem item);
+- ReorganizeChildren · function · L460-L462 — wxDataViewItem  ReorganizeChildren( const int cur_volume_id,
+- ReorganizeObjects · function · L463-L463 — wxDataViewItem  ReorganizeObjects( int current_id, int new_id);
+- IsEnabled · function · L465-L465 — bool    IsEnabled(const wxDataViewItem &item, unsigned int col) const override;
+- GetParent · function · L467-L467 — wxDataViewItem  GetParent(const wxDataViewItem &item) const override;
+- GetObject · function · L469-L469 — wxDataViewItem          GetObject(const wxDataViewItem& item) const;
+- GetTopParent · function · L470-L470 — wxDataViewItem          GetTopParent(const wxDataViewItem &item) const;
+- IsContainer · function · L471-L471 — bool            IsContainer(const wxDataViewItem &item) const override;
+- GetChildren · function · L472-L472 — unsigned int    GetChildren(const wxDataViewItem &parent, wxDataViewItemArray &array) const override;
+- GetAllChildren · function · L473-L473 — void GetAllChildren(const wxDataViewItem &parent,wxDataViewItemArray &array) const;
+- HasContainerColumns · function · L476-L476 — bool    HasContainerColumns(const wxDataViewItem& WXUNUSED(item)) const override {	return true; }
+- WXUNUSED · function · L476-L476 — bool    HasContainerColumns(const wxDataViewItem& WXUNUSED(item)) const override {	return true; }
+- HasInfoItem · function · L477-L477 — bool    HasInfoItem(InfoItemType type) const;
+- GetItemType · function · L479-L479 — ItemType        GetItemType(const wxDataViewItem &item) const;
+- GetItemType · function · L480-L480 — ItemType        GetItemType(const wxDataViewItem &item,int& plate_idx) const;
+- GetInfoItemType · function · L481-L481 — InfoItemType    GetInfoItemType(const wxDataViewItem &item) const;
+- GetItemByType · function · L482-L483 — wxDataViewItem  GetItemByType(  const wxDataViewItem &parent_item,
+- GetSettingsItem · function · L484-L484 — wxDataViewItem  GetSettingsItem(const wxDataViewItem &item) const;
+- GetInstanceRootItem · function · L485-L485 — wxDataViewItem  GetInstanceRootItem(const wxDataViewItem &item) const;
+- GetLayerRootItem · function · L486-L486 — wxDataViewItem  GetLayerRootItem(const wxDataViewItem &item) const;
+- GetInfoItemByType · function · L487-L487 — wxDataViewItem  GetInfoItemByType(const wxDataViewItem &parent_item, InfoItemType type) const;
+- GetObjectItem · function · L489-L489 — wxDataViewItem  GetObjectItem(const ModelObject* mo) const;
+- GetVolumeItem · function · L490-L490 — wxDataViewItem  GetVolumeItem(const wxDataViewItem& parent, int vol_idx) const;
+- IsSettingsItem · function · L491-L491 — bool    IsSettingsItem(const wxDataViewItem &item) const;
+- UpdateSettingsDigest · function · L492-L493 — void    UpdateSettingsDigest(   const wxDataViewItem &item,
+- IsPrintable · function · L495-L495 — bool    IsPrintable(const wxDataViewItem &item) const;
+- UpdateObjectPrintable · function · L496-L496 — void    UpdateObjectPrintable(wxDataViewItem parent_item);
+- UpdateInstancesPrintable · function · L497-L497 — void    UpdateInstancesPrintable(wxDataViewItem parent_item);
+- IsVariableHeight · function · L498-L498 — bool    IsVariableHeight(const wxDataViewItem& item) const;
+- SetVolumeType · function · L500-L500 — void    SetVolumeType(const wxDataViewItem &item, const Slic3r::ModelVolumeType type);
+- GetVolumeType · function · L501-L501 — ModelVolumeType GetVolumeType(const wxDataViewItem &item);
+- SetPrintableState · function · L502-L504 — wxDataViewItem SetPrintableState( PrintIndicator printable, int obj_idx,
+- SetObjectPrintableState · function · L505-L505 — wxDataViewItem SetObjectPrintableState(PrintIndicator printable, wxDataViewItem obj_item);
+- SetObjectVariableHeightState · function · L506-L506 — wxDataViewItem SetObjectVariableHeightState(VaryHeightIndicator vari_height, wxDataViewItem obj_item);
+- IsColorPainted · function · L508-L508 — bool    IsColorPainted(wxDataViewItem& item) const;
+- IsSupportPainted · function · L509-L509 — bool    IsSupportPainted(wxDataViewItem &item) const;
+- IsSinked · function · L510-L510 — bool    IsSinked(wxDataViewItem &item) const;
+- SetColorPaintState · function · L511-L511 — void    SetColorPaintState(const bool painted, wxDataViewItem obj_item,bool force = false);
+- SetSupportPaintState · function · L512-L512 — void    SetSupportPaintState(const bool painted, wxDataViewItem obj_item,bool force = false);
+- SetSinkState · function · L513-L513 — void    SetSinkState(const bool painted, wxDataViewItem obj_item,bool force = false);
+- SetAssociatedControl · function · L515-L515 — void    SetAssociatedControl(wxDataViewCtrl* ctrl) { m_ctrl = ctrl; }
+- Rescale · function · L517-L517 — void    Rescale();
+- AddWarningIcon · function · L519-L519 — void        AddWarningIcon(const wxDataViewItem& item, const std::string& warning_name);
+- DeleteWarningIcon · function · L520-L520 — void        DeleteWarningIcon(const wxDataViewItem& item, const bool unmark_object = false);
+- UpdateWarningIcon · function · L521-L521 — void        UpdateWarningIcon(const wxDataViewItem& item, const std::string& warning_name);
+- UpdateCutObjectIcon · function · L522-L522 — void        UpdateCutObjectIcon(const wxDataViewItem &item, bool has_cut_icon);
+- HasWarningIcon · function · L523-L523 — bool        HasWarningIcon(const wxDataViewItem& item) const;
+- GetLayerRangeByItem · function · L524-L524 — t_layer_height_range    GetLayerRangeByItem(const wxDataViewItem& item) const;
+- UpdateColumValues · function · L526-L526 — bool        UpdateColumValues(unsigned col);
+- UpdateExtruderBitmap · function · L527-L527 — void        UpdateExtruderBitmap(wxDataViewItem item);
+- UpdateVolumesExtruderBitmap · function · L529-L529 — void        UpdateVolumesExtruderBitmap(wxDataViewItem object_item, bool use_obj_extruder = false);
+- GetDefaultExtruderIdx · function · L530-L530 — int         GetDefaultExtruderIdx(wxDataViewItem item);
+- UpdateItemNames · function · L533-L533 — void        UpdateItemNames();
+- assembly_name · function · L535-L535 — void        assembly_name(ObjectDataViewModelNode* item, wxString name);
+- assembly_name · function · L536-L536 — void        assembly_name();
+- get_assembly_name_list · function · L537-L537 — std::vector<std::tuple<ObjectDataViewModelNode*, wxString, wxString>> get_assembly_name_list() const { return assembly_name_list; }
+- search_object · function · L538-L538 — void        search_object(wxString search_text);
+- get_found_list · function · L539-L539 — std::vector<std::tuple<ObjectDataViewModelNode*, wxString, wxString>> get_found_list() const { return search_found_list; }
+- sys_color_changed · function · L541-L541 — void        sys_color_changed();
+- AddRoot · function · L544-L544 — wxDataViewItem  AddRoot(const wxDataViewItem& parent_item, const ItemType root_type);
+- AddInstanceRoot · function · L545-L545 — wxDataViewItem  AddInstanceRoot(const wxDataViewItem& parent_item);
+- AddAllChildren · function · L546-L546 — void            AddAllChildren(const wxDataViewItem& parent);
+- ReparentObject · function · L548-L548 — void            ReparentObject(ObjectDataViewModelNode* plate, ObjectDataViewModelNode* object);
+- AddOutsidePlate · function · L549-L549 — wxDataViewItem  AddOutsidePlate(bool refresh = true);
+- UpdateBitmapForNode · function · L551-L551 — void UpdateBitmapForNode(ObjectDataViewModelNode *node);
+- UpdateBitmapForNode · function · L552-L552 — void UpdateBitmapForNode(ObjectDataViewModelNode* node, const std::string& warning_icon_name, bool has_lock);

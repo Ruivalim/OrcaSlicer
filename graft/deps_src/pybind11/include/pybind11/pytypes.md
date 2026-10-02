@@ -1,0 +1,263 @@
+# deps_src/pybind11/include/pybind11/pytypes.h
+
+- PYBIND11_WARNING_DISABLE_MSVC · function · L34-L64 — PYBIND11_NAMESPACE_BEGIN(PYBIND11_NAMESPACE)
+- PYBIND11_NAMESPACE_BEGIN · function · L47-L48 — PYBIND11_NAMESPACE_BEGIN(detail)
+- derived · function · L85-L85 — const Derived &derived() const { return static_cast<const Derived &>(*this); }
+- begin · function · L93-L93 — iterator begin() const;
+- end · function · L95-L95 — iterator end() const;
+- attr · function · L115-L115 — obj_attr_accessor attr(handle key) const;
+- attr · function · L117-L117 — obj_attr_accessor attr(object &&key) const;
+- attr · function · L119-L119 — str_attr_accessor attr(const char *key) const;
+- ptr · function · L268-L268 — PyObject *ptr() const { return m_ptr; }
+- inc_ref · function · L276-L276 — const handle &inc_ref() const &
+- dec_ref · function · L294-L311 — const handle &dec_ref() const &
+- if · function · L296-L296 — if (m_ptr != nullptr && PyGILState_Check() == 0)
+- PyGILState_Check · function · L296-L296 — if (m_ptr != nullptr && PyGILState_Check() == 0)
+- cast · function · L309-L309 — T cast() const;
+- bool · function · L311-L311 — explicit operator bool() const { return m_ptr != nullptr; }
+- check · function · L321-L321 — bool check() const { return m_ptr != nullptr; }
+- throw_gilstate_error · function · L328-L349 — void throw_gilstate_error(const std::string &function_name) const
+- inc_ref_counter · function · L353-L357 — static std::size_t inc_ref_counter(std::size_t add)
+- inc_ref_counter · function · L360-L360 — static std::size_t inc_ref_counter() { return inc_ref_counter(0); }
+- set_error · function · L364-L366 — inline void set_error(const handle &type, const char *message)
+- set_error · function · L368-L370 — inline void set_error(const handle &type, const handle &value)
+- handle · function · L386-L386 — object(handle h, bool is_borrowed) : handle(h)
+- inc_ref · function · L386-L388 — object(handle h, bool is_borrowed) : handle(h)
+- handle · function · L392-L392 — object(const object &o) : handle(o) { inc_ref(); }
+- release · function · L403-L407 — handle release()
+- temp · function · L415-L415 — handle temp(m_ptr);
+- temp · function · L424-L424 — handle temp(m_ptr);
+- error_fetch_and_normalize · class · L522-L539 — struct error_fetch_and_normalize
+- ptr · function · L533-L533 — PyErr_Fetch(&m_type.ptr(), &m_value.ptr(), &m_trace.ptr());
+- ptr · function · L533-L533 — PyErr_Fetch(&m_type.ptr(), &m_value.ptr(), &m_trace.ptr());
+- ptr · function · L533-L533 — PyErr_Fetch(&m_type.ptr(), &m_value.ptr(), &m_trace.ptr());
+- format_value_and_trace · function · L585-L585 — std::string format_value_and_trace() const
+- restore · function · L716-L724 — void restore()
+- matches · function · L726-L728 — bool matches(handle exc) const
+- error_string · function · L740-L742 — inline std::string error_string()
+- what · function · L761-L761 — const char *what() const noexcept override;
+- restore · function · L768-L768 — void restore() { m_fetched_error->restore(); }
+- discard_as_unraisable · function · L774-L777 — void discard_as_unraisable(object err_context)
+- discard_as_unraisable · function · L781-L783 — void discard_as_unraisable(const char *err_context)
+- clear · function · L787-L787 — void clear() {}
+- matches · function · L792-L792 — bool matches(handle exc) const { return m_fetched_error->matches(exc); }
+- type · function · L794-L794 — const object &type() const { return m_fetched_error->m_type; }
+- value · function · L795-L795 — const object &value() const { return m_fetched_error->m_value; }
+- trace · function · L796-L796 — const object &trace() const { return m_fetched_error->m_trace; }
+- m_fetched_error_deleter · function · L803-L803 — static void m_fetched_error_deleter(detail::error_fetch_and_normalize *raw_ptr);
+- raise_from · function · L808-L832 — inline void raise_from(PyObject *type, const char *message)
+- raise_from · function · L837-L840 — inline void raise_from(error_already_set &err, PyObject *type, const char *message)
+- isinstance · function · L872-L878 — inline bool isinstance(handle obj, handle type)
+- error_already_set · function · L875-L875 — throw error_already_set();
+- hasattr · function · L882-L884 — inline bool hasattr(handle obj, handle name)
+- hasattr · function · L886-L888 — inline bool hasattr(handle obj, const char *name)
+- delattr · function · L890-L894 — inline void delattr(handle obj, handle name)
+- error_already_set · function · L892-L892 — throw error_already_set();
+- delattr · function · L896-L900 — inline void delattr(handle obj, const char *name)
+- error_already_set · function · L898-L898 — throw error_already_set();
+- getattr · function · L902-L908 — inline object getattr(handle obj, handle name)
+- error_already_set · function · L905-L905 — throw error_already_set();
+- getattr · function · L910-L916 — inline object getattr(handle obj, const char *name)
+- error_already_set · function · L913-L913 — throw error_already_set();
+- getattr · function · L918-L924 — inline object getattr(handle obj, handle name, handle default_)
+- getattr · function · L926-L932 — inline object getattr(handle obj, const char *name, handle default_)
+- setattr · function · L934-L938 — inline void setattr(handle obj, handle name, handle value)
+- error_already_set · function · L936-L936 — throw error_already_set();
+- setattr · function · L940-L944 — inline void setattr(handle obj, const char *name, handle value)
+- error_already_set · function · L942-L942 — throw error_already_set();
+- hash · function · L946-L952 — inline ssize_t hash(handle obj)
+- error_already_set · function · L949-L949 — throw error_already_set();
+- get_function · function · L956-L966 — PYBIND11_NAMESPACE_BEGIN(detail)
+- dict_getitemstring · function · L972-L972 — inline PyObject *dict_getitemstring(PyObject *v, const char *key)
+- error_already_set · function · L976-L976 — throw error_already_set();
+- error_already_set · function · L982-L982 — throw error_already_set();
+- dict_getitem · function · L987-L987 — inline PyObject *dict_getitem(PyObject *v, PyObject *key)
+- error_already_set · function · L990-L990 — throw error_already_set();
+- dict_getitemstringref · function · L995-L995 — inline PyObject *dict_getitemstringref(PyObject *v, const char *key)
+- error_already_set · function · L999-L999 — throw error_already_set();
+- error_already_set · function · L1005-L1005 — throw error_already_set();
+- object_or_cast · function · L1023-L1023 — inline handle object_or_cast(PyObject *ptr) { return ptr; }
+- PYBIND11_WARNING_DISABLE_MSVC · function · L1025-L1067 — PYBIND11_WARNING_PUSH
+- accessor · function · L1032-L1032 — accessor(handle obj, key_type key) : obj(obj), key(std::move(key)) {}
+- key · function · L1032-L1032 — accessor(handle obj, key_type key) : obj(obj), key(std::move(key)) {}
+- move · function · L1032-L1032 — accessor(handle obj, key_type key) : obj(obj), key(std::move(key)) {}
+- accessor · function · L1033-L1033 — accessor(const accessor &) = default;
+- object · function · L1067-L1067 — operator object() const { return get_cache(); }
+- ptr · function · L1068-L1068 — PyObject *ptr() const { return get_cache().ptr(); }
+- ensure_object · function · L1075-L1075 — static object ensure_object(object &&o) { return std::move(o); }
+- move · function · L1075-L1075 — static object ensure_object(object &&o) { return std::move(o); }
+- ensure_object · function · L1076-L1076 — static object ensure_object(handle h) { return reinterpret_borrow<object>(h); }
+- PYBIND11_NAMESPACE_BEGIN · function · L1090-L1097 — PYBIND11_WARNING_POP
+- get · function · L1095-L1095 — static object get(handle obj, handle key) { return getattr(obj, key); }
+- set · function · L1096-L1096 — static void set(handle obj, handle key, handle val) { setattr(obj, key, val); }
+- str_attr · class · L1099-L1102 — struct str_attr
+- generic_item · class · L1105-L1113 — struct generic_item
+- ptr · function · L1109-L1109 — PyObject *result = PyObject_GetItem(obj.ptr(), key.ptr());
+- ptr · function · L1109-L1109 — PyObject *result = PyObject_GetItem(obj.ptr(), key.ptr());
+- set · function · L1116-L1120 — static void set(handle obj, handle key, handle val)
+- error_already_set · function · L1118-L1118 — throw error_already_set();
+- sequence_item · class · L1123-L1132 — struct sequence_item
+- ptr · function · L1128-L1128 — PyObject *result = PySequence_GetItem(obj.ptr(), ssize_t_cast(index));
+- error_already_set · function · L1139-L1139 — throw error_already_set();
+- list_item · class · L1144-L1153 — struct list_item
+- ptr · function · L1149-L1149 — PyObject *result = PyList_GetItem(obj.ptr(), ssize_t_cast(index));
+- error_already_set · function · L1160-L1160 — throw error_already_set();
+- tuple_item · class · L1165-L1174 — struct tuple_item
+- ptr · function · L1170-L1170 — PyObject *result = PyTuple_GetItem(obj.ptr(), ssize_t_cast(index));
+- error_already_set · function · L1181-L1181 — throw error_already_set();
+- Policy · function · L1200-L1200 — generic_iterator(handle seq, ssize_t index) : Policy(seq, index) {}
+- dereference · function · L1203-L1203 — reference operator*() const { return Policy::dereference(); }
+- dereference · function · L1277-L1277 — reference dereference() const { return *ptr; }
+- increment · function · L1278-L1278 — void increment() { ++ptr; }
+- decrement · function · L1279-L1279 — void decrement() { --ptr; }
+- advance · function · L1280-L1280 — void advance(ssize_t n) { ptr += n; }
+- equal · function · L1281-L1281 — bool equal(const sequence_fast_readonly &b) const { return ptr == b.ptr; }
+- distance_to · function · L1282-L1282 — ssize_t distance_to(const sequence_fast_readonly &b) const { return ptr - b.ptr; }
+- dereference · function · L1299-L1299 — reference dereference() const { return {obj, static_cast<size_t>(index)}; }
+- increment · function · L1300-L1300 — void increment() { ++index; }
+- decrement · function · L1301-L1301 — void decrement() { --index; }
+- advance · function · L1302-L1302 — void advance(ssize_t n) { index += n; }
+- equal · function · L1303-L1303 — bool equal(const sequence_slow_readwrite &b) const { return index == b.index; }
+- distance_to · function · L1304-L1304 — ssize_t distance_to(const sequence_slow_readwrite &b) const { return index - b.index; }
+- obj · function · L1320-L1320 — dict_readonly(handle obj, ssize_t pos) : obj(obj), pos(pos) { increment(); }
+- pos · function · L1320-L1320 — dict_readonly(handle obj, ssize_t pos) : obj(obj), pos(pos) { increment(); }
+- dereference · function · L1323-L1323 — reference dereference() const { return {key, value}; }
+- increment · function · L1324-L1328 — void increment()
+- equal · function · L1329-L1329 — bool equal(const dict_readonly &b) const { return pos == b.pos; }
+- PyIterable_Check · function · L1349-L1357 — inline bool PyIterable_Check(PyObject *obj)
+- PyNone_Check · function · L1359-L1359 — inline bool PyNone_Check(PyObject *o) { return o == Py_None; }
+- PyEllipsis_Check · function · L1360-L1360 — inline bool PyEllipsis_Check(PyObject *o) { return o == Py_Ellipsis; }
+- PyUnicode_Check_Permissive · function · L1363-L1365 — inline bool PyUnicode_Check_Permissive(PyObject *o)
+- PyStaticMethod_Check · function · L1371-L1371 — inline bool PyStaticMethod_Check(PyObject *o) { return Py_TYPE(o) == &PyStaticMethod_Type; }
+- kwargs_proxy · function · L1375-L1375 — explicit kwargs_proxy(handle h) : handle(h) {}
+- args_proxy · function · L1380-L1380 — explicit args_proxy(handle h) : handle(h) {}
+- Parent · function · L1437-L1438 — Name(const object &o)                                                                         \
+- inc_ref · function · L1438-L1438 — : Parent(check_(o) ? o.inc_ref().ptr() : ConvertFun(o.ptr()), stolen_t{}) {               \
+- Parent · function · L1461-L1464 — Name(const object &o) : Parent(o) {                                                           \
+- init · function · L1543-L1543 — void init() const
+- advance · function · L1550-L1555 — void advance()
+- error_already_set · function · L1553-L1553 — throw error_already_set();
+- handle_of · function · L1566-L1566 — static handle handle_of(handle h) { return handle((PyObject *) Py_TYPE(h.ptr())); }
+- of · function · L1569-L1569 — static type of(handle h) { return type(type::handle_of(h), borrowed_t{}); }
+- handle_of · function · L1576-L1576 — static handle handle_of();
+- of · function · L1582-L1584 — static type of()
+- error_already_set · function · L1603-L1603 — throw error_already_set();
+- str · function · L1638-L1638 — explicit str(const bytes &b);
+- str · function · L1644-L1644 — explicit str(handle h) : object(raw_str(h.ptr()), stolen_t{})
+- error_already_set · function · L1646-L1646 — throw error_already_set();
+- string · function · L1651-L1658 — operator std::string() const
+- error_already_set · function · L1656-L1656 — throw error_already_set();
+- error_already_set · function · L1662-L1662 — throw error_already_set();
+- raw_str · function · L1674-L1674 — static PyObject *raw_str(PyObject *op)
+- bytes · function · L1722-L1722 — explicit bytes(const pybind11::str &s);
+- string · function · L1725-L1725 — operator std::string() const { return string_op<std::string>(); }
+- string_view · function · L1737-L1737 — operator std::string_view() const { return string_op<std::string_view>(); }
+- error_already_set · function · L1745-L1745 — throw error_already_set();
+- bytes · function · L1754-L1772 — inline bytes::bytes(const pybind11::str &s)
+- error_already_set · function · L1759-L1759 — throw error_already_set();
+- error_already_set · function · L1765-L1765 — throw error_already_set();
+- str · function · L1774-L1788 — inline str::str(const bytes &b)
+- error_already_set · function · L1778-L1778 — throw error_already_set();
+- error_already_set · function · L1783-L1783 — throw error_already_set();
+- bytearray · function · L1806-L1806 — explicit bytearray(const std::string &s) : bytearray(s.data(), s.size()) {}
+- size · function · L1808-L1808 — size_t size() const { return static_cast<size_t>(PyByteArray_Size(m_ptr)); }
+- object · function · L1840-L1840 — bool_(bool value) : object(value ? Py_True : Py_False, borrowed_t{}) {}
+- bool · function · L1842-L1842 — operator bool() const { return (m_ptr != nullptr) && PyLong_AsLong(m_ptr) != 0; }
+- raw_bool · function · L1846-L1846 — static PyObject *raw_bool(PyObject *op)
+- PyObject_IsTrue · function · L1847-L1847 — const auto value = PyObject_IsTrue(op);
+- as_unsigned · function · L1855-L1868 — PYBIND11_NAMESPACE_BEGIN(detail)
+- object · function · L1911-L1911 — float_(float value) : object(PyFloat_FromDouble((double) value), stolen_t{})
+- float · function · L1923-L1923 — operator float() const { return (float) PyFloat_AsDouble(m_ptr); }
+- double · function · L1925-L1925 — operator double() const { return (double) PyFloat_AsDouble(m_ptr); }
+- object · function · L1931-L1935 — explicit weakref(handle obj, handle callback = {})
+- weakref · function · L1931-L1931 — explicit weakref(handle obj, handle callback = {})
+- ptr · function · L1932-L1932 — : object(PyWeakref_NewRef(obj.ptr(), callback.ptr()), stolen_t{})
+- stolen_t · function · L1932-L1933 — : object(PyWeakref_NewRef(obj.ptr(), callback.ptr()), stolen_t{})
+- raw_weakref · function · L1942-L1942 — static PyObject *raw_weakref(PyObject *o) { return PyWeakref_NewRef(o, nullptr); }
+- object · function · L1948-L1951 — slice(handle start, handle stop, handle step)
+- ptr · function · L1949-L1949 — : object(PySlice_New(start.ptr(), stop.ptr(), step.ptr()), stolen_t{})
+- ptr · function · L1949-L1949 — : object(PySlice_New(start.ptr(), stop.ptr(), step.ptr()), stolen_t{})
+- stolen_t · function · L1949-L1950 — : object(PySlice_New(start.ptr(), stop.ptr(), step.ptr()), stolen_t{})
+- PySlice_GetIndicesEx · function · L1960-L1972 — slice(ssize_t start_, ssize_t stop_, ssize_t step_)
+- slice · function · L1961-L1961 — : slice(int_(start_), int_(stop_), int_(step_)) {}
+- compute · function · L1965-L1965 — compute(size_t length, size_t *start, size_t *stop, size_t *step, size_t *slicelength) const
+- compute · function · L1974-L1979 — bool compute(
+- index_to_object · function · L1983-L1985 — static object index_to_object(T index)
+- capsule · function · L1995-L1996 — explicit capsule(const void *value,
+- object · function · L2005-L2008 — capsule(const void *value, PyCapsule_Destructor destructor)
+- stolen_t · function · L2006-L2007 — : object(PyCapsule_New(const_cast<void *>(value), nullptr, destructor), stolen_t{})
+- initialize_with_void_ptr_destructor · function · L2013-L2018 — capsule(const void *value, void (*destructor)(void *))
+- void · function · L2013-L2013 — capsule(const void *value, void (*destructor)(void *))
+- capsule · function · L2017-L2017 — capsule(const void *value, const char *name, void (*destructor)(void *))
+- capsule · function · L2021-L2034 — explicit capsule(void (*destructor)())
+- error_already_set · function · L2026-L2026 — throw error_already_set();
+- error_already_set · function · L2032-L2032 — throw error_already_set();
+- error_already_set · function · L2047-L2047 — throw error_already_set();
+- set_pointer · function · L2053-L2057 — void set_pointer(const void *value)
+- error_already_set · function · L2055-L2055 — throw error_already_set();
+- name · function · L2059-L2059 — const char *name() const
+- error_already_set · function · L2062-L2062 — throw error_already_set();
+- set_name · function · L2068-L2072 — void set_name(const char *new_name)
+- error_already_set · function · L2070-L2070 — throw error_already_set();
+- get_name_in_error_scope · function · L2075-L2075 — static const char *get_name_in_error_scope(PyObject *o)
+- initialize_with_void_ptr_destructor · function · L2087-L2111 — void initialize_with_void_ptr_destructor(const void *value,
+- error_already_set · function · L2095-L2095 — throw error_already_set();
+- error_already_set · function · L2100-L2100 — throw error_already_set();
+- error_already_set · function · L2109-L2109 — throw error_already_set();
+- size · function · L2125-L2125 — size_t size() const { return (size_t) PyTuple_Size(m_ptr); }
+- empty · function · L2126-L2126 — bool empty() const { return size() == 0; }
+- begin · function · L2132-L2132 — detail::tuple_iterator begin() const { return {*this, 0}; }
+- end · function · L2133-L2133 — detail::tuple_iterator end() const { return {*this, PyTuple_GET_SIZE(m_ptr)}; }
+- args_are_all_keyword_or_ds · function · L2140-L2142 — constexpr bool args_are_all_keyword_or_ds()
+- size · function · L2159-L2159 — size_t size() const { return (size_t) PyDict_Size(m_ptr); }
+- empty · function · L2160-L2160 — bool empty() const { return size() == 0; }
+- begin · function · L2161-L2161 — detail::dict_iterator begin() const { return {*this, 0}; }
+- end · function · L2162-L2162 — detail::dict_iterator end() const { return {}; }
+- clear · function · L2163-L2163 — void clear() /* py-non-const */ { PyDict_Clear(ptr()); }
+- object_or_cast · function · L2166-L2166 — auto result = PyDict_Contains(m_ptr, detail::object_or_cast(std::forward<T>(key)).ptr());
+- PyDict_Contains · function · L2166-L2166 — auto result = PyDict_Contains(m_ptr, detail::object_or_cast(std::forward<T>(key)).ptr());
+- error_already_set · function · L2168-L2168 — throw error_already_set();
+- raw_dict · function · L2175-L2175 — static PyObject *raw_dict(PyObject *op)
+- size · function · L2186-L2190 — size_t size() const
+- error_already_set · function · L2189-L2189 — throw error_already_set();
+- empty · function · L2193-L2193 — bool empty() const { return size() == 0; }
+- begin · function · L2199-L2199 — detail::sequence_iterator begin() const { return {*this, 0}; }
+- end · function · L2200-L2200 — detail::sequence_iterator end() const { return {*this, PySequence_Size(m_ptr)}; }
+- size · function · L2214-L2214 — size_t size() const { return (size_t) PyList_Size(m_ptr); }
+- empty · function · L2215-L2215 — bool empty() const { return size() == 0; }
+- begin · function · L2221-L2221 — detail::list_iterator begin() const { return {*this, 0}; }
+- end · function · L2222-L2222 — detail::list_iterator end() const { return {*this, PyList_GET_SIZE(m_ptr)}; }
+- error_already_set · function · L2226-L2226 — throw error_already_set();
+- error_already_set · function · L2237-L2237 — throw error_already_set();
+- clear · function · L2240-L2244 — void clear() /* py-non-const */
+- error_already_set · function · L2242-L2242 — throw error_already_set();
+- size · function · L2269-L2269 — size_t size() const { return static_cast<size_t>(PySet_Size(m_ptr)); }
+- empty · function · L2270-L2270 — bool empty() const { return size() == 0; }
+- object_or_cast · function · L2273-L2273 — auto result = PySet_Contains(m_ptr, detail::object_or_cast(std::forward<T>(val)).ptr());
+- PySet_Contains · function · L2273-L2273 — auto result = PySet_Contains(m_ptr, detail::object_or_cast(std::forward<T>(val)).ptr());
+- error_already_set · function · L2275-L2275 — throw error_already_set();
+- clear · function · L2293-L2293 — void clear() /* py-non-const */ { PySet_Clear(m_ptr); }
+- cpp_function · function · L2304-L2308 — handle cpp_function() const
+- is_cpp_function · function · L2311-L2311 — bool is_cpp_function() const { return (bool) cpp_function(); }
+- request · function · L2323-L2323 — buffer_info request(bool writable = false) const
+- error_already_set · function · L2331-L2331 — throw error_already_set();
+- memoryview · function · L2350-L2360 — explicit memoryview(const buffer_info &info)
+- from_buffer · function · L2386-L2391 — static memoryview from_buffer(void *ptr,
+- from_buffer · function · L2393-L2400 — static memoryview from_buffer(const void *ptr,
+- from_buffer · function · L2403-L2406 — static memoryview from_buffer(T *ptr,
+- from_buffer · function · L2416-L2421 — static memoryview from_buffer(const T *ptr,
+- from_memory · function · L2435-L2435 — static memoryview from_memory(void *mem, ssize_t size, bool readonly = false)
+- from_memory · function · L2444-L2446 — static memoryview from_memory(const void *mem, ssize_t size)
+- from_memory · function · L2449-L2451 — static memoryview from_memory(std::string_view mem)
+- from_buffer · function · L2456-L2487 — inline memoryview memoryview::from_buffer(void *ptr,
+- error_already_set · function · L2484-L2484 — throw error_already_set();
+- len · function · L2495-L2501 — inline size_t len(handle h)
+- error_already_set · function · L2498-L2498 — throw error_already_set();
+- len_hint · function · L2505-L2514 — inline size_t len_hint(handle h)
+- repr · function · L2516-L2522 — inline str repr(handle h)
+- error_already_set · function · L2519-L2519 — throw error_already_set();
+- iter · function · L2524-L2530 — inline iterator iter(handle obj)
+- error_already_set · function · L2527-L2527 — throw error_already_set();
+- error_already_set · function · L2609-L2609 — throw error_already_set();
+- PYBIND11_MATH_OPERATOR_UNARY · function · L2641-L2677 — PYBIND11_MATH_OPERATOR_UNARY(operator~, PyNumber_Invert)
+- PYBIND11_NAMESPACE_END · function · L2680-L2680 — PYBIND11_NAMESPACE_END(PYBIND11_NAMESPACE)

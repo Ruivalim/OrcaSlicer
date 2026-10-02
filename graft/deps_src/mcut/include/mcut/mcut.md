@@ -1,0 +1,51 @@
+# deps_src/mcut/include/mcut/mcut.h
+
+- McVoid · type · L104-L104 — typedef void McVoid;
+- McChar · type · L111-L111 — typedef int8_t McChar;
+- McInt32 · type · L118-L118 — typedef int32_t McInt32;
+- McUint32 · type · L125-L125 — typedef uint32_t McUint32;
+- McFlags · type · L132-L132 — typedef uint32_t McFlags;
+- McSize · type · L139-L139 — typedef size_t McSize;
+- McIndex · type · L146-L146 — typedef uint32_t McIndex;
+- McFloat · type · L153-L153 — typedef float McFloat;
+- McDouble · type · L160-L160 — typedef double McDouble;
+- McBool · type · L167-L167 — typedef uint32_t McBool;
+- McResult · type · L189-L195 — typedef enum McResult
+- McConnectedComponentType · type · L203-L209 — typedef enum McConnectedComponentType
+- McFragmentLocation · type · L217-L222 — typedef enum McFragmentLocation
+- McFragmentSealType · type · L230-L234 — typedef enum McFragmentSealType
+- McPatchLocation · type · L242-L247 — typedef enum McPatchLocation
+- McSeamOrigin · type · L255-L259 — typedef enum McSeamOrigin
+- McInputOrigin · type · L268-L272 — typedef enum McInputOrigin
+- McConnectedComponentData · type · L280-L303 — typedef enum McConnectedComponentData
+- McDebugSource · type · L311-L317 — typedef enum McDebugSource
+- McDebugType · type · L325-L331 — typedef enum McDebugType
+- McDebugSeverity · type · L339-L346 — typedef enum McDebugSeverity
+- McContextCreationFlags · type · L354-L358 — typedef enum McContextCreationFlags
+- McDispatchFlags · type · L366-L427 — typedef enum McDispatchFlags
+- McEventCommandExecStatus · type · L435-L439 — typedef enum McEventCommandExecStatus
+- McCommandType · type · L447-L453 — typedef enum McCommandType
+- McConnectedComponentFaceWindingOrder · type · L461-L464 — typedef enum McConnectedComponentFaceWindingOrder
+- McQueryFlags · type · L472-L486 — typedef enum McQueryFlags
+- mcCreateContext · function · L538-L539 — extern MCAPI_ATTR McResult MCAPI_CALL mcCreateContext(
+- mcCreateContextWithHelpers · function · L585-L586 — extern MCAPI_ATTR McResult MCAPI_CALL mcCreateContextWithHelpers(
+- mcDebugMessageCallback · function · L633-L636 — extern MCAPI_ATTR McResult MCAPI_CALL mcDebugMessageCallback(
+- mcGetDebugMessageLog · function · L712-L716 — extern MCAPI_ATTR McResult MCAPI_CALL mcGetDebugMessageLog(
+- mcDebugMessageControl · function · L771-L776 — extern MCAPI_ATTR McResult MCAPI_CALL mcDebugMessageControl(
+- mcCreateUserEvent · function · L793-L795 — extern MCAPI_ATTR McResult MCAPI_CALL mcCreateUserEvent(
+- mcSetUserEventStatus · function · L814-L816 — extern MCAPI_ATTR McResult MCAPI_CALL mcSetUserEventStatus(
+- mcGetEventInfo · function · L845-L845 — extern MCAPI_ATTR McResult MCAPI_CALL mcGetEventInfo(const McEvent event, McFlags info, McSize bytes, McVoid* pMem, McSize* pNumBytes);
+- mcSetEventCallback · function · L881-L884 — extern MCAPI_ATTR McResult MCAPI_CALL mcSetEventCallback(
+- mcEnqueueDispatch · function · L959-L974 — extern MCAPI_ATTR McResult MCAPI_CALL mcEnqueueDispatch(
+- mcDispatch · function · L979-L991 — extern MCAPI_ATTR McResult MCAPI_CALL mcDispatch(
+- mcEnqueueDispatchPlanarSection · function · L993-L1005 — extern MCAPI_ATTR McResult MCAPI_CALL mcEnqueueDispatchPlanarSection(
+- mcGetInfo · function · L1042-L1047 — extern MCAPI_ATTR McResult MCAPI_CALL mcGetInfo(
+- mcBindState · function · L1079-L1083 — extern MCAPI_ATTR McResult MCAPI_CALL mcBindState(
+- mcEnqueueGetConnectedComponents · function · L1145-L1153 — MCAPI_ATTR McResult MCAPI_CALL mcEnqueueGetConnectedComponents(
+- mcGetConnectedComponents · function · L1158-L1163 — extern MCAPI_ATTR McResult MCAPI_CALL mcGetConnectedComponents(
+- mcEnqueueGetConnectedComponentData · function · L1217-L1226 — extern MCAPI_ATTR McResult MCAPI_CALL mcEnqueueGetConnectedComponentData(
+- mcGetConnectedComponentData · function · L1231-L1237 — extern MCAPI_ATTR McResult MCAPI_CALL mcGetConnectedComponentData(
+- mcWaitForEvents · function · L1254-L1256 — extern MCAPI_ATTR McResult MCAPI_CALL mcWaitForEvents(
+- mcReleaseEvents · function · L1275-L1277 — extern MCAPI_ATTR McResult MCAPI_CALL mcReleaseEvents(
+- mcReleaseConnectedComponents · function · L1309-L1312 — extern MCAPI_ATTR McResult MCAPI_CALL mcReleaseConnectedComponents(
+- mcReleaseContext · function · L1339-L1340 — extern MCAPI_ATTR McResult MCAPI_CALL mcReleaseContext(

@@ -1,0 +1,56 @@
+# deps_src/admesh/stl.h
+
+- stl_vertex · type · L42-L42 — typedef Eigen::Matrix<float, 3, 1, Eigen::DontAlign> stl_vertex;
+- stl_normal · type · L43-L43 — typedef Eigen::Matrix<float, 3, 1, Eigen::DontAlign> stl_normal;
+- stl_triangle_vertex_indices · type · L44-L44 — typedef Eigen::Matrix<int,   3, 1, Eigen::DontAlign> stl_triangle_vertex_indices;
+- ImportstlProgressFn · type · L48-L48 — typedef std::function<void(int current, int total, bool& cancel, std::string& model_id, std::string& code)> ImportstlProgressFn;
+- EnumFaceTypes · type · L50-L56 — typedef enum
+- stl_facet · class · L58-L70 — struct stl_facet
+- stl_type · type · L80-L80 — typedef enum {binary, ascii, inmemory} stl_type;
+- stl_neighbors · class · L82-L91 — struct stl_neighbors
+- num_neighbors · function · L92-L92 — int num_neighbors() const { return 3 - ((this->neighbor[0] == -1) + (this->neighbor[1] == -1) + (this->neighbor[2] == -1)); }
+- stl_stats · class · L100-L106 — struct stl_stats
+- clear · function · L148-L148 — void clear() { *this = stl_stats(); }
+- stl_file · class · L151-L161 — struct stl_file
+- memsize · function · L160-L160 — size_t memsize() const
+- size · function · L161-L161 — return sizeof(*this) + sizeof(stl_facet) * facet_start.size() + sizeof(stl_neighbors) * neighbors_start.size();
+- FaceProperty · class · L171-L186 — struct FaceProperty
+- from_string · function · L189-L216 — void from_string(const std::string& str)
+- indexed_triangle_set · class · L219-L225 — struct indexed_triangle_set
+- size · function · L223-L223 — properties.resize(indices_.size());
+- clear · function · L227-L227 — void clear() { indices.clear(); vertices.clear(); properties.clear(); }
+- memsize · function · L229-L229 — size_t memsize() const
+- empty · function · L237-L237 — bool empty() const { return indices.empty() || vertices.empty(); }
+- get_vertex · function · L238-L240 — stl_vertex get_vertex(int facet_idx, int vertex_idx) const
+- facet_area · function · L241-L244 — float facet_area(int facet_idx) const
+- stl_open · function · L254-L254 — extern bool stl_open(stl_file *stl, const char *file, ImportstlProgressFn stlFn = nullptr,int custom_header_length = 80);
+- stl_stats_out · function · L255-L255 — extern void stl_stats_out(stl_file *stl, FILE *file, char *input_file);
+- stl_print_neighbors · function · L256-L256 — extern bool stl_print_neighbors(stl_file *stl, char *file);
+- stl_write_ascii · function · L257-L257 — extern bool stl_write_ascii(stl_file *stl, const char *file, const char *label);
+- stl_write_binary · function · L258-L258 — extern bool stl_write_binary(stl_file *stl, const char *file, const char *label);
+- stl_check_facets_exact · function · L259-L259 — extern void stl_check_facets_exact(stl_file *stl);
+- stl_check_facets_nearby · function · L260-L260 — extern void stl_check_facets_nearby(stl_file *stl, float tolerance);
+- stl_remove_unconnected_facets · function · L261-L261 — extern void stl_remove_unconnected_facets(stl_file *stl);
+- stl_write_vertex · function · L262-L262 — extern void stl_write_vertex(stl_file *stl, int facet, int vertex);
+- stl_write_facet · function · L263-L263 — extern void stl_write_facet(stl_file *stl, char *label, int facet);
+- stl_write_neighbor · function · L264-L264 — extern void stl_write_neighbor(stl_file *stl, int facet);
+- stl_write_quad_object · function · L265-L265 — extern bool stl_write_quad_object(stl_file *stl, char *file);
+- stl_verify_neighbors · function · L266-L266 — extern void stl_verify_neighbors(stl_file *stl);
+- stl_fill_holes · function · L267-L267 — extern void stl_fill_holes(stl_file *stl);
+- stl_fix_normal_directions · function · L268-L268 — extern void stl_fix_normal_directions(stl_file *stl);
+- stl_fix_normal_values · function · L269-L269 — extern void stl_fix_normal_values(stl_file *stl);
+- stl_reverse_all_facets · function · L270-L270 — extern void stl_reverse_all_facets(stl_file *stl);
+- stl_translate · function · L271-L271 — extern void stl_translate(stl_file *stl, float x, float y, float z);
+- stl_translate_relative · function · L272-L272 — extern void stl_translate_relative(stl_file *stl, float x, float y, float z);
+- stl_scale_versor · function · L273-L273 — extern void stl_scale_versor(stl_file *stl, const stl_vertex &versor);
+- stl_scale · function · L274-L274 — inline void stl_scale(stl_file *stl, float factor) { stl_scale_versor(stl, stl_vertex(factor, factor, factor)); }
+- stl_rotate_x · function · L275-L275 — extern void stl_rotate_x(stl_file *stl, float angle);
+- stl_rotate_y · function · L276-L276 — extern void stl_rotate_y(stl_file *stl, float angle);
+- stl_rotate_z · function · L277-L277 — extern void stl_rotate_z(stl_file *stl, float angle);
+- stl_mirror_xy · function · L278-L278 — extern void stl_mirror_xy(stl_file *stl);
+- stl_mirror_yz · function · L279-L279 — extern void stl_mirror_yz(stl_file *stl);
+- stl_mirror_xz · function · L280-L280 — extern void stl_mirror_xz(stl_file *stl);
+- get_area · function · L282-L282 — extern float get_area(stl_facet* facet);
+- stl_get_size · function · L283-L283 — extern void stl_get_size(stl_file *stl);
+- stl_transform · function · L316-L327 — inline void stl_transform(stl_file *stl, const Eigen::Transform<T, 3, Eigen::Affine, Eigen::DontAlign>& t)
+- stl_transform · function · L330-L341 — inline void stl_transform(stl_file *stl, const Eigen::Matrix<T, 3, 3, Eigen::DontAlign>& m)

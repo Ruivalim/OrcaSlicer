@@ -1,0 +1,26 @@
+# deps_src/mcut/include/mcut/internal/cdt/cdt.h
+
+- layer_depth_t · type · L32-L32 — typedef unsigned short layer_depth_t;
+- boundary_overlap_count_t · type · L33-L33 — typedef layer_depth_t boundary_overlap_count_t;
+- get_vertex_to_triangles_map · function · L46-L65 — inline std::vector<std::vector<std::uint32_t>> get_vertex_to_triangles_map(
+- duplicates_info_t · class · L74-L77 — struct duplicates_info_t
+- remove_at · function · L84-L117 — inline ForwardIt remove_at(
+- diff_t · type · L93-L93 — typedef typename std::iterator_traits<ForwardIt>::difference_type diff_t;
+- ind_t · type · L94-L94 — typedef typename std::iterator_traits<SortUniqIndsFwdIt>::value_type ind_t;
+- remap_edges · function · L261-L271 — inline void
+- extract_edges_from_triangles · function · L361-L372 — inline std::unordered_set<edge_t>
+- edge_to_pieces_mapping · function · L380-L380 — edge_to_pieces_mapping(const std::unordered_map<edge_t, std::vector<edge_t>>& pieceToOriginals)
+- edge_t · type · L383-L383 — typedef std::unordered_map<edge_t, std::vector<edge_t>>::const_iterator Cit;
+- get_edge_to_split_vertices_map · function · L407-L470 — std::unordered_map<edge_t, std::vector<std::uint32_t>> get_edge_to_split_vertices_map(
+- VertCoordPair · type · L411-L411 — typedef std::pair<std::uint32_t, T> VertCoordPair;
+- ComparePred · class · L413-L418 — struct ComparePred
+- check_topology · function · L512-L551 — inline bool check_topology(const cdt::triangulator_t<T, TNearPointLocator>& cdt)
+- iV · function · L519-L519 — for (std::uint32_t iV(0); iV < std::uint32_t(cdt.vertices.size()); ++iV)
+- size · function · L519-L519 — for (std::uint32_t iV(0); iV < std::uint32_t(cdt.vertices.size()); ++iV)
+- TriIndCit · type · L521-L521 — typedef std::vector<std::uint32_t>::const_iterator TriIndCit;
+- iT · function · L529-L529 — for (std::uint32_t iT(0); iT < std::uint32_t(cdt.triangles.size()); ++iT)
+- size · function · L529-L529 — for (std::uint32_t iT(0); iT < std::uint32_t(cdt.triangles.size()); ++iT)
+- NCit · type · L531-L531 — typedef std::array<std::uint32_t, 3>::const_iterator NCit;
+- iT · function · L541-L541 — for (std::uint32_t iT(0); iT < std::uint32_t(cdt.triangles.size()); ++iT)
+- size · function · L541-L541 — for (std::uint32_t iT(0); iT < std::uint32_t(cdt.triangles.size()); ++iT)
+- VCit · type · L543-L543 — typedef std::array<std::uint32_t, 3>::const_iterator VCit;

@@ -1,0 +1,28 @@
+# deps_src/qhull/src/user_eg2/user_eg2_r.c
+
+- print_summary · function · L59-L59 — void print_summary(qhT *qh);
+- makecube · function · L60-L60 — void makecube(coordT *points, int numpoints, int dim);
+- adddiamond · function · L61-L61 — void adddiamond(qhT *qh, coordT *points, int numpoints, int numnew, int dim);
+- makeDelaunay · function · L62-L62 — void makeDelaunay(qhT *qh, coordT *points, int numpoints, int dim);
+- addDelaunay · function · L63-L63 — void addDelaunay(qhT *qh, coordT *points, int numpoints, int numnew, int dim);
+- findDelaunay · function · L64-L64 — void findDelaunay(qhT *qh, int dim);
+- makehalf · function · L65-L65 — void makehalf(coordT *points, int numpoints, int dim);
+- addhalf · function · L66-L66 — void addhalf(qhT *qh, coordT *points, int numpoints, int numnew, int dim, coordT *feasible);
+- print_summary · function · L71-L82 — void print_summary(qhT *qh)
+- makecube · function · L88-L101 — void makecube(coordT *points, int numpoints, int dim)
+- adddiamond · function · L115-L149 — void adddiamond(qhT *qh, coordT *points, int numpoints, int numnew, int dim)
+- makeDelaunay · function · L155-L170 — void makeDelaunay(qhT *qh, coordT *points, int numpoints, int dim)
+- addDelaunay · function · L182-L218 — void addDelaunay(qhT *qh, coordT *points, int numpoints, int numnew, int dim)
+- findDelaunay · function · L229-L251 — void findDelaunay(qhT *qh, int dim)
+- makehalf · function · L259-L273 — void makehalf(coordT *points, int numpoints, int dim)
+- addhalf · function · L296-L330 — void addhalf(qhT *qh, coordT *points, int numpoints, int numnew, int dim, coordT *feasible)
+- main · function · L346-L482 — int main(int argc, char *argv[])
+- qh_errexit · function · L491-L522 — void qh_errexit(qhT *qh, int exitcode, facetT *facet, ridgeT *ridge)
+- qh_errprint · function · L529-L534 — void qh_errprint(qhT *qh, const char *string, facetT *atfacet, facetT *otherfacet, ridgeT *atridge, vertexT *atvertex)
+- qh_printfacetlist · function · L537-L550 — void qh_printfacetlist(qhT *qh, facetT *facetlist, setT *facets, boolT printall)
+- qh_printafacet · function · L542-L543 — FORALLfacet_(facetlist)                                              /*io.c*/
+- qh_printafacet · function · L544-L545 — FOREACHfacet_(facets)                                                /*io.c*/
+- qh_printhelp_degenerate · function · L558-L622 — void qh_printhelp_degenerate(qhT *qh, FILE *fp)
+- qh_printhelp_narrowhull · function · L632-L640 — void qh_printhelp_narrowhull(qhT *qh, FILE *fp, realT minangle)
+- qh_printhelp_singular · function · L645-L730 — void qh_printhelp_singular(qhT *qh, FILE *fp)
+- qh_user_memsizes · function · L736-L740 — void qh_user_memsizes(qhT *qh)

@@ -1,0 +1,29 @@
+# src/libslic3r/Optimize/NLoptOptimizer.hpp
+
+- NLoptAlg · class · L23-L23 — template<nlopt_algorithm alg> struct NLoptAlg {};
+- NLoptAlgComb · class · L27-L28 — template<nlopt_algorithm gl_alg, nlopt_algorithm lc_alg = NLOPT_LN_NELDERMEAD>
+- IsNLoptAlg · class · L30-L32 — template<class M> struct IsNLoptAlg
+- OptDir · type · L47-L47 — enum class OptDir { MIN, MAX }; // Where to optimize
+- NLopt · class · L49-L63 — struct NLopt { // Helper RAII class for nlopt_opt
+- NLopt · function · L52-L55 — template<class...A> explicit NLopt(A&&...a)
+- NLopt · function · L57-L57 — NLopt(const NLopt&) = delete;
+- NLopt · function · L58-L58 — NLopt(NLopt&&) = delete;
+- NLoptOpt · class · L65-L65 — template<class Method> class NLoptOpt {};
+- optfunc · function · L76-L102 — template<class Fn, size_t N>
+- set_up · function · L104-L126 — template<size_t N>
+- optimize · function · L128-L146 — template<class Fn, size_t N>
+- optimize · function · L150-L159 — template<class Func, size_t N>
+- NLoptOpt · function · L161-L161 — explicit NLoptOpt(StopCriteria stopcr = {}) : m_stopcr(stopcr) {}
+- set_criteria · function · L163-L163 — void set_criteria(const StopCriteria &cr) { m_stopcr = cr; }
+- get_criteria · function · L164-L164 — const StopCriteria &get_criteria() const noexcept { return m_stopcr; }
+- set_dir · function · L165-L165 — void set_dir(OptDir dir) noexcept { m_dir = dir; }
+- seed · function · L167-L167 — void seed(long s) { nlopt_srand(s); }
+- optimize · function · L176-L188 — template<class Fn, size_t N>
+- NLoptOpt · function · L190-L190 — explicit NLoptOpt(StopCriteria stopcr = {}) : Base{stopcr} {}
+- to_max · function · L201-L201 — Optimizer& to_max() { m_opt.set_dir(detail::OptDir::MAX); return *this; }
+- to_min · function · L202-L202 — Optimizer& to_min() { m_opt.set_dir(detail::OptDir::MIN); return *this; }
+- optimize · function · L204-L210 — template<class Func, size_t N>
+- Optimizer · function · L212-L212 — explicit Optimizer(StopCriteria stopcr = {}) : m_opt(stopcr) {}
+- set_criteria · function · L214-L214 — Optimizer &set_criteria(const StopCriteria &cr)
+- get_criteria · function · L219-L219 — const StopCriteria &get_criteria() const { return m_opt.get_criteria(); }
+- seed · function · L221-L221 — void seed(long s) { m_opt.seed(s); }

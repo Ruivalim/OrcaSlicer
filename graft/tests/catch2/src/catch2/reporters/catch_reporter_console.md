@@ -1,0 +1,26 @@
+# tests/catch2/src/catch2/reporters/catch_reporter_console.hpp
+
+- TablePrinter · class · L16-L16 — class TablePrinter;
+- ConsoleReporter · class · L18-L61 — class ConsoleReporter final : public StreamingReporterBase
+- ConsoleReporter · function · L22-L22 — ConsoleReporter(ReporterConfig&& config);
+- getDescription · function · L24-L24 — static std::string getDescription();
+- noMatchingTestCases · function · L26-L26 — void noMatchingTestCases( StringRef unmatchedSpec ) override;
+- reportInvalidTestSpec · function · L27-L27 — void reportInvalidTestSpec( StringRef arg ) override;
+- assertionEnded · function · L29-L29 — void assertionEnded(AssertionStats const& _assertionStats) override;
+- sectionStarting · function · L31-L31 — void sectionStarting(SectionInfo const& _sectionInfo) override;
+- sectionEnded · function · L32-L32 — void sectionEnded(SectionStats const& _sectionStats) override;
+- benchmarkPreparing · function · L34-L34 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L35-L35 — void benchmarkStarting(BenchmarkInfo const& info) override;
+- benchmarkEnded · function · L36-L36 — void benchmarkEnded(BenchmarkStats<> const& stats) override;
+- benchmarkFailed · function · L37-L37 — void benchmarkFailed( StringRef error ) override;
+- testCaseEnded · function · L39-L39 — void testCaseEnded(TestCaseStats const& _testCaseStats) override;
+- testRunEnded · function · L40-L40 — void testRunEnded(TestRunStats const& _testRunStats) override;
+- testRunStarting · function · L41-L41 — void testRunStarting(TestRunInfo const& _testRunInfo) override;
+- lazyPrint · function · L44-L44 — void lazyPrint();
+- lazyPrintWithoutClosingBenchmarkTable · function · L46-L46 — void lazyPrintWithoutClosingBenchmarkTable();
+- lazyPrintRunInfo · function · L47-L47 — void lazyPrintRunInfo();
+- printTestCaseAndSectionHeader · function · L48-L48 — void printTestCaseAndSectionHeader();
+- printClosedHeader · function · L50-L50 — void printClosedHeader(std::string const& _name);
+- printOpenHeader · function · L51-L51 — void printOpenHeader(std::string const& _name);
+- printHeaderString · function · L55-L55 — void printHeaderString(std::string const& _string, std::size_t indent = 0);
+- printTotalsDivider · function · L57-L57 — void printTotalsDivider(Totals const& totals);

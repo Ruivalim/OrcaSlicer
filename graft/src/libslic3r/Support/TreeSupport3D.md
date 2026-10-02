@@ -1,0 +1,25 @@
+# src/libslic3r/Support/TreeSupport3D.hpp
+
+- Print · class · L43-L43 — class Print;
+- PrintObject · class · L44-L44 — class PrintObject;
+- AreaIncreaseSettings · class · L51-L74 — struct AreaIncreaseSettings
+- AreaIncreaseSettings · function · L53-L56 — AreaIncreaseSettings(
+- SupportElementStateBits · class · L79-L136 — struct SupportElementStateBits
+- SupportElementStateBits · function · L80-L93 — SupportElementStateBits() :
+- SupportElementState · class · L138-L235 — struct SupportElementState : public SupportElementStateBits
+- result_on_layer_is_set · function · L179-L179 — bool  result_on_layer_is_set() const { return this->result_on_layer != Point{ std::numeric_limits<coord_t>::max(), std::numeric_limits<coord_t>::max() }; }
+- result_on_layer_reset · function · L180-L180 — void  result_on_layer_reset() { this->result_on_layer = Point{ std::numeric_limits<coord_t>::max(), std::numeric_limits<coord_t>::max() }; }
+- set_pending_roof_recovery · function · L211-L215 — void set_pending_roof_recovery(uint32_t pending_layers, uint32_t recovery_depth)
+- propagate_down · function · L218-L231 — [[nodiscard]] static SupportElementState propagate_down(const SupportElementState &src)
+- locked · function · L233-L233 — [[nodiscard]] bool locked() const { return this->distance_to_top < this->dont_move_until; }
+- has_pending_roof_recovery · function · L234-L234 — [[nodiscard]] bool has_pending_roof_recovery() const { return this->missing_roof_layers > 0; }
+- getEffectiveDTT · function · L242-L247 — [[nodiscard]] inline size_t getEffectiveDTT(const TreeSupportSettings &settings, const SupportElementState &elem)
+- support_element_radius · function · L254-L257 — [[nodiscard]] inline coord_t support_element_radius(const TreeSupportSettings &settings, const SupportElementState &elem)
+- support_element_collision_radius · function · L264-L267 — [[nodiscard]] inline coord_t support_element_collision_radius(const TreeSupportSettings &settings, const SupportElementState &elem)
+- SupportElement · class · L269-L297 — struct SupportElement
+- SupportElement · function · L281-L281 — SupportElement(const SupportElementState &state, Polygons &&influence_area) : state(state), influence_area(std::move(influence_area)) {}
+- SupportElement · function · L282-L283 — SupportElement(const SupportElementState &state, ParentIndices &&parents, Polygons &&influence_area) :
+- support_element_radius · function · L301-L304 — [[nodiscard]] inline coord_t support_element_radius(const TreeSupportSettings &settings, const SupportElement &elem)
+- support_element_collision_radius · function · L306-L309 — [[nodiscard]] inline coord_t support_element_collision_radius(const TreeSupportSettings &settings, const SupportElement &elem)
+- organic_draw_branches · function · L312-L327 — void organic_draw_branches(
+- generate_tree_support_3D · function · L331-L331 — void generate_tree_support_3D(PrintObject &print_object, TreeSupport* tree_support, std::function<void()> throw_on_cancel = []{});

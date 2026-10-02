@@ -1,0 +1,26 @@
+# tests/catch2/src/catch2/matchers/catch_matchers.hpp
+
+- MatcherUntypedBase · class · L21-L37 — class MatcherUntypedBase
+- MatcherUntypedBase · function · L23-L23 — MatcherUntypedBase() = default;
+- MatcherUntypedBase · function · L25-L25 — MatcherUntypedBase(MatcherUntypedBase const&) = default;
+- MatcherUntypedBase · function · L26-L26 — MatcherUntypedBase(MatcherUntypedBase&&) = default;
+- toString · function · L31-L31 — std::string toString() const;
+- describe · function · L35-L35 — virtual std::string describe() const = 0;
+- MatcherBase · class · L40-L44 — template<typename T>
+- match · function · L43-L43 — virtual bool match( T const& arg ) const = 0;
+- MatchAllOf · class · L48-L95 — template<typename ArgT>
+- MatchAllOf · function · L53-L53 — MatchAllOf() = default;
+- MatchAllOf · function · L54-L54 — MatchAllOf(MatchAllOf const&) = delete;
+- MatchAllOf · function · L56-L56 — MatchAllOf(MatchAllOf&&) = default;
+- match · function · L60-L66 — bool match( ArgT const& arg ) const override
+- describe · function · L67-L81 — std::string describe() const override
+- MatchAnyOf · class · L106-L151 — template<typename ArgT>
+- MatchAnyOf · function · L110-L110 — MatchAnyOf() = default;
+- MatchAnyOf · function · L111-L111 — MatchAnyOf(MatchAnyOf const&) = delete;
+- MatchAnyOf · function · L113-L113 — MatchAnyOf(MatchAnyOf&&) = default;
+- match · function · L116-L122 — bool match( ArgT const& arg ) const override
+- describe · function · L123-L137 — std::string describe() const override
+- MatchNotOf · class · L162-L179 — template<typename ArgT>
+- MatchNotOf · function · L167-L170 — explicit MatchNotOf( MatcherBase<ArgT> const& underlyingMatcher
+- match · function · L172-L174 — bool match( ArgT const& arg ) const override
+- describe · function · L176-L178 — std::string describe() const override

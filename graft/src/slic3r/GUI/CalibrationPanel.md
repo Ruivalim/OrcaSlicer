@@ -1,0 +1,40 @@
+# src/slic3r/GUI/CalibrationPanel.hpp
+
+- get_calibration_type_name · function · L12-L12 — wxString get_calibration_type_name(CalibMode cali_mode);
+- MObjectPanel · class · L14-L47 — class MObjectPanel : public wxPanel
+- MObjectPanel · function · L29-L34 — MObjectPanel(wxWindow* parent,
+- set_printer_state · function · L38-L38 — void set_printer_state(PrinterState state);
+- update_machine_info · function · L39-L39 — void update_machine_info(MachineObject* info, bool is_my_devices = false);
+- OnPaint · function · L41-L41 — void OnPaint(wxPaintEvent& event);
+- render · function · L42-L42 — void render(wxDC& dc);
+- doRender · function · L43-L43 — void doRender(wxDC& dc);
+- on_mouse_enter · function · L44-L44 — void on_mouse_enter(wxMouseEvent& evt);
+- on_mouse_leave · function · L45-L45 — void on_mouse_leave(wxMouseEvent& evt);
+- on_mouse_left_up · function · L46-L46 — void on_mouse_left_up(wxMouseEvent& evt);
+- MPanel · class · L49-L54 — class MPanel
+- SelectMObjectPopup · class · L56-L88 — class SelectMObjectPopup : public PopupWindow
+- SelectMObjectPopup · function · L59-L59 — SelectMObjectPopup(wxWindow* parent);
+- Popup · function · L63-L63 — virtual void Popup(wxWindow* focus = NULL) wxOVERRIDE;
+- OnDismiss · function · L64-L64 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L65-L65 — virtual bool ProcessLeftDown(wxMouseEvent& event) wxOVERRIDE;
+- Show · function · L66-L66 — virtual bool Show(bool show = true) wxOVERRIDE;
+- update_machine_list · function · L68-L68 — void update_machine_list(wxCommandEvent& event);
+- was_dismiss · function · L69-L69 — bool was_dismiss() { return m_dismiss; }
+- OnLeftUp · function · L84-L84 — void OnLeftUp(wxMouseEvent& event);
+- on_timer · function · L85-L85 — void on_timer(wxTimerEvent& event);
+- update_user_devices · function · L86-L86 — void update_user_devices();
+- on_dissmiss_win · function · L87-L87 — void on_dissmiss_win(wxCommandEvent& event);
+- CalibrationPanel · class · L91-L121 — class CalibrationPanel : public wxPanel
+- CalibrationPanel · function · L94-L94 — CalibrationPanel(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- get_tabpanel · function · L96-L96 — Tabbook* get_tabpanel() { return m_tabpanel; };
+- update_print_error_info · function · L97-L97 — void update_print_error_info(int code, std::string msg, std::string extra);
+- update_all · function · L98-L98 — void update_all();
+- show_status · function · L99-L99 — void show_status(int status);
+- Show · function · L100-L100 — bool Show(bool show);
+- on_printer_clicked · function · L101-L101 — void on_printer_clicked(wxMouseEvent& event);
+- set_default · function · L102-L102 — void set_default();
+- msw_rescale · function · L103-L103 — void msw_rescale();
+- on_sys_color_changed · function · L104-L104 — void on_sys_color_changed();
+- init_tabpanel · function · L106-L106 — void init_tabpanel();
+- init_timer · function · L107-L107 — void init_timer();
+- on_timer · function · L108-L108 — void on_timer(wxTimerEvent& event);

@@ -1,0 +1,48 @@
+# src/slic3r/Utils/UndoRedo.hpp
+
+- coordf_t · type · L13-L13 — typedef double                          coordf_t;
+- t_layer_height_range · type · L14-L14 — typedef std::pair<coordf_t, coordf_t>   t_layer_height_range;
+- Model · class · L18-L18 — class Model;
+- Selection · class · L21-L21 — class Selection;
+- GLGizmosManager · class · L22-L22 — class GLGizmosManager;
+- PartPlateList · class · L23-L23 — class PartPlateList;
+- PartPlate · class · L24-L24 — class PartPlate;
+- SnapshotType · type · L29-L46 — enum class SnapshotType : unsigned char
+- SnapshotData · class · L53-L69 — struct SnapshotData
+- Flags · type · L62-L68 — enum Flags
+- Snapshot · class · L71-L91 — struct Snapshot
+- Snapshot · function · L73-L73 — Snapshot(size_t timestamp) : timestamp(timestamp) {}
+- Snapshot · function · L74-L75 — Snapshot(const std::string &name, size_t timestamp, size_t model_id, const SnapshotData &snapshot_data) :
+- is_topmost · function · L86-L86 — bool 		is_topmost() const;
+- is_topmost_captured · function · L89-L89 — bool 		is_topmost_captured() const { assert(this->is_topmost()); return model_id > 0; }
+- snapshot_modifies_project · function · L95-L98 — inline bool snapshot_modifies_project(SnapshotType type)
+- snapshot_modifies_project · function · L100-L103 — inline bool snapshot_modifies_project(const Snapshot &snapshot)
+- Selection · class · L106-L111 — struct Selection : public Slic3r::ObjectBase
+- clear · function · L107-L107 — void clear() { mode = 0; volumes_and_instances.clear(); }
+- serialize · function · L110-L110 — template<class Archive> void serialize(Archive &ar) { ar(mode, volumes_and_instances); }
+- StackImpl · class · L113-L113 — class StackImpl;
+- Stack · class · L115-L188 — class Stack
+- Stack · function · L120-L120 — Stack();
+- clear · function · L123-L123 — void clear();
+- empty · function · L124-L124 — bool empty() const;
+- set_memory_limit · function · L127-L127 — void set_memory_limit(size_t memsize);
+- get_memory_limit · function · L128-L128 — size_t get_memory_limit() const;
+- memsize · function · L131-L131 — size_t memsize() const;
+- release_least_recently_used · function · L134-L134 — void release_least_recently_used();
+- take_snapshot · function · L137-L137 — void take_snapshot(const std::string& snapshot_name, const Slic3r::Model& model, const Slic3r::GUI::Selection& selection, const Slic3r::GUI::GLGizmosManager& gizmos, const SnapshotData &snapshot_data);
+- take_snapshot · function · L139-L139 — void take_snapshot(const std::string& snapshot_name, const Slic3r::Model& model, const Slic3r::GUI::Selection& selection, const Slic3r::GUI::GLGizmosManager& gizmos, const Slic3r::GUI::PartPlateList& plate_list, const SnapshotData& snapshot_data);
+- reduce_noisy_snapshots · function · L143-L143 — void reduce_noisy_snapshots(const std::string& new_name);
+- has_undo_snapshot · function · L146-L146 — bool has_undo_snapshot() const;
+- has_redo_snapshot · function · L147-L147 — bool has_redo_snapshot() const;
+- has_undo_snapshot · function · L149-L149 — bool has_undo_snapshot(size_t time_to_load) const;
+- undo · function · L153-L153 — bool undo(Slic3r::Model& model, const Slic3r::GUI::Selection& selection, Slic3r::GUI::GLGizmosManager& gizmos, Slic3r::GUI::PartPlateList& plate_list, const SnapshotData &snapshot_data, size_t time_to_load = SIZE_MAX);
+- redo · function · L156-L156 — bool redo(Slic3r::Model& model, Slic3r::GUI::GLGizmosManager& gizmos, Slic3r::GUI::PartPlateList& plate_list, size_t time_to_load = SIZE_MAX);
+- snapshots · function · L162-L162 — const std::vector<Snapshot>& snapshots() const;
+- snapshot · function · L163-L163 — const Snapshot& 		     snapshot(size_t time) const;
+- active_snapshot_time · function · L168-L168 — size_t active_snapshot_time() const;
+- active_snapshot · function · L169-L169 — const Snapshot& active_snapshot() const { return this->snapshot(this->active_snapshot_time()); }
+- temp_snapshot_active · function · L172-L172 — bool   temp_snapshot_active() const;
+- mark_current_as_saved · function · L175-L175 — void   mark_current_as_saved();
+- project_modified · function · L177-L177 — bool   project_modified() const;
+- has_real_change_from · function · L179-L179 — bool has_real_change_from(size_t time) const;
+- selection_deserialized · function · L183-L183 — const Selection& selection_deserialized() const;

@@ -1,0 +1,90 @@
+# src/libvgcode/src/Viewer.cpp
+
+- Viewer · method · L10-L13 — Viewer::Viewer()
+- init · method · L20-L23 — void Viewer::init(const std::string& opengl_context_version)
+- shutdown · method · L25-L28 — void Viewer::shutdown()
+- reset · method · L30-L33 — void Viewer::reset()
+- load · method · L35-L38 — void Viewer::load(GCodeInputData&& gcode_data)
+- render · method · L40-L43 — void Viewer::render(const Mat4x4& view_matrix, const Mat4x4& projection_matrix)
+- render_shadow_casters · method · L45-L48 — void Viewer::render_shadow_casters(const Mat4x4& view_matrix, const Mat4x4& projection_matrix, const Vec3& light_position)
+- set_shadow_map · method · L50-L53 — void Viewer::set_shadow_map(int texture_unit, const Mat4x4& light_view_projection, float intensity, float texel_size)
+- set_tone · method · L55-L58 — void Viewer::set_tone(float exposure, float saturation)
+- get_view_type · method · L60-L63 — EViewType Viewer::get_view_type() const
+- set_view_type · method · L65-L68 — void Viewer::set_view_type(EViewType type)
+- get_time_mode · method · L70-L73 — ETimeMode Viewer::get_time_mode() const
+- set_time_mode · method · L75-L78 — void Viewer::set_time_mode(ETimeMode mode)
+- is_top_layer_only_view_range · method · L80-L83 — bool Viewer::is_top_layer_only_view_range() const
+- toggle_top_layer_only_view_range · method · L85-L88 — void Viewer::toggle_top_layer_only_view_range()
+- is_dim_previous_layers · method · L90-L93 — bool Viewer::is_dim_previous_layers() const
+- set_dim_previous_layers · method · L95-L98 — void Viewer::set_dim_previous_layers(bool value)
+- get_dim_previous_layers_brightness · method · L100-L103 — float Viewer::get_dim_previous_layers_brightness() const
+- set_dim_previous_layers_brightness · method · L105-L108 — void Viewer::set_dim_previous_layers_brightness(float value)
+- is_option_visible · method · L110-L113 — bool Viewer::is_option_visible(EOptionType type) const
+- toggle_option_visibility · method · L115-L118 — void Viewer::toggle_option_visibility(EOptionType type)
+- is_extrusion_role_visible · method · L120-L123 — bool Viewer::is_extrusion_role_visible(EGCodeExtrusionRole role) const
+- toggle_extrusion_role_visibility · method · L125-L128 — void Viewer::toggle_extrusion_role_visibility(EGCodeExtrusionRole role)
+- get_extrusion_role_color · method · L130-L130 — const Color& Viewer::get_extrusion_role_color(EGCodeExtrusionRole role) const
+- set_extrusion_role_color · method · L135-L138 — void Viewer::set_extrusion_role_color(EGCodeExtrusionRole role, const Color& color)
+- reset_default_extrusion_roles_colors · method · L140-L143 — void Viewer::reset_default_extrusion_roles_colors()
+- get_option_color · method · L145-L145 — const Color& Viewer::get_option_color(EOptionType type) const
+- set_option_color · method · L150-L153 — void Viewer::set_option_color(EOptionType type, const Color& color)
+- reset_default_options_colors · method · L155-L158 — void Viewer::reset_default_options_colors()
+- get_tool_colors_count · method · L160-L163 — size_t Viewer::get_tool_colors_count() const
+- get_tool_colors · method · L165-L165 — const Palette& Viewer::get_tool_colors() const
+- set_tool_colors · method · L170-L173 — void Viewer::set_tool_colors(const Palette& colors)
+- get_color_print_colors_count · method · L175-L178 — size_t Viewer::get_color_print_colors_count() const
+- get_color_print_colors · method · L180-L180 — const Palette& Viewer::get_color_print_colors() const
+- set_color_print_colors · method · L185-L188 — void Viewer::set_color_print_colors(const Palette& colors)
+- get_color_range · method · L190-L190 — const ColorRange& Viewer::get_color_range(EViewType type) const
+- set_color_range_palette · method · L195-L198 — void Viewer::set_color_range_palette(EViewType type, const Palette& palette)
+- get_travels_radius · method · L200-L203 — float Viewer::get_travels_radius() const
+- set_travels_radius · method · L205-L208 — void Viewer::set_travels_radius(float radius)
+- get_wipes_radius · method · L210-L213 — float Viewer::get_wipes_radius() const
+- set_wipes_radius · method · L215-L218 — void Viewer::set_wipes_radius(float radius)
+- get_layers_count · method · L220-L223 — size_t Viewer::get_layers_count() const
+- get_layers_view_range · method · L225-L225 — const Interval& Viewer::get_layers_view_range() const
+- set_layers_view_range · method · L230-L233 — void Viewer::set_layers_view_range(const Interval& range)
+- set_layers_view_range · method · L235-L238 — void Viewer::set_layers_view_range(Interval::value_type min, Interval::value_type max)
+- get_view_visible_range · method · L240-L240 — const Interval& Viewer::get_view_visible_range() const
+- set_view_visible_range · method · L245-L248 — void Viewer::set_view_visible_range(Interval::value_type min, Interval::value_type max)
+- get_view_full_range · method · L250-L250 — const Interval& Viewer::get_view_full_range() const
+- get_view_enabled_range · method · L255-L255 — const Interval& Viewer::get_view_enabled_range() const
+- is_spiral_vase_mode · method · L260-L263 — bool Viewer::is_spiral_vase_mode() const
+- get_layer_z · method · L265-L268 — float Viewer::get_layer_z(size_t layer_id) const
+- get_layers_zs · method · L270-L273 — std::vector<float> Viewer::get_layers_zs() const
+- get_layer_id_at · method · L275-L278 — size_t Viewer::get_layer_id_at(float z) const
+- get_used_extruders_count · method · L280-L283 — size_t Viewer::get_used_extruders_count() const
+- get_used_extruders_ids · method · L285-L288 — std::vector<uint8_t> Viewer::get_used_extruders_ids() const
+- get_time_modes · method · L290-L293 — std::vector<ETimeMode> Viewer::get_time_modes() const
+- get_vertices_count · method · L295-L298 — size_t Viewer::get_vertices_count() const
+- get_current_vertex · method · L300-L300 — const PathVertex& Viewer::get_current_vertex() const
+- get_current_vertex_id · method · L305-L308 — size_t Viewer::get_current_vertex_id() const
+- get_vertex_at · method · L310-L310 — const PathVertex& Viewer::get_vertex_at(size_t id) const
+- get_estimated_time · method · L315-L318 — float Viewer::get_estimated_time() const
+- get_estimated_time_at · method · L320-L323 — float Viewer::get_estimated_time_at(size_t id) const
+- get_vertex_color · method · L325-L328 — Color Viewer::get_vertex_color(const PathVertex& vertex) const
+- get_extrusion_roles_count · method · L330-L333 — size_t Viewer::get_extrusion_roles_count() const
+- get_extrusion_roles · method · L335-L338 — std::vector<EGCodeExtrusionRole> Viewer::get_extrusion_roles() const
+- get_options_count · method · L340-L343 — size_t Viewer::get_options_count() const
+- get_options · method · L345-L345 — const std::vector<EOptionType>& Viewer::get_options() const
+- get_color_prints_count · method · L350-L353 — size_t Viewer::get_color_prints_count(uint8_t extruder_id) const
+- get_color_prints · method · L355-L358 — std::vector<ColorPrint> Viewer::get_color_prints(uint8_t extruder_id) const
+- get_extrusion_role_estimated_time · method · L360-L363 — float Viewer::get_extrusion_role_estimated_time(EGCodeExtrusionRole role) const
+- get_travels_estimated_time · method · L365-L368 — float Viewer::get_travels_estimated_time() const
+- get_layers_estimated_times · method · L370-L373 — std::vector<float> Viewer::get_layers_estimated_times() const
+- get_bounding_box · method · L375-L378 — AABox Viewer::get_bounding_box(const std::vector<EMoveType>& types) const
+- get_extrusion_bounding_box · method · L380-L383 — AABox Viewer::get_extrusion_bounding_box(const std::vector<EGCodeExtrusionRole>& roles) const
+- get_used_cpu_memory · method · L385-L388 — size_t Viewer::get_used_cpu_memory() const
+- get_used_gpu_memory · method · L390-L393 — size_t Viewer::get_used_gpu_memory() const
+- get_cog_position · method · L396-L399 — Vec3 Viewer::get_cog_position() const
+- get_cog_marker_scale_factor · method · L401-L404 — float Viewer::get_cog_marker_scale_factor() const
+- set_cog_marker_scale_factor · method · L406-L409 — void Viewer::set_cog_marker_scale_factor(float factor)
+- get_tool_marker_position · method · L411-L411 — const Vec3& Viewer::get_tool_marker_position() const
+- get_tool_marker_offset_z · method · L416-L419 — float Viewer::get_tool_marker_offset_z() const
+- set_tool_marker_offset_z · method · L421-L424 — void Viewer::set_tool_marker_offset_z(float offset_z)
+- get_tool_marker_scale_factor · method · L426-L429 — float Viewer::get_tool_marker_scale_factor() const
+- set_tool_marker_scale_factor · method · L431-L434 — void Viewer::set_tool_marker_scale_factor(float factor)
+- get_tool_marker_color · method · L436-L436 — const Color& Viewer::get_tool_marker_color() const
+- set_tool_marker_color · method · L441-L444 — void Viewer::set_tool_marker_color(const Color& color)
+- get_tool_marker_alpha · method · L446-L449 — float Viewer::get_tool_marker_alpha() const
+- set_tool_marker_alpha · method · L451-L454 — void Viewer::set_tool_marker_alpha(float alpha)

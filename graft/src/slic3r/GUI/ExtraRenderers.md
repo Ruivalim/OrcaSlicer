@@ -1,0 +1,45 @@
+# src/slic3r/GUI/ExtraRenderers.hpp
+
+- DataViewBitmapText · class · L16-L62 — class DataViewBitmapText : public wxObject
+- DataViewBitmapText · function · L19-L23 — DataViewBitmapText( const wxString &text = wxEmptyString,
+- DataViewBitmapText · function · L25-L29 — DataViewBitmapText(const DataViewBitmapText &other)
+- SetText · function · L40-L40 — void SetText(const wxString &text)      { m_text = text; }
+- GetText · function · L41-L41 — wxString GetText() const                { return m_text; }
+- SetBitmap · function · L42-L42 — void SetBitmap(const wxBitmap &bmp)     { m_bmp = bmp; }
+- GetBitmap · function · L43-L43 — const wxBitmap &GetBitmap() const       { return m_bmp; }
+- IsSameAs · function · L45-L47 — bool IsSameAs(const DataViewBitmapText& other) const
+- wxDECLARE_DYNAMIC_CLASS · function · L61-L61 — wxDECLARE_DYNAMIC_CLASS(DataViewBitmapText);
+- BitmapTextRenderer · class · L71-L134 — class BitmapTextRenderer : public wxDataViewCustomRenderer
+- BitmapTextRenderer · function · L75-L85 — BitmapTextRenderer(bool use_markup = false,
+- wxT · function · L88-L88 — wxDataViewCustomRenderer(wxT("DataViewBitmapText"), mode, align)
+- EnableMarkup · function · L96-L96 — void EnableMarkup(bool enable = true);
+- SetValue · function · L98-L98 — bool SetValue(const wxVariant& value) override;
+- GetValue · function · L99-L99 — bool GetValue(wxVariant& value) const override;
+- GetAccessibleDescription · function · L101-L101 — virtual wxString GetAccessibleDescription() const override;
+- Render · function · L104-L104 — virtual bool Render(wxRect cell, wxDC* dc, int state) override;
+- GetSize · function · L105-L105 — virtual wxSize GetSize() const override;
+- HasEditorCtrl · function · L107-L114 — bool        HasEditorCtrl() const override
+- CreateEditorCtrl · function · L115-L115 — wxWindow*   CreateEditorCtrl(wxWindow* parent, wxRect labelRect, const wxVariant& value) override;
+- GetValueFromEditorCtrl · function · L116-L116 — bool        GetValueFromEditorCtrl(wxWindow* ctrl, wxVariant& value) override;
+- WasCanceled · function · L117-L117 — bool        WasCanceled() const { return m_was_unusable_symbol; }
+- set_can_create_editor_ctrl_function · function · L119-L119 — void        set_can_create_editor_ctrl_function(std::function<bool()> can_create_fn) { can_create_editor_ctrl = can_create_fn; }
+- wxItemMarkupText · class · L129-L129 — class wxItemMarkupText* m_markupText { nullptr };;
+- BitmapChoiceRenderer · class · L141-L168 — class BitmapChoiceRenderer : public wxDataViewCustomRenderer
+- BitmapChoiceRenderer · function · L144-L147 — BitmapChoiceRenderer(
+- SetValue · function · L149-L149 — bool SetValue(const wxVariant& value) override;
+- GetValue · function · L150-L150 — bool GetValue(wxVariant& value) const override;
+- Render · function · L152-L152 — virtual bool Render(wxRect cell, wxDC* dc, int state) override;
+- GetSize · function · L153-L153 — virtual wxSize GetSize() const override;
+- HasEditorCtrl · function · L155-L155 — bool        HasEditorCtrl() const override { return true; }
+- CreateEditorCtrl · function · L156-L156 — wxWindow*   CreateEditorCtrl(wxWindow* parent, wxRect labelRect, const wxVariant& value) override;
+- GetValueFromEditorCtrl · function · L157-L157 — bool        GetValueFromEditorCtrl(wxWindow* ctrl, wxVariant& value) override;
+- set_can_create_editor_ctrl_function · function · L159-L159 — void        set_can_create_editor_ctrl_function(std::function<bool()> can_create_fn) { can_create_editor_ctrl = can_create_fn; }
+- set_default_extruder_idx · function · L160-L160 — void        set_default_extruder_idx(std::function<int()> default_extruder_idx_fn)   { get_default_extruder_idx = default_extruder_idx_fn; }
+- set_has_default_extruder · function · L161-L161 — void        set_has_default_extruder(std::function<bool()> has_default_extruder_fn) { has_default_extruder = has_default_extruder_fn; }
+- TextRenderer · class · L176-L193 — class TextRenderer : public wxDataViewCustomRenderer
+- TextRenderer · function · L179-L181 — TextRenderer(wxDataViewCellMode mode = wxDATAVIEW_CELL_INERT
+- SetValue · function · L183-L183 — bool SetValue(const wxVariant& value) override;
+- GetValue · function · L184-L184 — bool GetValue(wxVariant& value) const override;
+- Render · function · L186-L186 — virtual bool Render(wxRect cell, wxDC* dc, int state) override;
+- GetSize · function · L187-L187 — virtual wxSize GetSize() const override;
+- HasEditorCtrl · function · L189-L189 — bool        HasEditorCtrl() const override { return false; }

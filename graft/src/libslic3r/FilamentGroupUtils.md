@@ -1,0 +1,26 @@
+# src/libslic3r/FilamentGroupUtils.hpp
+
+- Color · class · L16-L28 — struct Color
+- Color · function · L22-L22 — Color(unsigned char r_ = 0, unsigned char g_ = 0, unsigned char b_ = 0, unsigned a_ = 255) :r(r_), g(g_), b(b_), a(a_) {}
+- Color · function · L23-L23 — Color(const std::string& hexstr);
+- to_hex_str · function · L27-L27 — std::string to_hex_str(bool include_alpha = false) const;
+- FilamentInfo · class · L31-L39 — struct FilamentInfo
+- MachineFilamentInfo · class · L41-L45 — struct MachineFilamentInfo: public FilamentInfo
+- FilamentGroupException · class · L48-L71 — class FilamentGroupException: public std::exception
+- ErrorCode · type · L50-L54 — enum ErrorCode
+- FilamentGroupException · function · L61-L62 — FilamentGroupException(ErrorCode code, const std::string& message)
+- code · function · L64-L66 — ErrorCode code() const noexcept
+- what · function · L68-L68 — const char* what() const noexcept override
+- calc_max_group_size · function · L73-L73 — std::vector<int> calc_max_group_size(const std::vector<std::map<int, int>>& ams_counts,bool ignore_ext_filament);
+- build_machine_filaments · function · L75-L75 — std::vector<std::vector<MachineFilamentInfo>> build_machine_filaments(const std::vector<std::vector<DynamicPrintConfig>>& filament_configs, const std::vector<std::map<int, int>>& ams_counts, bool ignore_ext_filament);
+- collect_unprintable_limits · function · L77-L77 — bool collect_unprintable_limits(const std::vector<std::set<int>>& physical_unprintables, const std::vector<std::set<int>>& geometric_unprintables, std::vector<std::set<int>>& unprintable_limits);
+- remove_intersection · function · L79-L79 — bool remove_intersection(std::set<int>& a, std::set<int>& b);
+- extract_indices · function · L81-L81 — void extract_indices(const std::vector<unsigned int>& used_filaments, const std::vector<std::set<int>>& unprintable_elems, std::vector<std::set<int>>& unprintable_idxs);
+- extract_unprintable_limit_indices · function · L83-L83 — void extract_unprintable_limit_indices(const std::vector<std::set<int>>& unprintable_elems, const std::vector<unsigned int>& used_filaments, std::map<int, int>& unplaceable_limits);
+- extract_unprintable_limit_indices · function · L85-L85 — void extract_unprintable_limit_indices(const std::vector<std::set<int>>& unprintable_elems, const std::vector<unsigned int>& used_filaments, std::unordered_map<int, std::vector<int>>& unplaceable_limits);
+- check_printable · function · L87-L87 — bool check_printable(const std::vector<std::set<int>>& groups, const std::map<int, int>& unprintable);
+- get_estimate_extruder_change_count · function · L93-L93 — int get_estimate_extruder_change_count(const std::vector<std::vector<unsigned int>>& layer_filaments, const MultiNozzleUtils::LayeredNozzleGroupResult& extruder_nozzle_info);
+- get_estimate_nozzle_change_count · function · L95-L95 — int get_estimate_nozzle_change_count(const std::vector<std::vector<unsigned int>>& layer_filaments, const MultiNozzleUtils::LayeredNozzleGroupResult& extruder_nozzle_info);
+- get_estimate_extruder_filament_change_count · function · L97-L97 — std::pair<int, int> get_estimate_extruder_filament_change_count(const MultiNozzleUtils::LayeredNozzleGroupResult& extruder_nozzle_info);
+- build_extruder_nozzle_list · function · L99-L99 — std::map<int, std::vector<int>> build_extruder_nozzle_list(const std::vector<MultiNozzleUtils::NozzleInfo>& nozzle_list);
+- update_used_filament_values · function · L101-L101 — std::vector<int> update_used_filament_values(const std::vector<int>& old_values, const std::vector<int>& new_values, const std::vector<unsigned int>& used_filaments);

@@ -1,0 +1,42 @@
+# deps_src/nlohmann/detail/input/binary_reader.hpp
+
+- cbor_tag_handler_t · type · L31-L36 — enum class cbor_tag_handler_t
+- little_endianess · function · L45-L48 — static inline bool little_endianess(int num = 1) noexcept
+- binary_reader · class · L58-L2522 — template<typename BasicJsonType, typename InputAdapterType, typename SAX = json_sax_dom_parser<BasicJsonType>>
+- binary_reader · function · L76-L79 — explicit binary_reader(InputAdapterType&& adapter) noexcept : ia(std::move(adapter))
+- binary_reader · function · L82-L82 — binary_reader(const binary_reader&) = delete;
+- binary_reader · function · L83-L83 — binary_reader(binary_reader&&) = default; // NOLINT(hicpp-noexcept-move,performance-noexcept-move-constructor)
+- sax_parse · function · L97-L100 — bool sax_parse(const input_format_t format,
+- parse_bson_internal · function · L159-L175 — bool parse_bson_internal()
+- get_bson_cstr · function · L184-L200 — bool get_bson_cstr(string_t& result)
+- get_bson_string · function · L213-L223 — template<typename NumberType>
+- get_bson_binary · function · L234-L249 — template<typename NumberType>
+- parse_bson_element_internal · function · L261-L325 — bool parse_bson_element_internal(const char_int_type element_type,
+- parse_bson_element_list · function · L339-L371 — bool parse_bson_element_list(const bool is_array)
+- parse_bson_array · function · L377-L393 — bool parse_bson_array()
+- parse_cbor_internal · function · L407-L882 — bool parse_cbor_internal(const bool get_char,
+- get_cbor_string · function · L895-L977 — bool get_cbor_string(string_t& result)
+- get_cbor_binary · function · L990-L1076 — bool get_cbor_binary(binary_t& result)
+- get_cbor_array · function · L1084-L1114 — bool get_cbor_array(const std::size_t len,
+- get_cbor_object · function · L1122-L1169 — bool get_cbor_object(const std::size_t len,
+- parse_msgpack_internal · function · L1178-L1546 — bool parse_msgpack_internal()
+- get_msgpack_string · function · L1558-L1628 — bool get_msgpack_string(string_t& result)
+- get_msgpack_binary · function · L1640-L1745 — bool get_msgpack_binary(binary_t& result)
+- get_msgpack_array · function · L1751-L1767 — bool get_msgpack_array(const std::size_t len)
+- get_msgpack_object · function · L1773-L1797 — bool get_msgpack_object(const std::size_t len)
+- parse_ubjson_internal · function · L1810-L1813 — bool parse_ubjson_internal(const bool get_char = true)
+- get_ubjson_string · function · L1829-L1877 — bool get_ubjson_string(string_t& result, const bool get_char = true)
+- get_ubjson_size_value · function · L1883-L1948 — bool get_ubjson_size_value(std::size_t& result)
+- get_ubjson_size_type · function · L1960-L1995 — bool get_ubjson_size_type(std::pair<std::size_t, char_int_type>& result)
+- get_ubjson_value · function · L2001-L2097 — bool get_ubjson_value(const char_int_type prefix)
+- get_ubjson_array · function · L2102-L2159 — bool get_ubjson_array()
+- get_ubjson_object · function · L2164-L2234 — bool get_ubjson_object()
+- get_ubjson_high_precision_number · function · L2239-L2300 — bool get_ubjson_high_precision_number()
+- get · function · L2315-L2319 — char_int_type get()
+- get_ignore_noop · function · L2324-L2333 — char_int_type get_ignore_noop()
+- get_number · function · L2348-L2375 — template<typename NumberType, bool InputIsLittleEndian = false>
+- get_string · function · L2391-L2408 — template<typename NumberType>
+- get_binary · function · L2424-L2441 — template<typename NumberType>
+- unexpect_eof · function · L2449-L2449 — bool unexpect_eof(const input_format_t format, const char* context) const
+- get_token_string · function · L2462-L2467 — std::string get_token_string() const
+- exception_message · function · L2475-L2505 — std::string exception_message(const input_format_t format,

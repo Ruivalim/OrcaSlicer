@@ -1,0 +1,31 @@
+# deps_src/agg/agg_rasterizer_cells_aa.h
+
+- cell_block_scale_e · type · L47-L54 — enum cell_block_scale_e
+- sorted_y · class · L56-L60 — struct sorted_y
+- self_type · type · L64-L64 — typedef rasterizer_cells_aa<Cell> self_type;
+- reset · function · L69-L69 — void reset();
+- style · function · L70-L70 — void style(const cell_type& style_cell);
+- line · function · L71-L71 — void line(int x1, int y1, int x2, int y2);
+- min_x · function · L73-L73 — int min_x() const { return m_min_x; }
+- min_y · function · L74-L74 — int min_y() const { return m_min_y; }
+- max_x · function · L75-L75 — int max_x() const { return m_max_x; }
+- max_y · function · L76-L76 — int max_y() const { return m_max_y; }
+- sort_cells · function · L78-L78 — void sort_cells();
+- total_cells · function · L80-L80 — unsigned total_cells() const
+- scanline_num_cells · function · L85-L88 — unsigned scanline_num_cells(unsigned y) const
+- scanline_cells · function · L90-L90 — const cell_type* const* scanline_cells(unsigned y) const
+- sorted · function · L95-L95 — bool sorted() const { return m_sorted; }
+- set_curr_cell · function · L101-L101 — void set_curr_cell(int x, int y);
+- add_curr_cell · function · L102-L102 — void add_curr_cell();
+- render_hline · function · L103-L103 — void render_hline(int ey, int x1, int y1, int x2, int y2);
+- allocate_block · function · L104-L104 — void allocate_block();
+- dx_limit_e · type · L320-L320 — enum dx_limit_e { dx_limit = 16384 << poly_subpixel_shift };
+- swap_cells · function · L499-L504 — template <class T> static AGG_INLINE void swap_cells(T* a, T* b)
+- m_hit · function · L718-L718 — scanline_hit_test(int x) : m_x(x), m_hit(false) {}
+- m_x · function · L718-L718 — scanline_hit_test(int x) : m_x(x), m_hit(false) {}
+- reset_spans · function · L720-L720 — void reset_spans() {}
+- finalize · function · L721-L721 — void finalize(int) {}
+- add_cell · function · L722-L725 — void add_cell(int x, int)
+- add_span · function · L726-L729 — void add_span(int x, int len, int)
+- num_spans · function · L730-L730 — unsigned num_spans() const { return 1; }
+- hit · function · L731-L731 — bool hit() const { return m_hit; }

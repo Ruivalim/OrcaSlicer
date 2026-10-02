@@ -1,0 +1,112 @@
+# src/slic3r/GUI/TextureImportDialog.hpp
+
+- AccentSlider · class · L30-L30 — class AccentSlider;
+- TextureImportState · type · L39-L44 — enum class TextureImportState
+- TextureAutoMixMode · type · L46-L49 — enum class TextureAutoMixMode
+- TextureFilamentKind · type · L51-L56 — enum class TextureFilamentKind
+- TextureFilamentEntry · class · L58-L68 — struct TextureFilamentEntry
+- TextureNewMixedFilament · class · L70-L75 — struct TextureNewMixedFilament
+- FilamentMappingRow · class · L77-L84 — struct FilamentMappingRow
+- FilamentSelectPopup · class · L86-L86 — class FilamentSelectPopup;
+- AutoMixSelectPopup · class · L87-L87 — class AutoMixSelectPopup;
+- TexturePreviewCanvas · class · L90-L191 — class TexturePreviewCanvas : public wxGLCanvas
+- RenderMode · type · L93-L93 — enum class RenderMode { Original, MultiColor, FilamentMap };
+- TexturePreviewCanvas · function · L95-L95 — TexturePreviewCanvas(wxWindow* parent, const wxGLAttributes& attrs);
+- set_mesh_data · function · L98-L100 — void set_mesh_data(
+- set_texture_data · function · L102-L104 — void set_texture_data(
+- set_texture_render_data · function · L106-L111 — void set_texture_render_data(
+- set_painted_mesh_data · function · L113-L115 — void set_painted_mesh_data(
+- set_face_colors · function · L116-L116 — void set_face_colors(const std::vector<std::array<std::size_t, 3>>& face_colors);
+- set_original_face_colors · function · L117-L117 — void set_original_face_colors(const std::vector<std::array<std::size_t, 3>>& face_colors);
+- set_filament_color_map · function · L118-L118 — void set_filament_color_map(const std::map<std::array<std::size_t, 3>, std::array<float, 3>>& color_map);
+- set_render_mode · function · L120-L120 — void set_render_mode(RenderMode mode);
+- get_render_mode · function · L121-L121 — RenderMode get_render_mode() const { return m_mode; }
+- set_computing_overlay · function · L122-L122 — void set_computing_overlay(bool show);
+- reset_view · function · L123-L123 — void reset_view();
+- on_paint · function · L126-L126 — void on_paint(wxPaintEvent& evt);
+- on_size · function · L127-L127 — void on_size(wxSizeEvent& evt);
+- on_mouse · function · L128-L128 — void on_mouse(wxMouseEvent& evt);
+- ensure_gl_ready · function · L129-L129 — void ensure_gl_ready();
+- render · function · L130-L130 — void render();
+- render_mesh · function · L131-L131 — void render_mesh();
+- render_textured_original · function · L132-L132 — void render_textured_original();
+- render_reset_overlay · function · L133-L133 — void render_reset_overlay(const wxSize& logical_size, const wxSize& viewport_size);
+- upload_reset_icon_textures · function · L134-L134 — void upload_reset_icon_textures();
+- upload_reset_icon_texture · function · L135-L135 — unsigned int upload_reset_icon_texture(const std::string& icon_name);
+- reset_overlay_rect · function · L136-L136 — wxRect reset_overlay_rect() const;
+- handle_reset_overlay_mouse · function · L137-L137 — bool handle_reset_overlay_mouse(wxMouseEvent& evt);
+- upload_textures · function · L138-L138 — void upload_textures();
+- compute_smooth_normals · function · L139-L139 — void compute_smooth_normals();
+- update_bounding_box · function · L140-L140 — void update_bounding_box();
+- DragMode · type · L152-L152 — enum class DragMode { None, Rotate, Pan };
+- TextureImportDialog · class · L194-L405 — class TextureImportDialog : public DPIDialog
+- TextureImportDialog · function · L197-L201 — TextureImportDialog(wxWindow*                        parent,
+- ShowModal · function · L204-L204 — int ShowModal() override;
+- on_dpi_changed · function · L205-L205 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- get_painted_mesh · function · L207-L207 — Slic3r::PaintedMesh               get_painted_mesh() const;
+- get_matches · function · L208-L208 — std::vector<Slic3r::FilamentMatch> get_matches() const;
+- was_skipped · function · L209-L209 — bool                               was_skipped() const { return m_skipped; }
+- fallback_to_geometry_only · function · L210-L210 — bool                               fallback_to_geometry_only() const { return m_fallback_to_geometry_only; }
+- get_new_filament_colors · function · L213-L213 — const std::vector<std::array<float, 4>>& get_new_filament_colors() const { return m_new_filament_colors; }
+- get_new_filament_preset_names · function · L214-L214 — const std::vector<std::string>& get_new_filament_preset_names() const { return m_new_filament_preset_names; }
+- get_new_mixed_filaments · function · L215-L215 — const std::vector<TextureNewMixedFilament>& get_new_mixed_filaments() const { return m_new_mixed_filaments; }
+- get_filament_entries · function · L216-L216 — const std::vector<TextureFilamentEntry>& get_filament_entries() const { return m_filament_entries; }
+- get_existing_filament_count · function · L217-L217 — size_t get_existing_filament_count() const { return m_existing_filament_count; }
+- build_ui · function · L220-L220 — void build_ui();
+- build_preview_panel · function · L221-L221 — void build_preview_panel(wxWindow* parent, wxSizer* sizer);
+- build_params_panel · function · L222-L222 — void build_params_panel(wxWindow* parent, wxSizer* sizer);
+- build_mapping_panel · function · L223-L223 — void build_mapping_panel(wxWindow* parent, wxSizer* sizer);
+- build_bottom_buttons · function · L224-L224 — void build_bottom_buttons(wxSizer* sizer);
+- set_state · function · L226-L226 — void set_state(TextureImportState new_state);
+- update_ui_for_state · function · L227-L227 — void update_ui_for_state();
+- start_computation · function · L229-L229 — void start_computation(bool auto_color = false, bool initial = false);
+- cancel_computation · function · L230-L230 — void cancel_computation();
+- on_computation_complete · function · L231-L231 — void on_computation_complete(wxCommandEvent& evt);
+- on_computation_progress · function · L232-L232 — void on_computation_progress(wxCommandEvent& evt);
+- on_computation_error · function · L233-L233 — void on_computation_error(wxCommandEvent& evt);
+- on_mesh_repair_decision_required · function · L234-L234 — void on_mesh_repair_decision_required(wxCommandEvent& evt);
+- rebuild_mapping_rows · function · L236-L236 — void rebuild_mapping_rows();
+- do_auto_match · function · L237-L237 — void do_auto_match();
+- sort_current_matches_by_filament_index · function · L242-L242 — void sort_current_matches_by_filament_index();
+- restore_current_match_order · function · L250-L250 — void restore_current_match_order(const std::vector<Slic3r::FilamentMatch>& previous_matches);
+- build_matches_from_rows · function · L251-L251 — std::vector<Slic3r::FilamentMatch> build_matches_from_rows() const;
+- update_filament_color_map · function · L252-L252 — void update_filament_color_map();
+- show_filament_popup · function · L253-L253 — void show_filament_popup(size_t row_index);
+- dismiss_filament_popup · function · L254-L254 — void dismiss_filament_popup();
+- dismiss_filament_popup_on_wheel · function · L255-L255 — void dismiss_filament_popup_on_wheel(wxMouseEvent& evt);
+- show_auto_mix_popup · function · L256-L256 — void show_auto_mix_popup();
+- dismiss_auto_mix_popup · function · L257-L257 — void dismiss_auto_mix_popup();
+- set_auto_mix_mode · function · L258-L258 — void set_auto_mix_mode(TextureAutoMixMode mode);
+- apply_auto_standard_mix · function · L259-L259 — void apply_auto_standard_mix(TextureAutoMixMode mode);
+- reset_auto_mix · function · L260-L260 — void reset_auto_mix();
+- update_auto_mix_reset_visibility · function · L261-L261 — void update_auto_mix_reset_visibility();
+- add_decomposed_mixed_filament · function · L262-L262 — bool add_decomposed_mixed_filament(size_t row_index);
+- add_virtual_filament · function · L263-L264 — int  add_virtual_filament(const std::array<float, 4>& rgba, const std::string& hex,
+- add_virtual_mixed_filament · function · L265-L267 — int  add_virtual_mixed_filament(const std::string& color_hex,
+- max_filament_count · function · L268-L268 — size_t max_filament_count() const;
+- can_add_virtual_filament · function · L269-L269 — bool can_add_virtual_filament() const;
+- update_drop_warning_visibility · function · L275-L275 — void update_drop_warning_visibility();
+- compact_used_virtual_filaments · function · L276-L276 — void compact_used_virtual_filaments();
+- find_closest_filament_index · function · L277-L277 — int  find_closest_filament_index(const std::array<std::size_t, 3>& color) const;
+- compute_display_numbers · function · L285-L285 — std::vector<int> compute_display_numbers() const;
+- on_color_preset_clicked · function · L287-L287 — void on_color_preset_clicked(wxCommandEvent& evt);
+- on_color_slider_changed · function · L288-L288 — void on_color_slider_changed(wxCommandEvent& evt);
+- on_color_spin_changed · function · L289-L289 — void on_color_spin_changed(wxCommandEvent& evt);
+- on_color_spin_text_changed · function · L290-L290 — void on_color_spin_text_changed(wxCommandEvent& evt);
+- on_smooth_slider_changed · function · L291-L291 — void on_smooth_slider_changed(wxCommandEvent& evt);
+- on_smooth_spin_changed · function · L292-L292 — void on_smooth_spin_changed(wxCommandEvent& evt);
+- on_smooth_spin_text_changed · function · L293-L293 — void on_smooth_spin_text_changed(wxCommandEvent& evt);
+- on_apply_clicked · function · L294-L294 — void on_apply_clicked(wxCommandEvent& evt);
+- on_auto_merge_toggled · function · L295-L295 — void on_auto_merge_toggled(wxCommandEvent& evt);
+- highlight_view_button · function · L296-L296 — void highlight_view_button(int view_index);
+- on_skip_clicked · function · L297-L297 — void on_skip_clicked(wxCommandEvent& evt);
+- on_ok_clicked · function · L298-L298 — void on_ok_clicked(wxCommandEvent& evt);
+- set_color_count_value · function · L300-L300 — void set_color_count_value(int value, bool update_spin);
+- set_smooth_value · function · L301-L301 — void set_smooth_value(int value, bool update_spin);
+- preview_spin_text_value · function · L302-L304 — void preview_spin_text_value(SpinInput* spin, AccentSlider* slider, int& param,
+- update_color_count_preset_buttons · function · L305-L305 — void update_color_count_preset_buttons();
+- has_valid_result · function · L307-L307 — bool has_valid_result() const;
+- is_params_dirty · function · L308-L308 — bool is_params_dirty() const;
+- update_confirm_button_state · function · L309-L309 — void update_confirm_button_state();
+- style_confirm_button · function · L310-L310 — void style_confirm_button(bool dirty);
+- wxDECLARE_EVENT_TABLE · function · L404-L404 — wxDECLARE_EVENT_TABLE();

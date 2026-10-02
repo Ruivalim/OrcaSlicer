@@ -1,0 +1,57 @@
+# src/slic3r/Utils/OctoPrint.hpp
+
+- DynamicPrintConfig · class · L15-L15 — class DynamicPrintConfig;
+- Http · class · L16-L16 — class Http;
+- OctoPrint · class · L18-L55 — class OctoPrint : public PrintHost
+- OctoPrint · function · L21-L21 — OctoPrint(DynamicPrintConfig *config);
+- get_name · function · L24-L24 — const char* get_name() const override;
+- test · function · L26-L26 — virtual bool test(wxString &curl_msg) const override;
+- get_test_ok_msg · function · L27-L27 — wxString get_test_ok_msg () const override;
+- get_test_failed_msg · function · L28-L28 — wxString get_test_failed_msg (wxString &msg) const override;
+- upload · function · L29-L29 — bool upload(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- has_auto_discovery · function · L30-L30 — bool has_auto_discovery() const override { return true; }
+- can_test · function · L31-L31 — bool can_test() const override { return true; }
+- get_post_upload_actions · function · L32-L32 — PrintHostPostUploadActions get_post_upload_actions() const override { return PrintHostPostUploadAction::StartPrint; }
+- get_host · function · L33-L33 — std::string get_host() const override { return m_host; }
+- get_apikey · function · L34-L34 — const std::string& get_apikey() const { return m_apikey; }
+- get_cafile · function · L35-L35 — const std::string& get_cafile() const { return m_cafile; }
+- upload_inner_with_resolved_ip · function · L39-L39 — virtual bool upload_inner_with_resolved_ip(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn, const boost::asio::ip::address& resolved_addr) const;
+- validate_version_text · function · L41-L41 — virtual bool validate_version_text(const boost::optional<std::string> &version_text) const;
+- upload_inner_with_host · function · L42-L42 — virtual bool upload_inner_with_host(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const;
+- set_auth · function · L49-L49 — virtual void set_auth(Http &http) const;
+- make_url · function · L50-L50 — std::string make_url(const std::string &path) const;
+- test_with_resolved_ip · function · L53-L53 — virtual bool test_with_resolved_ip(wxString& curl_msg) const;
+- PrusaLink · class · L58-L103 — class PrusaLink : public OctoPrint
+- PrusaLink · function · L61-L61 — PrusaLink(DynamicPrintConfig* config) : PrusaLink(config, false) {}
+- PrusaLink · function · L62-L62 — PrusaLink(DynamicPrintConfig* config, bool show_after_message);
+- get_name · function · L65-L65 — const char* get_name() const override;
+- get_test_ok_msg · function · L67-L67 — wxString get_test_ok_msg() const override;
+- get_test_failed_msg · function · L68-L68 — wxString get_test_failed_msg(wxString& msg) const override;
+- get_post_upload_actions · function · L69-L69 — virtual PrintHostPostUploadActions get_post_upload_actions() const override { return PrintHostPostUploadAction::StartPrint; }
+- get_storage · function · L72-L72 — bool get_storage(wxArrayString& storage_path, wxArrayString& storage_name) const override;
+- test · function · L74-L74 — bool test(wxString& curl_msg) const override;
+- validate_version_text · function · L75-L75 — bool validate_version_text(const boost::optional<std::string>& version_text) const override;
+- upload_inner_with_host · function · L76-L76 — bool upload_inner_with_host(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- set_auth · function · L78-L78 — void set_auth(Http& http) const override;
+- set_http_post_header_args · function · L79-L79 — virtual void set_http_post_header_args(Http& http, PrintHostPostUploadAction post_action) const;
+- upload_inner_with_resolved_ip · function · L81-L81 — bool upload_inner_with_resolved_ip(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn, const boost::asio::ip::address& resolved_addr) const override;
+- test_with_method_check · function · L91-L91 — bool test_with_method_check(wxString& curl_msg, bool& use_put) const;
+- put_inner · function · L92-L92 — bool put_inner(PrintHostUpload upload_data, std::string url, const std::string& name, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const;
+- post_inner · function · L93-L93 — bool post_inner(PrintHostUpload upload_data, std::string url, const std::string& name, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const;
+- test_with_resolved_ip_and_method_check · function · L95-L95 — bool test_with_resolved_ip_and_method_check(wxString& curl_msg, bool& use_put) const;
+- version_check · function · L101-L101 — bool version_check(const boost::optional<std::string>& version_text) const;
+- PrusaConnect · class · L105-L117 — class PrusaConnect : public PrusaLink
+- PrusaConnect · function · L108-L108 — PrusaConnect(DynamicPrintConfig* config);
+- get_test_ok_msg · function · L110-L110 — wxString get_test_ok_msg() const override;
+- get_test_failed_msg · function · L111-L111 — wxString get_test_failed_msg(wxString& msg) const override;
+- get_post_upload_actions · function · L112-L112 — PrintHostPostUploadActions get_post_upload_actions() const override { return PrintHostPostUploadAction::StartPrint | PrintHostPostUploadAction::QueuePrint; }
+- get_name · function · L113-L113 — const char* get_name() const override { return "PrusaConnect"; }
+- get_storage · function · L114-L114 — bool get_storage(wxArrayString& storage_path, wxArrayString& storage_name) const override { return false; }
+- set_http_post_header_args · function · L116-L116 — void set_http_post_header_args(Http& http, PrintHostPostUploadAction post_action) const override;
+- SL1Host · class · L119-L133 — class SL1Host : public PrusaLink
+- SL1Host · function · L122-L122 — SL1Host(DynamicPrintConfig* config);
+- get_name · function · L125-L125 — const char* get_name() const override;
+- get_test_ok_msg · function · L127-L127 — wxString get_test_ok_msg() const override;
+- get_test_failed_msg · function · L128-L128 — wxString get_test_failed_msg(wxString& msg) const override;
+- get_post_upload_actions · function · L129-L129 — PrintHostPostUploadActions get_post_upload_actions() const override { return {}; }
+- validate_version_text · function · L132-L132 — bool validate_version_text(const boost::optional<std::string>& version_text) const override;

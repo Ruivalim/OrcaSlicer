@@ -1,0 +1,132 @@
+# deps_src/libigl/igl/serialize.h
+
+- serialize · function · L88-L88 — inline bool serialize(const T& obj,const std::string& filename);
+- serialize · function · L90-L90 — inline bool serialize(const T& obj,const std::string& objectName,const std::string& filename,bool overwrite = false);
+- serialize · function · L92-L92 — inline bool serialize(const T& obj,const std::string& objectName,std::vector<char>& buffer);
+- serialize · function · L94-L94 — inline bool serialize(const T& obj,const std::string& objectName,std::vector<char>& buffer);
+- serializer · function · L117-L117 — inline bool serializer(bool serialize,T& obj,const std::string& filename);
+- serializer · function · L119-L119 — inline bool serializer(bool serialize,T& obj,const std::string& objectName,const std::string& filename,bool overwrite = false);
+- serializer · function · L121-L121 — inline bool serializer(bool serialize,T& obj,const std::string& objectName,std::vector<char>& buffer);
+- SerializableBase · class · L158-L163 — struct SerializableBase
+- Serialize · function · L177-L179 — void Serialize(std::vector<char>& buffer) const override
+- Deserialize · function · L181-L183 — void Deserialize(const std::vector<char>& buffer) override
+- InitSerialization · function · L195-L195 — virtual void InitSerialization() = 0;
+- PreSerialization · function · L199-L238 — inline virtual bool PreSerialization() const;
+- PostSerialization · function · L200-L200 — inline virtual void PostSerialization() const;
+- Serialize · function · L205-L205 — inline void Serialize(std::vector<char>& buffer) const override final;
+- Deserialize · function · L206-L206 — inline void Deserialize(const std::vector<char>& buffer) override final;
+- Add · function · L216-L216 — inline void Add(T& obj,std::string name,bool binary = false);
+- getByteSize · function · L274-L274 — inline typename std::enable_if<!is_serializable<T>::value,size_t>::type getByteSize(const T& obj);
+- serialize · function · L276-L276 — inline typename std::enable_if<!is_serializable<T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L278-L278 — inline typename std::enable_if<!is_serializable<T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L282-L282 — inline typename std::enable_if<std::is_fundamental<T>::value,size_t>::type getByteSize(const T& obj);
+- serialize · function · L284-L284 — inline typename std::enable_if<std::is_fundamental<T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L286-L286 — inline typename std::enable_if<std::is_fundamental<T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L289-L289 — inline size_t getByteSize(const std::string& obj);
+- serialize · function · L290-L290 — inline void serialize(const std::string& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L291-L291 — inline void deserialize(std::string& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L295-L295 — inline typename std::enable_if<std::is_enum<T>::value,size_t>::type getByteSize(const T& obj);
+- serialize · function · L297-L297 — inline typename std::enable_if<std::is_enum<T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L299-L299 — inline typename std::enable_if<std::is_enum<T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L303-L303 — inline typename std::enable_if<std::is_base_of<SerializableBase,T>::value,size_t>::type getByteSize(const T& obj);
+- serialize · function · L305-L305 — inline typename std::enable_if<std::is_base_of<SerializableBase,T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L307-L307 — inline typename std::enable_if<std::is_base_of<SerializableBase,T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L312-L312 — inline size_t getByteSize(const std::pair<T1,T2>& obj);
+- serialize · function · L314-L314 — inline void serialize(const std::pair<T1,T2>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L316-L316 — inline void deserialize(std::pair<T1,T2>& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L320-L320 — inline size_t getByteSize(const std::vector<T1,T2>& obj);
+- serialize · function · L322-L322 — inline void serialize(const std::vector<T1,T2>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L324-L324 — inline void deserialize(std::vector<T1,T2>& obj,std::vector<char>::const_iterator& iter);
+- deserialize · function · L326-L326 — inline void deserialize(std::vector<bool,T2>& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L330-L330 — inline size_t getByteSize(const std::set<T>& obj);
+- serialize · function · L332-L332 — inline void serialize(const std::set<T>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L334-L334 — inline void deserialize(std::set<T>& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L338-L338 — inline size_t getByteSize(const std::map<T1,T2>& obj);
+- serialize · function · L340-L340 — inline void serialize(const std::map<T1,T2>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L342-L342 — inline void deserialize(std::map<T1,T2>& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L346-L346 — inline size_t getByteSize(const std::list<T>& obj);
+- serialize · function · L348-L348 — inline void serialize(const std::list<T>& obj, std::vector<char>& buffer, std::vector<char>::iterator& iter);
+- deserialize · function · L350-L350 — inline void deserialize(std::list<T>& obj, std::vector<char>::const_iterator& iter);
+- getByteSize · function · L368-L368 — inline size_t getByteSize(const Eigen::SparseMatrix<T,P,I>& obj);
+- serialize · function · L370-L370 — inline void serialize(const Eigen::SparseMatrix<T,P,I>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L372-L372 — inline void deserialize(Eigen::SparseMatrix<T,P,I>& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L375-L375 — inline size_t getByteSize(const Eigen::Quaternion<T,P>& obj);
+- serialize · function · L377-L377 — inline void serialize(const Eigen::Quaternion<T,P>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L379-L379 — inline void deserialize(Eigen::Quaternion<T,P>& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L383-L383 — inline typename std::enable_if<std::is_pointer<T>::value,size_t>::type getByteSize(const T& obj);
+- serialize · function · L385-L385 — inline typename std::enable_if<std::is_pointer<T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L387-L387 — inline typename std::enable_if<std::is_pointer<T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L391-L391 — inline typename std::enable_if<serialization::is_smart_ptr<T>::value,size_t>::type getByteSize(const T& obj);
+- serialize · function · L393-L393 — inline typename std::enable_if<serialization::is_smart_ptr<T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L395-L395 — inline typename std::enable_if<serialization::is_smart_ptr<T0<T1> >::value>::type deserialize(T0<T1>& obj,std::vector<char>::const_iterator& iter);
+- getByteSize · function · L399-L399 — inline size_t getByteSize(const std::weak_ptr<T>& obj);
+- serialize · function · L401-L401 — inline void serialize(const std::weak_ptr<T>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter);
+- deserialize · function · L403-L403 — inline void deserialize(std::weak_ptr<T>& obj,std::vector<char>::const_iterator& iter);
+- serialize · function · L407-L407 — inline void serialize(const T& obj,std::vector<char>& buffer);
+- serialize · function · L424-L427 — inline bool serialize(const T& obj,const std::string& filename)
+- serialize · function · L430-L461 — inline bool serialize(const T& obj,const std::string& objectName,const std::string& filename,bool overwrite)
+- c_str · function · L443-L443 — std::ofstream file(filename.c_str(),mode);
+- file · function · L443-L443 — std::ofstream file(filename.c_str(),mode);
+- serialize · function · L464-L491 — inline bool serialize(const T& obj,const std::string& objectName,std::vector<char>& buffer)
+- name · function · L472-L472 — std::string objectType(typeid(obj).name());
+- objectType · function · L472-L472 — std::string objectType(typeid(obj).name());
+- serializer · function · L567-L570 — inline bool serializer(bool s,T& obj,const std::string& filename)
+- serializer · function · L573-L576 — inline bool serializer(bool s,T& obj,const std::string& objectName,const std::string& filename,bool overwrite)
+- serializer · function · L579-L582 — inline bool serializer(bool s,T& obj,const std::string& objectName,std::vector<char>& buffer)
+- PreSerialization · function · L584-L584 — inline bool Serializable::PreSerialization() const
+- PostSerialization · function · L589-L616 — inline void Serializable::PostSerialization() const
+- PreDeserialization · function · L593-L593 — inline bool Serializable::PreDeserialization()
+- PostDeserialization · function · L598-L598 — inline void Serializable::PostDeserialization()
+- Serialize · function · L602-L602 — inline void Serializable::Serialize(std::vector<char>& buffer) const
+- PreSerialization · function · L604-L608 — if(this->PreSerialization())
+- Deserialize · function · L622-L728 — inline void Serializable::Deserialize(const std::vector<char>& buffer)
+- Deserialize · function · L633-L635 — for(auto& v : objects)
+- getByteSize · function · L686-L686 — inline typename std::enable_if<!is_serializable<T>::value,size_t>::type getByteSize(const T& /*obj*/)
+- getByteSize · function · L725-L725 — inline typename std::enable_if<std::is_fundamental<T>::value,size_t>::type getByteSize(const T& /*obj*/)
+- serialize · function · L731-L736 — inline typename std::enable_if<std::is_fundamental<T>::value>::type serialize(const T& obj,std::vector<char>& /*buffer*/,std::vector<char>::iterator& iter)
+- deserialize · function · L739-L744 — inline typename std::enable_if<std::is_fundamental<T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter)
+- getByteSize · function · L748-L751 — inline size_t getByteSize(const std::string& obj)
+- serialize · function · L753-L774 — inline void serialize(const std::string& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- serialize · function · L756-L758 — for(const auto& cur : obj)
+- getByteSize · function · L779-L779 — inline typename std::enable_if<std::is_enum<T>::value,size_t>::type getByteSize(const T& /*obj*/)
+- serialize · function · L785-L789 — inline typename std::enable_if<std::is_enum<T>::value>::type serialize(const T& obj,std::vector<char>& /*buffer*/,std::vector<char>::iterator& iter)
+- deserialize · function · L792-L797 — inline typename std::enable_if<std::is_enum<T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter)
+- getByteSize · function · L802-L802 — inline typename std::enable_if<std::is_base_of<SerializableBase,T>::value,size_t>::type getByteSize(const T& /*obj*/)
+- serialize · function · L808-L808 — inline typename std::enable_if<std::is_base_of<SerializableBase,T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- deserialize · function · L825-L825 — inline typename std::enable_if<std::is_base_of<SerializableBase,T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter)
+- getByteSize · function · L843-L846 — inline size_t getByteSize(const std::pair<T1,T2>& obj)
+- serialize · function · L849-L853 — inline void serialize(const std::pair<T1,T2>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- deserialize · function · L856-L860 — inline void deserialize(std::pair<T1,T2>& obj,std::vector<char>::const_iterator& iter)
+- getByteSize · function · L865-L868 — inline size_t getByteSize(const std::vector<T1,T2>& obj)
+- serialize · function · L871-L892 — inline void serialize(const std::vector<T1,T2>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- serialize · function · L875-L877 — for(const T1& cur : obj)
+- deserialize · function · L895-L907 — inline void deserialize(std::vector<bool,T2>& obj,std::vector<char>::const_iterator& iter)
+- getByteSize · function · L912-L915 — inline size_t getByteSize(const std::set<T>& obj)
+- serialize · function · L918-L940 — inline void serialize(const std::set<T>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- serialize · function · L921-L923 — for(const T& cur : obj)
+- getByteSize · function · L945-L948 — inline size_t getByteSize(const std::map<T1,T2>& obj)
+- serialize · function · L951-L973 — inline void serialize(const std::map<T1,T2>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- serialize · function · L954-L956 — for(const auto& cur : obj)
+- getByteSize · function · L978-L981 — inline size_t getByteSize(const std::list<T>& obj)
+- serialize · function · L984-L1038 — inline void serialize(const std::list<T>& obj, std::vector<char>& buffer, std::vector<char>::iterator& iter)
+- serialize · function · L987-L989 — for (const T& cur : obj)
+- getByteSize · function · L1071-L1076 — inline size_t getByteSize(const Eigen::SparseMatrix<T,P,I>& obj)
+- serialize · function · L1079-L1094 — inline void serialize(const Eigen::SparseMatrix<T,P,I>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- it · function · L1087-L1087 — for(typename Eigen::SparseMatrix<T,P,I>::InnerIterator it(obj,k);it;++it)
+- deserialize · function · L1097-L1118 — inline void deserialize(Eigen::SparseMatrix<T,P,I>& obj,std::vector<char>::const_iterator& iter)
+- getByteSize · function · L1121-L1124 — inline size_t getByteSize(const Eigen::Quaternion<T,P>& /*obj*/)
+- serialize · function · L1127-L1133 — inline void serialize(const Eigen::Quaternion<T,P>& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- deserialize · function · L1136-L1142 — inline void deserialize(Eigen::Quaternion<T,P>& obj,std::vector<char>::const_iterator& iter)
+- getByteSize · function · L1147-L1147 — inline typename std::enable_if<std::is_pointer<T>::value,size_t>::type getByteSize(const T& obj)
+- serialize · function · L1158-L1164 — inline typename std::enable_if<std::is_pointer<T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- deserialize · function · L1167-L1192 — inline typename std::enable_if<std::is_pointer<T>::value>::type deserialize(T& obj,std::vector<char>::const_iterator& iter)
+- type · function · L1188-L1188 — obj = new typename std::remove_pointer<T>::type();
+- getByteSize · function · L1197-L1197 — inline typename std::enable_if<serialization::is_smart_ptr<T>::value,size_t>::type getByteSize(const T& obj)
+- getByteSize · function · L1197-L1199 — inline typename std::enable_if<serialization::is_smart_ptr<T>::value,size_t>::type getByteSize(const T& obj)
+- get · function · L1199-L1199 — return getByteSize(obj.get());
+- serialize · function · L1203-L1206 — inline typename std::enable_if<serialization::is_smart_ptr<T>::value>::type serialize(const T& obj,std::vector<char>& buffer,std::vector<char>::iterator& iter)
+- deserialize · function · L1209-L1223 — inline typename std::enable_if<serialization::is_smart_ptr<T0<T1> >::value>::type deserialize(T0<T1>& obj,std::vector<char>::const_iterator& iter)
+- getByteSize · function · L1228-L1231 — inline size_t getByteSize(const std::weak_ptr<T>& /*obj*/)
+- serialize · function · L1234-L1237 — inline void serialize(const std::weak_ptr<T>& /*obj*/,std::vector<char>& /*buffer*/,std::vector<char>::iterator& /*iter*/)
+- deserialize · function · L1240-L1243 — inline void deserialize(std::weak_ptr<T>& /*obj*/,std::vector<char>::const_iterator& /*iter*/)
+- serialize · function · L1247-L1250 — inline void serialize(const T& obj,std::vector<char>& /*buffer*/)

@@ -1,0 +1,22 @@
+# src/libslic3r/Arachne/SkeletalTrapezoidationGraph.hpp
+
+- Line · class · L19-L19 — class Line;
+- Point · class · L20-L20 — class Point;
+- STHalfEdgeNode · class · L26-L26 — class STHalfEdgeNode;
+- STHalfEdge · class · L28-L57 — class STHalfEdge : public HalfEdge<SkeletalTrapezoidationJoint, SkeletalTrapezoidationEdge, STHalfEdgeNode, STHalfEdge>
+- STHalfEdge · function · L33-L33 — STHalfEdge(SkeletalTrapezoidationEdge data);
+- canGoUp · function · L40-L40 — bool canGoUp(bool strict = false) const;
+- isUpward · function · L46-L46 — bool isUpward() const;
+- distToGoUp · function · L54-L54 — std::optional<coord_t> distToGoUp() const;
+- getNextUnconnected · function · L56-L56 — STHalfEdge* getNextUnconnected();
+- STHalfEdgeNode · class · L59-L76 — class STHalfEdgeNode : public HalfEdgeNode<SkeletalTrapezoidationJoint, SkeletalTrapezoidationEdge, STHalfEdgeNode, STHalfEdge>
+- STHalfEdgeNode · function · L64-L64 — STHalfEdgeNode(SkeletalTrapezoidationJoint data, Point p);
+- isMultiIntersection · function · L66-L66 — bool isMultiIntersection();
+- isCentral · function · L68-L68 — bool isCentral() const;
+- isLocalMaximum · function · L75-L75 — bool isLocalMaximum(bool strict = false) const;
+- SkeletalTrapezoidationGraph · class · L78-L112 — class SkeletalTrapezoidationGraph: public HalfEdgeGraph<SkeletalTrapezoidationJoint, SkeletalTrapezoidationEdge, STHalfEdgeNode, STHalfEdge>
+- collapseSmallEdges · function · L94-L94 — void collapseSmallEdges(coord_t snap_dist = 5);
+- makeRib · function · L96-L96 — void makeRib(edge_t*& prev_edge, const Point &start_source_point, const Point &end_source_point);
+- insertNode · function · L103-L103 — edge_t* insertNode(edge_t* edge, Point mid, coord_t mide_node_bead_count);
+- insertRib · function · L108-L108 — std::pair<edge_t*, edge_t*> insertRib(edge_t& edge, node_t* mid_node);
+- getSource · function · L111-L111 — Line getSource(const edge_t& edge) const;

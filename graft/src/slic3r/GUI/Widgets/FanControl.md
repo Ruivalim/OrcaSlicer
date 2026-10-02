@@ -1,0 +1,71 @@
+# src/slic3r/GUI/Widgets/FanControl.hpp
+
+- FanControlType · type · L31-L39 — enum FanControlType
+- RotateOffSet · class · L41-L45 — struct RotateOffSet
+- Fan · class · L47-L85 — class Fan : public wxWindow
+- Fan · function · L50-L50 — Fan(wxWindow* parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- post_event · function · L52-L52 — void    post_event(wxCommandEvent&& event);
+- paintEvent · function · L53-L53 — void    paintEvent(wxPaintEvent& evt);
+- render · function · L54-L54 — void    render(wxDC& dc);
+- doRender · function · L55-L55 — void    doRender(wxDC& dc);
+- msw_rescale · function · L56-L56 — void    msw_rescale();
+- create · function · L57-L57 — void    create(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size);
+- set_fan_speeds · function · L58-L58 — void    set_fan_speeds(int g);
+- DoSetSize · function · L84-L84 — virtual void     DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO);
+- FanOperate · class · L90-L118 — class FanOperate : public wxWindow
+- FanOperate · function · L93-L93 — FanOperate(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- post_event · function · L95-L95 — void    post_event(wxCommandEvent&& event);
+- paintEvent · function · L96-L96 — void    paintEvent(wxPaintEvent& evt);
+- render · function · L97-L97 — void    render(wxDC& dc);
+- doRender · function · L98-L98 — void    doRender(wxDC& dc);
+- msw_rescale · function · L99-L99 — void    msw_rescale();
+- create · function · L100-L100 — void    create(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size);
+- on_left_down · function · L101-L101 — void    on_left_down(wxMouseEvent& event);
+- set_machine_obj · function · L103-L103 — void    set_machine_obj(MachineObject *obj);
+- set_fan_speeds · function · L106-L106 — void    set_fan_speeds(int g);
+- check_printing_state · function · L107-L107 — bool    check_printing_state();
+- add_fan_speeds · function · L108-L108 — void    add_fan_speeds();
+- decrease_fan_speeds · function · L109-L109 — void    decrease_fan_speeds();
+- FanControlNew · class · L124-L178 — class FanControlNew : public wxWindow
+- FanControlNew · function · L127-L127 — FanControlNew(wxWindow *parent, const AirDuctData& fan_data, int mode_id, int part_id, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- update_obj_state · function · L159-L159 — void update_obj_state(bool stat) { m_update_already = stat; };
+- update_fan_data · function · L160-L160 — void update_fan_data(const AirDuctData& data) { m_fan_data = data; };
+- command_control_fan · function · L161-L161 — void command_control_fan();
+- check_printing_state · function · L162-L162 — bool check_printing_state();
+- set_machine_obj · function · L163-L163 — void set_machine_obj(MachineObject *obj);
+- set_name · function · L164-L164 — void set_name(wxString name);
+- set_mode_id · function · L165-L165 — void set_mode_id(int id) { m_mode_id = id;}
+- set_part_id · function · L166-L166 — void set_part_id(int id){m_part_id = id;};
+- set_fan_speed · function · L167-L167 — void set_fan_speed(int g);
+- set_fan_speed_percent · function · L168-L168 — void set_fan_speed_percent(int speed);
+- set_fan_switch · function · L169-L169 — void set_fan_switch(bool s);
+- post_event · function · L170-L170 — void post_event();
+- on_swith_fan · function · L171-L171 — void on_swith_fan(wxMouseEvent& evt);
+- on_swith_fan · function · L172-L172 — void on_swith_fan(bool on);
+- update_mode · function · L173-L173 — void update_mode();
+- on_left_down · function · L174-L174 — void on_left_down(wxMouseEvent& event);
+- on_mode_change · function · L175-L175 — void on_mode_change(wxMouseEvent& event);
+- msw_rescale · function · L177-L177 — void msw_rescale();
+- FanControlNewSwitchPanel · class · L181-L197 — class FanControlNewSwitchPanel : public wxWindow
+- FanControlNewSwitchPanel · function · L189-L189 — FanControlNewSwitchPanel(wxWindow* parent, const wxString& title, const wxString& tips, bool on = true);
+- IsSwitchOn · function · L192-L192 — bool IsSwitchOn() const { return switch_state_on; }
+- SetSwitchOn · function · L193-L193 — void SetSwitchOn(bool on);
+- on_left_down · function · L196-L196 — void on_left_down(wxMouseEvent& event);
+- FanControlPopupNew · class · L200-L266 — class FanControlPopupNew : public wxDialog
+- FanControlPopupNew · function · L203-L203 — FanControlPopupNew(wxWindow* parent, MachineObject* obj, const AirDuctData& data);
+- init_names · function · L242-L242 — void  init_names(MachineObject* obj);
+- get_fan_func_name · function · L243-L243 — wxString get_fan_func_name(int mode, int submode, AIR_FUN func) const;
+- CreateDuct · function · L245-L245 — void  CreateDuct();
+- UpdateParts · function · L247-L247 — void  UpdateParts();
+- UpdatePartSubMode · function · L248-L248 — void  UpdatePartSubMode();
+- update_fan_data · function · L250-L250 — void  update_fan_data(const AirDuctData& data);
+- update_fan_data · function · L251-L251 — void  update_fan_data(AIR_FUN id, int speed);
+- on_mode_changed · function · L253-L253 — void  on_mode_changed(const wxMouseEvent& event);
+- on_fan_changed · function · L254-L254 — void  on_fan_changed(const wxCommandEvent& event);
+- on_left_down · function · L255-L255 — void  on_left_down(wxMouseEvent& evt);
+- post_event · function · L256-L256 — void  post_event(int fan_type, wxString speed);
+- on_show · function · L258-L258 — void  on_show(wxShowEvent& evt);
+- paintEvent · function · L259-L259 — void  paintEvent(wxPaintEvent& evt);
+- command_control_air_duct · function · L261-L261 — void  command_control_air_duct(int mode_id, int submode = -1);
+- update_fan_data · function · L264-L264 — void  update_fan_data(MachineObject *obj);
+- msw_rescale · function · L265-L265 — void  msw_rescale();

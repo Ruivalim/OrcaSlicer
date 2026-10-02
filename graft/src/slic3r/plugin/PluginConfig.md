@@ -1,0 +1,42 @@
+# src/slic3r/plugin/PluginConfig.hpp
+
+- DynamicConfig · class · L20-L20 — class DynamicConfig;
+- CapabilityConfigEntry · class · L21-L26 — struct CapabilityConfigEntry
+- CapabilityConfigDocument · class · L28-L50 — class CapabilityConfigDocument
+- from_root_json · function · L33-L33 — static CapabilityConfigDocument from_root_json(const nlohmann::json& root);
+- from_entries · function · L34-L34 — static CapabilityConfigDocument from_entries(const nlohmann::json& entries);
+- find · function · L36-L36 — std::optional<CapabilityConfigEntry> find(const PluginCapabilityId& id) const;
+- contains · function · L37-L37 — bool                                 contains(const PluginCapabilityId& id) const;
+- upsert · function · L38-L38 — bool                                 upsert(CapabilityConfigEntry entry);
+- erase · function · L39-L39 — bool                                 erase(const PluginCapabilityId& id);
+- prune_unreferenced · function · L42-L42 — bool                                 prune_unreferenced(const std::set<std::pair<PluginCapabilityType, std::string>>& referenced);
+- empty · function · L43-L43 — bool                                 empty() const;
+- serialize_entries · function · L44-L44 — nlohmann::json                       serialize_entries() const;
+- root_json · function · L45-L45 — nlohmann::json                       root_json() const;
+- parse_plugin_overrides · function · L52-L52 — bool parse_plugin_overrides(const std::string& raw, CapabilityConfigDocument& document, std::string& error);
+- serialize_plugin_overrides · function · L53-L53 — std::string serialize_plugin_overrides(const CapabilityConfigDocument& document);
+- prune_stale_plugin_overrides · function · L60-L60 — bool prune_stale_plugin_overrides(DynamicConfig& config, const std::string& overrides_key);
+- EffectiveCapabilityConfig · class · L62-L71 — struct EffectiveCapabilityConfig
+- MutationResult · class · L73-L79 — struct MutationResult
+- PresetPluginConfigService · class · L81-L91 — class PresetPluginConfigService
+- get_effective_config · function · L84-L85 — EffectiveCapabilityConfig get_effective_config(const CapabilityConfigDocument& overrides,
+- set_preset_override · function · L86-L88 — MutationResult            set_preset_override(CapabilityConfigDocument& overrides,
+- remove_preset_override · function · L89-L90 — MutationResult            remove_preset_override(CapabilityConfigDocument& overrides,
+- active_capability_config · function · L93-L93 — EffectiveCapabilityConfig active_capability_config(const PluginCapabilityId& id);
+- PluginConfig · class · L95-L121 — class PluginConfig
+- plugin_config_file · function · L98-L98 — static const std::string plugin_config_file() { return (boost::filesystem::path(get_orca_plugins_dir()) / PLUGIN_CONFIG_DIR).string(); }
+- load · function · L99-L99 — void load();
+- save · function · L100-L100 — bool save();
+- save_config · function · L102-L102 — void save_config(const CapabilityConfigEntry& config);
+- store_capability_config · function · L104-L104 — bool store_capability_config(const PluginCapabilityId& id, const nlohmann::json& config);
+- erase_capability_config · function · L105-L105 — bool erase_capability_config(const PluginCapabilityId& id);
+- get_config · function · L107-L107 — std::optional<CapabilityConfigEntry> get_config(const PluginCapabilityId& id) const;
+- has_config · function · L108-L108 — bool has_config(const PluginCapabilityId& id) const;
+- dirty · function · L110-L110 — bool dirty() const;
+- capabilities_payload · function · L112-L112 — static nlohmann::json capabilities_payload(const std::vector<PluginCapabilityId>& caps);
+- get_config_response · function · L113-L113 — static nlohmann::json get_config_response(const PluginCapabilityId& id);
+- save_config_response · function · L114-L114 — static nlohmann::json save_config_response(const PluginCapabilityId& id, const nlohmann::json& config);
+- restore_config_response · function · L115-L115 — static nlohmann::json restore_config_response(const PluginCapabilityId& id);
+- capability_get_config · function · L123-L123 — nlohmann::json capability_get_config(const PluginCapabilityInterface& capability);
+- capability_get_config_version · function · L124-L124 — std::string capability_get_config_version(const PluginCapabilityInterface& capability);
+- capability_save_config · function · L125-L125 — bool capability_save_config(const PluginCapabilityInterface& capability, const nlohmann::json& config);

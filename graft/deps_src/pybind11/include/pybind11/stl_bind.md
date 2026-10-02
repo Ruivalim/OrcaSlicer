@@ -1,0 +1,52 @@
+# deps_src/pybind11/include/pybind11/stl_bind.h
+
+- PYBIND11_NAMESPACE_BEGIN · function · L21-L52 — PYBIND11_NAMESPACE_BEGIN(PYBIND11_NAMESPACE)
+- test_comparable · function · L29-L29 — test_comparable(decltype(std::declval<const T2 &>() == std::declval<const T2 &>()) *);
+- test_comparable · function · L31-L31 — static std::false_type test_comparable(...);
+- decltype · function · L42-L42 — = std::is_same<std::true_type, decltype(test_comparable<T>(nullptr))>::value;
+- decltype · function · L44-L44 — = std::is_same<std::true_type, decltype(test_pair<T>(nullptr, nullptr))>::value;
+- decltype · function · L46-L46 — = std::is_same<std::true_type, decltype(test_value<T>(nullptr))>::value;
+- begin · function · L108-L108 — auto p = std::find(v.begin(), v.end(), x);
+- end · function · L108-L108 — auto p = std::find(v.begin(), v.end(), x);
+- find · function · L108-L108 — auto p = std::find(v.begin(), v.end(), x);
+- value_error · function · L112-L112 — throw value_error();
+- SizeType · function · L136-L137 — auto wrap_i = [](DiffType i, SizeType n)
+- index_error · function · L141-L141 — throw index_error();
+- Vector · function · L153-L153 — auto v = std::unique_ptr<Vector>(new Vector());
+- push_back · function · L155-L156 — for (handle h : it)
+- push_back · function · L175-L176 — for (handle h : it)
+- index_error · function · L200-L200 — throw index_error();
+- index_error · function · L212-L212 — throw index_error();
+- error_already_set · function · L243-L243 — throw error_already_set();
+- error_already_set · function · L263-L263 — throw error_already_set();
+- error_already_set · function · L292-L292 — throw error_already_set();
+- index_error · function · L327-L327 — throw index_error();
+- index_error · function · L362-L362 — throw index_error();
+- index_error · function · L367-L367 — throw index_error();
+- bind_vector · function · L491-L491 — class_<Vector, holder_type> bind_vector(handle scope, std::string const &name, Args &&...args)
+- c_str · function · L500-L500 — Class_ cl(scope, name.c_str(), pybind11::module_local(local), std::forward<Args>(args)...);
+- cl · function · L500-L500 — Class_ cl(scope, name.c_str(), pybind11::module_local(local), std::forward<Args>(args)...);
+- module_local · function · L500-L500 — Class_ cl(scope, name.c_str(), pybind11::module_local(local), std::forward<Args>(args)...);
+- map_if_insertion_operator · function · L580-L580 — void map_if_insertion_operator(const Args &...) {}
+- map_assignment · function · L582-L582 — void map_assignment(const Args &...) {}
+- map_assignment · function · L586-L587 — void map_assignment(
+- m · function · L634-L635 — for (auto const &kv : m)
+- values_view · class · L654-L658 — struct values_view
+- items_view · class · L660-L664 — struct items_view
+- KeysViewImpl · function · L668-L668 — explicit KeysViewImpl(Map &map) : map(map) {}
+- len · function · L669-L669 — size_t len() override { return map.size(); }
+- iter · function · L670-L670 — iterator iter() override { return make_key_iterator(map.begin(), map.end()); }
+- contains · function · L671-L677 — bool contains(const handle &k) override
+- ValuesViewImpl · function · L683-L683 — explicit ValuesViewImpl(Map &map) : map(map) {}
+- len · function · L684-L684 — size_t len() override { return map.size(); }
+- iter · function · L685-L685 — iterator iter() override { return make_value_iterator(map.begin(), map.end()); }
+- ItemsViewImpl · function · L691-L691 — explicit ItemsViewImpl(Map &map) : map(map) {}
+- len · function · L692-L692 — size_t len() override { return map.size(); }
+- iter · function · L693-L693 — iterator iter() override { return make_iterator(map.begin(), map.end()); }
+- format_message_key_error_key_object · function · L697-L704 — inline str format_message_key_error_key_object(handle py_key)
+- bind_map · function · L734-L734 — class_<Map, holder_type> bind_map(handle scope, const std::string &name, Args &&...args)
+- c_str · function · L752-L752 — Class_ cl(scope, name.c_str(), pybind11::module_local(local), std::forward<Args>(args)...);
+- cl · function · L752-L752 — Class_ cl(scope, name.c_str(), pybind11::module_local(local), std::forward<Args>(args)...);
+- module_local · function · L752-L752 — Class_ cl(scope, name.c_str(), pybind11::module_local(local), std::forward<Args>(args)...);
+- error_already_set · function · L823-L823 — throw error_already_set();
+- error_already_set · function · L847-L847 — throw error_already_set();

@@ -1,0 +1,18 @@
+# resources/web/model/model.js
+
+- OnInit · function · L4-L47 — function OnInit()
+- AddScrollEvent · function · L49-L90 — function AddScrollEvent()
+- OnMenuClick · function · L92-L97 — function OnMenuClick( strID )
+- OnMenuSelected · function · L99-L117 — function OnMenuSelected(strID)
+- scrollLocation · function · L121-L133 — function scrollLocation(FatherID, ChildID)
+- Request3MFInfo · function · L136-L143 — function Request3MFInfo()
+- HandleStudio · function · L145-L157 — function HandleStudio(pVal)
+- ShowProjectInfo · function · L159-L198 — function ShowProjectInfo( p3MF )
+- ShowModelInfo · function · L200-L343 — function ShowModelInfo( pModel )
+- ShowFileInfo · function · L345-L400 — function ShowFileInfo( pFile )
+- ConstructFileHtml · function · L409-L476 — function ConstructFileHtml( ID, pItem )
+- ShowProfilelInfo · function · L479-L560 — function ShowProfilelInfo( pProfile )
+- RequestProjectInfo · function · L564-L571 — function RequestProjectInfo()
+- OnClickOpenFile · function · L573-L582 — function OnClickOpenFile( strFullPath )
+- OnClickOpenImage · function · L584-L587 — function OnClickOpenImage( F_ID )
+- OnClickEditProjectInfo · function · L589-L596 — function OnClickEditProjectInfo()

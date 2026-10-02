@@ -1,0 +1,41 @@
+# src/slic3r/GUI/3DBed.hpp
+
+- GLCanvas3D · class · L17-L17 — class GLCanvas3D;
+- init_model_from_poly · function · L45-L45 — bool init_model_from_poly(GLModel &model, const ExPolygon &poly, float z);
+- Bed3D · class · L47-L184 — class Bed3D
+- update_render_colors · function · L60-L60 — static void update_render_colors();
+- load_render_colors · function · L61-L61 — static void load_render_colors();
+- Axes · class · L63-L85 — class Axes
+- get_origin · function · L77-L77 — const Vec3d& get_origin() const { return m_origin; }
+- set_origin · function · L78-L78 — void set_origin(const Vec3d& origin) { m_origin = origin; }
+- set_stem_length · function · L79-L82 — void set_stem_length(float length)
+- get_total_length · function · L83-L83 — float get_total_length() const { return m_stem_length; } // + DefaultTipLength; } // ORCA axis without arrow
+- render · function · L84-L84 — void render();
+- Type · type · L88-L94 — enum class Type : unsigned char
+- Bed3D · function · L124-L124 — Bed3D() = default;
+- set_shape · function · L132-L133 — bool set_shape(const Pointfs& printable_area, const double printable_height, std::vector<Pointfs> extruder_areas, std::vector<double> extruder_heights, const std::string& custom_model, bool force_as_custom = false,
+- set_position · function · L135-L135 — void set_position(Vec2d& position);
+- set_axes_mode · function · L136-L136 — void set_axes_mode(bool origin);
+- set_axes_origin · function · L137-L137 — void set_axes_origin(const Vec3d& origin) { m_axes.set_origin(origin); }   // Design tab: triad at bed centre
+- get_position · function · L138-L138 — const Vec2d& get_position() const { return m_position; }
+- build_volume · function · L141-L141 — const BuildVolume& build_volume() const { return m_build_volume; }
+- get_type · function · L144-L144 — Type get_type() const { return m_type; }
+- is_custom · function · L146-L146 — bool is_custom() const { return m_type == Type::Custom; }
+- get_build_volume_type · function · L149-L149 — BuildVolume_Type get_build_volume_type() const { return m_build_volume.type(); }
+- extended_bounding_box · function · L152-L152 — const BoundingBoxf3& extended_bounding_box() const { return m_extended_bounding_box; }
+- printable_bounding_box · function · L153-L153 — const BoundingBoxf3 &printable_bounding_box() const { return m_printable_bounding_box; }
+- contains · function · L157-L157 — bool contains(const Point& point) const;
+- point_projection · function · L158-L158 — Point point_projection(const Point& point) const;
+- render · function · L160-L160 — void render(GLCanvas3D& canvas, const Transform3d& view_matrix, const Transform3d& projection_matrix, bool bottom, float scale_factor, bool show_axes);
+- on_change_color_mode · function · L162-L162 — void on_change_color_mode(bool is_dark);
+- calc_printable_bounding_box · function · L167-L167 — BoundingBoxf3 calc_printable_bounding_box() const;
+- calc_extended_bounding_box · function · L168-L168 — BoundingBoxf3 calc_extended_bounding_box() const;
+- update_model_offset · function · L169-L169 — void update_model_offset();
+- update_bed_triangles · function · L171-L171 — void update_bed_triangles();
+- detect_type · function · L172-L172 — static std::tuple<Type, std::string, std::string> detect_type(const Pointfs& shape);
+- render_internal · function · L173-L174 — void render_internal(GLCanvas3D& canvas, const Transform3d& view_matrix, const Transform3d& projection_matrix, bool bottom, float scale_factor,
+- render_axes · function · L175-L175 — void render_axes();
+- render_system · function · L176-L176 — void render_system(GLCanvas3D& canvas, const Transform3d& view_matrix, const Transform3d& projection_matrix, bool bottom);
+- render_model · function · L178-L178 — void render_model(const Transform3d& view_matrix, const Transform3d& projection_matrix);
+- render_custom · function · L179-L179 — void render_custom(GLCanvas3D& canvas, const Transform3d& view_matrix, const Transform3d& projection_matrix, bool bottom);
+- render_default · function · L180-L180 — void render_default(bool bottom, const Transform3d& view_matrix, const Transform3d& projection_matrix);

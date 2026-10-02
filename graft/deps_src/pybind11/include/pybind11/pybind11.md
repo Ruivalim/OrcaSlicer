@@ -1,0 +1,148 @@
+# deps_src/pybind11/include/pybind11/pybind11.h
+
+- replace_newlines_and_squash · function · L61-L102 — PYBIND11_NAMESPACE_BEGIN(detail)
+- result · function · L65-L65 — std::string result(text);
+- generate_function_signature · function · L105-L230 — inline std::string generate_function_signature(const char *type_caster_name_field,
+- th · function · L161-L161 — handle th((PyObject *) tinfo->type);
+- function_record · function · L238-L238 — auto func_rec = function_record();
+- name · function · L323-L323 — object name() const { return attr("__name__"); }
+- InitializingFunctionRecordDeleter · class · L326-L332 — struct InitializingFunctionRecordDeleter
+- make_function_record · function · L335-L337 — PYBIND11_NOINLINE unique_function_record make_function_record()
+- capture · class · L343-L348 — struct capture
+- make_function_record · function · L354-L354 — auto unique_rec = make_function_record();
+- from_data · function · L378-L378 — auto data = capture::from_data(r->data);
+- free · function · L515-L516 — for (auto *s : strings)
+- operator · function · L519-L519 — char *operator()(const char *s)
+- release · function · L524-L524 — void release() { strings.clear(); }
+- initialize_generic · function · L531-L562 — void initialize_generic(unique_function_record &&unique_rec,
+- args · function · L554-L555 — for (auto &a : rec->args)
+- get_fully_qualified_tp_name · function · L571-L571 — = detail::get_fully_qualified_tp_name((PyTypeObject *) rec->scope.ptr());
+- destruct · function · L749-L749 — static void destruct(detail::function_record *rec, bool free_strings = true)
+- free · function · L768-L769 — for (auto &arg : rec->args)
+- call · function · L881-L881 — function_call call(func, parent);
+- arg · function · L912-L912 — handle arg(PyTuple_GET_ITEM(args_in, args_copied));
+- error_already_set · function · L972-L972 — throw error_already_set();
+- kwargs · function · L1195-L1196 — for (const auto &kwarg : kwargs)
+- mod_gil_not_used · function · L1266-L1266 — explicit mod_gil_not_used(bool flag = true) : flag_(flag) {}
+- flag · function · L1267-L1267 — bool flag() const { return flag_; }
+- class · type · L1275-L1279 — enum class level
+- not_supported · function · L1281-L1283 — static multiple_interpreters not_supported()
+- shared_gil · function · L1284-L1284 — static multiple_interpreters shared_gil() { return multiple_interpreters(level::shared_gil); }
+- per_interpreter_gil · function · L1285-L1287 — static multiple_interpreters per_interpreter_gil()
+- multiple_interpreters · function · L1289-L1289 — explicit constexpr multiple_interpreters(level l) : level_(l) {}
+- value · function · L1290-L1290 — level value() const { return level_; }
+- gil_not_used_option · function · L1302-L1304 — inline bool gil_not_used_option(mod_gil_not_used f, O &&...o)
+- multi_interp_slot · function · L1311-L1311 — inline void *multi_interp_slot() { return Py_MOD_MULTIPLE_INTERPRETERS_NOT_SUPPORTED; }
+- multi_interp_slot · function · L1313-L1313 — inline void *multi_interp_slot(multiple_interpreters mi, O &&...o)
+- get_cached_module · function · L1335-L1335 — inline PyObject *get_cached_module(pybind11::str const &nameobj)
+- cache_completed_module · function · L1352-L1358 — inline void cache_completed_module(pybind11::object const &mod)
+- cached_create_module · function · L1364-L1364 — inline PyObject *cached_create_module(PyObject *spec, PyModuleDef *)
+- init_slots · function · L1388-L1414 — inline slots_array init_slots(int (*exec_fn)(PyObject *), Options &&...options) noexcept
+- module_ · function · L1425-L1425 — explicit module_(const char *name, const char *doc = nullptr)
+- func · function · L1436-L1440 — cpp_function func(std::forward<Func>(f),
+- def_submodule · function · L1458-L1458 — module_ def_submodule(const char *name, const char *doc = nullptr)
+- error_already_set · function · L1461-L1461 — throw error_already_set();
+- error_already_set · function · L1466-L1466 — throw error_already_set();
+- error_already_set · function · L1487-L1487 — throw error_already_set();
+- import · function · L1495-L1501 — static module_ import(const char *name)
+- error_already_set · function · L1498-L1498 — throw error_already_set();
+- reload · function · L1504-L1510 — void reload()
+- error_already_set · function · L1507-L1507 — throw error_already_set();
+- add_object · function · L1519-L1519 — PYBIND11_NOINLINE void add_object(const char *name, handle obj, bool overwrite = false)
+- create_extension_module · function · L1537-L1540 — static module_ create_extension_module(const char *name,
+- error_already_set · function · L1555-L1555 — throw error_already_set();
+- globals · function · L1588-L1597 — inline dict globals()
+- initialize · function · L1605-L1605 — void initialize(const type_record &rec)
+- mark_parents_nonsimple · function · L1677-L1719 — void mark_parents_nonsimple(PyTypeObject *value)
+- delete · function · L1746-L1746 — T::operator delete(p);
+- delete · function · L1752-L1752 — T::operator delete(p, s);
+- call_operator_delete · function · L1755-L1773 — inline void call_operator_delete(void *p, size_t s, size_t a)
+- align_val_t · function · L1761-L1761 — ::operator delete(p, s, std::align_val_t(a));
+- delete · function · L1761-L1761 — ::operator delete(p, s, std::align_val_t(a));
+- align_val_t · function · L1763-L1763 — ::operator delete(p, std::align_val_t(a));
+- delete · function · L1763-L1763 — ::operator delete(p, std::align_val_t(a));
+- delete · function · L1769-L1769 — ::operator delete(p, s);
+- delete · function · L1771-L1771 — ::operator delete(p);
+- add_class_method · function · L1775-L1780 — inline void add_class_method(object &cls, const char *name_, const cpp_function &cf)
+- method_adaptor · function · L1787-L1787 — auto method_adaptor(F &&f) -> decltype(std::forward<F>(f))
+- readonly · function · L1829-L1830 — static cpp_function readonly(PM pm, const handle &hdl)
+- read · function · L1834-L1836 — static cpp_function read(PM pm, const handle &hdl)
+- write · function · L1839-L1841 — static cpp_function write(PM pm, const handle &hdl)
+- readonly · function · L1876-L1890 — static cpp_function readonly(PM pm, const handle &hdl)
+- read · function · L1893-L1895 — static cpp_function read(PM pm, const handle &hdl)
+- write · function · L1898-L1905 — static cpp_function write(PM pm, const handle &hdl)
+- readonly · function · L1916-L1930 — static cpp_function readonly(PM pm, const handle &hdl)
+- read · function · L1933-L1946 — static cpp_function read(PM pm, const handle &hdl)
+- write · function · L1949-L1955 — static cpp_function write(PM pm, const handle &hdl)
+- readonly · function · L1968-L1972 — static cpp_function readonly(PM, const handle &)
+- read · function · L1975-L1994 — static cpp_function read(PM pm, const handle &hdl)
+- write · function · L1991-L1993 — static cpp_function write(PM pm, const handle &hdl)
+- add_base · function · L2150-L2153 — static void add_base(detail::type_record &rec)
+- add_base · function · L2157-L2157 — static void add_base(detail::type_record &) {}
+- cf · function · L2161-L2165 — cpp_function cf(method_adaptor<type>(std::forward<Func>(f)),
+- cf · function · L2174-L2178 — cpp_function cf(std::forward<Func>(f),
+- move · function · L2180-L2180 — attr(std::move(cf_name)) = staticmethod(std::move(cf));
+- staticmethod · function · L2180-L2180 — attr(std::move(cf_name)) = staticmethod(std::move(cf));
+- capture · class · L2224-L2226 — struct capture
+- get_function_record · function · L2371-L2371 — auto rec_fget = get_function_record(fget), rec_fset = get_function_record(fset);
+- init_holder · function · L2400-L2416 — static void init_holder(detail::instance *inst,
+- init_holder_from_existing · function · L2418-L2423 — static void init_holder_from_existing(const detail::value_and_holder &v_h,
+- init_holder_from_existing · function · L2425-L2430 — static void init_holder_from_existing(const detail::value_and_holder &v_h,
+- init_holder · function · L2434-L2445 — static void init_holder(detail::instance *inst,
+- init_instance · function · L2453-L2460 — static void init_instance(detail::instance *inst, const void *holder_ptr)
+- try_initialization_using_shared_from_this · function · L2463-L2465 — static bool try_initialization_using_shared_from_this(holder_type *, WrappedType *, ...)
+- try_initialization_using_shared_from_this · function · L2473-L2485 — static bool try_initialization_using_shared_from_this(
+- try_get_shared_from_this · function · L2478-L2478 — detail::try_get_shared_from_this(value_ptr_w_t));
+- from_shared_ptr · function · L2483-L2483 — new (uninitialized_location) holder_type(holder_type::from_shared_ptr(shd_ptr));
+- holder_type · function · L2483-L2483 — new (uninitialized_location) holder_type(holder_type::from_shared_ptr(shd_ptr));
+- init_instance · function · L2489-L2519 — static void init_instance(detail::instance *inst, const void *holder_const_void_ptr)
+- holder_type · function · L2507-L2507 — new (uninitialized_location) holder_type(std::move(*holder_ptr));
+- move · function · L2507-L2507 — new (uninitialized_location) holder_type(std::move(*holder_ptr));
+- from_raw_ptr_take_ownership · function · L2511-L2512 — new (uninitialized_location) holder_type(holder_type::from_raw_ptr_take_ownership(
+- holder_type · function · L2511-L2512 — new (uninitialized_location) holder_type(holder_type::from_raw_ptr_take_ownership(
+- holder_type · function · L2514-L2515 — new (uninitialized_location)
+- from_raw_ptr_unowned · function · L2515-L2515 — holder_type(holder_type::from_raw_ptr_unowned(value_ptr_w_t));
+- dealloc_impl · function · L2528-L2537 — static void dealloc_impl(detail::value_and_holder &v_h)
+- dealloc_without_manipulating_gil · function · L2539-L2542 — static void dealloc_without_manipulating_gil(detail::value_and_holder &v_h)
+- dealloc_release_gil_before_calling_cpp_dtor · function · L2544-L2553 — static void dealloc_release_gil_before_calling_cpp_dtor(detail::value_and_holder &v_h)
+- dealloc_impl · function · L2551-L2552 — try
+- get_function_record · function · L2565-L2565 — static detail::function_record *get_function_record(handle h)
+- error_already_set · function · L2573-L2573 — throw error_already_set();
+- enum_name · function · L2617-L2786 — PYBIND11_NAMESPACE_BEGIN(detail)
+- entries · function · L2621-L2622 — for (auto kv : entries)
+- str · function · L2621-L2623 — for (auto kv : entries)
+- equal · function · L2622-L2622 — if (handle(kv.second[int_(0)]).equal(arg))
+- value · function · L2788-L2788 — PYBIND11_NOINLINE void value(char const *name_, object value, const char *doc = nullptr)
+- name · function · L2790-L2790 — str name(name_);
+- move · function · L2793-L2793 — throw value_error(std::move(type_name) + ": element \"" + std::string(name_)
+- export_values · function · L2801-L2914 — PYBIND11_NOINLINE void export_values()
+- attr · function · L2804-L2804 — m_parent.attr(kv.first) = kv.second[int_(0)];
+- keep_alive_impl · function · L2918-L2946 — PYBIND11_NOINLINE void keep_alive_impl(handle nurse, handle patient)
+- wr · function · L2941-L2941 — weakref wr(nurse, disable_lifesupport);
+- keep_alive_impl · function · L2948-L2964 — PYBIND11_NOINLINE void
+- all_type_info_get_cache · function · L2966-L3008 — inline std::pair<decltype(internals::registered_types_py)::iterator, bool>
+- decltype · function · L2966-L2966 — inline std::pair<decltype(internals::registered_types_py)::iterator, bool>
+- operator · function · L3033-L3033 — result_type operator()(Iterator &it) const { return *it; }
+- decltype · function · L3051-L3054 — using result_type
+- decltype · function · L3054-L3054 — decltype(std::declval<pair_type>().first)>;
+- operator · function · L3055-L3055 — result_type operator()(Iterator &it) const { return (*it).first; }
+- decltype · function · L3064-L3067 — using result_type
+- decltype · function · L3067-L3067 — decltype(std::declval<pair_type>().second)>;
+- operator · function · L3068-L3068 — result_type operator()(Iterator &it) const { return (*it).second; }
+- stop_iteration · function · L3096-L3096 — throw stop_iteration();
+- set_flag · class · L3204-L3209 — struct set_flag
+- flag_helper · function · L3222-L3222 — set_flag flag_helper(currently_used);
+- args · function · L3226-L3226 — tuple args(1);
+- register_exception_translator · function · L3242-L3249 — inline void register_exception_translator(ExceptionTranslator &&translator)
+- register_local_exception_translator · function · L3257-L3264 — inline void register_local_exception_translator(ExceptionTranslator &&translator)
+- register_exception · function · L3326-L3338 — PYBIND11_NAMESPACE_END(detail)
+- print · function · L3355-L3376 — PYBIND11_NOINLINE void print(const tuple &args, const dict &kwargs)
+- print · function · L3389-L3389 — void print(Args &&...args)
+- m_fetched_error_deleter · function · L3394-L3399 — inline void
+- what · function · L3401-L3401 — inline const char *error_already_set::what() const noexcept
+- get_type_override · function · L3407-L3423 — PYBIND11_NAMESPACE_BEGIN(detail)
+- make_pair · function · L3416-L3416 — auto key = std::make_pair(type.ptr(), name);
+- ptr · function · L3416-L3416 — auto key = std::make_pair(type.ptr(), name);
+- get_override · function · L3513-L3528 — PYBIND11_NAMESPACE_END(detail)
+- get_type_overload · function · L3623-L3626 — inline function
+- get_overload · function · L3629-L3631 — inline function get_overload(const T *this_ptr, const char *name)

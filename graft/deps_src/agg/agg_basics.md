@@ -1,0 +1,93 @@
+# deps_src/agg/agg_basics.h
+
+- allocate · function · L38-L38 — static T*   allocate(unsigned num)       { return new T [num]; }
+- deallocate · function · L39-L39 — static void deallocate(T* ptr, unsigned) { delete [] ptr;      }
+- allocate · function · L52-L52 — static T*   allocate()         { return new T; }
+- deallocate · function · L53-L53 — static void deallocate(T* ptr) { delete ptr;   }
+- int8 · type · L119-L119 — typedef AGG_INT8   int8;         //----int8
+- int8u · type · L120-L120 — typedef AGG_INT8U  int8u;        //----int8u
+- int16 · type · L121-L121 — typedef AGG_INT16  int16;        //----int16
+- int16u · type · L122-L122 — typedef AGG_INT16U int16u;       //----int16u
+- int32 · type · L123-L123 — typedef AGG_INT32  int32;        //----int32
+- int32u · type · L124-L124 — typedef AGG_INT32U int32u;       //----int32u
+- int64 · type · L125-L125 — typedef AGG_INT64  int64;        //----int64
+- int64u · type · L126-L126 — typedef AGG_INT64U int64u;       //----int64u
+- iround · function · L131-L137 — AGG_INLINE int iround(double v)              //-------iround
+- uround · function · L138-L144 — AGG_INLINE unsigned uround(double v)         //-------uround
+- ifloor · function · L146-L149 — AGG_INLINE int ifloor(double v)
+- ufloor · function · L150-L153 — AGG_INLINE unsigned ufloor(double v)         //-------ufloor
+- iceil · function · L154-L157 — AGG_INLINE int iceil(double v)
+- uceil · function · L158-L161 — AGG_INLINE unsigned uceil(double v)          //--------uceil
+- iround · function · L163-L166 — AGG_INLINE int iround(double v)
+- uround · function · L167-L170 — AGG_INLINE int uround(double v)
+- ifloor · function · L171-L174 — AGG_INLINE int ifloor(double v)
+- ufloor · function · L175-L178 — AGG_INLINE unsigned ufloor(double v)
+- iceil · function · L179-L182 — AGG_INLINE int iceil(double v)
+- uceil · function · L183-L186 — AGG_INLINE unsigned uceil(double v)
+- iround · function · L188-L191 — AGG_INLINE int iround(double v)
+- uround · function · L192-L195 — AGG_INLINE int uround(double v)
+- ifloor · function · L196-L200 — AGG_INLINE int ifloor(double v)
+- ufloor · function · L201-L204 — AGG_INLINE unsigned ufloor(double v)
+- iceil · function · L205-L208 — AGG_INLINE int iceil(double v)
+- uceil · function · L209-L212 — AGG_INLINE unsigned uceil(double v)
+- iround · function · L218-L223 — AGG_INLINE static int iround(double v)
+- mul · function · L229-L233 — AGG_INLINE static unsigned mul(unsigned a, unsigned b)
+- cover_type · type · L237-L237 — typedef unsigned char cover_type;    //----cover_type
+- cover_scale_e · type · L238-L245 — enum cover_scale_e
+- poly_subpixel_scale_e · type · L253-L258 — enum poly_subpixel_scale_e
+- filling_rule_e · type · L261-L265 — enum filling_rule_e
+- deg2rad · function · L271-L274 — inline double deg2rad(double deg)
+- rad2deg · function · L277-L280 — inline double rad2deg(double rad)
+- value_type · type · L285-L285 — typedef T            value_type;
+- self_type · type · L286-L286 — typedef rect_base<T> self_type;
+- x1 · function · L290-L295 — rect_base(T x1_, T y1_, T x2_, T y2_) :
+- y2 · function · L291-L291 — x1(x1_), y1(y1_), x2(x2_), y2(y2_) {}
+- init · function · L293-L293 — void init(T x1_, T y1_, T x2_, T y2_)
+- normalize · function · L298-L304 — const self_type& normalize()
+- clip · function · L306-L313 — bool clip(const self_type& r)
+- is_valid · function · L315-L315 — bool is_valid() const
+- hit_test · function · L320-L323 — bool hit_test(T x, T y) const
+- overlaps · function · L325-L329 — bool overlaps(const self_type& r) const
+- intersect_rectangles · function · L334-L348 — inline Rect intersect_rectangles(const Rect& r1, const Rect& r2)
+- unite_rectangles · function · L353-L361 — inline Rect unite_rectangles(const Rect& r1, const Rect& r2)
+- rect_i · type · L363-L363 — typedef rect_base<int>    rect_i; //----rect_i
+- rect_f · type · L364-L364 — typedef rect_base<float>  rect_f; //----rect_f
+- rect_d · type · L365-L365 — typedef rect_base<double> rect_d; //----rect_d
+- path_commands_e · type · L368-L380 — enum path_commands_e
+- path_flags_e · type · L383-L390 — enum path_flags_e
+- is_vertex · function · L393-L396 — inline bool is_vertex(unsigned c)
+- is_drawing · function · L399-L402 — inline bool is_drawing(unsigned c)
+- is_stop · function · L405-L408 — inline bool is_stop(unsigned c)
+- is_move_to · function · L411-L414 — inline bool is_move_to(unsigned c)
+- is_line_to · function · L417-L420 — inline bool is_line_to(unsigned c)
+- is_curve · function · L423-L426 — inline bool is_curve(unsigned c)
+- is_curve3 · function · L429-L432 — inline bool is_curve3(unsigned c)
+- is_curve4 · function · L435-L438 — inline bool is_curve4(unsigned c)
+- is_end_poly · function · L441-L444 — inline bool is_end_poly(unsigned c)
+- is_close · function · L447-L451 — inline bool is_close(unsigned c)
+- is_next_poly · function · L454-L457 — inline bool is_next_poly(unsigned c)
+- is_cw · function · L460-L463 — inline bool is_cw(unsigned c)
+- is_ccw · function · L466-L469 — inline bool is_ccw(unsigned c)
+- is_oriented · function · L472-L475 — inline bool is_oriented(unsigned c)
+- is_closed · function · L478-L481 — inline bool is_closed(unsigned c)
+- get_close_flag · function · L484-L487 — inline unsigned get_close_flag(unsigned c)
+- clear_orientation · function · L490-L493 — inline unsigned clear_orientation(unsigned c)
+- get_orientation · function · L496-L499 — inline unsigned get_orientation(unsigned c)
+- set_orientation · function · L502-L505 — inline unsigned set_orientation(unsigned c, unsigned o)
+- value_type · type · L510-L510 — typedef T value_type;
+- x · function · L513-L514 — point_base(T x_, T y_) : x(x_), y(y_) {}
+- y · function · L513-L513 — point_base(T x_, T y_) : x(x_), y(y_) {}
+- point_i · type · L515-L515 — typedef point_base<int>    point_i; //-----point_i
+- point_f · type · L516-L516 — typedef point_base<float>  point_f; //-----point_f
+- point_d · type · L517-L517 — typedef point_base<double> point_d; //-----point_d
+- value_type · type · L522-L522 — typedef T value_type;
+- cmd · function · L526-L526 — vertex_base(T x_, T y_, unsigned cmd_) : x(x_), y(y_), cmd(cmd_) {}
+- x · function · L526-L527 — vertex_base(T x_, T y_, unsigned cmd_) : x(x_), y(y_), cmd(cmd_) {}
+- vertex_i · type · L528-L528 — typedef vertex_base<int>    vertex_i; //-----vertex_i
+- vertex_f · type · L529-L529 — typedef vertex_base<float>  vertex_f; //-----vertex_f
+- vertex_d · type · L530-L530 — typedef vertex_base<double> vertex_d; //-----vertex_d
+- ptr · function · L538-L538 — row_info(int x1_, int x2_, T* ptr_) : x1(x1_), x2(x2_), ptr(ptr_) {}
+- x1 · function · L538-L539 — row_info(int x1_, int x2_, T* ptr_) : x1(x1_), x2(x2_), ptr(ptr_) {}
+- x1 · function · L547-L549 — const_row_info(int x1_, int x2_, const T* ptr_) :
+- ptr · function · L548-L548 — x1(x1_), x2(x2_), ptr(ptr_) {}
+- is_equal_eps · function · L552-L569 — template<class T> inline bool is_equal_eps(T v1, T v2, T epsilon)

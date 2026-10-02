@@ -1,0 +1,42 @@
+# src/slic3r/GUI/ObjColorDialog.hpp
+
+- Button · class · L15-L15 — class Button;
+- Label · class · L16-L16 — class Label;
+- ComboBox · class · L17-L17 — class ComboBox;
+- ObjColorPanel · class · L19-L109 — class ObjColorPanel : public wxPanel
+- ObjColorPanel · function · L23-L23 — ObjColorPanel(wxWindow *parent, Slic3r::ObjDialogInOut &in_out, const std::vector<std::string> &extruder_colours, bool semm);
+- msw_rescale · function · L25-L25 — void msw_rescale();
+- is_ok · function · L26-L26 — bool is_ok();
+- send_new_filament_to_ui · function · L27-L27 — void send_new_filament_to_ui();
+- cancel_paint_color · function · L28-L28 — void cancel_paint_color();
+- update_filament_ids · function · L29-L29 — void update_filament_ids();
+- ButtonState · class · L30-L34 — struct ButtonState
+- LayoutChanggeCallback · type · L35-L35 — typedef std::function<void()> LayoutChanggeCallback;
+- set_layout_callback · function · L36-L36 — void set_layout_callback(LayoutChanggeCallback);
+- do_layout_callback · function · L37-L37 — void do_layout_callback();
+- do_show · function · L38-L38 — bool do_show(bool show);
+- clear_instance_and_revert_offset · function · L39-L39 — void clear_instance_and_revert_offset();
+- create_approximate_match_btn_sizer · function · L42-L42 — wxBoxSizer *create_approximate_match_btn_sizer(wxWindow *parent);
+- create_add_btn_sizer · function · L43-L43 — wxBoxSizer *create_add_btn_sizer(wxWindow *parent);
+- create_reset_btn_sizer · function · L44-L44 — wxBoxSizer *create_reset_btn_sizer(wxWindow *parent);
+- create_extruder_icon_and_rgba_sizer · function · L45-L45 — wxBoxSizer *create_extruder_icon_and_rgba_sizer(wxWindow *parent, int id, const wxColour& color);
+- get_color_str · function · L46-L46 — std::string get_color_str(const wxColour &color);
+- create_color_icon_map_rgba_sizer · function · L47-L47 — wxBoxSizer *create_color_icon_map_rgba_sizer(wxWindow *parent, int id, const wxColour &color);//for display map
+- CreateEditorCtrl · function · L48-L48 — ComboBox* CreateEditorCtrl(wxWindow *parent,int id);
+- draw_new_table · function · L49-L49 — void draw_new_table();
+- update_new_add_final_colors · function · L50-L50 — void update_new_add_final_colors();
+- show_sizer · function · L51-L51 — void show_sizer(wxSizer *sizer, bool show);
+- deal_approximate_match_btn · function · L52-L52 — void deal_approximate_match_btn();
+- deal_add_btn · function · L53-L53 — bool deal_add_btn();
+- deal_reset_btn · function · L54-L54 — void deal_reset_btn();
+- deal_algo · function · L55-L55 — void deal_algo(char cluster_number,bool redraw_ui =false);
+- deal_default_strategy · function · L56-L56 — void deal_default_strategy();
+- deal_thumbnail · function · L57-L57 — void deal_thumbnail();
+- generate_thumbnail · function · L58-L58 — void generate_thumbnail();
+- set_view_angle_type · function · L59-L59 — void set_view_angle_type(int);
+- ObjColorDialog · class · L111-L125 — class ObjColorDialog : public Slic3r::GUI::DPIDialog
+- ObjColorDialog · function · L114-L114 — ObjColorDialog(wxWindow *parent, Slic3r::ObjDialogInOut &in_out, const std::vector<std::string> &extruder_colours, bool semm);
+- create_btn_sizer · function · L115-L115 — wxBoxSizer *create_btn_sizer(long flags, bool exist_error);
+- on_dpi_changed · function · L116-L116 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- update_layout · function · L117-L117 — void update_layout();
+- Show · function · L118-L118 — bool Show(bool show) override;

@@ -1,0 +1,26 @@
+# src/libslic3r/AABBTreeLines.hpp
+
+- IndexedLinesDistancer · class · L19-L39 — template <typename ALineType, typename ATreeType, typename AVectorType>
+- closest_point_to_origin · function · L31-L38 — inline VectorType closest_point_to_origin(size_t primitive_index, ScalarType& squared_distance) const
+- coordinate_aligned_ray_hit_count · function · L44-L117 — template <typename LineType, typename TreeType, typename VectorType, int coordinate>
+- get_intersections_with_line · function · L119-L157 — template <typename LineType, typename TreeType, typename VectorType>
+- build_aabb_tree_over_indexed_lines · function · L165-L199 — template<typename LineType>
+- InputType · class · L174-L182 — struct InputType
+- idx · function · L175-L175 — size_t idx() const { return m_idx; }
+- bbox · function · L176-L176 — const BoundingBox& bbox() const { return m_bbox; }
+- centroid · function · L177-L177 — const VectorType& centroid() const { return m_centroid; }
+- squared_distance_to_indexed_lines · function · L204-L219 — template <typename LineType, typename TreeType, typename VectorType>
+- all_lines_in_radius · function · L222-L237 — template <typename LineType, typename TreeType, typename VectorType>
+- point_outside_closed_contours · function · L241-L267 — template <typename LineType, typename TreeType, typename VectorType>
+- get_intersections_with_line · function · L269-L298 — template <bool sorted, typename VectorType, typename LineType, typename TreeType>
+- LinesDistancer · class · L300-L368 — template <typename LineType>
+- LinesDistancer · function · L311-L315 — explicit LinesDistancer(const std::vector<LineType>& lines)
+- LinesDistancer · function · L317-L321 — explicit LinesDistancer(std::vector<LineType>&& lines)
+- LinesDistancer · function · L323-L323 — LinesDistancer() = default;
+- outside · function · L326-L326 — int outside(const Vec<LineType::Dim, Scalar>& point) const { return point_outside_closed_contours(lines, tree, point); }
+- distance_from_lines_extra · function · L329-L347 — template<bool SIGNED_DISTANCE>
+- distance_from_lines · function · L349-L353 — template<bool SIGNED_DISTANCE> Floating distance_from_lines(const Vec<LineType::Dim, typename LineType::Scalar>& point) const
+- all_lines_in_radius · function · L355-L358 — std::vector<size_t> all_lines_in_radius(const Vec<LineType::Dim, Scalar>& point, Floating radius)
+- intersections_with_line · function · L360-L363 — template<bool sorted> std::vector<std::pair<Vec<LineType::Dim, Scalar>, size_t>> intersections_with_line(const LineType& line) const
+- get_line · function · L365-L365 — const LineType& get_line(size_t line_idx) const { return lines[line_idx]; }
+- get_lines · function · L367-L367 — const std::vector<LineType>& get_lines() const { return lines; }

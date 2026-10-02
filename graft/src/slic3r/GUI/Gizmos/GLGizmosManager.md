@@ -1,0 +1,102 @@
+# src/slic3r/GUI/Gizmos/GLGizmosManager.hpp
+
+- GLCanvas3D · class · L27-L27 — class GLCanvas3D;
+- ClippingPlane · class · L28-L28 — class ClippingPlane;
+- SLAGizmoEventType · type · L29-L29 — enum class SLAGizmoEventType : unsigned char;
+- CommonGizmosDataPool · class · L30-L30 — class CommonGizmosDataPool;
+- GizmoObjectManipulation · class · L32-L32 — class GizmoObjectManipulation;
+- Rect · class · L33-L67 — class Rect
+- Rect · function · L41-L41 — Rect() = default;
+- Rect · function · L42-L42 — Rect(float left, float top, float right, float bottom) : m_left(left) , m_top(top) , m_right(right) , m_bottom(bottom) {}
+- get_left · function · L53-L53 — float get_left() const { return m_left; }
+- set_left · function · L54-L54 — void set_left(float left) { m_left = left; }
+- get_top · function · L56-L56 — float get_top() const { return m_top; }
+- set_top · function · L57-L57 — void set_top(float top) { m_top = top; }
+- get_right · function · L59-L59 — float get_right() const { return m_right; }
+- set_right · function · L60-L60 — void set_right(float right) { m_right = right; }
+- get_bottom · function · L62-L62 — float get_bottom() const { return m_bottom; }
+- set_bottom · function · L63-L63 — void set_bottom(float bottom) { m_bottom = bottom; }
+- get_width · function · L65-L65 — float get_width() const { return m_right - m_left; }
+- get_height · function · L66-L66 — float get_height() const { return m_top - m_bottom; }
+- GLGizmosManager · class · L69-L344 — class GLGizmosManager : public Slic3r::ObjectBase
+- EType · type · L74-L104 — enum EType : unsigned char
+- Layout · class · L107-L125 — struct Layout
+- stride_x · function · L115-L115 — float stride_x() const { return icons_size + gap_x;}
+- scaled_gap_x · function · L116-L116 — float scaled_gap_x() const { return scale * gap_x; }
+- scaled_stride_x · function · L117-L117 — float scaled_stride_x() const { return scale * stride_x(); }
+- stride_y · function · L119-L119 — float stride_y() const { return icons_size + gap_y;}
+- scaled_icons_size · function · L121-L121 — float scaled_icons_size() const { return scale * icons_size; }
+- scaled_border · function · L122-L122 — float scaled_border() const { return scale * border; }
+- scaled_gap_y · function · L123-L123 — float scaled_gap_y() const { return scale * gap_y; }
+- scaled_stride_y · function · L124-L124 — float scaled_stride_y() const { return scale * stride_y(); }
+- get_selectable_idxs · function · L142-L142 — std::vector<size_t> get_selectable_idxs() const;
+- get_gizmo_from_mouse · function · L143-L143 — EType get_gizmo_from_mouse(const Vec2d &mouse_pos) const;
+- activate_gizmo · function · L145-L145 — bool activate_gizmo(EType type);
+- on_set_color_timer · function · L155-L155 — void on_set_color_timer(wxTimerEvent& evt);
+- gizmos_toolbar_on_mouse · function · L170-L170 — bool gizmos_toolbar_on_mouse(const wxMouseEvent &mouse_event);
+- MENU_ICON_NAME · type · L174-L190 — enum MENU_ICON_NAME
+- GLGizmosManager · function · L192-L192 — explicit GLGizmosManager(GLCanvas3D& parent);
+- switch_gizmos_icon_filename · function · L194-L194 — void switch_gizmos_icon_filename();
+- init · function · L196-L196 — bool init();
+- init_icon_textures · function · L198-L198 — bool init_icon_textures();
+- get_layout_scale · function · L200-L200 — float get_layout_scale();
+- init_arrow · function · L202-L202 — bool init_arrow(const std::string& filename);
+- load · function · L204-L225 — template<class Archive>
+- save · function · L227-L237 — template<class Archive>
+- is_enabled · function · L239-L239 — bool is_enabled() const { return m_enabled; }
+- set_enabled · function · L240-L240 — void set_enabled(bool enable) { m_enabled = enable; }
+- set_icon_dirty · function · L242-L242 — void set_icon_dirty() { m_icons_texture_dirty = true; }
+- set_overlay_icon_size · function · L243-L243 — void set_overlay_icon_size(float size);
+- set_overlay_scale · function · L244-L244 — void set_overlay_scale(float scale);
+- refresh_on_off_state · function · L246-L246 — void refresh_on_off_state();
+- reset_all_states · function · L247-L247 — void reset_all_states();
+- open_gizmo · function · L248-L248 — bool open_gizmo(EType type);
+- check_gizmos_closed_except · function · L249-L249 — bool check_gizmos_closed_except(EType) const;
+- set_hover_id · function · L251-L251 — void set_hover_id(int id);
+- update_data · function · L257-L257 — void update_data();
+- update_assemble_view_data · function · L258-L258 — void update_assemble_view_data();
+- get_current_type · function · L260-L260 — EType get_current_type() const { return m_current; }
+- get_current · function · L261-L261 — GLGizmoBase* get_current() const;
+- get_gizmo · function · L262-L262 — GLGizmoBase *get_gizmo(GLGizmosManager::EType type) const;
+- get_gizmo_from_name · function · L263-L263 — EType get_gizmo_from_name(const std::string& gizmo_name) const;
+- is_running · function · L265-L265 — bool is_running() const;
+- open_gizmo_by_shortcut · function · L267-L267 — bool open_gizmo_by_shortcut(Shortcut shortcut);
+- on_delete_key · function · L269-L269 — bool on_delete_key();
+- is_dragging · function · L271-L271 — bool is_dragging() const;
+- get_icon_texture_id · function · L274-L274 — void* get_icon_texture_id(MENU_ICON_NAME icon)
+- get_icon_texture_id · function · L280-L280 — void* get_icon_texture_id(MENU_ICON_NAME icon) const
+- is_paint_gizmo · function · L287-L287 — bool is_paint_gizmo();
+- is_allow_select_all · function · L288-L288 — bool is_allow_select_all();
+- get_clipping_plane · function · L289-L289 — ClippingPlane get_clipping_plane() const;
+- get_assemble_view_clipping_plane · function · L290-L290 — ClippingPlane get_assemble_view_clipping_plane() const;
+- wants_reslice_supports_on_undo · function · L291-L291 — bool wants_reslice_supports_on_undo() const;
+- is_in_editing_mode · function · L293-L293 — bool is_in_editing_mode(bool error_notification = false) const;
+- is_hiding_instances · function · L294-L294 — bool is_hiding_instances() const;
+- on_change_color_mode · function · L296-L296 — void on_change_color_mode(bool is_dark);
+- render_current_gizmo · function · L297-L297 — void render_current_gizmo() const;
+- render_painter_gizmo · function · L298-L298 — void render_painter_gizmo();
+- render_painter_assemble_view · function · L299-L299 — void render_painter_assemble_view() const;
+- render_overlay · function · L301-L301 — void render_overlay();
+- render_overlay_input_window · function · L302-L302 — void render_overlay_input_window();
+- get_overlay_state_hash · function · L304-L304 — size_t get_overlay_state_hash() const;
+- render_arrow · function · L306-L306 — void render_arrow(const GLCanvas3D& parent, EType highlighted_type) const;
+- get_tooltip · function · L308-L308 — std::string get_tooltip() const;
+- on_mouse · function · L310-L310 — bool on_mouse(const wxMouseEvent &mouse_event);
+- on_mouse_wheel · function · L311-L311 — bool on_mouse_wheel(const wxMouseEvent &evt);
+- on_char · function · L312-L312 — bool on_char(wxKeyEvent& evt);
+- on_key · function · L313-L313 — bool on_key(wxKeyEvent& evt);
+- update_after_undo_redo · function · L315-L315 — void update_after_undo_redo(const UndoRedo::Snapshot& snapshot);
+- get_selectable_icons_cnt · function · L317-L317 — int get_selectable_icons_cnt() const { return get_selectable_idxs().size(); }
+- set_highlight · function · L320-L320 — void set_highlight(EType gizmo, bool highlight_shown) { m_highlight = std::pair<EType, bool>(gizmo, highlight_shown); }
+- get_highlight_state · function · L321-L321 — bool get_highlight_state() const { return m_highlight.second; }
+- get_scaled_total_height · function · L324-L324 — float get_scaled_total_height() const;
+- get_scaled_total_width · function · L325-L325 — float get_scaled_total_width() const;
+- get_object_manipulation · function · L326-L326 — GizmoObjectManipulation& get_object_manipulation() { return m_object_manipulation; }
+- get_uniform_scaling · function · L327-L327 — bool get_uniform_scaling() const { return m_object_manipulation.get_uniform_scaling();}
+- gizmo_event · function · L330-L334 — bool gizmo_event(SLAGizmoEventType action,
+- render_background · function · L336-L336 — void render_background(float left, float top, float right, float bottom, float border_w, float border_h) const;
+- do_render_overlay · function · L338-L338 — void do_render_overlay(bool draw_icons) const;
+- generate_icons_texture · function · L340-L340 — bool generate_icons_texture();
+- update_hover_state · function · L342-L342 — void update_hover_state(const EType &type);
+- grabber_contains_mouse · function · L343-L343 — bool grabber_contains_mouse() const;
+- get_name_from_gizmo_etype · function · L346-L346 — std::string get_name_from_gizmo_etype(GLGizmosManager::EType type);

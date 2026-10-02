@@ -1,0 +1,45 @@
+# deps_src/mcut/source/frontend.cpp
+
+- create_context_impl · function · L33-L53 — void create_context_impl(McContext* pOutContext, McFlags flags, uint32_t helperThreadCount)
+- debug_message_callback_impl · function · L55-L76 — void debug_message_callback_impl(
+- get_debug_message_log_impl · function · L78-L134 — void get_debug_message_log_impl(McContext context,
+- trailing_zeroes · function · L138-L161 — inline int trailing_zeroes(uint32_t v)
+- set_bit · function · L164-L168 — inline int set_bit(uint32_t v, uint32_t pos)
+- clear_bit · function · L170-L174 — inline int clear_bit(uint32_t v, uint32_t pos)
+- debug_message_control_impl · function · L176-L239 — void debug_message_control_impl(
+- get_info_impl · function · L241-L310 — void get_info_impl(
+- bind_state_impl · function · L312-L360 — void bind_state_impl(
+- create_user_event_impl · function · L362-L412 — void create_user_event_impl(McEvent* eventHandle, McContext context)
+- user_event_weak_ptr · function · L390-L390 — std::weak_ptr<event_t> user_event_weak_ptr(user_event_ptr);
+- set_user_event_status_impl · function · L419-L455 — void set_user_event_status_impl(McEvent event, McInt32 execution_status)
+- get_event_info_impl · function · L457-L543 — void get_event_info_impl(
+- wait_for_events_impl · function · L545-L572 — void wait_for_events_impl(
+- set_event_callback_impl · function · L574-L588 — void set_event_callback_impl(
+- dispatch_impl · function · L590-L643 — void dispatch_impl(
+- context_weak_ptr · function · L613-L613 — std::weak_ptr<context_t> context_weak_ptr(context_ptr);
+- clamp · function · L645-L649 — template <typename T>
+- generate_supertriangle_from_mesh_vertices · function · L651-L811 — void generate_supertriangle_from_mesh_vertices(
+- dispatch_planar_section_impl · function · L813-L876 — void dispatch_planar_section_impl(
+- context_weak_ptr · function · L833-L833 — std::weak_ptr<context_t> context_weak_ptr(context_ptr);
+- get_connected_components_impl · function · L878-L931 — void get_connected_components_impl(
+- context_weak_ptr · function · L894-L894 — std::weak_ptr<context_t> context_weak_ptr(context_ptr);
+- partial_sum · function · L933-L948 — template <class InputIt, class OutputIt>
+- triangulate_face · function · L950-L1752 — void triangulate_face(
+- face_to_cdt_vmap · function · L1000-L1000 — std::vector<uint32_t> face_to_cdt_vmap(cc_face_vcount);
+- cdt · function · L1496-L1496 — cdt::triangulator_t<double> cdt(cdt::vertex_insertion_order_t::AS_GIVEN);
+- vertex_to_triangle_map · function · L1540-L1540 — std::vector<std::vector<uint32_t>> vertex_to_triangle_map(cc_face_vcount, std::vector<uint32_t>());
+- remapped_triangle · function · L1661-L1661 — std::vector<vertex_descriptor_t> remapped_triangle(triangle_vertex_count, hmesh_t::null_vertex());
+- query_edge · function · L1723-L1723 — const cdt::edge_t query_edge(next, prev);
+- map_internal_inputmesh_face_idx_to_user_inputmesh_face_idx · function · L1763-L1795 — uint32_t map_internal_inputmesh_face_idx_to_user_inputmesh_face_idx(
+- get_connected_component_data_impl_detail · function · L1797-L3367 — void get_connected_component_data_impl_detail(
+- InputStorageIteratorType · type · L1931-L1931 — typedef vertex_array_iterator_t InputStorageIteratorType;
+- InputStorageIteratorType · type · L2012-L2012 — typedef face_array_iterator_t InputStorageIteratorType;
+- descr · function · L2251-L2251 — const face_descriptor_t descr(face_offset);
+- descr · function · L2503-L2503 — const face_descriptor_t descr(face_offset);
+- barrier · function · L3053-L3053 — barrier_t barrier(num_threads);
+- get_connected_component_data_impl · function · L3369-L3407 — void get_connected_component_data_impl(
+- context_weak_ptr · function · L3386-L3386 — std::weak_ptr<context_t> context_weak_ptr(context_ptr);
+- release_event_impl · function · L3409-L3421 — void release_event_impl(
+- release_events_impl · function · L3423-L3429 — void release_events_impl(uint32_t numEvents, const McEvent* pEvents)
+- release_connected_components_impl · function · L3431-L3460 — void release_connected_components_impl(
+- release_context_impl · function · L3462-L3472 — void release_context_impl(

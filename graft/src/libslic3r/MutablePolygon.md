@@ -1,0 +1,66 @@
+# src/libslic3r/MutablePolygon.hpp
+
+- MutablePolygon · class · L14-L286 — class MutablePolygon
+- const_iterator · class · L19-L39 — class const_iterator
+- prev · function · L27-L27 — const_iterator   prev()    const { assert(this->valid()); return { m_data, m_data->at(m_idx).prev }; }
+- next · function · L28-L28 — const_iterator   next()    const { assert(this->valid()); return { m_data, m_data->at(m_idx).next }; }
+- valid · function · L29-L29 — bool             valid()   const { return m_idx >= 0; }
+- polygon · function · L32-L32 — const MutablePolygon& polygon() const { assert(this->valid()); return *m_data; }
+- size · function · L33-L33 — IndexType        size()    const { assert(this->valid()); return m_data->size(); }
+- const_iterator · function · L35-L35 — const_iterator(const MutablePolygon *data, IndexType idx) : m_data(data), m_idx(idx) {}
+- iterator · class · L41-L64 — class iterator
+- prev · function · L49-L49 — iterator        prev()    const { assert(this->valid()); return { m_data, m_data->at(m_idx).prev }; }
+- next · function · L50-L50 — iterator        next()    const { assert(this->valid()); return { m_data, m_data->at(m_idx).next }; }
+- valid · function · L51-L51 — bool            valid()   const { return m_idx >= 0; }
+- polygon · function · L54-L54 — MutablePolygon& polygon() const { assert(this->valid()); return *m_data; }
+- size · function · L55-L55 — IndexType       size()    const { assert(this->valid()); return m_data->size(); }
+- remove · function · L56-L56 — iterator&       remove()        { m_idx = m_data->remove(*this).m_idx; return *this; }
+- insert · function · L57-L57 — iterator        insert(const PointType pt) const { return m_data->insert(*this, pt); }
+- iterator · function · L59-L59 — iterator(MutablePolygon *data, IndexType idx) : m_data(data), m_idx(idx) {}
+- range · class · L67-L126 — class range
+- range · function · L70-L70 — range(MutablePolygon& poly) : range(poly.begin(), poly.end()) {}
+- range · function · L71-L71 — range(MutablePolygon::iterator begin, MutablePolygon::iterator end) : m_begin(begin), m_end(end) {}
+- begin · function · L74-L74 — MutablePolygon::iterator    begin() const { return m_begin; }
+- end · function · L76-L76 — MutablePolygon::iterator    end()   const { return m_end; }
+- empty · function · L78-L78 — bool                        empty() const { return !m_begin.valid(); }
+- process_next · function · L81-L86 — MutablePolygon::iterator    process_next()
+- advance_front · function · L88-L94 — void advance_front()
+- retract_back · function · L96-L102 — void retract_back()
+- remove_front · function · L104-L108 — MutablePolygon::iterator remove_front(MutablePolygon::iterator it)
+- remove_back · function · L110-L114 — MutablePolygon::iterator remove_back(MutablePolygon::iterator it)
+- make_empty · function · L122-L125 — void make_empty()
+- MutablePolygon · function · L128-L128 — MutablePolygon() = default;
+- MutablePolygon · function · L129-L129 — MutablePolygon(const Polygon &rhs, size_t reserve = 0) : MutablePolygon(rhs.points.begin(), rhs.points.end(), reserve) {}
+- MutablePolygon · function · L130-L130 — MutablePolygon(std::initializer_list<Point> rhs, size_t reserve = 0) : MutablePolygon(rhs.begin(), rhs.end(), reserve) {}
+- MutablePolygon · function · L132-L135 — template<typename IT>
+- assign · function · L137-L143 — template<typename IT>
+- assign · function · L145-L147 — void assign(const Polygon &rhs, size_t reserve = 0)
+- polygon · function · L149-L158 — void polygon(Polygon &out) const
+- polygon · function · L160-L164 — Polygon polygon() const
+- empty · function · L166-L166 — bool            empty()  const { return m_size == 0; }
+- size · function · L167-L167 — size_t          size()   const { return m_size; }
+- capacity · function · L168-L168 — size_t          capacity() const { return m_data.capacity(); }
+- valid · function · L169-L169 — bool            valid()  const { return m_size >= 3; }
+- clear · function · L170-L170 — void            clear()        { m_data.clear(); m_size = 0; m_head = IndexType(-1); m_head_free = IndexType(-1); }
+- begin · function · L172-L172 — iterator        begin()        { return { this, m_head }; }
+- cbegin · function · L173-L173 — const_iterator  cbegin() const { return { this, m_head }; }
+- begin · function · L174-L174 — const_iterator  begin()  const { return this->cbegin(); }
+- end · function · L176-L176 — iterator        end()          { return { this, this->empty() ? -1 : this->at(m_head).prev }; }
+- cend · function · L177-L177 — const_iterator  cend()   const { return { this, this->empty() ? -1 : this->at(m_head).prev }; }
+- end · function · L178-L178 — const_iterator  end()    const { return this->cend(); }
+- remove · function · L182-L182 — iterator        remove(const iterator it) { assert(it.m_data == this); return { this, this->remove(it.m_idx) }; }
+- insert · function · L185-L185 — iterator        insert(const iterator it, const PointType pt) { assert(it.m_data == this); return { this, this->insert(it.m_idx, pt) }; }
+- LinkedPoint · class · L188-L195 — struct LinkedPoint
+- at · function · L203-L203 — LinkedPoint&          at(IndexType i)       { return m_data[i]; }
+- at · function · L204-L204 — const LinkedPoint&    at(IndexType i) const { return m_data[i]; }
+- assign_inner · function · L206-L219 — template<typename IT>
+- remove · function · L221-L240 — IndexType remove(const IndexType i)
+- insert · function · L242-L260 — IndexType insert(const IndexType i, const Point pt)
+- remove_duplicates · function · L309-L309 — void remove_duplicates(MutablePolygon &polygon);
+- remove_duplicates · function · L310-L310 — void remove_duplicates(MutablePolygon &polygon, double eps);
+- remove_duplicates · function · L311-L311 — void remove_duplicates(MutablePolygon& polygon, coord_t scaled_eps, const double max_angle);
+- remove_duplicates · function · L312-L328 — inline ExPolygons remove_duplicates(ExPolygons expolygons, coord_t scaled_eps, double max_angle)
+- smooth_outward · function · L330-L330 — void smooth_outward(MutablePolygon &polygon, coord_t clip_dist_scaled);
+- smooth_outward · function · L332-L338 — inline Polygon smooth_outward(Polygon polygon, coord_t clip_dist_scaled)
+- smooth_outward · function · L340-L350 — inline Polygons smooth_outward(Polygons polygons, coord_t clip_dist_scaled)
+- smooth_outward · function · L352-L368 — inline ExPolygons smooth_outward(ExPolygons expolygons, coord_t clip_dist_scaled)

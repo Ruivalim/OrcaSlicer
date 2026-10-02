@@ -1,0 +1,38 @@
+# sandboxes/orca_inspector_plugin_any.py
+
+- vec · function · L76-L77 — def vec(v)
+- bbox_dict · function · L80-L85 — def bbox_dict(bb)
+- enum_name · function · L88-L89 — def enum_name(value)
+- config_rows · function · L92-L95 — def config_rows(keys, get_value)
+- preset_dict · function · L98-L117 — def preset_dict(preset)
+- split_config_list · function · L120-L124 — def split_config_list(value)
+- filament_slots · function · L130-L140 — def filament_slots(bundle)
+- build_overview · function · L143-L194 — def build_overview()
+- build_presets · function · L206-L232 — def build_presets()
+- build_preset_config · function · L235-L242 — def build_preset_config(collection_key, name)
+- build_config · function · L245-L248 — def build_config()
+- volume_dict · function · L251-L279 — def volume_dict(index, volume)
+- assemble_dict · function · L282-L293 — def assemble_dict(instance)
+- instance_dict · function · L296-L309 — def instance_dict(index, instance)
+- printable_instance_count · function · L312-L316 — def printable_instance_count(obj)
+- object_dict · function · L319-L350 — def object_dict(index, obj)
+- build_model · function · L353-L370 — def build_model()
+- build_assembly · function · L373-L410 — def build_assembly()
+- freeze · function · L402-L405 — def freeze(node): # dict-of-groups -> sorted list, for stable JSON
+- build_mesh · function · L413-L464 — def build_mesh(object_index, volume_index)
+- config_page · function · L1329-L1333 — def config_page(collection, name, rows)
+- OrcaInspectorPanel · class · L1339-L1537 — class OrcaInspectorPanel(orca.script.ScriptPluginCapabilityBase)
+- get_name · method · L1345-L1346 — def get_name(self)
+- execute · method · L1348-L1373 — def execute(self): # Capability objects are instantiated once per plugin load, so a second # Run lands on the same instance — close any previous windows first, or # the old panel would keep posting into the new one.
+- on_message · method · L1377-L1387 — def on_message(self, msg)
+- on_close · method · L1389-L1396 — def on_close(self)
+- send_section · method · L1398-L1408 — def send_section(self, section, gen=None)
+- send_mesh · method · L1410-L1416 — def send_mesh(self, object_index, volume_index)
+- open_preset_config · method · L1418-L1432 — def open_preset_config(self, collection, name): # One viewer at a time: a new pick replaces the previous window. The main page # only hears back about failures.
+- run_ui_action · method · L1435-L1497 — def run_ui_action(self, msg)
+- report · function · L1439-L1440 — def report(result)
+- on_child_message · method · L1499-L1503 — def on_child_message(self, msg)
+- progress_demo · method · L1507-L1521 — def progress_demo(self)
+- pulse_demo · method · L1523-L1537 — def pulse_demo(self): # ui.ProgressDialog(...) is the constructor form of create_progress_dialog().
+- OrcaInspectorPlugin · class · L1541-L1543 — class OrcaInspectorPlugin(orca.base)
+- register_capabilities · method · L1542-L1543 — def register_capabilities(self)

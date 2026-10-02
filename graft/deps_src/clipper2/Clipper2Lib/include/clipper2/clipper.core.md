@@ -1,0 +1,54 @@
+# deps_src/clipper2/Clipper2Lib/include/clipper2/clipper.core.h
+
+- Clipper2Exception · function · L32-L33 — explicit Clipper2Exception(const char* description) :
+- what · function · L34-L34 — virtual const char* what() const noexcept override { return m_descr.c_str(); }
+- DoError · function · L76-L98 — static void DoError([[maybe_unused]] int error_code)
+- Clipper2Exception · function · L82-L82 — throw Clipper2Exception(precision_error);
+- Clipper2Exception · function · L84-L84 — throw Clipper2Exception(scale_error);
+- Clipper2Exception · function · L86-L86 — throw Clipper2Exception(non_pair_error);
+- Clipper2Exception · function · L88-L88 — throw Clipper2Exception(undefined_error);
+- Clipper2Exception · function · L90-L90 — throw Clipper2Exception(range_error);
+- class · type · L111-L111 — enum class FillRule { EvenOdd, NonZero, Positive, Negative };
+- Init · function · L127-L127 — inline void Init(const T2 x_ = 0, const T2 y_ = 0, const z_type z_ = 0)
+- operator · function · L204-L207 — Point operator * (const double scale) const
+- Negate · function · L241-L241 — inline void Negate() { x = -x; y = -y; }
+- InvalidRect · function · L309-L316 — static Rect<T> InvalidRect()
+- IsValid · function · L318-L318 — bool IsValid() const { return left != (std::numeric_limits<T>::max)(); }
+- Width · function · L320-L320 — T Width() const { return right - left; }
+- Height · function · L321-L321 — T Height() const { return bottom - top; }
+- Width · function · L322-L322 — void Width(T width) { right = left + width; }
+- Height · function · L323-L323 — void Height(T height) { bottom = top + height; }
+- Contains · function · L341-L344 — bool Contains(const Point<T>& pt) const
+- Contains · function · L346-L350 — bool Contains(const Rect<T>& rec) const
+- Scale · function · L352-L357 — void Scale(double scale)
+- IsEmpty · function · L359-L359 — bool IsEmpty() const { return bottom <= top || right <= left; };
+- Intersects · function · L361-L365 — bool Intersects(const Rect<T>& rec) const
+- path · function · L427-L429 — for (const auto& p : path)
+- path · function · L462-L464 — for (const auto& p : path)
+- paths · function · L479-L480 — for (const Path<T2>& path : paths)
+- Sqr · function · L600-L603 — inline double Sqr(T val)
+- NearEqual · function · L606-L610 — inline bool NearEqual(const Point<T>& p1,
+- CheckPrecisionRange · function · L671-L678 — inline void CheckPrecisionRange(int& precision, int& error_code)
+- CheckPrecisionRange · function · L680-L684 — inline void CheckPrecisionRange(int& precision)
+- TriSign · function · L686-L689 — inline int TriSign(int64_t x) // returns 0, 1 or -1
+- MultiplyUInt64Result · class · L691-L699 — struct MultiplyUInt64Result
+- Multiply · function · L702-L714 — inline MultiplyUInt64Result Multiply(uint64_t a, uint64_t b) // #834, #835
+- ProductsAreEqual · function · L717-L739 — inline bool ProductsAreEqual(int64_t a, int64_t b, int64_t c, int64_t d)
+- Multiply · function · L730-L730 — const auto abs_ab = Multiply(abs_a, abs_b);
+- Multiply · function · L731-L731 — const auto abs_cd = Multiply(abs_c, abs_d);
+- IsCollinear · function · L742-L752 — inline bool IsCollinear(const Point<T>& pt1,
+- CrossProduct · function · L756-L759 — inline double CrossProduct(const Point<T>& pt1, const Point<T>& pt2, const Point<T>& pt3)
+- CrossProduct · function · L762-L765 — inline double CrossProduct(const Point<T>& vec1, const Point<T>& vec2)
+- DotProduct · function · L768-L771 — inline double DotProduct(const Point<T>& pt1, const Point<T>& pt2, const Point<T>& pt3)
+- DotProduct · function · L774-L777 — inline double DotProduct(const Point<T>& vec1, const Point<T>& vec2)
+- DistanceSqr · function · L780-L783 — inline double DistanceSqr(const Point<T> pt1, const Point<T> pt2)
+- PerpendicDistFromLineSqrd · function · L786-L797 — inline double PerpendicDistFromLineSqrd(const Point<T>& pt,
+- Area · function · L800-L817 — inline double Area(const Path<T>& path)
+- Area · function · L820-L829 — inline double Area(const Paths<T>& paths)
+- IsPositive · function · L832-L839 — inline bool IsPositive(const Path<T>& poly)
+- GetSegmentIntersectPt · function · L848-L895 — inline bool GetSegmentIntersectPt(const Point<T>& ln1a, const Point<T>& ln1b,
+- GetSegmentIntersectPt · function · L898-L918 — inline bool GetSegmentIntersectPt(const Point<T>& ln1a, const Point<T>& ln1b,
+- GetSign · function · L943-L947 — inline int GetSign(const T& val)
+- SegmentsIntersect · function · L949-L950 — inline bool SegmentsIntersect(const Point64& seg1a, const Point64& seg1b,
+- class · type · L992-L1078 — enum class PointInPolygonResult { IsOn, IsInside, IsOutside };
+- PointInPolygon · function · L995-L1076 — inline PointInPolygonResult PointInPolygon(const Point<T>& pt, const Path<T>& polygon)

@@ -1,0 +1,43 @@
+# src/slic3r/GUI/MultiTaskManagerPage.hpp
+
+- MultiTaskItem · class · L30-L76 — class MultiTaskItem : public DeviceItem
+- MultiTaskItem · function · L33-L33 — MultiTaskItem(wxWindow* parent, MachineObject* obj, int type);
+- OnEnterWindow · function · L37-L37 — void OnEnterWindow(wxMouseEvent& evt);
+- OnLeaveWindow · function · L38-L38 — void OnLeaveWindow(wxMouseEvent& evt);
+- OnSelectedDevice · function · L39-L39 — void OnSelectedDevice(wxCommandEvent& evt);
+- OnLeftDown · function · L40-L40 — void OnLeftDown(wxMouseEvent& evt);
+- OnMove · function · L41-L41 — void OnMove(wxMouseEvent& evt);
+- paintEvent · function · L43-L43 — void         paintEvent(wxPaintEvent& evt);
+- render · function · L44-L44 — void         render(wxDC& dc);
+- doRender · function · L45-L45 — void         doRender(wxDC& dc);
+- DrawTextWithEllipsis · function · L46-L46 — void         DrawTextWithEllipsis(wxDC& dc, const wxString& text, int maxWidth, int left, int top = 0);
+- post_event · function · L47-L47 — void         post_event(wxCommandEvent&& event);
+- DoSetSize · function · L48-L48 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO);
+- get_left_time · function · L51-L51 — wxString get_left_time(int mc_left_time);
+- update_info · function · L71-L71 — void update_info();
+- onPause · function · L72-L72 — void onPause();
+- onResume · function · L73-L73 — void onResume();
+- onStop · function · L74-L74 — void onStop();
+- onCancel · function · L75-L75 — void onCancel();
+- LocalTaskManagerPage · class · L78-L122 — class LocalTaskManagerPage : public wxPanel
+- LocalTaskManagerPage · function · L81-L81 — LocalTaskManagerPage(wxWindow* parent);
+- update_page · function · L84-L84 — void update_page();
+- refresh_user_device · function · L85-L85 — void refresh_user_device(bool clear = false);
+- Show · function · L86-L86 — bool Show(bool show);
+- cancel_all · function · L87-L87 — void cancel_all(wxCommandEvent& evt);
+- msw_rescale · function · L88-L88 — void msw_rescale();
+- CloudTaskManagerPage · class · L124-L199 — class CloudTaskManagerPage : public wxPanel
+- CloudTaskManagerPage · function · L127-L127 — CloudTaskManagerPage(wxWindow* parent);
+- update_page · function · L130-L130 — void update_page();
+- refresh_user_device · function · L131-L131 — void refresh_user_device(bool clear = false);
+- utc_time_to_date · function · L132-L132 — std::string utc_time_to_date(std::string utc_time);
+- Show · function · L133-L133 — bool Show(bool show);
+- update_page_number · function · L134-L134 — void update_page_number();
+- start_timer · function · L135-L135 — void start_timer();
+- on_timer · function · L136-L136 — void on_timer(wxTimerEvent& event);
+- pause_all · function · L138-L138 — void pause_all(wxCommandEvent& evt);
+- resume_all · function · L139-L139 — void resume_all(wxCommandEvent& evt);
+- stop_all · function · L140-L140 — void stop_all(wxCommandEvent& evt);
+- enable_buttons · function · L142-L142 — void enable_buttons(bool enable);
+- page_num_enter_evt · function · L143-L143 — void page_num_enter_evt();
+- msw_rescale · function · L145-L145 — void msw_rescale();

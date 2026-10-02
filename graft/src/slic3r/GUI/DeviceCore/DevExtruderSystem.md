@@ -1,0 +1,55 @@
+# src/slic3r/GUI/DeviceCore/DevExtruderSystem.h
+
+- DevAmsSlotInfo · class · L19-L26 — struct DevAmsSlotInfo
+- DevExtderSwitchState · type · L29-L35 — enum DevExtderSwitchState
+- GetExtId · function · L46-L46 — int  GetExtId() const { return m_ext_id; }
+- GetDisplayLoc · function · L49-L55 — wxString GetDisplayLoc() const;
+- GetDisplayName · function · L50-L50 — wxString GetDisplayName() const;
+- HasNozzleInstalled · function · L53-L53 — bool           HasNozzleInstalled() const = delete;//{ return m_has_nozzle; }
+- GetNozzleId · function · L55-L55 — int            GetNozzleId() const { return m_current_nozzle_id; }
+- GetTargetNozzleId · function · L56-L63 — int            GetTargetNozzleId() const = delete;//{ return m_target_nozzle_id; }
+- GetNozzleType · function · L57-L57 — NozzleType     GetNozzleType()     const;
+- GetNozzleFlowType · function · L58-L58 — NozzleFlowType GetNozzleFlowType() const;
+- GetNozzleDiameter · function · L59-L59 — float          GetNozzleDiameter() const;
+- GetCurrentTemp · function · L62-L62 — int  GetCurrentTemp() const { return m_cur_temp; }
+- GetTargetTemp · function · L63-L63 — int  GetTargetTemp() const { return m_target_temp; }
+- HasFilamentInExt · function · L66-L66 — bool             HasFilamentInExt() const { return m_ext_has_filament; }
+- HasFilamentInBuffer · function · L67-L68 — bool             HasFilamentInBuffer() const = delete; //{ return m_buffer_has_filament; }
+- HasFilamBackup · function · L68-L68 — bool             HasFilamBackup() const { return !m_filam_bak.empty(); }
+- GetBackupStatus · function · L73-L73 — static std::unordered_map<int, bool> GetBackupStatus(unsigned int fila_back_group);
+- GetSlotPre · function · L76-L76 — const DevAmsSlotInfo& GetSlotPre() const { return m_spre; }
+- GetSlotNow · function · L77-L77 — const DevAmsSlotInfo& GetSlotNow() const { return m_snow; }
+- GetSlotTarget · function · L78-L78 — const DevAmsSlotInfo& GetSlotTarget() const { return m_star; }
+- SetExtId · function · L81-L81 — void SetExtId(int val) { m_ext_id = val; }
+- Owner · function · L126-L126 — MachineObject* Owner() const { return m_owner; }
+- GetTotalExtderCount · function · L129-L129 — int GetTotalExtderCount() const { assert(m_extders.size() == m_total_extder_count); return m_total_extder_count; }
+- GetTotalExtderSize · function · L130-L130 — int GetTotalExtderSize() const { return static_cast<int>(m_extders.size()); }
+- GetCurrentExtderId · function · L131-L131 — int GetCurrentExtderId() const { return m_current_extder_id; }
+- GetTargetExtderId · function · L132-L135 — int GetTargetExtderId() const = delete;//{ return m_target_extder_id; }
+- GetSwitchState · function · L135-L135 — DevExtderSwitchState GetSwitchState() const { return m_switch_extder_state; }
+- IsSwitching · function · L136-L136 — bool IsSwitching() const { return m_switch_extder_state  == DevExtderSwitchState::ES_SWITCHING;};
+- IsSwitchingFailed · function · L137-L137 — bool IsSwitchingFailed() const { return m_switch_extder_state == DevExtderSwitchState::ES_SWITCHING_FAILED; };
+- CanQuitSwitching · function · L138-L150 — bool CanQuitSwitching() const;
+- CanRetrySwitching · function · L139-L139 — bool CanRetrySwitching() const { return IsSwitchingFailed(); };
+- GetCurrentExtder · function · L144-L144 — std::optional<DevExtder> GetCurrentExtder() const;
+- GetLoadingExtder · function · L145-L145 — std::optional<DevExtder> GetLoadingExtder() const;
+- GetExtderById · function · L146-L146 — std::optional<DevExtder> GetExtderById(int extder_id) const;
+- GetExtruders · function · L147-L147 — const std::vector<DevExtder>&  GetExtruders() const { return m_extders;};
+- GetNozzleType · function · L150-L150 — NozzleType     GetNozzleType(int extder_id)     const { return GetExtderById(extder_id) ? GetExtderById(extder_id)->GetNozzleType() : NozzleType::ntUndefine; }
+- GetNozzleFlowType · function · L151-L151 — NozzleFlowType GetNozzleFlowType(int extder_id) const { return GetExtderById(extder_id) ? GetExtderById(extder_id)->GetNozzleFlowType() : NozzleFlowType::NONE_FLOWTYPE;; }
+- GetNozzleDiameter · function · L152-L152 — float          GetNozzleDiameter(int extder_id) const { return GetExtderById(extder_id) ? GetExtderById(extder_id)->GetNozzleDiameter() : 0.0; }
+- GetNozzleTempCurrent · function · L153-L153 — int            GetNozzleTempCurrent(int extder_id) const { return GetExtderById(extder_id) ? GetExtderById(extder_id)->GetCurrentTemp() : 0; }
+- GetNozzleTempTarget · function · L154-L154 — int            GetNozzleTempTarget(int extder_id) const { return GetExtderById(extder_id) ? GetExtderById(extder_id)->GetTargetTemp() : 0; }
+- NozzleDiameterMatchesOrUnknown · function · L155-L163 — bool           NozzleDiameterMatchesOrUnknown(int extder_id, float target_diameter) const
+- GetCurrentAmsId · function · L166-L166 — std::string GetCurrentAmsId() const;
+- GetCurrentSlotId · function · L167-L167 — std::string GetCurrentSlotId() const;
+- GetTargetAmsId · function · L168-L168 — std::string GetTargetAmsId() const;
+- GetTargetSlotId · function · L169-L169 — std::string GetTargetSlotId() const;
+- IsBusyLoading · function · L172-L172 — bool IsBusyLoading() const { return m_current_busy_for_loading; }
+- GetLoadingExtderId · function · L173-L173 — int  GetLoadingExtderId() const { return m_current_loading_extder_id; }
+- HasFilamentBackup · function · L174-L174 — bool HasFilamentBackup() const;
+- GetExtderById · function · L175-L175 — bool HasFilamentInExt(int exter_id) { return GetExtderById(exter_id) ? GetExtderById(exter_id)->HasFilamentInExt() : false; }
+- HasFilamentInExt · function · L175-L175 — bool HasFilamentInExt(int exter_id) { return GetExtderById(exter_id) ? GetExtderById(exter_id)->HasFilamentInExt() : false; }
+- AddExtder · function · L183-L183 — void  AddExtder(const DevExtder& ext) { m_extders[ext.GetExtId()] = ext; };
+- ParseV1_0 · function · L207-L207 — static void ParseV1_0(const nlohmann::json& extruder_json, DevExtderSystem* system);
+- ParseV2_0 · function · L208-L208 — static void ParseV2_0(const nlohmann::json& extruder_json, DevExtderSystem* system);

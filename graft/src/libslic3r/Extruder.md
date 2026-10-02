@@ -1,0 +1,44 @@
+# src/libslic3r/Extruder.hpp
+
+- GCodeConfig · class · L9-L9 — class GCodeConfig;
+- Extruder · class · L11-L115 — class Extruder
+- Extruder · function · L14-L14 — Extruder(unsigned int id, GCodeConfig *config, bool share_extruder);
+- reset · function · L17-L28 — void   reset()
+- id · function · L30-L30 — unsigned int id() const { return m_id; }
+- config_index · function · L35-L35 — int  config_index() const { return m_config_index; }
+- set_config_index · function · L37-L37 — void set_config_index(int idx);
+- extruder_id · function · L39-L39 — unsigned int extruder_id() const;
+- extrude · function · L40-L40 — double extrude(double dE);
+- retract · function · L41-L41 — double retract(double length, double restart_extra);
+- unretract · function · L42-L42 — double unretract();
+- E · function · L43-L43 — double E() const { return m_share_extruder ? m_share_E[extruder_id()] : m_E; }
+- reset_E · function · L44-L44 — void   reset_E() { m_E = 0.; m_share_E[extruder_id()] = 0.; }
+- e_per_mm · function · L46-L46 — double e_per_mm(double mm3_per_mm) const { return mm3_per_mm * m_e_per_mm3; }
+- e_per_mm3 · function · L48-L48 — double e_per_mm3() const { return m_e_per_mm3; }
+- extruded_volume · function · L50-L50 — double extruded_volume() const;
+- used_filament · function · L52-L52 — double used_filament() const;
+- position · function · L56-L56 — double position() const { return m_E; }
+- retracted · function · L58-L58 — double retracted() const { return m_retracted; }
+- restart_extra · function · L60-L60 — double restart_extra() const { return m_restart_extra; }
+- is_share_extruder · function · L62-L62 — bool   is_share_extruder() const { return m_share_extruder; }
+- get_single_retracted_length · function · L63-L63 — double get_single_retracted_length() const { return m_retracted; }
+- get_share_retracted_length · function · L64-L64 — double get_share_retracted_length() const { return m_share_retracted[extruder_id()]; }
+- set_position · function · L67-L67 — void   set_position(double e) { m_E = e; }
+- set_retracted · function · L69-L69 — void   set_retracted(double retracted, double restart_extra);
+- filament_diameter · function · L71-L71 — double filament_diameter() const;
+- filament_crossection · function · L72-L72 — double filament_crossection() const { return this->filament_diameter() * this->filament_diameter() * 0.25 * PI; }
+- filament_density · function · L73-L73 — double filament_density() const;
+- filament_cost · function · L74-L74 — double filament_cost() const;
+- filament_flow_ratio · function · L75-L75 — double filament_flow_ratio() const;
+- retract_before_wipe · function · L76-L76 — double retract_before_wipe() const;
+- retract_after_wipe · function · L78-L78 — double retract_after_wipe() const;
+- retraction_length · function · L79-L79 — double retraction_length() const;
+- retract_lift · function · L80-L80 — double retract_lift() const;
+- retract_speed · function · L81-L81 — int    retract_speed() const;
+- deretract_speed · function · L82-L82 — int    deretract_speed() const;
+- retract_restart_extra · function · L83-L83 — double retract_restart_extra() const;
+- retract_length_toolchange · function · L84-L84 — double retract_length_toolchange() const;
+- retract_restart_extra_toolchange · function · L85-L85 — double retract_restart_extra_toolchange() const;
+- travel_slope · function · L86-L86 — double travel_slope() const;
+- use_firmware_retraction · function · L88-L88 — bool   use_firmware_retraction() const;
+- Extruder · function · L92-L92 — Extruder(unsigned int id) : m_id(id) {}

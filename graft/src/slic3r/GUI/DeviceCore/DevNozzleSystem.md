@@ -1,0 +1,54 @@
+# src/slic3r/GUI/DeviceCore/DevNozzleSystem.h
+
+- DevNozzle · class · L28-L51 — struct DevNozzle
+- GetNozzleId · function · L53-L53 — int            GetNozzleId() const { return m_nozzle_id; }
+- GetNozzlePosId · function · L54-L56 — int            GetNozzlePosId() const;// physical position id: rack nozzle -> id + 0x10, else id
+- GetNozzleType · function · L55-L55 — NozzleType     GetNozzleType() const { return m_nozzle_type; }
+- GetNozzleFlowType · function · L56-L56 — NozzleFlowType GetNozzleFlowType() const { return m_nozzle_flow; }
+- GetNozzleDiameterType · function · L57-L59 — NozzleDiameterType GetNozzleDiameterType() const;
+- GetNozzleDiameter · function · L58-L58 — float          GetNozzleDiameter() const { return m_diameter; }
+- GetNozzleWear · function · L59-L59 — float          GetNozzleWear() const { return m_wear; }
+- GetNozzlePrintTime · function · L60-L60 — int            GetNozzlePrintTime() const { return m_nozzle_print_time; }
+- GetFirmwareInfo · function · L63-L67 — DevFirmwareVersionInfo GetFirmwareInfo() const;
+- GetNozzleDiameterStr · function · L66-L66 — wxString GetNozzleDiameterStr() const { return wxString::Format("%.1f mm", m_diameter); }
+- GetNozzleFlowTypeStr · function · L67-L67 — wxString GetNozzleFlowTypeStr() const { return GetNozzleFlowTypeStr(m_nozzle_flow); }
+- GetNozzleTypeStr · function · L68-L68 — wxString GetNozzleTypeStr() const { return GetNozzleTypeStr(m_nozzle_type); }
+- GetFilamentId · function · L70-L70 — std::string GetFilamentId() const { return m_fila_id; }
+- GetFilamentColor · function · L71-L71 — std::string GetFilamentColor() const { return m_filament_clr; }
+- AtLeftExtruder · function · L74-L88 — bool AtLeftExtruder() const;
+- AtRightExtruder · function · L75-L75 — bool AtRightExtruder() const;
+- GetLogicExtruderId · function · L77-L77 — int  GetLogicExtruderId() const;// warning: logical extruder id
+- GetExtruderId · function · L78-L78 — int  GetExtruderId() const;// warning: physical extruder id
+- IsOnRack · function · L81-L81 — bool IsOnRack() const { return m_on_rack; }
+- IsInfoReliable · function · L82-L82 — bool IsInfoReliable() const;
+- IsNormal · function · L84-L84 — bool IsNormal() const;
+- IsAbnormal · function · L85-L85 — bool IsAbnormal() const;
+- IsUnknown · function · L86-L86 — bool IsUnknown() const;
+- SetOnRack · function · L88-L88 — void SetOnRack(bool on_rack) { m_on_rack = on_rack; }
+- SetStatus · function · L89-L89 — void SetStatus(int stat) { m_stat = stat; }
+- GetTotalExtruderCount · function · L92-L92 — int  GetTotalExtruderCount() const;
+- Status · type · L111-L115 — enum Status : int
+- GetOwner · function · L122-L122 — MachineObject* GetOwner() const { return m_owner; }
+- GetNozzleByPosId · function · L125-L125 — DevNozzle                       GetNozzleByPosId(int pos_id) const { return pos_id < 0x10 ? GetExtNozzle(pos_id) : GetRackNozzle(pos_id - 0x10); }
+- ContainsExtNozzle · function · L128-L128 — bool                            ContainsExtNozzle(int id) const { return m_ext_nozzles.find(id) != m_ext_nozzles.end(); }
+- GetExtNozzle · function · L129-L129 — DevNozzle                       GetExtNozzle(int id) const;
+- GetExtNozzles · function · L130-L130 — const std::map<int, DevNozzle>& GetExtNozzles() const { return m_ext_nozzles; }
+- GetExtNozzleCount · function · L131-L131 — int                             GetExtNozzleCount() const { return (int) m_ext_nozzles.size(); }
+- SetSupportNozzleRack · function · L134-L134 — void  SetSupportNozzleRack(bool supported);
+- GetRackNozzle · function · L136-L136 — DevNozzle                       GetRackNozzle(int idx) const;
+- GetRackNozzles · function · L137-L137 — const std::map<int, DevNozzle>& GetRackNozzles() const;
+- IsRackMaximumInstalled · function · L140-L147 — bool IsRackMaximumInstalled() const;// true when the main extruder + all 6 rack slots hold nozzles
+- CollectNozzles · function · L143-L143 — const std::vector<DevNozzle> CollectNozzles(int ext_loc, NozzleFlowType flow_type, float diameter = -1.0f) const;
+- GetNozzleGroups · function · L144-L144 — std::vector<MultiNozzleUtils::NozzleGroupInfo> GetNozzleGroups() const;
+- IsIdle · function · L146-L146 — bool  IsIdle() const { return m_state_0_4 == NOZZLE_SYSTEM_IDLE; }
+- IsRefreshing · function · L147-L147 — bool  IsRefreshing() const { return m_state_0_4 == NOZZLE_SYSTEM_REFRESHING; }
+- HasUnreliableNozzles · function · L149-L154 — bool  HasUnreliableNozzles() const;// any extruder or rack nozzle whose reported info is not reliable
+- HasUnknownNozzles · function · L150-L150 — bool  HasUnknownNozzles() const;   // any extruder or rack nozzle of unknown state
+- GetReadingIdx · function · L153-L153 — int GetReadingIdx() const { return m_reading_idx; }
+- GetReadingCount · function · L154-L154 — int GetReadingCount() const { return m_reading_count; }
+- AddFirmwareInfoWTM · function · L157-L157 — void AddFirmwareInfoWTM(const DevFirmwareVersionInfo& info);// route a "wtm/<id>" module version to the rack nozzle, else to the extruder nozzle
+- ClearFirmwareInfoWTM · function · L158-L158 — void ClearFirmwareInfoWTM();
+- GetExtruderNozzleFirmware · function · L159-L159 — DevFirmwareVersionInfo GetExtruderNozzleFirmware() const { return m_ext_nozzle_firmware_info; }
+- ClearNozzles · function · L166-L166 — void ClearNozzles();
+- ParseV1_0 · function · L192-L192 — static void  ParseV1_0(const nlohmann::json& nozzletype_json, const nlohmann::json& diameter_json, DevNozzleSystem* system, std::optional<int> flag_e3d);
+- ParseV2_0 · function · L193-L193 — static void  ParseV2_0(const json& device_json, DevNozzleSystem* system);

@@ -1,0 +1,26 @@
+# src/slic3r/GUI/GUI_ObjectTableSettings.hpp
+
+- wxBoxSizer · class · L9-L9 — class wxBoxSizer;
+- DynamicPrintConfig · class · L12-L12 — class DynamicPrintConfig;
+- ModelConfig · class · L13-L13 — class ModelConfig;
+- ConfigOptionsGroup · class · L15-L15 — class ConfigOptionsGroup;
+- ObjectGridTable · class · L16-L16 — class ObjectGridTable;
+- OTG_Settings · class · L19-L36 — class OTG_Settings
+- OTG_Settings · function · L25-L25 — OTG_Settings(wxWindow* parent, const bool staticbox);
+- IsShown · function · L28-L28 — virtual bool        IsShown();
+- Show · function · L29-L29 — virtual void        Show(const bool show);
+- Hide · function · L30-L30 — virtual void        Hide();
+- UpdateAndShow · function · L31-L31 — virtual void        UpdateAndShow(const bool show);
+- get_sizer · function · L33-L33 — virtual wxSizer*    get_sizer();
+- get_og · function · L34-L34 — ConfigOptionsGroup* get_og() { return m_og.get(); }
+- parent · function · L35-L35 — wxWindow*           parent() const {return m_parent; }
+- ObjectTableSettings · class · L39-L78 — class ObjectTableSettings : public OTG_Settings
+- ObjectTableSettings · function · L59-L59 — ObjectTableSettings(wxWindow* parent, ObjectGridTable* table);
+- update_settings_list · function · L65-L65 — bool        update_settings_list(bool is_object, bool is_multiple_selection, ModelObject* object, ModelConfig* config, const std::string& category);
+- add_missed_options · function · L70-L70 — bool        add_missed_options(ModelConfig *config_to, const DynamicPrintConfig &config_from);
+- update_extra_column_visible_status · function · L72-L72 — int         update_extra_column_visible_status(ConfigOptionsGroup* option_group, const std::vector<SimpleSettingData>& option_keys, ModelConfig* config);
+- update_config_values · function · L73-L73 — void        update_config_values(bool is_object, ModelObject* object, ModelConfig* config, const std::string& category, const std::string& changed_opt_key = "");
+- UpdateAndShowRow · function · L74-L74 — void        UpdateAndShowRow(int row, const bool show, bool is_object, bool is_multiple_selection, ModelObject* object, ModelConfig* config, const std::string& category);
+- ValueChanged · function · L75-L75 — void        ValueChanged(int row, bool is_object, ModelObject* object, ModelConfig* config, const std::string& category, const std::string& key);
+- resetAllValues · function · L76-L76 — void        resetAllValues(int row, bool is_object, ModelObject* object, ModelConfig* config, const std::string& category);
+- msw_rescale · function · L77-L77 — void        msw_rescale();

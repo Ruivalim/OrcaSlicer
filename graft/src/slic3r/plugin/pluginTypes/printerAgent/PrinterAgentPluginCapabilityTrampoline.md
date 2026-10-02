@@ -1,0 +1,65 @@
+# src/slic3r/plugin/pluginTypes/printerAgent/PrinterAgentPluginCapabilityTrampoline.hpp
+
+- printer_agent_failure · function · L27-L33 — template<typename T> T printer_agent_failure()
+- PyPrinterAgentPluginCapabilityTrampoline · class · L35-L229 — class PyPrinterAgentPluginCapabilityTrampoline : public PyPluginCommonTrampoline<PrinterAgentPluginCapability>
+- get_agent_info · function · L40-L43 — AgentInfo get_agent_info() override
+- connect_printer · function · L45-L48 — int connect_printer(std::string dev_id, std::string dev_ip, std::string username, std::string password, bool use_ssl) override
+- ORCA_PY_AGENT_OVERRIDE · function · L47-L47 — ORCA_PY_AGENT_OVERRIDE(int, connect_printer, dev_id, dev_ip, username, password, use_ssl);
+- disconnect_printer · function · L50-L53 — int disconnect_printer() override
+- ORCA_PY_AGENT_OVERRIDE · function · L52-L52 — ORCA_PY_AGENT_OVERRIDE(int, disconnect_printer);
+- send_message · function · L55-L58 — int send_message(std::string dev_id, std::string json_str, int qos, int flag) override
+- ORCA_PY_AGENT_OVERRIDE · function · L57-L57 — ORCA_PY_AGENT_OVERRIDE(int, send_message, dev_id, json_str, qos, flag);
+- send_message_to_printer · function · L60-L63 — int send_message_to_printer(std::string dev_id, std::string json_str, int qos, int flag) override
+- ORCA_PY_AGENT_OVERRIDE · function · L62-L62 — ORCA_PY_AGENT_OVERRIDE(int, send_message_to_printer, dev_id, json_str, qos, flag);
+- start_discovery · function · L65-L68 — bool start_discovery(bool start, bool sending) override
+- ORCA_PY_AGENT_OVERRIDE · function · L67-L67 — ORCA_PY_AGENT_OVERRIDE(bool, start_discovery, start, sending);
+- bind_detect · function · L70-L74 — int bind_detect(std::string dev_ip, std::string sec_link, detectResult& detect) override
+- ORCA_PY_AGENT_OVERRIDE · function · L73-L73 — ORCA_PY_AGENT_OVERRIDE(int, bind_detect, dev_ip, sec_link, &detect);
+- get_user_selected_machine · function · L76-L79 — std::string get_user_selected_machine() override
+- set_user_selected_machine · function · L81-L84 — int set_user_selected_machine(std::string dev_id) override
+- ORCA_PY_AGENT_OVERRIDE · function · L83-L83 — ORCA_PY_AGENT_OVERRIDE(int, set_user_selected_machine, dev_id);
+- start_send_gcode_to_sdcard · function · L86-L89 — int start_send_gcode_to_sdcard(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L88-L88 — ORCA_PY_AGENT_OVERRIDE(int, start_send_gcode_to_sdcard, params, update_fn, cancel_fn, wait_fn);
+- start_local_print · function · L91-L94 — int start_local_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L93-L93 — ORCA_PY_AGENT_OVERRIDE(int, start_local_print, params, update_fn, cancel_fn);
+- get_filament_sync_mode · function · L96-L99 — FilamentSyncMode get_filament_sync_mode() const override
+- fetch_filament_info · function · L101-L104 — bool fetch_filament_info(std::string dev_id) override
+- ORCA_PY_AGENT_OVERRIDE · function · L103-L103 — ORCA_PY_AGENT_OVERRIDE(bool, fetch_filament_info, dev_id);
+- check_cert · function · L106-L109 — int check_cert() override
+- ORCA_PY_AGENT_OVERRIDE · function · L108-L108 — ORCA_PY_AGENT_OVERRIDE(int, check_cert);
+- install_device_cert · function · L111-L114 — void install_device_cert(std::string dev_id, bool lan_only) override
+- ORCA_PY_AGENT_OVERRIDE · function · L113-L113 — ORCA_PY_AGENT_OVERRIDE(void, install_device_cert, dev_id, lan_only);
+- ping_bind · function · L116-L119 — int ping_bind(std::string ping_code) override
+- ORCA_PY_AGENT_OVERRIDE · function · L118-L118 — ORCA_PY_AGENT_OVERRIDE(int, ping_bind, ping_code);
+- bind · function · L121-L124 — int bind(std::string dev_ip, std::string dev_id, std::string dev_model, std::string sec_link, std::string timezone, bool improved, OnUpdateStatusFn update_fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L123-L123 — ORCA_PY_AGENT_OVERRIDE(int, bind, dev_ip, dev_id, dev_model, sec_link, timezone, improved, update_fn);
+- unbind · function · L126-L129 — int unbind(std::string dev_id) override
+- ORCA_PY_AGENT_OVERRIDE · function · L128-L128 — ORCA_PY_AGENT_OVERRIDE(int, unbind, dev_id);
+- start_print · function · L131-L134 — int start_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L133-L133 — ORCA_PY_AGENT_OVERRIDE(int, start_print, params, update_fn, cancel_fn, wait_fn);
+- start_local_print_with_record · function · L136-L139 — int start_local_print_with_record(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L138-L138 — ORCA_PY_AGENT_OVERRIDE(int, start_local_print_with_record, params, update_fn, cancel_fn, wait_fn);
+- start_sdcard_print · function · L141-L144 — int start_sdcard_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L143-L143 — ORCA_PY_AGENT_OVERRIDE(int, start_sdcard_print, params, update_fn, cancel_fn);
+- get_hms_snapshot · function · L146-L149 — int get_hms_snapshot(std::string dev_id, std::string file_name, std::function<void(std::string, int)> callback) override
+- ORCA_PY_AGENT_OVERRIDE · function · L148-L148 — ORCA_PY_AGENT_OVERRIDE(int, get_hms_snapshot, dev_id, file_name, callback);
+- set_server_callback · function · L151-L154 — int set_server_callback(OnServerErrFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L153-L153 — ORCA_PY_AGENT_OVERRIDE(int, set_server_callback, fn);
+- set_on_ssdp_msg_fn · function · L156-L159 — int set_on_ssdp_msg_fn(OnMsgArrivedFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L158-L158 — ORCA_PY_AGENT_OVERRIDE(int, set_on_ssdp_msg_fn, fn);
+- set_on_printer_connected_fn · function · L161-L164 — int set_on_printer_connected_fn(OnPrinterConnectedFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L163-L163 — ORCA_PY_AGENT_OVERRIDE(int, set_on_printer_connected_fn, fn);
+- set_on_subscribe_failure_fn · function · L166-L169 — int set_on_subscribe_failure_fn(GetSubscribeFailureFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L168-L168 — ORCA_PY_AGENT_OVERRIDE(int, set_on_subscribe_failure_fn, fn);
+- set_on_message_fn · function · L171-L174 — int set_on_message_fn(OnMessageFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L173-L173 — ORCA_PY_AGENT_OVERRIDE(int, set_on_message_fn, fn);
+- set_on_user_message_fn · function · L176-L179 — int set_on_user_message_fn(OnMessageFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L178-L178 — ORCA_PY_AGENT_OVERRIDE(int, set_on_user_message_fn, fn);
+- set_on_local_connect_fn · function · L181-L184 — int set_on_local_connect_fn(OnLocalConnectedFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L183-L183 — ORCA_PY_AGENT_OVERRIDE(int, set_on_local_connect_fn, fn);
+- set_on_local_message_fn · function · L186-L189 — int set_on_local_message_fn(OnMessageFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L188-L188 — ORCA_PY_AGENT_OVERRIDE(int, set_on_local_message_fn, fn);
+- set_queue_on_main_fn · function · L191-L194 — int set_queue_on_main_fn(QueueOnMainFn fn) override
+- ORCA_PY_AGENT_OVERRIDE · function · L193-L193 — ORCA_PY_AGENT_OVERRIDE(int, set_queue_on_main_fn, fn);
+- request_bind_ticket · function · L199-L222 — int request_bind_ticket(std::string* ticket) override
+- log_failure · function · L225-L228 — void log_failure(const char* operation, const char* error) const

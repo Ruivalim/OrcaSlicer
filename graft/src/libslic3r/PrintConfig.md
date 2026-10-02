@@ -1,0 +1,239 @@
+# src/libslic3r/PrintConfig.hpp
+
+- GCodeFlavor · type · L33-L47 — enum GCodeFlavor : unsigned char
+- FilamentUsageType · type · L51-L55 — enum FilamentUsageType
+- FuzzySkinType · type · L58-L65 — enum class FuzzySkinType
+- FuzzySkinMode · type · L67-L71 — enum class FuzzySkinMode
+- TopSurfaceExpansionDirection · type · L74-L78 — enum class TopSurfaceExpansionDirection
+- CenterOfSurfacePattern · type · L80-L84 — enum class CenterOfSurfacePattern
+- NoiseType · type · L86-L93 — enum class NoiseType
+- WipeTowerType · type · L95-L98 — enum class WipeTowerType
+- PrintHostType · type · L100-L102 — enum PrintHostType
+- AuthorizationType · type · L104-L106 — enum AuthorizationType
+- InfillPattern · type · L108-L119 — enum InfillPattern : int
+- is_separable_infill_pattern · function · L125-L147 — inline bool is_separable_infill_pattern(InfillPattern pattern)
+- is_smoothable_infill_pattern · function · L152-L170 — inline bool is_smoothable_infill_pattern(InfillPattern pattern, int multiline = 1)
+- IroningType · type · L172-L178 — enum class IroningType
+- WallInfillOrder · type · L181-L188 — enum class WallInfillOrder
+- BedTempFormula · type · L190-L194 — enum class BedTempFormula
+- PowerLossRecoveryMode · type · L197-L201 — enum class PowerLossRecoveryMode
+- WallSequence · type · L204-L209 — enum class WallSequence
+- WallDirection · type · L212-L217 — enum class WallDirection
+- SurfaceFillOrder · type · L221-L226 — enum class SurfaceFillOrder
+- PrintSequence · type · L229-L234 — enum class PrintSequence
+- PrintOrder · type · L236-L243 — enum class PrintOrder
+- SlicingMode · type · L245-L253 — enum class SlicingMode
+- SupportMaterialPattern · type · L255-L260 — enum SupportMaterialPattern
+- SupportMaterialStyle · type · L262-L264 — enum SupportMaterialStyle
+- LongRectrationLevel · type · L266-L271 — enum LongRectrationLevel
+- SupportMaterialInterfacePattern · type · L273-L275 — enum SupportMaterialInterfacePattern
+- SupportType · type · L278-L280 — enum SupportType
+- is_tree · function · L281-L284 — inline bool is_tree(SupportType stype)
+- is_tree_slim · function · L285-L288 — inline bool is_tree_slim(SupportType type, SupportMaterialStyle style)
+- is_auto · function · L289-L292 — inline bool is_auto(SupportType stype)
+- SeamPosition · type · L294-L296 — enum SeamPosition
+- SeamScarfType · type · L299-L303 — enum class SeamScarfType
+- EnsureVerticalShellThickness · type · L306-L311 — enum EnsureVerticalShellThickness
+- InternalBridgeFilter · type · L314-L316 — enum InternalBridgeFilter
+- EnableExtraBridgeLayer · type · L319-L321 — enum EnableExtraBridgeLayer
+- GapFillTarget · type · L324-L326 — enum GapFillTarget
+- LiftType · type · L329-L333 — enum LiftType
+- SLAMaterial · type · L335-L341 — enum SLAMaterial
+- SLADisplayOrientation · type · L343-L346 — enum SLADisplayOrientation
+- SLAPillarConnectionMode · type · L348-L352 — enum SLAPillarConnectionMode
+- BrimType · type · L354-L362 — enum BrimType
+- TimelapseType · type · L364-L367 — enum TimelapseType : int
+- SkirtType · type · L369-L371 — enum SkirtType
+- DraftShield · type · L373-L375 — enum DraftShield
+- PerimeterGeneratorType · type · L377-L384 — enum class PerimeterGeneratorType
+- ToolChangeOrderingType · type · L386-L390 — enum class ToolChangeOrderingType
+- OverhangFanThreshold · type · L393-L400 — enum OverhangFanThreshold
+- BedType · type · L403-L412 — enum BedType
+- ExtruderOnlyAreaType · type · L414-L419 — enum class ExtruderOnlyAreaType:unsigned char
+- LayerSeq · type · L422-L425 — enum LayerSeq
+- FanDirection · type · L427-L432 — enum FanDirection
+- PrinterStructure · type · L453-L459 — enum PrinterStructure
+- InputShaperType · type · L461-L475 — enum class InputShaperType : unsigned char
+- ZHopType · type · L478-L484 — enum ZHopType
+- RetractLiftEnforceType · type · L486-L491 — enum RetractLiftEnforceType
+- GCodeThumbnailsFormat · type · L493-L495 — enum class GCodeThumbnailsFormat
+- CounterboreHoleBridgingOption · type · L497-L499 — enum CounterboreHoleBridgingOption
+- WipeTowerWallType · type · L501-L505 — enum WipeTowerWallType
+- ExtruderType · type · L508-L512 — enum ExtruderType
+- NozzleVolumeType · type · L514-L523 — enum NozzleVolumeType
+- FilamentMapMode · type · L525-L531 — enum FilamentMapMode
+- is_auto_filament_map_mode · function · L534-L536 — inline bool is_auto_filament_map_mode(FilamentMapMode mode)
+- PrimeVolumeMode · type · L541-L545 — enum PrimeVolumeMode
+- get_extruder_variant_string · function · L547-L547 — extern std::string get_extruder_variant_string(ExtruderType extruder_type, NozzleVolumeType nozzle_volume_type);
+- get_config_index_base · function · L551-L551 — extern int get_config_index_base(NozzleVolumeType volume_type, ExtruderType extruder_type, int variant_id_1based, const std::vector<std::string>& variant_list, const std::vector<int>& variant_ids_1based);
+- get_valid_nozzle_volume_type · function · L553-L563 — static std::set<NozzleVolumeType> get_valid_nozzle_volume_type()
+- get_nozzle_volume_type_string · function · L565-L565 — std::string get_nozzle_volume_type_string(NozzleVolumeType nozzle_volume_type);
+- bed_type_to_gcode_string · function · L567-L596 — static std::string bed_type_to_gcode_string(const BedType type)
+- get_bed_temp_key · function · L598-L619 — static std::string get_bed_temp_key(const BedType type)
+- get_bed_temp_1st_layer_key · function · L621-L642 — static std::string get_bed_temp_1st_layer_key(const BedType type)
+- is_filament_extruder_override_key · function · L646-L646 — extern bool is_filament_extruder_override_key(const std::string &opt_key);
+- get_extruder_ams_count · function · L649-L649 — extern std::vector<std::map<int, int>> get_extruder_ams_count(const std::vector<std::string> &strs);
+- save_extruder_ams_count_to_string · function · L650-L650 — extern std::vector<std::string> save_extruder_ams_count_to_string(const std::vector<std::map<int, int>> &extruder_ams_count);
+- convert_to_nvt_type · function · L653-L653 — extern NozzleVolumeType convert_to_nvt_type(const std::string& variant_str);
+- get_extruder_nozzle_stats · function · L656-L656 — extern std::vector<std::map<NozzleVolumeType, int>> get_extruder_nozzle_stats(const std::vector<std::string> &strs);
+- save_extruder_nozzle_stats_to_string · function · L657-L657 — extern std::vector<std::string> save_extruder_nozzle_stats_to_string(const std::vector<std::map<NozzleVolumeType, int>> &extruder_nozzle_stats);
+- DynamicPrintConfig · class · L701-L701 — class DynamicPrintConfig;
+- PrintConfigDef · class · L705-L738 — class PrintConfigDef : public ConfigDef
+- PrintConfigDef · function · L708-L708 — PrintConfigDef();
+- handle_legacy · function · L710-L710 — static void handle_legacy(t_config_option_key &opt_key, std::string &value);
+- handle_legacy_composite · function · L711-L711 — static void handle_legacy_composite(DynamicPrintConfig &config);
+- extruder_option_keys · function · L714-L714 — const std::vector<std::string>& extruder_option_keys() const { return m_extruder_option_keys; }
+- extruder_retract_keys · function · L718-L718 — const std::vector<std::string>& extruder_retract_keys() const { return m_extruder_retract_keys; }
+- filament_option_keys · function · L721-L721 — const std::vector<std::string>& filament_option_keys() const { return m_filament_option_keys; }
+- filament_retract_keys · function · L722-L722 — const std::vector<std::string>& filament_retract_keys() const { return m_filament_retract_keys; }
+- init_common_params · function · L725-L725 — void init_common_params();
+- init_fff_params · function · L726-L726 — void init_fff_params();
+- init_extruder_option_keys · function · L727-L727 — void init_extruder_option_keys();
+- init_sla_params · function · L728-L728 — void init_sla_params();
+- init_filament_option_keys · function · L734-L734 — void init_filament_option_keys();
+- StaticPrintConfig · class · L744-L744 — class StaticPrintConfig;
+- min_object_distance · function · L747-L747 — double min_object_distance(const ConfigBase &cfg);
+- FilamentVariantUse · class · L752-L764 — struct FilamentVariantUse
+- DynamicPrintConfig · class · L771-L860 — class DynamicPrintConfig : public DynamicConfig
+- DynamicPrintConfig · function · L774-L774 — DynamicPrintConfig() {}
+- DynamicPrintConfig · function · L775-L775 — DynamicPrintConfig(const DynamicPrintConfig &rhs) : DynamicConfig(rhs) {}
+- DynamicPrintConfig · function · L776-L776 — DynamicPrintConfig(DynamicPrintConfig &&rhs) noexcept : DynamicConfig(std::move(rhs)) {}
+- DynamicPrintConfig · function · L777-L777 — explicit DynamicPrintConfig(const StaticPrintConfig &rhs);
+- DynamicPrintConfig · function · L778-L778 — explicit DynamicPrintConfig(const ConfigBase &rhs) : DynamicConfig(rhs) {}
+- full_print_config · function · L783-L783 — static DynamicPrintConfig  full_print_config();
+- new_from_defaults_keys · function · L784-L784 — static DynamicPrintConfig* new_from_defaults_keys(const std::vector<std::string> &keys);
+- def · function · L787-L787 — const ConfigDef*    def() const override { return &print_config_def; }
+- normalize_fdm · function · L789-L789 — void                normalize_fdm(int used_filaments = 0);
+- normalize_fdm_1 · function · L790-L790 — void                normalize_fdm_1();
+- normalize_fdm_2 · function · L792-L792 — t_config_option_keys normalize_fdm_2(int num_objects, int used_filaments = 0);
+- get_parameter_size · function · L794-L794 — size_t              get_parameter_size(const std::string& param_name, size_t extruder_nums);
+- set_num_extruders · function · L795-L795 — void                set_num_extruders(unsigned int num_extruders);
+- set_num_filaments · function · L798-L798 — void                set_num_filaments(unsigned int num_filaments);
+- validate · function · L802-L802 — std::map<std::string, std::string>         validate(bool under_cli = false);
+- handle_legacy · function · L808-L809 — void                handle_legacy(t_config_option_key &opt_key, std::string &value) const override
+- handle_legacy_composite · function · L814-L815 — void                handle_legacy_composite() override
+- get_filament_type · function · L818-L818 — std::string get_filament_type(std::string &displayed_filament_type, int id = 0);
+- is_using_different_extruders · function · L821-L821 — bool is_using_different_extruders();
+- support_different_extruders · function · L822-L822 — bool support_different_extruders(int& extruder_count) const;
+- get_extruder_nozzle_volume_count · function · L826-L826 — int get_extruder_nozzle_volume_count(int extruder_count, std::vector<std::vector<NozzleVolumeType>>& nozzle_volume_types) const;
+- get_index_for_extruder · function · L827-L827 — int get_index_for_extruder(int extruder_or_filament_id, std::string id_name, ExtruderType extruder_type, NozzleVolumeType nozzle_volume_type, std::string variant_name, unsigned int stride = 1) const;
+- update_values_to_printer_extruders · function · L828-L829 — std::vector<int> update_values_to_printer_extruders(DynamicPrintConfig& printer_config, int extruder_count, int extruder_nozzle_volume_count, std::vector<std::vector<NozzleVolumeType>>& nv_types,
+- update_values_to_printer_extruders_for_multiple_filaments · function · L830-L830 — void update_values_to_printer_extruders_for_multiple_filaments(DynamicPrintConfig& printer_config, int extruder_count, int extruder_nozzle_volume_count, std::set<std::string>& key_set, std::string id_name, std::string variant_name);
+- update_filament_config_values_for_multiple_extruders · function · L838-L842 — void update_filament_config_values_for_multiple_extruders(DynamicPrintConfig& printer_config,
+- update_non_diff_values_to_base_config · function · L844-L845 — void update_non_diff_values_to_base_config(DynamicPrintConfig& new_config, const t_config_option_keys& keys, const std::set<std::string>& different_keys, std::string extruder_id_name, std::string extruder_variant_name,
+- update_diff_values_to_child_config · function · L846-L846 — void update_diff_values_to_child_config(DynamicPrintConfig& new_config, std::string extruder_id_name, std::string extruder_variant_name, std::set<std::string>& key_set1, std::set<std::string>& key_set2);
+- update_values_from_single_to_multi · function · L848-L848 — int update_values_from_single_to_multi(DynamicPrintConfig& multi_config, std::set<std::string>& key_set, std::string id_name, std::string variant_name);
+- update_values_from_multi_to_multi · function · L849-L849 — int update_values_from_multi_to_multi(DynamicPrintConfig& new_config, std::set<std::string>& key_set, std::string id_name, std::string variant_name, std::vector<std::string>& extruder_variants);
+- update_values_from_multi_to_multi_2 · function · L854-L854 — int update_values_from_multi_to_multi_2(const std::vector<std::string>& src_extruder_variants, const std::vector<std::string>& dst_extruder_variants, const DynamicPrintConfig& dst_config, const std::set<std::string>& key_sets);
+- get_filament_vendor · function · L858-L858 — std::string get_filament_vendor() const;
+- get_filament_type · function · L859-L859 — std::string get_filament_type() const;
+- set_variant_override · function · L868-L869 — void set_variant_override(ConfigOptionVectorBase &target, const ConfigOptionVectorBase &source,
+- update_static_print_config_from_dynamic · function · L873-L873 — extern void update_static_print_config_from_dynamic(ConfigBase& config, const DynamicPrintConfig& dest_config, std::vector<int> variant_index, std::set<std::string>& key_set1, int stride = 1);
+- compute_filament_override_value · function · L874-L875 — extern void compute_filament_override_value(const std::string& opt_key, const ConfigOption *opt_old_machine, const ConfigOption *opt_new_machine, const ConfigOption *opt_new_filament, const DynamicPrintConfig& new_full_config,
+- handle_legacy_sla · function · L877-L877 — void handle_legacy_sla(DynamicPrintConfig &config);
+- StaticPrintConfig · class · L879-L967 — class StaticPrintConfig : public StaticConfig
+- StaticPrintConfig · function · L882-L882 — StaticPrintConfig() {}
+- def · function · L885-L885 — const ConfigDef*    def() const override { return &print_config_def; }
+- keys_ref · function · L887-L887 — virtual const t_config_option_keys& keys_ref() const = 0;
+- handle_legacy · function · L894-L895 — void                handle_legacy(t_config_option_key &opt_key, std::string &value) const override
+- StaticCacheBase · class · L898-L912 — class StaticCacheBase
+- opt_add · function · L903-L908 — template<typename T>
+- StaticCache · class · L915-L966 — template<typename T>
+- StaticCache · function · L920-L920 — StaticCache() : m_defaults(nullptr) {}
+- initialized · function · L923-L923 — bool                initialized() const { return ! m_keys.empty(); }
+- optptr · function · L925-L925 — ConfigOption*       optptr(const std::string &name, T *owner) const
+- optptr · function · L931-L931 — const ConfigOption* optptr(const std::string &name, const T *owner) const
+- keys · function · L937-L937 — const std::vector<std::string>& keys()      const { return m_keys; }
+- defaults · function · L938-L938 — const T&                        defaults()  const { return *m_defaults; }
+- finalize · function · L943-L961 — void                finalize(T *defaults, const ConfigDef *defs)
+- optptr · function · L972-L972 — const ConfigOption*      optptr(const t_config_option_key &opt_key) const override \
+- optptr · function · L975-L975 — ConfigOption*            optptr(const t_config_option_key &opt_key, bool create = false) override \
+- keys · function · L978-L978 — t_config_option_keys     keys() const override { return s_cache_##CLASS_NAME.keys(); } \
+- CLASS_NAME · function · L999-L2491 — CLASS_NAME() { assert(s_cache_##CLASS_NAME.initialized()); *this = s_cache_##CLASS_NAME.defaults(); } \
+- CLASS_NAME · function · L1002-L1002 — CLASS_NAME(int) {}
+- def · function · L1008-L1008 — const ConfigDef*    def() const override { return &print_config_def; } \
+- handle_legacy · function · L1010-L1011 — void                handle_legacy(t_config_option_key &opt_key, std::string &value) const override \
+- validate · function · L1955-L1955 — std::map<std::string, std::string> validate(const FullPrintConfig &config, bool under_cli = false);
+- SLAMaterialSpeed · type · L2104-L2104 — enum SLAMaterialSpeed { slamsSlow, slamsFast };
+- CLIActionsConfigDef · class · L2177-L2181 — class CLIActionsConfigDef : public ConfigDef
+- CLIActionsConfigDef · function · L2180-L2180 — CLIActionsConfigDef();
+- CLITransformConfigDef · class · L2183-L2187 — class CLITransformConfigDef : public ConfigDef
+- CLITransformConfigDef · function · L2186-L2186 — CLITransformConfigDef();
+- CLIMiscConfigDef · class · L2189-L2193 — class CLIMiscConfigDef : public ConfigDef
+- CLIMiscConfigDef · function · L2192-L2192 — CLIMiscConfigDef();
+- t_custom_gcode_key · type · L2195-L2195 — typedef std::string t_custom_gcode_key;
+- custom_gcode_specific_placeholders · function · L2197-L2197 — const std::map<t_custom_gcode_key, t_config_option_keys>& custom_gcode_specific_placeholders();
+- ReadOnlySlicingStatesConfigDef · class · L2201-L2205 — class ReadOnlySlicingStatesConfigDef : public ConfigDef
+- ReadOnlySlicingStatesConfigDef · function · L2204-L2204 — ReadOnlySlicingStatesConfigDef();
+- ReadWriteSlicingStatesConfigDef · class · L2207-L2211 — class ReadWriteSlicingStatesConfigDef : public ConfigDef
+- ReadWriteSlicingStatesConfigDef · function · L2210-L2210 — ReadWriteSlicingStatesConfigDef();
+- OtherSlicingStatesConfigDef · class · L2213-L2217 — class OtherSlicingStatesConfigDef : public ConfigDef
+- OtherSlicingStatesConfigDef · function · L2216-L2216 — OtherSlicingStatesConfigDef();
+- PrintStatisticsConfigDef · class · L2219-L2223 — class PrintStatisticsConfigDef : public ConfigDef
+- PrintStatisticsConfigDef · function · L2222-L2222 — PrintStatisticsConfigDef();
+- ObjectsInfoConfigDef · class · L2225-L2229 — class ObjectsInfoConfigDef : public ConfigDef
+- ObjectsInfoConfigDef · function · L2228-L2228 — ObjectsInfoConfigDef();
+- DimensionsConfigDef · class · L2231-L2235 — class DimensionsConfigDef : public ConfigDef
+- DimensionsConfigDef · function · L2234-L2234 — DimensionsConfigDef();
+- TemperaturesConfigDef · class · L2237-L2241 — class TemperaturesConfigDef : public ConfigDef
+- TemperaturesConfigDef · function · L2240-L2240 — TemperaturesConfigDef();
+- TimestampsConfigDef · class · L2243-L2247 — class TimestampsConfigDef : public ConfigDef
+- TimestampsConfigDef · function · L2246-L2246 — TimestampsConfigDef();
+- OtherPresetsConfigDef · class · L2249-L2253 — class OtherPresetsConfigDef : public ConfigDef
+- OtherPresetsConfigDef · function · L2252-L2252 — OtherPresetsConfigDef();
+- CustomGcodeSpecificConfigDef · class · L2256-L2260 — class CustomGcodeSpecificConfigDef : public ConfigDef
+- CustomGcodeSpecificConfigDef · function · L2259-L2259 — CustomGcodeSpecificConfigDef();
+- DynamicPrintAndCLIConfig · class · L2272-L2303 — class DynamicPrintAndCLIConfig : public DynamicPrintConfig
+- DynamicPrintAndCLIConfig · function · L2275-L2275 — DynamicPrintAndCLIConfig() {}
+- DynamicPrintAndCLIConfig · function · L2276-L2276 — DynamicPrintAndCLIConfig(const DynamicPrintAndCLIConfig &other) : DynamicPrintConfig(other) {}
+- def · function · L2279-L2279 — const ConfigDef*        def() const override { return &s_def; }
+- handle_legacy · function · L2285-L2285 — void                    handle_legacy(t_config_option_key &opt_key, std::string &value) const override;
+- PrintAndCLIConfigDef · class · L2288-L2301 — class PrintAndCLIConfigDef : public ConfigDef
+- PrintAndCLIConfigDef · function · L2291-L2298 — PrintAndCLIConfigDef()
+- is_XL_printer · function · L2305-L2305 — bool is_XL_printer(const DynamicPrintConfig &cfg);
+- is_XL_printer · function · L2306-L2306 — bool is_XL_printer(const PrintConfig &cfg);
+- get_shared_poly · function · L2308-L2308 — Polygon get_shared_poly(const std::vector<Pointfs>& extruder_polys);
+- get_bed_shape · function · L2309-L2309 — Points get_bed_shape(const DynamicPrintConfig &cfg, bool use_share = true);
+- get_bed_shape · function · L2310-L2310 — Points get_bed_shape(const PrintConfig &cfg, bool use_share = false);
+- get_bed_shape · function · L2311-L2311 — Points get_bed_shape(const SLAPrinterConfig &cfg);
+- get_bed_excluded_area · function · L2312-L2312 — Slic3r::Polygons get_bed_excluded_area(const PrintConfig& cfg);
+- get_bed_shape_with_excluded_area · function · L2313-L2313 — Slic3r::Polygon get_bed_shape_with_excluded_area(const PrintConfig& cfg, bool use_share = false);
+- has_skirt · function · L2314-L2314 — bool has_skirt(const DynamicPrintConfig& cfg);
+- get_real_skirt_dist · function · L2315-L2315 — float get_real_skirt_dist(const DynamicPrintConfig& cfg);
+- ModelConfig · class · L2336-L2411 — class ModelConfig
+- reset · function · L2341-L2341 — void         reset() { m_data.clear(); touch(); }
+- assign_config · function · L2343-L2348 — void         assign_config(const ModelConfig &rhs)
+- assign_config · function · L2349-L2355 — void         assign_config(ModelConfig &&rhs)
+- assign_config · function · L2360-L2360 — void         assign_config(const DynamicPrintConfig &rhs)  { if (m_data != rhs) { m_data = rhs; this->touch(); } }
+- assign_config · function · L2361-L2361 — void         assign_config(DynamicPrintConfig &&rhs)       { if (m_data != rhs) { m_data = std::move(rhs); this->touch(); } }
+- apply · function · L2362-L2362 — void         apply(const ModelConfig &other, bool ignore_nonexistent = false) { this->apply(other.get(), ignore_nonexistent); }
+- apply · function · L2363-L2363 — void         apply(const ConfigBase &other, bool ignore_nonexistent = false) { m_data.apply_only(other, other.keys(), ignore_nonexistent); this->touch(); }
+- apply_only · function · L2364-L2364 — void         apply_only(const ModelConfig &other, const t_config_option_keys &keys, bool ignore_nonexistent = false) { this->apply_only(other.get(), keys, ignore_nonexistent); }
+- apply_only · function · L2365-L2365 — void         apply_only(const ConfigBase &other, const t_config_option_keys &keys, bool ignore_nonexistent = false) { m_data.apply_only(other, keys, ignore_nonexistent); this->touch(); }
+- set_key_value · function · L2366-L2366 — bool         set_key_value(const std::string &opt_key, ConfigOption *opt) { bool out = m_data.set_key_value(opt_key, opt); this->touch(); return out; }
+- set · function · L2367-L2368 — template<typename T>
+- set_deserialize · function · L2369-L2370 — void         set_deserialize(const t_config_option_key &opt_key, const std::string &str, ConfigSubstitutionContext &substitution_context, bool append = false)
+- erase · function · L2371-L2371 — bool         erase(const t_config_option_key &opt_key) { bool out = m_data.erase(opt_key); if (out) this->touch(); return out; }
+- get · function · L2376-L2376 — const DynamicPrintConfig&   get() const throw() { return m_data; }
+- empty · function · L2377-L2377 — bool                        empty() const throw() { return m_data.empty(); }
+- size · function · L2378-L2378 — size_t                      size() const throw() { return m_data.size(); }
+- cbegin · function · L2379-L2379 — auto                        cbegin() const { return m_data.cbegin(); }
+- cend · function · L2380-L2380 — auto                        cend() const { return m_data.cend(); }
+- keys · function · L2381-L2381 — t_config_option_keys        keys() const { return m_data.keys(); }
+- has · function · L2382-L2382 — bool                        has(const t_config_option_key &opt_key) const { return m_data.has(opt_key); }
+- option · function · L2383-L2383 — const ConfigOption*         option(const t_config_option_key &opt_key) const { return m_data.option(opt_key); }
+- opt_int · function · L2384-L2384 — int                         opt_int(const t_config_option_key &opt_key) const { return m_data.opt_int(opt_key); }
+- extruder · function · L2385-L2385 — int                         extruder() const { return opt_int("extruder"); }
+- opt_float · function · L2386-L2388 — double opt_float(const t_config_option_key &opt_key) const
+- get_abs_value · function · L2389-L2391 — double get_abs_value(const t_config_option_key &opt_key) const
+- opt_serialize · function · L2392-L2392 — std::string                 opt_serialize(const t_config_option_key &opt_key) const { return m_data.opt_serialize(opt_key); }
+- timestamp · function · L2398-L2398 — virtual uint64_t    timestamp() const throw() { return m_timestamp; }
+- timestamp_matches · function · L2399-L2399 — bool                timestamp_matches(const ModelConfig &rhs) const throw() { return m_timestamp == rhs.m_timestamp; }
+- touch · function · L2401-L2401 — void                touch() { m_timestamp = ++ s_last_timestamp; }
+- serialize · function · L2405-L2405 — template<class Archive> void serialize(Archive& ar) { ar(m_timestamp); ar(m_data); }
+- get_flush_volumes_matrix · function · L2415-L2423 — template<class T>
+- set_flush_volumes_matrix · function · L2428-L2438 — template<class T>
+- has_zero_flush_volume_for_used_filaments · function · L2440-L2487 — template<class T>
+- get_extruder_index · function · L2489-L2489 — size_t get_extruder_index(const GCodeConfig& config, unsigned int filament_id);
+- load · function · L2498-L2512 — template<class Archive> void load(Archive& archive, Slic3r::DynamicPrintConfig &config)
+- save · function · L2514-L2525 — template<class Archive> void save(Archive& archive, const Slic3r::DynamicPrintConfig &config)

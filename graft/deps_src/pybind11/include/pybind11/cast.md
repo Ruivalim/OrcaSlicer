@@ -1,0 +1,104 @@
+# deps_src/pybind11/include/pybind11/cast.h
+
+- PYBIND11_WARNING_DISABLE_MSVC · function · L34-L38 — PYBIND11_WARNING_DISABLE_MSVC(4127)
+- cast · function · L80-L82 — static handle cast(SrcType *src, return_value_policy policy, handle parent)
+- load · function · L84-L102 — bool load(handle src, bool convert)
+- load · function · L175-L175 — bool load(handle src, bool convert) { return subcaster.load(src, convert); }
+- cast · function · L177-L185 — static handle
+- load · function · L238-L238 — bool load(handle src, bool convert)
+- load · function · L356-L356 — bool load(handle src, bool)
+- cast · function · L362-L364 — static handle cast(T, return_value_policy /* policy */, handle /* parent */)
+- load · function · L376-L400 — bool load(handle h, bool)
+- cast · function · L402-L407 — static handle cast(const void *ptr, return_value_policy /* policy */, handle /* parent */)
+- const_name · function · L412-L412 — static constexpr auto name = const_name(PYBIND11_CAPSULE_TYPE_TYPE_HINT);
+- if · function · L446-L448 — else if (hasattr(src, PYBIND11_BOOL_ATTR))
+- cast · function · L466-L468 — static handle cast(bool src, return_value_policy /* policy */, handle /* parent */)
+- is_numpy_bool · function · L473-L473 — static inline bool is_numpy_bool(handle object)
+- load · function · L503-L553 — bool load(handle src, bool)
+- cast · function · L555-L564 — static handle
+- error_already_set · function · L561-L561 — throw error_already_set();
+- decode_utfN · function · L569-L569 — static handle decode_utfN(const char *buffer, ssize_t nbytes)
+- load · function · L645-L645 — bool load(handle src, bool convert)
+- cast · function · L660-L665 — static handle cast(const CharT *src, return_value_policy policy, handle parent)
+- cast · function · L667-L676 — static handle cast(CharT src, return_value_policy policy, handle parent)
+- error_already_set · function · L671-L671 — throw error_already_set();
+- load · function · L751-L751 — bool load(handle src, bool convert)
+- cast · function · L769-L779 — static handle cast(T *src, return_value_policy policy, handle parent)
+- cast · function · L774-L774 — auto h = cast(std::move(*src), policy, parent);
+- move · function · L774-L774 — auto h = cast(std::move(*src), policy, parent);
+- entries · function · L829-L830 — for (const auto &entry : entries)
+- handle · function · L829-L831 — for (const auto &entry : entries)
+- result · function · L834-L834 — tuple result(size);
+- PyTuple_SET_ITEM · function · L836-L837 — for (auto &entry : entries)
+- ptr · function · L837-L837 — PyTuple_SET_ITEM(result.ptr(), counter++, entry.release().ptr());
+- release · function · L837-L837 — PyTuple_SET_ITEM(result.ptr(), counter++, entry.release().ptr());
+- load · function · L882-L884 — bool load(handle src, bool convert)
+- try_direct_conversions · function · L945-L945 — static bool try_direct_conversions(handle) { return false; }
+- load · function · L969-L976 — bool load(handle src, bool convert)
+- shared_ptr_with_responsible_parent · function · L1024-L1030 — static std::shared_ptr<type> shared_ptr_with_responsible_parent(handle responsible_parent)
+- check_holder_compat · function · L1034-L1041 — void check_holder_compat()
+- load_value · function · L1043-L1063 — void load_value(value_and_holder &&v_h)
+- potentially_slicing_weak_ptr · function · L1100-L1144 — PYBIND11_NAMESPACE_END(detail)
+- cast · function · L1157-L1160 — static handle cast(holder_type &&src, return_value_policy, handle)
+- cast · function · L1183-L1201 — static handle
+- cast · function · L1203-L1215 — static handle
+- load · function · L1217-L1224 — bool load(handle src, bool convert)
+- load_value · function · L1226-L1237 — void load_value(value_and_holder &&v_h)
+- try_direct_conversions · function · L1294-L1294 — static bool try_direct_conversions(handle) { return false; }
+- const_name · function · L1395-L1395 — static constexpr auto name = const_name(PYBIND11_BYTES_NAME);
+- const_name · function · L1399-L1399 — static constexpr auto name = const_name(PYBIND11_BUFFER_TYPE_HINT);
+- const_name · function · L1451-L1451 — static constexpr auto name = const_name(PYBIND11_CAPSULE_TYPE_TYPE_HINT);
+- cast · function · L1527-L1529 — static handle cast(const handle &src, return_value_policy /* policy */, handle /* parent */)
+- policy · function · L1588-L1588 — static return_value_policy policy(return_value_policy p) { return p; }
+- policy · function · L1595-L1599 — static return_value_policy policy(return_value_policy p)
+- cast · function · L1712-L1712 — inline void handle::cast() const
+- cast · function · L1775-L1775 — inline void object::cast() const &
+- cast · function · L1779-L1781 — inline void object::cast() &&
+- generate_type_signature · function · L1783-L1787 — PYBIND11_NAMESPACE_BEGIN(detail)
+- override_unused · class · L1823-L1823 — struct override_unused {};
+- cast_error_unable_to_convert_call_arg · function · L1879-L1883 — inline cast_error cast_error_unable_to_convert_call_arg(const std::string &name,
+- cast_error_unable_to_convert_call_arg · function · L1899-L1899 — throw cast_error_unable_to_convert_call_arg(std::to_string(i));
+- to_string · function · L1899-L1899 — throw cast_error_unable_to_convert_call_arg(std::to_string(i));
+- cast_error_unable_to_convert_call_arg · function · L1902-L1902 — throw cast_error_unable_to_convert_call_arg(std::to_string(i), argtypes[i]);
+- to_string · function · L1902-L1902 — throw cast_error_unable_to_convert_call_arg(std::to_string(i), argtypes[i]);
+- result · function · L1906-L1906 — tuple result(size);
+- PyTuple_SET_ITEM · function · L1908-L1909 — for (auto &arg_value : args)
+- ptr · function · L1909-L1909 — PyTuple_SET_ITEM(result.ptr(), counter++, arg_value.release().ptr());
+- release · function · L1909-L1909 — PyTuple_SET_ITEM(result.ptr(), counter++, arg_value.release().ptr());
+- arg · class · L1916-L1931 — struct arg
+- none · function · L1930-L1930 — arg &none(bool flag = true)
+- function_call · class · L2041-L2062 — struct function_call
+- concat · function · L2097-L2098 — static constexpr auto arg_names
+- load_args · function · L2100-L2100 — bool load_args(function_call &call) { return load_impl_sequence(call, indices{}); }
+- load_impl_sequence · function · L2117-L2117 — static bool load_impl_sequence(function_call &, index_sequence<>) { return true; }
+- args · function · L2152-L2152 — const tuple &args() const & { return m_args; }
+- kwargs · function · L2153-L2153 — dict kwargs() const { return {}; }
+- args · function · L2155-L2155 — tuple args() && { return std::move(m_args); }
+- call · function · L2158-L2164 — object call(PyObject *ptr) const
+- error_already_set · function · L2161-L2161 — throw error_already_set();
+- list · function · L2178-L2178 — auto args_list = list();
+- args · function · L2185-L2185 — const tuple &args() const & { return m_args; }
+- kwargs · function · L2186-L2186 — const dict &kwargs() const & { return m_kwargs; }
+- args · function · L2188-L2188 — tuple args() && { return std::move(m_args); }
+- kwargs · function · L2189-L2189 — dict kwargs() && { return std::move(m_kwargs); }
+- call · function · L2192-L2198 — object call(PyObject *ptr) const
+- error_already_set · function · L2195-L2195 — throw error_already_set();
+- cast_error_unable_to_convert_call_arg · function · L2207-L2207 — throw cast_error_unable_to_convert_call_arg(std::to_string(args_list.size()));
+- size · function · L2207-L2207 — throw cast_error_unable_to_convert_call_arg(std::to_string(args_list.size()));
+- to_string · function · L2207-L2207 — throw cast_error_unable_to_convert_call_arg(std::to_string(args_list.size()));
+- cast_error_unable_to_convert_call_arg · function · L2209-L2210 — throw cast_error_unable_to_convert_call_arg(std::to_string(args_list.size()),
+- size · function · L2209-L2209 — throw cast_error_unable_to_convert_call_arg(std::to_string(args_list.size()),
+- to_string · function · L2209-L2209 — throw cast_error_unable_to_convert_call_arg(std::to_string(args_list.size()),
+- process · function · L2216-L2219 — void process(list &args_list, detail::args_proxy ap)
+- append · function · L2217-L2218 — for (auto a : ap)
+- process · function · L2222-L2245 — void process(list & /*args_list*/, arg_v a)
+- cast_error_unable_to_convert_call_arg · function · L2239-L2239 — throw cast_error_unable_to_convert_call_arg(a.name);
+- cast_error_unable_to_convert_call_arg · function · L2241-L2241 — throw cast_error_unable_to_convert_call_arg(a.name, a.type);
+- process · function · L2247-L2260 — void process(list & /*args_list*/, detail::kwargs_proxy kp)
+- kp · function · L2251-L2252 — for (auto k : reinterpret_borrow<dict>(kp))
+- contains · function · L2252-L2252 — if (m_kwargs.contains(k.first))
+- nameless_argument_error · function · L2263-L2268 — [[noreturn]] static void nameless_argument_error()
+- nameless_argument_error · function · L2269-L2273 — [[noreturn]] static void nameless_argument_error(const std::string &type)
+- multiple_values_error · function · L2274-L2278 — [[noreturn]] static void multiple_values_error()
+- multiple_values_error · function · L2280-L2282 — [[noreturn]] static void multiple_values_error(const std::string &name)
+- args_are_all_positional · function · L2294-L2296 — constexpr bool args_are_all_positional()

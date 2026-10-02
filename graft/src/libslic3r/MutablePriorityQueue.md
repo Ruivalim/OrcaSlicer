@@ -1,0 +1,46 @@
+# src/libslic3r/MutablePriorityQueue.hpp
+
+- MutablePriorityQueue · class · L7-L49 — template<typename T, typename IndexSetter, typename LessPredicate, const bool ResetIndexWhenRemoved = false>
+- MutablePriorityQueue · function · L14-L17 — MutablePriorityQueue(IndexSetter &&index_setter, LessPredicate &&less_predicate) :
+- clear · function · L20-L20 — void		clear();
+- reserve · function · L21-L21 — void		reserve(size_t cnt) 				{ m_heap.reserve(cnt); }
+- push · function · L22-L22 — void		push(const T &item);
+- push · function · L23-L23 — void		push(T &&item);
+- pop · function · L24-L24 — void		pop();
+- top · function · L25-L25 — T&			top()								{ return m_heap.front(); }
+- remove · function · L26-L26 — void		remove(size_t idx);
+- update · function · L27-L27 — void		update(size_t idx) 					{ T item = m_heap[idx]; remove(idx); push(item); }
+- size · function · L29-L29 — size_t		size() const						{ return m_heap.size(); }
+- empty · function · L30-L30 — bool		empty() const						{ return m_heap.empty(); }
+- begin · function · L36-L36 — iterator 		begin() 		{ return m_heap.begin(); }
+- end · function · L37-L37 — iterator 		end() 			{ return m_heap.end(); }
+- cbegin · function · L38-L38 — const_iterator 	cbegin() const	{ return m_heap.cbegin(); }
+- cend · function · L39-L39 — const_iterator 	cend() const	{ return m_heap.cend(); }
+- update_heap_up · function · L42-L42 — void		update_heap_up(size_t top, size_t bottom);
+- update_heap_down · function · L43-L43 — void		update_heap_down(size_t top, size_t bottom);
+- make_mutable_priority_queue · function · L51-L56 — template<typename T, const bool ResetIndexWhenRemoved, typename IndexSetter, typename LessPredicate>
+- SkipHeapAddressing · class · L202-L251 — template <std::size_t blocking>
+- child_of · function · L210-L218 — static inline std::size_t child_of(std::size_t node_no) noexcept
+- parent_of · function · L220-L235 — static inline std::size_t parent_of(std::size_t node_no) noexcept
+- is_block_leaf · function · L238-L238 — static inline bool 			is_block_leaf(std::size_t node_no) noexcept { return (node_no & (block_size >> 1)) != 0U; }
+- is_padding · function · L240-L240 — static inline bool 			is_padding   (std::size_t node_no) noexcept { return block_offset(node_no) == 0U; }
+- is_block_root · function · L244-L244 — static inline bool 			is_block_root(std::size_t node_no) noexcept { return block_offset(node_no) == 1U; }
+- block_offset · function · L246-L246 — static inline std::size_t 	block_offset (std::size_t node_no) noexcept { return node_no & block_mask; }
+- block_base · function · L248-L248 — static inline std::size_t 	block_base   (std::size_t node_no) noexcept { return node_no & ~block_mask; }
+- child_no · function · L250-L250 — static inline std::size_t 	child_no     (std::size_t node_no) noexcept { assert(is_block_leaf(node_no)); return node_no & (block_mask >> 1); }
+- MutableSkipHeapPriorityQueue · class · L255-L299 — template<typename T, typename IndexSetter, typename LessPredicate, std::size_t blocking = 32, const bool ResetIndexWhenRemoved = false>
+- MutableSkipHeapPriorityQueue · function · L263-L266 — MutableSkipHeapPriorityQueue(IndexSetter &&index_setter, LessPredicate &&less_predicate) :
+- clear · function · L269-L269 — void		clear();
+- reserve · function · L271-L271 — void		reserve(size_t cnt) 				{ m_heap.reserve(cnt + ((cnt + (address::block_size - 1)) / (address::block_size - 1))); }
+- push · function · L272-L272 — void		push(const T &item);
+- push · function · L273-L273 — void		push(T &&item);
+- pop · function · L274-L274 — void		pop();
+- top · function · L275-L275 — T&			top()								{ return m_heap[1]; }
+- remove · function · L276-L276 — void		remove(size_t idx);
+- update · function · L277-L277 — void		update(size_t idx) 					{ assert(! address::is_padding(idx)); T item = m_heap[idx]; remove(idx); push(item); }
+- size · function · L279-L279 — size_t 		size() const noexcept 				{ return m_heap.size() - (m_heap.size() + address::block_size - 1) / address::block_size; }
+- empty · function · L280-L280 — bool		empty() const						{ return m_heap.empty(); }
+- update_heap_up · function · L285-L285 — void		update_heap_up(size_t top, size_t bottom);
+- update_heap_down · function · L286-L286 — void		update_heap_down(size_t top, size_t bottom);
+- pop_back · function · L287-L293 — void   		pop_back() noexcept
+- make_miniheap_mutable_priority_queue · function · L301-L307 — template<typename T, std::size_t BlockSize, const bool ResetIndexWhenRemoved, typename IndexSetter, typename LessPredicate>

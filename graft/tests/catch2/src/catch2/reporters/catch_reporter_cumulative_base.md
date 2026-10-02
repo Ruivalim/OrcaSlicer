@@ -1,0 +1,35 @@
+# tests/catch2/src/catch2/reporters/catch_reporter_cumulative_base.hpp
+
+- AssertionOrBenchmarkResult · class · L24-L39 — class AssertionOrBenchmarkResult
+- AssertionOrBenchmarkResult · function · L31-L31 — AssertionOrBenchmarkResult(AssertionStats const& assertion);
+- AssertionOrBenchmarkResult · function · L32-L32 — AssertionOrBenchmarkResult(BenchmarkStats<> const& benchmark);
+- isAssertion · function · L34-L34 — bool isAssertion() const;
+- isBenchmark · function · L35-L35 — bool isBenchmark() const;
+- asAssertion · function · L37-L37 — AssertionStats const& asAssertion() const;
+- asBenchmark · function · L38-L38 — BenchmarkStats<> const& asBenchmark() const;
+- CumulativeReporterBase · class · L62-L147 — class CumulativeReporterBase : public ReporterBase
+- Node · class · L64-L71 — template<typename T, typename ChildNodeT>
+- Node · function · L66-L66 — explicit Node( T const& _value ) : value( _value ) {}
+- SectionNode · class · L72-L86 — struct SectionNode
+- SectionNode · function · L73-L73 — explicit SectionNode(SectionStats const& _stats) : stats(_stats) {}
+- hasAnyAssertions · function · L79-L79 — bool hasAnyAssertions() const;
+- CumulativeReporterBase · function · L94-L96 — CumulativeReporterBase(ReporterConfig&& _config):
+- benchmarkPreparing · function · L99-L99 — void benchmarkPreparing( StringRef ) override {}
+- benchmarkStarting · function · L100-L100 — void benchmarkStarting( BenchmarkInfo const& ) override {}
+- benchmarkEnded · function · L101-L101 — void benchmarkEnded( BenchmarkStats<> const& benchmarkStats ) override;
+- benchmarkFailed · function · L102-L102 — void benchmarkFailed( StringRef ) override {}
+- noMatchingTestCases · function · L104-L104 — void noMatchingTestCases( StringRef ) override {}
+- reportInvalidTestSpec · function · L105-L105 — void reportInvalidTestSpec( StringRef ) override {}
+- fatalErrorEncountered · function · L106-L106 — void fatalErrorEncountered( StringRef /*error*/ ) override {}
+- testRunStarting · function · L108-L108 — void testRunStarting( TestRunInfo const& ) override {}
+- testCaseStarting · function · L110-L110 — void testCaseStarting( TestCaseInfo const& ) override {}
+- testCasePartialStarting · function · L111-L111 — void testCasePartialStarting( TestCaseInfo const&, uint64_t ) override {}
+- sectionStarting · function · L112-L112 — void sectionStarting( SectionInfo const& sectionInfo ) override;
+- assertionStarting · function · L114-L114 — void assertionStarting( AssertionInfo const& ) override {}
+- assertionEnded · function · L116-L116 — void assertionEnded( AssertionStats const& assertionStats ) override;
+- sectionEnded · function · L117-L117 — void sectionEnded( SectionStats const& sectionStats ) override;
+- testCasePartialEnded · function · L118-L118 — void testCasePartialEnded( TestCaseStats const&, uint64_t ) override {}
+- testCaseEnded · function · L119-L119 — void testCaseEnded( TestCaseStats const& testCaseStats ) override;
+- testRunEnded · function · L120-L120 — void testRunEnded( TestRunStats const& testRunStats ) override;
+- testRunEndedCumulative · function · L122-L122 — virtual void testRunEndedCumulative() = 0;
+- skipTest · function · L124-L124 — void skipTest(TestCaseInfo const&) override {}

@@ -1,0 +1,70 @@
+# deps_src/mcut/include/mcut/internal/math.h
+
+- sign_t · type · L36-L44 — enum sign_t
+- m_x · function · L56-L74 — vec2_(const T& value)
+- m_y · function · L58-L58 — , m_y(value)
+- vec2_ · function · L62-L63 — vec2_(const T& x, const T& y)
+- m_y · function · L64-L64 — , m_y(y)
+- vec2_ · function · L68-L68 — virtual ~vec2_()
+- make · function · L72-L72 — static vec2_ make(const T x, const T y)
+- cardinality · function · L77-L80 — static int cardinality()
+- x · function · L130-L130 — const T& x() const
+- y · function · L135-L135 — const T& y() const
+- vec2 · type · L154-L154 — typedef vec2_<> vec2;
+- MCUT_ASSERT · function · L165-L187 — vec3_(const T& value)
+- m_z · function · L167-L167 — , m_z(value)
+- vec3_ · function · L171-L172 — vec3_(const T& x, const T& y, const T& z)
+- m_z · function · L173-L173 — , m_z(z)
+- vec3_ · function · L176-L176 — ~vec3_()
+- cardinality · function · L180-L180 — static int cardinality()
+- z · function · L229-L229 — const T& z() const
+- vec3 · type · L238-L238 — typedef vec3_<> vec3;
+- m_rows · function · L249-L258 — matrix_t(unsigned int rows, unsigned int cols)
+- m_entries · function · L252-L252 — , m_entries(std::vector<T>((size_t)rows * cols, T(0.0))) // zeroes
+- T · function · L252-L256 — , m_entries(std::vector<T>((size_t)rows * cols, T(0.0))) // zeroes
+- operator · function · L261-L261 — T operator()(unsigned int row, unsigned int col) const
+- result · function · L328-L328 — vec2 result(double(0.0));
+- c0 · function · L338-L338 — const Vec c0((*this)(0, 0), (*this)(1, 0), (*this)(2, 0));
+- c1 · function · L339-L339 — const Vec c1((*this)(0, 1), (*this)(1, 1), (*this)(2, 1));
+- c2 · function · L345-L345 — const Vec c2((*this)(0, 2), (*this)(1, 2), (*this)(2, 2));
+- rows · function · L352-L352 — inline int rows() const
+- cols · function · L357-L357 — inline int cols() const
+- square_root · function · L368-L368 — extern double square_root(const double& number);
+- absolute_value · function · L369-L369 — extern double absolute_value(const double& number);
+- sign · function · L370-L370 — extern sign_t sign(const double& number);
+- cross_product · function · L422-L422 — extern vec3 cross_product(const vec3& a, const vec3& b);
+- out · function · L427-L427 — double out(0.0);
+- orient2d · function · L485-L485 — double orient2d(const vec2& pa, const vec2& pb, const vec2& pc);
+- orient3d · function · L486-L487 — double orient3d(const vec3& pa, const vec3& pb, const vec3& pc,
+- compute_polygon_plane_coefficients · function · L491-L492 — int compute_polygon_plane_coefficients(vec3& normal, double& d_coeff,
+- compute_line_plane_intersection · function · L510-L513 — char compute_line_plane_intersection(vec3& p, // intersection point
+- compute_segment_plane_intersection · function · L523-L524 — char compute_segment_plane_intersection(vec3& p, const vec3& normal, const double& d_coeff,
+- compute_segment_plane_intersection_type · function · L535-L537 — char compute_segment_plane_intersection_type(const vec3& q, const vec3& r,
+- compute_point_in_polygon_test · function · L546-L546 — char compute_point_in_polygon_test(const vec2& q, const std::vector<vec2>& polygon_vertices);
+- compute_point_in_polygon_test · function · L555-L556 — char compute_point_in_polygon_test(const vec3& p, const std::vector<vec3>& polygon_vertices,
+- project_to_2d · function · L559-L560 — void project_to_2d(std::vector<vec2>& out, const std::vector<vec3>& polygon_vertices,
+- project_to_2d · function · L562-L563 — void project_to_2d(std::vector<vec2>& out, const std::vector<vec3>& polygon_vertices,
+- coplaner · function · L565-L566 — bool coplaner(const vec3& pa, const vec3& pb, const vec3& pc,
+- collinear · function · L568-L568 — bool collinear(const vec2& a, const vec2& b, const vec2& c, double& predResult);
+- collinear · function · L570-L570 — bool collinear(const vec2& a, const vec2& b, const vec2& c);
+- compute_segment_intersection · function · L589-L590 — char compute_segment_intersection(const vec2& a, const vec2& b, const vec2& c, const vec2& d,
+- minimum · function · L610-L610 — inline const vector_type& minimum() const
+- maximum · function · L615-L615 — inline const vector_type& maximum() const
+- expand · function · L620-L624 — inline void expand(const vector_type& point)
+- expand · function · L626-L630 — inline void expand(const bounding_box_t<vector_type>& bbox)
+- enlarge · function · L632-L636 — inline void enlarge(const typename vector_type::element_type& eps_)
+- SurfaceArea · function · L638-L653 — float SurfaceArea() const
+- element_type · function · L641-L641 — return typename vector_type::element_type(2.0) * (d.x() * d.y() + d.x() * d.z() + d.y() * d.z());
+- x · function · L641-L641 — return typename vector_type::element_type(2.0) * (d.x() * d.y() + d.x() * d.z() + d.y() * d.z());
+- y · function · L641-L641 — return typename vector_type::element_type(2.0) * (d.x() * d.y() + d.x() * d.z() + d.y() * d.z());
+- z · function · L641-L641 — return typename vector_type::element_type(2.0) * (d.x() * d.y() + d.x() * d.z() + d.y() * d.z());
+- z · function · L641-L641 — return typename vector_type::element_type(2.0) * (d.x() * d.y() + d.x() * d.z() + d.y() * d.z());
+- MaximumExtent · function · L644-L644 — int MaximumExtent() const
+- intersect_bounding_boxes · function · L658-L667 — inline bool intersect_bounding_boxes(const bounding_box_t<vec3_<T>>& a, const bounding_box_t<vec3_<T>>& b)
+- point_in_bounding_box · function · L669-L669 — bool point_in_bounding_box(const vec2& point, const bounding_box_t<vec2>& bbox);
+- point_in_bounding_box · function · L671-L671 — bool point_in_bounding_box(const vec3& point, const bounding_box_t<vec3>& bbox);
+- orient2d · function · L688-L688 — double orient2d(const double* pa, const double* pb, const double* pc);
+- orient3d · function · L689-L689 — double orient3d(const double* pa, const double* pb, const double* pc, const double* pd);
+- orient3dfast · function · L690-L690 — double orient3dfast(const double* pa, const double* pb, const double* pc, const double* pd);
+- incircle · function · L691-L691 — double incircle(const double* pa, const double* pb, const double* pc, const double* pd);
+- insphere · function · L692-L692 — double insphere(const double* pa, const double* pb, const double* pc, const double* pd, const double* pe);

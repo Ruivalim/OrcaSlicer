@@ -1,0 +1,37 @@
+# src/slic3r/GUI/ImageGrid.h
+
+- SetFileSystem · function · L37-L37 — void SetFileSystem(boost::shared_ptr<PrinterFileSystem> file_sys);
+- SetStatus · function · L39-L39 — void SetStatus(ScalableBitmap const & icon, wxString const &msg);
+- SetFileType · function · L43-L43 — void SetFileType(int type, std::string const &storage);
+- SetGroupMode · function · L45-L45 — void SetGroupMode(int mode);
+- SetSelecting · function · L47-L47 — void SetSelecting(bool selecting);
+- IsSelecting · function · L49-L49 — bool IsSelecting() { return m_selecting; }
+- DoActionOnSelection · function · L51-L51 — void DoActionOnSelection(int action);
+- ShowDownload · function · L53-L53 — void ShowDownload(bool show);
+- Rescale · function · L56-L56 — void Rescale();
+- Select · function · L59-L59 — void Select(size_t index);
+- DoAction · function · L61-L61 — void DoAction(size_t index, int action);
+- UpdateFileSystem · function · L63-L63 — void UpdateFileSystem();
+- UpdateLayout · function · L65-L65 — void UpdateLayout();
+- UpdateFocusRange · function · L67-L67 — void UpdateFocusRange();
+- changedEvent · function · L73-L73 — void changedEvent(wxCommandEvent& evt);
+- paintEvent · function · L75-L75 — void paintEvent(wxPaintEvent& evt);
+- firstItem · function · L77-L77 — size_t firstItem(wxSize const &size, wxPoint &off);
+- createAlphaBitmap · function · L79-L79 — wxBitmap createAlphaBitmap(wxSize size, wxColour color, int alpha1, int alpha2);
+- createShadowBorder · function · L81-L81 — wxBitmap createShadowBorder(wxSize size, wxColour color, int radius, int shadow);
+- createCircleBitmap · function · L83-L83 — wxBitmap createCircleBitmap(wxSize size, int borderWidth, int percent, wxColour fillColor, wxColour borderColor = wxTransparentColour);
+- render · function · L85-L85 — void render(wxDC &dc);
+- renderContent1 · function · L87-L87 — void renderContent1(wxDC &dc, wxPoint const &pt, int index, bool hit);
+- renderContent2 · function · L89-L89 — void renderContent2(wxDC &dc, wxPoint const &pt, int index, bool hit);
+- renderButtons · function · L91-L91 — void renderButtons(wxDC &dc, wxArrayString const &texts, wxRect const &rect, size_t hit, int states);
+- renderText · function · L93-L93 — void renderText(wxDC &dc, wxString const &text, wxRect const &rect, int states);
+- renderText2 · function · L95-L95 — void renderText2(wxDC &dc, wxString text, wxRect const &rect);
+- renderIconText · function · L97-L97 — void renderIconText(wxDC &dc, ScalableBitmap const & icon, wxString text, wxRect const &rect);
+- mouseMoved · function · L100-L100 — void mouseMoved(wxMouseEvent& event);
+- mouseWheelMoved · function · L101-L101 — void mouseWheelMoved(wxMouseEvent& event);
+- mouseEnterWindow · function · L102-L102 — void mouseEnterWindow(wxMouseEvent& event);
+- mouseLeaveWindow · function · L103-L103 — void mouseLeaveWindow(wxMouseEvent& event);
+- mouseDown · function · L104-L104 — void mouseDown(wxMouseEvent& event);
+- mouseReleased · function · L105-L105 — void mouseReleased(wxMouseEvent& event);
+- resize · function · L106-L106 — void resize(wxSizeEvent& event);
+- HitType · type · L135-L141 — enum HitType

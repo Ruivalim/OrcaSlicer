@@ -1,0 +1,38 @@
+# deps_src/qhull/src/libqhull/global.c
+
+- qh_appendprint · function · L59-L70 — void qh_appendprint(qh_PRINT format)
+- qh_checkflags · function · L86-L159 — void qh_checkflags(char *command, char *hiddenflags)
+- qh_clear_outputflags · function · L167-L226 — void qh_clear_outputflags(void)
+- qh_clock · function · L239-L265 — unsigned long qh_clock(void)
+- qh_freebuffers · function · L276-L316 — void qh_freebuffers(void)
+- sizeof · function · L280-L280 — qh_memfree(qh NEARzero, qh hull_dim * sizeof(realT));
+- sizeof · function · L281-L281 — qh_memfree(qh lower_threshold, (qh input_dim+1) * sizeof(realT));
+- sizeof · function · L282-L282 — qh_memfree(qh upper_threshold, (qh input_dim+1) * sizeof(realT));
+- sizeof · function · L283-L283 — qh_memfree(qh lower_bound, (qh input_dim+1) * sizeof(realT));
+- sizeof · function · L284-L284 — qh_memfree(qh upper_bound, (qh input_dim+1) * sizeof(realT));
+- sizeof · function · L285-L285 — qh_memfree(qh gm_matrix, (qh hull_dim+1) * qh hull_dim * sizeof(coordT));
+- sizeof · function · L286-L286 — qh_memfree(qh gm_row, (qh hull_dim+1) * sizeof(coordT *));
+- qh_freebuild · function · L340-L416 — void qh_freebuild(boolT allmem)
+- qh_memfree · function · L411-L412 — FOREACHmerge_(qh facet_mergeset)  /* usually empty */
+- sizeof · function · L412-L412 — qh_memfree(merge, (int)sizeof(mergeT));
+- qh_freeqhull · function · L425-L431 — void qh_freeqhull(boolT allmem)
+- qh_freeqhull2 · function · L453-L467 — void qh_freeqhull2(boolT allmem)
+- qh_init_A · function · L487-L491 — void qh_init_A(FILE *infile, FILE *outfile, FILE *errfile, int argc, char *argv[])
+- qh_init_B · function · L534-L558 — void qh_init_B(coordT *points, int numpoints, int dim, boolT ismalloc)
+- qh_init_qhull_command · function · L575-L583 — void qh_init_qhull_command(int argc, char *argv[])
+- qh_initflags · function · L615-L2216 — void qh_initflags(char *command)
+- sizeof · function · L628-L628 — strncat(qh qhull_command, command, sizeof(qh qhull_command)-strlen(qh qhull_command)-1);
+- isspace · function · L630-L630 — while (*s && !isspace(*s))  /* skip program name */
+- isspace · function · L634-L634 — while (*s && isspace(*s))
+- qh_initqhull_buffers · function · L1442-L1464 — void qh_initqhull_buffers(void)
+- qh_initqhull_globals · function · L1496-L1664 — void qh_initqhull_globals(coordT *points, int numpoints, int dim, boolT ismalloc)
+- if · function · L1569-L1570 — else if (qh VORONOI)
+- qh_initqhull_mem · function · L1684-L1704 — void qh_initqhull_mem(void)
+- qh_initqhull_outputflags · function · L1722-L1819 — void qh_initqhull_outputflags(void)
+- qh_initqhull_start · function · L1827-L1841 — void qh_initqhull_start(FILE *infile, FILE *outfile, FILE *errfile)
+- qh_initqhull_start2 · function · L1856-L1909 — void qh_initqhull_start2(FILE *infile, FILE *outfile, FILE *errfile)
+- qh_initthresholds · function · L1931-L2028 — void qh_initthresholds(char *command)
+- qh_lib_check · function · L2039-L2102 — void qh_lib_check(int qhullLibraryType, int qhTsize, int vertexTsize, int ridgeTsize, int facetTsize, int setTsize, int qhmemTsize)
+- qh_option · function · L2115-L2133 — void qh_option(const char *option, int *i, realT *r)
+- qh_restore_qhull · function · L2154-L2177 — void qh_restore_qhull(qhT **oldqh)
+- qh_save_qhull · function · L2199-L2199 — qhT *qh_save_qhull(void)

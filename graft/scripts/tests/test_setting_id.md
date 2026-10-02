@@ -1,0 +1,88 @@
+# scripts/tests/test_setting_id.py
+
+- preset · function · L30-L42 — def preset(name, instantiation=True, setting_id=None, settings_id=None, filament_id=None, type_name="filament", **extra)
+- SettingTree · class · L45-L148 — class SettingTree
+- __init__ · method · L59-L62 — def __init__(self)
+- cleanup · method · L64-L65 — def cleanup(self)
+- index_path · method · L67-L68 — def index_path(self, vendor)
+- add_vendor · method · L70-L76 — def add_vendor(self, vendor)
+- _write_index · method · L78-L81 — def _write_index(self, vendor, index)
+- register · method · L83-L89 — def register(self, vendor, subdir, name)
+- path · method · L91-L92 — def path(self, vendor, subdir, name)
+- write · method · L94-L105 — def write(self, vendor, subdir, data, name=None)
+- write_raw · method · L107-L114 — def write_raw(self, vendor, subdir, name, raw)
+- read · method · L116-L118 — def read(self, vendor, subdir, name)
+- raw · method · L120-L122 — def raw(self, vendor, subdir, name)
+- bytes_map · method · L124-L133 — def bytes_map(self)
+- run · method · L137-L141 — def run(self, vendors=None, dry_run=False)
+- run_filament_ids · method · L143-L148 — def run_filament_ids(self, vendors=None, dry_run=False)
+- SettingTreeCase · class · L151-L154 — class SettingTreeCase(unittest.TestCase)
+- setUp · method · L152-L154 — def setUp(self)
+- TestSettingIdMint · class · L161-L227 — class TestSettingIdMint(unittest.TestCase): # Copied verbatim from tests/libslic3r/test_preset_setting_id.cpp: the C++ # generate_preset_setting_id() recomputes these ids on the fly, so the two # implementations must stay byte-identical.
+- test_golden_vectors · method · L174-L178 — def test_golden_vectors(self)
+- test_namespace_and_length_are_frozen · method · L180-L188 — def test_namespace_and_length_are_frozen(self): # Baked into the C++ side and into every shipped profile; never change it.
+- test_format_is_sixteen_alphabet_chars · method · L190-L197 — def test_format_is_sixteen_alphabet_chars(self)
+- test_is_the_low_base62_digits_of_the_uuid5 · method · L199-L209 — def test_is_the_low_base62_digits_of_the_uuid5(self): # Independent re-implementation of the whole rule, key layout included.
+- test_deterministic · method · L211-L213 — def test_deterministic(self)
+- test_every_identity_component_changes_the_id · method · L215-L219 — def test_every_identity_component_changes_the_id(self)
+- test_key_is_a_flat_slash_join · method · L221-L227 — def test_key_is_a_flat_slash_join(self): # The mint key is "<vendor>/<type>/<name>" with no escaping, so a "/" in # a component shifts the split — harmless in practice (vendor is a # directory name and type is one of PROFILE_SUBDIRS), but it is what the # C++ side does too and the two must agree byte for byte.
+- TestBase62Tail · class · L230-L240 — class TestBase62Tail(unittest.TestCase)
+- test_hand_computed_digits · method · L231-L236 — def test_hand_computed_digits(self)
+- test_keeps_only_the_low_digits · method · L238-L240 — def test_keeps_only_the_low_digits(self)
+- TestAssignment · class · L247-L458 — class TestAssignment(SettingTreeCase)
+- test_instantiation_is_read_exactly_as_the_validator_reads_it · method · L248-L264 — def test_instantiation_is_read_exactly_as_the_validator_reads_it(self): # check_setting_id_uniqueness tests `instantiation == "true"` strictly. # Anything looser here would hand an id to a preset the validator calls # a base profile, and the two would fight over it on every run.
+- test_a_bundle_without_an_index_is_still_assigned · method · L266-L281 — def test_a_bundle_without_an_index_is_still_assigned(self): # setting_id is a per-file property, and the validator walks every # directory. A bundle whose index has not landed yet must be fixable, # or the validator flags files this tool refuses to touch.
+- test_assigns_across_every_profile_subdir · method · L283-L304 — def test_assigns_across_every_profile_subdir(self)
+- test_type_comes_from_the_subdirectory_not_the_type_field · method · L306-L313 — def test_type_comes_from_the_subdirectory_not_the_type_field(self): # The subdir name is the type name (Preset::get_type_string()); a stale # "type" field inside the file does not enter the id.
+- test_idempotent · method · L315-L328 — def test_idempotent(self)
+- test_stale_value_is_replaced_in_place · method · L330-L346 — def test_stale_value_is_replaced_in_place(self)
+- test_missing_value_is_inserted_before_filament_id · method · L348-L356 — def test_missing_value_is_inserted_before_filament_id(self)
+- test_base_profiles_are_stripped · method · L358-L367 — def test_base_profiles_are_stripped(self)
+- test_base_profile_without_instantiation_key_is_stripped · method · L369-L376 — def test_base_profile_without_instantiation_key_is_stripped(self): # No "instantiation" key at all == not instantiated (str(None) != "true").
+- test_misspelled_settings_id_is_dropped · method · L378-L386 — def test_misspelled_settings_id_is_dropped(self)
+- test_typo_drop_and_assignment_are_one_file_change · method · L388-L399 — def test_typo_drop_and_assignment_are_one_file_change(self)
+- test_reserved_vendor_keeps_instantiated_ids_and_loses_base_ones · method · L401-L420 — def test_reserved_vendor_keeps_instantiated_ids_and_loses_base_ones(self): # BBL owns the authoritative "G*" cloud id space: its instantiated # presets are never rewritten, its base declarations still are stripped.
+- test_reserved_vendors_misspelled_key_is_corrected_not_dropped · method · L422-L444 — def test_reserved_vendors_misspelled_key_is_corrected_not_dropped(self): # A reserved vendor's id is authoritative, so there is no formula to # fall back on. Dropping the typo and stopping there would leave the # preset with no setting_id at all and no way for the tool to give it # one - a validator error nothing can clear. Fix the key, keep the value.
+- test_a_managed_vendors_misspelled_key_is_still_replaced_by_the_mint · method · L446-L454 — def test_a_managed_vendors_misspelled_key_is_still_replaced_by_the_mint(self)
+- test_reserved_vendors_constant · method · L456-L458 — def test_reserved_vendors_constant(self)
+- TestVendorNarrowing · class · L465-L500 — class TestVendorNarrowing(SettingTreeCase)
+- setUp · method · L466-L469 — def setUp(self)
+- test_restricts_writes_to_the_named_vendor · method · L471-L485 — def test_restricts_writes_to_the_named_vendor(self)
+- test_unknown_vendor_reports_and_writes_nothing · method · L487-L494 — def test_unknown_vendor_reports_and_writes_nothing(self)
+- test_unknown_vendor_blocks_the_known_ones_too · method · L496-L500 — def test_unknown_vendor_blocks_the_known_ones_too(self)
+- TestDryRun · class · L507-L526 — class TestDryRun(SettingTreeCase)
+- test_writes_nothing_and_previews_the_real_run · method · L508-L526 — def test_writes_nothing_and_previews_the_real_run(self)
+- TestBytePreservation · class · L533-L612 — class TestBytePreservation(SettingTreeCase)
+- test_crlf_and_tab_indentation_survive · method · L547-L560 — def test_crlf_and_tab_indentation_survive(self)
+- test_bom_survives · method · L562-L579 — def test_bom_survives(self)
+- test_non_ascii_name_round_trips · method · L581-L595 — def test_non_ascii_name_round_trips(self)
+- test_surrounding_formatting_is_untouched_on_a_strip · method · L597-L612 — def test_surrounding_formatting_is_untouched_on_a_strip(self)
+- TestInsertAnchor · class · L619-L653 — class TestInsertAnchor(unittest.TestCase)
+- test_inserts_before_filament_id · method · L625-L631 — def test_inserts_before_filament_id(self)
+- test_falls_back_to_instantiation · method · L633-L637 — def test_falls_back_to_instantiation(self)
+- test_falls_back_to_name · method · L639-L647 — def test_falls_back_to_name(self): # Last-resort anchor: every preset has a name, so the insert does not # depend on filament_id having been written first — a dry run, which # writes none, must reach the same verdict as the real run.
+- test_no_anchor_returns_zero · method · L649-L653 — def test_no_anchor_returns_zero(self)
+- TestKeyLineHelpers · class · L656-L732 — class TestKeyLineHelpers(unittest.TestCase)
+- test_delete_trailing_comma_form · method · L657-L664 — def test_delete_trailing_comma_form(self)
+- test_delete_last_property_form_consumes_the_preceding_comma · method · L666-L672 — def test_delete_last_property_form_consumes_the_preceding_comma(self)
+- test_delete_requires_the_exact_old_value · method · L674-L681 — def test_delete_requires_the_exact_old_value(self)
+- test_delete_missing_key_returns_zero · method · L683-L685 — def test_delete_missing_key_returns_zero(self)
+- test_delete_does_not_confuse_the_two_spellings · method · L687-L693 — def test_delete_does_not_confuse_the_two_spellings(self)
+- test_replace_refuses_a_stale_old_value · method · L695-L703 — def test_replace_refuses_a_stale_old_value(self)
+- test_insert_key_line_prefers_before_over_after · method · L705-L717 — def test_insert_key_line_prefers_before_over_after(self)
+- test_insert_key_line_falls_back_to_after · method · L719-L725 — def test_insert_key_line_falls_back_to_after(self)
+- test_insert_key_line_without_any_anchor · method · L727-L732 — def test_insert_key_line_without_any_anchor(self)
+- TestErrorPaths · class · L739-L818 — class TestErrorPaths(SettingTreeCase)
+- test_unparsable_profile_is_reported_and_the_run_continues · method · L740-L751 — def test_unparsable_profile_is_reported_and_the_run_continues(self)
+- test_non_object_top_level_is_reported · method · L753-L762 — def test_non_object_top_level_is_reported(self)
+- test_nameless_instantiated_preset_is_reported · method · L764-L776 — def test_nameless_instantiated_preset_is_reported(self)
+- test_a_nameless_preset_still_gets_its_misspelled_key_dropped · method · L778-L791 — def test_a_nameless_preset_still_gets_its_misspelled_key_dropped(self): # The nameless-preset error must not abandon an edit already queued for # the same file: leaving "settings_id" behind would keep the validator # red with no way for this tool to clear it.
+- test_an_unanchorable_file_is_reported_not_raised · method · L793-L808 — def test_an_unanchorable_file_is_reported_not_raised(self): # One oddly formatted profile must not abort the pass over all the # others, and it must fail the same way in a dry run as in a real one.
+- test_nameless_base_preset_is_fine · method · L810-L818 — def test_nameless_base_preset_is_fine(self): # Only instantiated presets need an identity; a nameless base profile is # simply left alone.
+- TestRealTree · class · L826-L831 — class TestRealTree(unittest.TestCase)
+- test_shipped_tree_needs_no_setting_id_change · method · L827-L831 — def test_shipped_tree_needs_no_setting_id_change(self)
+- TestCli · class · L838-L895 — class TestCli(SettingTreeCase)
+- main · method · L839-L843 — def main(self, argv)
+- test_setting_id_only_run_touches_no_filament_id · method · L845-L872 — def test_setting_id_only_run_touches_no_filament_id(self): # "OFZZZZZZ" is not the mint of the preset's own triple, so the filament # half of --generate has real work waiting on this tree (proven at the # end): leaving the id alone is the narrowing's doing, not an idle tree.
+- test_dry_run_setting_id_writes_nothing · method · L874-L889 — def test_dry_run_setting_id_writes_nothing(self)
+- test_setting_id_without_a_command_is_a_usage_error · method · L891-L895 — def test_setting_id_without_a_command_is_a_usage_error(self)

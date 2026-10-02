@@ -1,0 +1,33 @@
+# src/slic3r/GUI/Gizmos/GLGizmoSimplify.hpp
+
+- ModelVolume · class · L13-L13 — class ModelVolume;
+- Model · class · L14-L14 — class Model;
+- NotificationManager · class · L17-L17 — class NotificationManager; // for simplify suggestion
+- GLGizmoSimplify · class · L19-L144 — class GLGizmoSimplify: public GLGizmoBase
+- GLGizmoSimplify · function · L22-L22 — GLGizmoSimplify(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- on_esc_key_down · function · L24-L24 — bool on_esc_key_down();
+- add_simplify_suggestion_notification · function · L25-L28 — static void add_simplify_suggestion_notification(
+- on_get_name · function · L31-L31 — virtual std::string on_get_name() const override;
+- on_render_input_window · function · L32-L32 — virtual void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_is_activable · function · L33-L33 — virtual bool on_is_activable() const override;
+- on_is_selectable · function · L34-L34 — virtual bool on_is_selectable() const override { return false; }
+- on_set_state · function · L35-L35 — virtual void on_set_state() override;
+- on_init · function · L38-L38 — virtual bool on_init() override { return true;};
+- on_render · function · L39-L39 — virtual void on_render() override;
+- on_get_requirements · function · L41-L41 — CommonGizmosDataID on_get_requirements() const override;
+- apply_simplify · function · L44-L44 — void apply_simplify();
+- close · function · L45-L45 — void close();
+- process · function · L47-L47 — void process();
+- stop_worker_thread_request · function · L48-L48 — void stop_worker_thread_request();
+- worker_finished · function · L49-L49 — void worker_finished();
+- create_gui_cfg · function · L51-L51 — void create_gui_cfg();
+- request_rerender · function · L52-L52 — void request_rerender(bool force = false);
+- init_model · function · L53-L53 — void init_model(const indexed_triangle_set& its);
+- set_center_position · function · L55-L55 — void set_center_position();
+- Configuration · class · L57-L72 — struct Configuration
+- fix_count_by_ratio · function · L64-L64 — void fix_count_by_ratio(size_t triangle_count);
+- State · class · L89-L101 — struct State
+- Status · type · L90-L94 — enum Status
+- GuiCfg · class · L111-L126 — struct GuiCfg
+- SimplifyCanceledException · class · L136-L143 — class SimplifyCanceledException: public std::exception
+- what · function · L139-L139 — const char *what() const throw()

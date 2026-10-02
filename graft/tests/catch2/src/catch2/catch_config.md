@@ -1,0 +1,44 @@
+# tests/catch2/src/catch2/catch_config.hpp
+
+- IStream · class · L26-L26 — class IStream;
+- ProcessedReporterSpec · class · L33-L44 — struct ProcessedReporterSpec
+- ConfigData · class · L46-L92 — struct ConfigData
+- Config · class · L95-L154 — class Config : public IConfig
+- Config · function · L98-L98 — Config() = default;
+- Config · function · L99-L99 — Config( ConfigData const& data );
+- listTests · function · L102-L102 — bool listTests() const;
+- listTags · function · L103-L103 — bool listTags() const;
+- listReporters · function · L104-L104 — bool listReporters() const;
+- listListeners · function · L105-L105 — bool listListeners() const;
+- getReporterSpecs · function · L107-L107 — std::vector<ReporterSpec> const& getReporterSpecs() const;
+- getProcessedReporterSpecs · function · L109-L109 — getProcessedReporterSpecs() const;
+- getTestsOrTags · function · L111-L111 — std::vector<std::string> const& getTestsOrTags() const override;
+- getSectionsToRun · function · L112-L112 — std::vector<std::string> const& getSectionsToRun() const override;
+- testSpec · function · L114-L114 — TestSpec const& testSpec() const override;
+- hasTestFilters · function · L115-L115 — bool hasTestFilters() const override;
+- showHelp · function · L117-L117 — bool showHelp() const;
+- getExitGuardFilePath · function · L119-L119 — std::string const& getExitGuardFilePath() const;
+- allowThrows · function · L122-L122 — bool allowThrows() const override;
+- name · function · L123-L123 — StringRef name() const override;
+- includeSuccessfulResults · function · L124-L124 — bool includeSuccessfulResults() const override;
+- warnAboutMissingAssertions · function · L125-L125 — bool warnAboutMissingAssertions() const override;
+- warnAboutUnmatchedTestSpecs · function · L126-L126 — bool warnAboutUnmatchedTestSpecs() const override;
+- zeroTestsCountAsSuccess · function · L127-L127 — bool zeroTestsCountAsSuccess() const override;
+- showDurations · function · L128-L128 — ShowDurations showDurations() const override;
+- minDuration · function · L129-L129 — double minDuration() const override;
+- runOrder · function · L130-L130 — TestRunOrder runOrder() const override;
+- rngSeed · function · L131-L131 — uint32_t rngSeed() const override;
+- shardCount · function · L132-L132 — unsigned int shardCount() const override;
+- shardIndex · function · L133-L133 — unsigned int shardIndex() const override;
+- defaultColourMode · function · L134-L134 — ColourMode defaultColourMode() const override;
+- shouldDebugBreak · function · L135-L135 — bool shouldDebugBreak() const override;
+- abortAfter · function · L136-L136 — int abortAfter() const override;
+- showInvisibles · function · L137-L137 — bool showInvisibles() const override;
+- verbosity · function · L138-L138 — Verbosity verbosity() const override;
+- skipBenchmarks · function · L139-L139 — bool skipBenchmarks() const override;
+- benchmarkNoAnalysis · function · L140-L140 — bool benchmarkNoAnalysis() const override;
+- benchmarkSamples · function · L141-L141 — unsigned int benchmarkSamples() const override;
+- benchmarkConfidenceInterval · function · L142-L142 — double benchmarkConfidenceInterval() const override;
+- benchmarkResamples · function · L143-L143 — unsigned int benchmarkResamples() const override;
+- benchmarkWarmupTime · function · L144-L144 — std::chrono::milliseconds benchmarkWarmupTime() const override;
+- readBazelEnvVars · function · L148-L148 — void readBazelEnvVars();

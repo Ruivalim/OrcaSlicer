@@ -1,0 +1,88 @@
+# deps_src/qhull/src/libqhullcpp/Coordinates.h
+
+- Iterator · type · L41-L41 — typedef iterator Iterator;
+- ConstIterator · type · L42-L42 — typedef const_iterator ConstIterator;
+- value_type · type · L44-L44 — typedef coordT              value_type;
+- const_reference · type · L46-L46 — typedef const value_type &  const_reference;
+- reference · type · L48-L48 — typedef value_type &        reference;
+- difference_type · type · L49-L49 — typedef ptrdiff_t           difference_type;
+- size_type · type · L50-L50 — typedef countT              size_type;
+- Coordinates · function · L54-L54 — explicit            Coordinates(const std::vector<coordT> &other) : coordinate_array(other) {}
+- coordinate_array · function · L55-L55 — Coordinates(const Coordinates &other) : coordinate_array(other.coordinate_array) {}
+- count · function · L70-L70 — countT              count() const { return static_cast<countT>(size()); }
+- data · function · L71-L71 — coordT *            data() { return isEmpty() ? 0 : &at(0); }
+- data · function · L72-L72 — const coordT *      data() const { return const_cast<const pointT*>(isEmpty() ? 0 : &at(0)); }
+- isEmpty · function · L73-L73 — bool                isEmpty() const { return coordinate_array.empty(); }
+- size · function · L76-L76 — size_t              size() const { return coordinate_array.size(); }
+- at · function · L80-L80 — const coordT &      at(countT idx) const { return coordinate_array.at(idx); }
+- back · function · L82-L82 — const coordT &      back() const { return coordinate_array.back(); }
+- first · function · L84-L84 — const coordT &      first() const { return front(); }
+- front · function · L86-L86 — const coordT &      front() const { return coordinate_array.front(); }
+- last · function · L88-L88 — const coordT &      last() const { return back(); }
+- mid · function · L89-L89 — Coordinates         mid(countT idx, countT length= -1) const; //!<\todo countT -1 indicates
+- begin · function · L92-L95 — coordT              value(countT idx, const coordT &defaultValue) const;
+- value · function · L92-L92 — coordT              value(countT idx, const coordT &defaultValue) const;
+- begin · function · L96-L96 — const_iterator      begin() const { return const_iterator(coordinate_array.begin()); }
+- constBegin · function · L97-L97 — const_iterator      constBegin() const { return begin(); }
+- constEnd · function · L98-L98 — const_iterator      constEnd() const { return end(); }
+- end · function · L99-L99 — iterator            end() { return iterator(coordinate_array.end()); }
+- end · function · L100-L100 — const_iterator      end() const { return const_iterator(coordinate_array.end()); }
+- append · function · L106-L106 — void                append(int pointDimension, coordT *c);
+- append · function · L107-L107 — void                append(const coordT &c) { push_back(c); }
+- clear · function · L108-L108 — void                clear() { coordinate_array.clear(); }
+- erase · function · L109-L109 — iterator            erase(iterator idx) { return iterator(coordinate_array.erase(idx.base())); }
+- erase · function · L110-L110 — iterator            erase(iterator beginIterator, iterator endIterator) { return iterator(coordinate_array.erase(beginIterator.base(), endIterator.base())); }
+- insert · function · L111-L111 — void                insert(countT before, const coordT &c) { insert(begin()+before, c); }
+- insert · function · L112-L112 — iterator            insert(iterator before, const coordT &c) { return iterator(coordinate_array.insert(before.base(), c)); }
+- move · function · L113-L113 — void                move(countT from, countT to) { insert(to, takeAt(from)); }
+- pop_back · function · L118-L118 — void                pop_back() { coordinate_array.pop_back(); }
+- pop_front · function · L119-L119 — void                pop_front() { removeFirst(); }
+- prepend · function · L120-L120 — void                prepend(const coordT &c) { insert(begin(), c); }
+- push_back · function · L121-L121 — void                push_back(const coordT &c) { coordinate_array.push_back(c); }
+- push_front · function · L122-L122 — void                push_front(const coordT &c) { insert(begin(), c); }
+- removeAt · function · L124-L124 — void                removeAt(countT idx) { erase(begin()+idx); }
+- removeFirst · function · L125-L125 — void                removeFirst() { erase(begin()); }
+- removeLast · function · L126-L126 — void                removeLast() { erase(--end()); }
+- replace · function · L127-L127 — void                replace(countT idx, const coordT &c) { (*this)[idx]= c; }
+- reserve · function · L128-L128 — void                reserve(countT i) { coordinate_array.reserve(i); }
+- swap · function · L129-L129 — void                swap(countT idx, countT other);
+- takeAt · function · L130-L130 — coordT              takeAt(countT idx);
+- takeFirst · function · L131-L131 — coordT              takeFirst() { return takeAt(0); }
+- takeLast · function · L132-L132 — coordT              takeLast();
+- contains · function · L135-L135 — bool                contains(const coordT &t) const;
+- count · function · L136-L136 — countT              count(const coordT &t) const;
+- indexOf · function · L137-L137 — countT              indexOf(const coordT &t, countT from = 0) const;
+- lastIndexOf · function · L138-L138 — countT              lastIndexOf(const coordT &t, countT from = -1) const;
+- removeAll · function · L139-L139 — void                removeAll(const coordT &t);
+- value_type · type · L152-L152 — typedef coordT      value_type;
+- reference · type · L154-L154 — typedef value_type &reference;
+- difference_type · type · L155-L155 — typedef ptrdiff_t   difference_type;
+- iterator · function · L159-L159 — explicit        iterator(const std::vector<coordT>::iterator &vi) { i= vi; }
+- value_type · type · L199-L199 — typedef coordT            value_type;
+- reference · type · L201-L201 — typedef const value_type &reference;
+- difference_type · type · L202-L202 — typedef ptrdiff_t         difference_type;
+- i · function · L206-L206 — const_iterator(const iterator &o) : i(o.i) {}
+- const_iterator · function · L207-L207 — explicit        const_iterator(const std::vector<coordT>::const_iterator &vi) { i= vi; }
+- findNext · function · L249-L249 — bool                findNext(const coordT &t) { while (i != c->constEnd()) if(*i++ == t){ return true;} return false; }
+- findPrevious · function · L250-L250 — bool                findPrevious(const coordT &t) { while (i != c->constBegin())if (*(--i) == t){ return true;} return false;  }
+- hasNext · function · L251-L251 — bool                hasNext() const { return i != c->constEnd(); }
+- hasPrevious · function · L252-L252 — bool                hasPrevious() const { return i != c->constBegin(); }
+- next · function · L253-L253 — const coordT &      next() { return *i++; }
+- previous · function · L254-L254 — const coordT &      previous() { return *--i; }
+- peekNext · function · L255-L255 — const coordT &      peekNext() const { return *i; }
+- toFront · function · L257-L257 — void                toFront() { i= c->constBegin(); }
+- toBack · function · L258-L258 — void                toBack() { i= c->constEnd(); }
+- iterator · type · L265-L265 — typedef Coordinates::iterator iterator;
+- const_iterator · type · L266-L266 — typedef Coordinates::const_iterator const_iterator;
+- item_exists · function · L272-L272 — bool                item_exists() const { return const_iterator(n) != c->constEnd(); }
+- findNext · function · L279-L279 — bool                findNext(const coordT &t) { while(c->constEnd()!=const_iterator(n= i)){ if(*i++==t){ return true;}} return false; }
+- findPrevious · function · L280-L280 — bool                findPrevious(const coordT &t) { while(c->constBegin()!=const_iterator(i)){ if(*(n= --i)== t){ return true;}} n= c->end(); return false;  }
+- hasNext · function · L281-L281 — bool                hasNext() const { return (c->constEnd()!=const_iterator(i)); }
+- hasPrevious · function · L282-L282 — bool                hasPrevious() const { return (c->constBegin()!=const_iterator(i)); }
+- insert · function · L283-L283 — void                insert(const coordT &t) { n= i= c->insert(i, t); ++i; }
+- remove · function · L288-L288 — void                remove() { if(c->constEnd()!=const_iterator(n)){ i= c->erase(n); n= c->end();} }
+- setValue · function · L289-L289 — void                setValue(const coordT &t) const { if(c->constEnd()!=const_iterator(n)){ *n= t;} }
+- toFront · function · L290-L290 — void                toFront() { i= c->begin(); n= c->end(); }
+- toBack · function · L291-L291 — void                toBack() { i= c->end(); n= i; }
+- item_exists · function · L293-L293 — const coordT &      value() const { QHULL_ASSERT(item_exists()); return *n; }
+- value · function · L293-L293 — const coordT &      value() const { QHULL_ASSERT(item_exists()); return *n; }

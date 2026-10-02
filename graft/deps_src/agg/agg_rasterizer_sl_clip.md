@@ -1,0 +1,37 @@
+# deps_src/agg/agg_rasterizer_sl_clip.h
+
+- poly_max_coord_e · type · L23-L26 — enum poly_max_coord_e
+- ras_conv_int · class · L29-L36 — struct ras_conv_int
+- yi · function · L37-L37 — static int yi(int v) { return v; }
+- upscale · function · L38-L38 — static int upscale(double v) { return iround(v * poly_subpixel_scale); }
+- downscale · function · L39-L39 — static int downscale(int v)  { return v; }
+- ras_conv_int_sat · class · L43-L50 — struct ras_conv_int_sat
+- yi · function · L51-L51 — static int yi(int v) { return v; }
+- upscale · function · L52-L55 — static int upscale(double v)
+- downscale · function · L56-L56 — static int downscale(int v) { return v; }
+- ras_conv_int_3x · class · L60-L67 — struct ras_conv_int_3x
+- yi · function · L68-L68 — static int yi(int v) { return v; }
+- upscale · function · L69-L69 — static int upscale(double v) { return iround(v * poly_subpixel_scale); }
+- downscale · function · L70-L70 — static int downscale(int v)  { return v; }
+- ras_conv_dbl · class · L74-L81 — struct ras_conv_dbl
+- yi · function · L82-L82 — static int yi(double v) { return iround(v * poly_subpixel_scale); }
+- upscale · function · L83-L83 — static double upscale(double v) { return v; }
+- downscale · function · L84-L84 — static double downscale(int v)  { return v / double(poly_subpixel_scale); }
+- ras_conv_dbl_3x · class · L88-L95 — struct ras_conv_dbl_3x
+- yi · function · L96-L96 — static int yi(double v) { return iround(v * poly_subpixel_scale); }
+- upscale · function · L97-L97 — static double upscale(double v) { return v; }
+- downscale · function · L98-L98 — static double downscale(int v)  { return v / double(poly_subpixel_scale); }
+- coord_type · type · L110-L110 — typedef typename Conv::coord_type coord_type;
+- rect_type · type · L111-L111 — typedef rect_base<coord_type>     rect_type;
+- reset_clipping · function · L123-L126 — void reset_clipping()
+- clip_box · function · L129-L134 — void clip_box(coord_type x1, coord_type y1, coord_type x2, coord_type y2)
+- move_to · function · L137-L142 — void move_to(coord_type x1, coord_type y1)
+- coord_type · type · L315-L315 — typedef int          coord_type;
+- reset_clipping · function · L319-L319 — void reset_clipping() {}
+- clip_box · function · L320-L320 — void clip_box(coord_type, coord_type, coord_type, coord_type) {}
+- move_to · function · L321-L321 — void move_to(coord_type x1, coord_type y1) { m_x1 = x1; m_y1 = y1; }
+- rasterizer_sl_clip_int · type · L342-L342 — typedef rasterizer_sl_clip<ras_conv_int>     rasterizer_sl_clip_int;
+- rasterizer_sl_clip_int_sat · type · L343-L343 — typedef rasterizer_sl_clip<ras_conv_int_sat> rasterizer_sl_clip_int_sat;
+- rasterizer_sl_clip_int_3x · type · L344-L344 — typedef rasterizer_sl_clip<ras_conv_int_3x>  rasterizer_sl_clip_int_3x;
+- rasterizer_sl_clip_dbl · type · L345-L345 — typedef rasterizer_sl_clip<ras_conv_dbl>     rasterizer_sl_clip_dbl;
+- rasterizer_sl_clip_dbl_3x · type · L346-L346 — typedef rasterizer_sl_clip<ras_conv_dbl_3x>  rasterizer_sl_clip_dbl_3x;

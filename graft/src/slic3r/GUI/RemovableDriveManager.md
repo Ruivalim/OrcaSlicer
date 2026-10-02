@@ -1,0 +1,28 @@
+# src/slic3r/GUI/RemovableDriveManager.hpp
+
+- DriveData · class · L17-L29 — struct DriveData
+- clear · function · L22-L25 — void clear()
+- empty · function · L26-L28 — bool empty() const
+- RemovableDriveManager · class · L46-L138 — class RemovableDriveManager
+- RemovableDriveManager · function · L49-L49 — RemovableDriveManager() = default;
+- RemovableDriveManager · function · L50-L50 — RemovableDriveManager(RemovableDriveManager const&) = delete;
+- init · function · L56-L56 — void 		init(wxEvtHandler *callback_evt_handler);
+- shutdown · function · L59-L59 — void 		shutdown();
+- get_removable_drive_path · function · L62-L62 — std::string get_removable_drive_path(const std::string &path);
+- is_path_on_removable_drive · function · L63-L63 — bool        is_path_on_removable_drive(const std::string &path) { return this->get_removable_drive_path(path) == path; }
+- set_and_verify_last_save_path · function · L66-L66 — bool 		set_and_verify_last_save_path(const std::string &path);
+- eject_drive · function · L70-L70 — void 		eject_drive();
+- RemovableDrivesStatus · class · L74-L77 — struct RemovableDrivesStatus
+- status · function · L78-L78 — RemovableDrivesStatus status();
+- update · function · L85-L85 — void 		update();
+- set_exporting_finished · function · L86-L86 — void        set_exporting_finished(bool b) { m_exporting_finished = b; }
+- volumes_changed · function · L89-L89 — void 		volumes_changed();
+- thread_proc · function · L98-L98 — void 					thread_proc();
+- search_for_removable_drives · function · L109-L109 — std::vector<DriveData> 	search_for_removable_drives() const;
+- get_removable_drive_from_path · function · L119-L119 — std::string 			get_removable_drive_from_path(const std::string& path);
+- find_last_save_path_drive_data · function · L121-L121 — std::vector<DriveData>::const_iterator find_last_save_path_drive_data() const;
+- register_window_osx · function · L128-L128 — void register_window_osx();
+- unregister_window_osx · function · L129-L129 — void unregister_window_osx();
+- list_devices · function · L130-L130 — void list_devices(std::vector<DriveData> &out) const;
+- eject_device · function · L132-L132 — void eject_device(const std::string &path);
+- eject_thread_finish · function · L136-L136 — void eject_thread_finish();

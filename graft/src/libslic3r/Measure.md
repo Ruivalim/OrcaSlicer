@@ -1,0 +1,50 @@
+# src/libslic3r/Measure.hpp
+
+- TriangleMesh · class · L13-L13 — class TriangleMesh;
+- SurfaceFeatureType · type · L16-L22 — enum class SurfaceFeatureType : int
+- get_point_projection_to_plane · function · L24-L24 — bool get_point_projection_to_plane(const Vec3d &pt, const Vec3d &plane_origin, const Vec3d &plane_normal, Vec3d &intersection_pt);
+- get_one_point_in_plane · function · L25-L25 — Vec3d get_one_point_in_plane(const Vec3d &plane_origin, const Vec3d &plane_normal);
+- SurfaceFeature · class · L27-L103 — class SurfaceFeature
+- SurfaceFeature · function · L30-L31 — SurfaceFeature(SurfaceFeatureType type, const Vec3d& pt1, const Vec3d& pt2, std::optional<Vec3d> pt3 = std::nullopt, double value = 0.0)
+- SurfaceFeature · function · L33-L34 — SurfaceFeature(const Vec3d& pt)
+- clone · function · L36-L43 — void clone(const SurfaceFeature &sf)
+- translate · function · L44-L44 — void translate(const Vec3d& displacement);
+- translate · function · L45-L45 — void translate(const Transform3d& tran);
+- get_type · function · L47-L47 — SurfaceFeatureType get_type() const { return m_type; }
+- get_point · function · L50-L50 — Vec3d get_point() const { assert(m_type == SurfaceFeatureType::Point); return m_pt1; }
+- get_edge · function · L52-L52 — std::pair<Vec3d, Vec3d> get_edge() const { assert(m_type == SurfaceFeatureType::Edge); return std::make_pair(m_pt1, m_pt2); }
+- get_circle · function · L55-L55 — std::tuple<Vec3d, double, Vec3d> get_circle() const { assert(m_type == SurfaceFeatureType::Circle); return std::make_tuple(m_pt1, m_value, m_pt2); }
+- get_plane · function · L58-L58 — std::tuple<int, Vec3d, Vec3d> get_plane() const { assert(m_type == SurfaceFeatureType::Plane); return std::make_tuple(int(m_value), m_pt1, m_pt2); }
+- get_extra_point · function · L61-L61 — std::optional<Vec3d> get_extra_point() const { assert(m_type != SurfaceFeatureType::Undef); return m_pt3; }
+- get_pt1 · function · L92-L92 — Vec3d get_pt1() const{ return m_pt1; }
+- get_pt2 · function · L93-L93 — Vec3d                       get_pt2() const { return m_pt2; }
+- get_pt3 · function · L94-L94 — const std::optional<Vec3d>& get_pt3() const { return m_pt3; }
+- get_value · function · L95-L95 — double                      get_value() const { return m_value; }
+- MeasuringImpl · class · L107-L107 — class MeasuringImpl;
+- Measuring · class · L110-L135 — class Measuring
+- Measuring · function · L113-L113 — explicit Measuring(const indexed_triangle_set& its);
+- get_feature · function · L119-L119 — std::optional<SurfaceFeature> get_feature(size_t face_idx, const Vec3d& point, const Transform3d & world_tran,bool only_select_plane) const;
+- get_num_of_planes · function · L122-L122 — int get_num_of_planes() const;
+- get_plane_triangle_indices · function · L125-L125 — const std::vector<int>& get_plane_triangle_indices(int idx) const;
+- get_plane_features · function · L128-L128 — const std::vector<SurfaceFeature>& get_plane_features(unsigned int plane_id) const;
+- get_its · function · L131-L131 — const indexed_triangle_set& get_its() const;
+- DistAndPoints · class · L138-L143 — struct DistAndPoints
+- DistAndPoints · function · L139-L139 — DistAndPoints(double dist_, Vec3d from_, Vec3d to_) : dist(dist_), from(from_), to(to_) {}
+- AngleAndEdges · class · L145-L156 — struct AngleAndEdges
+- AngleAndEdges · function · L146-L147 — AngleAndEdges(double angle_, const Vec3d& center_, const std::pair<Vec3d, Vec3d>& e1_, const std::pair<Vec3d, Vec3d>& e2_, double radius_, bool coplanar_)
+- MeasurementResult · class · L158-L171 — struct MeasurementResult
+- has_distance_data · function · L164-L166 — bool has_distance_data() const
+- has_any_data · function · L168-L170 — bool has_any_data() const
+- get_measurement · function · L174-L174 — MeasurementResult get_measurement(const SurfaceFeature& a, const SurfaceFeature& b,bool deal_circle_result =false);
+- can_set_xyz_distance · function · L175-L175 — bool              can_set_xyz_distance(const SurfaceFeature &a, const SurfaceFeature &b);
+- AssemblyAction · class · L177-L190 — struct AssemblyAction
+- get_assembly_action · function · L191-L191 — AssemblyAction get_assembly_action(const SurfaceFeature &a, const SurfaceFeature &b);
+- edge_direction · function · L193-L193 — inline Vec3d edge_direction(const Vec3d& from, const Vec3d& to) { return (to - from).normalized(); }
+- edge_direction · function · L194-L194 — inline Vec3d edge_direction(const std::pair<Vec3d, Vec3d>& e) { return edge_direction(e.first, e.second); }
+- edge_direction · function · L195-L198 — inline Vec3d edge_direction(const SurfaceFeature& edge)
+- plane_normal · function · L200-L203 — inline Vec3d plane_normal(const SurfaceFeature& plane)
+- are_parallel · function · L205-L205 — inline bool are_parallel(const Vec3d& v1, const Vec3d& v2) { return std::abs(std::abs(v1.dot(v2)) - 1.0) < EPSILON; }
+- are_perpendicular · function · L206-L206 — inline bool are_perpendicular(const Vec3d& v1, const Vec3d& v2) { return std::abs(v1.dot(v2)) < EPSILON; }
+- are_parallel · function · L208-L210 — inline bool are_parallel(const std::pair<Vec3d, Vec3d>& e1, const std::pair<Vec3d, Vec3d>& e2)
+- are_parallel · function · L211-L218 — inline bool are_parallel(const SurfaceFeature& f1, const SurfaceFeature& f2)
+- are_perpendicular · function · L220-L227 — inline bool are_perpendicular(const SurfaceFeature& f1, const SurfaceFeature& f2)

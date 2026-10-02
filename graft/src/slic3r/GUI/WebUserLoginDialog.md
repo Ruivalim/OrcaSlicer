@@ -1,0 +1,23 @@
+# src/slic3r/GUI/WebUserLoginDialog.hpp
+
+- ZUserLogin · class · L35-L93 — class ZUserLogin : public wxDialog
+- ZUserLogin · function · L38-L38 — explicit ZUserLogin(std::shared_ptr<ICloudServiceAgent> cloud_agent);
+- load_url · function · L41-L41 — void load_url(wxString &url);
+- w2s · function · L43-L43 — std::string w2s(wxString sSrc);
+- UpdateState · function · L45-L45 — void UpdateState();
+- OnIdle · function · L46-L46 — void OnIdle(wxIdleEvent &evt);
+- OnNavigationRequest · function · L49-L49 — void OnNavigationRequest(wxWebViewEvent &evt);
+- OnNavigationComplete · function · L50-L50 — void OnNavigationComplete(wxWebViewEvent &evt);
+- OnDocumentLoaded · function · L51-L51 — void OnDocumentLoaded(wxWebViewEvent &evt);
+- OnNewWindow · function · L52-L52 — void OnNewWindow(wxWebViewEvent &evt);
+- OnError · function · L53-L53 — void OnError(wxWebViewEvent &evt);
+- OnTitleChanged · function · L54-L54 — void OnTitleChanged(wxWebViewEvent &evt);
+- OnFullScreenChanged · function · L55-L55 — void OnFullScreenChanged(wxWebViewEvent &evt);
+- OnScriptMessage · function · L56-L56 — void OnScriptMessage(wxWebViewEvent &evt);
+- OnScriptResponseMessage · function · L58-L58 — void OnScriptResponseMessage(wxCommandEvent &evt);
+- RunScript · function · L59-L59 — void RunScript(const wxString &javascript);
+- ShowErrorPage · function · L62-L62 — bool ShowErrorPage();
+- run · function · L64-L64 — bool run();
+- OnTimer · function · L69-L69 — void     OnTimer(wxTimerEvent &event);
+- ensure_loopback_port · function · L90-L90 — int ensure_loopback_port();
+- DECLARE_EVENT_TABLE · function · L92-L92 — DECLARE_EVENT_TABLE()

@@ -1,0 +1,29 @@
+# deps_src/libnest2d/include/libnest2d/geometry_traits_nfp.hpp
+
+- _vsort · function · L15-L20 — template<class RawShape, class Unit = TCompute<RawShape>>
+- buildPolygon · function · L22-L60 — template<class EdgeList, class RawShape, class Vertex = TPoint<RawShape>>
+- advance · function · L62-L69 — template<class Container, class Iterator = typename Container::iterator>
+- NfpLevel · type · L79-L85 — enum class NfpLevel: unsigned
+- MaxNfpLevel · class · L90-L92 — template<class RawShape> struct MaxNfpLevel
+- merge · function · L110-L115 — template<class RawShapes>
+- merge · function · L128-L135 — template<class RawShape>
+- leftmostDownVertex · function · L142-L151 — template<class RawShape>
+- rightmostUpVertex · function · L158-L167 — template<class RawShape>
+- referenceVertex · function · L176-L180 — template<class RawShape>
+- nfpInnerRectBed · function · L182-L216 — template<class RawBox, class RawShape, class Ratio = double> inline NfpResult<RawShape> nfpInnerRectBed(const RawBox &bed, const RawShape &other)
+- nfpConvexOnly · function · L236-L351 — template<class RawShape, class Ratio = double>
+- nfpSimpleSimple · function · L353-L805 — template<class RawShape>
+- MarkedEdge · class · L425-L433 — struct MarkedEdge
+- MarkedEdge · function · L427-L427 — MarkedEdge() = default;
+- MarkedEdge · function · L428-L429 — MarkedEdge(const Edge& ed, Radians ta, bool tp):
+- MarkedEdgeRef · class · L524-L550 — struct MarkedEdgeRef
+- angleX · function · L529-L529 — inline Radians angleX() const { return eref.get().e.angleToXaxis(); }
+- edge · function · L530-L530 — inline const Edge& edge() const { return eref.get().e; }
+- edge · function · L531-L531 — inline Edge& edge() { return eref.get().e; }
+- isTurningPoint · function · L532-L534 — inline bool isTurningPoint() const
+- isFrom · function · L535-L537 — inline bool isFrom(const vector<MarkedEdgeRef>& cont )
+- eq · function · L538-L540 — inline bool eq(const MarkedEdgeRef& mr)
+- MarkedEdgeRef · function · L542-L544 — MarkedEdgeRef(reference_wrapper<MarkedEdge> er,
+- MarkedEdgeRef · function · L546-L549 — MarkedEdgeRef(reference_wrapper<MarkedEdge> er,
+- NfpImpl · class · L809-L820 — template<class RawShape, NfpLevel nfptype>
+- noFitPolygon · function · L823-L829 — template<NfpLevel nfptype, class RawShape>

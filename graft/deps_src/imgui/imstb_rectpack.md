@@ -1,0 +1,24 @@
+# deps_src/imgui/imstb_rectpack.h
+
+- stbrp_context · type · L80-L80 — typedef struct stbrp_context stbrp_context;
+- stbrp_node · type · L81-L81 — typedef struct stbrp_node    stbrp_node;
+- stbrp_rect · type · L82-L82 — typedef struct stbrp_rect    stbrp_rect;
+- stbrp_coord · type · L85-L85 — typedef int            stbrp_coord;
+- stbrp_coord · type · L87-L87 — typedef unsigned short stbrp_coord;
+- stbrp_pack_rects · function · L90-L90 — STBRP_DEF int stbrp_pack_rects (stbrp_context *context, stbrp_rect *rects, int num_rects);
+- stbrp_rect · class · L115-L127 — struct stbrp_rect
+- stbrp_init_target · function · L130-L130 — STBRP_DEF void stbrp_init_target (stbrp_context *context, int width, int height, stbrp_node *nodes, int num_nodes);
+- stbrp_setup_allow_out_of_mem · function · L151-L151 — STBRP_DEF void stbrp_setup_allow_out_of_mem (stbrp_context *context, int allow_out_of_mem);
+- stbrp_setup_heuristic · function · L157-L157 — STBRP_DEF void stbrp_setup_heuristic (stbrp_context *context, int heuristic);
+- stbrp_node · class · L175-L179 — struct stbrp_node
+- stbrp_context · class · L181-L192 — struct stbrp_context
+- stbrp_setup_heuristic · function · L230-L240 — STBRP_DEF void stbrp_setup_heuristic(stbrp_context *context, int heuristic)
+- stbrp_setup_allow_out_of_mem · function · L242-L260 — STBRP_DEF void stbrp_setup_allow_out_of_mem(stbrp_context *context, int allow_out_of_mem)
+- stbrp_init_target · function · L262-L292 — STBRP_DEF void stbrp_init_target(stbrp_context *context, int width, int height, stbrp_node *nodes, int num_nodes)
+- stbrp__skyline_find_min_y · function · L295-L343 — static int stbrp__skyline_find_min_y(stbrp_context *c, stbrp_node *first, int x0, int width, int *pwaste)
+- stbrp__findresult · type · L345-L349 — typedef struct
+- stbrp__skyline_find_best_pos · function · L351-L451 — static stbrp__findresult stbrp__skyline_find_best_pos(stbrp_context *c, int width, int height)
+- stbrp__skyline_pack_rectangle · function · L453-L530 — static stbrp__findresult stbrp__skyline_pack_rectangle(stbrp_context *context, int width, int height)
+- rect_height_compare · function · L533-L542 — static int STBRP__CDECL rect_height_compare(const void *a, const void *b)
+- rect_original_order · function · L545-L550 — static int STBRP__CDECL rect_original_order(const void *a, const void *b)
+- stbrp_pack_rects · function · L558-L596 — STBRP_DEF int stbrp_pack_rects(stbrp_context *context, stbrp_rect *rects, int num_rects)

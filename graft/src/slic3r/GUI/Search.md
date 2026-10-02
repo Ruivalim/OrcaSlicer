@@ -1,0 +1,66 @@
+# src/slic3r/GUI/Search.hpp
+
+- SearchDialog · class · L36-L36 — class SearchDialog;
+- FoundOption · class · L38-L49 — struct FoundOption
+- get_marked_label_and_tooltip · function · L48-L48 — void get_marked_label_and_tooltip(const char **label, const char **tooltip) const;
+- OptionViewParameters · class · L51-L57 — struct OptionViewParameters
+- OptionsSearcher · class · L59-L107 — class OptionsSearcher
+- sort_found · function · L68-L72 — void sort_found()
+- found_size · function · L74-L74 — size_t found_size() const { return found.size(); }
+- OptionsSearcher · function · L81-L81 — OptionsSearcher();
+- index · function · L84-L84 — SettingsIndex &      index() { return m_index; }
+- index · function · L85-L85 — const SettingsIndex &index() const { return m_index; }
+- init · function · L88-L88 — void init(std::vector<InputInfo> input_values);
+- apply · function · L89-L89 — void apply(DynamicPrintConfig *config, Preset::Type type, ConfigOptionMode mode);
+- search · function · L91-L91 — bool search();
+- search · function · L92-L92 — bool search(const std::string &search, bool force = false, Preset::Type type = Preset::TYPE_INVALID);
+- size · function · L94-L94 — size_t size() const { return found_size(); }
+- get_option · function · L97-L97 — const Option &     get_option(size_t pos_in_filter) const;
+- found_options · function · L99-L99 — const std::vector<FoundOption> &found_options() { return found; }
+- search_string · function · L100-L100 — std::string &                   search_string() { return search_line; }
+- set_printer_technology · function · L102-L102 — void set_printer_technology(PrinterTechnology pt) { printer_technology = pt; }
+- show_dialog · function · L104-L104 — void show_dialog(Preset::Type type, wxWindow *parent, TextInput *input, wxWindow *ssearch_btn);
+- dlg_sys_color_changed · function · L105-L105 — void dlg_sys_color_changed();
+- dlg_msw_rescale · function · L106-L106 — void dlg_msw_rescale();
+- SearchDialog · class · L112-L112 — class SearchDialog;
+- SearchObjectDialog · class · L113-L113 — class SearchObjectDialog;
+- SearchItem · class · L114-L132 — class SearchItem : public wxWindow
+- SearchItem · function · L123-L123 — SearchItem(wxWindow *parent, wxString text, int index, SearchDialog *sdialog = nullptr, SearchObjectDialog* search_dialog = nullptr, wxString tooltip = "");
+- DrawTextString · function · L126-L126 — wxSize DrawTextString(wxDC &dc, const wxString &text, const wxPoint &pt, bool bold);
+- OnPaint · function · L127-L127 — void   OnPaint(wxPaintEvent &event);
+- on_mouse_enter · function · L128-L128 — void   on_mouse_enter(wxMouseEvent &evt);
+- on_mouse_leave · function · L129-L129 — void   on_mouse_leave(wxMouseEvent &evt);
+- on_mouse_left_down · function · L130-L130 — void   on_mouse_left_down(wxMouseEvent &evt);
+- on_mouse_left_up · function · L131-L131 — void   on_mouse_left_up(wxMouseEvent &evt);
+- SearchListModel · class · L137-L137 — class SearchListModel;
+- SearchDialog · class · L138-L184 — class SearchDialog : public PopupWindow
+- OnInputText · function · L166-L166 — void OnInputText(wxCommandEvent &event);
+- OnLeftUpInTextCtrl · function · L167-L167 — void OnLeftUpInTextCtrl(wxEvent &event);
+- update_list · function · L169-L169 — void update_list();
+- SearchDialog · function · L172-L172 — SearchDialog(OptionsSearcher *searcher, Preset::Type type, wxWindow *parent, TextInput *input, wxWindow *search_btn);
+- MSWDismissUnfocusedPopup · function · L176-L176 — void MSWDismissUnfocusedPopup() override;
+- Popup · function · L178-L178 — void Popup(wxWindow *focus = nullptr) override;
+- OnDismiss · function · L179-L179 — void OnDismiss() override;
+- Dismiss · function · L180-L180 — void Dismiss() override;
+- Die · function · L181-L181 — void Die();
+- msw_rescale · function · L182-L182 — void msw_rescale();
+- SearchListModel · class · L190-L213 — class SearchListModel : public wxDataViewVirtualListModel
+- SearchListModel · function · L198-L198 — SearchListModel(wxWindow *parent);
+- Clear · function · L202-L202 — void Clear();
+- Prepend · function · L203-L203 — void Prepend(const std::string &text);
+- msw_rescale · function · L204-L204 — void msw_rescale();
+- GetColumnCount · function · L208-L208 — unsigned int GetColumnCount() const override { return colMax; }
+- GetColumnType · function · L209-L209 — wxString     GetColumnType(unsigned int col) const override;
+- GetValueByRow · function · L210-L210 — void         GetValueByRow(wxVariant &variant, unsigned int row, unsigned int col) const override;
+- GetAttrByRow · function · L211-L211 — bool         GetAttrByRow(unsigned int row, unsigned int col, wxDataViewItemAttr &attr) const override { return true; }
+- SetValueByRow · function · L212-L212 — bool         SetValueByRow(const wxVariant &variant, unsigned int row, unsigned int col) override { return false; }
+- SearchObjectDialog · class · L215-L258 — class SearchObjectDialog : public PopupWindow
+- SearchObjectDialog · function · L218-L218 — SearchObjectDialog(GUI::ObjectList* object_list, wxWindow* parent, TextInput* input);
+- MSWDismissUnfocusedPopup · function · L222-L222 — void MSWDismissUnfocusedPopup() override;
+- Popup · function · L224-L224 — void Popup(wxWindow *focus = nullptr) override;
+- OnDismiss · function · L225-L225 — void OnDismiss() override;
+- Dismiss · function · L226-L226 — void Dismiss() override;
+- Die · function · L227-L227 — void Die();
+- OnInputText · function · L229-L229 — void OnInputText(wxCommandEvent& event);
+- OnLeftUpInTextCtrl · function · L230-L230 — void OnLeftUpInTextCtrl(wxEvent& event);
+- update_list · function · L232-L232 — void update_list();

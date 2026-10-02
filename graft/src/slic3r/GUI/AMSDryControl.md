@@ -1,0 +1,72 @@
+# src/slic3r/GUI/AMSDryControl.hpp
+
+- wxGrid · class · L16-L16 — class wxGrid;
+- ProgressBar · class · L17-L17 — class ProgressBar;
+- DryCtrState · type · L24-L28 — enum class DryCtrState
+- DryCtrDev · type · L30-L34 — enum class DryCtrDev
+- DryingPreset · class · L36-L41 — struct DryingPreset
+- FilamentItemPanel · class · L43-L61 — class FilamentItemPanel : public wxPanel
+- FilamentItemPanel · function · L46-L47 — FilamentItemPanel(wxWindow* parent, const wxString& text, const std::string& icon_name = "",
+- SetText · function · L49-L49 — void SetText(const wxString& text);
+- SetIcon · function · L50-L50 — void SetIcon(const std::string& icon_name);
+- msw_rescale · function · L51-L51 — void msw_rescale();
+- OnPaint · function · L54-L54 — void OnPaint(wxPaintEvent& event);
+- OnSize · function · L55-L55 — void OnSize(wxSizeEvent& event);
+- AMSFilamentPanel · class · L63-L81 — class AMSFilamentPanel : public wxPanel
+- AMSFilamentPanel · function · L72-L72 — AMSFilamentPanel(wxWindow* parent, const wxString& ams_name, wxWindowID id = wxID_ANY);
+- AddFilamentItem · function · L74-L74 — void AddFilamentItem(const wxString& text, const std::string& icon_name);
+- AddFilamentItem · function · L75-L75 — void AddFilamentItem(FilamentItemPanel* panel);
+- SetAmsName · function · L76-L76 — void SetAmsName(const wxString& ams_name);
+- Clear · function · L77-L77 — void Clear();
+- msw_rescale · function · L78-L78 — void msw_rescale();
+- OnPaint · function · L80-L80 — void OnPaint(wxPaintEvent& event);
+- AMSDryCtrWin · class · L84-L244 — class AMSDryCtrWin : public DPIDialog
+- AMSDryCtrWin · function · L87-L87 — AMSDryCtrWin(wxWindow *parent);
+- msw_rescale · function · L90-L90 — void msw_rescale();
+- update · function · L91-L91 — void update(std::shared_ptr<DevFilaSystem> fila_system, MachineObject* obj);
+- set_ams_id · function · L92-L92 — void set_ams_id(const std::string& ams_id);
+- on_dpi_changed · function · L95-L95 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- create · function · L190-L190 — void create();
+- create_guide_page_sizer · function · L191-L191 — wxBoxSizer* create_guide_page_sizer(wxPanel* parent);
+- create_main_content_section · function · L192-L192 — wxBoxSizer* create_main_content_section(wxPanel* parent);
+- create_guide_info_filament · function · L193-L193 — wxBoxSizer* create_guide_info_filament(wxPanel* parent);
+- create_guide_info_section · function · L194-L194 — wxBoxSizer* create_guide_info_section(wxPanel* parent);
+- create_guide_right_section · function · L195-L195 — wxBoxSizer* create_guide_right_section(wxPanel* parent);
+- create_main_page_sizer · function · L196-L196 — wxBoxSizer* create_main_page_sizer(wxPanel* parent);
+- create_left_panel · function · L197-L197 — wxBoxSizer* create_left_panel(wxPanel* parent);
+- create_humidity_status_section · function · L198-L198 — wxBoxSizer* create_humidity_status_section(wxPanel* parent);
+- create_description_item · function · L199-L199 — wxBoxSizer* create_description_item(wxPanel* parent, const wxString& title, Label*& dataLabel);
+- create_status_descriptions_section · function · L200-L200 — wxBoxSizer* create_status_descriptions_section(wxPanel* parent);
+- create_right_panel · function · L202-L202 — wxBoxSizer* create_right_panel(wxPanel* parent);
+- create_normal_state_panel · function · L203-L203 — wxBoxSizer* create_normal_state_panel(wxPanel* parent);
+- create_cannot_dry_panel · function · L204-L204 — wxBoxSizer* create_cannot_dry_panel(wxPanel* parent);
+- create_drying_error_panel · function · L205-L205 — wxBoxSizer* create_drying_error_panel(wxPanel* parent);
+- create_button · function · L206-L207 — Button* create_button(wxPanel* parent, const wxString& title,
+- create_progress_page_sizer · function · L209-L209 — wxBoxSizer* create_progress_page_sizer(wxPanel* parent);
+- OnProgressTimer · function · L210-L210 — void OnProgressTimer(wxTimerEvent& event);
+- OnClose · function · L211-L211 — void OnClose(wxCloseEvent& event);
+- OnShow · function · L212-L212 — void OnShow(wxShowEvent& event);
+- OnFilamentSelectionChanged · function · L214-L214 — void OnFilamentSelectionChanged(wxCommandEvent& event);
+- create_preview_scrolled_window · function · L217-L217 — wxScrolledWindow* create_preview_scrolled_window(wxWindow* parent);
+- check_values_changed · function · L219-L219 — bool check_values_changed(DevAms* dev_ams);
+- update_image · function · L220-L220 — int update_image(DevAmsType type, DevAms::DryStatus status, DevAms::DrySubStatus sub_status, int humidity_percent);
+- update_img_description · function · L221-L221 — void update_img_description(DevAms::DryStatus status, DevAms::DrySubStatus sub_status);
+- update_normal_description · function · L222-L222 — void update_normal_description(DevAms* dev_ams);
+- update_state · function · L223-L223 — int update_state(DevAms* dev_ams);
+- update_dryness_status · function · L224-L224 — int update_dryness_status(DevAms* dev_ams);
+- update_ams_change · function · L225-L225 — int update_ams_change(DevAms* dev_ams);
+- update_filament_list · function · L226-L226 — int update_filament_list(DevAms* dev_ams, MachineObject* obj);
+- update_filament_guide_info · function · L227-L227 — void update_filament_guide_info(DevAms* dev_ams);
+- update_normal_state · function · L228-L228 — void update_normal_state(DevAms* dev_ams);
+- update_printer_state · function · L229-L229 — void update_printer_state(MachineObject* obj);
+- get_fila_system · function · L231-L231 — std::shared_ptr<DevFilaSystem> get_fila_system() const;
+- start_sending_drying_command · function · L232-L232 — void start_sending_drying_command();
+- restore_stop_button_if_deadline_passed · function · L233-L233 — void restore_stop_button_if_deadline_passed();
+- restore_unload_button_if_deadline_passed · function · L234-L234 — void restore_unload_button_if_deadline_passed();
+- update_button_size · function · L235-L235 — void update_button_size(Button* button);
+- is_dry_status_changed · function · L237-L237 — bool is_dry_status_changed(DevAms* dev_ams);
+- is_dry_ctr_idle · function · L238-L238 — bool is_dry_ctr_idle(DevAms* dev_ams);
+- is_ams_changed · function · L239-L239 — bool is_ams_changed(DevAms* dev_ams);
+- is_dry_ctr_idle · function · L240-L240 — bool is_dry_ctr_idle();
+- is_tray_changed · function · L241-L241 — bool is_tray_changed(DevAms* dev_ams);
+- is_dry_ctr_err · function · L242-L242 — bool is_dry_ctr_err(DevAms* dev_ams);

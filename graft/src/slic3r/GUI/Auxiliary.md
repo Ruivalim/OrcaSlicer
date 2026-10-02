@@ -1,0 +1,59 @@
+# src/slic3r/GUI/Auxiliary.hpp
+
+- AuxiliaryFolderType · type · L65-L73 — enum AuxiliaryFolderType
+- ValidationType · type · L78-L78 — enum ValidationType { Valid, NoValid, Warning };
+- AuFile · class · L82-L128 — class AuFile : public wxPanel
+- AuFile · function · L107-L107 — AuFile(wxWindow *parent, fs::path file_path, wxString file_name, AuxiliaryFolderType type, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- enter_rename_mode · function · L108-L108 — void enter_rename_mode();
+- exit_rename_mode · function · L109-L109 — void exit_rename_mode();
+- OnPaint · function · L110-L110 — void OnPaint(wxPaintEvent &evt);
+- PaintBackground · function · L111-L111 — void PaintBackground(wxDC &dc);
+- OnEraseBackground · function · L112-L112 — void OnEraseBackground(wxEraseEvent &evt);
+- PaintForeground · function · L113-L113 — void PaintForeground(wxDC &dc);
+- on_mouse_enter · function · L114-L114 — void on_mouse_enter(wxMouseEvent &evt);
+- on_mouse_leave · function · L115-L115 — void on_mouse_leave(wxMouseEvent &evt);
+- on_input_enter · function · L116-L116 — void on_input_enter(wxCommandEvent& evt);
+- on_dclick · function · L117-L117 — void on_dclick(wxMouseEvent &evt);
+- on_mouse_left_up · function · L118-L118 — void on_mouse_left_up(wxMouseEvent &evt);
+- on_set_cover · function · L120-L120 — void on_set_cover();
+- on_set_delete · function · L121-L121 — void on_set_delete();
+- on_set_rename · function · L122-L122 — void on_set_rename();
+- on_set_open · function · L123-L123 — void on_set_open();
+- set_cover · function · L125-L125 — void set_cover(bool cover);
+- msw_rescale · function · L126-L126 — void msw_rescale();
+- AuFiles · class · L130-L135 — class AuFiles
+- WX_DEFINE_ARRAY · function · L137-L137 — WX_DEFINE_ARRAY(AuFiles *, AuFilesHash);
+- AuFolderPanel · class · L139-L169 — class AuFolderPanel : public wxPanel
+- AuFolderPanel · function · L142-L147 — AuFolderPanel(wxWindow *          parent,
+- clear · function · L153-L153 — void clear();
+- update_cover · function · L154-L154 — void update_cover();
+- update · function · L155-L155 — void update(std::vector<fs::path> paths);
+- msw_rescale · function · L156-L156 — void msw_rescale();
+- on_add · function · L167-L167 — void on_add(wxMouseEvent& event);
+- on_delete · function · L168-L168 — void on_delete(wxCommandEvent &event);
+- DesignerPanel · class · L171-L194 — class DesignerPanel : public wxPanel
+- DesignerPanel · function · L174-L179 — DesignerPanel(wxWindow *          parent,
+- Show · function · L186-L186 — bool Show(bool show) override;
+- init_license_list · function · L187-L187 — void                init_license_list();
+- on_input_enter_designer · function · L188-L188 — void                on_input_enter_designer(wxCommandEvent &evt);
+- on_input_enter_model · function · L189-L189 — void                on_input_enter_model(wxCommandEvent &evt);
+- on_input_enter_description · function · L190-L190 — void                on_input_enter_description(wxCommandEvent &evt);
+- on_select_license · function · L191-L191 — void                on_select_license(wxCommandEvent& evt);
+- update_info · function · L192-L192 — void                update_info();
+- msw_rescale · function · L193-L193 — void                msw_rescale();
+- AuxiliaryPanel · class · L197-L241 — class AuxiliaryPanel : public wxPanel
+- create_side_tools · function · L216-L216 — wxWindow *create_side_tools();
+- AuxiliaryPanel · function · L219-L219 — AuxiliaryPanel(wxWindow *parent, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- init_bitmap · function · L221-L221 — void init_bitmap();
+- init_tabpanel · function · L222-L222 — void init_tabpanel();
+- Split · function · L224-L224 — void Split(const std::string &src, const std::string &separator, std::vector<std::string> &dest);
+- msw_rescale · function · L226-L226 — void msw_rescale();
+- on_size · function · L227-L227 — void on_size(wxSizeEvent &event);
+- Show · function · L228-L228 — bool Show(bool show);
+- init_auxiliary · function · L233-L233 — void                                            init_auxiliary();
+- create_folder · function · L234-L234 — void                                            create_folder(wxString name = wxEmptyString);
+- replaceSpace · function · L235-L235 — std::string                                     replaceSpace(std::string s, std::string ts, std::string ns);
+- on_import_file · function · L236-L236 — void                                            on_import_file(wxCommandEvent &event);
+- Reload · function · L237-L237 — void                                            Reload(wxString aux_path, std::map<std::string, std::vector<json>> paths);
+- update_all_panel · function · L239-L239 — void update_all_panel();
+- update_all_cover · function · L240-L240 — void update_all_cover();

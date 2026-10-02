@@ -1,0 +1,40 @@
+# deps_src/libnest2d/include/libnest2d/common.hpp
+
+- DOut · class · L38-L42 — struct DOut
+- DErr · class · L44-L48 — struct DErr
+- dout · function · L65-L65 — inline DOut dout() { return DOut(); }
+- derr · function · L66-L66 — inline DErr derr() { return DErr(); }
+- remove_cvref · class · L68-L72 — template< class T >
+- invoke_result · class · L83-L86 — template<class F, class...Args>
+- always_false · class · L97-L97 — template<class T> struct always_false { enum { value = false }; };
+- Double · class · L105-L114 — class Double
+- Double · function · L109-L109 — Double(): val_(double{}) { }
+- Double · function · L110-L110 — Double(double d) : val_(d) { }
+- Degrees · class · L116-L116 — class Degrees;
+- Radians · class · L121-L145 — class Radians: public Double
+- Radians · function · L124-L124 — Radians(double rads = Double() ): Double(rads) {}
+- Radians · function · L125-L125 — inline Radians(const Degrees& degs);
+- toDegrees · function · L128-L128 — inline double toDegrees();
+- sin · function · L130-L136 — inline double sin() const
+- cos · function · L138-L144 — inline double cos() const
+- Degrees · class · L150-L155 — class Degrees: public Double
+- Degrees · function · L152-L152 — Degrees(double deg = Double()): Double(deg) {}
+- Degrees · function · L153-L153 — Degrees(const Radians& rads): Double( rads * 180/Pi ) {}
+- toRadians · function · L154-L154 — inline double toRadians() { return Radians(*this);}
+- Degrees · function · L167-L167 — inline Radians::operator Degrees() { return *this * 180/Pi; }
+- Radians · method · L169-L169 — inline Radians::Radians(const Degrees &degs): Double( degs * Pi/180) {}
+- toDegrees · method · L171-L171 — inline double Radians::toDegrees() { return operator Degrees(); }
+- GeomErr · type · L173-L177 — enum class GeomErr : std::size_t
+- GeometryException · class · L185-L201 — class GeometryException: public std::exception
+- errorstr · function · L187-L187 — virtual const std::string& errorstr(GeomErr errcode) const BP2D_NOEXCEPT
+- GeometryException · function · L194-L194 — GeometryException(GeomErr code): errcode_(code) {}
+- errcode · function · L196-L196 — GeomErr errcode() const { return errcode_; }
+- what · function · L198-L198 — const char * what() const BP2D_NOEXCEPT override
+- ScalarTag · class · L203-L203 — struct ScalarTag {};
+- BigIntTag · class · L204-L204 — struct BigIntTag {};
+- RationalTag · class · L205-L205 — struct RationalTag {};
+- _NumTag · class · L207-L210 — template<class T> struct _NumTag
+- abs · function · L215-L218 — template <class T> inline T abs(const T& v, ScalarTag)
+- abs · function · L220-L220 — template<class T> inline T abs(const T& v) { return abs(v, NumTag<T>()); }
+- cast · function · L222-L225 — template<class T2, class T1> inline T2 cast(const T1& v, ScalarTag, ScalarTag)
+- cast · function · L227-L229 — template<class T2, class T1> inline T2 cast(const T1& v)

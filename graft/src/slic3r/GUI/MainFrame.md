@@ -1,0 +1,144 @@
+# src/slic3r/GUI/MainFrame.hpp
+
+- Notebook · class · L59-L59 — class Notebook;
+- wxBookCtrlBase · class · L60-L60 — class wxBookCtrlBase;
+- wxProgressDialog · class · L61-L61 — class wxProgressDialog;
+- Tab · class · L68-L68 — class Tab;
+- PrintHostQueueDialog · class · L69-L69 — class PrintHostQueueDialog;
+- Plater · class · L70-L70 — class Plater;
+- DesignPanel · class · L72-L72 — class DesignPanel;
+- MainFrame · class · L74-L74 — class MainFrame;
+- WebViewPanel · class · L75-L75 — class WebViewPanel;
+- ParamsDialog · class · L76-L76 — class ParamsDialog;
+- Shortcut · type · L77-L77 — enum class Shortcut : uint8_t;
+- ResizeEdgePanel · class · L80-L80 — class ResizeEdgePanel;
+- QuickSlice · type · L83-L90 — enum QuickSlice
+- PresetTab · class · L92-L96 — struct PresetTab
+- SettingsDialog · class · L102-L116 — class SettingsDialog : public DPIDialog//DPIDialog
+- SettingsDialog · function · L108-L108 — SettingsDialog(MainFrame* mainframe);
+- set_tabpanel · function · L111-L111 — void set_tabpanel(Notebook* tabpanel) { m_tabpanel = tabpanel; }
+- menubar · function · L112-L112 — wxMenuBar* menubar() { return m_menubar; }
+- on_dpi_changed · function · L115-L115 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- CalibKind · type · L119-L130 — enum class CalibKind : int
+- MainFrame · class · L132-L510 — class MainFrame : public DPIFrame
+- get_base_name · function · L157-L157 — std::string     get_base_name(const wxString &full_name, const char *extension = nullptr) const;
+- get_dir_name · function · L158-L158 — std::string     get_dir_name(const wxString &full_name) const;
+- on_presets_changed · function · L160-L160 — void on_presets_changed(SimpleEvent&);
+- on_value_changed · function · L161-L161 — void on_value_changed(wxCommandEvent&);
+- can_start_new_project · function · L163-L163 — bool can_start_new_project() const;
+- can_open_project · function · L164-L164 — bool can_open_project() const;
+- can_add_models · function · L165-L165 — bool can_add_models() const;
+- can_export_model · function · L166-L166 — bool can_export_model() const;
+- can_export_toolpaths · function · L167-L167 — bool can_export_toolpaths() const;
+- can_export_supports · function · L168-L168 — bool can_export_supports() const;
+- can_export_gcode · function · L169-L169 — bool can_export_gcode() const;
+- can_export_all_gcode · function · L170-L170 — bool can_export_all_gcode() const;
+- can_print_3mf · function · L171-L171 — bool can_print_3mf() const;
+- can_send_gcode · function · L172-L172 — bool can_send_gcode() const;
+- can_slice · function · L175-L175 — bool can_slice() const;
+- can_change_view · function · L176-L176 — bool can_change_view() const;
+- can_select · function · L177-L177 — bool can_select() const;
+- can_deselect · function · L178-L178 — bool can_deselect() const;
+- can_clone · function · L179-L179 — bool can_clone() const;
+- can_delete · function · L180-L180 — bool can_delete() const;
+- can_delete_all · function · L181-L181 — bool can_delete_all() const;
+- can_reslice · function · L182-L182 — bool can_reslice() const;
+- bind_diff_dialog · function · L183-L183 — void bind_diff_dialog();
+- create_side_tools · function · L186-L186 — wxBoxSizer* create_side_tools();
+- MenuItems · type · L189-L195 — enum MenuItems
+- ShortcutMenuItem · class · L201-L207 — struct ShortcutMenuItem
+- shortcut_label · function · L210-L210 — wxString shortcut_label(const wxString& label, Shortcut shortcut, bool accelerator);
+- append_shortcut_item · function · L212-L212 — wxMenuItem* append_shortcut_item(wxMenu* menu, Shortcut shortcut, bool accelerator, const wxString& label, Args&&... args)
+- handle_global_shortcut · function · L219-L219 — bool handle_global_shortcut(const KeyChord& chord);
+- add_common_view_menu_items · function · L220-L220 — void add_common_view_menu_items(wxMenu* view_menu, std::function<bool(void)> can_change_view);
+- generate_help_menu · function · L221-L221 — wxMenu* generate_help_menu();
+- FileHistory · class · L223-L240 — struct FileHistory : wxFileHistory
+- FileHistory · function · L225-L225 — FileHistory(int max) : wxFileHistory(max) {}
+- GetThumbnailUrl · function · L226-L226 — std::wstring GetThumbnailUrl(int index) const;
+- GetPublished · function · L227-L227 — bool        GetPublished(int index) const;
+- AddFileToHistory · function · L229-L229 — virtual void AddFileToHistory(const wxString &file);
+- RemoveFileFromHistory · function · L230-L230 — virtual void RemoveFileFromHistory(size_t i);
+- FindFileInHistory · function · L231-L231 — size_t FindFileInHistory(const wxString &file);
+- LoadThumbnails · function · L233-L233 — void LoadThumbnails();
+- SetMaxFiles · function · L235-L235 — void SetMaxFiles(int max);
+- ESettingsLayout · type · L244-L252 — enum class ESettingsLayout
+- SliceSelectType · type · L256-L260 — enum SliceSelectType
+- on_dpi_changed · function · L266-L266 — virtual void on_dpi_changed(const wxRect &suggested_rect) override;
+- on_sys_color_changed · function · L267-L267 — virtual void on_sys_color_changed() override;
+- MSWWindowProc · function · L270-L270 — WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) override;
+- MainFrame · function · L274-L274 — MainFrame();
+- get_mac_full_screen · function · L277-L277 — bool get_mac_full_screen() { return m_mac_fullscreen; }
+- SlicePrintEventType · type · L281-L288 — enum SlicePrintEventType
+- PrintSelectType · type · L291-L302 — enum PrintSelectType
+- update_layout · function · L304-L304 — void update_layout();
+- shutdown · function · L307-L307 — void 		shutdown();
+- plater · function · L309-L309 — Plater*     plater() { return m_plater; }
+- topbar · function · L312-L312 — BBLTopbar* topbar() { return m_topbar; }
+- update_filament_tab_ui · function · L315-L315 — void update_filament_tab_ui();
+- update_title · function · L317-L317 — void        update_title();
+- set_max_recent_count · function · L318-L318 — void        set_max_recent_count(int max);
+- show_publish_button · function · L320-L320 — void        show_publish_button(bool show);
+- update_title_colour_after_set_title · function · L322-L322 — void        update_title_colour_after_set_title();
+- show_option · function · L323-L323 — void        show_option(bool show);
+- init_tabpanel · function · L324-L324 — void        init_tabpanel();
+- create_preset_tabs · function · L325-L325 — void        create_preset_tabs();
+- add_created_tab · function · L327-L327 — void        add_created_tab(Tab* panel, const std::string& bmp_name = "");
+- is_active_and_shown_tab · function · L328-L328 — bool        is_active_and_shown_tab(wxPanel* panel);
+- register_win32_callbacks · function · L332-L332 — void        register_win32_callbacks();
+- init_menubar_as_editor · function · L333-L333 — void        init_menubar_as_editor();
+- init_menubar_as_gcodeviewer · function · L334-L334 — void        init_menubar_as_gcodeviewer();
+- update_menubar · function · L335-L335 — void        update_menubar();
+- open_menubar_item · function · L337-L337 — void        open_menubar_item(const wxString& menu_name,const wxString& item_name);
+- show_tabs_menu · function · L339-L339 — void        show_tabs_menu(bool show);
+- show_log_window · function · L342-L342 — void        show_log_window();
+- update_ui_from_settings · function · L344-L344 — void        update_ui_from_settings();
+- show_sync_dialog · function · L346-L346 — void        show_sync_dialog();
+- update_side_preset_ui · function · L347-L347 — void        update_side_preset_ui();
+- on_select_default_preset · function · L348-L348 — void        on_select_default_preset(SimpleEvent& evt);
+- is_loaded · function · L350-L350 — bool        is_loaded() const { return m_loaded; }
+- is_last_input_file · function · L351-L351 — bool        is_last_input_file() const  { return !m_qs_last_input_file.IsEmpty(); }
+- reslice_now · function · L355-L355 — void        reslice_now();
+- export_config · function · L356-L356 — void        export_config();
+- load_config_file · function · L358-L358 — void        load_config_file();
+- load_config_file · function · L360-L360 — bool        load_config_file(const std::string &path);
+- load_config · function · L368-L368 — void        load_config(const DynamicPrintConfig& config);
+- jump_to_monitor · function · L370-L370 — void        jump_to_monitor(std::string dev_id = "");
+- jump_to_multipage · function · L371-L371 — void        jump_to_multipage();
+- preview_only_hint · function · L373-L373 — bool        preview_only_hint();
+- select_tab · function · L377-L377 — void        select_tab(wxPanel* panel);
+- select_tab · function · L378-L378 — void        select_tab(const wxString& id = wxString());
+- request_select_tab · function · L379-L379 — void        request_select_tab(const wxString& id);
+- get_calibration_curr_tab · function · L380-L380 — int         get_calibration_curr_tab();
+- select_view · function · L381-L381 — void        select_view(const std::string& direction);
+- update_shortcut_labels · function · L382-L382 — void        update_shortcut_labels();
+- on_config_changed · function · L384-L384 — void        on_config_changed(DynamicPrintConfig* cfg) const ;
+- set_print_button_to_default · function · L385-L385 — void        set_print_button_to_default(PrintSelectType select_type);
+- can_save · function · L387-L387 — bool can_save() const;
+- can_save_as · function · L388-L388 — bool can_save_as() const;
+- can_upload · function · L390-L390 — bool can_upload() const;
+- save_project · function · L391-L391 — void save_project();
+- save_project_as · function · L392-L392 — bool save_project_as(const wxString& filename = wxString());
+- publish_project · function · L394-L394 — void publish_project();
+- add_to_recent_projects · function · L396-L396 — void        add_to_recent_projects(const wxString& filename);
+- get_recent_projects · function · L397-L397 — void        get_recent_projects(boost::property_tree::wptree &tree, int images);
+- open_recent_project · function · L398-L398 — void        open_recent_project(size_t file_id, wxString const & filename);
+- remove_recent_project · function · L399-L399 — void        remove_recent_project(size_t file_id, wxString const &filename);
+- technology_changed · function · L401-L401 — void        technology_changed();
+- run_calibration · function · L407-L407 — void        run_calibration(CalibKind calib_kind);
+- load_url · function · L410-L410 — void        load_url(wxString url);
+- load_printer_url · function · L411-L411 — void        load_printer_url(wxString url, wxString apikey = "");
+- load_printer_url · function · L412-L412 — void        load_printer_url();
+- is_printer_view · function · L413-L413 — bool        is_printer_view() const;
+- refresh_plugin_tips · function · L414-L414 — void        refresh_plugin_tips();
+- RunScript · function · L415-L415 — void RunScript(wxString js);
+- show_device · function · L418-L418 — void show_device(bool should_use_native);
+- fit_tab_labels · function · L419-L419 — void fit_tab_labels(); // ORCA
+- is_prepare_or_preview_tab · function · L421-L421 — bool is_prepare_or_preview_tab() const;
+- plugin_pages · function · L422-L422 — PluginPages& plugin_pages() { return m_plugin_pages; }
+- printhost_queue_dlg · function · L436-L436 — PrintHostQueueDialog* printhost_queue_dlg() { return m_printhost_queue_dlg; }
+- ensure_design_panel · function · L447-L447 — DesignPanel*          ensure_design_panel();
+- get_enable_slice_status · function · L487-L487 — bool get_enable_slice_status();
+- get_enable_print_status · function · L488-L488 — bool get_enable_print_status();
+- update_side_button_style · function · L490-L490 — void update_side_button_style();
+- update_slice_print_status · function · L491-L491 — void update_slice_print_status(SlicePrintEventType event, bool can_slice = true, bool can_print = true);
+- update_edge_panels · function · L508-L508 — void update_edge_panels();

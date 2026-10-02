@@ -1,0 +1,38 @@
+# src/slic3r/GUI/SceneRaycaster.hpp
+
+- SceneRaycasterItem · class · L15-L38 — class SceneRaycasterItem
+- SceneRaycasterItem · function · L24-L26 — SceneRaycasterItem(int id, const MeshRaycaster& raycaster)
+- SceneRaycasterItem · function · L27-L29 — SceneRaycasterItem(int id, const MeshRaycaster& raycaster, const Transform3d& trafo, bool use_back_faces = false)
+- get_id · function · L31-L31 — int get_id() const { return m_id; }
+- is_active · function · L32-L32 — bool is_active() const { return m_active; }
+- set_active · function · L33-L33 — void set_active(bool active) { m_active = active; }
+- use_back_faces · function · L34-L34 — bool use_back_faces() const { return m_use_back_faces; }
+- get_raycaster · function · L35-L35 — const MeshRaycaster* get_raycaster() const { return m_raycaster; }
+- get_transform · function · L36-L36 — const Transform3d& get_transform() const { return m_trafo; }
+- set_transform · function · L37-L37 — void set_transform(const Transform3d& trafo) { m_trafo = trafo; }
+- SceneRaycaster · class · L40-L120 — class SceneRaycaster
+- EType · type · L43-L50 — enum class EType
+- EIdBase · type · L52-L58 — enum class EIdBase
+- HitResult · class · L60-L68 — struct HitResult
+- is_valid · function · L67-L67 — bool is_valid() const { return raycaster_id != -1; }
+- SceneRaycaster · function · L87-L87 — SceneRaycaster();
+- add_raycaster · function · L89-L90 — std::shared_ptr<SceneRaycasterItem> add_raycaster(EType type, int picking_id, const MeshRaycaster& raycaster,
+- remove_raycasters · function · L91-L91 — void remove_raycasters(EType type, int id);
+- remove_raycasters · function · L92-L92 — void remove_raycasters(EType type);
+- remove_raycaster · function · L93-L93 — void remove_raycaster(std::shared_ptr<SceneRaycasterItem> item);
+- get_raycasters · function · L95-L95 — std::vector<std::shared_ptr<SceneRaycasterItem>>* get_raycasters(EType type);
+- get_raycasters · function · L96-L96 — const std::vector<std::shared_ptr<SceneRaycasterItem>>* get_raycasters(EType type) const;
+- set_gizmos_on_top · function · L98-L98 — void set_gizmos_on_top(bool value) { m_gizmos_on_top = value; }
+- hit · function · L100-L100 — HitResult hit(const Vec2d& mouse_pos, const Camera& camera, const ClippingPlane* clipping_plane = nullptr) const;
+- render_hit · function · L103-L103 — void render_hit(const Camera& camera);
+- beds_count · function · L105-L105 — size_t beds_count() const    { return m_bed.size(); }
+- volumes_count · function · L106-L106 — size_t volumes_count() const { return m_volumes.size(); }
+- gizmos_count · function · L107-L107 — size_t gizmos_count() const  { return m_gizmos.size(); }
+- fallback_gizmos_count · function · L108-L108 — size_t fallback_gizmos_count() const  { return m_fallback_gizmos.size(); }
+- active_beds_count · function · L109-L109 — size_t active_beds_count() const;
+- active_volumes_count · function · L110-L110 — size_t active_volumes_count() const;
+- active_gizmos_count · function · L111-L111 — size_t active_gizmos_count() const;
+- active_fallback_gizmos_count · function · L112-L112 — size_t active_fallback_gizmos_count() const;
+- decode_id · function · L115-L115 — static int decode_id(EType type, int id);
+- encode_id · function · L118-L118 — static int encode_id(EType type, int id);
+- base_id · function · L119-L119 — static int base_id(EType type);

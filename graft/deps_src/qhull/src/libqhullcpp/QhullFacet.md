@@ -1,0 +1,42 @@
+# deps_src/qhull/src/libqhullcpp/QhullFacet.h
+
+- QhullRidgeSet · type · L32-L32 — typedef QhullSet<QhullRidge>  QhullRidgeSet;
+- QhullFacet · function · L52-L52 — explicit            QhullFacet(const Qhull &q);
+- qh_qh · function · L54-L54 — explicit            QhullFacet(QhullQh *qqh) : qh_facet(&s_empty_facet), qh_qh(qqh) {}
+- QhullFacet · function · L54-L54 — explicit            QhullFacet(QhullQh *qqh) : qh_facet(&s_empty_facet), qh_qh(qqh) {}
+- qh_facet · function · L57-L57 — QhullFacet(const QhullFacet &other) : qh_facet(other.qh_facet ? other.qh_facet : &s_empty_facet), qh_qh(other.qh_qh) {}
+- qh_qh · function · L57-L57 — QhullFacet(const QhullFacet &other) : qh_facet(other.qh_facet ? other.qh_facet : &s_empty_facet), qh_qh(other.qh_qh) {}
+- dimension · function · L64-L64 — int                 dimension() const { return (qh_qh ? qh_qh->hull_dim : 0); }
+- getCenter · function · L65-L65 — QhullPoint          getCenter() { return getCenter(qh_PRINTpoints); }
+- getCenter · function · L66-L66 — QhullPoint          getCenter(qh_PRINT printFormat);
+- getBaseT · function · L67-L67 — facetT *            getBaseT() const { return getFacetT(); } //!< For QhullSet<QhullFacet>
+- getFacetT · function · L69-L69 — facetT *            getFacetT() const { return qh_facet; }
+- hyperplane · function · L70-L70 — QhullHyperplane     hyperplane() const { return QhullHyperplane(qh_qh, dimension(), qh_facet->normal, qh_facet->offset); }
+- id · function · L71-L71 — countT              id() const { return (qh_facet ? qh_facet->id : (int)qh_IDunknown); }
+- innerplane · function · L72-L74 — QhullHyperplane     innerplane() const;
+- isValid · function · L73-L73 — bool                isValid() const { return qh_qh && qh_facet && qh_facet != &s_empty_facet; }
+- isGood · function · L74-L74 — bool                isGood() const { return qh_facet && qh_facet->good; }
+- isSimplicial · function · L75-L75 — bool                isSimplicial() const { return qh_facet && qh_facet->simplicial; }
+- isTopOrient · function · L76-L76 — bool                isTopOrient() const { return qh_facet && qh_facet->toporient; }
+- isTriCoplanar · function · L77-L77 — bool                isTriCoplanar() const { return qh_facet && qh_facet->tricoplanar; }
+- isUpperDelaunay · function · L78-L78 — bool                isUpperDelaunay() const { return qh_facet && qh_facet->upperdelaunay; }
+- next · function · L79-L79 — QhullFacet          next() const { return QhullFacet(qh_qh, qh_facet->next); }
+- outerplane · function · L82-L84 — QhullHyperplane     outerplane() const;
+- previous · function · L83-L83 — QhullFacet          previous() const { return QhullFacet(qh_qh, qh_facet->previous); }
+- qh · function · L84-L84 — QhullQh *           qh() const { return qh_qh; }
+- tricoplanarOwner · function · L85-L90 — QhullFacet          tricoplanarOwner() const;
+- distance · function · L90-L90 — double              distance(const Coordinates &c) const { return distance(c.data()); }
+- distance · function · L91-L91 — double              distance(const pointT *p) const { return distance(QhullPoint(qh_qh, const_cast<coordT *>(p))); }
+- distance · function · L92-L92 — double              distance(const QhullPoint &p) const { return hyperplane().distance(p); }
+- facetArea · function · L93-L93 — double              facetArea();
+- coplanarPoints · function · L97-L110 — QhullPointSet       coplanarPoints() const;
+- neighborFacets · function · L98-L98 — QhullFacetSet       neighborFacets() const;
+- outsidePoints · function · L99-L99 — QhullPointSet       outsidePoints() const;
+- ridges · function · L100-L100 — QhullRidgeSet       ridges() const;
+- vertices · function · L101-L101 — QhullVertexSet      vertices() const;
+- print_format · function · L108-L108 — PrintCenter(QhullFacet &f, qh_PRINT printFormat, const char * s) : facet(&f), message(s), print_format(printFormat){}
+- printCenter · function · L110-L110 — PrintCenter         printCenter(qh_PRINT printFormat, const char *message) { return PrintCenter(*this, printFormat, message); }
+- PrintFacet · class · L112-L123 — struct PrintFacet
+- printFlags · function · L124-L124 — PrintFlags          printFlags(const char *message) const { return PrintFlags(*this, message); }
+- PrintHeader · class · L126-L135 — struct PrintHeader
+- printRidges · function · L136-L136 — PrintRidges         printRidges() { return PrintRidges(*this); }

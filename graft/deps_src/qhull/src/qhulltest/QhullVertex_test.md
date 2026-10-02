@@ -1,0 +1,21 @@
+# deps_src/qhull/src/qhulltest/QhullVertex_test.cpp
+
+- QhullVertex_test · class · L30-L41 — class QhullVertex_test : public RoadTest
+- cleanup · function · L36-L36 — void cleanup();
+- t_constructConvert · function · L37-L37 — void t_constructConvert();
+- t_getSet · function · L38-L38 — void t_getSet();
+- t_foreach · function · L39-L39 — void t_foreach();
+- t_io · function · L40-L40 — void t_io();
+- add_QhullVertex_test · function · L43-L47 — void
+- cleanup · method · L50-L54 — void QhullVertex_test::
+- t_constructConvert · method · L56-L80 — void QhullVertex_test::
+- v · function · L65-L65 — QhullVertex v(q);
+- t_getSet · method · L82-L117 — void QhullVertex_test::
+- i · function · L93-L93 — QhullVertexListIterator i(vs);
+- foreach · function · L110-L115 — foreach (QhullVertex v, q.vertexList()){  // Qt only
+- vertexList · function · L110-L110 — foreach (QhullVertex v, q.vertexList()){  // Qt only
+- t_foreach · method · L119-L133 — void QhullVertex_test::
+- foreach · function · L125-L131 — foreach (QhullVertex v, q.vertexList()){  // Qt only
+- vertexList · function · L125-L125 — foreach (QhullVertex v, q.vertexList()){  // Qt only
+- foreach · function · L128-L130 — foreach (QhullFacet f, fs){  // Qt only
+- t_io · method · L135-L180 — void QhullVertex_test::

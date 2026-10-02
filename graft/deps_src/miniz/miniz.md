@@ -1,0 +1,167 @@
+# deps_src/miniz/miniz.h
+
+- mz_ulong · type · L198-L198 — typedef unsigned long mz_ulong;
+- mz_free · function · L201-L201 — void mz_free(void *p);
+- mz_adler32 · function · L205-L205 — mz_ulong mz_adler32(mz_ulong adler, const unsigned char *ptr, size_t buf_len);
+- mz_crc32 · function · L209-L209 — mz_ulong mz_crc32(mz_ulong crc, const unsigned char *ptr, size_t buf_len);
+- mz_stream_s · class · L282-L302 — typedef struct mz_stream_s
+- mz_version · function · L307-L307 — const char *mz_version(void);
+- mz_deflateInit · function · L320-L320 — int mz_deflateInit(mz_streamp pStream, int level);
+- mz_deflateInit2 · function · L327-L327 — int mz_deflateInit2(mz_streamp pStream, int level, int method, int window_bits, int mem_level, int strategy);
+- mz_deflateReset · function · L330-L330 — int mz_deflateReset(mz_streamp pStream);
+- mz_deflate · function · L342-L342 — int mz_deflate(mz_streamp pStream, int flush);
+- mz_deflateEnd · function · L348-L348 — int mz_deflateEnd(mz_streamp pStream);
+- mz_deflateBound · function · L351-L351 — mz_ulong mz_deflateBound(mz_streamp pStream, mz_ulong source_len);
+- mz_compress · function · L355-L355 — int mz_compress(unsigned char *pDest, mz_ulong *pDest_len, const unsigned char *pSource, mz_ulong source_len);
+- mz_compress2 · function · L356-L356 — int mz_compress2(unsigned char *pDest, mz_ulong *pDest_len, const unsigned char *pSource, mz_ulong source_len, int level);
+- mz_compressBound · function · L359-L359 — mz_ulong mz_compressBound(mz_ulong source_len);
+- mz_inflateInit · function · L362-L362 — int mz_inflateInit(mz_streamp pStream);
+- mz_inflateInit2 · function · L366-L366 — int mz_inflateInit2(mz_streamp pStream, int window_bits);
+- mz_inflateReset · function · L369-L369 — int mz_inflateReset(mz_streamp pStream);
+- mz_inflate · function · L385-L385 — int mz_inflate(mz_streamp pStream, int flush);
+- mz_inflateEnd · function · L388-L388 — int mz_inflateEnd(mz_streamp pStream);
+- mz_uncompress · function · L392-L392 — int mz_uncompress(unsigned char *pDest, mz_ulong *pDest_len, const unsigned char *pSource, mz_ulong source_len);
+- mz_error · function · L395-L395 — const char *mz_error(int err);
+- Byte · type · L400-L400 — typedef unsigned char Byte;
+- uInt · type · L401-L401 — typedef unsigned int uInt;
+- uLong · type · L402-L402 — typedef mz_ulong uLong;
+- Bytef · type · L403-L403 — typedef Byte Bytef;
+- uIntf · type · L404-L404 — typedef uInt uIntf;
+- charf · type · L405-L405 — typedef char charf;
+- intf · type · L406-L406 — typedef int intf;
+- uLongf · type · L408-L408 — typedef uLong uLongf;
+- mz_uint8 · type · L485-L485 — typedef unsigned char mz_uint8;
+- mz_int16 · type · L486-L486 — typedef signed short mz_int16;
+- mz_uint16 · type · L487-L487 — typedef unsigned short mz_uint16;
+- mz_uint32 · type · L488-L488 — typedef unsigned int mz_uint32;
+- mz_uint · type · L489-L489 — typedef unsigned int mz_uint;
+- mz_int64 · type · L490-L490 — typedef int64_t mz_int64;
+- mz_uint64 · type · L491-L491 — typedef uint64_t mz_uint64;
+- mz_bool · type · L492-L492 — typedef int mz_bool;
+- mz_dummy_time_t_tag · class · L512-L515 — typedef struct mz_dummy_time_t_tag
+- miniz_def_alloc_func · function · L559-L559 — extern void *miniz_def_alloc_func(void *opaque, size_t items, size_t size);
+- miniz_def_free_func · function · L560-L560 — extern void miniz_def_free_func(void *opaque, void *address);
+- miniz_def_realloc_func · function · L561-L561 — extern void *miniz_def_realloc_func(void *opaque, void *address, size_t items, size_t size);
+- tdefl_compress_mem_to_heap · function · L619-L619 — void *tdefl_compress_mem_to_heap(const void *pSrc_buf, size_t src_buf_len, size_t *pOut_len, int flags);
+- tdefl_compress_mem_to_mem · function · L623-L623 — size_t tdefl_compress_mem_to_mem(void *pOut_buf, size_t out_buf_len, const void *pSrc_buf, size_t src_buf_len, int flags);
+- tdefl_write_image_to_png_file_in_memory_ex · function · L635-L635 — void *tdefl_write_image_to_png_file_in_memory_ex(const void *pImage, int w, int h, int num_chans, size_t *pLen_out, mz_uint level, mz_bool flip);
+- tdefl_write_image_to_png_file_in_memory · function · L636-L636 — void *tdefl_write_image_to_png_file_in_memory(const void *pImage, int w, int h, int num_chans, size_t *pLen_out);
+- tdefl_compress_mem_to_output · function · L642-L642 — mz_bool tdefl_compress_mem_to_output(const void *pBuf, size_t buf_len, tdefl_put_buf_func_ptr pPut_buf_func, void *pPut_buf_user, int flags);
+- tdefl_status · type · L682-L687 — typedef enum
+- tdefl_flush · type · L690-L695 — typedef enum
+- tdefl_compressor · type · L698-L723 — typedef struct
+- tdefl_init · function · L730-L730 — tdefl_status tdefl_init(tdefl_compressor *d, tdefl_put_buf_func_ptr pPut_buf_func, void *pPut_buf_user, int flags);
+- tdefl_compress · function · L733-L733 — tdefl_status tdefl_compress(tdefl_compressor *d, const void *pIn_buf, size_t *pIn_buf_size, void *pOut_buf, size_t *pOut_buf_size, tdefl_flush flush);
+- tdefl_compress_buffer · function · L737-L737 — tdefl_status tdefl_compress_buffer(tdefl_compressor *d, const void *pIn_buf, size_t in_buf_size, tdefl_flush flush);
+- tdefl_get_prev_return_status · function · L739-L739 — tdefl_status tdefl_get_prev_return_status(tdefl_compressor *d);
+- tdefl_get_adler32 · function · L740-L740 — mz_uint32 tdefl_get_adler32(tdefl_compressor *d);
+- tdefl_create_comp_flags_from_zip_params · function · L746-L746 — mz_uint tdefl_create_comp_flags_from_zip_params(int level, int window_bits, int strategy);
+- tdefl_compressor_alloc · function · L752-L752 — tdefl_compressor *tdefl_compressor_alloc(void);
+- tdefl_compressor_free · function · L753-L753 — void tdefl_compressor_free(tdefl_compressor *pComp);
+- tinfl_decompress_mem_to_heap · function · L787-L787 — void *tinfl_decompress_mem_to_heap(const void *pSrc_buf, size_t src_buf_len, size_t *pOut_len, int flags);
+- tinfl_decompress_mem_to_mem · function · L792-L792 — size_t tinfl_decompress_mem_to_mem(void *pOut_buf, size_t out_buf_len, const void *pSrc_buf, size_t src_buf_len, int flags);
+- tinfl_decompress_mem_to_callback · function · L797-L797 — int tinfl_decompress_mem_to_callback(const void *pIn_buf, size_t *pIn_buf_size, tinfl_put_buf_func_ptr pPut_buf_func, void *pPut_buf_user, int flags);
+- tinfl_decompressor · type · L800-L800 — typedef struct tinfl_decompressor_tag tinfl_decompressor;
+- tinfl_decompressor_alloc · function · L806-L806 — tinfl_decompressor *tinfl_decompressor_alloc(void);
+- tinfl_decompressor_free · function · L807-L807 — void tinfl_decompressor_free(tinfl_decompressor *pDecomp);
+- tinfl_status · type · L814-L845 — typedef enum
+- tinfl_decompress · function · L858-L858 — tinfl_status tinfl_decompress(tinfl_decompressor *r, const mz_uint8 *pIn_buf_next, size_t *pIn_buf_size, mz_uint8 *pOut_buf_start, mz_uint8 *pOut_buf_next, size_t *pOut_buf_size, const mz_uint32 decomp_flags);
+- tinfl_huff_table · type · L871-L875 — typedef struct
+- tinfl_bit_buf_t · type · L884-L884 — typedef mz_uint64 tinfl_bit_buf_t;
+- tinfl_bit_buf_t · type · L887-L887 — typedef mz_uint32 tinfl_bit_buf_t;
+- tinfl_decompressor_tag · class · L891-L898 — struct tinfl_decompressor_tag
+- mz_zip_archive_file_stat · type · L923-L980 — typedef struct
+- mz_zip_internal_state · type · L987-L987 — typedef struct mz_zip_internal_state_tag mz_zip_internal_state;
+- mz_zip_mode · type · L989-L994 — typedef enum
+- mz_zip_flags · type · L996-L1006 — typedef enum
+- mz_zip_type · type · L1008-L1016 — typedef enum
+- mz_zip_error · type · L1019-L1053 — typedef enum
+- mz_zip_archive · type · L1055-L1080 — typedef struct
+- mz_zip_reader_extract_iter_state · type · L1082-L1100 — typedef struct
+- mz_zip_reader_init · function · L1106-L1106 — mz_bool mz_zip_reader_init(mz_zip_archive *pZip, mz_uint64 size, mz_uint flags);
+- mz_zip_reader_init_mem · function · L1108-L1108 — mz_bool mz_zip_reader_init_mem(mz_zip_archive *pZip, const void *pMem, size_t size, mz_uint flags);
+- mz_zip_reader_init_file · function · L1114-L1114 — mz_bool mz_zip_reader_init_file(mz_zip_archive *pZip, const char *pFilename, mz_uint32 flags);
+- mz_zip_reader_init_file_v2 · function · L1115-L1115 — mz_bool mz_zip_reader_init_file_v2(mz_zip_archive *pZip, const char *pFilename, mz_uint flags, mz_uint64 file_start_ofs, mz_uint64 archive_size);
+- mz_zip_reader_init_cfile · function · L1120-L1120 — mz_bool mz_zip_reader_init_cfile(mz_zip_archive *pZip, MZ_FILE *pFile, mz_uint64 archive_size, mz_uint flags);
+- mz_zip_reader_end · function · L1124-L1124 — mz_bool mz_zip_reader_end(mz_zip_archive *pZip);
+- mz_zip_zero_struct · function · L1130-L1130 — void mz_zip_zero_struct(mz_zip_archive *pZip);
+- mz_zip_get_mode · function · L1132-L1132 — mz_zip_mode mz_zip_get_mode(mz_zip_archive *pZip);
+- mz_zip_get_type · function · L1133-L1133 — mz_zip_type mz_zip_get_type(mz_zip_archive *pZip);
+- mz_zip_reader_get_num_files · function · L1136-L1136 — mz_uint mz_zip_reader_get_num_files(mz_zip_archive *pZip);
+- mz_zip_get_archive_size · function · L1138-L1138 — mz_uint64 mz_zip_get_archive_size(mz_zip_archive *pZip);
+- mz_zip_get_archive_file_start_offset · function · L1139-L1139 — mz_uint64 mz_zip_get_archive_file_start_offset(mz_zip_archive *pZip);
+- mz_zip_get_cfile · function · L1140-L1140 — MZ_FILE *mz_zip_get_cfile(mz_zip_archive *pZip);
+- mz_zip_read_archive_data · function · L1143-L1143 — size_t mz_zip_read_archive_data(mz_zip_archive *pZip, mz_uint64 file_ofs, void *pBuf, size_t n);
+- mz_zip_set_last_error · function · L1147-L1147 — mz_zip_error mz_zip_set_last_error(mz_zip_archive *pZip, mz_zip_error err_num);
+- mz_zip_peek_last_error · function · L1148-L1148 — mz_zip_error mz_zip_peek_last_error(mz_zip_archive *pZip);
+- mz_zip_clear_last_error · function · L1149-L1149 — mz_zip_error mz_zip_clear_last_error(mz_zip_archive *pZip);
+- mz_zip_get_last_error · function · L1150-L1150 — mz_zip_error mz_zip_get_last_error(mz_zip_archive *pZip);
+- mz_zip_get_error_string · function · L1151-L1151 — const char *mz_zip_get_error_string(mz_zip_error mz_err);
+- mz_zip_reader_is_file_a_directory · function · L1154-L1154 — mz_bool mz_zip_reader_is_file_a_directory(mz_zip_archive *pZip, mz_uint file_index);
+- mz_zip_reader_is_file_encrypted · function · L1157-L1157 — mz_bool mz_zip_reader_is_file_encrypted(mz_zip_archive *pZip, mz_uint file_index);
+- mz_zip_reader_is_file_supported · function · L1160-L1160 — mz_bool mz_zip_reader_is_file_supported(mz_zip_archive *pZip, mz_uint file_index);
+- mz_zip_reader_get_filename · function · L1164-L1164 — mz_uint mz_zip_reader_get_filename(mz_zip_archive *pZip, mz_uint file_index, char *pFilename, mz_uint filename_buf_size);
+- mz_zip_reader_get_extra · function · L1166-L1166 — mz_uint mz_zip_reader_get_extra(mz_zip_archive *pZip, mz_uint file_index, char *pExtra, mz_uint extra_buf_size);
+- mz_zip_reader_locate_file · function · L1171-L1171 — int mz_zip_reader_locate_file(mz_zip_archive *pZip, const char *pName, const char *pComment, mz_uint flags);
+- mz_zip_reader_locate_file_v2 · function · L1172-L1172 — int mz_zip_reader_locate_file_v2(mz_zip_archive *pZip, const char *pName, const char *pComment, mz_uint flags, mz_uint32 *file_index);
+- mz_zip_reader_get_filename_from_extra · function · L1175-L1175 — mz_uint mz_zip_reader_get_filename_from_extra(mz_zip_archive * pZip, mz_uint file_index, char* buffer, mz_uint extra_buf_size);
+- mz_zip_reader_file_stat · function · L1178-L1178 — mz_bool mz_zip_reader_file_stat(mz_zip_archive *pZip, mz_uint file_index, mz_zip_archive_file_stat *pStat);
+- mz_zip_is_zip64 · function · L1182-L1182 — mz_bool mz_zip_is_zip64(mz_zip_archive *pZip);
+- mz_zip_get_central_dir_size · function · L1186-L1186 — size_t mz_zip_get_central_dir_size(mz_zip_archive *pZip);
+- mz_zip_reader_extract_to_mem_no_alloc · function · L1190-L1190 — mz_bool mz_zip_reader_extract_to_mem_no_alloc(mz_zip_archive *pZip, mz_uint file_index, void *pBuf, size_t buf_size, mz_uint flags, void *pUser_read_buf, size_t user_read_buf_size);
+- mz_zip_reader_extract_file_to_mem_no_alloc · function · L1191-L1191 — mz_bool mz_zip_reader_extract_file_to_mem_no_alloc(mz_zip_archive *pZip, const char *pFilename, void *pBuf, size_t buf_size, mz_uint flags, void *pUser_read_buf, size_t user_read_buf_size);
+- mz_zip_reader_extract_to_mem · function · L1194-L1194 — mz_bool mz_zip_reader_extract_to_mem(mz_zip_archive *pZip, mz_uint file_index, void *pBuf, size_t buf_size, mz_uint flags);
+- mz_zip_reader_extract_file_to_mem · function · L1195-L1195 — mz_bool mz_zip_reader_extract_file_to_mem(mz_zip_archive *pZip, const char *pFilename, void *pBuf, size_t buf_size, mz_uint flags);
+- mz_zip_reader_extract_to_heap · function · L1200-L1200 — void *mz_zip_reader_extract_to_heap(mz_zip_archive *pZip, mz_uint file_index, size_t *pSize, mz_uint flags);
+- mz_zip_reader_extract_file_to_heap · function · L1201-L1201 — void *mz_zip_reader_extract_file_to_heap(mz_zip_archive *pZip, const char *pFilename, size_t *pSize, mz_uint flags);
+- mz_zip_reader_extract_to_callback · function · L1204-L1204 — mz_bool mz_zip_reader_extract_to_callback(mz_zip_archive *pZip, mz_uint file_index, mz_file_write_func pCallback, void *pOpaque, mz_uint flags);
+- mz_zip_reader_extract_file_to_callback · function · L1205-L1205 — mz_bool mz_zip_reader_extract_file_to_callback(mz_zip_archive *pZip, const char *pFilename, mz_file_write_func pCallback, void *pOpaque, mz_uint flags);
+- mz_zip_reader_extract_iter_new · function · L1208-L1208 — mz_zip_reader_extract_iter_state* mz_zip_reader_extract_iter_new(mz_zip_archive *pZip, mz_uint file_index, mz_uint flags);
+- mz_zip_reader_extract_file_iter_new · function · L1209-L1209 — mz_zip_reader_extract_iter_state* mz_zip_reader_extract_file_iter_new(mz_zip_archive *pZip, const char *pFilename, mz_uint flags);
+- mz_zip_reader_extract_iter_read · function · L1210-L1210 — size_t mz_zip_reader_extract_iter_read(mz_zip_reader_extract_iter_state* pState, void* pvBuf, size_t buf_size);
+- mz_zip_reader_extract_iter_free · function · L1211-L1211 — mz_bool mz_zip_reader_extract_iter_free(mz_zip_reader_extract_iter_state* pState);
+- mz_zip_reader_extract_to_file · function · L1216-L1216 — mz_bool mz_zip_reader_extract_to_file(mz_zip_archive *pZip, mz_uint file_index, const char *pDst_filename, mz_uint flags);
+- mz_zip_reader_extract_to_file_w · function · L1218-L1218 — mz_bool mz_zip_reader_extract_to_file_w(mz_zip_archive *pZip, mz_uint file_index, const wchar_t *pDst_filename, mz_uint flags);
+- mz_zip_reader_extract_file_to_file · function · L1220-L1220 — mz_bool mz_zip_reader_extract_file_to_file(mz_zip_archive *pZip, const char *pArchive_filename, const char *pDst_filename, mz_uint flags);
+- mz_zip_reader_extract_to_cfile · function · L1223-L1223 — mz_bool mz_zip_reader_extract_to_cfile(mz_zip_archive *pZip, mz_uint file_index, MZ_FILE *File, mz_uint flags);
+- mz_zip_reader_extract_file_to_cfile · function · L1224-L1224 — mz_bool mz_zip_reader_extract_file_to_cfile(mz_zip_archive *pZip, const char *pArchive_filename, MZ_FILE *pFile, mz_uint flags);
+- mz_zip_streaming_extract_begin · function · L1230-L1230 — mz_zip_streaming_extract_state_ptr mz_zip_streaming_extract_begin(mz_zip_archive *pZip, mz_uint file_index, mz_uint flags);
+- mz_zip_streaming_extract_get_size · function · L1231-L1231 — uint64_t mz_zip_streaming_extract_get_size(mz_zip_archive *pZip, mz_zip_streaming_extract_state_ptr pState);
+- mz_zip_streaming_extract_get_cur_ofs · function · L1232-L1232 — uint64_t mz_zip_streaming_extract_get_cur_ofs(mz_zip_archive *pZip, mz_zip_streaming_extract_state_ptr pState);
+- mz_zip_streaming_extract_seek · function · L1233-L1233 — mz_bool mz_zip_streaming_extract_seek(mz_zip_archive *pZip, mz_zip_streaming_extract_state_ptr pState, uint64_t new_ofs);
+- mz_zip_streaming_extract_read · function · L1234-L1234 — size_t mz_zip_streaming_extract_read(mz_zip_archive *pZip, mz_zip_streaming_extract_state_ptr pState, void *pBuf, size_t buf_size);
+- mz_zip_streaming_extract_end · function · L1235-L1235 — mz_bool mz_zip_streaming_extract_end(mz_zip_archive *pZip, mz_zip_streaming_extract_state_ptr pState);
+- mz_zip_validate_file · function · L1240-L1240 — mz_bool mz_zip_validate_file(mz_zip_archive *pZip, mz_uint file_index, mz_uint flags);
+- mz_zip_validate_archive · function · L1243-L1243 — mz_bool mz_zip_validate_archive(mz_zip_archive *pZip, mz_uint flags);
+- mz_zip_validate_mem_archive · function · L1246-L1246 — mz_bool mz_zip_validate_mem_archive(const void *pMem, size_t size, mz_uint flags, mz_zip_error *pErr);
+- mz_zip_validate_file_archive · function · L1247-L1247 — mz_bool mz_zip_validate_file_archive(const char *pFilename, mz_uint flags, mz_zip_error *pErr);
+- mz_zip_end · function · L1250-L1250 — mz_bool mz_zip_end(mz_zip_archive *pZip);
+- mz_zip_writer_init · function · L1259-L1259 — mz_bool mz_zip_writer_init(mz_zip_archive *pZip, mz_uint64 existing_size);
+- mz_zip_writer_init_v2 · function · L1260-L1260 — mz_bool mz_zip_writer_init_v2(mz_zip_archive *pZip, mz_uint64 existing_size, mz_uint flags);
+- mz_zip_writer_init_heap · function · L1262-L1262 — mz_bool mz_zip_writer_init_heap(mz_zip_archive *pZip, size_t size_to_reserve_at_beginning, size_t initial_allocation_size);
+- mz_zip_writer_init_heap_v2 · function · L1263-L1263 — mz_bool mz_zip_writer_init_heap_v2(mz_zip_archive *pZip, size_t size_to_reserve_at_beginning, size_t initial_allocation_size, mz_uint flags);
+- mz_zip_writer_init_file · function · L1266-L1266 — mz_bool mz_zip_writer_init_file(mz_zip_archive *pZip, const char *pFilename, mz_uint64 size_to_reserve_at_beginning);
+- mz_zip_writer_init_file_v2 · function · L1267-L1267 — mz_bool mz_zip_writer_init_file_v2(mz_zip_archive *pZip, const char *pFilename, mz_uint64 size_to_reserve_at_beginning, mz_uint flags);
+- mz_zip_writer_init_cfile · function · L1268-L1268 — mz_bool mz_zip_writer_init_cfile(mz_zip_archive *pZip, MZ_FILE *pFile, mz_uint flags);
+- mz_zip_writer_init_from_reader · function · L1277-L1277 — mz_bool mz_zip_writer_init_from_reader(mz_zip_archive *pZip, const char *pFilename);
+- mz_zip_writer_init_from_reader_v2 · function · L1278-L1278 — mz_bool mz_zip_writer_init_from_reader_v2(mz_zip_archive *pZip, const char *pFilename, mz_uint flags);
+- mz_zip_writer_add_mem · function · L1283-L1283 — mz_bool mz_zip_writer_add_mem(mz_zip_archive *pZip, const char *pArchive_name, const void *pBuf, size_t buf_size, mz_uint level_and_flags);
+- mz_zip_writer_add_mem_ex · function · L1287-L1288 — mz_bool mz_zip_writer_add_mem_ex(mz_zip_archive *pZip, const char *pArchive_name, const void *pBuf, size_t buf_size, const void *pComment, mz_uint16 comment_size, mz_uint level_and_flags,
+- mz_zip_writer_add_mem_ex_v2 · function · L1290-L1292 — mz_bool mz_zip_writer_add_mem_ex_v2(mz_zip_archive *pZip, const char *pArchive_name, const void *pBuf, size_t buf_size, const void *pComment, mz_uint16 comment_size, mz_uint level_and_flags,
+- mz_zip_writer_add_read_buf_callback · function · L1296-L1298 — mz_bool mz_zip_writer_add_read_buf_callback(mz_zip_archive *pZip, const char *pArchive_name, mz_file_read_func read_callback, void* callback_opaque, mz_uint64 max_size,
+- mz_zip_writer_add_file · function · L1303-L1303 — mz_bool mz_zip_writer_add_file(mz_zip_archive *pZip, const char *pArchive_name, const char *pSrc_filename, const void *pComment, mz_uint16 comment_size, mz_uint level_and_flags);
+- mz_zip_writer_add_file_ex · function · L1305-L1306 — mz_bool mz_zip_writer_add_file_ex(mz_zip_archive *pZip, const char *pArchive_name, const char *pSrc_filename, const void *pComment, mz_uint16 comment_size, mz_uint level_and_flags,
+- mz_zip_writer_add_cfile · function · L1309-L1311 — mz_bool mz_zip_writer_add_cfile(mz_zip_archive *pZip, const char *pArchive_name, MZ_FILE *pSrc_file, mz_uint64 size_to_add,
+- mz_zip_writer_add_state · type · L1316-L1321 — typedef struct
+- mz_zip_writer_staged_context · class · L1323-L1358 — typedef struct mz_zip_writer_staged_context
+- mz_zip_writer_add_staged_open · function · L1362-L1364 — mz_bool mz_zip_writer_add_staged_open(mz_zip_archive* pZip, mz_zip_writer_staged_context* pContext, const char* pArchive_name,
+- mz_zip_writer_add_staged_data · function · L1365-L1365 — mz_bool mz_zip_writer_add_staged_data(mz_zip_writer_staged_context* pContext, const char* pRead_buf, size_t n);
+- mz_zip_writer_add_staged_finish · function · L1366-L1366 — mz_bool mz_zip_writer_add_staged_finish(mz_zip_writer_staged_context* pContext);
+- mz_zip_writer_add_from_zip_reader · function · L1370-L1370 — mz_bool mz_zip_writer_add_from_zip_reader(mz_zip_archive *pZip, mz_zip_archive *pSource_zip, mz_uint src_file_index);
+- mz_zip_writer_finalize_archive · function · L1375-L1375 — mz_bool mz_zip_writer_finalize_archive(mz_zip_archive *pZip);
+- mz_zip_writer_finalize_heap_archive · function · L1379-L1379 — mz_bool mz_zip_writer_finalize_heap_archive(mz_zip_archive *pZip, void **ppBuf, size_t *pSize);
+- mz_zip_writer_end · function · L1383-L1383 — mz_bool mz_zip_writer_end(mz_zip_archive *pZip);
+- mz_zip_add_mem_to_archive_file_in_place · function · L1391-L1391 — mz_bool mz_zip_add_mem_to_archive_file_in_place(const char *pZip_filename, const char *pArchive_name, const void *pBuf, size_t buf_size, const void *pComment, mz_uint16 comment_size, mz_uint level_and_flags);
+- mz_zip_add_mem_to_archive_file_in_place_v2 · function · L1392-L1392 — mz_bool mz_zip_add_mem_to_archive_file_in_place_v2(const char *pZip_filename, const char *pArchive_name, const void *pBuf, size_t buf_size, const void *pComment, mz_uint16 comment_size, mz_uint level_and_flags, mz_zip_error *pErr);
+- mz_zip_extract_archive_file_to_heap · function · L1397-L1397 — void *mz_zip_extract_archive_file_to_heap(const char *pZip_filename, const char *pArchive_name, size_t *pSize, mz_uint flags);
+- mz_zip_extract_archive_file_to_heap_v2 · function · L1398-L1398 — void *mz_zip_extract_archive_file_to_heap_v2(const char *pZip_filename, const char *pArchive_name, const char *pComment, size_t *pSize, mz_uint flags, mz_zip_error *pErr);

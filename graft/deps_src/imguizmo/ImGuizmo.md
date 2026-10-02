@@ -1,0 +1,34 @@
+# deps_src/imguizmo/ImGuizmo.h
+
+- EditTransform · function · L46-L103 — void EditTransform(const Camera& camera, matrix_t& matrix)
+- mCurrentGizmoOperation · function · L48-L48 — static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::ROTATE);
+- mCurrentGizmoMode · function · L49-L49 — static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
+- useSnap · function · L79-L79 — static bool useSnap(false);
+- BeginFrame · function · L125-L125 — IMGUI_API void BeginFrame();
+- SetImGuiContext · function · L131-L131 — IMGUI_API void SetImGuiContext(ImGuiContext* ctx);
+- IsOver · function · L134-L134 — IMGUI_API bool IsOver();
+- IsUsing · function · L137-L137 — IMGUI_API bool IsUsing();
+- IsUsingAny · function · L140-L140 — IMGUI_API bool IsUsingAny();
+- Enable · function · L144-L144 — IMGUI_API void Enable(bool enable);
+- DecomposeMatrixToComponents · function · L158-L158 — IMGUI_API void DecomposeMatrixToComponents(const float* matrix, float* translation, float* rotation, float* scale);
+- RecomposeMatrixFromComponents · function · L159-L159 — IMGUI_API void RecomposeMatrixFromComponents(const float* translation, const float* rotation, const float* scale, float* matrix);
+- SetRect · function · L161-L161 — IMGUI_API void SetRect(float x, float y, float width, float height);
+- SetOrthographic · function · L163-L163 — IMGUI_API void SetOrthographic(bool isOrthographic);
+- DrawCubes · function · L166-L166 — IMGUI_API void DrawCubes(const float* view, const float* projection, const float* matrices, int matrixCount);
+- DrawGrid · function · L167-L167 — IMGUI_API void DrawGrid(const float* view, const float* projection, const float* matrix, const float gridSize);
+- OPERATION · type · L173-L195 — enum OPERATION
+- MODE · type · L202-L206 — enum MODE
+- Manipulate · function · L208-L208 — IMGUI_API bool Manipulate(const float* view, const float* projection, OPERATION operation, MODE mode, float* matrix, float* deltaMatrix = NULL, const float* snap = NULL, const float* localBounds = NULL, const float* boundsSnap = NULL);
+- ViewManipulateResult · class · L210-L215 — struct ViewManipulateResult
+- ViewManipulate · function · L222-L222 — IMGUI_API ViewManipulateResult ViewManipulate(float* view, float length, ImVec2 position, ImVec2 size, ImU32 backgroundColor);
+- ViewManipulate · function · L225-L225 — IMGUI_API ViewManipulateResult ViewManipulate(float* view, const float* projection, OPERATION operation, MODE mode, float* matrix, float length, ImVec2 position, ImVec2 size, ImU32 backgroundColor);
+- SetID · function · L227-L227 — IMGUI_API void SetID(int id);
+- IsOver · function · L230-L230 — IMGUI_API bool IsOver(OPERATION op);
+- SetGizmoSizeClipSpace · function · L231-L231 — IMGUI_API void SetGizmoSizeClipSpace(float value);
+- AllowAxisFlip · function · L236-L236 — IMGUI_API void AllowAxisFlip(bool value);
+- SetAxisLimit · function · L239-L239 — IMGUI_API void SetAxisLimit(float value);
+- SetPlaneLimit · function · L241-L241 — IMGUI_API void SetPlaneLimit(float value);
+- COLOR · type · L243-L262 — enum COLOR
+- Axis · type · L264-L270 — enum Axis
+- FACES · type · L272-L281 — enum FACES
+- Style · class · L283-L300 — struct Style

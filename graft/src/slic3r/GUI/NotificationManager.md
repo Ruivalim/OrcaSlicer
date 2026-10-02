@@ -1,0 +1,279 @@
+# src/slic3r/GUI/NotificationManager.hpp
+
+- GLCanvas3D · class · L40-L40 — class GLCanvas3D;
+- ImGuiWrapper · class · L41-L41 — class ImGuiWrapper;
+- InfoItemType · type · L42-L42 — enum class InfoItemType;
+- JumpTo · class · L49-L54 — struct JumpTo
+- NotificationType · type · L56-L194 — enum class NotificationType
+- NotificationManager · class · L196-L1153 — class NotificationManager
+- NotificationLevel · type · L199-L221 — enum class NotificationLevel : int
+- NotificationManager · function · L223-L223 — NotificationManager(wxEvtHandler* evt_handler);
+- on_change_color_mode · function · L226-L226 — void on_change_color_mode(bool is_dark);
+- init · function · L228-L228 — void init() { m_initialized = true; }
+- push_notification · function · L230-L230 — void push_notification(const NotificationType type, int timestamp = 0);
+- push_notification · function · L232-L232 — void push_notification(const std::string& text, int timestamp = 0);
+- push_notification · function · L235-L236 — void push_notification(NotificationType type, NotificationLevel level, const std::string& text, const std::string& hypertext = "",
+- push_delayed_notification · function · L238-L238 — void push_delayed_notification(const NotificationType type, std::function<bool(void)> condition_callback, int64_t initial_delay, int64_t delay_interval);
+- stop_delayed_notifications_of_type · function · L240-L240 — void stop_delayed_notifications_of_type(const NotificationType type);
+- push_validate_error_notification · function · L242-L242 — void push_validate_error_notification(StringObjectException const & error);
+- push_upload_job_notification · function · L244-L244 — void push_upload_job_notification(int id, float filesize, const std::string& filename, const std::string& host, float percentage = 0);
+- set_upload_job_notification_percentage · function · L245-L245 — void set_upload_job_notification_percentage(int id, const std::string& filename, const std::string& host, float percentage);
+- upload_job_notification_show_canceled · function · L246-L246 — void upload_job_notification_show_canceled(int id, const std::string& filename, const std::string& host);
+- upload_job_notification_show_error · function · L247-L247 — void upload_job_notification_show_error(int id, const std::string& filename, const std::string& host);
+- push_slicing_serious_warning_notification · function · L248-L248 — void push_slicing_serious_warning_notification(const std::string &text, std::vector<ModelObject const *> objs);
+- push_slicing_serious_warning_notification · function · L249-L249 — void push_slicing_serious_warning_notification(const std::string &text, std::vector<ModelInstance const *> insts);
+- close_slicing_serious_warning_notification · function · L250-L250 — void close_slicing_serious_warning_notification(const std::string &text);
+- push_slicing_error_notification · function · L252-L252 — void push_slicing_error_notification(const std::string &text, std::vector<ModelObject const *> objs);
+- push_slicing_warning_notification · function · L254-L254 — void push_slicing_warning_notification(const std::string &text, bool gray, ModelObject const *obj, ObjectID oid, int warning_step, int warning_msg_id, NotificationLevel level = NotificationLevel::WarningNotificationLevel);
+- set_all_slicing_errors_gray · function · L256-L256 — void set_all_slicing_errors_gray(bool g);
+- set_all_slicing_warnings_gray · function · L258-L258 — void set_all_slicing_warnings_gray(bool g);
+- close_slicing_errors_and_warnings · function · L261-L261 — void close_slicing_errors_and_warnings();
+- close_slicing_error_notification · function · L262-L262 — void close_slicing_error_notification(const std::string& text);
+- remove_slicing_warnings_of_released_objects · function · L265-L265 — void remove_slicing_warnings_of_released_objects(const std::vector<ObjectID>& living_oids);
+- push_general_error_notification · function · L267-L267 — void push_general_error_notification(const std::string& text);
+- close_general_error_notification · function · L268-L268 — void close_general_error_notification(const std::string& text);
+- push_plater_error_notification · function · L270-L270 — void push_plater_error_notification(const std::string& text);
+- push_plater_warning_notification · function · L272-L272 — void push_plater_warning_notification(const std::string& text);
+- close_plater_error_notification · function · L274-L274 — void close_plater_error_notification(const std::string& text);
+- close_plater_warning_notification · function · L275-L275 — void close_plater_warning_notification(const std::string& text);
+- push_flushing_volume_error_notification · function · L277-L277 — void push_flushing_volume_error_notification(NotificationType type, NotificationLevel level, const std::string &text, const std::string &hypertext = "", std::function<bool(wxEvtHandler *)> callback  = std::function<bool(wxEvtHandler *)>());
+- close_flushing_volume_error_notification · function · L278-L278 — void close_flushing_volume_error_notification(NotificationType type, NotificationLevel level);
+- push_slicing_customize_error_notification · function · L280-L280 — void push_slicing_customize_error_notification(NotificationType type, NotificationLevel level, const std::string &text, const std::string &hypertext = "", std::function<bool(wxEvtHandler*)> callback = std::function<bool(wxEvtHandler*)>());
+- close_slicing_customize_error_notification · function · L281-L281 — void close_slicing_customize_error_notification(NotificationType type, NotificationLevel level);
+- push_simplify_suggestion_notification · function · L284-L285 — void push_simplify_suggestion_notification(const std::string& text, ObjectID object_id, const std::string& hypertext = "",
+- set_simplify_suggestion_multiline · function · L286-L286 — void set_simplify_suggestion_multiline(const ObjectID oid, bool bMulti);
+- remove_simplify_suggestion_of_released_objects · function · L289-L289 — void remove_simplify_suggestion_of_released_objects(const std::vector<ObjectID>& living_oids);
+- remove_simplify_suggestion_with_id · function · L290-L290 — void remove_simplify_suggestion_with_id(const ObjectID oid);
+- set_sidebar_collapsed · function · L293-L293 — void set_sidebar_collapsed(bool collapsed);
+- set_fff · function · L295-L295 — void set_fff(bool b);
+- set_fdm · function · L296-L296 — void set_fdm(bool b) { set_fff(b); }
+- set_sla · function · L297-L297 — void set_sla(bool b) { set_fff(!b); }
+- push_exporting_finished_notification · function · L299-L299 — void push_exporting_finished_notification(const std::string& path, const std::string& dir_path, bool on_removable);
+- push_import_finished_notification · function · L300-L300 — void push_import_finished_notification(const std::string& path, const std::string& dir_path, bool on_removable);
+- push_shared_profiles_notification · function · L303-L303 — void push_shared_profiles_notification(const std::string& explore_url);
+- push_orca_sync_conflict_notification · function · L304-L307 — void push_orca_sync_conflict_notification(const std::string& text,
+- push_plugin_missing_notification · function · L311-L314 — void push_plugin_missing_notification(NotificationType type, const std::string& text,
+- push_download_URL_progress_notification · function · L317-L317 — void push_download_URL_progress_notification(size_t id, const std::string& text, std::function<bool(DownloaderUserAction, int)> user_action_callback);
+- set_download_URL_progress · function · L318-L318 — void set_download_URL_progress(size_t id, float percentage);
+- set_download_URL_paused · function · L319-L319 — void set_download_URL_paused(size_t id);
+- set_download_URL_canceled · function · L320-L320 — void set_download_URL_canceled(size_t id);
+- set_download_URL_error · function · L321-L321 — void set_download_URL_error(size_t id, const std::string& text);
+- init_slicing_progress_notification · function · L325-L325 — void init_slicing_progress_notification(std::function<bool()> cancel_callback);
+- update_slicing_notif_dailytips · function · L326-L326 — void update_slicing_notif_dailytips(bool need_change);
+- set_slicing_progress_began · function · L327-L327 — void set_slicing_progress_began();
+- set_slicing_progress_percentage · function · L329-L329 — void set_slicing_progress_percentage(const std::string& text, float percentage);
+- set_slicing_progress_canceled · function · L330-L330 — void set_slicing_progress_canceled(const std::string& text);
+- set_slicing_progress_hidden · function · L332-L332 — void set_slicing_progress_hidden();
+- set_slicing_complete_print_time · function · L334-L334 — void set_slicing_complete_print_time(const std::string& info, bool sidebar_colapsed);
+- set_slicing_progress_export_possible · function · L335-L335 — void set_slicing_progress_export_possible();
+- init_progress_indicator · function · L338-L338 — void init_progress_indicator();
+- progress_indicator_set_range · function · L340-L340 — void progress_indicator_set_range(int range);
+- progress_indicator_set_cancel_callback · function · L341-L341 — void progress_indicator_set_cancel_callback(CancelFn callback = CancelFn());
+- progress_indicator_set_progress · function · L342-L342 — void progress_indicator_set_progress(int pr);
+- progress_indicator_set_status_text · function · L343-L343 — void progress_indicator_set_status_text(const char*); // utf8 char array
+- progress_indicator_get_range · function · L344-L344 — int  progress_indicator_get_range() const;
+- push_hint_notification · function · L346-L346 — void push_hint_notification(bool open_next);
+- is_hint_notification_open · function · L347-L347 — bool is_hint_notification_open();
+- deactivate_loaded_hints · function · L349-L349 — void deactivate_loaded_hints();
+- push_updated_item_info_notification · function · L351-L351 — void push_updated_item_info_notification(InfoItemType type);
+- new_export_began · function · L353-L353 — void new_export_began(bool on_removable);
+- device_ejected · function · L355-L355 — void device_ejected();
+- render_notifications · function · L357-L357 — void render_notifications(GLCanvas3D &canvas, float overlay_width, float bottom_margin, float right_margin);
+- close_notification_of_type · function · L359-L359 — void close_notification_of_type(const NotificationType type);
+- remove_notification_of_type · function · L360-L360 — void remove_notification_of_type(const NotificationType type);
+- clear_all · function · L361-L361 — void clear_all();
+- set_in_preview · function · L363-L363 — void set_in_preview(bool preview);
+- apply_in_preview · function · L365-L365 — void apply_in_preview() { set_in_preview(m_in_preview); }
+- set_move_from_overlay · function · L367-L367 — void set_move_from_overlay(bool move) { m_move_from_overlay = move; }
+- update_notifications · function · L369-L369 — bool update_notifications(GLCanvas3D& canvas);
+- get_notification_count · function · L371-L371 — size_t get_notification_count() const;
+- bbl_show_plateinfo_notification · function · L377-L377 — void bbl_show_plateinfo_notification(const std::string &text);
+- bbl_close_plateinfo_notification · function · L378-L378 — void bbl_close_plateinfo_notification();
+- bbl_show_3mf_warn_notification · function · L383-L383 — void bbl_show_3mf_warn_notification(const std::string &text, NotificationLevel level = NotificationLevel::ErrorNotificationLevel);
+- bbl_close_3mf_warn_notification · function · L384-L384 — void bbl_close_3mf_warn_notification();
+- bbl_show_preview_only_notification · function · L387-L387 — void bbl_show_preview_only_notification(const std::string &text);
+- bbl_close_preview_only_notification · function · L388-L388 — void bbl_close_preview_only_notification();
+- bbl_show_plugin_install_notification · function · L391-L391 — void bbl_show_plugin_install_notification(const std::string &text);
+- bbl_close_plugin_install_notification · function · L392-L392 — void bbl_close_plugin_install_notification();
+- bbl_show_objectsinfo_notification · function · L395-L395 — void bbl_show_objectsinfo_notification(const std::string &text, bool is_warning, bool is_hidden);
+- bbl_close_objectsinfo_notification · function · L396-L396 — void bbl_close_objectsinfo_notification();
+- bbl_show_seqprintinfo_notification · function · L398-L398 — void bbl_show_seqprintinfo_notification(const std::string &text);
+- bbl_close_seqprintinfo_notification · function · L399-L399 — void bbl_close_seqprintinfo_notification();
+- bbl_show_slice_emptylayer_notification · function · L402-L402 — void bbl_show_slice_emptylayer_notification(const std::string &text, bool bOverride = true);
+- bbl_show_app_newversion_notification · function · L405-L405 — void bbl_show_app_newversion_notification();
+- bbl_show_need_support_on_notification · function · L408-L408 — void bbl_show_need_support_on_notification();
+- bbl_close_need_support_on_notification · function · L409-L409 — void bbl_close_need_support_on_notification();
+- bbl_show_gcode_overlap_notification · function · L412-L412 — void bbl_show_gcode_overlap_notification();
+- bbl_close_gcode_overlap_notification · function · L413-L413 — void bbl_close_gcode_overlap_notification();
+- bbl_show_bed_filament_incompatible_notification · function · L416-L416 — void bbl_show_bed_filament_incompatible_notification(const std::string& text);
+- bbl_close_bed_filament_incompatible_notification · function · L417-L417 — void bbl_close_bed_filament_incompatible_notification();
+- bbl_show_filament_map_invalid_notification_before_slice · function · L419-L419 — void bbl_show_filament_map_invalid_notification_before_slice(const NotificationType type, const std::string& text);
+- bbl_close_filament_map_invalid_notification_before_slice · function · L420-L420 — void bbl_close_filament_map_invalid_notification_before_slice(const NotificationType type);
+- bbl_show_filament_map_invalid_notification_after_slice · function · L422-L422 — void bbl_show_filament_map_invalid_notification_after_slice(const NotificationType type, const std::string& text);
+- bbl_close_filament_map_invalid_notification_after_slice · function · L423-L423 — void bbl_close_filament_map_invalid_notification_after_slice(const NotificationType type);
+- bbl_show_sole_text_notification · function · L426-L426 — void bbl_show_sole_text_notification(NotificationType sType,const std::string &text, bool bOverride, int level, bool autohide);
+- bbl_chose_sole_text_notification · function · L427-L427 — void bbl_chose_sole_text_notification(NotificationType sType);
+- NotificationData · class · L431-L446 — struct NotificationData
+- NotificationIDProvider · class · L449-L460 — class NotificationIDProvider
+- allocate_id · function · L452-L452 — int 		allocate_id();
+- release_id · function · L453-L453 — void 		release_id(int id);
+- PopNotification · class · L463-L662 — class PopNotification
+- EState · type · L467-L478 — enum class EState
+- PopNotification · function · L480-L480 — PopNotification(const NotificationData &n, NotificationIDProvider &id_provider, wxEvtHandler* evt_handler);
+- render · function · L482-L482 — virtual void           render(GLCanvas3D& canvas, float initial_y, bool move_from_overlay, float overlay_width, float right_margin);
+- bbl_render_block_notification · function · L483-L483 — virtual void bbl_render_block_notification(GLCanvas3D &canvas, float initial_y, bool move_from_overlay, float overlay_width, float right_margin);
+- close · function · L485-L485 — virtual void close();
+- update · function · L487-L487 — void                   update(const NotificationData& n);
+- append · function · L488-L488 — void                   append(const std::string& append_str);
+- is_finished · function · L489-L489 — bool                   is_finished() const { return m_state == EState::ClosePending || m_state == EState::Finished; }
+- reinit · function · L490-L490 — void                   reinit() { m_state = EState::Unknown; }
+- get_top · function · L492-L492 — float                  get_top() const { return m_top_y; }
+- get_bottom · function · L494-L494 — float                  get_bottom() const { return m_bottom_y; }
+- get_current_top · function · L496-L496 — float                  get_current_top() const { return m_top_y; }
+- get_type · function · L497-L497 — const NotificationType get_type() const { return m_data.type; }
+- get_data · function · L498-L498 — const NotificationData& get_data() const { return m_data; }
+- get_text1 · function · L499-L499 — std::string             get_text1() const { return m_text1; }
+- is_gray · function · L500-L500 — const bool             is_gray() const { return m_is_gray; }
+- set_gray · function · L501-L501 — void                   set_gray(bool g) { m_is_gray = g; }
+- compare_text · function · L502-L502 — virtual bool           compare_text(const std::string& text) const;
+- hide · function · L503-L503 — void                    hide(bool h);
+- update_state · function · L505-L505 — virtual bool           update_state(bool paused, const int64_t delta);
+- next_render · function · L506-L506 — int64_t 		       next_render() const { return is_finished() ? 0 : m_next_render; }
+- get_state · function · L507-L507 — EState                 get_state()  const { return m_state; }
+- is_hovered · function · L508-L508 — bool				   is_hovered() const { return m_state == EState::Hovered; }
+- set_hovered · function · L509-L509 — void				   set_hovered() { if (m_state != EState::Finished && m_state != EState::ClosePending && m_state != EState::Hidden && m_state != EState::Unknown) m_state = EState::Hovered; }
+- reset_timer · function · L511-L511 — void                   reset_timer() { m_notification_start = GLCanvas3D::timestamp_now(); m_state = EState::Shown; }
+- set_Multiline · function · L512-L512 — void set_Multiline(bool Multi) { m_multiline = Multi; }
+- on_change_color_mode · function · L513-L513 — virtual void on_change_color_mode(bool is_dark);
+- set_scale · function · L514-L514 — void set_scale(float scale) { m_scale = scale; }
+- DeleteCallback · type · L515-L515 — typedef std::function<void(PopNotification*)> DeleteCallback;
+- set_delete_callback · function · L516-L516 — void set_delete_callback(DeleteCallback);
+- is_valid_delete_callback · function · L517-L517 — bool is_valid_delete_callback();
+- init · function · L520-L520 — virtual void init();
+- set_next_window_size · function · L522-L522 — virtual void set_next_window_size(ImGuiWrapper& imgui);
+- render_text · function · L523-L525 — virtual void render_text(ImGuiWrapper& imgui,
+- render_close_button · function · L526-L528 — virtual void render_close_button(ImGuiWrapper& imgui,
+- render_hypertext · function · L530-L533 — virtual void render_hypertext(ImGuiWrapper& imgui,
+- render_hyperlink_action · function · L536-L538 — void render_hyperlink_action(ImGuiWrapper& imgui, float text_x, float text_y,
+- bbl_render_block_notif_text · function · L539-L541 — virtual void bbl_render_block_notif_text(ImGuiWrapper& imgui,
+- bbl_render_block_notif_buttons · function · L542-L544 — virtual void bbl_render_block_notif_buttons(ImGuiWrapper& imgui,
+- bbl_render_block_notif_left_sign · function · L545-L545 — virtual void bbl_render_block_notif_left_sign(ImGuiWrapper &imgui, const float win_size_x, const float win_size_y, const float win_pos_x, const float win_pos_y);
+- bbl_render_left_sign · function · L547-L547 — virtual void bbl_render_left_sign(ImGuiWrapper &imgui, const float win_size_x, const float win_size_y, const float win_pos_x, const float win_pos_y);
+- render_left_sign · function · L549-L549 — virtual void render_left_sign(ImGuiWrapper& imgui);
+- render_minimize_button · function · L550-L551 — virtual void render_minimize_button(ImGuiWrapper& imgui,
+- on_text_click · function · L554-L554 — virtual bool on_text_click();
+- count_spaces · function · L557-L557 — virtual void count_spaces();
+- count_lines · function · L559-L559 — virtual void count_lines();
+- push_background_color · function · L561-L561 — virtual bool push_background_color();
+- get_duration · function · L563-L563 — virtual int  get_duration() { return m_data.duration; }
+- ensure_ui_inited · function · L565-L565 — void ensure_ui_inited();
+- ImGUITheme · class · L576-L583 — struct ImGUITheme
+- use_bbl_theme · function · L601-L601 — void use_bbl_theme();
+- restore_default_theme · function · L602-L602 — void restore_default_theme();
+- close_and_delete_self · function · L664-L664 — void close_and_delete_self(PopNotification*);
+- ObjectIDNotification · class · L666-L674 — class ObjectIDNotification : public PopNotification
+- ObjectIDNotification · function · L669-L671 — ObjectIDNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler)
+- PlaterWarningNotification · class · L676-L683 — class PlaterWarningNotification : public PopNotification
+- PlaterWarningNotification · function · L679-L679 — PlaterWarningNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler) : PopNotification(n, id_provider, evt_handler) {}
+- close · function · L680-L680 — void close() override;
+- real_close · function · L681-L681 — void		 real_close()      { m_state = EState::ClosePending; wxGetApp().plater()->get_current_canvas3D()->schedule_extra_frame(0); }
+- show · function · L682-L682 — void         show()            { m_state = EState::Unknown; }
+- ProgressBarNotification · class · L686-L713 — class ProgressBarNotification : public PopNotification
+- ProgressBarNotification · function · L690-L690 — ProgressBarNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler) : PopNotification(n, id_provider, evt_handler) { }
+- set_percentage · function · L691-L691 — virtual void set_percentage(float percent) { m_percentage = percent; }
+- get_percentage · function · L692-L692 — float get_percentage() const { return m_percentage; }
+- init · function · L694-L694 — virtual void init() override;
+- render_text · function · L695-L697 — virtual void	render_text(ImGuiWrapper& imgui,
+- render_bar · function · L698-L700 — virtual void	render_bar(ImGuiWrapper& imgui,
+- render_cancel_button · function · L701-L704 — virtual void	render_cancel_button(ImGuiWrapper& imgui,
+- render_minimize_button · function · L705-L706 — void			render_minimize_button(ImGuiWrapper& imgui,
+- URLDownloadNotification · class · L715-L769 — class URLDownloadNotification : public ProgressBarNotification
+- URLDownloadNotification · function · L718-L724 — URLDownloadNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler, size_t download_id, std::function<bool(DownloaderUserAction, int)> user_action_callback)
+- set_percentage · function · L725-L733 — void	set_percentage(float percent) override
+- get_download_id · function · L734-L734 — size_t	get_download_id() { return m_download_id; }
+- set_user_action_callback · function · L735-L735 — void	set_user_action_callback(std::function<bool(DownloaderUserAction, int)> user_action_callback) { m_user_action_callback = user_action_callback; }
+- set_paused · function · L736-L736 — void	set_paused(bool paused) { m_download_paused = paused; }
+- set_error_message · function · L737-L737 — void    set_error_message(const std::string& message) { m_error_message = message; }
+- compare_text · function · L738-L738 — bool    compare_text(const std::string& text) const override { return false; };
+- render_close_button · function · L740-L742 — void	render_close_button(ImGuiWrapper& imgui,
+- render_close_button_inner · function · L743-L745 — void    render_close_button_inner(ImGuiWrapper& imgui,
+- render_pause_cancel_buttons_inner · function · L746-L748 — void    render_pause_cancel_buttons_inner(ImGuiWrapper& imgui,
+- render_open_button_inner · function · L749-L751 — void    render_open_button_inner(ImGuiWrapper& imgui,
+- render_cancel_button_inner · function · L752-L754 — void    render_cancel_button_inner(ImGuiWrapper& imgui,
+- render_pause_button_inner · function · L755-L757 — void    render_pause_button_inner(ImGuiWrapper& imgui,
+- render_bar · function · L758-L760 — void	render_bar(ImGuiWrapper& imgui,
+- trigger_user_action_callback · function · L761-L761 — void    trigger_user_action_callback(DownloaderUserAction action);
+- count_spaces · function · L763-L763 — void    count_spaces() override;
+- PrintHostUploadNotification · class · L771-L812 — class PrintHostUploadNotification : public ProgressBarNotification
+- UploadJobState · type · L774-L780 — enum class UploadJobState
+- PrintHostUploadNotification · function · L781-L788 — PrintHostUploadNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler, float percentage, int job_id, float filesize)
+- get_upload_job_text · function · L789-L789 — static std::string	get_upload_job_text(int id, const std::string& filename, const std::string& host) { return /*"[" + std::to_string(id) + "] " + */filename + " -> " + host; }
+- set_percentage · function · L790-L790 — void				set_percentage(float percent) override;
+- cancel · function · L791-L791 — void				cancel() { m_uj_state = UploadJobState::PB_CANCELLED; m_has_cancel_button = false; }
+- error · function · L792-L792 — void				error()  { m_uj_state = UploadJobState::PB_ERROR;     m_has_cancel_button = false; init(); }
+- compare_job_id · function · L793-L793 — bool				compare_job_id(const int other_id) const { return m_job_id == other_id; }
+- compare_text · function · L794-L794 — bool				compare_text(const std::string& text) const override { return false; }
+- init · function · L796-L796 — void        init() override;
+- count_spaces · function · L797-L797 — void		count_spaces() override;
+- push_background_color · function · L798-L798 — bool		push_background_color() override;
+- render_bar · function · L799-L801 — void		render_bar(ImGuiWrapper& imgui,
+- render_cancel_button · function · L802-L804 — void		render_cancel_button(ImGuiWrapper& imgui,
+- render_left_sign · function · L805-L805 — void		render_left_sign(ImGuiWrapper& imgui) override;
+- ProgressIndicatorNotification · class · L814-L852 — class ProgressIndicatorNotification : public ProgressBarNotification
+- ProgressIndicatorState · type · L817-L823 — enum class ProgressIndicatorState
+- ProgressIndicatorNotification · function · L824-L828 — ProgressIndicatorNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler)
+- set_range · function · L830-L830 — void set_range(int range) { m_range = range; }
+- set_cancel_callback · function · L831-L831 — void set_cancel_callback(CancelFn callback) { m_cancel_callback = callback; }
+- set_progress · function · L832-L832 — void set_progress(int pr) { set_percentage((float)pr / (float)m_range); }
+- set_status_text · function · L833-L833 — void set_status_text(const char*); // utf8 char array
+- get_range · function · L834-L834 — int  get_range() const { return m_range; }
+- init · function · L836-L836 — void init() override;
+- set_percentage · function · L837-L837 — void set_percentage(float percent) override;
+- update_state · function · L838-L838 — bool update_state(bool paused, const int64_t delta) override;
+- render_close_button · function · L845-L847 — void		render_close_button(ImGuiWrapper& imgui,
+- render_cancel_button · function · L848-L850 — void		render_cancel_button(ImGuiWrapper& imgui,
+- on_cancel_button · function · L851-L851 — void        on_cancel_button() { if (m_cancel_callback) m_cancel_callback(); }
+- ExportFinishedNotification · class · L854-L888 — class ExportFinishedNotification : public PopNotification
+- ExportFinishedNotification · function · L857-L864 — ExportFinishedNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler, bool to_removable,const std::string& export_path,const std::string& export_dir_path)
+- count_spaces · function · L870-L870 — void count_spaces() override;
+- render_text · function · L871-L873 — void render_text(ImGuiWrapper& imgui,
+- render_close_button · function · L875-L877 — void render_close_button(ImGuiWrapper& imgui,
+- render_eject_button · function · L878-L880 — void render_eject_button(ImGuiWrapper& imgui,
+- render_minimize_button · function · L881-L882 — void render_minimize_button(ImGuiWrapper& imgui, const float win_pos_x, const float win_pos_y) override
+- on_text_click · function · L883-L883 — bool on_text_click() override;
+- on_eject_click · function · L884-L884 — void on_eject_click();
+- UpdatedItemsInfoNotification · class · L890-L908 — class UpdatedItemsInfoNotification : public PopNotification
+- UpdatedItemsInfoNotification · function · L893-L897 — UpdatedItemsInfoNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler, InfoItemType info_item_type)
+- count_spaces · function · L898-L898 — void count_spaces() override;
+- add_type · function · L899-L899 — void add_type(InfoItemType type);
+- close · function · L900-L904 — void close() override
+- SharedProfilesNotification · class · L912-L934 — class SharedProfilesNotification : public PopNotification
+- SharedProfilesNotification · function · L915-L921 — SharedProfilesNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler,
+- init · function · L923-L923 — void init() override;
+- render_text · function · L924-L926 — void render_text(ImGuiWrapper& imgui,
+- on_text_click · function · L927-L927 — bool on_text_click() override;
+- render_hypertext · function · L928-L930 — void render_hypertext(ImGuiWrapper& imgui,
+- OrcaSyncConflictNotification · class · L936-L959 — class OrcaSyncConflictNotification : public PopNotification
+- OrcaSyncConflictNotification · function · L939-L949 — OrcaSyncConflictNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler,
+- init · function · L951-L951 — void init() override;
+- render_text · function · L952-L954 — void render_text(ImGuiWrapper& imgui,
+- PluginMissingNotification · class · L964-L998 — class PluginMissingNotification : public PopNotification
+- PluginMissingNotification · function · L967-L977 — PluginMissingNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler,
+- init · function · L979-L979 — void init() override;
+- render_text · function · L980-L982 — void render_text(ImGuiWrapper& imgui,
+- render_close_button · function · L984-L986 — void render_close_button(ImGuiWrapper& /*imgui*/,
+- render_minimize_button · function · L987-L988 — void render_minimize_button(ImGuiWrapper& /*imgui*/,
+- bbl_render_block_notif_text · function · L989-L991 — void bbl_render_block_notif_text(ImGuiWrapper& imgui,
+- bbl_render_block_notif_buttons · function · L992-L993 — void bbl_render_block_notif_buttons(ImGuiWrapper& /*imgui*/,
+- SlicingProgressNotification · class · L1000-L1000 — class SlicingProgressNotification;
+- HintNotification · class · L1003-L1003 — class HintNotification;
+- DelayedNotification · class · L1006-L1019 — struct DelayedNotification
+- DelayedNotification · function · L1013-L1018 — DelayedNotification(std::unique_ptr<PopNotification> n, std::function<bool(void)> cb, int64_t r, int64_t d)
+- push_notification_data · function · L1023-L1023 — bool push_notification_data(const NotificationData& notification_data, int timestamp);
+- push_notification_data · function · L1024-L1024 — bool push_notification_data(std::unique_ptr<NotificationManager::PopNotification> notification, int timestamp);
+- push_delayed_notification_data · function · L1031-L1031 — void push_delayed_notification_data(std::unique_ptr<NotificationManager::PopNotification> notification, std::function<bool(void)> condition_callback, int64_t initial_delay, int64_t delay_interval);
+- activate_existing · function · L1033-L1033 — bool activate_existing(const NotificationManager::PopNotification* notification);
+- sort_notifications · function · L1035-L1035 — void sort_notifications();
+- has_slicing_error_notification · function · L1037-L1037 — bool has_slicing_error_notification();
+- get_standard_duration · function · L1038-L1052 — size_t get_standard_duration(NotificationLevel level)
+- set_scale · function · L1151-L1151 — void set_scale(float scale = 1.0);

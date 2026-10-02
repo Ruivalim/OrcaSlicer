@@ -1,0 +1,30 @@
+# tests/catch2/src/catch2/matchers/catch_matchers_string.hpp
+
+- CasedString · class · L20-L27 — struct CasedString
+- CasedString · function · L21-L21 — CasedString( std::string const& str, CaseSensitive caseSensitivity );
+- adjustString · function · L22-L22 — std::string adjustString( std::string const& str ) const;
+- caseSensitivitySuffix · function · L23-L23 — StringRef caseSensitivitySuffix() const;
+- StringMatcherBase · class · L29-L38 — class StringMatcherBase : public MatcherBase<std::string>
+- StringMatcherBase · function · L35-L36 — StringMatcherBase( StringRef operation,
+- describe · function · L37-L37 — std::string describe() const override;
+- StringEqualsMatcher · class · L40-L44 — class StringEqualsMatcher final : public StringMatcherBase
+- StringEqualsMatcher · function · L42-L42 — StringEqualsMatcher( CasedString const& comparator );
+- match · function · L43-L43 — bool match( std::string const& source ) const override;
+- StringContainsMatcher · class · L45-L49 — class StringContainsMatcher final : public StringMatcherBase
+- StringContainsMatcher · function · L47-L47 — StringContainsMatcher( CasedString const& comparator );
+- match · function · L48-L48 — bool match( std::string const& source ) const override;
+- StartsWithMatcher · class · L50-L54 — class StartsWithMatcher final : public StringMatcherBase
+- StartsWithMatcher · function · L52-L52 — StartsWithMatcher( CasedString const& comparator );
+- match · function · L53-L53 — bool match( std::string const& source ) const override;
+- EndsWithMatcher · class · L55-L59 — class EndsWithMatcher final : public StringMatcherBase
+- EndsWithMatcher · function · L57-L57 — EndsWithMatcher( CasedString const& comparator );
+- match · function · L58-L58 — bool match( std::string const& source ) const override;
+- RegexMatcher · class · L61-L69 — class RegexMatcher final : public MatcherBase<std::string>
+- RegexMatcher · function · L66-L66 — RegexMatcher( std::string regex, CaseSensitive caseSensitivity );
+- match · function · L67-L67 — bool match( std::string const& matchee ) const override;
+- describe · function · L68-L68 — std::string describe() const override;
+- Equals · function · L72-L72 — StringEqualsMatcher Equals( std::string const& str, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- ContainsSubstring · function · L74-L74 — StringContainsMatcher ContainsSubstring( std::string const& str, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- EndsWith · function · L76-L76 — EndsWithMatcher EndsWith( std::string const& str, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- StartsWith · function · L78-L78 — StartsWithMatcher StartsWith( std::string const& str, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- Matches · function · L80-L80 — RegexMatcher Matches( std::string const& regex, CaseSensitive caseSensitivity = CaseSensitive::Yes );

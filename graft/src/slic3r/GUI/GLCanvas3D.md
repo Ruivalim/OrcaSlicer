@@ -1,0 +1,517 @@
+# src/slic3r/GUI/GLCanvas3D.hpp
+
+- wxSizeEvent · class · L30-L30 — class wxSizeEvent;
+- wxIdleEvent · class · L31-L31 — class wxIdleEvent;
+- wxKeyEvent · class · L32-L32 — class wxKeyEvent;
+- wxMouseEvent · class · L33-L33 — class wxMouseEvent;
+- wxTimerEvent · class · L34-L34 — class wxTimerEvent;
+- wxPaintEvent · class · L35-L35 — class wxPaintEvent;
+- wxGLCanvas · class · L36-L36 — class wxGLCanvas;
+- wxGLContext · class · L37-L37 — class wxGLContext;
+- BackgroundSlicingProcess · class · L46-L46 — class BackgroundSlicingProcess;
+- BuildVolume · class · L47-L47 — class BuildVolume;
+- ModelObject · class · L50-L50 — class ModelObject;
+- ModelInstance · class · L51-L51 — class ModelInstance;
+- PrintObject · class · L53-L53 — class PrintObject;
+- Print · class · L54-L54 — class Print;
+- SLAPrint · class · L55-L55 — class SLAPrint;
+- PresetBundle · class · L56-L56 — class PresetBundle;
+- Bed3D · class · L61-L61 — class Bed3D;
+- PartPlateList · class · L62-L62 — class PartPlateList;
+- DesignSketchTool · class · L64-L64 — class DesignSketchTool;   // Design tab: interactive 2D sketch tool
+- RetinaHelper · class · L69-L69 — class RetinaHelper;
+- Size · class · L72-L90 — class Size
+- Size · function · L79-L79 — Size() = default;
+- Size · function · L80-L80 — Size(int width, int height, float scale_factor = 1.0f) : m_width(width), m_height(height), m_scale_factor(scale_factor) {}
+- get_width · function · L82-L82 — int get_width() const { return m_width; }
+- set_width · function · L83-L83 — void set_width(int width) { m_width = width; }
+- get_height · function · L85-L85 — int get_height() const { return m_height; }
+- set_height · function · L86-L86 — void set_height(int height) { m_height = height; }
+- get_scale_factor · function · L88-L88 — float get_scale_factor() const { return m_scale_factor; }
+- set_scale_factor · function · L89-L89 — void set_scale_factor(float factor) { m_scale_factor = factor; }
+- RenderTimerEvent · class · L92-L108 — class RenderTimerEvent : public wxEvent
+- RenderTimerEvent · function · L95-L100 — RenderTimerEvent(wxEventType type, wxTimer& timer)
+- GetInterval · function · L101-L101 — int GetInterval() const { return m_timer->GetInterval(); }
+- GetTimer · function · L102-L102 — wxTimer& GetTimer() const { return *m_timer; }
+- Clone · function · L104-L104 — virtual wxEvent* Clone() const { return new RenderTimerEvent(*this); }
+- GetEventCategory · function · L105-L105 — virtual wxEventCategory GetEventCategory() const  { return wxEVT_CATEGORY_TIMER; }
+- ToolbarHighlighterTimerEvent · class · L110-L126 — class  ToolbarHighlighterTimerEvent : public wxEvent
+- ToolbarHighlighterTimerEvent · function · L113-L118 — ToolbarHighlighterTimerEvent(wxEventType type, wxTimer& timer)
+- GetInterval · function · L119-L119 — int GetInterval() const { return m_timer->GetInterval(); }
+- GetTimer · function · L120-L120 — wxTimer& GetTimer() const { return *m_timer; }
+- Clone · function · L122-L122 — virtual wxEvent* Clone() const { return new ToolbarHighlighterTimerEvent(*this); }
+- GetEventCategory · function · L123-L123 — virtual wxEventCategory GetEventCategory() const { return wxEVT_CATEGORY_TIMER; }
+- GizmoHighlighterTimerEvent · class · L129-L145 — class  GizmoHighlighterTimerEvent : public wxEvent
+- GizmoHighlighterTimerEvent · function · L132-L137 — GizmoHighlighterTimerEvent(wxEventType type, wxTimer& timer)
+- GetInterval · function · L138-L138 — int GetInterval() const { return m_timer->GetInterval(); }
+- GetTimer · function · L139-L139 — wxTimer& GetTimer() const { return *m_timer; }
+- Clone · function · L141-L141 — virtual wxEvent* Clone() const { return new GizmoHighlighterTimerEvent(*this); }
+- GetEventCategory · function · L142-L142 — virtual wxEventCategory GetEventCategory() const { return wxEVT_CATEGORY_TIMER; }
+- GLCanvas3D · class · L206-L1438 — class GLCanvas3D
+- update_render_colors · function · L212-L212 — static void update_render_colors();
+- load_render_colors · function · L213-L213 — static void load_render_colors();
+- LayersEditing · class · L215-L326 — class LayersEditing
+- EState · type · L218-L224 — enum EState : unsigned char
+- set_shrinkage_compensation · function · L229-L229 — void set_shrinkage_compensation(const Vec3d &shrinkage_compensation) { m_shrinkage_compensation = shrinkage_compensation; };
+- LayersTexture · class · L252-L266 — struct LayersTexture
+- Profile · class · L276-L283 — struct Profile
+- LayersEditing · function · L286-L286 — LayersEditing() = default;
+- init · function · L289-L289 — void init();
+- set_config · function · L291-L291 — void set_config(const DynamicPrintConfig* config);
+- select_object · function · L292-L292 — void select_object(const Model& model, int object_id);
+- is_allowed · function · L294-L294 — bool is_allowed() const;
+- is_enabled · function · L296-L296 — bool is_enabled() const { return m_enabled; }
+- set_enabled · function · L297-L297 — void set_enabled(bool enabled) { m_enabled = is_allowed() && enabled; }
+- render_variable_layer_height_dialog · function · L299-L299 — void render_variable_layer_height_dialog(GLCanvas3D& canvas);
+- render_overlay · function · L300-L300 — void render_overlay(GLCanvas3D& canvas);
+- render_volumes · function · L301-L301 — void render_volumes(const GLCanvas3D& canvas, const GLVolumeCollection& volumes);
+- adjust_layer_height_profile · function · L303-L303 — void adjust_layer_height_profile();
+- accept_changes · function · L304-L304 — void accept_changes(GLCanvas3D& canvas);
+- reset_layer_height_profile · function · L305-L305 — void reset_layer_height_profile(GLCanvas3D& canvas);
+- adaptive_layer_height_profile · function · L306-L306 — void adaptive_layer_height_profile(GLCanvas3D& canvas, float quality_factor);
+- smooth_layer_height_profile · function · L307-L307 — void smooth_layer_height_profile(GLCanvas3D& canvas, const HeightProfileSmoothingParams& smoothing_params);
+- get_cursor_z_relative · function · L309-L309 — static float get_cursor_z_relative(const GLCanvas3D& canvas);
+- bar_rect_contains · function · L310-L310 — static bool bar_rect_contains(const GLCanvas3D& canvas, float x, float y);
+- get_bar_rect_screen · function · L311-L311 — static Rect get_bar_rect_screen(const GLCanvas3D& canvas);
+- get_overlay_window_width · function · L312-L312 — static float get_overlay_window_width() { return LayersEditing::s_overlay_window_width; }
+- object_max_z · function · L314-L314 — float object_max_z() const { return m_object_max_z; }
+- get_tooltip · function · L316-L316 — std::string get_tooltip(const GLCanvas3D& canvas) const;
+- is_initialized · function · L319-L319 — bool is_initialized() const;
+- generate_layer_height_texture · function · L320-L320 — void generate_layer_height_texture();
+- render_active_object_annotations · function · L321-L321 — void render_active_object_annotations(const GLCanvas3D& canvas);
+- render_profile · function · L322-L322 — void render_profile(const GLCanvas3D& canvas);
+- update_slicing_parameters · function · L323-L323 — void update_slicing_parameters();
+- thickness_bar_width · function · L325-L325 — static float thickness_bar_width(const GLCanvas3D& canvas);
+- Mouse · class · L328-L360 — struct Mouse
+- Drag · class · L330-L341 — struct Drag
+- set_start_position_2D_as_invalid · function · L349-L349 — void set_start_position_2D_as_invalid() { drag.start_position_2D = Drag::Invalid_2D_Point; }
+- set_start_position_3D_as_invalid · function · L350-L350 — void set_start_position_3D_as_invalid() { drag.start_position_3D = Drag::Invalid_3D_Point; }
+- set_move_start_threshold_position_2D_as_invalid · function · L351-L351 — void set_move_start_threshold_position_2D_as_invalid() { drag.move_start_threshold_position_2D = Drag::Invalid_2D_Point; }
+- is_start_position_2D_defined · function · L353-L353 — bool is_start_position_2D_defined() const { return (drag.start_position_2D != Drag::Invalid_2D_Point); }
+- is_start_position_3D_defined · function · L354-L354 — bool is_start_position_3D_defined() const { return (drag.start_position_3D != Drag::Invalid_3D_Point); }
+- is_move_start_threshold_position_2D_defined · function · L355-L355 — bool is_move_start_threshold_position_2D_defined() const { return (drag.move_start_threshold_position_2D != Drag::Invalid_2D_Point); }
+- is_move_threshold_met · function · L356-L359 — bool is_move_threshold_met(const Point& mouse_pos) const
+- SlaCap · class · L362-L376 — struct SlaCap
+- Triangles · class · L364-L368 — struct Triangles
+- ObjectIdToModelsMap · type · L369-L369 — typedef std::map<unsigned int, Triangles> ObjectIdToModelsMap;
+- SlaCap · function · L373-L373 — SlaCap() { reset(); }
+- reset · function · L374-L374 — void reset() { z = DBL_MAX; triangles.clear(); }
+- matches · function · L375-L375 — bool matches(double z) const { return this->z == z; }
+- EWarning · type · L378-L400 — enum class EWarning
+- RenderStats · class · L402-L429 — class RenderStats
+- increment_fps_counter · function · L412-L412 — void increment_fps_counter() { ++m_fps_running; }
+- increment_scene_fps_counter · function · L413-L413 — void increment_scene_fps_counter() { ++m_scene_fps_running; }
+- get_fps · function · L414-L414 — int get_fps() { return m_fps_out; }
+- get_scene_fps · function · L415-L415 — int get_scene_fps() const { return m_scene_fps_out; }
+- get_fps_and_reset_if_needed · function · L416-L427 — int get_fps_and_reset_if_needed()
+- Labels · class · L431-L443 — class Labels
+- Labels · function · L438-L438 — explicit Labels(GLCanvas3D& canvas) : m_canvas(canvas) {}
+- enable · function · L439-L439 — void enable(bool enable) { m_enabled = enable; }
+- show · function · L440-L440 — void show(bool show) { m_shown = m_enabled ? show : false; }
+- is_shown · function · L441-L441 — bool is_shown() const { return m_shown; }
+- render · function · L442-L442 — void render(const std::vector<const ModelInstance*>& sorted_instances) const;
+- Tooltip · class · L445-L459 — class Tooltip
+- is_empty · function · L453-L453 — bool is_empty() const { return m_text.empty(); }
+- set_text · function · L454-L454 — void set_text(const std::string& text);
+- render · function · L455-L455 — void render(const Vec2d& mouse_position, GLCanvas3D& canvas);
+- set_in_imgui · function · L457-L457 — void set_in_imgui(bool b) { m_in_imgui = b; }
+- is_in_imgui · function · L458-L458 — bool is_in_imgui() const { return m_in_imgui; }
+- Slope · class · L461-L477 — class Slope
+- Slope · function · L466-L466 — Slope(GLVolumeCollection& volumes) : m_volumes(volumes) {}
+- enable · function · L468-L468 — void enable(bool enable) { m_enabled = enable; }
+- is_enabled · function · L469-L469 — bool is_enabled() const { return m_enabled; }
+- use · function · L470-L470 — void use(bool use) { m_volumes.set_slope_active(m_enabled ? use : false); }
+- is_used · function · L471-L471 — bool is_used() const { return m_volumes.is_slope_active(); }
+- globalUse · function · L472-L472 — void globalUse(bool use) { m_volumes.set_slope_GlobalActive(m_enabled ? use : false); }
+- is_GlobalUsed · function · L473-L473 — bool is_GlobalUsed() const { return m_volumes.is_slope_GlobalActive(); }
+- set_normal_angle · function · L474-L476 — void set_normal_angle(float angle_in_deg) const
+- RenderTimer · class · L479-L482 — class RenderTimer : public wxTimer
+- Notify · function · L481-L481 — virtual void Notify() override;
+- ToolbarHighlighterTimer · class · L484-L487 — class ToolbarHighlighterTimer : public wxTimer
+- Notify · function · L486-L486 — virtual void Notify() override;
+- GizmoHighlighterTimer · class · L489-L492 — class GizmoHighlighterTimer : public wxTimer
+- Notify · function · L491-L491 — virtual void Notify() override;
+- ECursorType · type · L495-L499 — enum ECursorType : unsigned char
+- ArrangeSettings · class · L501-L512 — struct ArrangeSettings
+- OrientSettings · class · L514-L519 — struct OrientSettings
+- ECanvasType · type · L522-L527 — enum ECanvasType
+- GetHoverId · function · L529-L529 — int GetHoverId();
+- KeyDown · class · L630-L634 — struct KeyDown
+- SelectionEdit · class · L638-L644 — struct SelectionEdit
+- Kind · type · L640-L640 — enum Kind { None, Move, Rotate };
+- current_printer_technology · function · L687-L687 — PrinterTechnology current_printer_technology() const;
+- get_orient_settings · function · L703-L703 — OrientSettings& get_orient_settings()
+- load_arrange_settings · function · L716-L716 — void load_arrange_settings();
+- get_arrange_settings · function · L717-L717 — ArrangeSettings& get_arrange_settings();
+- SequentialPrintClearance · class · L719-L738 — class SequentialPrintClearance
+- set_polygons · function · L732-L732 — void set_polygons(const Polygons& polygons, const std::vector<std::pair<Polygon, float>>& height_polygons);
+- set_render_fill · function · L733-L733 — void set_render_fill(bool render_fill) { m_render_fill = render_fill; }
+- set_visible · function · L734-L734 — void set_visible(bool visible) { m_visible = visible; }
+- render · function · L735-L735 — void render();
+- ToolbarHighlighter · class · L743-L756 — struct ToolbarHighlighter
+- set_timer_owner · function · L745-L745 — void set_timer_owner(wxEvtHandler* owner, int timerid = wxID_ANY) { m_timer.SetOwner(owner, timerid); }
+- init · function · L746-L746 — void init(GLToolbarItem* toolbar_item, GLCanvas3D* canvas);
+- blink · function · L747-L747 — void blink();
+- invalidate · function · L748-L748 — void invalidate();
+- GizmoHighlighter · class · L758-L773 — struct GizmoHighlighter
+- set_timer_owner · function · L760-L760 — void set_timer_owner(wxEvtHandler* owner, int timerid = wxID_ANY) { m_timer.SetOwner(owner, timerid); }
+- init · function · L761-L761 — void init(GLGizmosManager* manager, GLGizmosManager::EType gizmo, GLCanvas3D* canvas);
+- blink · function · L762-L762 — void blink();
+- invalidate · function · L763-L763 — void invalidate();
+- CameraTarget · class · L776-L780 — struct CameraTarget
+- GLCanvas3D · function · L804-L804 — explicit GLCanvas3D(wxGLCanvas* canvas, Bed3D &bed);
+- is_initialized · function · L807-L807 — bool is_initialized() const { return m_initialized; }
+- set_context · function · L809-L809 — void set_context(wxGLContext* context) { m_context = context; }
+- set_type · function · L810-L810 — void set_type(ECanvasType type) { m_canvas_type = type; }
+- get_canvas_type · function · L811-L811 — ECanvasType get_canvas_type() { return m_canvas_type; }
+- get_wxglcanvas · function · L813-L813 — wxGLCanvas* get_wxglcanvas() { return m_canvas; }
+- get_wxglcanvas · function · L814-L814 — const wxGLCanvas* get_wxglcanvas() const { return m_canvas; }
+- init · function · L816-L816 — bool init();
+- post_event · function · L817-L817 — void post_event(wxEvent &&event);
+- add_raycaster_for_picking · function · L819-L822 — std::shared_ptr<SceneRaycasterItem> add_raycaster_for_picking(SceneRaycaster::EType type, int id, const MeshRaycaster& raycaster,
+- remove_raycasters_for_picking · function · L823-L825 — void remove_raycasters_for_picking(SceneRaycaster::EType type, int id)
+- remove_raycasters_for_picking · function · L826-L828 — void remove_raycasters_for_picking(SceneRaycaster::EType type)
+- get_raycasters_for_picking · function · L830-L830 — std::vector<std::shared_ptr<SceneRaycasterItem>>* get_raycasters_for_picking(SceneRaycaster::EType type)
+- set_raycaster_gizmos_on_top · function · L834-L836 — void set_raycaster_gizmos_on_top(bool value)
+- get_explosion_ratio · function · L838-L838 — float get_explosion_ratio() { return m_explosion_ratio; }
+- reset_explosion_ratio · function · L839-L839 — void reset_explosion_ratio() { m_explosion_ratio = 1.0; }
+- on_change_color_mode · function · L840-L840 — void on_change_color_mode(bool is_dark, bool reinit = true);
+- get_dark_mode_status · function · L841-L841 — const bool get_dark_mode_status() { return m_is_dark; }
+- set_as_dirty · function · L842-L842 — void set_as_dirty() { m_dirty = true; }
+- requires_check_outside_state · function · L843-L843 — void requires_check_outside_state() { m_requires_check_outside_state = true; }
+- get_volumes_count · function · L845-L845 — unsigned int get_volumes_count() const { return (unsigned int)m_volumes.volumes.size(); }
+- get_volumes · function · L846-L846 — const GLVolumeCollection& get_volumes() const { return m_volumes; }
+- reset_volumes · function · L847-L847 — void reset_volumes();
+- check_volumes_outside_state · function · L848-L848 — ModelInstanceEPrintVolumeState check_volumes_outside_state(ObjectFilamentResults* object_results = nullptr) const;
+- check_volumes_outside_state · function · L849-L849 — void check_volumes_outside_state(GLVolumeCollection& volumes) const { check_volumes_outside_state(volumes, nullptr, false); }
+- is_all_plates_selected · function · L850-L850 — bool is_all_plates_selected() { return m_sel_plate_toolbar.m_all_plates_stats_item && m_sel_plate_toolbar.m_all_plates_stats_item->selected; }
+- get_scale · function · L851-L851 — const float get_scale() const;
+- check_volumes_outside_state · function · L856-L856 — bool check_volumes_outside_state(GLVolumeCollection& volumes, ModelInstanceEPrintVolumeState* out_state, bool selection_only = true) const;
+- get_gcode_viewer · function · L860-L860 — GCodeViewer& get_gcode_viewer() { return m_gcode_viewer; }
+- init_gcode_viewer · function · L861-L861 — void init_gcode_viewer(ConfigOptionMode mode, Slic3r::PresetBundle* preset_bundle) { m_gcode_viewer.init(mode, preset_bundle); }
+- reset_gcode_toolpaths · function · L862-L862 — void reset_gcode_toolpaths() { m_gcode_viewer.reset(); }
+- get_gcode_sequential_view · function · L863-L863 — const GCodeViewer::SequentialView& get_gcode_sequential_view() const { return m_gcode_viewer.get_sequential_view(); }
+- update_gcode_sequential_view_current · function · L864-L864 — void update_gcode_sequential_view_current(unsigned int first, unsigned int last) { m_gcode_viewer.update_sequential_view_current(first, last); }
+- get_gcode_view_full_range · function · L865-L865 — const libvgcode::Interval& get_gcode_view_full_range() const { return m_gcode_viewer.get_gcode_view_full_range(); }
+- get_gcode_view_enabled_range · function · L866-L866 — const libvgcode::Interval& get_gcode_view_enabled_range() const { return m_gcode_viewer.get_gcode_view_enabled_range(); }
+- get_gcode_view_visible_range · function · L867-L867 — const libvgcode::Interval& get_gcode_view_visible_range() const { return m_gcode_viewer.get_gcode_view_visible_range(); }
+- get_gcode_vertex_at · function · L868-L868 — const libvgcode::PathVertex& get_gcode_vertex_at(size_t id) const { return m_gcode_viewer.get_gcode_vertex_at(id); }
+- toggle_selected_volume_visibility · function · L870-L870 — void toggle_selected_volume_visibility(bool selected_visible);
+- toggle_sla_auxiliaries_visibility · function · L871-L871 — void toggle_sla_auxiliaries_visibility(bool visible, const ModelObject* mo = nullptr, int instance_idx = -1);
+- toggle_model_objects_visibility · function · L872-L872 — void toggle_model_objects_visibility(bool visible, const ModelObject* mo = nullptr, int instance_idx = -1, const ModelVolume* mv = nullptr);
+- update_instance_printable_state_for_object · function · L873-L873 — void update_instance_printable_state_for_object(size_t obj_idx);
+- update_instance_printable_state_for_objects · function · L874-L874 — void update_instance_printable_state_for_objects(const std::vector<size_t>& object_idxs);
+- set_config · function · L876-L876 — void set_config(const DynamicPrintConfig* config);
+- set_process · function · L877-L877 — void set_process(BackgroundSlicingProcess* process) { m_process = process; }
+- set_model · function · L878-L878 — void set_model(Model* model);
+- get_model · function · L879-L879 — const Model* get_model() const { return m_model; }
+- get_selection · function · L881-L881 — const Selection& get_selection() const { return m_selection; }
+- get_selection · function · L882-L882 — Selection& get_selection() { return m_selection; }
+- get_gizmos_manager · function · L884-L884 — const GLGizmosManager& get_gizmos_manager() const { return m_gizmos; }
+- get_gizmos_manager · function · L885-L885 — GLGizmosManager& get_gizmos_manager() { return m_gizmos; }
+- bed_shape_changed · function · L887-L887 — void bed_shape_changed();
+- plates_count_changed · function · L890-L890 — void plates_count_changed();
+- get_camera · function · L893-L893 — Camera& get_camera();
+- set_clipping_plane · function · L895-L902 — void set_clipping_plane(unsigned int id, const ClippingPlane& plane)
+- reset_clipping_planes_cache · function · L903-L903 — void reset_clipping_planes_cache() { m_sla_caps[0].triangles.clear(); m_sla_caps[1].triangles.clear(); }
+- set_use_clipping_planes · function · L904-L904 — void set_use_clipping_planes(bool use) { m_use_clipping_planes = use; }
+- get_use_clipping_planes · function · L906-L906 — bool                                get_use_clipping_planes() const { return m_use_clipping_planes; }
+- get_clipping_planes · function · L907-L907 — const std::array<ClippingPlane, 2> &get_clipping_planes() const { return m_clipping_planes; };
+- set_use_color_clip_plane · function · L909-L909 — void set_use_color_clip_plane(bool use) { m_volumes.set_use_color_clip_plane(use); }
+- set_color_clip_plane · function · L910-L910 — void set_color_clip_plane(const Vec3d& cp_normal, double offset) { m_volumes.set_color_clip_plane(cp_normal, offset); }
+- set_color_clip_plane_colors · function · L911-L911 — void set_color_clip_plane_colors(const std::array<ColorRGBA, 2>& colors) { m_volumes.set_color_clip_plane_colors(colors); }
+- toggle_world_axes_visibility · function · L913-L913 — void toggle_world_axes_visibility(bool force_show = false);
+- refresh_camera_scene_box · function · L914-L914 — void refresh_camera_scene_box();
+- set_color_by · function · L915-L915 — void set_color_by(const std::string& value);
+- volumes_bounding_box · function · L917-L917 — BoundingBoxf3 volumes_bounding_box(bool current_plate_only = false) const;
+- scene_bounding_box · function · L918-L918 — BoundingBoxf3 scene_bounding_box() const;
+- plate_scene_bounding_box · function · L919-L919 — BoundingBoxf3 plate_scene_bounding_box(int plate_idx) const;
+- is_layers_editing_enabled · function · L921-L921 — bool is_layers_editing_enabled() const { return m_layers_editing.is_enabled(); }
+- is_layers_editing_allowed · function · L922-L922 — bool is_layers_editing_allowed() const { return m_layers_editing.is_allowed(); }
+- reset_layer_height_profile · function · L924-L924 — void reset_layer_height_profile();
+- adaptive_layer_height_profile · function · L925-L925 — void adaptive_layer_height_profile(float quality_factor);
+- smooth_layer_height_profile · function · L926-L926 — void smooth_layer_height_profile(const HeightProfileSmoothingParams& smoothing_params);
+- is_reload_delayed · function · L928-L928 — bool is_reload_delayed() const { return m_reload_delayed; }
+- enable_layers_editing · function · L930-L930 — void enable_layers_editing(bool enable);
+- enable_picking · function · L931-L938 — void enable_picking(bool enable)
+- enable_moving · function · L939-L939 — void enable_moving(bool enable) { m_moving_enabled = enable; }
+- enable_gizmos · function · L940-L940 — void enable_gizmos(bool enable) { m_gizmos.set_enabled(enable); }
+- enable_selection · function · L941-L941 — void enable_selection(bool enable) { m_selection.set_enabled(enable); }
+- enable_main_toolbar · function · L942-L942 — void enable_main_toolbar(bool enable) { m_main_toolbar.set_enabled(enable); }
+- _update_select_plate_toolbar_stats_item · function · L944-L944 — void _update_select_plate_toolbar_stats_item(bool force_selected = false);
+- reset_select_plate_toolbar_selection · function · L945-L945 — void reset_select_plate_toolbar_selection();
+- enable_select_plate_toolbar · function · L946-L946 — void enable_select_plate_toolbar(bool enable);
+- enable_assemble_view_toolbar · function · L947-L947 — void enable_assemble_view_toolbar(bool enable);
+- enable_return_toolbar · function · L948-L948 — void enable_return_toolbar(bool enable);
+- enable_separator_toolbar · function · L949-L949 — void enable_separator_toolbar(bool enable);
+- enable_collapse_toolbar · function · L950-L950 — void enable_collapse_toolbar(bool enable);
+- enable_plate_chrome · function · L951-L951 — void enable_plate_chrome(bool enable);
+- set_axes_at_bed_center · function · L952-L952 — void set_axes_at_bed_center(bool b) { m_axes_at_bed_center = b; }
+- set_show_bed · function · L953-L953 — void set_show_bed(bool b) { m_show_bed = b; }
+- get_show_bed · function · L954-L954 — bool get_show_bed() const { return m_show_bed; }
+- set_design_sketch_tool · function · L956-L956 — void set_design_sketch_tool(DesignSketchTool* tool) { m_design_sketch_tool = tool; }
+- get_design_sketch_tool · function · L957-L957 — DesignSketchTool* get_design_sketch_tool() const { return m_design_sketch_tool; }
+- enable_dynamic_background · function · L959-L959 — void enable_dynamic_background(bool enable) { m_dynamic_background_enabled = enable; }
+- enable_labels · function · L960-L960 — void enable_labels(bool enable) { m_labels.enable(enable); }
+- enable_slope · function · L961-L961 — void enable_slope(bool enable) { m_slope.enable(enable); }
+- allow_multisample · function · L962-L962 — void allow_multisample(bool allow) { m_multisample_allowed = allow; }
+- zoom_to_bed · function · L964-L964 — void zoom_to_bed();
+- zoom_to_volumes · function · L965-L965 — void zoom_to_volumes();
+- zoom_to_selection · function · L966-L966 — void zoom_to_selection();
+- zoom_to_gcode · function · L967-L967 — void zoom_to_gcode();
+- zoom_to_plate · function · L969-L969 — void zoom_to_plate(int plate_idx = -1);
+- select_view · function · L970-L970 — void select_view(const std::string& direction);
+- select_plate · function · L972-L972 — void select_plate();
+- get_main_toolbar_offset · function · L974-L974 — int get_main_toolbar_offset() const;
+- get_main_toolbar_height · function · L975-L975 — int get_main_toolbar_height() const { return m_main_toolbar.get_height(); }
+- get_main_toolbar_width · function · L976-L976 — int get_main_toolbar_width() const { return m_main_toolbar.get_width(); }
+- get_assemble_view_toolbar_width · function · L977-L977 — float get_assemble_view_toolbar_width() const { return m_assemble_view_toolbar.get_width(); }
+- get_assemble_view_toolbar_height · function · L978-L978 — float get_assemble_view_toolbar_height() const { return m_assemble_view_toolbar.get_height(); }
+- get_assembly_paint_toolbar_width · function · L979-L979 — float get_assembly_paint_toolbar_width() const { return m_paint_toolbar_width; }
+- get_separator_toolbar_width · function · L980-L980 — float get_separator_toolbar_width() const { return m_separator_toolbar.get_width(); }
+- get_separator_toolbar_height · function · L981-L981 — float get_separator_toolbar_height() const { return m_separator_toolbar.get_height(); }
+- is_collapse_toolbar_on_left · function · L982-L982 — bool  is_collapse_toolbar_on_left() const;
+- get_collapse_toolbar_width · function · L983-L983 — float get_collapse_toolbar_width() const;
+- get_collapse_toolbar_height · function · L984-L984 — float get_collapse_toolbar_height() const;
+- update_volumes_colors_by_extruder · function · L986-L986 — void update_volumes_colors_by_extruder();
+- is_dragging · function · L988-L988 — bool is_dragging() const { return m_gizmos.is_dragging() || m_moving; }
+- has_mouse_capture · function · L989-L989 — bool has_mouse_capture() const;
+- render · function · L991-L991 — void render(bool only_init = false);
+- is_rendering_enabled · function · L992-L995 — bool is_rendering_enabled()
+- enable_render · function · L996-L999 — void enable_render(bool enabled)
+- render_thumbnail · function · L1003-L1007 — void render_thumbnail(ThumbnailData& thumbnail_data, unsigned int w, unsigned int h, const ThumbnailsParams& thumbnail_params,
+- render_thumbnail · function · L1008-L1017 — void render_thumbnail(ThumbnailData &           thumbnail_data,
+- render_thumbnail · function · L1018-L1028 — void render_thumbnail(ThumbnailData &           thumbnail_data,
+- render_thumbnail_internal · function · L1029-L1035 — static void render_thumbnail_internal(ThumbnailData& thumbnail_data, const ThumbnailsParams& thumbnail_params, PartPlateList& partplate_list, ModelObjectPtrs& model_objects,
+- render_thumbnail_framebuffer · function · L1037-L1043 — static void render_thumbnail_framebuffer(ThumbnailData& thumbnail_data, unsigned int w, unsigned int h, const ThumbnailsParams& thumbnail_params,
+- render_thumbnail_framebuffer_ext · function · L1045-L1051 — static void render_thumbnail_framebuffer_ext(ThumbnailData& thumbnail_data, unsigned int w, unsigned int h, const ThumbnailsParams& thumbnail_params,
+- render_thumbnail_legacy · function · L1054-L1066 — static void render_thumbnail_legacy(ThumbnailData &                    thumbnail_data,
+- select_curr_plate_all · function · L1069-L1069 — void select_curr_plate_all();
+- select_object_from_idx · function · L1070-L1070 — void select_object_from_idx(std::vector<int>& object_idxs);
+- remove_curr_plate_all · function · L1071-L1071 — void remove_curr_plate_all();
+- select_all · function · L1073-L1073 — void select_all();
+- deselect_all · function · L1074-L1074 — void deselect_all();
+- exit_gizmo · function · L1075-L1075 — void exit_gizmo();
+- set_selected_visible · function · L1076-L1076 — void set_selected_visible(bool visible);
+- delete_selected · function · L1077-L1077 — void delete_selected() { m_selection.erase(); }
+- ensure_on_bed · function · L1078-L1078 — void ensure_on_bed(unsigned int object_idx, bool allow_negative_z);
+- get_gcode_layers_zs · function · L1080-L1080 — std::vector<double> get_gcode_layers_zs() const { return m_gcode_viewer.get_layers_zs(); }
+- get_gcode_layers_times · function · L1081-L1081 — std::vector<float> get_gcode_layers_times() const { return m_gcode_viewer.get_layers_times(); }
+- get_gcode_layers_times_cache · function · L1082-L1082 — const std::vector<float>& get_gcode_layers_times_cache() const { return m_gcode_layers_times_cache; }
+- reset_gcode_layers_times_cache · function · L1083-L1083 — void reset_gcode_layers_times_cache() { m_gcode_layers_times_cache.clear(); }
+- set_volumes_z_range · function · L1084-L1084 — void set_volumes_z_range(const std::array<double, 2>& range) { m_volumes.set_range(range[0] - 1e-6, range[1] + 1e-6); }
+- get_gcode_extruders_count · function · L1085-L1085 — size_t get_gcode_extruders_count() { return m_gcode_viewer.get_extruders_count(); }
+- load_object · function · L1087-L1087 — std::vector<int> load_object(const ModelObject& model_object, int obj_idx, std::vector<int> instance_idxs);
+- load_object · function · L1088-L1088 — std::vector<int> load_object(const Model& model, int obj_idx);
+- mirror_selection · function · L1090-L1090 — void mirror_selection(Axis axis);
+- reload_scene · function · L1092-L1092 — void reload_scene(bool refresh_immediately, bool force_full_scene_refresh = false);
+- set_shell_transparence · function · L1094-L1094 — void set_shell_transparence(float alpha = 0.2f);
+- load_shells · function · L1095-L1095 — void load_shells(const Print& print, bool force_previewing = false);
+- reset_shells · function · L1096-L1096 — void reset_shells() { m_gcode_viewer.reset_shell(); }
+- set_shells_on_previewing · function · L1097-L1097 — void set_shells_on_previewing(bool is_preview) { m_gcode_viewer.set_shells_on_preview(is_preview); }
+- load_gcode_preview · function · L1100-L1101 — void load_gcode_preview(const GCodeProcessorResult& gcode_result, const std::vector<std::string>& str_tool_colors,
+- set_gcode_view_type · function · L1102-L1102 — void set_gcode_view_type(libvgcode::EViewType type) { return m_gcode_viewer.set_view_type(type); }
+- get_gcode_view_type · function · L1103-L1103 — libvgcode::EViewType get_gcode_view_type() const { return m_gcode_viewer.get_view_type(); }
+- load_sla_preview · function · L1105-L1105 — void load_sla_preview();
+- bind_event_handlers · function · L1106-L1106 — void bind_event_handlers();
+- unbind_event_handlers · function · L1107-L1107 — void unbind_event_handlers();
+- on_size · function · L1109-L1109 — void on_size(wxSizeEvent& evt) { m_dirty = true; }
+- on_idle · function · L1110-L1110 — void on_idle(wxIdleEvent& evt);
+- on_char · function · L1111-L1111 — void on_char(wxKeyEvent& evt);
+- on_key · function · L1112-L1112 — void on_key(wxKeyEvent& evt);
+- handle_shortcut · function · L1115-L1115 — bool handle_shortcut(const KeyChord& chord);
+- apply_selection_move · function · L1116-L1116 — void apply_selection_move(bool slow, bool camera_space);
+- apply_selection_rotate · function · L1117-L1117 — void apply_selection_rotate(double angle_z_rad);
+- finish_selection_edit · function · L1118-L1118 — void finish_selection_edit();
+- update_shortcut_tooltips · function · L1119-L1119 — void update_shortcut_tooltips();
+- on_mouse_wheel · function · L1120-L1120 — void on_mouse_wheel(wxMouseEvent& evt);
+- on_timer · function · L1121-L1121 — void on_timer(wxTimerEvent& evt);
+- on_render_timer · function · L1122-L1122 — void on_render_timer(wxTimerEvent& evt);
+- on_set_color_timer · function · L1123-L1123 — void on_set_color_timer(wxTimerEvent& evt);
+- on_fps_overlay_timer · function · L1124-L1124 — void on_fps_overlay_timer(wxTimerEvent& evt);
+- on_mouse · function · L1125-L1125 — void on_mouse(wxMouseEvent& evt);
+- on_gesture · function · L1126-L1126 — void on_gesture(wxGestureEvent& evt);
+- on_paint · function · L1127-L1127 — void on_paint(wxPaintEvent& evt);
+- on_set_focus · function · L1128-L1128 — void on_set_focus(wxFocusEvent& evt);
+- force_set_focus · function · L1129-L1129 — void force_set_focus();
+- MouseButton · type · L1131-L1131 — enum class MouseButton { None, Left, Middle, Right };
+- MouseAction · type · L1132-L1132 — enum class MouseAction { None, Pan, Rotation };
+- clicked_button_matches_action · function · L1133-L1133 — bool clicked_button_matches_action(const wxMouseEvent& evt, MouseAction action, const std::map<MouseButton, MouseAction>& mappings) const;
+- is_camera_rotate · function · L1134-L1134 — bool is_camera_rotate(const wxMouseEvent& evt, const std::map<MouseButton, MouseAction>& mappings) const;
+- is_camera_pan · function · L1135-L1135 — bool is_camera_pan(const wxMouseEvent& evt, const std::map<MouseButton, MouseAction>& mappings) const;
+- set_cad_navigation · function · L1136-L1136 — void set_cad_navigation(bool b) { m_cad_navigation = b; }
+- get_canvas_size · function · L1138-L1138 — Size get_canvas_size() const;
+- get_local_mouse_position · function · L1139-L1139 — Vec2d get_local_mouse_position() const;
+- set_popup_menu_position · function · L1143-L1143 — void  set_popup_menu_position(const Vec2d &position) { m_popup_menu_positon = position; }
+- get_popup_menu_position · function · L1144-L1144 — const std::optional<Vec2d>& get_popup_menu_position() const { return m_popup_menu_positon; }
+- clear_popup_menu_position · function · L1145-L1145 — void clear_popup_menu_position() { m_popup_menu_positon.reset(); }
+- set_tooltip · function · L1147-L1147 — void set_tooltip(const std::string& tooltip);
+- do_move · function · L1150-L1150 — void do_move(const std::string& snapshot_type);
+- do_rotate · function · L1151-L1151 — void do_rotate(const std::string& snapshot_type);
+- do_scale · function · L1152-L1152 — void do_scale(const std::string& snapshot_type);
+- do_center · function · L1153-L1153 — void do_center();
+- do_drop · function · L1154-L1154 — void do_drop();
+- do_center_plate · function · L1155-L1155 — void do_center_plate(const int plate_idx);
+- do_mirror · function · L1156-L1156 — void do_mirror(const std::string& snapshot_type);
+- update_gizmos_on_off_state · function · L1158-L1158 — void update_gizmos_on_off_state();
+- reset_all_gizmos · function · L1159-L1159 — void reset_all_gizmos() { m_gizmos.reset_all_states(); }
+- handle_sidebar_focus_event · function · L1161-L1161 — void handle_sidebar_focus_event(const std::string& opt_key, bool focus_on);
+- handle_layers_data_focus_event · function · L1162-L1162 — void handle_layers_data_focus_event(const t_layer_height_range range, const EditorType type);
+- update_ui_from_settings · function · L1164-L1164 — void update_ui_from_settings();
+- get_move_volume_id · function · L1166-L1166 — int get_move_volume_id() const { return m_mouse.drag.move_volume_idx; }
+- get_first_hover_volume_idx · function · L1167-L1167 — int get_first_hover_volume_idx() const { return m_hover_volume_idxs.empty() ? -1 : m_hover_volume_idxs.front(); }
+- set_selected_extruder · function · L1168-L1168 — void set_selected_extruder(int extruder) { m_selected_extruder = extruder;}
+- WipeTowerInfo · class · L1170-L1190 — class WipeTowerInfo
+- pos · function · L1184-L1184 — inline const Vec2d& pos() const { return m_pos; }
+- rotation · function · L1185-L1185 — inline double rotation() const { return m_rotation; }
+- bb_size · function · L1186-L1186 — inline const Vec2d bb_size() const { return m_bb.size(); }
+- apply_wipe_tower · function · L1188-L1188 — void apply_wipe_tower() const { apply_wipe_tower(m_pos, m_rotation); }
+- apply_wipe_tower · function · L1189-L1189 — void apply_wipe_tower(Vec2d pos, double rot) const;
+- get_wipe_tower_info · function · L1193-L1193 — WipeTowerInfo get_wipe_tower_info(int plate_idx) const;
+- mouse_ray · function · L1196-L1196 — Linef3 mouse_ray(const Point& mouse_pos);
+- set_mouse_as_dragging · function · L1198-L1198 — void set_mouse_as_dragging() { m_mouse.dragging = true; }
+- is_mouse_dragging · function · L1199-L1199 — bool is_mouse_dragging() const { return m_mouse.dragging; }
+- is_mouse_left_up_ignored · function · L1203-L1203 — bool is_mouse_left_up_ignored() const { return m_mouse.ignore_left_up; }
+- get_size_proportional_to_max_bed_size · function · L1205-L1205 — double get_size_proportional_to_max_bed_size(double factor) const;
+- get_empty_cells · function · L1209-L1209 — std::vector<Vec2f> get_empty_cells(const Vec2f start_point, const Vec2f step = {10, 10});
+- get_nearest_empty_cell · function · L1212-L1212 — Vec2f get_nearest_empty_cell(const Vec2f start_point, const Vec2f step = {10, 10});
+- set_cursor · function · L1214-L1214 — void set_cursor(ECursorType type);
+- msw_rescale · function · L1215-L1215 — void msw_rescale() { m_gcode_viewer.invalidate_legend(); }
+- request_extra_frame · function · L1217-L1217 — void request_extra_frame() { m_extra_frame_requested = true; }
+- schedule_extra_frame · function · L1219-L1219 — void schedule_extra_frame(int milliseconds);
+- get_main_toolbar_item_id · function · L1221-L1221 — int get_main_toolbar_item_id(const std::string& name) const { return m_main_toolbar.get_item_id(name); }
+- force_main_toolbar_left_action · function · L1222-L1222 — void force_main_toolbar_left_action(int item_id) { m_main_toolbar.force_left_action(item_id, *this); }
+- force_main_toolbar_right_action · function · L1223-L1223 — void force_main_toolbar_right_action(int item_id) { m_main_toolbar.force_right_action(item_id, *this); }
+- has_toolpaths_to_export · function · L1225-L1225 — bool has_toolpaths_to_export() const { return m_gcode_viewer.can_export_toolpaths(); }
+- export_toolpaths_to_obj · function · L1226-L1226 — void export_toolpaths_to_obj(const char* filename) const { m_gcode_viewer.export_toolpaths_to_obj(filename); }
+- mouse_up_cleanup · function · L1228-L1228 — void mouse_up_cleanup();
+- are_labels_shown · function · L1230-L1230 — bool are_labels_shown() const { return m_labels.is_shown(); }
+- show_labels · function · L1231-L1231 — void show_labels(bool show) { m_labels.show(show); }
+- is_overhang_shown · function · L1233-L1233 — bool is_overhang_shown() const { return m_slope.is_GlobalUsed(); }
+- show_overhang · function · L1234-L1234 — void show_overhang(bool show) { m_slope.globalUse(show); }
+- is_using_slope · function · L1236-L1236 — bool is_using_slope() const { return m_slope.is_used(); }
+- use_slope · function · L1237-L1237 — void use_slope(bool use) { m_slope.use(use); }
+- set_slope_normal_angle · function · L1238-L1238 — void set_slope_normal_angle(float angle_in_deg) { m_slope.set_normal_angle(angle_in_deg); }
+- highlight_toolbar_item · function · L1240-L1240 — void highlight_toolbar_item(const std::string& item_name);
+- highlight_gizmo · function · L1241-L1241 — void highlight_gizmo(const std::string& gizmo_name);
+- timestamp_now · function · L1244-L1252 — static int64_t timestamp_now()
+- reset_sequential_print_clearance · function · L1254-L1259 — void reset_sequential_print_clearance()
+- set_sequential_print_clearance_visible · function · L1261-L1263 — void set_sequential_print_clearance_visible(bool visible)
+- set_sequential_print_clearance_render_fill · function · L1265-L1267 — void set_sequential_print_clearance_render_fill(bool render_fill)
+- set_sequential_print_clearance_polygons · function · L1270-L1272 — void set_sequential_print_clearance_polygons(const Polygons& polygons, const std::vector<std::pair<Polygon, float>>& height_polygons)
+- can_sequential_clearance_show_in_gizmo · function · L1274-L1274 — bool can_sequential_clearance_show_in_gizmo();
+- update_sequential_clearance · function · L1275-L1275 — void update_sequential_clearance();
+- update_compacted_wipe_tower_clearance · function · L1277-L1277 — void update_compacted_wipe_tower_clearance();
+- fff_print · function · L1279-L1279 — const Print* fff_print() const;
+- sla_print · function · L1280-L1280 — const SLAPrint* sla_print() const;
+- reset_old_size · function · L1282-L1282 — void reset_old_size() { m_old_size = { 0, 0 }; }
+- is_object_sinking · function · L1284-L1284 — bool is_object_sinking(int object_idx) const;
+- apply_retina_scale · function · L1286-L1286 — void apply_retina_scale(Vec2d &screen_coordinate) const;
+- _perform_layer_editing_action · function · L1288-L1288 — void _perform_layer_editing_action(wxMouseEvent* evt = nullptr);
+- _mouse_to_3d · function · L1292-L1292 — Vec3d _mouse_to_3d(const Point& mouse_pos, float* z = nullptr);
+- make_current_for_postinit · function · L1294-L1294 — bool make_current_for_postinit();
+- _is_shown_on_screen · function · L1297-L1297 — bool _is_shown_on_screen() const;
+- _update_slice_error_status · function · L1299-L1299 — void _update_slice_error_status();
+- _switch_toolbars_icon_filename · function · L1301-L1301 — void _switch_toolbars_icon_filename();
+- _init_toolbars · function · L1302-L1302 — bool _init_toolbars();
+- _init_main_toolbar · function · L1303-L1303 — bool _init_main_toolbar();
+- _init_select_plate_toolbar · function · L1304-L1304 — bool _init_select_plate_toolbar();
+- _update_imgui_select_plate_toolbar · function · L1305-L1305 — bool _update_imgui_select_plate_toolbar();
+- _init_assemble_view_toolbar · function · L1306-L1306 — bool _init_assemble_view_toolbar();
+- _init_return_toolbar · function · L1307-L1307 — bool _init_return_toolbar();
+- _init_separator_toolbar · function · L1308-L1308 — bool _init_separator_toolbar();
+- _init_collapse_toolbar · function · L1311-L1311 — bool _init_collapse_toolbar();
+- _set_current · function · L1313-L1313 — bool _set_current();
+- _resize · function · L1314-L1314 — void _resize(unsigned int w, unsigned int h);
+- _max_bounding_box · function · L1317-L1317 — BoundingBoxf3 _max_bounding_box(bool include_gizmos, bool include_bed_model, bool include_plates) const;
+- _zoom_to_box · function · L1319-L1319 — void _zoom_to_box(const BoundingBoxf3& box, double margin_factor = DefaultCameraZoomToBoxMarginFactor);
+- _update_camera_zoom · function · L1320-L1320 — void _update_camera_zoom(double zoom);
+- _refresh_if_shown_on_screen · function · L1322-L1322 — void _refresh_if_shown_on_screen(bool scene_dirty = true);
+- _picking_pass · function · L1324-L1324 — void _picking_pass();
+- _rectangular_selection_picking_pass · function · L1325-L1325 — void _rectangular_selection_picking_pass();
+- _is_fxaa_enabled · function · L1326-L1326 — bool _is_fxaa_enabled() const;
+- _is_realistic_view_enabled · function · L1327-L1327 — bool _is_realistic_view_enabled() const;
+- _is_ssao_enabled · function · L1328-L1328 — bool _is_ssao_enabled() const;
+- _get_effective_fps_cap · function · L1329-L1329 — int _get_effective_fps_cap() const;
+- _is_fps_overlay_enabled · function · L1330-L1330 — bool _is_fps_overlay_enabled() const;
+- _is_scene_cache_enabled · function · L1331-L1331 — bool _is_scene_cache_enabled() const;
+- _is_scene_cacheable · function · L1332-L1332 — bool _is_scene_cacheable() const;
+- _is_frame_skipping_enabled · function · L1333-L1333 — bool _is_frame_skipping_enabled() const;
+- _render_fps_overlay · function · L1334-L1334 — void _render_fps_overlay(int fps) const;
+- _render_fxaa_pass · function · L1335-L1335 — void _render_fxaa_pass(unsigned int width, unsigned int height);
+- _render_ssao_pass · function · L1336-L1336 — void _render_ssao_pass(unsigned int width, unsigned int height);
+- _render_frame · function · L1338-L1338 — void _render_frame(bool scene_dirty, bool only_init = false);
+- _render_scene · function · L1339-L1339 — void _render_scene(const Camera& camera, const Size& cnv_size);
+- _set_overlay_as_dirty · function · L1341-L1341 — void _set_overlay_as_dirty() { m_overlay_dirty = true; }
+- _scene_cache_key · function · L1343-L1343 — SceneCache::Key _scene_cache_key(const Camera& camera) const;
+- _can_reuse_cached_scene · function · L1344-L1344 — bool _can_reuse_cached_scene(const Camera& camera) const;
+- _capture_scene_cache · function · L1345-L1345 — void _capture_scene_cache(const Camera& camera);
+- _render_background · function · L1346-L1346 — void _render_background();
+- _render_bed · function · L1347-L1347 — void _render_bed(const Transform3d& view_matrix, const Transform3d& projection_matrix, bool bottom, bool show_axes);
+- _render_shadows · function · L1350-L1350 — void _render_shadows(const Transform3d& view_matrix, const Transform3d& projection_matrix);
+- _render_platelist · function · L1352-L1352 — void _render_platelist(const Transform3d& view_matrix, const Transform3d& projection_matrix, bool bottom, bool only_current, bool only_body = false, int hover_id = -1, bool render_cali = false, bool show_grid = true);
+- _render_cad_grid · function · L1356-L1356 — void _render_cad_grid(const Transform3d& view_matrix, const Transform3d& projection_matrix);
+- _render_objects · function · L1358-L1358 — void _render_objects(GLVolumeCollection::ERenderType type, bool with_outline = true);
+- _render_wireframe_overlay · function · L1359-L1359 — void _render_wireframe_overlay();
+- _is_xray_view_active · function · L1360-L1360 — bool _is_xray_view_active() const;
+- _render_xray_volumes · function · L1361-L1361 — void _render_xray_volumes();
+- _render_gcode · function · L1363-L1363 — void _render_gcode(int canvas_width, int canvas_height);
+- _render_gcode_overlay · function · L1364-L1364 — void _render_gcode_overlay(int canvas_width, int canvas_height);
+- _render_plane · function · L1366-L1366 — void _render_plane() const;
+- _render_selection · function · L1367-L1367 — void _render_selection();
+- _render_sequential_clearance · function · L1368-L1368 — void _render_sequential_clearance();
+- _render_selection_center · function · L1370-L1370 — void _render_selection_center() { m_selection.render_center(m_gizmos.is_dragging()); }
+- _check_and_update_toolbar_icon_scale · function · L1372-L1372 — void _check_and_update_toolbar_icon_scale();
+- _render_overlays · function · L1373-L1373 — void _render_overlays();
+- _render_overlay_toolbars · function · L1374-L1374 — void _render_overlay_toolbars();
+- _overlay_signature · function · L1375-L1375 — size_t _overlay_signature(const ImDrawData* draw_data) const;
+- _render_style_editor · function · L1376-L1376 — void _render_style_editor();
+- _render_volumes_for_picking · function · L1377-L1377 — void _render_volumes_for_picking(const Camera& camera) const;
+- _render_current_gizmo · function · L1378-L1378 — void _render_current_gizmo() const;
+- _render_gizmos_overlay · function · L1379-L1379 — void _render_gizmos_overlay();
+- _render_main_toolbar · function · L1380-L1380 — void _render_main_toolbar();
+- _render_imgui_select_plate_toolbar · function · L1381-L1381 — void _render_imgui_select_plate_toolbar();
+- _render_assemble_view_toolbar · function · L1382-L1382 — void _render_assemble_view_toolbar() const;
+- _render_return_toolbar · function · L1383-L1383 — void _render_return_toolbar() const;
+- _render_canvas_toolbar · function · L1384-L1384 — void _render_canvas_toolbar();
+- _render_separator_toolbar_right · function · L1385-L1385 — void _render_separator_toolbar_right() const;
+- _render_separator_toolbar_left · function · L1386-L1386 — void _render_separator_toolbar_left() const;
+- _render_collapse_toolbar · function · L1387-L1387 — void _render_collapse_toolbar() const;
+- _render_paint_toolbar · function · L1390-L1390 — void _render_paint_toolbar() const;
+- _render_assembly_tooltip_button · function · L1391-L1391 — float _render_assembly_tooltip_button(ImGuiWrapper* imgui_wrapper) const;
+- _render_assemble_control · function · L1392-L1392 — void _render_assemble_control();
+- _render_assemble_info · function · L1393-L1393 — void _render_assemble_info() const;
+- _render_camera_target · function · L1395-L1395 — void _render_camera_target();
+- _render_sla_slices · function · L1397-L1397 — void _render_sla_slices();
+- _render_selection_sidebar_hints · function · L1398-L1398 — void _render_selection_sidebar_hints() { m_selection.render_sidebar_hints(m_sidebar_field, m_gizmos.get_uniform_scaling()); }
+- _render_orient_menu · function · L1400-L1400 — bool _render_orient_menu(float left, float right, float bottom, float top);
+- _render_arrange_menu · function · L1401-L1401 — void _render_arrange_menu(float left, float right, float bottom, float top);
+- _render_3d_navigator · function · L1402-L1402 — void _render_3d_navigator();
+- _update_volumes_hover_state · function · L1404-L1404 — void _update_volumes_hover_state();
+- _mouse_to_bed_3d · function · L1407-L1407 — Vec3d _mouse_to_bed_3d(const Point& mouse_pos);
+- _start_timer · function · L1409-L1409 — void _start_timer() { m_timer.Start(100, wxTIMER_CONTINUOUS); }
+- _stop_timer · function · L1410-L1410 — void _stop_timer() { m_timer.Stop(); }
+- _load_sla_shells · function · L1413-L1413 — void _load_sla_shells();
+- _update_sla_shells_outside_state · function · L1414-L1414 — void _update_sla_shells_outside_state() { check_volumes_outside_state(); }
+- _set_warning_notification_if_needed · function · L1415-L1415 — void _set_warning_notification_if_needed(EWarning warning);
+- _get_current_partplate_print_volume · function · L1418-L1418 — BoundingBoxf3 _get_current_partplate_print_volume();
+- _set_warning_notification · function · L1421-L1421 — void _set_warning_notification(EWarning warning, bool state);
+- is_flushing_matrix_error · function · L1423-L1423 — bool is_flushing_matrix_error();
+- _is_any_volume_outside · function · L1424-L1424 — bool _is_any_volume_outside() const;
+- _update_selection_from_hover · function · L1427-L1427 — void _update_selection_from_hover();
+- _deactivate_collapse_toolbar_items · function · L1429-L1429 — bool _deactivate_collapse_toolbar_items();
+- _deactivate_arrange_menu · function · L1430-L1430 — bool _deactivate_arrange_menu();
+- _deactivate_orient_menu · function · L1432-L1432 — bool _deactivate_orient_menu();
+- _deactivate_layersediting_menu · function · L1434-L1434 — bool _deactivate_layersediting_menu();
+- get_overlay_window_width · function · L1437-L1437 — float get_overlay_window_width() { return 0; /*LayersEditing::get_overlay_window_width();*/ }
+- get_model_volume · function · L1440-L1440 — const ModelVolume *get_model_volume(const GLVolume &v, const Model &model);
+- get_model_volume · function · L1441-L1441 — ModelVolume *get_model_volume(const ObjectID &volume_id, const ModelObjectPtrs &objects);
+- get_model_volume · function · L1442-L1442 — ModelVolume *get_model_volume(const GLVolume &v, const ModelObjectPtrs &objects);
+- get_model_volume · function · L1443-L1443 — ModelVolume *get_model_volume(const GLVolume &v, const ModelObject &object);
+- get_first_hovered_gl_volume · function · L1445-L1445 — GLVolume *get_first_hovered_gl_volume(const GLCanvas3D &canvas);
+- get_selected_gl_volume · function · L1446-L1446 — GLVolume *get_selected_gl_volume(const GLCanvas3D &canvas);
+- get_model_object · function · L1448-L1448 — ModelObject *get_model_object(const GLVolume &gl_volume, const Model &model);
+- get_model_object · function · L1449-L1449 — ModelObject *get_model_object(const GLVolume &gl_volume, const ModelObjectPtrs &objects);
+- get_model_instance · function · L1451-L1451 — ModelInstance *get_model_instance(const GLVolume &gl_volume, const Model &model);
+- get_model_instance · function · L1452-L1452 — ModelInstance *get_model_instance(const GLVolume &gl_volume, const ModelObjectPtrs &objects);
+- get_model_instance · function · L1453-L1453 — ModelInstance *get_model_instance(const GLVolume &gl_volume, const ModelObject &object);

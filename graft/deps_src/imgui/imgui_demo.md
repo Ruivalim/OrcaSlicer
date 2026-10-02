@@ -1,0 +1,122 @@
+# deps_src/imgui/imgui_demo.cpp
+
+- ShowExampleAppDocuments · function · L174-L174 — static void ShowExampleAppDocuments(bool* p_open);
+- ShowExampleAppMainMenuBar · function · L175-L175 — static void ShowExampleAppMainMenuBar();
+- ShowExampleAppConsole · function · L176-L176 — static void ShowExampleAppConsole(bool* p_open);
+- ShowExampleAppLog · function · L177-L177 — static void ShowExampleAppLog(bool* p_open);
+- ShowExampleAppLayout · function · L178-L178 — static void ShowExampleAppLayout(bool* p_open);
+- ShowExampleAppPropertyEditor · function · L179-L179 — static void ShowExampleAppPropertyEditor(bool* p_open);
+- ShowExampleAppLongText · function · L180-L180 — static void ShowExampleAppLongText(bool* p_open);
+- ShowExampleAppAutoResize · function · L181-L181 — static void ShowExampleAppAutoResize(bool* p_open);
+- ShowExampleAppConstrainedResize · function · L182-L182 — static void ShowExampleAppConstrainedResize(bool* p_open);
+- ShowExampleAppSimpleOverlay · function · L183-L183 — static void ShowExampleAppSimpleOverlay(bool* p_open);
+- ShowExampleAppFullscreen · function · L184-L184 — static void ShowExampleAppFullscreen(bool* p_open);
+- ShowExampleAppWindowTitles · function · L185-L185 — static void ShowExampleAppWindowTitles(bool* p_open);
+- ShowExampleAppCustomRendering · function · L186-L186 — static void ShowExampleAppCustomRendering(bool* p_open);
+- ShowExampleMenuFile · function · L187-L187 — static void ShowExampleMenuFile();
+- HelpMarker · function · L191-L202 — static void HelpMarker(const char* desc)
+- ShowUserGuide · method · L205-L234 — void ImGui::ShowUserGuide()
+- ShowDemoWindowWidgets · function · L249-L249 — static void ShowDemoWindowWidgets();
+- ShowDemoWindowLayout · function · L250-L250 — static void ShowDemoWindowLayout();
+- ShowDemoWindowPopups · function · L251-L251 — static void ShowDemoWindowPopups();
+- ShowDemoWindowTables · function · L252-L252 — static void ShowDemoWindowTables();
+- ShowDemoWindowColumns · function · L253-L253 — static void ShowDemoWindowColumns();
+- ShowDemoWindowMisc · function · L254-L254 — static void ShowDemoWindowMisc();
+- ShowDemoWindow · method · L259-L527 — void ImGui::ShowDemoWindow(bool* p_open)
+- ShowDemoWindowWidgets · function · L529-L2325 — static void ShowDemoWindowWidgets()
+- Element · type · L688-L688 — enum Element { Element_Fire, Element_Earth, Element_Air, Element_Water, Element_COUNT };
+- Funcs · class · L1055-L1055 — struct Funcs { static bool ItemGetter(void* data, int n, const char** out_str) { *out_str = ((const char**)data)[n]; return true; } };
+- ItemGetter · function · L1055-L1055 — struct Funcs { static bool ItemGetter(void* data, int n, const char** out_str) { *out_str = ((const char**)data)[n]; return true; } };
+- TextFilters · class · L1285-L1294 — struct TextFilters
+- FilterImGuiLetters · function · L1288-L1293 — static int FilterImGuiLetters(ImGuiInputTextCallbackData* data)
+- Funcs · class · L1317-L1353 — struct Funcs
+- MyCallback · function · L1319-L1352 — static int MyCallback(ImGuiInputTextCallbackData* data)
+- Funcs · class · L1379-L1400 — struct Funcs
+- MyResizeCallback · function · L1381-L1391 — static int MyResizeCallback(ImGuiInputTextCallbackData* data)
+- MyInputTextMultiline · function · L1395-L1399 — static bool MyInputTextMultiline(const char* label, ImVector<char>* my_str, const ImVec2& size = ImVec2(0, 0), ImGuiInputTextFlags flags = 0)
+- Funcs · class · L1600-L1604 — struct Funcs
+- Sin · function · L1602-L1602 — static float Sin(void*, int i) { return sinf(i * 0.1f); }
+- Saw · function · L1603-L1603 — static float Saw(void*, int i) { return (i & 1) ? 1.0f : -1.0f; }
+- Mode · type · L2086-L2091 — enum Mode
+- ShowDemoWindowLayout · function · L2327-L3091 — static void ShowDemoWindowLayout()
+- ShowDemoWindowPopups · function · L3093-L3375 — static void ShowDemoWindowPopups()
+- MyItemColumnID · type · L3385-L3392 — enum MyItemColumnID
+- MyItem · class · L3394-L3438 — struct MyItem
+- CompareWithSortSpecs · function · L3410-L3437 — static int IMGUI_CDECL CompareWithSortSpecs(const void* lhs, const void* rhs)
+- PushStyleCompact · function · L3443-L3448 — static void PushStyleCompact()
+- PopStyleCompact · function · L3450-L3453 — static void PopStyleCompact()
+- EditTableSizingFlags · function · L3456-L3496 — static void EditTableSizingFlags(ImGuiTableFlags* p_flags)
+- EnumDesc · class · L3458-L3458 — struct EnumDesc { ImGuiTableFlags Value; const char* Name; const char* Tooltip; };
+- EditTableColumnsFlags · function · L3498-L3518 — static void EditTableColumnsFlags(ImGuiTableColumnFlags* p_flags)
+- ShowTableColumnsStatusFlags · function · L3520-L3526 — static void ShowTableColumnsStatusFlags(ImGuiTableColumnFlags flags)
+- ShowDemoWindowTables · function · L3528-L6628 — static void ShowDemoWindowTables()
+- ContentsType · type · L3634-L3634 — enum ContentsType { CT_Text, CT_FillButton };
+- ContentsType · type · L4024-L4024 — enum ContentsType { CT_ShowWidth, CT_ShortText, CT_LongText, CT_Button, CT_FillButton, CT_InputText };
+- MyTreeNode · class · L4538-L4573 — struct MyTreeNode
+- DisplayNode · function · L4545-L4572 — static void DisplayNode(const MyTreeNode* node, const MyTreeNode* all_nodes)
+- ContentsType · type · L4925-L4925 — enum ContentsType { CT_Text, CT_Button, CT_SmallButton, CT_FillButton, CT_Selectable, CT_SelectableSpanRow };
+- ShowDemoWindowColumns · function · L5230-L5425 — static void ShowDemoWindowColumns()
+- ShowDemoWindowMisc · function · L5427-L5603 — static void ShowDemoWindowMisc()
+- ShowAboutWindow · method · L5610-L5744 — void ImGui::ShowAboutWindow(bool* p_open)
+- ShowFontAtlas · function · L5755-L5755 — namespace ImGui { void ShowFontAtlas(ImFontAtlas* atlas); }
+- ShowFontSelector · method · L5759-L5781 — void ImGui::ShowFontSelector(const char* label)
+- ShowFont · function · L5784-L5874 — static void ShowFont(ImFont* font)
+- ShowFontAtlas · method · L5876-L5892 — void ImGui::ShowFontAtlas(ImFontAtlas* atlas)
+- ShowStyleSelector · method · L5904-L5918 — bool ImGui::ShowStyleSelector(const char* label)
+- ShowStyleEditor · method · L5920-L6164 — void ImGui::ShowStyleEditor(ImGuiStyle* ref)
+- ShowExampleAppMainMenuBar · function · L6177-L6198 — static void ShowExampleAppMainMenuBar()
+- ShowExampleMenuFile · function · L6202-L6276 — static void ShowExampleMenuFile()
+- ExampleAppConsole · class · L6284-L6477 — struct ExampleAppConsole
+- ExampleAppConsole · function · L6295-L6309 — ExampleAppConsole()
+- Stricmp · function · L6318-L6318 — static int   Stricmp(const char* s1, const char* s2)         { int d; while ((d = toupper(*s2) - toupper(*s1)) == 0 && *s1) { s1++; s2++; } return d; }
+- Strnicmp · function · L6319-L6319 — static int   Strnicmp(const char* s1, const char* s2, int n) { int d = 0; while (n > 0 && (d = toupper(*s2) - toupper(*s1)) == 0 && *s1) { s1++; s2++; n--; } return d; }
+- Strdup · function · L6320-L6320 — static char* Strdup(const char* s)                           { IM_ASSERT(s); size_t len = strlen(s) + 1; void* buf = malloc(len); IM_ASSERT(buf); return (char*)memcpy(buf, (const void*)s, len); }
+- Strtrim · function · L6321-L6321 — static void  Strtrim(char* s)                                { char* str_end = s + strlen(s); while (str_end > s && str_end[-1] == ' ') str_end--; *str_end = 0; }
+- ClearLog · function · L6323-L6328 — void    ClearLog()
+- AddLog · function · L6330-L6330 — void    AddLog(const char* fmt, ...) IM_FMTARGS(2)
+- va_start · function · L6335-L6335 — va_start(args, fmt);
+- vsnprintf · function · L6336-L6336 — vsnprintf(buf, IM_ARRAYSIZE(buf), fmt, args);
+- va_end · function · L6338-L6338 — va_end(args);
+- push_back · function · L6339-L6339 — Items.push_back(Strdup(buf));
+- ExecCommand · function · L6479-L6519 — void    ExecCommand(const char* command_line)
+- TextEditCallbackStub · function · L6522-L6526 — static int TextEditCallbackStub(ImGuiInputTextCallbackData* data)
+- TextEditCallback · function · L6528-L6627 — int     TextEditCallback(ImGuiInputTextCallbackData* data)
+- ShowExampleAppConsole · function · L6630-L6634 — static void ShowExampleAppConsole(bool* p_open)
+- ExampleAppLog · class · L6644-L6761 — struct ExampleAppLog
+- ExampleAppLog · function · L6651-L6655 — ExampleAppLog()
+- Clear · function · L6657-L6662 — void    Clear()
+- AddLog · function · L6664-L6664 — void    AddLog(const char* fmt, ...) IM_FMTARGS(2)
+- va_start · function · L6668-L6668 — va_start(args, fmt);
+- appendfv · function · L6669-L6669 — Buf.appendfv(fmt, args);
+- va_end · function · L6670-L6670 — va_end(args);
+- for · function · L6671-L6671 — for (int new_size = Buf.size(); old_size < new_size; old_size++)
+- ShowExampleAppLog · function · L6765-L6792 — static void ShowExampleAppLog(bool* p_open)
+- ShowExampleAppLayout · function · L6799-L6857 — static void ShowExampleAppLayout(bool* p_open)
+- ShowPlaceholderObject · function · L6863-L6908 — static void ShowPlaceholderObject(const char* prefix, int uid)
+- ShowExampleAppPropertyEditor · function · L6911-L6939 — static void ShowExampleAppPropertyEditor(bool* p_open)
+- ShowExampleAppLongText · function · L6946-L7001 — static void ShowExampleAppLongText(bool* p_open)
+- ShowExampleAppAutoResize · function · L7008-L7025 — static void ShowExampleAppAutoResize(bool* p_open)
+- ShowExampleAppConstrainedResize · function · L7032-L7078 — static void ShowExampleAppConstrainedResize(bool* p_open)
+- CustomConstraints · class · L7034-L7039 — struct CustomConstraints
+- Square · function · L7037-L7037 — static void Square(ImGuiSizeCallbackData* data) { data->DesiredSize.x = data->DesiredSize.y = IM_MAX(data->DesiredSize.x, data->DesiredSize.y); }
+- Step · function · L7038-L7038 — static void Step(ImGuiSizeCallbackData* data)   { float step = (float)(int)(intptr_t)data->UserData; data->DesiredSize = ImVec2((int)(data->DesiredSize.x / step + 0.5f) * step, (int)(data->DesiredSize.y / step + 0.5f) * step); }
+- ShowExampleAppSimpleOverlay · function · L7086-L7126 — static void ShowExampleAppSimpleOverlay(bool* p_open)
+- ShowExampleAppFullscreen · function · L7133-L7162 — static void ShowExampleAppFullscreen(bool* p_open)
+- ShowExampleAppWindowTitles · function · L7171-L7197 — static void ShowExampleAppWindowTitles(bool*)
+- ShowExampleAppCustomRendering · function · L7204-L7438 — static void ShowExampleAppCustomRendering(bool* p_open)
+- MyDocument · class · L7445-L7498 — struct MyDocument
+- MyDocument · function · L7454-L7461 — MyDocument(const char* name, bool open = true, const ImVec4& color = ImVec4(1.0f, 1.0f, 1.0f, 1.0f))
+- DoOpen · function · L7462-L7462 — void DoOpen()       { Open = true; }
+- DoQueueClose · function · L7463-L7463 — void DoQueueClose() { WantClose = true; }
+- DoForceClose · function · L7464-L7464 — void DoForceClose() { Open = false; Dirty = false; }
+- DoSave · function · L7465-L7465 — void DoSave()       { Dirty = false; }
+- DisplayContents · function · L7468-L7482 — static void DisplayContents(MyDocument* doc)
+- DisplayContextMenu · function · L7485-L7497 — static void DisplayContextMenu(MyDocument* doc)
+- ExampleAppDocuments · class · L7500-L7513 — struct ExampleAppDocuments
+- ExampleAppDocuments · function · L7504-L7512 — ExampleAppDocuments()
+- NotifyOfDocumentsClosedElsewhere · function · L7523-L7532 — static void NotifyOfDocumentsClosedElsewhere(ExampleAppDocuments& app)
+- ShowExampleAppDocuments · function · L7534-L7713 — void ShowExampleAppDocuments(bool* p_open)
+- ShowAboutWindow · method · L7718-L7718 — void ImGui::ShowAboutWindow(bool*) {}
+- ShowDemoWindow · method · L7719-L7719 — void ImGui::ShowDemoWindow(bool*) {}
+- ShowUserGuide · method · L7720-L7720 — void ImGui::ShowUserGuide() {}
+- ShowStyleEditor · method · L7721-L7721 — void ImGui::ShowStyleEditor(ImGuiStyle*) {}

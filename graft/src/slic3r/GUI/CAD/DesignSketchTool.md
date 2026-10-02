@@ -1,0 +1,379 @@
+# src/slic3r/GUI/CAD/DesignSketchTool.hpp
+
+- wxMouseEvent · class · L16-L16 — class wxMouseEvent;
+- wxPoint · class · L17-L17 — class wxPoint;
+- TriangleMesh · class · L21-L21 — class TriangleMesh;   // fwd (libslic3r) — solid-pick mesh, non-owning pointer
+- GLCanvas3D · class · L25-L25 — class GLCanvas3D;
+- Camera · class · L26-L26 — class Camera;     // fwd — move_gizmo_arm() sizes the gizmo from the current zoom
+- design_selection_color · function · L40-L43 — inline ColorRGBA design_selection_color(float alpha = 1.0f)
+- design_idle_face_color · function · L46-L49 — inline ColorRGBA design_idle_face_color()
+- DesignSketchTool · class · L50-L1462 — class DesignSketchTool
+- Mode · type · L52-L64 — enum class Mode { Select, Dimension, Polyline, Line, CornerRect, CenterRect, ObliqueRect,
+- mode · function · L68-L68 — Mode mode() const { return m_mode; }
+- pending_points · function · L69-L69 — int  pending_points() const { return int(m_points.size()); }
+- emit_step_hint · function · L70-L70 — void emit_step_hint();   // fires on_step_changed when the step actually moved
+- value_field_open · function · L73-L73 — bool value_field_open() const { return m_awaiting_length; }
+- is_edit_op_mode · function · L74-L75 — bool is_edit_op_mode() const { return m_mode == Mode::Fillet || m_mode == Mode::Chamfer ||
+- is_transform_mode · function · L76-L78 — bool is_transform_mode() const { return m_mode == Mode::Move || m_mode == Mode::Rotate ||
+- is_creation_autoedit_mode · function · L82-L93 — bool is_creation_autoedit_mode() const
+- set_inline_busy · function · L97-L97 — void set_inline_busy(bool b) { m_awaiting_length = b; }
+- inline_busy · function · L98-L98 — bool inline_busy() const { return m_awaiting_length; }   // true while a value field is open
+- live_sketch_has_work · function · L101-L101 — bool live_sketch_has_work() const { return !m_entities.empty(); }
+- set_escalate_on_repick · function · L108-L108 — void set_escalate_on_repick(bool on) { m_escalate_repick = on; }
+- constrain_value_anchor · function · L109-L109 — bool constrain_value_anchor(wxPoint& out) const; // screen anchor over the picked constrain geometry
+- begin · function · L111-L111 — void begin(const SketchPlane& plane, Mode mode = Mode::Polyline);
+- begin_edit · function · L115-L117 — void begin_edit(const std::vector<SketchEntity>& entities,
+- add_imported_regions · function · L124-L124 — bool add_imported_regions(const std::vector<std::vector<std::vector<Vec2d>>>& regions);
+- set_tool · function · L125-L125 — void set_tool(Mode mode);                 // switch tool, keep accumulated entities
+- set_plane · function · L126-L126 — void set_plane(const SketchPlane& plane) { m_plane = plane; }  // re-plane a live sketch (a reference plane was clicked mid-session); entities are 2D, re-lifted through the new plane
+- set_construction · function · L127-L127 — void set_construction(bool c) { m_construction = c; }
+- set_polygon_sides · function · L128-L128 — void set_polygon_sides(int n) { m_polygon_sides = (n < 3 ? 3 : n); }
+- set_polygon_circumscribed · function · L129-L129 — void set_polygon_circumscribed(bool c) { m_polygon_circumscribed = c; }
+- finish · function · L130-L130 — void finish();                            // emit accumulated entities, end session
+- cancel · function · L131-L131 — void cancel();
+- is_active · function · L132-L132 — bool is_active() const { return m_active; }
+- has_entities · function · L133-L133 — bool has_entities() const { return !m_entities.empty(); }
+- on_mouse · function · L134-L134 — bool on_mouse(wxMouseEvent& evt, GLCanvas3D& canvas);
+- right_abandon · function · L137-L137 — bool right_abandon();
+- take_right_consumed · function · L141-L141 — bool take_right_consumed() { const bool b = m_right_consumed; m_right_consumed = false; return b; }
+- render · function · L142-L142 — void render(GLCanvas3D& canvas);
+- SketchInlineEditor · class · L145-L145 — class SketchInlineEditor* inline_editor{nullptr};
+- DisplaySketch · class · L150-L150 — struct DisplaySketch { std::vector<SketchEntity> entities; SketchPlane plane; int feature{-1}; };
+- set_display_sketches · function · L151-L151 — void set_display_sketches(std::vector<DisplaySketch> ds) { m_display_sketches = std::move(ds); }
+- set_highlight_sketches · function · L152-L152 — void set_highlight_sketches(std::vector<std::pair<int, ColorRGBA>> hl) { m_hl_sketches = std::move(hl); }
+- has_display · function · L158-L164 — bool has_display() const { return m_active || !m_display_sketches.empty()
+- set_show_planes · function · L168-L168 — void set_show_planes(bool s) { m_show_planes = s; }
+- set_show_axes · function · L169-L169 — void set_show_axes(bool s)   { m_show_axes = s; }
+- toggle_show_planes · function · L170-L170 — bool toggle_show_planes() { m_show_planes = !m_show_planes; return m_show_planes; }
+- toggle_show_axes · function · L171-L171 — bool toggle_show_axes()   { m_show_axes   = !m_show_axes;   return m_show_axes; }
+- SolidSel · type · L178-L178 — enum class SolidSel { None, Whole, Face, Edge, Vertex };
+- set_solid_pick · function · L182-L185 — void set_solid_pick(const std::vector<CadBody>* bodies, const TriangleMesh* mesh,
+- set_pick_only_body · function · L189-L189 — void set_pick_only_body(int b) { m_pick_only_body = b; }
+- clear_solid_selection · function · L190-L190 — void clear_solid_selection();
+- has_solid_selection · function · L191-L191 — bool has_solid_selection() const { return m_solid_sel != SolidSel::None; }
+- select_body · function · L194-L194 — void select_body(int body);
+- set_move_gizmo · function · L201-L202 — void set_move_gizmo(int body, const Vec3d& pivot, const Transform3d& base_xform,
+- clear_move_gizmo · function · L203-L203 — void clear_move_gizmo();
+- moving_body · function · L204-L204 — bool moving_body() const { return m_mv_active; }
+- move_body_index · function · L205-L205 — int  move_body_index() const { return m_mv_body; }
+- request_place_on_face · function · L207-L207 — bool request_place_on_face() { return on_place_on_face ? on_place_on_face() : false; }
+- selected_loop_entities · function · L223-L223 — std::vector<SketchEntity> selected_loop_entities() const;
+- region_entity_indices · function · L226-L226 — std::vector<std::vector<int>> region_entity_indices(const std::vector<SketchEntity>& ents) const;
+- region_entity_indices_with_holes · function · L230-L230 — std::vector<std::vector<int>> region_entity_indices_with_holes(const std::vector<SketchEntity>& ents) const;
+- clear_display_pick · function · L231-L231 — void clear_display_pick() { m_display_pick = -1; m_display_pick_region = -1; }
+- set_display_pick · function · L236-L236 — void set_display_pick(int feature, int region) { m_display_pick = feature; m_display_pick_region = region; }
+- set_extrude_gizmo · function · L244-L245 — void set_extrude_gizmo(const SketchPlane& plane, const Vec2d& centroid,
+- clear_extrude_gizmo · function · L246-L246 — void clear_extrude_gizmo();
+- set_datum_gizmo · function · L255-L257 — void set_datum_gizmo(const SketchPlane& plane, double usize, double vsize,
+- clear_datum_gizmo · function · L258-L258 — void clear_datum_gizmo();
+- set_helix_gizmo · function · L267-L268 — void set_helix_gizmo(const SketchPlane& plane, double radius, double pitch, double height,
+- clear_helix_gizmo · function · L269-L269 — void clear_helix_gizmo();
+- set_rib_gizmo · function · L277-L277 — void set_rib_gizmo(const SketchPlane& plane, const Vec2d& p0, const Vec2d& p1, double thickness);
+- clear_rib_gizmo · function · L278-L278 — void clear_rib_gizmo();
+- set_base_pick · function · L284-L285 — void set_base_pick(std::vector<SketchPlane> planes, std::vector<int> bases,
+- clear_base_pick · function · L286-L286 — void clear_base_pick();
+- set_fillet_gizmo · function · L296-L296 — bool set_fillet_gizmo(const Vec3d& body_centroid, double radius);
+- clear_fillet_gizmo · function · L297-L297 — void clear_fillet_gizmo();
+- filleting · function · L298-L298 — bool filleting() const { return m_fl_active; }
+- set_hole_gizmo · function · L308-L309 — void set_hole_gizmo(const SketchPlane& plane, double x, double y,
+- set_hole_face_bounds · function · L311-L311 — void set_hole_face_bounds(bool has, double umin, double umax, double vmin, double vmax);
+- clear_hole_gizmo · function · L312-L312 — void clear_hole_gizmo();
+- holing · function · L313-L313 — bool holing() const { return m_hl_active; }
+- set_thread_gizmo · function · L321-L322 — void set_thread_gizmo(const SketchPlane& plane, double x, double y,
+- clear_thread_gizmo · function · L323-L323 — void clear_thread_gizmo();
+- threading · function · L324-L324 — bool threading() const { return m_th_active; }
+- set_shell_gizmo · function · L331-L331 — void set_shell_gizmo(const Vec3d& face_centroid, const Vec3d& inward_dir, double thickness);
+- clear_shell_gizmo · function · L332-L332 — void clear_shell_gizmo();
+- shelling · function · L333-L333 — bool shelling() const { return m_sh_active; }
+- set_datum_planes · function · L339-L341 — void set_datum_planes(std::vector<SketchPlane> planes, std::vector<Vec2d> sizes = {})
+- MateConnectorGlyph · class · L348-L354 — struct MateConnectorGlyph
+- set_mate_connectors · function · L355-L355 — void set_mate_connectors(std::vector<MateConnectorGlyph> g) { m_mate_connectors = std::move(g); }
+- set_mate_links · function · L359-L359 — void set_mate_links(std::vector<std::pair<Vec3d, Vec3d>> l) { m_mate_links = std::move(l); }
+- clear_mate_connectors · function · L360-L360 — void clear_mate_connectors() { m_mate_connectors.clear(); m_mate_links.clear(); }
+- set_revolve_gizmo · function · L366-L367 — void set_revolve_gizmo(const SketchPlane& plane, const Vec2d& centroid,
+- clear_revolve_gizmo · function · L368-L368 — void clear_revolve_gizmo();
+- revolving · function · L369-L369 — bool revolving() const { return m_rv_active; }
+- set_draft_gizmo · function · L373-L373 — void set_draft_gizmo(const Vec3d& face_centroid, const Vec3d& face_normal, double angle);
+- clear_draft_gizmo · function · L374-L374 — void clear_draft_gizmo();
+- drafting · function · L375-L375 — bool drafting() const { return m_dr_active; }
+- set_on_draft_angle_changed · function · L376-L376 — void set_on_draft_angle_changed(std::function<void(double)> cb) { m_on_draft_angle_changed = std::move(cb); }
+- set_cut_gizmo · function · L379-L379 — void set_cut_gizmo(const SketchPlane& plane, double offset, const Vec3d& body_center, double half_extent);
+- clear_cut_gizmo · function · L380-L380 — void clear_cut_gizmo();
+- cutting · function · L381-L381 — bool cutting() const { return m_ct_active; }
+- set_on_cut_offset_changed · function · L382-L382 — void set_on_cut_offset_changed(std::function<void(double)> cb) { m_on_cut_offset_changed = std::move(cb); }
+- set_pattern_gizmo · function · L388-L389 — void set_pattern_gizmo(const SketchPlane& plane, const Vec3d& body_centroid, bool circular,
+- clear_pattern_gizmo · function · L390-L390 — void clear_pattern_gizmo();
+- patterning · function · L391-L391 — bool patterning() const { return m_pt_active; }
+- begin_constrain · function · L396-L396 — void begin_constrain(const SketchProfile& prof, const SketchPlane& plane);
+- is_constraining · function · L397-L397 — bool is_constraining() const { return m_active && m_mode == Mode::Constrain; }
+- set_profile_points · function · L399-L399 — void set_profile_points(const std::vector<Vec2d>& pts) { m_points = pts; }
+- selected_segment · function · L401-L401 — bool selected_segment(int& a, int& b) const;
+- begin_constrain_entities · function · L405-L405 — void begin_constrain_entities(const std::vector<SketchEntity>& ents, const SketchPlane& plane);
+- is_constraining_entities · function · L406-L406 — bool is_constraining_entities() const { return m_active && m_mode == Mode::Constrain && m_constrain_entities; }
+- begin_imported_transform · function · L413-L416 — void begin_imported_transform(int feat,
+- selected_constrain_entities · function · L419-L419 — bool selected_constrain_entities(int& e0, int& e1) const { e0 = m_pick0; e1 = m_pick1; return m_pick0 >= 0; }
+- pick2 · function · L421-L421 — int  pick2() const { return m_pick2; }
+- pick0_point · function · L423-L423 — bool pick0_point(Vec2d& out) const { out = m_pick0_pt; return m_pick0 >= 0; }
+- set_constrain_entities · function · L425-L425 — void set_constrain_entities(const std::vector<SketchEntity>& ents) { m_entities = ents; }
+- set_constraint_highlight · function · L428-L428 — void set_constraint_highlight(std::vector<int> v) { m_constraint_hl = std::move(v); }
+- set_constraint_glyphs · function · L431-L431 — void set_constraint_glyphs(std::vector<SketchEntityConstraintDef> v) { m_constrain_cons = std::move(v); }
+- apply_segment_length · function · L437-L437 — void apply_segment_length(double len);  // rescale the pending segment, then commit it
+- keep_segment_as_drawn · function · L438-L438 — void keep_segment_as_drawn();           // commit the pending segment unchanged
+- selection · function · L461-L461 — const std::vector<int>& selection() const { return m_selection; }
+- sketch_has_selection · function · L464-L464 — bool sketch_has_selection() const { return !m_selection.empty() || !m_point_sel.empty(); }
+- first_selected_type · function · L467-L473 — bool first_selected_type(SketchEntity::Type& out) const
+- select_at_screen · function · L477-L477 — bool select_at_screen(GLCanvas3D& canvas, int sx, int sy);
+- open_selection_dimension_editor · function · L481-L481 — bool open_selection_dimension_editor();
+- entities · function · L487-L487 — const std::vector<SketchEntity>&              entities()    const { return m_entities; }
+- plane · function · L488-L488 — const SketchPlane&                            plane()       const { return m_plane; }
+- dof · function · L489-L489 — int  dof()      const { return m_dof; }
+- solve_ok · function · L490-L490 — bool solve_ok() const { return m_solve_ok; }
+- add_entities_scripted · function · L492-L492 — int  add_entities_scripted(const std::vector<SketchEntity>& ents);
+- select_indices · function · L494-L494 — bool select_indices(const std::vector<int>& idx);
+- try_add_constraints · function · L498-L498 — bool try_add_constraints(const std::vector<SketchEntityConstraintDef>& cands);
+- remove_constraint_near · function · L501-L501 — bool remove_constraint_near(const Vec2d& p);
+- remove_constraint · function · L504-L504 — bool remove_constraint(int idx);
+- LoopInfo · class · L509-L514 — struct LoopInfo
+- LoopReport · class · L515-L518 — struct LoopReport
+- loop_report · function · L519-L519 — LoopReport loop_report() const;
+- heal_coincidences · function · L525-L525 — int heal_coincidences(double tol, bool ignore_construction);
+- clear_selection · function · L527-L527 — void clear_selection();
+- toggle_selection_construction · function · L530-L530 — int  toggle_selection_construction();
+- delete_selected · function · L531-L531 — void delete_selected();                         // erase selected entities
+- reset_autoedit · function · L535-L542 — void reset_autoedit()
+- close_session_chrome · function · L548-L552 — void close_session_chrome()
+- undo_last_entity · function · L554-L560 — bool undo_last_entity()
+- delete_selected_or_last · function · L562-L571 — bool delete_selected_or_last()
+- DimType · type · L580-L580 — enum class DimType { None, Length, Diameter, Radius, Angle, Distance, DistanceToLine };
+- dimension_kind · function · L581-L581 — DimType dimension_kind() const;     // what the selection supports (None if invalid)
+- dimension_current · function · L582-L582 — double  dimension_current() const;  // current value, to pre-fill the dialog
+- apply_dimension · function · L583-L583 — void    apply_dimension(double v);  // set it exactly, then clear the selection
+- pending_dimension_type · function · L592-L592 — DimType pending_dimension_type() const;  // type of the dim awaiting a value, or None
+- set_dimension_value · function · L593-L593 — void    set_dimension_value(double v);   // apply the typed value to the placed dim
+- cancel_dimension_value · function · L594-L594 — void    cancel_dimension_value();        // keep the placed dim at its measured value
+- constraints · function · L619-L619 — const std::vector<SketchEntityConstraintDef>& constraints() const { return m_constraints; }
+- abort_gesture · function · L639-L639 — bool abort_gesture();   // CadLevel::Gesture — drop the entity being drawn
+- disarm_tool · function · L640-L640 — bool disarm_tool();     // CadLevel::Tool    — armed draw/edit tool falls back to Select
+- request_exit · function · L641-L641 — void request_exit();
+- request_undo_redo · function · L646-L646 — void request_undo_redo(bool redo);
+- screen_to_plane · function · L649-L649 — bool screen_to_plane(GLCanvas3D& canvas, const wxMouseEvent& evt, Vec2d& out) const;
+- snap_chain_start · function · L653-L653 — bool snap_chain_start(GLCanvas3D& canvas, const wxMouseEvent& evt, Vec2d& p) const;
+- snap_dir · function · L658-L658 — Vec2d snap_dir(const Vec2d& anchor, const Vec2d& raw, bool& locked) const;
+- snap_vertex · function · L662-L662 — Vec2d snap_vertex(GLCanvas3D& canvas, const wxMouseEvent& evt, const Vec2d& raw, bool& snapped) const;
+- screen_tol · function · L666-L666 — double screen_tol(GLCanvas3D& canvas, const wxMouseEvent& evt, const Vec2d& at, double px = 8.0) const;
+- infer_at · function · L668-L668 — InferenceSnap infer_at(GLCanvas3D& canvas, const wxMouseEvent& evt, const Vec2d& raw) const;
+- has_coincident · function · L670-L670 — bool has_coincident(int ea, SketchPointRole ra, int eb, SketchPointRole rb) const;
+- infer_auto_constraints · function · L683-L684 — void infer_auto_constraints(int base, double ang_tol_rad = 3.0 * M_PI / 180.0,
+- hit_test · function · L687-L687 — int hit_test(const Vec2d& p, double tol) const;       // nearest entity within tol, or -1
+- connected_loop · function · L688-L688 — std::vector<int> connected_loop(int seed) const;      // entities joined by shared endpoints
+- apply_angle_between · function · L689-L689 — void apply_angle_between(int ia, int ib, double deg); // rotate line B to set the A^B angle
+- selection_valid · function · L690-L690 — bool selection_valid() const;                         // all selection indices in range
+- record_dimension_constraint · function · L691-L691 — void record_dimension_constraint(double v);           // append the driving def for the selection
+- resolve_live · function · L692-L692 — void resolve_live();                                  // solve accumulated constraints on m_entities now
+- resolve_live_drag · function · L695-L695 — void resolve_live_drag(int dragged_ei, SketchPointRole dragged_role);
+- DimAnnot · class · L700-L708 — struct DimAnnot
+- HandleRole · type · L716-L718 — enum class HandleRole { P0, P1, Center, RadiusHandle,
+- Handle · class · L719-L726 — struct Handle
+- FeatureKind · type · L731-L732 — enum class FeatureKind { Free, Line, Circle, Arc, CornerRect, CenterRect,
+- Feature · class · L733-L739 — struct Feature
+- build_handles · function · L741-L741 — std::vector<Handle> build_handles() const;
+- hit_test_handle · function · L743-L743 — bool hit_test_handle(const Vec2d& p, double tol, Handle& out) const;
+- set_handle · function · L745-L745 — void set_handle(const Handle& h, const Vec2d& target);
+- update_hover · function · L748-L748 — bool update_hover(GLCanvas3D& canvas, wxMouseEvent& evt);
+- feature_of · function · L750-L750 — int  feature_of(int ei) const;
+- rebuild_features_from_entities · function · L753-L753 — void rebuild_features_from_entities();
+- begin_feature · function · L755-L755 — void begin_feature(FeatureKind kind);
+- end_feature · function · L756-L757 — void end_feature(const Vec2d& c0 = Vec2d(0, 0), const Vec2d& c1 = Vec2d(0, 0),
+- point_at · function · L759-L759 — bool point_at(int ei, SketchPointRole role, Vec2d& out) const;          // current coords
+- set_point · function · L760-L760 — void set_point(int ei, SketchPointRole role, const Vec2d& v);           // move an entity point
+- hit_test_point · function · L761-L761 — bool hit_test_point(const Vec2d& p, double tol, int& ei, SketchPointRole& role) const;
+- hit_test_dimension · function · L762-L762 — int  hit_test_dimension(const Vec2d& p, double tol) const;              // nearest dim label
+- edit_dimension · function · L763-L763 — void edit_dimension(int di);                                            // reopen value card for di
+- dim_anchor · function · L766-L766 — Vec2d dim_anchor(const DimAnnot& a) const;
+- open_value_editor · function · L769-L769 — void open_value_editor(int di);
+- open_angle_editor · function · L772-L772 — void open_angle_editor(int ei);
+- set_line_angle · function · L773-L773 — void set_line_angle(int ei, double deg);
+- open_primary_autoedit · function · L778-L778 — void open_primary_autoedit();
+- build_readout · function · L780-L780 — std::string build_readout() const;
+- open_next_autoedit_dim · function · L784-L784 — void open_next_autoedit_dim();   // opens m_autoedit_dims[idx]; commit -> next, Esc -> stop
+- arm_polyline_segment_edit · function · L785-L785 — void arm_polyline_segment_edit();// per-segment Length+Angle edit of the pending chain vertex
+- open_polygon_side_editor · function · L790-L790 — void open_polygon_side_editor(int fi);
+- open_polygon_angle_editor · function · L791-L791 — void open_polygon_angle_editor(int fi);
+- set_polygon_side · function · L792-L792 — void set_polygon_side(int fi, double side);
+- set_polygon_angle · function · L793-L793 — void set_polygon_angle(int fi, double deg);
+- set_polygon_radius · function · L794-L794 — void set_polygon_radius(int fi, double R);
+- open_arc_angle_editor · function · L797-L797 — void open_arc_angle_editor(int ei);
+- set_arc_sweep · function · L798-L798 — void set_arc_sweep(int ei, double deg);
+- drag_arc_handle · function · L802-L802 — void drag_arc_handle(int ei, SketchPointRole role, const Vec2d& target);
+- open_ellipse_axis_editor · function · L804-L804 — void open_ellipse_axis_editor(int ei, bool major);
+- set_ellipse_axis · function · L805-L805 — void set_ellipse_axis(int ei, bool major, double v);
+- set_ellipsearc_sweep · function · L806-L806 — void set_ellipsearc_sweep(int ei, double deg);   // draw-then-edit: included sweep of an elliptical arc
+- set_rect_angle · function · L807-L807 — void set_rect_angle(int fi, double deg);         // draw-then-edit: orientation of an oblique rect
+- drag_ellipsearc_handle · function · L810-L810 — void drag_ellipsearc_handle(int ei, SketchPointRole role, const Vec2d& target);
+- drop_orientation_constraints · function · L814-L814 — void drop_orientation_constraints(int begin, int end);
+- drop_constraints_referencing · function · L817-L817 — void drop_constraints_referencing(int ei);
+- apply_live_trim · function · L821-L821 — bool apply_live_trim(const Vec2d& p, double tol, bool extend);
+- compute_trim_preview · function · L826-L827 — bool compute_trim_preview(const Vec2d& p, double tol, bool extend,
+- drag_polygon_vertex · function · L831-L831 — void drag_polygon_vertex(int fi, int ei, SketchPointRole role, const Vec2d& target);
+- measure_dim · function · L832-L832 — double measure_dim(const DimAnnot& a) const;                            // value from geometry
+- dimtype_title · function · L833-L833 — std::string dimtype_title(DimType k) const;
+- constraint_for · function · L834-L834 — SketchEntityConstraintDef constraint_for(const DimAnnot& a) const;      // driving def
+- upsert_constraint · function · L837-L837 — int upsert_constraint(const SketchEntityConstraintDef& c);
+- upsert_dimension · function · L838-L838 — int upsert_dimension(const DimAnnot& a);
+- place_dimension · function · L839-L839 — int  place_dimension(DimAnnot a);                                       // create+drive+notify
+- dim_text · function · L840-L840 — std::string dim_text(const DimAnnot& a) const;                          // rendered label string
+- render_dimensions · function · L841-L841 — void render_dimensions(double unit_per_px);                            // quote lines + labels
+- draw_dim_quote · function · L845-L845 — bool draw_dim_quote(const DimAnnot& a, double th, const ColorRGBA& col, Vec2d& out_label);
+- render_live_quotes · function · L850-L850 — void render_live_quotes(double unit_per_px);
+- build_constraint_glyphs · function · L854-L856 — void build_constraint_glyphs(double unit_per_px,
+- draw_strokes · function · L857-L858 — void draw_strokes(GLModel& model, const std::vector<std::pair<Vec2d, Vec2d>>& segs,
+- draw_text · function · L859-L860 — void draw_text(GLModel& model, const std::string& s, const Vec2d& center,
+- draw_dim_label · function · L861-L861 — void draw_dim_label(const std::string& txt, const Vec2d& plane_center);
+- push_line · function · L864-L864 — void push_line(const Vec2d& a, const Vec2d& b);
+- push_closed_lines · function · L865-L865 — void push_closed_lines(const std::vector<Vec2d>& corners);
+- push_open_chain · function · L866-L866 — void push_open_chain(const std::vector<Vec2d>& pts);
+- push_circle · function · L867-L867 — void push_circle(const Vec2d& center, double radius);
+- push_point · function · L868-L868 — void push_point(const Vec2d& p);
+- make_three_point_circle · function · L872-L872 — std::vector<SketchEntity> make_three_point_circle(const Vec2d& a, const Vec2d& b, const Vec2d& c) const;
+- make_three_point_arc · function · L873-L873 — std::vector<SketchEntity> make_three_point_arc(const Vec2d& start, const Vec2d& end, const Vec2d& on_arc) const;
+- make_tangent_arc · function · L874-L874 — std::vector<SketchEntity> make_tangent_arc(const Vec2d& start, const Vec2d& end) const;
+- make_center_arc · function · L877-L877 — std::vector<SketchEntity> make_center_arc(const Vec2d& center, const Vec2d& start, const Vec2d& end_dir) const;
+- make_slot · function · L878-L878 — std::vector<SketchEntity> make_slot(const Vec2d& c0, const Vec2d& c1, double half_width) const;
+- make_arc_slot · function · L879-L880 — std::vector<SketchEntity> make_arc_slot(const Vec2d& center, const Vec2d& start,
+- make_rounded_rect · function · L881-L881 — std::vector<SketchEntity> make_rounded_rect(const Vec2d& a, const Vec2d& b, const Vec2d& radius_pt) const;
+- rounded_rect_entities · function · L882-L883 — std::vector<SketchEntity> rounded_rect_entities(double xmin, double ymin,
+- open_rounded_rect_editor · function · L885-L885 — void open_rounded_rect_editor(int fi, int which);   // 0=Width 1=Height 2=fillet R
+- set_rounded_rect · function · L886-L886 — void set_rounded_rect(int fi, double w, double h, double r);
+- open_arc_slot_editor · function · L888-L888 — void open_arc_slot_editor(int fi, bool radius);     // true=centreline R, false=width
+- set_arc_slot · function · L889-L889 — void set_arc_slot(int fi, double Rc, double w);
+- open_slot_editor · function · L891-L891 — void open_slot_editor(int fi, int which);           // 0=inter-centre distance, 1=radius, 2=angle
+- set_slot · function · L892-L892 — void set_slot(int fi, double length, double w);
+- set_slot_angle · function · L893-L893 — void set_slot_angle(int fi, double deg);            // rotate the centreline about c0, keep len+radius
+- drag_rect_corner · function · L896-L896 — void drag_rect_corner(int fi, const Vec2d& cursor);
+- drag_slot_handle · function · L897-L897 — void drag_slot_handle(int fi, const Vec2d& cursor);
+- make_polygon · function · L898-L898 — std::vector<SketchEntity> make_polygon(const Vec2d& center, const Vec2d& vertex, int sides) const;
+- make_ellipse · function · L901-L902 — std::vector<SketchEntity> make_ellipse(const Vec2d& center, const Vec2d& major_end,
+- make_bspline · function · L905-L905 — std::vector<SketchEntity> make_bspline(const std::vector<Vec2d>& ctrl) const;
+- make_ellipse_arc · function · L906-L908 — std::vector<SketchEntity> make_ellipse_arc(const Vec2d& center, const Vec2d& major_end,
+- append_entities · function · L909-L909 — void append_entities(const std::vector<SketchEntity>& ents);
+- draw_entities_preview · function · L910-L910 — void draw_entities_preview(const std::vector<SketchEntity>& ents, const ColorRGBA& color);
+- op_corner · function · L918-L918 — bool op_corner(int a, int b, Vec2d& C, Vec2d& bis, double& theta) const; // line-line vertex + inward bisector
+- op_pick · function · L919-L919 — void op_pick(int ei);                       // route an entity pick to the active op
+- recompute_op_ghost · function · L920-L920 — void recompute_op_ghost();                  // rebuild m_op_ghost from m_op_value
+- render_op_gizmo · function · L921-L921 — void render_op_gizmo(double unit_per_px);   // ghost + arrow + value label (caches m_op_label)
+- hit_test_op_arrow · function · L922-L922 — bool hit_test_op_arrow(const Vec2d& p, double tol) const;
+- drag_op_arrow · function · L923-L923 — void drag_op_arrow(const Vec2d& target);    // project cursor onto m_op_dir -> value
+- open_op_editor · function · L924-L924 — void open_op_editor();                      // inline-edit the value label
+- confirm_op · function · L925-L925 — void confirm_op();                          // apply + bind, then reset for the next gesture
+- reset_op · function · L926-L926 — void reset_op();                            // clear gizmo state (keeps the tool active)
+- op_ready · function · L927-L927 — bool op_ready() const;                      // required entities picked -> arrow/ghost live
+- entity_polyline · function · L930-L930 — std::vector<Vec2d> entity_polyline(const SketchEntity& e, bool& closed) const;
+- closed_regions · function · L935-L935 — std::vector<std::vector<Vec2d>> closed_regions() const;
+- closed_regions · function · L936-L936 — std::vector<std::vector<Vec2d>> closed_regions(const std::vector<SketchEntity>& ents) const;
+- RegionLoop · class · L943-L947 — struct RegionLoop
+- region_loops · function · L948-L948 — std::vector<RegionLoop> region_loops(const std::vector<SketchEntity>& ents) const;
+- region_at · function · L950-L950 — int region_at(const Vec2d& p) const;
+- draw_quad_strip · function · L952-L952 — void draw_quad_strip(GLModel& model, const std::vector<Vec2d>& pts, bool closed, const ColorRGBA& color);
+- draw_vertices · function · L956-L957 — void draw_vertices(GLModel& model, const std::vector<Vec2d>& pts, const ColorRGBA& color,
+- draw_fill · function · L958-L958 — void draw_fill(GLModel& model, const std::vector<Vec2d>& poly, const ColorRGBA& color);
+- draw_fill_holed · function · L961-L962 — void draw_fill_holed(GLModel& model, const std::vector<Vec2d>& outer,
+- sketch_hl_color · function · L963-L963 — const ColorRGBA* sketch_hl_color(int feature) const;
+- AutoEditStep · class · L982-L988 — struct AutoEditStep
+- xform_world_corners · function · L1067-L1067 — void   xform_world_corners(Vec2d out[4]) const;   // 4 bbox corners in plane coords
+- hit_test_xform_handle · function · L1068-L1068 — int    hit_test_xform_handle(const Vec2d& p, double tol) const;
+- drag_xform_handle · function · L1069-L1069 — void   drag_xform_handle(const Vec2d& target);
+- render_xform_gizmo · function · L1070-L1070 — void   render_xform_gizmo();
+- emit_xform · function · L1071-L1071 — void   emit_xform();
+- reset_xform · function · L1072-L1072 — void   reset_xform();
+- tf_ready · function · L1092-L1092 — bool                      tf_ready() const;   // >=1 target picked -> gizmo + ghost live
+- tf_pick · function · L1093-L1093 — void                      tf_pick(int ei);    // accumulate a subject, seed defaults once
+- compute_tf_pivot · function · L1094-L1094 — void                      compute_tf_pivot(); // centroid + extent of the target set
+- recompute_tf_ghost · function · L1095-L1095 — void                      recompute_tf_ghost();
+- tf_handle_pos · function · L1096-L1096 — Vec2d                     tf_handle_pos() const;   // world position of the drag handle
+- hit_test_tf_handle · function · L1097-L1097 — bool                      hit_test_tf_handle(const Vec2d& p, double tol) const;
+- drag_tf_handle · function · L1098-L1098 — void                      drag_tf_handle(const Vec2d& target);
+- render_tf_gizmo · function · L1099-L1099 — void                      render_tf_gizmo(double unit_per_px);
+- open_tf_editor_a · function · L1100-L1100 — void                      open_tf_editor_a();      // inline-edit the continuous parameter
+- open_tf_editor_count · function · L1101-L1101 — void                      open_tf_editor_count();  // inline-edit the copy count
+- confirm_transform · function · L1102-L1102 — void                      confirm_transform();     // apply geometry + constraint web
+- reset_tf · function · L1103-L1103 — void                      reset_tf();
+- GlyphHit · class · L1126-L1126 — struct GlyphHit { Vec2d c{0,0}; int con{-1}; };
+- body_xform_pt · function · L1149-L1149 — Vec3d body_xform_pt(int body, const Vec3d& p) const;     // map an OCCT-shape point through the body xform
+- body_pickable · function · L1150-L1150 — bool body_pickable(int b) const;                    // false when the body is explicitly hidden
+- handle_solid_click · function · L1157-L1157 — bool handle_solid_click(GLCanvas3D& canvas, const wxMouseEvent& evt);  // pick + notify
+- SolidPick · class · L1161-L1166 — struct SolidPick
+- resolve_solid_pick · function · L1167-L1167 — bool resolve_solid_pick(GLCanvas3D& canvas, int mx, int my, SolidPick& out) const;
+- update_solid_hover · function · L1173-L1173 — bool update_solid_hover(GLCanvas3D& canvas, const wxMouseEvent& evt);  // true when it changed
+- pick_bodies_in_rectangle · function · L1178-L1178 — void pick_bodies_in_rectangle();       // resolve the swept rectangle -> whole-body selection
+- on_mouse_impl · function · L1179-L1179 — bool on_mouse_impl(wxMouseEvent& evt, GLCanvas3D& canvas);   // the body; on_mouse wraps it
+- hit_display_sketch · function · L1182-L1184 — void hit_display_sketch(const DisplaySketch& d, const Vec2d& p, double tol,
+- render_solid_highlight · function · L1187-L1187 — void render_solid_highlight();
+- render_solid_sel · function · L1190-L1191 — void render_solid_sel(SolidSel kind, int body, int face, const std::vector<Vec3d>& edge_pts,
+- render_datum_planes · function · L1192-L1192 — void render_datum_planes();           // translucent rectangles for datum/reference planes
+- render_view_helpers · function · L1193-L1193 — void render_view_helpers();           // world origin planes + axis triad (P / A toggles)
+- render_mate_connectors · function · L1198-L1198 — void render_mate_connectors();            // disc + roll quadrant + one-sided Z arrow
+- render_mate_face · function · L1202-L1203 — void render_mate_face(const Vec3d& origin, const Vec3d& X, const Vec3d& Y, const Vec3d& Z,
+- render_extrude_gizmo · function · L1223-L1223 — void  render_extrude_gizmo();
+- hit_test_extrude_arrow · function · L1224-L1224 — bool  hit_test_extrude_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt, int& which) const;
+- drag_extrude_arrow · function · L1225-L1225 — void  drag_extrude_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt, int which);
+- open_extrude_editor · function · L1226-L1226 — void  open_extrude_editor(int which);
+- render_datum_gizmo · function · L1240-L1240 — void  render_datum_gizmo();
+- hit_test_datum_handle · function · L1241-L1241 — bool  hit_test_datum_handle(GLCanvas3D& canvas, const wxMouseEvent& evt, int& which) const;
+- drag_datum_handle · function · L1242-L1242 — void  drag_datum_handle(GLCanvas3D& canvas, const wxMouseEvent& evt, int which);
+- helix_point · function · L1255-L1255 — Vec3d helix_point(double t) const;       // curve point at parameter t (shared render/hit/drag)
+- render_helix_gizmo · function · L1256-L1256 — void  render_helix_gizmo();
+- hit_test_helix_handle · function · L1257-L1257 — bool  hit_test_helix_handle(GLCanvas3D& canvas, const wxMouseEvent& evt, int& which) const;
+- drag_helix_handle · function · L1258-L1258 — void  drag_helix_handle(GLCanvas3D& canvas, const wxMouseEvent& evt, int which);
+- render_rib_gizmo · function · L1269-L1269 — void  render_rib_gizmo();
+- hit_test_rib_handle · function · L1270-L1270 — bool  hit_test_rib_handle(GLCanvas3D& canvas, const wxMouseEvent& evt, int& which) const;
+- drag_rib_handle · function · L1271-L1271 — void  drag_rib_handle(GLCanvas3D& canvas, const wxMouseEvent& evt, int which);
+- dbp_half_extent · function · L1278-L1278 — double      dbp_half_extent() const;   // bed-derived: reference planes are larger than the bed
+- render_base_pick · function · L1279-L1279 — void render_base_pick();
+- hit_test_base_pick · function · L1280-L1280 — int  hit_test_base_pick(GLCanvas3D& canvas, const wxMouseEvent& evt) const;
+- compose_move_xform · function · L1296-L1296 — Transform3d compose_move_xform() const;    // T(offset)*T(pivot)*rot*T(-pivot)*base_xform
+- ring_basis · function · L1297-L1297 — void  ring_basis(int axis, Vec3d& e, Vec3d& u, Vec3d& v) const;  // world axis + in-plane basis
+- render_move_gizmo · function · L1298-L1298 — void  render_move_gizmo();
+- move_gizmo_arm · function · L1300-L1300 — double move_gizmo_arm(const Camera& cam) const;
+- hit_test_move_arrow · function · L1301-L1301 — bool  hit_test_move_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt, int& axis) const;
+- hit_test_move_arc · function · L1302-L1302 — bool  hit_test_move_arc(GLCanvas3D& canvas, const wxMouseEvent& evt, int& axis) const;
+- drag_move_arrow · function · L1303-L1303 — void  drag_move_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt, int axis);
+- drag_move_arc · function · L1304-L1304 — void  drag_move_arc(GLCanvas3D& canvas, const wxMouseEvent& evt, int axis);
+- arc_mouse_angle · function · L1305-L1305 — bool  arc_mouse_angle(GLCanvas3D& canvas, const wxMouseEvent& evt, int axis, double& ang) const;
+- open_move_editor · function · L1306-L1306 — void  open_move_editor(int axis);
+- render_fillet_gizmo · function · L1318-L1318 — void  render_fillet_gizmo();
+- hit_test_fillet_arrow · function · L1319-L1319 — bool  hit_test_fillet_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt) const;
+- fillet_axis_proj · function · L1320-L1320 — double fillet_axis_proj(GLCanvas3D& canvas, const wxMouseEvent& evt) const;  // NaN if camera∥axis
+- start_fillet_drag · function · L1321-L1321 — void  start_fillet_drag(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- drag_fillet_arrow · function · L1322-L1322 — void  drag_fillet_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- open_fillet_editor · function · L1323-L1323 — void  open_fillet_editor();
+- render_hole_gizmo · function · L1346-L1346 — void   render_hole_gizmo();
+- hit_test_hole_handle · function · L1347-L1347 — int    hit_test_hole_handle(GLCanvas3D& canvas, const wxMouseEvent& evt) const;  // 0/1/2/-1
+- hole_axis_proj · function · L1348-L1349 — double hole_axis_proj(GLCanvas3D& canvas, const wxMouseEvent& evt,
+- start_hole_drag · function · L1350-L1350 — void   start_hole_drag(GLCanvas3D& canvas, const wxMouseEvent& evt, int which);
+- drag_hole_handle · function · L1351-L1351 — void   drag_hole_handle(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- open_hole_editor · function · L1352-L1352 — void   open_hole_editor(int which);
+- render_thread_gizmo · function · L1368-L1368 — void   render_thread_gizmo();
+- hit_test_thread_handle · function · L1369-L1369 — int    hit_test_thread_handle(GLCanvas3D& canvas, const wxMouseEvent& evt) const;  // 0/1/2/-1
+- start_thread_drag · function · L1370-L1370 — void   start_thread_drag(GLCanvas3D& canvas, const wxMouseEvent& evt, int which);
+- drag_thread_handle · function · L1371-L1371 — void   drag_thread_handle(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- open_thread_editor · function · L1372-L1372 — void   open_thread_editor(int which);
+- render_shell_gizmo · function · L1384-L1384 — void   render_shell_gizmo();
+- hit_test_shell_arrow · function · L1385-L1385 — bool   hit_test_shell_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt) const;
+- start_shell_drag · function · L1386-L1386 — void   start_shell_drag(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- drag_shell_arrow · function · L1387-L1387 — void   drag_shell_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- open_shell_editor · function · L1388-L1388 — void   open_shell_editor();
+- render_revolve_gizmo · function · L1401-L1401 — void   render_revolve_gizmo();
+- hit_test_revolve_handle · function · L1402-L1402 — bool   hit_test_revolve_handle(GLCanvas3D& canvas, const wxMouseEvent& evt) const;
+- drag_revolve_arc · function · L1403-L1403 — void   drag_revolve_arc(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- open_revolve_editor · function · L1404-L1404 — void   open_revolve_editor();
+- render_draft_gizmo · function · L1416-L1416 — void   render_draft_gizmo();
+- hit_test_draft_handle · function · L1417-L1417 — bool   hit_test_draft_handle(GLCanvas3D& canvas, const wxMouseEvent& evt) const;
+- drag_draft_arc · function · L1418-L1418 — void   drag_draft_arc(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- render_cut_gizmo · function · L1433-L1433 — void   render_cut_gizmo();
+- hit_test_cut_arrow · function · L1434-L1434 — bool   hit_test_cut_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt) const;
+- start_cut_drag · function · L1435-L1435 — void   start_cut_drag(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- drag_cut_arrow · function · L1436-L1436 — void   drag_cut_arrow(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- render_pattern_gizmo · function · L1457-L1457 — void   render_pattern_gizmo();
+- hit_test_pattern_handle · function · L1458-L1458 — bool   hit_test_pattern_handle(GLCanvas3D& canvas, const wxMouseEvent& evt) const;
+- drag_pattern_handle · function · L1459-L1459 — void   drag_pattern_handle(GLCanvas3D& canvas, const wxMouseEvent& evt);
+- open_pattern_editor · function · L1460-L1460 — void   open_pattern_editor();

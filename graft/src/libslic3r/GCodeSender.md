@@ -1,0 +1,28 @@
+# src/libslic3r/GCodeSender.hpp
+
+- GCodeSender · class · L16-L69 — class GCodeSender : private boost::noncopyable
+- GCodeSender · function · L18-L18 — GCodeSender();
+- connect · function · L20-L20 — bool connect(std::string devname, unsigned int baud_rate);
+- send · function · L21-L21 — void send(const std::vector<std::string> &lines, bool priority = false);
+- send · function · L22-L22 — void send(const std::string &s, bool priority = false);
+- disconnect · function · L23-L23 — void disconnect();
+- error_status · function · L24-L24 — bool error_status() const;
+- is_connected · function · L25-L25 — bool is_connected() const;
+- wait_connected · function · L26-L26 — bool wait_connected(unsigned int timeout = 3) const;
+- queue_size · function · L27-L27 — size_t queue_size() const;
+- pause_queue · function · L28-L28 — void pause_queue();
+- resume_queue · function · L29-L29 — void resume_queue();
+- purge_queue · function · L30-L30 — void purge_queue(bool priority = false);
+- purge_log · function · L31-L31 — std::vector<std::string> purge_log();
+- getT · function · L32-L32 — std::string getT() const;
+- getB · function · L33-L33 — std::string getB() const;
+- set_DTR · function · L34-L34 — void set_DTR(bool on);
+- reset · function · L35-L35 — void reset();
+- set_baud_rate · function · L61-L61 — void set_baud_rate(unsigned int baud_rate);
+- set_error_status · function · L62-L62 — void set_error_status(bool e);
+- do_send · function · L63-L63 — void do_send();
+- on_write · function · L64-L64 — void on_write(const boost::system::error_code& error, size_t bytes_transferred);
+- do_close · function · L65-L65 — void do_close();
+- do_read · function · L66-L66 — void do_read();
+- on_read · function · L67-L67 — void on_read(const boost::system::error_code& error, size_t bytes_transferred);
+- send · function · L68-L68 — void send();

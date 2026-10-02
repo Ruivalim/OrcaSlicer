@@ -1,0 +1,24 @@
+# src/libslic3r/SLAPrintSteps.hpp
+
+- report_status · function · L36-L39 — template<class...Args> void report_status(Args&&...args)
+- current_status · function · L41-L41 — double current_status() const { return m_print->m_report_status.status(); }
+- throw_if_canceled · function · L42-L42 — void throw_if_canceled() const { m_print->throw_if_canceled(); }
+- canceled · function · L43-L43 — bool canceled() const { return m_print->canceled(); }
+- initialize_printer_input · function · L44-L44 — void initialize_printer_input();
+- apply_printer_corrections · function · L46-L46 — void apply_printer_corrections(SLAPrintObject &po, SliceOrigin o);
+- Steps · function · L49-L49 — explicit Steps(SLAPrint *print);
+- hollow_model · function · L51-L51 — void hollow_model(SLAPrintObject &po);
+- drill_holes · function · L52-L52 — void drill_holes (SLAPrintObject &po);
+- slice_model · function · L53-L53 — void slice_model(SLAPrintObject& po);
+- support_points · function · L54-L54 — void support_points(SLAPrintObject& po);
+- support_tree · function · L55-L55 — void support_tree(SLAPrintObject& po);
+- generate_pad · function · L56-L56 — void generate_pad(SLAPrintObject& po);
+- slice_supports · function · L57-L57 — void slice_supports(SLAPrintObject& po);
+- merge_slices_and_eval_stats · function · L59-L59 — void merge_slices_and_eval_stats();
+- rasterize · function · L60-L60 — void rasterize();
+- execute · function · L62-L62 — void execute(SLAPrintObjectStep step, SLAPrintObject &obj);
+- execute · function · L63-L63 — void execute(SLAPrintStep step);
+- label · function · L65-L65 — static std::string label(SLAPrintObjectStep step);
+- label · function · L66-L66 — static std::string label(SLAPrintStep step);
+- progressrange · function · L68-L68 — double progressrange(SLAPrintObjectStep step) const;
+- progressrange · function · L69-L69 — double progressrange(SLAPrintStep step) const;

@@ -1,0 +1,24 @@
+# deps_src/pybind11/include/pybind11/stl.h
+
+- PYBIND11_NAMESPACE_BEGIN · function · L39-L87 — PYBIND11_NAMESPACE_BEGIN(PYBIND11_NAMESPACE)
+- object_is_instance_with_one_of_tp_names · function · L77-L78 — inline bool object_is_instance_with_one_of_tp_names(PyObject *obj,
+- object_is_convertible_to_std_vector · function · L91-L100 — inline bool object_is_convertible_to_std_vector(const handle &src)
+- object_is_convertible_to_std_set · function · L102-L108 — inline bool object_is_convertible_to_std_set(const handle &src, bool convert)
+- object_is_convertible_to_std_map · function · L110-L133 — inline bool object_is_convertible_to_std_map(const handle &src, bool convert)
+- reserve_maybe · function · L168-L168 — void reserve_maybe(const anyset &, void *) {}
+- convert_iterable · function · L170-L177 — bool convert_iterable(const iterable &itbl, bool convert)
+- convert_anyset · function · L181-L185 — bool convert_anyset(const anyset &s, bool convert)
+- load · function · L188-L188 — bool load(handle src, bool convert)
+- reserve_maybe · function · L235-L235 — void reserve_maybe(const dict &, void *) {}
+- convert_elements · function · L237-L288 — bool convert_elements(const dict &d, bool convert)
+- load · function · L302-L318 — bool load(handle src, bool convert)
+- reserve_maybe · function · L325-L325 — void reserve_maybe(const sequence &, void *) {}
+- convert_elements · function · L327-L337 — bool convert_elements(handle seq, bool convert)
+- l · function · L347-L347 — list l(src.size());
+- size · function · L347-L347 — list l(src.size());
+- load · function · L437-L437 — bool load(handle src, bool convert)
+- l · function · L457-L457 — list l(src.size());
+- size · function · L457-L457 — list l(src.size());
+- cast · function · L478-L478 — auto h = cast(std::move(*src), policy, parent);
+- move · function · L478-L478 — auto h = cast(std::move(*src), policy, parent);
+- load · function · L544-L558 — bool load(handle src, bool convert)

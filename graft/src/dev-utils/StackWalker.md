@@ -1,0 +1,42 @@
+# src/dev-utils/StackWalker.h
+
+- A2W_ · type · L17-L17 — typedef CA2W_ A2W_;
+- W2A_ · type · L18-L18 — typedef CW2A_ W2A_;
+- BSTR2A_ · type · L21-L21 — typedef CW2A_ BSTR2A_;
+- BSTR2W_ · type · L22-L22 — typedef CW2W_ BSTR2W_;
+- A2T_ · type · L25-L25 — typedef CA2W_ A2T_;
+- T2A_ · type · L26-L26 — typedef CW2A_ T2A_;
+- T2W_ · type · L27-L27 — typedef CW2W_ T2W_;
+- W2T_ · type · L28-L28 — typedef CW2W_ W2T_;
+- A2T_ · type · L32-L32 — typedef CA2A_ A2T_;
+- T2A_ · type · L33-L33 — typedef CA2A_ T2A_;
+- T2W_ · type · L34-L34 — typedef CA2W_ T2W_;
+- W2T_ · type · L35-L35 — typedef CW2A_ W2T_;
+- T2BSTR_ · type · L36-L36 — typedef CA2BSTR_ T2BSTR_;
+- BSTR2T_ · type · L37-L37 — typedef BSTR2A_ BSTR2T_;
+- A2OLE_ · type · L40-L40 — typedef A2W_  A2OLE_;
+- T2OLE_ · type · L41-L41 — typedef T2W_  T2OLE_;
+- W2OLE_ · type · L42-L42 — typedef CW2W_ W2OLE_;
+- OLE2A_ · type · L43-L43 — typedef W2A_  OLE2A_;
+- OLE2T_ · type · L44-L44 — typedef W2T_  OLE2T_;
+- OLE2W_ · type · L45-L45 — typedef CW2W_ OLE2W_;
+- LPCWSTR · function · L63-L63 — operator LPCWSTR() { return m_pStr ? &m_vWideArray[0] : NULL; }
+- LPCSTR · function · L96-L96 — operator LPCSTR() { return m_pWStr ? &m_vAnsiArray[0] : NULL; }
+- m_pWStr · function · L108-L108 — CW2W_(LPCWSTR pWStr) : m_pWStr(pWStr) {}
+- LPCWSTR · function · L109-L109 — operator LPCWSTR() { return const_cast<LPWSTR>(m_pWStr); }
+- m_pStr · function · L122-L122 — CA2A_(LPCSTR pStr) : m_pStr(pStr) {}
+- LPCSTR · function · L123-L123 — operator LPCSTR() { return (LPSTR)m_pStr; }
+- tagMODULEENTRY32 · class · L173-L185 — typedef struct tagMODULEENTRY32
+- _MODULEINFO · class · L187-L192 — typedef struct _MODULEINFO
+- _tag_MODULE_INFO · class · L197-L206 — typedef struct _tag_MODULE_INFO
+- tagSTACKINFO · class · L208-L217 — typedef struct tagSTACKINFO
+- LoadSymbol · function · L224-L224 — BOOL LoadSymbol();
+- GetLoadModules · function · L225-L225 — LPMODULE_INFO GetLoadModules();
+- GetModuleInformation · function · L226-L226 — void GetModuleInformation(LPMODULE_INFO pmi);
+- FreeModuleInformations · function · L228-L228 — void FreeModuleInformations(LPMODULE_INFO pmi);
+- OutputString · function · L229-L229 — virtual void OutputString(LPCTSTR lpszFormat, ...);
+- GetCurrentThread · function · L231-L231 — LPSTACKINFO StackWalker(HANDLE hThread = GetCurrentThread(), const CONTEXT* context = NULL);
+- StackWalker · function · L231-L231 — LPSTACKINFO StackWalker(HANDLE hThread = GetCurrentThread(), const CONTEXT* context = NULL);
+- FreeStackInformations · function · L232-L232 — void FreeStackInformations(LPSTACKINFO psi);
+- GetModulesTH32 · function · L235-L235 — LPMODULE_INFO GetModulesTH32();
+- GetModulesPSAPI · function · L236-L236 — LPMODULE_INFO GetModulesPSAPI();

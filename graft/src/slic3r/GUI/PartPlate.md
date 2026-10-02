@@ -1,0 +1,309 @@
+# src/slic3r/GUI/PartPlate.hpp
+
+- GLUquadric · class · L28-L28 — class GLUquadric;
+- GLUquadric · class · L29-L29 — typedef class GLUquadric GLUquadricObject;
+- compute_colum_count · function · L39-L51 — inline int compute_colum_count(int count)
+- Model · class · L64-L64 — class Model;
+- ModelObject · class · L65-L65 — class ModelObject;
+- ModelInstance · class · L66-L66 — class ModelInstance;
+- Print · class · L67-L67 — class Print;
+- SLAPrint · class · L68-L68 — class SLAPrint;
+- Plater · class · L71-L71 — class Plater;
+- GLCanvas3D · class · L72-L72 — class GLCanvas3D;
+- PartPlateList · class · L74-L74 — class PartPlateList;
+- PartPlate · class · L78-L583 — class PartPlate : public ObjectBase
+- HeightLimitMode · type · L81-L86 — enum HeightLimitMode
+- init · function · L170-L170 — void init();
+- valid_instance · function · L171-L171 — bool valid_instance(int obj_id, int instance_id) const;
+- generate_print_polygon · function · L172-L172 — void generate_print_polygon(ExPolygon &print_polygon);
+- generate_exclude_polygon · function · L173-L173 — void generate_exclude_polygon(ExPolygon &exclude_polygon);
+- generate_logo_polygon · function · L174-L174 — void generate_logo_polygon(ExPolygon &logo_polygon);
+- calc_bounding_boxes · function · L175-L175 — void calc_bounding_boxes() const;
+- calc_triangles · function · L176-L176 — void calc_triangles(const ExPolygon& poly);
+- calc_exclude_triangles · function · L177-L177 — void calc_exclude_triangles(const ExPolygon& poly);
+- calc_triangles_from_polygon · function · L178-L178 — void calc_triangles_from_polygon(const ExPolygon &poly, GLModel& render_model);
+- calc_gridlines · function · L179-L179 — void calc_gridlines(const ExPolygon& poly, const BoundingBox& pp_bbox);
+- calc_height_limit · function · L180-L180 — void calc_height_limit();
+- calc_vertex_for_number · function · L181-L181 — void calc_vertex_for_number(int index, bool one_number, GLModel &buffer);
+- calc_vertex_for_plate_name_edit_icon · function · L182-L182 — void calc_vertex_for_plate_name_edit_icon(GLTexture *texture, int index, PickingModel &model);
+- calc_vertex_for_icons · function · L183-L183 — void calc_vertex_for_icons(int index, PickingModel &model);
+- render_background · function · L185-L185 — void render_background(bool force_default_color = false);
+- render_logo · function · L186-L186 — void render_logo(bool bottom, bool render_cali = true);
+- render_logo_texture · function · L187-L187 — void render_logo_texture(GLTexture &logo_texture, GLModel &logo_buffer, bool bottom);
+- render_exclude_area · function · L188-L188 — void render_exclude_area(bool force_default_color);
+- render_grid · function · L190-L190 — void render_grid(bool bottom);
+- render_wrapping_detection_area · function · L191-L191 — void render_wrapping_detection_area(bool force_default_color);
+- render_height_limit · function · L192-L192 — void render_height_limit(PartPlate::HeightLimitMode mode = HEIGHT_LIMIT_BOTH);
+- render_icon_texture · function · L199-L199 — void render_icon_texture(GLModel &buffer, GLTexture &texture);
+- set_hover_tooltip · function · L200-L200 — void set_hover_tooltip(const std::string& tooltip);
+- render_icons · function · L201-L201 — void render_icons(bool bottom, bool only_name = false, int hover_id = -1);
+- render_only_numbers · function · L202-L202 — void render_only_numbers(bool bottom);
+- render_plate_name_texture · function · L203-L203 — void render_plate_name_texture();
+- invalidate_plate_name_texture · function · L204-L204 — void invalidate_plate_name_texture();
+- register_raycasters_for_picking · function · L205-L205 — void register_raycasters_for_picking(GLCanvas3D& canvas);
+- picking_id_component · function · L206-L206 — int picking_id_component(int idx) const;
+- on_filament_map_mode_change · function · L208-L208 — void on_filament_map_mode_change();
+- update_render_colors · function · L227-L227 — static void update_render_colors();
+- load_render_colors · function · L228-L228 — static void load_render_colors();
+- PartPlate · function · L230-L230 — PartPlate();
+- PartPlate · function · L231-L231 — PartPlate(PartPlateList *partplate_list, Vec3d origin, int width, int depth, double height, Plater* platerObj, Model* modelObj, bool printable=true, PrinterTechnology tech = ptFFF);
+- clear · function · L237-L237 — void clear(bool clear_sliced_result = true);
+- get_bed_type · function · L239-L239 — BedType get_bed_type(bool load_from_project = false) const;
+- set_bed_type · function · L240-L240 — void set_bed_type(BedType bed_type);
+- reset_bed_type · function · L241-L241 — void reset_bed_type();
+- reset_skirt_start_angle · function · L243-L243 — void reset_skirt_start_angle();
+- config · function · L245-L245 — DynamicPrintConfig* config() { return &m_config; }
+- set_print_seq · function · L249-L249 — void set_print_seq(PrintSequence print_seq = PrintSequence::ByDefault);
+- get_print_seq · function · L250-L250 — PrintSequence get_print_seq() const;
+- get_real_print_seq · function · L254-L254 — PrintSequence get_real_print_seq(bool* plate_same_as_global=nullptr) const;
+- get_real_filament_maps · function · L256-L256 — std::vector<int> get_real_filament_maps(const DynamicConfig& g_config, bool* use_global_param = nullptr)const;
+- get_real_filament_volume_maps · function · L257-L257 — std::vector<int> get_real_filament_volume_maps(const DynamicConfig& g_config, bool* use_global_param = nullptr) const;
+- get_real_filament_map_mode · function · L258-L258 — FilamentMapMode  get_real_filament_map_mode(const DynamicConfig& g_config,bool * use_global_param = nullptr) const;
+- get_filament_map_mode · function · L260-L260 — FilamentMapMode get_filament_map_mode() const;
+- set_filament_map_mode · function · L261-L261 — void set_filament_map_mode(const FilamentMapMode& mode);
+- get_filament_maps · function · L264-L264 — std::vector<int> get_filament_maps() const;
+- set_filament_maps · function · L265-L265 — void set_filament_maps(const std::vector<int>& f_maps);
+- get_filament_volume_maps · function · L268-L268 — std::vector<int> get_filament_volume_maps() const;
+- set_filament_volume_maps · function · L269-L269 — void set_filament_volume_maps(const std::vector<int>& f_maps);
+- clear_filament_volume_map · function · L270-L270 — void clear_filament_volume_map();
+- get_filament_nozzle_maps · function · L273-L273 — std::vector<int> get_filament_nozzle_maps() const;
+- set_filament_nozzle_maps · function · L274-L274 — void set_filament_nozzle_maps(const std::vector<int>& f_maps);
+- clear_filament_map · function · L276-L276 — void clear_filament_map();
+- clear_filament_map_mode · function · L277-L277 — void clear_filament_map_mode();
+- has_spiral_mode_config · function · L279-L279 — bool has_spiral_mode_config() const;
+- get_spiral_vase_mode · function · L280-L280 — bool get_spiral_vase_mode() const;
+- set_spiral_vase_mode · function · L281-L281 — void set_spiral_vase_mode(bool spiral_mode, bool as_global);
+- get_plate_wrapping_detection_area · function · L283-L283 — std::vector<Vec2d> get_plate_wrapping_detection_area() const;
+- set_index · function · L302-L302 — void set_index(int index);
+- get_index · function · L305-L305 — int get_index() { return m_plate_index; }
+- get_plate_name · function · L309-L309 — std::string get_plate_name() const { return m_name; }
+- generate_plate_name_texture · function · L310-L310 — void generate_plate_name_texture();
+- set_plate_name · function · L312-L312 — void set_plate_name(const std::string& name);
+- set_timelapse_warning_code · function · L314-L314 — void set_timelapse_warning_code(int code) { m_timelapse_warning_code = code; }
+- timelapse_warning_code · function · L315-L315 — int  timelapse_warning_code() { return m_timelapse_warning_code; }
+- get_print · function · L318-L318 — void get_print(PrintBase **print, GCodeResult **result, int *index);
+- set_print · function · L321-L321 — void set_print(PrintBase *print, GCodeResult* result = nullptr, int index = -1);
+- get_gcode_filename · function · L324-L324 — std::string get_gcode_filename();
+- is_valid_gcode_file · function · L326-L326 — bool is_valid_gcode_file();
+- get_center_origin · function · L329-L329 — Vec3d get_center_origin();
+- set_pos_and_size · function · L332-L332 — void set_pos_and_size(Vec3d& origin, int width, int depth, double height, bool with_instance_move, bool do_clear = true);
+- get_size · function · L335-L335 — Vec2d get_size() const { return Vec2d(m_width, m_depth); }
+- get_objects · function · L336-L336 — ModelObjectPtrs get_objects() { return m_model->objects; }
+- get_objects_on_this_plate · function · L337-L337 — ModelObjectPtrs get_objects_on_this_plate();
+- get_instance · function · L338-L338 — ModelInstance* get_instance(int obj_id, int instance_id);
+- get_objects_bounding_box · function · L339-L339 — BoundingBoxf3 get_objects_bounding_box();
+- get_origin · function · L341-L341 — Vec3d get_origin() { return m_origin; }
+- estimate_wipe_tower_footprint · function · L347-L347 — WipeTowerFootprint estimate_wipe_tower_footprint(const DynamicPrintConfig & config, int plate_extruder_size = 0, bool use_global_objects = false) const;
+- estimate_wipe_tower_polygon · function · L348-L348 — arrangement::ArrangePolygon estimate_wipe_tower_polygon(const DynamicPrintConfig & config, int plate_index, Vec3d& wt_pos, Vec3d& wt_size, int plate_extruder_size = 0, bool use_global_objects = false) const;
+- check_objects_empty_and_gcode3mf · function · L349-L349 — bool check_objects_empty_and_gcode3mf(std::vector<int> &result) const;
+- get_extruders · function · L351-L351 — std::vector<int> get_extruders(bool conside_custom_gcode = false) const;
+- get_extruders · function · L352-L352 — std::vector<int> get_extruders(bool conside_custom_gcode, const DynamicPrintConfig& glb_config, const DynamicPrintConfig& project_config) const;
+- get_extruders_under_cli · function · L354-L354 — std::vector<int> get_extruders_under_cli(bool conside_custom_gcode, DynamicPrintConfig& full_config, bool expand_mixed_slots = true) const;
+- get_extruders_without_support · function · L355-L355 — std::vector<int> get_extruders_without_support(bool conside_custom_gcode = false) const;
+- get_used_filaments · function · L357-L357 — std::vector<int> get_used_filaments();
+- get_slice_filaments_info · function · L358-L358 — const std::vector<FilamentInfo>& get_slice_filaments_info() const { return slice_filaments_info; }
+- get_physical_extruder_by_filament_id · function · L359-L359 — int  get_physical_extruder_by_filament_id(const DynamicConfig& g_config, int idx) const;
+- get_logical_extruder_by_filament_id · function · L360-L360 — int  get_logical_extruder_by_filament_id(const DynamicConfig& g_config, int idx) const;
+- check_filament_printable · function · L361-L361 — bool check_filament_printable(const DynamicPrintConfig & config, wxString& error_message);
+- check_tpu_printable_status · function · L362-L362 — bool check_tpu_printable_status(const DynamicPrintConfig & config, const std::vector<int> &tpu_filaments);
+- check_mixture_of_pla_and_petg · function · L363-L363 — bool check_mixture_of_pla_and_petg(const DynamicPrintConfig & config);
+- check_single_extruder_mixed_filament_risk · function · L366-L366 — bool check_single_extruder_mixed_filament_risk(const DynamicPrintConfig &config, std::string &warning_text) const;
+- check_mixture_filament_compatible · function · L367-L367 — bool check_mixture_filament_compatible(const DynamicPrintConfig& config, std::string &error_msg);
+- check_compatible_of_nozzle_and_filament · function · L368-L368 — bool check_compatible_of_nozzle_and_filament(const DynamicPrintConfig & config, const std::vector<std::string>& filament_presets, std::string& error_msg);
+- contain_instance · function · L372-L372 — bool contain_instance(int obj_id, int instance_id);
+- contain_instance_totally · function · L373-L373 — bool contain_instance_totally(ModelObject* object, int instance_id) const;
+- contain_instance_totally · function · L375-L375 — bool contain_instance_totally(int obj_id, int instance_id) const;
+- contain_any_instance_totally · function · L377-L377 — bool contain_any_instance_totally(int obj_id) const;
+- is_left_top_of · function · L380-L380 — bool is_left_top_of(int obj_id, int instance_id);
+- check_outside · function · L383-L383 — bool check_outside(int obj_id, int instance_id, BoundingBoxf3* bounding_box = nullptr);
+- intersect_instance · function · L386-L386 — bool intersect_instance(int obj_id, int instance_id, BoundingBoxf3* bounding_box = nullptr);
+- add_instance · function · L389-L389 — int add_instance(int obj_id, int instance_id, bool move_position, BoundingBoxf3* bounding_box = nullptr);
+- remove_instance · function · L392-L392 — int remove_instance(int obj_id, int instance_id);
+- translate_all_instance · function · L395-L395 — void translate_all_instance(Vec3d position);
+- duplicate_all_instance · function · L398-L398 — void duplicate_all_instance(unsigned int dup_count, bool need_skip, std::map<int, bool>& skip_objects);
+- update_instance_exclude_status · function · L401-L401 — void update_instance_exclude_status(int obj_id, int instance_id, BoundingBoxf3* bounding_box = nullptr);
+- update_object_index · function · L404-L404 — void update_object_index(int obj_idx_removed, int obj_idx_max);
+- set_vase_mode_related_object_config · function · L407-L407 — void set_vase_mode_related_object_config(int obj_id = -1);
+- empty · function · L410-L410 — bool empty() { return obj_to_instance_set.empty(); }
+- printable_instance_size · function · L412-L412 — int printable_instance_size();
+- has_printable_instances · function · L415-L415 — bool has_printable_instances();
+- is_all_instances_unprintable · function · L416-L416 — bool is_all_instances_unprintable();
+- move_instances_to · function · L419-L419 — void move_instances_to(PartPlate& left_plate, PartPlate& right_plate, BoundingBoxf3* bounding_box = nullptr);
+- get_shape · function · L422-L422 — const Pointfs& get_shape() const { return m_shape; }
+- set_shape · function · L423-L423 — bool set_shape(const Pointfs& shape, const Pointfs& exclude_areas, const std::vector<Pointfs>& extruder_areas, const std::vector<double>& extruder_heights, Vec2d position, float height_to_lid, float height_to_rod);
+- get_extruder_areas · function · L424-L424 — const std::vector<Pointfs>& get_extruder_areas() const { return m_extruder_areas; }
+- get_extruder_heights · function · L425-L425 — const std::vector<double>& get_extruder_heights() const { return m_extruder_heights; }
+- contains · function · L426-L426 — bool contains(const Vec3d& point) const;
+- contains · function · L427-L427 — bool contains(const GLVolume& v) const;
+- contains · function · L428-L428 — bool contains(const BoundingBoxf3& bb) const;
+- intersects · function · L429-L429 — bool intersects(const BoundingBoxf3& bb) const;
+- render · function · L431-L431 — void render(const Transform3d& view_matrix, const Transform3d& projection_matrix, bool bottom, bool only_body = false, bool force_background_color = false, HeightLimitMode mode = HEIGHT_LIMIT_NONE, int hover_id = -1, bool render_cali = false, bool show_grid = true, bool hide_chrome = false);
+- set_selected · function · L433-L433 — void set_selected();
+- set_unselected · function · L434-L434 — void set_unselected();
+- set_hover_id · function · L435-L435 — void set_hover_id(int id) { m_hover_id = id; }
+- get_bounding_box · function · L436-L436 — const BoundingBoxf3& get_bounding_box(bool extended = false) { return extended ? m_extended_bounding_box : m_bounding_box; }
+- get_bounding_box_crd · function · L437-L437 — const BoundingBox get_bounding_box_crd();
+- get_plate_box · function · L438-L438 — BoundingBoxf3 get_plate_box() {return get_build_volume();}
+- get_build_volume · function · L439-L439 — BoundingBoxf3 get_build_volume(bool use_share = false);
+- get_shared_printable_polygon · function · L442-L442 — Polygon get_shared_printable_polygon() const;
+- get_exclude_areas · function · L444-L444 — const std::vector<BoundingBoxf3>& get_exclude_areas() { return m_exclude_bounding_box; }
+- update_states · function · L449-L449 — void update_states();
+- is_locked · function · L452-L452 — bool is_locked() const { return m_locked; }
+- lock · function · L453-L453 — void lock(bool state) { m_locked = state; }
+- is_printable · function · L456-L456 — bool is_printable() const { return m_printable; }
+- can_slice · function · L459-L462 — bool can_slice() const
+- update_slice_ready_status · function · L463-L466 — void update_slice_ready_status(bool ready_slice)
+- is_apply_result_invalid · function · L469-L472 — bool is_apply_result_invalid() const
+- update_apply_result_invalid · function · L473-L476 — void update_apply_result_invalid(bool invalid)
+- is_slice_result_valid · function · L479-L482 — bool is_slice_result_valid() const
+- is_slice_result_ready_for_print · function · L485-L493 — bool is_slice_result_ready_for_print() const
+- is_slice_result_ready_for_export · function · L496-L499 — bool is_slice_result_ready_for_export()
+- update_slice_result_valid_state · function · L502-L502 — void update_slice_result_valid_state(bool valid = false);
+- update_slicing_percent · function · L504-L507 — void update_slicing_percent(float percent)
+- get_slicing_percent · function · L509-L509 — float get_slicing_percent() { return m_slice_percent; }
+- update_slice_context · function · L513-L513 — void update_slice_context(BackgroundSlicingProcess& process);
+- fff_print · function · L515-L515 — Print* fff_print() { return m_print; }
+- get_slice_result · function · L517-L517 — GCodeProcessorResult* get_slice_result() { return m_gcode_result; }
+- get_tmp_gcode_path · function · L519-L519 — std::string           get_tmp_gcode_path();
+- get_temp_config_3mf_path · function · L520-L520 — std::string           get_temp_config_3mf_path();
+- set_tmp_gcode_path · function · L522-L525 — void set_tmp_gcode_path(std::string new_path)
+- load_gcode_from_file · function · L527-L527 — int load_gcode_from_file(const std::string& filename);
+- load_thumbnail_data · function · L529-L529 — int load_thumbnail_data(std::string filename, ThumbnailData& thumb_data);
+- load_pattern_thumbnail_data · function · L531-L531 — int load_pattern_thumbnail_data(std::string filename);
+- load_pattern_box_data · function · L533-L533 — int load_pattern_box_data(std::string filename);
+- get_first_layer_print_sequence · function · L535-L535 — std::vector<int> get_first_layer_print_sequence() const;
+- get_other_layers_print_sequence · function · L536-L536 — std::vector<LayerPrintSequence> get_other_layers_print_sequence() const;
+- set_first_layer_print_sequence · function · L537-L537 — void set_first_layer_print_sequence(const std::vector<int> &sorted_filaments);
+- set_other_layers_print_sequence · function · L538-L538 — void set_other_layers_print_sequence(const std::vector<LayerPrintSequence>& layer_seq_list);
+- update_first_layer_print_sequence · function · L539-L539 — void update_first_layer_print_sequence(size_t filament_nums);
+- update_first_layer_print_sequence_when_delete_filament · function · L540-L540 — void update_first_layer_print_sequence_when_delete_filament(size_t filamen_id);
+- print · function · L542-L542 — void print() const;
+- on_extruder_count_changed · function · L544-L544 — void on_extruder_count_changed(int extruder_count);
+- set_filament_count · function · L545-L545 — void set_filament_count(int filament_count);
+- on_filament_added · function · L546-L546 — void on_filament_added();
+- on_filament_deleted · function · L547-L547 — void on_filament_deleted(int filament_count, int filament_id);
+- load · function · L552-L563 — template<class Archive> void load(Archive& ar)
+- save · function · L564-L575 — template<class Archive> void save(Archive& ar) const
+- PartPlateList · class · L585-L963 — class PartPlateList : public ObjectBase
+- init · function · L650-L650 — void init();
+- compute_origin · function · L652-L652 — Vec3d compute_origin(int index, int column_count);
+- compute_origin_for_unprintable · function · L654-L654 — Vec3d compute_origin_for_unprintable();
+- compute_shape_position · function · L656-L656 — Vec2d compute_shape_position(int index, int cols);
+- generate_icon_textures · function · L658-L658 — void generate_icon_textures();
+- release_icon_textures · function · L659-L659 — void release_icon_textures();
+- set_default_wipe_tower_pos_for_plate · function · L666-L666 — void set_default_wipe_tower_pos_for_plate(int plate_idx, bool init_pos = false);
+- BedTextureInfo · class · L667-L704 — class BedTextureInfo
+- TexturePart · class · L669-L701 — class TexturePart
+- TexturePart · function · L680-L687 — TexturePart(float xx, float yy, float ww, float hh, std::string file)
+- update_pos · function · L689-L694 — void update_pos(float xx, float yy, float ww, float hh)
+- update_file · function · L695-L697 — void update_file(std::string file)
+- update_buffer · function · L699-L699 — void update_buffer();
+- reset · function · L700-L700 — void reset();
+- reset · function · L703-L703 — void                     reset();
+- PartPlateList · function · L712-L712 — PartPlateList(int width, int depth, double height, Plater* platerObj, Model* modelObj, PrinterTechnology tech = ptFFF);
+- PartPlateList · function · L713-L713 — PartPlateList(Plater* platerObj, Model* modelObj, PrinterTechnology tech = ptFFF);
+- reset_size · function · L717-L717 — void reset_size(int width, int depth, double height, bool reload_objects = true, bool update_shapes = false);
+- clear · function · L719-L719 — void clear(bool delete_plates = false, bool release_print_list = false, bool except_locked = false, int plate_index = -1);
+- reset · function · L721-L721 — void reset(bool do_init);
+- compute_origin_using_new_size · function · L723-L723 — Vec3d compute_origin_using_new_size(int i, int new_width, int new_depth);
+- reinit · function · L726-L726 — void reinit();
+- plate_stride_x · function · L729-L729 — double plate_stride_x();
+- plate_stride_y · function · L730-L730 — double plate_stride_y();
+- get_plate_size · function · L731-L735 — void get_plate_size(int& width, int& depth, double& height)
+- update_plates · function · L738-L738 — void update_plates();
+- create_plate · function · L742-L742 — int create_plate(bool adjust_position = true);
+- duplicate_plate · function · L745-L745 — int duplicate_plate(int index);
+- destroy_print · function · L748-L748 — int destroy_print(int print_index);
+- delete_plate · function · L751-L751 — int delete_plate(int index);
+- delete_selected_plate · function · L755-L755 — void delete_selected_plate();
+- check_all_plate_local_bed_type · function · L757-L757 — bool check_all_plate_local_bed_type(const std::vector<BedType>& cur_bed_types);
+- get_plate · function · L759-L759 — PartPlate* get_plate(int index);
+- get_height_limits · function · L761-L765 — void get_height_limits(float& height_to_lid, float& height_to_rod)
+- set_height_limits_mode · function · L767-L770 — void set_height_limits_mode(PartPlate::HeightLimitMode mode)
+- get_curr_plate_index · function · L772-L772 — int get_curr_plate_index() const { return m_current_plate; }
+- get_curr_plate · function · L773-L773 — PartPlate* get_curr_plate() { return m_plate_list[m_current_plate]; }
+- get_curr_plate · function · L774-L774 — const PartPlate* get_curr_plate() const { return m_plate_list[m_current_plate]; }
+- get_plate_list · function · L776-L776 — std::vector<PartPlate*>& get_plate_list() { return m_plate_list; };
+- get_selected_plate · function · L778-L778 — PartPlate* get_selected_plate();
+- get_nonempty_plate_list · function · L780-L780 — std::vector<PartPlate*> get_nonempty_plate_list();
+- get_nonempty_plates_slice_results · function · L782-L782 — std::vector<const GCodeProcessorResult*> get_nonempty_plates_slice_results();
+- get_current_plate_origin · function · L785-L785 — Vec3d get_current_plate_origin() { return compute_origin(m_current_plate, m_plate_cols); }
+- get_current_shape_position · function · L786-L786 — Vec2d get_current_shape_position() { return compute_shape_position(m_current_plate, m_plate_cols); }
+- get_exclude_area · function · L787-L787 — Pointfs get_exclude_area() { return m_exclude_areas; }
+- get_wrapping_exclude_area · function · L788-L788 — Pointfs get_wrapping_exclude_area() const { return m_wrapping_exclude_areas; }
+- get_extruders · function · L790-L790 — std::set<int> get_extruders(bool conside_custom_gcode = false) const;
+- select_plate · function · L793-L793 — int select_plate(int index);
+- get_plate_count · function · L796-L796 — int get_plate_count() const;
+- update_plate_cols · function · L799-L799 — void update_plate_cols();
+- update_all_plates_pos_and_size · function · L801-L801 — void update_all_plates_pos_and_size(bool adjust_position = true, bool with_unprintable_move = true, bool switch_plate_type = false, bool do_clear = true);
+- get_plate_cols · function · L804-L804 — int get_plate_cols() { return m_plate_cols; }
+- move_plate_to_index · function · L807-L807 — int move_plate_to_index(int old_index, int new_index);
+- lock_plate · function · L810-L810 — int lock_plate(int index, bool state);
+- is_locked · function · L813-L813 — bool is_locked(int index) { return m_plate_list[index]->is_locked();}
+- find_plate_by_print_index · function · L816-L816 — int find_plate_by_print_index(int index);
+- find_instance · function · L821-L821 — int find_instance(int obj_id, int instance_id);
+- find_instance · function · L822-L822 — int find_instance(BoundingBoxf3& bounding_box);
+- find_instance_belongs · function · L827-L827 — int find_instance_belongs(int obj_id, int instance_id);
+- notify_instance_update · function · L830-L830 — int notify_instance_update(int obj_id, int instance_id, bool is_new = false);
+- notify_instance_removed · function · L833-L833 — int notify_instance_removed(int obj_id, int instance_id);
+- add_to_plate · function · L836-L836 — int add_to_plate(int obj_id, int instance_id, int plate_id);
+- reload_all_objects · function · L839-L839 — int reload_all_objects(bool except_locked = false, int plate_index = -1);
+- construct_objects_list_for_new_plate · function · L842-L842 — int construct_objects_list_for_new_plate(int plate_index);
+- compute_plate_index · function · L846-L846 — int compute_plate_index(arrangement::ArrangePolygon& arrange_polygon);
+- preprocess_arrange_polygon · function · L848-L848 — bool preprocess_arrange_polygon(int obj_index, int instance_index, arrangement::ArrangePolygon& arrange_polygon, bool selected);
+- preprocess_arrange_polygon_other_locked · function · L849-L849 — bool preprocess_arrange_polygon_other_locked(int obj_index, int instance_index, arrangement::ArrangePolygon& arrange_polygon, bool selected);
+- preprocess_exclude_areas · function · L850-L850 — bool preprocess_exclude_areas(arrangement::ArrangePolygons& unselected, bool enable_wrapping_detect, int num_plates = 16, float inflation = 0);
+- preprocess_nonprefered_areas · function · L851-L851 — bool preprocess_nonprefered_areas(arrangement::ArrangePolygons& regions, int num_plates = 1, float inflation=0);
+- postprocess_bed_index_for_selected · function · L853-L853 — void postprocess_bed_index_for_selected(arrangement::ArrangePolygon& arrange_polygon);
+- postprocess_bed_index_for_unselected · function · L854-L854 — void postprocess_bed_index_for_unselected(arrangement::ArrangePolygon& arrange_polygon);
+- postprocess_bed_index_for_current_plate · function · L855-L855 — void postprocess_bed_index_for_current_plate(arrangement::ArrangePolygon& arrange_polygon);
+- postprocess_arrange_polygon · function · L858-L858 — void postprocess_arrange_polygon(arrangement::ArrangePolygon& arrange_polygon, bool selected);
+- on_change_color_mode · function · L861-L861 — void on_change_color_mode(bool is_dark) { m_is_dark = is_dark; }
+- render · function · L862-L862 — void render(const Transform3d& view_matrix, const Transform3d& projection_matrix, bool bottom, bool only_current = false, bool only_body = false, int hover_id = -1, bool render_cali = false, bool show_grid = true, bool hide_chrome = false);
+- set_render_option · function · L863-L863 — void set_render_option(bool bedtype_texture, bool plate_settings);
+- set_render_cali · function · L864-L864 — void set_render_cali(bool value = true) { render_cali_logo = value; }
+- render_hover_tooltip · function · L865-L865 — void render_hover_tooltip() const;
+- clear_hover_tooltip · function · L866-L866 — void clear_hover_tooltip() { m_hover_tooltip.clear(); }
+- register_raycasters_for_picking · function · L867-L871 — void register_raycasters_for_picking(GLCanvas3D& canvas)
+- get_bounding_box · function · L872-L872 — BoundingBoxf3& get_bounding_box() { return m_bounding_box; }
+- select_plate_by_obj · function · L874-L874 — int select_plate_by_obj(int obj_index, int instance_index);
+- calc_bounding_boxes · function · L875-L875 — void calc_bounding_boxes();
+- select_plate_view · function · L876-L876 — void select_plate_view();
+- set_shapes · function · L877-L884 — bool set_shapes(const Pointfs              &shape,
+- set_hover_id · function · L885-L885 — void set_hover_id(int id);
+- reset_hover_id · function · L886-L886 — void reset_hover_id();
+- intersects · function · L887-L887 — bool intersects(const BoundingBoxf3 &bb);
+- contains · function · L888-L888 — bool contains(const BoundingBoxf3 &bb);
+- get_logo_texture_filename · function · L890-L890 — const std::string &get_logo_texture_filename() { return m_logo_texture_filename; }
+- update_logo_texture_filename · function · L891-L891 — void               update_logo_texture_filename(const std::string &texture_filename);
+- update_slice_context_to_current_plate · function · L894-L894 — void update_slice_context_to_current_plate(BackgroundSlicingProcess& process);
+- get_current_fff_print · function · L896-L896 — Print& get_current_fff_print() const;
+- get_current_slice_result · function · L898-L898 — GCodeProcessorResult* get_current_slice_result() const;
+- create_plate_from_gcode_file · function · L900-L900 — int create_plate_from_gcode_file(const std::string& filename);
+- invalid_all_slice_result · function · L903-L903 — void invalid_all_slice_result();
+- update_current_slice_result_state · function · L905-L905 — void update_current_slice_result_state(bool valid) { m_plate_list[m_current_plate]->update_slice_result_valid_state(valid); }
+- is_all_slice_results_valid · function · L907-L907 — bool is_all_slice_results_valid() const;
+- is_all_slice_results_ready_for_print · function · L908-L908 — bool is_all_slice_results_ready_for_print() const;
+- is_all_plates_ready_for_slice · function · L909-L909 — bool is_all_plates_ready_for_slice() const;
+- is_all_slice_result_ready_for_export · function · L910-L910 — bool is_all_slice_result_ready_for_export() const;
+- print · function · L911-L911 — void print() const;
+- get_sliced_result · function · L914-L914 — void get_sliced_result(std::vector<bool>& sliced_result, std::vector<std::string>& gcode_paths);
+- rebuild_plates_after_deserialize · function · L916-L916 — int rebuild_plates_after_deserialize(std::vector<bool>& previous_sliced_result, std::vector<std::string>& previous_gcode_paths);
+- rebuild_plates_after_arrangement · function · L919-L919 — int rebuild_plates_after_arrangement(bool recycle_plates = true, bool except_locked = false, int plate_index = -1);
+- store_to_3mf_structure · function · L924-L924 — int store_to_3mf_structure(PlateDataPtrs& plate_data_list, bool with_slice_info = true, int plate_idx = -1);
+- load_from_3mf_structure · function · L925-L925 — int load_from_3mf_structure(PlateDataPtrs& plate_data_list, int filament_count = 1);
+- load_gcode_files · function · L927-L927 — int load_gcode_files();
+- serialize · function · L929-L935 — template<class Archive> void serialize(Archive& ar)
+- Rect · class · L936-L942 — struct Rect
+- calc_extruder_only_area · function · L943-L943 — bool calc_extruder_only_area(Rect &left_only_rect, Rect &right_only_rect);
+- init_bed_type_info · function · L944-L944 — void init_bed_type_info();
+- init_extruder_only_area_info · function · L945-L945 — bool init_extruder_only_area_info();
+- load_bedtype_textures · function · L946-L946 — void load_bedtype_textures();
+- load_extruder_only_area_textures · function · L947-L947 — void load_extruder_only_area_textures();
+- show_cali_texture · function · L949-L949 — void show_cali_texture(bool show = true);
+- init_cali_texture_info · function · L950-L950 — void init_cali_texture_info();
+- load_cali_textures · function · L951-L951 — void load_cali_textures();
+- on_extruder_count_changed · function · L953-L953 — void on_extruder_count_changed(int extruder_count);
+- set_filament_count · function · L955-L955 — void set_filament_count(int filament_count);
+- on_filament_deleted · function · L956-L956 — void on_filament_deleted(int filament_count, int filament_id);
+- on_filament_added · function · L957-L957 — void on_filament_added(int filament_count);

@@ -1,0 +1,107 @@
+# deps_src/libnest2d/include/libnest2d/nester.hpp
+
+- _Item · class · L29-L463 — template<class RawShape>
+- Convexity · type · L58-L62 — enum class Convexity: char
+- BBCache · class · L68-L71 — mutable struct BBCache
+- BBCache · function · L70-L70 — BBCache(): valid(false) {}
+- orientation · function · L112-L114 — static BP2D_CONSTEXPR Orientation orientation()
+- _Item · function · L121-L121 — explicit inline _Item(const RawShape& sh): sh_(sh) {}
+- _Item · function · L128-L128 — explicit inline _Item(RawShape&& sh): sh_(std::move(sh)) {}
+- _Item · function · L134-L135 — inline _Item(const std::initializer_list< Vertex >& il):
+- _Item · function · L137-L139 — inline _Item(const TContour<RawShape>& contour,
+- _Item · function · L141-L143 — inline _Item(TContour<RawShape>&& contour,
+- isFixed · function · L145-L145 — inline bool isFixed() const noexcept { return fixed_; }
+- markAsFixedInBin · function · L146-L150 — inline void markAsFixedInBin(int binid)
+- binId · function · L152-L152 — inline void binId(int idx) { binid_ = idx; }
+- binId · function · L153-L153 — inline int binId() const noexcept { return binid_; }
+- priority · function · L155-L155 — inline void priority(int p) { priority_ = p; }
+- priority · function · L156-L156 — inline int priority() const noexcept { return priority_; }
+- itemId · function · L158-L158 — inline void itemId(int idx) { itemid_ = idx; }
+- itemId · function · L159-L159 — inline int itemId() const noexcept { return itemid_; }
+- toString · function · L165-L168 — inline std::string toString() const
+- begin · function · L171-L174 — inline Iterator begin() const
+- cbegin · function · L177-L180 — inline Iterator cbegin() const
+- end · function · L183-L186 — inline Iterator end() const
+- cend · function · L189-L192 — inline Iterator cend() const
+- vertex · function · L204-L207 — inline Vertex vertex(unsigned long idx) const
+- setVertex · function · L218-L222 — inline void setVertex(unsigned long idx, const Vertex& v )
+- area · function · L232-L241 — inline double area() const
+- isContourConvex · function · L243-L256 — inline bool isContourConvex() const
+- isHoleConvex · function · L258-L260 — inline bool isHoleConvex(unsigned /*holeidx*/) const
+- areHolesConvex · function · L262-L264 — inline bool areHolesConvex() const
+- vertexCount · function · L267-L269 — inline size_t vertexCount() const
+- holeCount · function · L271-L273 — inline size_t holeCount() const
+- isInside · function · L280-L283 — inline bool isInside(const Vertex& p) const
+- isInside · function · L285-L288 — inline bool isInside(const _Item& sh) const
+- isInside · function · L290-L293 — inline bool isInside(const RawShape& sh) const
+- isInside · function · L295-L295 — inline bool isInside(const _Box<TPoint<RawShape>>& box) const;
+- isInside · function · L296-L296 — inline bool isInside(const _Circle<TPoint<RawShape>>& box) const;
+- translate · function · L298-L301 — inline void translate(const Vertex& d) BP2D_NOEXCEPT
+- rotate · function · L303-L306 — inline void rotate(const Radians& rads) BP2D_NOEXCEPT
+- inflation · function · L308-L313 — inline void inflation(Coord distance) BP2D_NOEXCEPT
+- inflation · function · L315-L317 — inline Coord inflation() const BP2D_NOEXCEPT
+- inflate · function · L319-L322 — inline void inflate(Coord distance) BP2D_NOEXCEPT
+- rotation · function · L324-L327 — inline Radians rotation() const BP2D_NOEXCEPT
+- translation · function · L329-L332 — inline TPoint<RawShape> translation() const BP2D_NOEXCEPT
+- rotation · function · L334-L341 — inline void rotation(Radians rot) BP2D_NOEXCEPT
+- translation · function · L343-L349 — inline void translation(const TPoint<RawShape>& tr) BP2D_NOEXCEPT
+- transformedShape · function · L351-L351 — inline const RawShape& transformedShape() const
+- rawShape · function · L369-L369 — inline const RawShape& rawShape() const BP2D_NOEXCEPT
+- resetTransformation · function · L374-L378 — inline void resetTransformation() BP2D_NOEXCEPT
+- boundingBox · function · L380-L395 — inline Box boundingBox() const
+- referenceVertex · function · L397-L399 — inline Vertex referenceVertex() const
+- rightmostTopVertex · function · L401-L408 — inline Vertex rightmostTopVertex() const
+- leftmostBottomVertex · function · L410-L417 — inline Vertex leftmostBottomVertex() const
+- intersects · function · L421-L425 — inline static bool intersects(const _Item& sh1, const _Item& sh2)
+- touches · function · L427-L431 — inline static bool touches(const _Item& sh1, const _Item& sh2)
+- infaltedShape · function · L435-L435 — inline const RawShape& infaltedShape() const
+- invalidateCache · function · L447-L455 — inline void invalidateCache() const BP2D_NOEXCEPT
+- vsort · function · L457-L462 — static inline bool vsort(const Vertex& v1, const Vertex& v2)
+- create_rect · function · L465-L477 — template<class Sh> Sh create_rect(TCoord<Sh> width, TCoord<Sh> height)
+- _Rectangle · class · L482-L499 — template<class Sh>
+- _Rectangle · function · L490-L490 — inline _Rectangle(Unit w, Unit h): _Item<Sh>{create_rect<Sh>(w, h)} {}
+- width · function · L492-L494 — inline Unit width() const BP2D_NOEXCEPT
+- height · function · L496-L498 — inline Unit height() const BP2D_NOEXCEPT
+- ConstItemRange · class · L520-L528 — template<class Iterator>
+- ConstItemRange · function · L526-L526 — ConstItemRange() = default;
+- ConstItemRange · function · L527-L527 — ConstItemRange(Iterator f, Iterator t): from(f), to(t), valid(true) {}
+- rem · function · L530-L534 — template<class Container>
+- PlacementStrategyLike · class · L545-L689 — template<class PlacementStrategy>
+- PlacementStrategyLike · function · L580-L585 — explicit PlacementStrategyLike(const BinType& bin,
+- configure · function · L595-L595 — inline void configure(const Config& config) { impl_.configure(config); }
+- trypack · function · L609-L615 — template<class Iter = DefaultIterator>
+- accept · function · L623-L623 — inline void accept(PackResult& r) { impl_.accept(r); }
+- pack · function · L638-L644 — template<class Range = ConstItemRange<DefaultIterator>>
+- preload · function · L650-L653 — inline void preload(const ItemGroup& packeditems)
+- unpackLast · function · L656-L656 — inline void unpackLast() { impl_.unpackLast(); }
+- bin · function · L659-L659 — inline const BinType& bin() const { return impl_.bin(); }
+- bin · function · L662-L662 — inline void bin(const BinType& bin) { impl_.bin(bin); }
+- getItems · function · L665-L665 — inline ItemGroup getItems() { return impl_.getItems(); }
+- getPackedSize · function · L667-L675 — inline int getPackedSize()
+- clearItems · function · L678-L678 — inline void clearItems() { impl_.clearItems(); }
+- clearItems · function · L680-L680 — inline void clearItems(const std::function<bool(const Item &itm)> &func) { impl_.clearItems(func); }
+- filledArea · function · L682-L682 — inline double filledArea() const { return impl_.filledArea(); }
+- score · function · L684-L684 — inline double score() const { return impl_.score(); }
+- plateID · function · L686-L686 — inline void plateID(int id) { impl_.plateID(id); }
+- plateID · function · L687-L687 — inline int plateID() { return impl_.plateID(); }
+- SelectionStrategyLike · class · L699-L774 — template<class SelectionStrategy>
+- configure · function · L717-L719 — inline void configure(const Config& config)
+- progressIndicator · function · L727-L727 — void progressIndicator(ProgressFunction fn) { impl_.progressIndicator(fn); }
+- unfitIndicator · function · L730-L730 — void unfitIndicator(UnfitIndicator fn) { impl_.unfitIndicator(fn); }
+- stopCondition · function · L732-L732 — void stopCondition(StopCondition cond) { impl_.stopCondition(cond); }
+- packItems · function · L746-L758 — template<class TPlacer, class TIterator,
+- getResult · function · L765-L765 — inline const PackGroup& getResult() const
+- lastPackedBinId · function · L769-L771 — inline int lastPackedBinId() const
+- clear · function · L773-L773 — void clear() { impl_.clear(); }
+- _Nester · class · L780-L904 — template<class PlacementStrategy, class SelectionStrategy >
+- _Nester · function · L822-L835 — template<class TBinType = BinType,
+- configure · function · L837-L837 — void configure(const PlacementConfig& pconf) { pconfig_ = pconf; }
+- configure · function · L838-L838 — void configure(const SelectionConfig& sconf) { selector_.configure(sconf); }
+- configure · function · L839-L843 — void configure(const PlacementConfig& pconf, const SelectionConfig& sconf)
+- configure · function · L844-L848 — void configure(const SelectionConfig& sconf, const PlacementConfig& pconf)
+- execute · function · L860-L876 — template<class It>
+- progressIndicator · function · L879-L879 — inline _Nester& progressIndicator(ProgressFunction func)
+- unfitIndicator · function · L885-L885 — inline _Nester& unfitIndicator(UnfitIndicator func)
+- stopCondition · function · L891-L891 — inline _Nester& stopCondition(StopCondition fn)
+- lastResult · function · L896-L896 — inline const PackGroup& lastResult() const
+- lastPackedBinId · function · L901-L903 — inline int lastPackedBinId() const

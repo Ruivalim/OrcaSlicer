@@ -1,0 +1,129 @@
+# tests/catch2/src/catch2/internal/catch_clara.hpp
+
+- Args · class · L48-L48 — class Args;
+- Parser · class · L49-L49 — class Parser;
+- ParseResultType · type · L52-L57 — enum class ParseResultType
+- accept_many_t · class · L59-L59 — struct accept_many_t {};
+- fake_arg · class · L63-L66 — struct fake_arg
+- UnaryLambdaTraits · class · L79-L81 — template <typename L>
+- TokenStream · class · L95-L95 — class TokenStream;
+- TokenType · type · L100-L100 — enum class TokenType { Option, Argument };
+- Token · class · L101-L104 — struct Token
+- TokenStream · class · L108-L138 — class TokenStream
+- loadBuffer · function · L113-L113 — void loadBuffer();
+- TokenStream · function · L116-L116 — explicit TokenStream( Args const& args );
+- TokenStream · function · L117-L117 — TokenStream( Iterator it, Iterator itEnd );
+- count · function · L123-L125 — size_t count() const
+- ResultType · type · L141-L146 — enum class ResultType
+- ResultBase · class · L148-L162 — class ResultBase
+- ResultBase · function · L150-L150 — ResultBase( ResultType type ): m_type( type ) {}
+- ResultBase · function · L154-L154 — ResultBase(ResultBase const&) = default;
+- ResultBase · function · L156-L156 — ResultBase(ResultBase&&) = default;
+- enforceOk · function · L159-L159 — virtual void enforceOk() const = 0;
+- ResultValueBase · class · L164-L225 — template <typename T>
+- value · function · L167-L167 — T const& value() const&
+- value · function · L171-L171 — T&& value() &&
+- ResultValueBase · function · L177-L177 — ResultValueBase( ResultType type ): ResultBase( type ) {}
+- ResultValueBase · function · L179-L183 — ResultValueBase( ResultValueBase const& other ):
+- ResultValueBase · function · L184-L188 — ResultValueBase( ResultValueBase&& other ):
+- ResultValueBase · function · L191-L194 — ResultValueBase( ResultType, T const& value ):
+- ResultValueBase · function · L195-L198 — ResultValueBase( ResultType, T&& value ):
+- BasicResult · class · L232-L286 — template <typename T = void>
+- BasicResult · function · L235-L240 — template <typename U>
+- ok · function · L242-L245 — template <typename U>
+- ok · function · L246-L246 — static auto ok() -> BasicResult { return { ResultType::Ok }; }
+- logicError · function · L247-L250 — static auto logicError( std::string&& message )
+- runtimeError · function · L251-L254 — static auto runtimeError( std::string&& message )
+- type · function · L259-L259 — auto type() const -> ResultType { return m_type; }
+- errorMessage · function · L260-L262 — auto errorMessage() const -> std::string const&
+- enforceOk · function · L265-L273 — void enforceOk() const override
+- BasicResult · function · L278-L282 — BasicResult( ResultType type,
+- ParseState · class · L288-L304 — class ParseState
+- ParseState · function · L290-L291 — ParseState( ParseResultType type,
+- type · function · L293-L293 — ParseResultType type() const { return m_type; }
+- remainingTokens · function · L294-L294 — TokenStream const& remainingTokens() const&
+- remainingTokens · function · L297-L297 — TokenStream&& remainingTokens() &&
+- HelpColumns · class · L310-L313 — struct HelpColumns
+- convertInto · function · L315-L326 — template <typename T>
+- ss · function · L317-L317 — std::stringstream ss( source );
+- convertInto · function · L327-L328 — ParserResult convertInto( std::string const& source,
+- convertInto · function · L329-L329 — ParserResult convertInto( std::string const& source, bool& target );
+- convertInto · function · L332-L341 — template <typename T>
+- BoundRef · class · L344-L348 — struct BoundRef : Catch::Detail::NonCopyable
+- isContainer · function · L346-L346 — virtual bool isContainer() const;
+- isFlag · function · L347-L347 — virtual bool isFlag() const;
+- BoundValueRefBase · class · L349-L352 — struct BoundValueRefBase : BoundRef
+- setValue · function · L350-L351 — virtual auto setValue( std::string const& arg )
+- BoundFlagRefBase · class · L353-L356 — struct BoundFlagRefBase : BoundRef
+- setFlag · function · L354-L354 — virtual auto setFlag( bool flag ) -> ParserResult = 0;
+- isFlag · function · L355-L355 — bool isFlag() const override;
+- BoundValueRef · class · L358-L366 — template <typename T> struct BoundValueRef : BoundValueRefBase
+- BoundValueRef · function · L361-L361 — explicit BoundValueRef( T& ref ): m_ref( ref ) {}
+- setValue · function · L363-L365 — ParserResult setValue( std::string const& arg ) override
+- BoundValueRef · function · L372-L372 — explicit BoundValueRef( std::vector<T>& ref ): m_ref( ref ) {}
+- isContainer · function · L374-L374 — auto isContainer() const -> bool override { return true; }
+- setValue · function · L376-L383 — auto setValue( std::string const& arg )
+- BoundFlagRef · class · L386-L392 — struct BoundFlagRef : BoundFlagRefBase
+- BoundFlagRef · function · L389-L389 — explicit BoundFlagRef( bool& ref ): m_ref( ref ) {}
+- setFlag · function · L391-L391 — ParserResult setFlag( bool flag ) override;
+- LambdaInvoker · class · L394-L404 — template <typename ReturnType> struct LambdaInvoker
+- invoke · function · L399-L403 — template <typename L, typename ArgType>
+- invoke · function · L407-L412 — template <typename L, typename ArgType>
+- invokeLambda · function · L415-L423 — template <typename ArgType, typename L>
+- BoundLambda · class · L425-L438 — template <typename L> struct BoundLambda : BoundValueRefBase
+- BoundLambda · function · L431-L431 — explicit BoundLambda( L const& lambda ): m_lambda( lambda ) {}
+- setValue · function · L433-L437 — auto setValue( std::string const& arg )
+- BoundManyLambda · class · L440-L443 — template <typename L> struct BoundManyLambda : BoundLambda<L>
+- BoundManyLambda · function · L441-L441 — explicit BoundManyLambda( L const& lambda ): BoundLambda<L>( lambda ) {}
+- isContainer · function · L442-L442 — bool isContainer() const override { return true; }
+- BoundFlagLambda · class · L445-L463 — template <typename L> struct BoundFlagLambda : BoundFlagRefBase
+- BoundFlagLambda · function · L456-L457 — explicit BoundFlagLambda( L const& lambda ):
+- setFlag · function · L459-L462 — auto setFlag( bool flag ) -> ParserResult override
+- Optionality · type · L465-L465 — enum class Optionality { Optional, Required };
+- ParserBase · class · L467-L477 — class ParserBase
+- validate · function · L470-L470 — virtual auto validate() const -> Result { return Result::ok(); }
+- parse · function · L471-L473 — virtual auto parse( std::string const& exeName,
+- cardinality · function · L474-L474 — virtual size_t cardinality() const;
+- parse · function · L476-L476 — InternalParseResult parse( Args const& args ) const;
+- ComposableParserImpl · class · L479-L484 — template <typename DerivedT>
+- ParserRefImpl · class · L487-L551 — template <typename DerivedT>
+- ParserRefImpl · function · L495-L496 — explicit ParserRefImpl( std::shared_ptr<BoundRef> const& ref ):
+- ParserRefImpl · function · L499-L504 — template <typename LambdaT>
+- ParserRefImpl · function · L506-L511 — template <typename T,
+- ParserRefImpl · function · L513-L518 — template <typename LambdaT,
+- optional · function · L529-L532 — auto optional() -> DerivedT&
+- required · function · L534-L537 — auto required() -> DerivedT&
+- isOptional · function · L539-L541 — auto isOptional() const -> bool
+- cardinality · function · L543-L548 — auto cardinality() const -> size_t override
+- hint · function · L550-L550 — StringRef hint() const { return m_hint; }
+- Arg · class · L557-L565 — class Arg : public Detail::ParserRefImpl<Arg>
+- parse · function · L562-L564 — Detail::InternalParseResult
+- Opt · class · L568-L616 — class Opt : public Detail::ParserRefImpl<Opt>
+- Opt · function · L573-L576 — template <typename LambdaT>
+- Opt · function · L578-L578 — explicit Opt(bool& ref);
+- Opt · function · L580-L584 — template <typename LambdaT,
+- Opt · function · L586-L588 — template <typename LambdaT>
+- Opt · function · L590-L594 — template <typename T,
+- getHelpColumns · function · L605-L605 — Detail::HelpColumns getHelpColumns() const;
+- isMatch · function · L607-L607 — bool isMatch(StringRef optToken) const;
+- parse · function · L611-L613 — Detail::InternalParseResult
+- validate · function · L615-L615 — Detail::Result validate() const override;
+- ExeName · class · L619-L640 — class ExeName : public Detail::ComposableParserImpl<ExeName>
+- ExeName · function · L624-L624 — ExeName();
+- ExeName · function · L625-L625 — explicit ExeName(std::string& ref);
+- ExeName · function · L627-L630 — template <typename LambdaT>
+- parse · function · L634-L636 — Detail::InternalParseResult
+- name · function · L638-L638 — std::string const& name() const { return *m_name; }
+- set · function · L639-L639 — Detail::ParserResult set(std::string const& newName);
+- Parser · class · L644-L701 — class Parser : Detail::ParserBase
+- temp · function · L674-L674 — Parser temp( p );
+- getHelpColumns · function · L685-L685 — std::vector<Detail::HelpColumns> getHelpColumns() const;
+- writeToStream · function · L687-L687 — void writeToStream(std::ostream& os) const;
+- validate · function · L695-L695 — Detail::Result validate() const override;
+- parse · function · L698-L700 — Detail::InternalParseResult
+- Args · class · L706-L717 — class Args
+- Args · function · L712-L712 — Args(int argc, char const* const* argv);
+- Args · function · L714-L714 — Args(std::initializer_list<StringRef> args);
+- exeName · function · L716-L716 — StringRef exeName() const { return m_exeName; }
+- Help · class · L721-L723 — struct Help : Opt
+- Help · function · L722-L722 — Help(bool& showHelpFlag);

@@ -1,0 +1,30 @@
+# deps_src/agg/agg_rasterizer_scanline_aa.h
+
+- status · type · L73-L79 — enum status
+- conv_type · type · L83-L83 — typedef typename Clip::conv_type  conv_type;
+- coord_type · type · L84-L84 — typedef typename Clip::coord_type coord_type;
+- aa_scale_e · type · L86-L93 — enum aa_scale_e
+- reset · function · L124-L124 — void reset();
+- reset_clipping · function · L125-L125 — void reset_clipping();
+- clip_box · function · L126-L126 — void clip_box(double x1, double y1, double x2, double y2);
+- filling_rule · function · L127-L127 — void filling_rule(filling_rule_e filling_rule);
+- auto_close · function · L128-L128 — void auto_close(bool flag) { m_auto_close = flag; }
+- apply_gamma · function · L141-L144 — unsigned apply_gamma(unsigned cover) const
+- move_to · function · L147-L147 — void move_to(int x, int y);
+- line_to · function · L148-L148 — void line_to(int x, int y);
+- move_to_d · function · L149-L149 — void move_to_d(double x, double y);
+- line_to_d · function · L150-L150 — void line_to_d(double x, double y);
+- close_polygon · function · L151-L151 — void close_polygon();
+- add_vertex · function · L152-L152 — void add_vertex(double x, double y, unsigned cmd);
+- edge · function · L154-L154 — void edge(int x1, int y1, int x2, int y2);
+- edge_d · function · L155-L155 — void edge_d(double x1, double y1, double x2, double y2);
+- min_x · function · L174-L174 — int min_x() const { return m_outline.min_x(); }
+- min_y · function · L175-L175 — int min_y() const { return m_outline.min_y(); }
+- max_x · function · L176-L176 — int max_x() const { return m_outline.max_x(); }
+- max_y · function · L177-L177 — int max_y() const { return m_outline.max_y(); }
+- sort · function · L180-L180 — void sort();
+- rewind_scanlines · function · L181-L181 — bool rewind_scanlines();
+- navigate_scanline · function · L182-L182 — bool navigate_scanline(int y);
+- calculate_alpha · function · L185-L200 — AGG_INLINE unsigned calculate_alpha(int area) const
+- hit_test · function · L261-L261 — bool hit_test(int tx, int ty);
+- sl · function · L469-L469 — scanline_hit_test sl(tx);

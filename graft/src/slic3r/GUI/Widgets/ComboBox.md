@@ -1,0 +1,51 @@
+# src/slic3r/GUI/Widgets/ComboBox.hpp
+
+- ComboBox · class · L10-L123 — class ComboBox : public wxWindowWithItems<TextInput, wxItemContainer>
+- Item · type · L12-L12 — typedef DropDown::Item Item;
+- ComboBox · function · L24-L31 — ComboBox(wxWindow *      parent,
+- GetDropDown · function · L33-L33 — DropDown & GetDropDown() { return drop; }
+- SetKeepDropArrow · function · L38-L38 — void SetKeepDropArrow(bool keep) { m_keep_drop_arrow = keep; }
+- SetFont · function · L40-L40 — virtual bool SetFont(wxFont const & font) override;
+- Append · function · L43-L43 — int Append(const wxString &item, const wxBitmap &bitmap = wxNullBitmap, int item_style = 0);
+- Append · function · L44-L44 — int Append(const wxString &item, const wxBitmap &bitmap, void *clientData, int item_style = 0);
+- Append · function · L45-L45 — int Append(const wxString &item, const wxBitmap &bitmap, const wxString &group, void *clientData = nullptr, int item_style = 0);
+- Append · function · L46-L51 — int Append(const wxString& item,
+- SetItems · function · L53-L53 — int SetItems(const std::vector<DropDown::Item>& the_items);
+- set_replace_text · function · L55-L55 — void set_replace_text(wxString text, wxString image_name);
+- GetCount · function · L56-L56 — unsigned int GetCount() const override;
+- GetSelection · function · L58-L58 — int  GetSelection() const override;
+- SetSelection · function · L60-L60 — void SetSelection(int n) override;
+- SelectAndNotify · function · L62-L62 — void SelectAndNotify(int n);
+- Rescale · function · L64-L64 — virtual void Rescale() override;
+- GetValue · function · L66-L66 — wxString GetValue() const;
+- SetValue · function · L67-L67 — void     SetValue(const wxString &value);
+- SetLabel · function · L69-L69 — void SetLabel(const wxString &label) override;
+- GetLabel · function · L70-L70 — wxString GetLabel() const override;
+- GetFlag · function · L72-L72 — int GetFlag(unsigned int n);
+- SetFlag · function · L73-L73 — void SetFlag(unsigned int n, int value);
+- SetTextLabel · function · L75-L75 — void SetTextLabel(const wxString &label);
+- GetTextLabel · function · L76-L76 — wxString GetTextLabel() const;
+- GetString · function · L78-L78 — wxString GetString(unsigned int n) const override;
+- SetString · function · L79-L79 — void     SetString(unsigned int n, wxString const &value) override;
+- GetItemTooltip · function · L81-L81 — wxString GetItemTooltip(unsigned int n) const;
+- SetItemTooltip · function · L82-L82 — void     SetItemTooltip(unsigned int n, wxString const &value);
+- GetItemAlias · function · L84-L84 — wxString GetItemAlias(unsigned int n) const;
+- SetItemAlias · function · L85-L85 — void     SetItemAlias(unsigned int n, wxString const &value);
+- GetItemBitmap · function · L87-L87 — wxBitmap GetItemBitmap(unsigned int n);
+- SetItemBitmap · function · L88-L88 — void     SetItemBitmap(unsigned int n, wxBitmap const &bitmap);
+- is_drop_down · function · L89-L89 — bool     is_drop_down(){return drop_down;}
+- DeleteOneItem · function · L90-L90 — void     DeleteOneItem(unsigned int pos) { DoDeleteOneItem(pos); }
+- ForceDropdownOpen · function · L92-L92 — void ForceDropdownOpen();
+- DoInsertItems · function · L95-L98 — virtual int  DoInsertItems(const wxArrayStringsAdapter &items,
+- DoClear · function · L99-L99 — virtual void DoClear() override;
+- DoDeleteOneItem · function · L101-L101 — void DoDeleteOneItem(unsigned int pos) override;
+- DoGetItemClientData · function · L103-L103 — void *DoGetItemClientData(unsigned int n) const override;
+- DoSetItemClientData · function · L104-L104 — void  DoSetItemClientData(unsigned int n, void *data) override;
+- OnEdit · function · L106-L106 — void OnEdit() override;
+- sendComboBoxEvent · function · L108-L108 — void sendComboBoxEvent();
+- MSWWindowProc · function · L111-L111 — WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) override;
+- mouseDown · function · L117-L117 — void mouseDown(wxMouseEvent &event);
+- mouseWheelMoved · function · L118-L118 — void mouseWheelMoved(wxMouseEvent &event);
+- keyDown · function · L119-L119 — void keyDown(wxKeyEvent &event);
+- onMove · function · L120-L120 — void onMove(wxMoveEvent &event);
+- DECLARE_EVENT_TABLE · function · L122-L122 — DECLARE_EVENT_TABLE()

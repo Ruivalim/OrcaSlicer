@@ -1,0 +1,70 @@
+# deps_src/nlohmann/detail/input/json_sax.hpp
+
+- json_sax · class · L22-L135 — template<typename BasicJsonType>
+- null · function · L35-L35 — virtual bool null() = 0;
+- boolean · function · L42-L42 — virtual bool boolean(bool val) = 0;
+- number_integer · function · L49-L49 — virtual bool number_integer(number_integer_t val) = 0;
+- number_unsigned · function · L56-L56 — virtual bool number_unsigned(number_unsigned_t val) = 0;
+- number_float · function · L64-L64 — virtual bool number_float(number_float_t val, const string_t& s) = 0;
+- string · function · L72-L72 — virtual bool string(string_t& val) = 0;
+- binary · function · L80-L80 — virtual bool binary(binary_t& val) = 0;
+- start_object · function · L88-L88 — virtual bool start_object(std::size_t elements) = 0;
+- key · function · L96-L96 — virtual bool key(string_t& val) = 0;
+- end_object · function · L102-L102 — virtual bool end_object() = 0;
+- start_array · function · L110-L110 — virtual bool start_array(std::size_t elements) = 0;
+- end_array · function · L116-L116 — virtual bool end_array() = 0;
+- parse_error · function · L125-L127 — virtual bool parse_error(std::size_t position,
+- json_sax · function · L129-L129 — json_sax() = default;
+- json_sax · function · L130-L130 — json_sax(const json_sax&) = default;
+- json_sax · function · L131-L131 — json_sax(json_sax&&) noexcept = default;
+- json_sax_dom_parser · class · L153-L325 — template<typename BasicJsonType>
+- json_sax_dom_parser · function · L168-L170 — explicit json_sax_dom_parser(BasicJsonType& r, const bool allow_exceptions_ = true)
+- json_sax_dom_parser · function · L173-L173 — json_sax_dom_parser(const json_sax_dom_parser&) = delete;
+- json_sax_dom_parser · function · L174-L174 — json_sax_dom_parser(json_sax_dom_parser&&) = default; // NOLINT(hicpp-noexcept-move,performance-noexcept-move-constructor)
+- null · function · L179-L183 — bool null()
+- boolean · function · L185-L189 — bool boolean(bool val)
+- number_integer · function · L191-L195 — bool number_integer(number_integer_t val)
+- number_unsigned · function · L197-L201 — bool number_unsigned(number_unsigned_t val)
+- number_float · function · L203-L207 — bool number_float(number_float_t val, const string_t& /*unused*/)
+- string · function · L209-L213 — bool string(string_t& val)
+- binary · function · L215-L219 — bool binary(binary_t& val)
+- start_object · function · L221-L231 — bool start_object(std::size_t len)
+- key · function · L233-L238 — bool key(string_t& val)
+- end_object · function · L240-L245 — bool end_object()
+- start_array · function · L247-L257 — bool start_array(std::size_t len)
+- end_array · function · L259-L264 — bool end_array()
+- parse_error · function · L266-L277 — template<class Exception>
+- is_errored · function · L279-L282 — constexpr bool is_errored() const
+- json_sax_dom_callback_parser · class · L327-L632 — template<typename BasicJsonType>
+- json_sax_dom_callback_parser · function · L339-L345 — json_sax_dom_callback_parser(BasicJsonType& r,
+- json_sax_dom_callback_parser · function · L348-L348 — json_sax_dom_callback_parser(const json_sax_dom_callback_parser&) = delete;
+- json_sax_dom_callback_parser · function · L349-L349 — json_sax_dom_callback_parser(json_sax_dom_callback_parser&&) = default; // NOLINT(hicpp-noexcept-move,performance-noexcept-move-constructor)
+- null · function · L354-L358 — bool null()
+- boolean · function · L360-L364 — bool boolean(bool val)
+- number_integer · function · L366-L370 — bool number_integer(number_integer_t val)
+- number_unsigned · function · L372-L376 — bool number_unsigned(number_unsigned_t val)
+- number_float · function · L378-L382 — bool number_float(number_float_t val, const string_t& /*unused*/)
+- string · function · L384-L388 — bool string(string_t& val)
+- binary · function · L390-L394 — bool binary(binary_t& val)
+- start_object · function · L396-L412 — bool start_object(std::size_t len)
+- key · function · L414-L429 — bool key(string_t& val)
+- end_object · function · L431-L465 — bool end_object()
+- start_array · function · L467-L482 — bool start_array(std::size_t len)
+- end_array · function · L484-L514 — bool end_array()
+- parse_error · function · L516-L527 — template<class Exception>
+- is_errored · function · L529-L532 — constexpr bool is_errored() const
+- handle_value · function · L550-L612 — template<typename Value>
+- json_sax_acceptor · class · L634-L708 — template<typename BasicJsonType>
+- null · function · L644-L647 — bool null()
+- boolean · function · L649-L652 — bool boolean(bool /*unused*/)
+- number_integer · function · L654-L657 — bool number_integer(number_integer_t /*unused*/)
+- number_unsigned · function · L659-L662 — bool number_unsigned(number_unsigned_t /*unused*/)
+- number_float · function · L664-L667 — bool number_float(number_float_t /*unused*/, const string_t& /*unused*/)
+- string · function · L669-L672 — bool string(string_t& /*unused*/)
+- binary · function · L674-L677 — bool binary(binary_t& /*unused*/)
+- start_object · function · L679-L682 — bool start_object(std::size_t /*unused*/ = std::size_t(-1))
+- key · function · L684-L687 — bool key(string_t& /*unused*/)
+- end_object · function · L689-L692 — bool end_object()
+- start_array · function · L694-L697 — bool start_array(std::size_t /*unused*/ = std::size_t(-1))
+- end_array · function · L699-L702 — bool end_array()
+- parse_error · function · L704-L707 — bool parse_error(std::size_t /*unused*/, const std::string& /*unused*/, const detail::exception& /*unused*/)

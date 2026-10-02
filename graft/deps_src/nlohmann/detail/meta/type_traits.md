@@ -1,0 +1,37 @@
+# deps_src/nlohmann/detail/meta/type_traits.hpp
+
+- is_basic_json · class · L42-L42 — template<typename> struct is_basic_json : std::false_type {};
+- json_ref · class · L51-L52 — template<typename>
+- is_json_ref · class · L54-L55 — template<typename>
+- has_from_json · class · L95-L96 — template<typename BasicJsonType, typename T, typename = void>
+- is_getable · class · L102-L106 — template <typename BasicJsonType, typename T>
+- has_non_default_from_json · class · L120-L121 — template<typename BasicJsonType, typename T, typename = void>
+- has_to_json · class · L135-L136 — template<typename BasicJsonType, typename T, typename = void>
+- conjunction · class · L154-L154 — template<class...> struct conjunction : std::true_type { };
+- negation · class · L161-L161 — template<class B> struct negation : std::integral_constant < bool, !B::value > { };
+- is_default_constructible · class · L166-L167 — template <typename T>
+- is_constructible · class · L186-L187 — template <typename T, typename... Args>
+- is_iterator_traits · class · L202-L203 — template<typename T, typename = void>
+- is_range · class · L220-L237 — template<typename T>
+- is_complete_type · class · L249-L250 — template<typename T, typename = void>
+- is_compatible_object_type_impl · class · L255-L257 — template<typename BasicJsonType, typename CompatibleObjectType,
+- is_compatible_object_type · class · L275-L277 — template<typename BasicJsonType, typename CompatibleObjectType>
+- is_constructible_object_type_impl · class · L279-L281 — template<typename BasicJsonType, typename ConstructibleObjectType,
+- is_constructible_object_type · class · L307-L310 — template<typename BasicJsonType, typename ConstructibleObjectType>
+- is_compatible_string_type · class · L312-L317 — template<typename BasicJsonType, typename CompatibleStringType>
+- is_constructible_string_type · class · L319-L325 — template<typename BasicJsonType, typename ConstructibleStringType>
+- is_compatible_array_type_impl · class · L327-L328 — template<typename BasicJsonType, typename CompatibleArrayType, typename = void>
+- is_compatible_array_type · class · L345-L347 — template<typename BasicJsonType, typename CompatibleArrayType>
+- is_constructible_array_type_impl · class · L349-L350 — template<typename BasicJsonType, typename ConstructibleArrayType, typename = void>
+- is_constructible_array_type · class · L389-L391 — template<typename BasicJsonType, typename ConstructibleArrayType>
+- is_compatible_integer_type_impl · class · L393-L395 — template<typename RealIntegerType, typename CompatibleNumberIntegerType,
+- is_compatible_integer_type · class · L415-L418 — template<typename RealIntegerType, typename CompatibleNumberIntegerType>
+- is_compatible_type_impl · class · L420-L421 — template<typename BasicJsonType, typename CompatibleType, typename = void>
+- is_compatible_type · class · L432-L434 — template<typename BasicJsonType, typename CompatibleType>
+- is_constructible_tuple · class · L436-L437 — template<typename T1, typename T2>
+- is_ordered_map · class · L444-L458 — template <typename T>
+- two · class · L449-L452 — struct two
+- test · function · L454-L454 — template <typename C> static one test( decltype(&C::capacity) ) ;
+- test · function · L455-L455 — template <typename C> static two test(...);
+- conditional_static_cast · function · L461-L465 — template < typename T, typename U, enable_if_t < !std::is_same<T, U>::value, int > = 0 >
+- conditional_static_cast · function · L467-L471 — template<typename T, typename U, enable_if_t<std::is_same<T, U>::value, int> = 0>

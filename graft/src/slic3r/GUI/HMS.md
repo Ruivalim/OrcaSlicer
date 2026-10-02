@@ -1,0 +1,29 @@
+# src/slic3r/GUI/HMS.hpp
+
+- MachineObject · class · L21-L21 — class MachineObject;
+- HMSQuery · class · L29-L79 — class HMSQuery
+- HMSQuery · function · L40-L40 — HMSQuery() { }
+- clear_hms_info · function · L45-L45 — void      clear_hms_info();
+- query_hms_msg · function · L48-L48 — wxString  query_hms_msg(const MachineObject* obj, const std::string& long_error_code);
+- query_hms_msg · function · L49-L49 — wxString  query_hms_msg(const std::string& dev_id, const std::string& long_error_code);
+- is_internal_error · function · L51-L51 — bool      is_internal_error(const MachineObject *obj, int print_error);
+- query_print_error_msg · function · L52-L52 — wxString  query_print_error_msg(const MachineObject* obj, int print_error);
+- query_print_error_msg · function · L53-L53 — wxString  query_print_error_msg(const std::string& dev_id, int print_error);
+- query_print_image_action · function · L54-L54 — wxString  query_print_image_action(const MachineObject* obj, int print_error, std::vector<int>& button_action);
+- query_image_from_local · function · L57-L57 — wxImage   query_image_from_local(const wxString& image_name);
+- hms_language_code · function · L60-L60 — static std::string hms_language_code();
+- build_query_params · function · L61-L61 — static std::string build_query_params(std::string& lang);
+- init_hms_info · function · L65-L65 — void init_hms_info(const std::string& dev_type_id);
+- copy_from_data_dir_to_local · function · L66-L66 — void copy_from_data_dir_to_local();
+- download_hms_related · function · L67-L67 — int  download_hms_related(const std::string& hms_type, const std::string& dev_id_type, nlohmann::json* receive_json);
+- load_from_local · function · L68-L68 — int  load_from_local(const std::string& hms_type, const std::string& dev_id_type, nlohmann::json* receive_json, std::string& version_info);
+- save_to_local · function · L69-L69 — int  save_to_local(std::string lang, std::string hms_type, std::string dev_id_type, nlohmann::json save_json);
+- get_hms_file · function · L70-L70 — std::string get_hms_file(std::string hms_type, std::string lang = std::string("en"), std::string dev_id_type = "");
+- get_dev_id_type · function · L73-L73 — std::string get_dev_id_type(const MachineObject* obj) const;
+- _query_hms_msg · function · L74-L74 — wxString _query_hms_msg(const std::string& dev_id_type, const std::string& long_error_code, const std::string& lang_code = std::string("en"));
+- _is_internal_error · function · L76-L76 — bool     _is_internal_error(const std::string &dev_id_type, const std::string &long_error_code, const std::string &lang_code = std::string("en"));
+- _query_error_msg · function · L77-L77 — wxString _query_error_msg(const std::string& dev_id_type, const std::string& long_error_code, const std::string& lang_code = std::string("en"));
+- _query_error_image_action · function · L78-L78 — wxString _query_error_image_action(const std::string& dev_id_type, const std::string& long_error_code, std::vector<int>& button_action);
+- get_hms_info_version · function · L81-L81 — int get_hms_info_version(std::string &version);
+- get_hms_wiki_url · function · L83-L83 — std::string get_hms_wiki_url(std::string code);
+- get_error_message · function · L85-L85 — std::string get_error_message(int error_code);

@@ -1,0 +1,39 @@
+# src/slic3r/GUI/Preferences.hpp
+
+- PreferencesTab · type · L33-L33 — enum class PreferencesTab { General, Control, Graphics, Online };
+- PreferencesDialog · class · L35-L131 — class PreferencesDialog : public DPIDialog
+- seq_top_layer_only_changed · function · L52-L52 — bool seq_top_layer_only_changed() const { return m_seq_top_layer_only_changed; }
+- recreate_GUI · function · L53-L53 — bool recreate_GUI() const { return m_recreate_GUI; }
+- pending_language · function · L54-L54 — const std::string& pending_language() const { return m_pending_language; }
+- on_dpi_changed · function · L55-L55 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- PreferencesDialog · function · L58-L63 — PreferencesDialog(wxWindow *      parent,
+- select_tab · function · L67-L67 — void select_tab(PreferencesTab tab, const std::string& option = {});   // and scrolls a combobox option's row into view, focused
+- create · function · L72-L72 — void      create();
+- create_item_title · function · L93-L93 — wxBoxSizer *create_item_title(wxString title);
+- create_item_label · function · L94-L94 — wxBoxSizer *create_item_label(wxString label, const wxString tooltip = "", const wxString wiki_url = "");
+- create_item_combobox · function · L95-L95 — wxBoxSizer *create_item_combobox(wxString title, wxString tooltip, std::string param, std::vector<wxString> vlist, std::function<void(wxString)> onchange = {}, const wxString wiki_url = "");
+- create_item_combobox · function · L96-L96 — wxBoxSizer *create_item_combobox(wxString title, wxString tooltip, std::string param, std::vector<wxString> vlist, std::vector<std::string> config_name_index, const wxString wiki_url = "");
+- create_item_region_combobox · function · L97-L97 — wxBoxSizer *create_item_region_combobox(wxString title, wxString tooltip);
+- create_item_language_combobox · function · L98-L98 — wxBoxSizer *create_item_language_combobox(wxString title, wxString tooltip);
+- create_item_loglevel_combobox · function · L99-L99 — wxBoxSizer *create_item_loglevel_combobox(wxString title, wxString tooltip, std::vector<wxString> vlist);
+- create_item_checkbox · function · L100-L100 — wxBoxSizer *create_item_checkbox(wxString title, wxString tooltip, std::string param, const wxString secondary_title = "", const wxString wiki_url = "");
+- create_item_darkmode · function · L101-L101 — wxBoxSizer *create_item_darkmode(wxString title,wxString tooltip, std::string param);
+- set_dark_mode · function · L102-L102 — void set_dark_mode();
+- create_item_button · function · L103-L103 — wxBoxSizer *create_item_button(wxString title, wxString title2, wxString tooltip, wxString tooltip2, std::function<void()> onclick, const wxString wiki_url = "");
+- create_item_downloads · function · L104-L104 — wxBoxSizer *create_item_downloads(wxString title, wxString tooltip);
+- create_item_input · function · L105-L105 — wxBoxSizer *create_item_input(wxString title, wxString title2, wxString tooltip, std::string param, std::function<void(wxString)> onchange = {}, const wxString wiki_url = "");
+- create_item_spinctrl · function · L106-L106 — wxBoxSizer *create_item_spinctrl(wxString title, wxString title2, wxString side_label, wxString tooltip, std::string param, int min, int max, std::function<void(int)> onchange = nullptr, const wxString wiki_url = "");
+- create_camera_orbit_mult_input · function · L107-L107 — wxBoxSizer *create_camera_orbit_mult_input(wxString title, wxString tooltip);
+- create_item_decimal_input · function · L108-L108 — wxBoxSizer *create_item_decimal_input(wxString title, wxString title2, wxString tooltip, std::string param, double min, double max, int decimals, const wxString wiki_url = "");
+- create_item_backup · function · L109-L109 — wxBoxSizer *create_item_backup(wxString title, wxString tooltip);
+- create_item_auto_reslice · function · L110-L110 — wxBoxSizer *create_item_auto_reslice(wxString title, wxString checkbox_tooltip, wxString delay_tooltip);
+- create_item_bambu_cloud · function · L111-L111 — wxBoxSizer *create_item_bambu_cloud(wxString title, wxString tooltip);
+- create_item_network_plugin_version · function · L112-L112 — wxBoxSizer *create_item_network_plugin_version(wxString title, wxString tooltip);
+- create_item_link_association · function · L114-L114 — wxBoxSizer *create_item_link_association(wxString url_prefix, wxString website_name);
+- create_items · function · L117-L117 — void create_items();
+- create_sync_page · function · L118-L118 — void create_sync_page();
+- create_debug_page · function · L119-L119 — wxBoxSizer* create_debug_page();
+- UpdateSidebarLayout · function · L121-L121 — void UpdateSidebarLayout();
+- create_select_domain_widget · function · L124-L124 — void create_select_domain_widget();
+- Split · function · L126-L126 — void Split(const std::string &src, const std::string &separator, std::vector<wxString> &dest);
+- create_item_combobox_base · function · L130-L130 — std::tuple<wxBoxSizer*, ComboBox*> create_item_combobox_base(wxString title, wxString tooltip, std::string param, std::vector<wxString> vlist, unsigned int current_index, const wxString wiki_url = "");

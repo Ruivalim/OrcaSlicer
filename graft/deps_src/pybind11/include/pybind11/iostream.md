@@ -1,0 +1,23 @@
+# deps_src/pybind11/include/pybind11/iostream.h
+
+- PYBIND11_NAMESPACE_BEGIN · function · L34-L53 — PYBIND11_NAMESPACE_BEGIN(PYBIND11_NAMESPACE)
+- overflow · function · L47-L47 — int overflow(int c) override
+- utf8_remainder · function · L58-L61 — size_t utf8_remainder() const
+- pbase · function · L59-L59 — const auto rbase = std::reverse_iterator<char *>(pbase());
+- pptr · function · L60-L60 — const auto rpptr = std::reverse_iterator<char *>(pptr());
+- find_if · function · L72-L72 — const auto leading = std::find_if(rpptr, rpend, is_leading);
+- _sync · function · L94-L115 — int _sync()
+- line · function · L102-L102 — str line(pbase(), size - remainder);
+- sync · function · L117-L117 — int sync() override { return _sync(); }
+- d_buffer · function · L120-L161 — explicit pythonbuf(const object &pyostream, size_t buffer_size = 1024)
+- pythonbuf · function · L120-L120 — explicit pythonbuf(const object &pyostream, size_t buffer_size = 1024)
+- attr · function · L121-L121 — : buf_size(buffer_size), d_buffer(new char[buf_size]), pywrite(pyostream.attr("write")),
+- attr · function · L122-L161 — pyflush(pyostream.attr("flush"))
+- buffer · function · L169-L169 — : costream(costream), buffer(pyostream)
+- OstreamRedirect · function · L210-L210 — explicit OstreamRedirect(bool do_stdout = true, bool do_stderr = true)
+- reset · function · L210-L215 — explicit OstreamRedirect(bool do_stdout = true, bool do_stderr = true)
+- do_stderr_ · function · L211-L211 — : do_stdout_(do_stdout), do_stderr_(do_stderr) {}
+- enter · function · L213-L213 — void enter()
+- scoped_ostream_redirect · function · L215-L215 — redirect_stdout.reset(new scoped_ostream_redirect());
+- exit · function · L222-L225 — void exit()
+- add_ostream_redirect · function · L258-L258 — add_ostream_redirect(module_ m, const std::string &name = "ostream_redirect")

@@ -1,0 +1,22 @@
+# deps_src/admesh/connect.cpp
+
+- HashEdge · class · L39-L121 — struct HashEdge
+- hash · function · L45-L45 — int  hash(int M) const { return ((key[0] / 11 + key[1] / 7 + key[2] / 3) ^ (key[3] / 11  + key[4] / 7 + key[5] / 3)) % M; }
+- load_exact · function · L54-L85 — void load_exact(stl_file *stl, const stl_vertex *a, const stl_vertex *b)
+- load_nearby · function · L87-L114 — bool load_nearby(const stl_file *stl, const stl_vertex &a, const stl_vertex &b, float tolerance)
+- Vec3i32 · type · L90-L90 — typedef Eigen::Matrix<int32_t,  3, 1, Eigen::DontAlign> Vec3i32;
+- vertex_lower · function · L117-L120 — inline bool vertex_lower(const stl_vertex &a, const stl_vertex &b)
+- HashTableEdges · class · L123-L427 — struct HashTableEdges
+- HashTableEdges · function · L124-L131 — HashTableEdges(size_t number_of_faces)
+- insert_edge_exact · function · L141-L144 — void insert_edge_exact(stl_file *stl, const HashEdge &edge)
+- insert_edge_nearby · function · L146-L149 — void insert_edge_nearby(stl_file *stl, const HashEdge &edge)
+- hash_size_from_nr_faces · function · L164-L172 — static inline size_t hash_size_from_nr_faces(const size_t nr_faces)
+- insert_edge · function · L176-L234 — template<typename MatchNeighbors>
+- edges_equal · function · L237-L240 — static inline bool edges_equal(const HashEdge &edge_a, const HashEdge &edge_b)
+- record_neighbors · function · L243-L275 — static void record_neighbors(stl_file *stl, const HashEdge &edge_a, const HashEdge &edge_b)
+- match_neighbors_nearby · function · L277-L426 — static void match_neighbors_nearby(stl_file *stl, const HashEdge &edge_a, const HashEdge &edge_b)
+- stl_check_facets_exact · function · L432-L479 — void stl_check_facets_exact(stl_file *stl)
+- stl_check_facets_nearby · function · L481-L506 — void stl_check_facets_nearby(stl_file *stl, float tolerance)
+- stl_remove_unconnected_facets · function · L508-L650 — void stl_remove_unconnected_facets(stl_file *stl)
+- stl_fill_holes · function · L652-L731 — void stl_fill_holes(stl_file *stl)
+- stl_add_facet · function · L733-L743 — void stl_add_facet(stl_file *stl, const stl_facet *new_facet)

@@ -1,0 +1,46 @@
+# src/slic3r/GUI/Gizmos/GLGizmoMmuSegmentation.hpp
+
+- GLMmSegmentationGizmo3DScene · class · L9-L64 — class GLMmSegmentationGizmo3DScene
+- GLMmSegmentationGizmo3DScene · function · L12-L12 — GLMmSegmentationGizmo3DScene() = delete;
+- GLMmSegmentationGizmo3DScene · function · L14-L16 — explicit GLMmSegmentationGizmo3DScene(size_t triangle_indices_buffers_count)
+- has_VBOs · function · L20-L24 — [[nodiscard]] inline bool has_VBOs(size_t triangle_indices_idx) const
+- release_geometry · function · L27-L27 — void release_geometry();
+- finalize_vertices · function · L30-L30 — void finalize_vertices();
+- finalize_triangle_indices · function · L33-L33 — void finalize_triangle_indices();
+- clear · function · L35-L45 — void clear()
+- render · function · L47-L47 — void render(size_t triangle_indices_idx) const;
+- GLGizmoMmuSegmentation · class · L66-L171 — class GLGizmoMmuSegmentation : public GLGizmoPainterBase
+- GLGizmoMmuSegmentation · function · L69-L69 — GLGizmoMmuSegmentation(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- render_painter_gizmo · function · L72-L72 — void render_painter_gizmo() override;
+- data_changed · function · L74-L74 — void data_changed(bool is_serializing) override;
+- get_cursor_radius_min · function · L81-L81 — const float get_cursor_radius_min() const override { return CursorRadiusMin; }
+- on_number_key_down · function · L84-L84 — bool on_number_key_down(int number);
+- on_tool_shortcut · function · L85-L85 — bool on_tool_shortcut(Shortcut shortcut) override;
+- get_cursor_hover_color · function · L89-L89 — ColorRGBA get_cursor_hover_color() const override;
+- on_set_state · function · L90-L90 — void on_set_state() override;
+- get_left_button_state_type · function · L92-L92 — EnforcerBlockerType get_left_button_state_type() const override { return EnforcerBlockerType(m_selected_extruder_idx + 1); }
+- get_right_button_state_type · function · L93-L93 — EnforcerBlockerType get_right_button_state_type() const override { return EnforcerBlockerType(-1); }
+- on_render_input_window · function · L95-L95 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_get_name · function · L96-L96 — std::string on_get_name() const override;
+- render_tooltip_button · function · L97-L97 — void render_tooltip_button(float x, float y);
+- on_is_selectable · function · L98-L98 — bool on_is_selectable() const override;
+- on_is_activable · function · L99-L99 — bool on_is_activable() const override;
+- handle_snapshot_action_name · function · L101-L101 — wxString handle_snapshot_action_name(bool shift_down, Button button_down) const override;
+- get_gizmo_entering_text · function · L103-L103 — std::string get_gizmo_entering_text() const override { return _u8L("Entering color painting"); }
+- get_gizmo_leaving_text · function · L104-L104 — std::string get_gizmo_leaving_text() const override { return _u8L("Leaving color painting"); }
+- get_action_snapshot_name · function · L105-L105 — std::string get_action_snapshot_name() const override { return _u8L("Color painting editing"); }
+- on_init · function · L128-L128 — bool on_init() override;
+- update_model_object · function · L131-L131 — void update_model_object() override;
+- update_from_model_object · function · L133-L133 — void update_from_model_object(bool first_update = false) override;
+- tool_changed · function · L134-L134 — void tool_changed(wchar_t old_tool, wchar_t new_tool);
+- on_opening · function · L136-L136 — void on_opening() override;
+- on_shutdown · function · L137-L137 — void on_shutdown() override;
+- get_painter_type · function · L138-L138 — PainterGizmoType get_painter_type() const override;
+- init_model_triangle_selectors · function · L140-L140 — void init_model_triangle_selectors();
+- draw_color_button · function · L143-L143 — bool draw_color_button(int idx, const char* id_str, const ColorRGBA& color, ColorRGBA& map_color, bool active, float scale);
+- gradient_of · function · L146-L146 — const std::vector<wxColour>* gradient_of(int idx) const
+- update_triangle_selectors_colors · function · L152-L152 — void update_triangle_selectors_colors();
+- init_extruders_data · function · L153-L153 — void init_extruders_data();
+- remap_filament_assignments · function · L156-L156 — void remap_filament_assignments();
+- render_filament_remap_ui · function · L157-L157 — void render_filament_remap_ui(float window_width, float max_tooltip_width, float scale);
+- update_used_filaments · function · L159-L159 — void update_used_filaments();

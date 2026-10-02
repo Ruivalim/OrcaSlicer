@@ -1,0 +1,98 @@
+# deps_src/agg/agg_path_storage.h
+
+- block_scale_e · type · L35-L41 — enum block_scale_e
+- value_type · type · L43-L43 — typedef T value_type;
+- T · type · L44-L44 — typedef vertex_block_storage<T, BlockShift, BlockPool> self_type;
+- remove_all · function · L51-L51 — void remove_all();
+- free_all · function · L52-L52 — void free_all();
+- add_vertex · function · L54-L54 — void add_vertex(double x, double y, unsigned cmd);
+- modify_vertex · function · L55-L55 — void modify_vertex(unsigned idx, double x, double y);
+- modify_vertex · function · L56-L56 — void modify_vertex(unsigned idx, double x, double y, unsigned cmd);
+- modify_command · function · L57-L57 — void modify_command(unsigned idx, unsigned cmd);
+- swap_vertices · function · L58-L58 — void swap_vertices(unsigned v1, unsigned v2);
+- last_command · function · L60-L98 — unsigned last_command() const;
+- last_vertex · function · L61-L61 — unsigned last_vertex(double* x, double* y) const;
+- prev_vertex · function · L62-L62 — unsigned prev_vertex(double* x, double* y) const;
+- last_x · function · L64-L64 — double last_x() const;
+- last_y · function · L65-L65 — double last_y() const;
+- total_vertices · function · L67-L67 — unsigned total_vertices() const;
+- vertex · function · L68-L68 — unsigned vertex(unsigned idx, double* x, double* y) const;
+- command · function · L69-L69 — unsigned command(unsigned idx) const;
+- storage_ptrs · function · L73-L73 — int8u* storage_ptrs(T** xy_ptr);
+- free_all · function · L86-L86 — void vertex_block_storage<T,S,P>::free_all()
+- m_data · function · L365-L375 — poly_plain_adaptor(const T* data, unsigned num_points, bool closed) :
+- m_stop · function · L370-L370 — m_stop(false)
+- init · function · L373-L373 — void init(const T* data, unsigned num_points, bool closed)
+- rewind · function · L382-L386 — void rewind(unsigned)
+- vertex · function · L388-L404 — unsigned vertex(double* x, double* y)
+- init · function · L438-L444 — void init(const Container& data, bool closed)
+- rewind · function · L446-L450 — void rewind(unsigned)
+- vertex · function · L452-L469 — unsigned vertex(double* x, double* y)
+- init · function · L500-L506 — void init(Container& data, bool closed)
+- rewind · function · L508-L512 — void rewind(unsigned)
+- vertex · function · L514-L531 — unsigned vertex(double* x, double* y)
+- m_line · function · L552-L552 — m_line(m_coord, 2, false)
+- init · function · L560-L567 — void init(double x1, double y1, double x2, double y2)
+- rewind · function · L569-L572 — void rewind(unsigned)
+- vertex · function · L574-L577 — unsigned vertex(double* x, double* y)
+- self_type · type · L612-L612 — typedef path_base<VertexContainer> self_type;
+- remove_all · function · L616-L616 — void remove_all() { m_vertices.remove_all(); m_iterator = 0; }
+- free_all · function · L617-L617 — void free_all()   { m_vertices.free_all();   m_iterator = 0; }
+- start_new_path · function · L621-L621 — unsigned start_new_path();
+- move_to · function · L623-L623 — void move_to(double x, double y);
+- move_rel · function · L624-L624 — void move_rel(double dx, double dy);
+- line_to · function · L626-L626 — void line_to(double x, double y);
+- line_rel · function · L627-L627 — void line_rel(double dx, double dy);
+- hline_to · function · L629-L629 — void hline_to(double x);
+- hline_rel · function · L630-L630 — void hline_rel(double dx);
+- vline_to · function · L632-L632 — void vline_to(double y);
+- vline_rel · function · L633-L633 — void vline_rel(double dy);
+- arc_to · function · L635-L639 — void arc_to(double rx, double ry,
+- arc_rel · function · L641-L645 — void arc_rel(double rx, double ry,
+- curve3 · function · L647-L648 — void curve3(double x_ctrl, double y_ctrl,
+- curve3_rel · function · L650-L651 — void curve3_rel(double dx_ctrl, double dy_ctrl,
+- curve3 · function · L653-L653 — void curve3(double x_to, double y_to);
+- curve3_rel · function · L655-L655 — void curve3_rel(double dx_to, double dy_to);
+- curve4 · function · L657-L659 — void curve4(double x_ctrl1, double y_ctrl1,
+- curve4_rel · function · L661-L663 — void curve4_rel(double dx_ctrl1, double dy_ctrl1,
+- curve4 · function · L665-L666 — void curve4(double x_ctrl2, double y_ctrl2,
+- curve4_rel · function · L668-L669 — void curve4_rel(double x_ctrl2, double y_ctrl2,
+- end_poly · function · L672-L672 — void end_poly(unsigned flags = path_flags_close);
+- close_polygon · function · L673-L673 — void close_polygon(unsigned flags = path_flags_none);
+- vertices · function · L677-L677 — const container_type& vertices() const { return m_vertices; }
+- total_vertices · function · L680-L729 — unsigned total_vertices() const;
+- rel_to_abs · function · L682-L682 — void rel_to_abs(double* x, double* y) const;
+- last_vertex · function · L684-L684 — unsigned last_vertex(double* x, double* y) const;
+- prev_vertex · function · L685-L685 — unsigned prev_vertex(double* x, double* y) const;
+- last_x · function · L687-L687 — double last_x() const;
+- last_y · function · L688-L688 — double last_y() const;
+- vertex · function · L690-L690 — unsigned vertex(unsigned idx, double* x, double* y) const;
+- command · function · L691-L691 — unsigned command(unsigned idx) const;
+- concat_path · function · L721-L721 — void concat_path(VertexSource& vs, unsigned path_id = 0)
+- vertex · function · L726-L726 — while(!is_stop(cmd = vs.vertex(&x, &y)))
+- poly · function · L780-L784 — template<class T> void concat_poly(const T* data,
+- poly · function · L790-L794 — template<class T> void join_poly(const T* data,
+- translate · function · L799-L799 — void translate(double dx, double dy, unsigned path_id=0);
+- translate_all_paths · function · L800-L800 — void translate_all_paths(double dx, double dy);
+- align_path · function · L842-L842 — unsigned align_path(unsigned idx = 0)
+- align_all_paths · function · L870-L873 — void align_all_paths()
+- perceive_polygon_orientation · function · L877-L877 — unsigned perceive_polygon_orientation(unsigned start, unsigned end);
+- invert_polygon · function · L878-L878 — void     invert_polygon(unsigned start, unsigned end);
+- a · function · L1006-L1006 — bezier_arc_svg a(x0, y0, rx, ry, angle, large_arc_flag, sweep_flag, x, y);
+- vertex_type · type · L1462-L1462 — typedef typename vertex_type::value_type value_type;
+- remove_all · function · L1464-L1464 — void remove_all() { m_vertices.clear(); }
+- free_all · function · L1465-L1465 — void free_all()   { m_vertices.clear(); }
+- add_vertex · function · L1467-L1472 — void add_vertex(double x, double y, unsigned cmd)
+- modify_vertex · function · L1474-L1479 — void modify_vertex(unsigned idx, double x, double y)
+- modify_vertex · function · L1481-L1487 — void modify_vertex(unsigned idx, double x, double y, unsigned cmd)
+- modify_command · function · L1489-L1492 — void modify_command(unsigned idx, unsigned cmd)
+- swap_vertices · function · L1494-L1499 — void swap_vertices(unsigned v1, unsigned v2)
+- last_command · function · L1501-L1501 — unsigned last_command() const
+- last_vertex · function · L1508-L1516 — unsigned last_vertex(double* x, double* y) const
+- prev_vertex · function · L1518-L1526 — unsigned prev_vertex(double* x, double* y) const
+- last_x · function · L1528-L1528 — double last_x() const
+- last_y · function · L1533-L1533 — double last_y() const
+- total_vertices · function · L1538-L1538 — unsigned total_vertices() const
+- vertex · function · L1543-L1549 — unsigned vertex(unsigned idx, double* x, double* y) const
+- command · function · L1551-L1554 — unsigned command(unsigned idx) const
+- path_storage · type · L1561-L1561 — typedef path_base<vertex_block_storage<double> > path_storage;

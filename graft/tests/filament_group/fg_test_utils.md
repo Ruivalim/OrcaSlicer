@@ -1,0 +1,25 @@
+# tests/filament_group/fg_test_utils.hpp
+
+- TestRng · class · L12-L42 — class TestRng
+- TestRng · function · L14-L14 — explicit TestRng(int seed) : m_gen(seed) {}
+- rand_int · function · L16-L19 — int rand_int(int lo, int hi)
+- dist · function · L17-L17 — std::uniform_int_distribution<int> dist(lo, hi);
+- rand_float · function · L21-L24 — float rand_float(float lo, float hi)
+- dist · function · L22-L22 — std::uniform_real_distribution<float> dist(lo, hi);
+- rand_double · function · L26-L29 — double rand_double(double lo, double hi)
+- dist · function · L27-L27 — std::uniform_real_distribution<double> dist(lo, hi);
+- rand_bool · function · L31-L33 — bool rand_bool(double prob = 0.5)
+- shuffle · function · L35-L38 — template<typename T>
+- generate_flush_matrix · function · L45-L56 — inline std::vector<std::vector<float>> generate_flush_matrix(int filament_count, TestRng& rng)
+- generate_layer_filaments_interval · function · L59-L113 — inline std::vector<std::vector<unsigned int>> generate_layer_filaments_interval(
+- generate_layer_filaments_chaotic · function · L116-L133 — inline std::vector<std::vector<unsigned int>> generate_layer_filaments_chaotic(
+- generate_layer_filaments_uniform · function · L136-L140 — inline std::vector<std::vector<unsigned int>> generate_layer_filaments_uniform(
+- generate_filament_info · function · L143-L158 — inline std::vector<FilamentGroupUtils::FilamentInfo> generate_filament_info(int count, TestRng& rng)
+- generate_machine_filament_info · function · L161-L183 — inline std::vector<std::vector<FilamentGroupUtils::MachineFilamentInfo>> generate_machine_filament_info(
+- build_config_a · function · L188-L206 — inline void build_config_a(FilamentGroupContext& ctx, int num_filaments, TestRng& rng)
+- build_config_b · function · L209-L239 — inline void build_config_b(FilamentGroupContext& ctx, int num_filaments, int k_nozzles, TestRng& rng)
+- build_config_c · function · L242-L268 — inline void build_config_c(FilamentGroupContext& ctx, int num_filaments, int k_nozzles, TestRng& rng)
+- inject_unprintable_constraints · function · L273-L296 — inline void inject_unprintable_constraints(FilamentGroupContext& ctx,
+- inject_volume_constraints · function · L299-L330 — inline void inject_volume_constraints(FilamentGroupContext& ctx,
+- build_test_case · function · L334-L401 — inline TestCase build_test_case(const std::string& id, const std::string& config_type,
+- rng · function · L338-L338 — TestRng rng(seed);

@@ -1,0 +1,41 @@
+# deps_src/mcut/include/mcut/internal/bvh.h
+
+- expandBits · function · L37-L37 — extern unsigned int expandBits(unsigned int v);
+- morton3D · function · L40-L40 — extern unsigned int morton3D(float x, float y, float z);
+- node_pair_t · type · L45-L49 — typedef struct
+- clz · function · L52-L52 — extern unsigned int clz(unsigned int x);
+- next_power_of_two · function · L55-L55 — extern int next_power_of_two(int x);
+- is_power_of_two · function · L58-L58 — extern bool is_power_of_two(int x);
+- ilog2 · function · L61-L61 — extern int ilog2(unsigned int x);
+- get_leaf_level_from_real_leaf_count · function · L64-L64 — extern int get_leaf_level_from_real_leaf_count(const int t);
+- get_level_from_implicit_idx · function · L67-L67 — extern int get_level_from_implicit_idx(const int bvhNodeImplicitIndex);
+- flp2 · function · L70-L70 — extern unsigned int flp2(unsigned int x);
+- get_ostensibly_implicit_bvh_size · function · L73-L73 — extern int get_ostensibly_implicit_bvh_size(const int t);
+- get_level_leftmost_node · function · L76-L76 — extern int get_level_leftmost_node(const int node_level);
+- get_rightmost_real_leaf · function · L79-L79 — extern int get_rightmost_real_leaf(const int bvhLeafLevelIndex, const int num_real_leaf_nodes_in_bvh);
+- is_real_implicit_tree_node_id · function · L82-L82 — extern bool is_real_implicit_tree_node_id(const int bvhNodeImplicitIndex, const int num_real_leaf_nodes_in_bvh);
+- get_level_rightmost_real_node · function · L85-L88 — extern int get_level_rightmost_real_node(
+- get_node_ancestor · function · L91-L94 — extern int get_node_ancestor(
+- get_node_mem_index · function · L97-L101 — extern int get_node_mem_index(
+- intersectOIBVHs · function · L113-L118 — extern void intersectOIBVHs(
+- BBox · type · L120-L120 — typedef bounding_box_t<vec3> BBox;
+- Union · function · L121-L126 — static inline BBox Union(const BBox& a, const BBox& b)
+- Union · function · L128-L133 — static inline BBox Union(const BBox& a, const vec3& b)
+- class · type · L135-L198 — enum class SplitMethod
+- BVHPrimitiveInfo · class · L144-L155 — struct BVHPrimitiveInfo
+- BVHBuildNode · class · L167-L193 — struct BVHBuildNode
+- CompareToMid · class · L200-L206 — struct CompareToMid
+- operator · function · L208-L208 — bool operator()(const BVHPrimitiveInfo& a) const
+- ComparePoints · class · L214-L216 — struct ComparePoints
+- operator · function · L217-L217 — bool operator()(const BVHPrimitiveInfo& a,
+- BucketInfo · class · L224-L228 — struct BucketInfo
+- CompareToBucket · class · L230-L246 — struct CompareToBucket
+- operator · function · L240-L240 — bool operator()(const BVHPrimitiveInfo& p) const
+- LinearBVHNode · class · L258-L267 — struct LinearBVHNode
+- buildTree · function · L277-L278 — void buildTree(const hmesh_t& mesh_,
+- flattenBVHTree · function · L282-L284 — const BBox& GetPrimitiveBBox(int primitiveIndex) const;
+- GetPrimitiveBBox · function · L282-L282 — const BBox& GetPrimitiveBBox(int primitiveIndex) const;
+- GetNodeCount · function · L299-L299 — int GetNodeCount() const;
+- GetNode · function · L301-L301 — const std::shared_ptr<LinearBVHNode>& GetNode(int idx) const;
+- GetPrimitive · function · L303-L303 — const fd_t& GetPrimitive(int index) const;
+- intersectBVHTrees · function · L305-L307 — static void intersectBVHTrees(

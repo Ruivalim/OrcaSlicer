@@ -1,0 +1,27 @@
+# src/libslic3r/CAD/SketchConstraints.hpp
+
+- SketchConstraints · class · L10-L64 — class SketchConstraints
+- add_point · function · L12-L12 — int   add_point(double x, double y);
+- set_point · function · L13-L13 — void  set_point(int id, double x, double y);
+- get_point · function · L14-L14 — Vec2d get_point(int id) const;
+- point_count · function · L15-L15 — int   point_count() const;
+- fix_point · function · L17-L17 — void fix_point(int id);
+- coincident · function · L18-L18 — void coincident(int a, int b);
+- horizontal · function · L19-L19 — void horizontal(int a, int b);
+- vertical · function · L20-L20 — void vertical(int a, int b);
+- distance · function · L21-L21 — void distance(int a, int b, double d);
+- lock_x · function · L22-L22 — void lock_x(int id, double x);
+- lock_y · function · L23-L23 — void lock_y(int id, double y);
+- equal_length · function · L24-L24 — void equal_length(int a, int b, int c, int d);
+- parallel · function · L25-L25 — void parallel(int a, int b, int c, int d);
+- perpendicular · function · L26-L26 — void perpendicular(int a, int b, int c, int d);
+- midpoint · function · L27-L27 — void midpoint(int m, int a, int b);
+- symmetric · function · L28-L28 — void symmetric(int a, int b, int c, int d);
+- angle · function · L29-L29 — void angle(int a, int b, int c, int d, double radians);
+- point_line_distance · function · L30-L30 — void point_line_distance(int p, int a, int b, double dist);
+- solve · function · L32-L32 — bool   solve(int max_iter = 200, double tol = 1e-10);
+- residual_norm · function · L33-L33 — double residual_norm() const;
+- ConType · type · L38-L53 — enum ConType : int
+- Con · class · L55-L59 — struct Con
+- residuals · function · L62-L62 — Eigen::VectorXd residuals(const std::vector<double>& v) const;
+- jacobian · function · L63-L63 — Eigen::MatrixXd jacobian(const std::vector<double>& v) const;

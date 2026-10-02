@@ -1,0 +1,41 @@
+# deps_src/mcut/include/mcut/internal/cdt/utils.h
+
+- max · function · L46-L46 — const static std::uint32_t null_neighbour(std::numeric_limits<std::uint32_t>::max());
+- null_neighbour · function · L46-L46 — const static std::uint32_t null_neighbour(std::numeric_limits<std::uint32_t>::max());
+- max · function · L48-L48 — const static std::uint32_t null_vertex(std::numeric_limits<std::uint32_t>::max());
+- null_vertex · function · L48-L48 — const static std::uint32_t null_vertex(std::numeric_limits<std::uint32_t>::max());
+- expand_with_point · function · L57-L60 — void expand_with_point(const vec2_<T>& p)
+- expand_with_point · function · L62-L68 — void expand_with_point(const T x, const T y)
+- edge_t · class · L98-L111 — struct edge_t
+- v1 · function · L116-L116 — inline std::uint32_t v1() const
+- v2 · function · L121-L121 — inline std::uint32_t v2() const
+- verts · function · L126-L126 — inline const std::pair<std::uint32_t, std::uint32_t>& verts() const
+- edge_get_v1 · function · L136-L139 — inline std::uint32_t edge_get_v1(const edge_t& e)
+- edge_get_v2 · function · L142-L145 — inline std::uint32_t edge_get_v2(const edge_t& e)
+- edge_make · function · L148-L151 — inline edge_t edge_make(std::uint32_t iV1, std::uint32_t iV2)
+- triangle_t · class · L160-L175 — struct triangle_t
+- point_to_triangle_location_t · class · L179-L188 — struct point_to_triangle_location_t
+- Enum · type · L181-L187 — enum Enum
+- point_to_line_location_t · class · L191-L198 — struct point_to_line_location_t
+- Enum · type · L193-L197 — enum Enum
+- ccw · function · L223-L226 — inline std::uint32_t ccw(std::uint32_t i)
+- cw · function · L229-L232 — inline std::uint32_t cw(std::uint32_t i)
+- check_on_edge · function · L235-L238 — inline bool check_on_edge(const point_to_triangle_location_t::Enum location)
+- edge_neighbour · function · L242-L246 — inline std::uint32_t edge_neighbour(const point_to_triangle_location_t::Enum location)
+- classify_orientation · function · L260-L260 — classify_orientation(const T orientation, const T orientationTolerance = T(0))
+- get_opposite_neighbour_from_vertex · function · L308-L319 — inline std::uint32_t get_opposite_neighbour_from_vertex(const std::uint32_t vertIndex)
+- opposite_vertex_from_neighbour · function · L321-L330 — inline std::uint32_t opposite_vertex_from_neighbour(const std::uint32_t neighborIndex)
+- opposite_triangle_index · function · L333-L340 — inline std::uint32_t
+- opposite_triangle_index · function · L343-L354 — inline std::uint32_t opposite_triangle_index(
+- get_opposite_vertex_index · function · L357-L364 — inline std::uint32_t
+- get_neighbour_index · function · L367-L374 — inline std::uint32_t
+- get_vertex_index · function · L377-L383 — inline std::uint32_t get_vertex_index(const triangle_t& tri, const std::uint32_t iV)
+- get_opposite_triangle_index · function · L386-L390 — inline std::uint32_t
+- get_opposed_vertex_index · function · L393-L397 — inline std::uint32_t
+- check_vertices_share_edge · function · L416-L422 — inline bool check_vertices_share_edge(const std::vector<std::uint32_t>& aTris, const std::vector<std::uint32_t>& bTris)
+- sqrt · function · L433-L435 — T distance(const T ax, const T ay, const T bx, const T by)
+- operator · function · L462-L462 — std::size_t operator()(const cdt::edge_t& e) const
+- combine_hash_values · function · L468-L468 — static void combine_hash_values(std::size_t& seed, const std::uint32_t& key)
+- get_hashed_edge_index · function · L472-L482 — static std::size_t get_hashed_edge_index(const cdt::edge_t& e)
+- seed1 · function · L475-L475 — std::size_t seed1(0);
+- seed2 · function · L478-L478 — std::size_t seed2(0);

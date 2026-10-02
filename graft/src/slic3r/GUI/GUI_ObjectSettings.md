@@ -1,0 +1,24 @@
+# src/slic3r/GUI/GUI_ObjectSettings.hpp
+
+- wxBoxSizer · class · L11-L11 — class wxBoxSizer;
+- DynamicPrintConfig · class · L14-L14 — class DynamicPrintConfig;
+- ModelConfig · class · L15-L15 — class ModelConfig;
+- ConfigOptionsGroup · class · L17-L17 — class ConfigOptionsGroup;
+- OG_Settings · class · L19-L36 — class OG_Settings
+- OG_Settings · function · L25-L25 — OG_Settings(wxWindow* parent, const bool staticbox);
+- IsShown · function · L28-L28 — virtual bool        IsShown();
+- Show · function · L29-L29 — virtual void        Show(const bool show);
+- Hide · function · L30-L30 — virtual void        Hide();
+- UpdateAndShow · function · L31-L31 — virtual void        UpdateAndShow(const bool show);
+- get_sizer · function · L33-L33 — virtual wxSizer*    get_sizer();
+- get_og · function · L34-L34 — ConfigOptionsGroup* get_og() { return m_og.get(); }
+- parent · function · L35-L35 — wxWindow*           parent() const {return m_parent; }
+- TabPrintModel · class · L38-L38 — class TabPrintModel;
+- ObjectSettings · class · L41-L73 — class ObjectSettings : public OG_Settings
+- ObjectSettings · function · L60-L60 — ObjectSettings(wxWindow* parent);
+- update_settings_list · function · L63-L63 — bool        update_settings_list();
+- add_missed_options · function · L68-L68 — bool        add_missed_options(ModelConfig *config_to, const DynamicPrintConfig &config_from);
+- update_config_values · function · L69-L69 — void        update_config_values(ModelConfig *config, const std::string& changed_opt_key = "");
+- UpdateAndShow · function · L70-L70 — void        UpdateAndShow(const bool show);
+- msw_rescale · function · L71-L71 — void        msw_rescale();
+- sys_color_changed · function · L72-L72 — void        sys_color_changed();

@@ -1,0 +1,23 @@
+# deps_src/expat/xmltok.h
+
+- position · class · L112-L116 — typedef struct position
+- ATTRIBUTE · type · L118-L123 — typedef struct
+- ENCODING · type · L126-L126 — typedef struct encoding ENCODING;
+- XML_Convert_Result · type · L133-L137 — enum XML_Convert_Result
+- encoding · class · L139-L180 — struct encoding
+- XML_Convert_Result · type · L167-L171 — enum XML_Convert_Result (PTRCALL *utf8Convert)(const ENCODING *enc,
+- XML_Convert_Result · type · L172-L176 — enum XML_Convert_Result (PTRCALL *utf16Convert)(const ENCODING *enc,
+- INIT_ENCODING · type · L267-L270 — typedef struct
+- XmlParseXmlDecl · function · L272-L281 — int XmlParseXmlDecl(int isGeneralTextEntity,
+- XmlInitEncoding · function · L283-L283 — int XmlInitEncoding(INIT_ENCODING *, const ENCODING **, const char *name);
+- XmlGetUtf8InternalEncoding · function · L284-L284 — const ENCODING *XmlGetUtf8InternalEncoding(void);
+- XmlGetUtf16InternalEncoding · function · L285-L285 — const ENCODING *XmlGetUtf16InternalEncoding(void);
+- XmlUtf8Encode · function · L286-L286 — int FASTCALL XmlUtf8Encode(int charNumber, char *buf);
+- XmlUtf16Encode · function · L287-L287 — int FASTCALL XmlUtf16Encode(int charNumber, unsigned short *buf);
+- XmlSizeOfUnknownEncoding · function · L288-L288 — int XmlSizeOfUnknownEncoding(void);
+- XmlInitUnknownEncoding · function · L294-L297 — XmlInitUnknownEncoding(void *mem,
+- XmlParseXmlDeclNS · function · L299-L308 — int XmlParseXmlDeclNS(int isGeneralTextEntity,
+- XmlInitEncodingNS · function · L310-L310 — int XmlInitEncodingNS(INIT_ENCODING *, const ENCODING **, const char *name);
+- XmlGetUtf8InternalEncodingNS · function · L311-L311 — const ENCODING *XmlGetUtf8InternalEncodingNS(void);
+- XmlGetUtf16InternalEncodingNS · function · L312-L312 — const ENCODING *XmlGetUtf16InternalEncodingNS(void);
+- XmlInitUnknownEncodingNS · function · L314-L317 — XmlInitUnknownEncodingNS(void *mem,

@@ -1,0 +1,28 @@
+# src/slic3r/GUI/Gizmos/GLGizmoSketch.hpp
+
+- SketchTool · type · L12-L12 — enum class SketchTool { Line, Rectangle, Circle, Polygon, COUNT };
+- GLGizmoSketch · class · L14-L69 — class GLGizmoSketch : public GLGizmoBase
+- GLGizmoSketch · function · L17-L17 — GLGizmoSketch(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- on_mouse · function · L19-L19 — bool on_mouse(const wxMouseEvent& mouse_event) override;
+- on_init · function · L22-L22 — bool on_init() override;
+- on_get_name · function · L23-L23 — std::string on_get_name() const override;
+- on_is_activable · function · L24-L24 — bool on_is_activable() const override;
+- on_render · function · L25-L25 — void on_render() override;
+- on_set_state · function · L26-L26 — void on_set_state() override;
+- on_get_requirements · function · L27-L27 — CommonGizmosDataID on_get_requirements() const override;
+- on_render_input_window · function · L28-L28 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_load · function · L30-L30 — void on_load(cereal::BinaryInputArchive& ar) override;
+- on_save · function · L31-L31 — void on_save(cereal::BinaryOutputArchive& ar) const override;
+- active_profile · function · L54-L54 — SketchProfile& active_profile();
+- has_closed_profile · function · L55-L55 — bool has_closed_profile() const;
+- build_preset_profile · function · L57-L57 — void build_preset_profile();
+- add_closed_profile · function · L58-L58 — void add_closed_profile();
+- delete_profile · function · L59-L59 — void delete_profile(int idx);
+- clear_all · function · L60-L60 — void clear_all();
+- build_combined_shape · function · L62-L62 — TopoDS_Shape build_combined_shape(); // all profiles as face with holes
+- apply_extrude · function · L63-L63 — void apply_extrude();
+- apply_revolve · function · L64-L64 — void apply_revolve();
+- apply_pocket · function · L65-L65 — void apply_pocket();
+- draw_canvas · function · L66-L66 — void draw_canvas();
+- handle_canvas_click · function · L67-L67 — void handle_canvas_click(ImVec2 pos);
+- snap · function · L68-L68 — Vec2d snap(Vec2d pt) const;

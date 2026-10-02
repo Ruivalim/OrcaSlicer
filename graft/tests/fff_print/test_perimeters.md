@@ -1,0 +1,21 @@
+# tests/fff_print/test_perimeters.cpp
+
+- step_with_ledge · function · L34-L39 — TriangleMesh step_with_ledge()
+- base_config · function · L42-L61 — DynamicPrintConfig base_config(const char *wall_generator)
+- collection_length · function · L63-L70 — double collection_length(const ExtrusionEntityCollection &coll)
+- SliceLengths · class · L74-L77 — struct SliceLengths
+- slice_lengths · function · L79-L92 — SliceLengths slice_lengths(const Print &print)
+- perimeter_length_at · function · L94-L104 — double perimeter_length_at(const Print &print, double print_z)
+- max_difference · function · L107-L115 — double max_difference(const std::vector<double> &a, const std::vector<double> &b)
+- flared_cone · function · L272-L278 — TriangleMesh flared_cone()
+- box_over_cavity · function · L283-L283 — Print &box_over_cavity(Print &print, Model &model, const DynamicPrintConfig &config)
+- unsupported_walls_config · function · L305-L322 — DynamicPrintConfig unsupported_walls_config(const char *wall_generator, bool unsupported_wall_last)
+- unsupported_loop · function · L325-L332 — bool unsupported_loop(const ExtrusionEntity *entity)
+- wall_islands · function · L335-L348 — std::vector<std::vector<const ExtrusionLoop*>> wall_islands(const Print &print)
+- islands_with_a_supported_loop_last · function · L351-L366 — int islands_with_a_supported_loop_last(const Print &print)
+- unsupported_loops · function · L369-L382 — std::vector<const ExtrusionLoop*> unsupported_loops(const Print &print, double print_z = -1.)
+- loops_held_back_for_infill · function · L384-L387 — int loops_held_back_for_infill(const std::vector<const ExtrusionLoop*> &loops)
+- layer_gcode · function · L390-L399 — std::string layer_gcode(const std::string &gcode, double print_z)
+- slab_over_rib · function · L517-L517 — Print &slab_over_rib(Print &print, Model &model, double rib_width, const DynamicPrintConfig &config)
+- printable_rib_config · function · L543-L567 — DynamicPrintConfig printable_rib_config(const char *wall_generator, bool detect_thin_wall)
+- overhang_length_at · function · L570-L599 — double overhang_length_at(const Print &print, double print_z)

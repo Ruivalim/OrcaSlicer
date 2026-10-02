@@ -1,0 +1,27 @@
+# deps_src/qhull/src/qhulltest/QhullFacet_test.cpp
+
+- QhullFacet_test · class · L31-L44 — class QhullFacet_test : public RoadTest
+- cleanup · function · L37-L37 — void cleanup();
+- t_construct_qh · function · L38-L38 — void t_construct_qh();
+- t_constructConvert · function · L39-L39 — void t_constructConvert();
+- t_getSet · function · L40-L40 — void t_getSet();
+- t_value · function · L41-L41 — void t_value();
+- t_foreach · function · L42-L42 — void t_foreach();
+- t_io · function · L43-L43 — void t_io();
+- add_QhullFacet_test · function · L46-L50 — void
+- cleanup · method · L53-L57 — void QhullFacet_test::
+- t_construct_qh · method · L59-L67 — void QhullFacet_test::
+- t_constructConvert · method · L69-L91 — void QhullFacet_test::
+- f · function · L74-L74 — QhullFacet f(q2);
+- t_getSet · method · L93-L191 — void QhullFacet_test::
+- facetList · function · L130-L130 — foreach (QhullFacet f, q.facetList()){  // Qt only
+- foreach · function · L130-L162 — foreach (QhullFacet f, q.facetList()){  // Qt only
+- facetList · function · L180-L180 — foreach(QhullFacet f, q3.facetList()){ //Qt only
+- foreach · function · L180-L188 — foreach(QhullFacet f, q3.facetList()){ //Qt only
+- t_value · method · L193-L213 — void QhullFacet_test::
+- facetList · function · L200-L200 — foreach (QhullFacet f, q.facetList()){  // Qt only
+- foreach · function · L200-L211 — foreach (QhullFacet f, q.facetList()){  // Qt only
+- t_foreach · method · L215-L245 — void QhullFacet_test::
+- facetList · function · L222-L222 — foreach(const QhullFacet f, q.facetList())
+- foreach · function · L222-L242 — foreach(const QhullFacet f, q.facetList())
+- t_io · method · L247-L277 — void QhullFacet_test::

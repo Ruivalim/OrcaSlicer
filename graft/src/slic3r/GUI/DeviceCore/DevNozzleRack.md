@@ -1,0 +1,40 @@
+# src/slic3r/GUI/DeviceCore/DevNozzleRack.h
+
+- RackStatus · type · L25-L39 — enum RackStatus : int
+- RackPos · type · L41-L48 — enum RackPos : int
+- RackCaliStatus · type · L50-L55 — enum RackCaliStatus
+- IsSupported · function · L63-L63 — bool IsSupported() const { return m_is_supported; };
+- SetSupported · function · L64-L64 — void SetSupported(bool supported) { m_is_supported = supported; }
+- GetNozzleSystem · function · L67-L67 — DevNozzleSystem* GetNozzleSystem() const { return m_nozzle_system; }
+- GetPosition · function · L69-L69 — RackPos     GetPosition() const { return m_position; }
+- GetStatus · function · L70-L70 — RackStatus  GetStatus() const { return m_status; }
+- GetCaliStatus · function · L71-L71 — RackCaliStatus GetCaliStatus() const { return m_cali_status;}
+- GetNozzle · function · L73-L73 — DevNozzle GetNozzle(int idx) const;
+- GetRackNozzles · function · L74-L74 — const std::map<int, DevNozzle>& GetRackNozzles() const { return m_rack_nozzles; }
+- HasUnreliableNozzles · function · L77-L83 — bool HasUnreliableNozzles() const;
+- HasUnknownNozzles · function · L78-L78 — bool HasUnknownNozzles() const;
+- GetKnownNozzleCount · function · L79-L79 — int GetKnownNozzleCount() const;
+- GetReadingIdx · function · L82-L82 — int GetReadingIdx() const { return m_nozzle_system->GetReadingIdx(); }
+- GetReadingCount · function · L83-L83 — int GetReadingCount() const { return m_nozzle_system->GetReadingCount(); }
+- SendReadingFinished · function · L84-L84 — void SendReadingFinished();
+- AddNozzleFirmwareInfo · function · L87-L87 — void AddNozzleFirmwareInfo(int nozzle_id, const DevFirmwareVersionInfo& info) { m_rack_nozzles_firmware[nozzle_id] = info; }
+- ClearNozzleFirmwareInfo · function · L88-L88 — void ClearNozzleFirmwareInfo() { m_rack_nozzles_firmware.clear(); }
+- GetNozzleFirmwareInfo · function · L89-L89 — DevFirmwareVersionInfo GetNozzleFirmwareInfo(int nozzle_id) const;
+- Reset · function · L92-L92 — void  Reset();
+- AddRackNozzle · function · L93-L93 — void  AddRackNozzle(DevNozzle& nozzle) { nozzle.SetOnRack(true); m_rack_nozzles[nozzle.m_nozzle_id] = nozzle; };
+- ClearRackNozzles · function · L94-L94 — void  ClearRackNozzles() { m_rack_nozzles.clear(); }
+- ParseRackInfo · function · L97-L97 — void ParseRackInfo(const nlohmann::json& rack_info);
+- CtrlRackPosMove · function · L99-L99 — void CtrlRackPosMove(RackPos new_pos) const;
+- CtrlRackPosGoHome · function · L100-L100 — void CtrlRackPosGoHome() const;
+- CtrlRackConfirmNozzle · function · L102-L102 — void CtrlRackConfirmNozzle(int rack_nozzle_id) const;
+- CtrlRackConfirmAll · function · L103-L103 — void CtrlRackConfirmAll() const;
+- CrtlRackReadNozzle · function · L105-L105 — void CrtlRackReadNozzle(int rack_nozzle_id) const;
+- CtrlRackReadAll · function · L106-L106 — void CtrlRackReadAll(bool gui_check = false) const;
+- CtrlCanReadAll · function · L107-L107 — bool CtrlCanReadAll() const;
+- CtrlRackUpgradeExtruderNozzle · function · L111-L111 — int CtrlRackUpgradeExtruderNozzle() const;
+- CtrlRackUpgradeRackNozzle · function · L112-L112 — int CtrlRackUpgradeRackNozzle(int rack_nozzle_id) const;;
+- CtrlRackUpgradeAll · function · L113-L113 — int CtrlRackUpgradeAll() const;;
+- CtrlCanUpdateAll · function · L114-L114 — bool CtrlCanUpdateAll() const;
+- ParseRackInfoV1_0 · function · L117-L117 — void ParseRackInfoV1_0(const nlohmann::json& rack_info);
+- CtrlRackUpgrade · function · L119-L119 — int CtrlRackUpgrade(const std::string& module_str) const;
+- CheckRackMoveWarningDlg · function · L121-L121 — bool CheckRackMoveWarningDlg() const;

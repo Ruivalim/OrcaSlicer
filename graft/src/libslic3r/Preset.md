@@ -1,0 +1,314 @@
+# src/libslic3r/Preset.hpp
+
+- AppConfig · class · L91-L91 — class AppConfig;
+- PresetBundle · class · L92-L92 — class PresetBundle;
+- generate_preset_setting_id · function · L100-L102 — std::string generate_preset_setting_id(const std::string& vendor,
+- ConfigFileType · type · L104-L110 — enum ConfigFileType
+- get_version_from_json · function · L113-L113 — extern Semver get_version_from_json(std::string file_path);
+- get_values_from_json · function · L115-L115 — extern int get_values_from_json(std::string file_path, std::vector<std::string>& keys, std::map<std::string, std::string>& key_values);
+- guess_config_file_type · function · L117-L117 — extern ConfigFileType guess_config_file_type(const boost::property_tree::ptree &tree);
+- extend_default_config_length · function · L119-L119 — extern void extend_default_config_length(DynamicPrintConfig& config, const bool set_nil_to_default, const DynamicPrintConfig& defaults);
+- VendorProfile · class · L121-L209 — class VendorProfile
+- PrinterVariant · class · L130-L138 — struct PrinterVariant
+- PrinterVariant · function · L131-L131 — PrinterVariant() {}
+- PrinterVariant · function · L132-L132 — PrinterVariant(const std::string &name) : name(name) {}
+- serialize · function · L136-L137 — template<class Archive>
+- PrinterModel · class · L140-L180 — struct PrinterModel
+- PrinterModel · function · L141-L141 — PrinterModel() {}
+- variant · function · L161-L161 — PrinterVariant*       variant(const std::string &name)
+- variant · function · L168-L168 — const PrinterVariant* variant(const std::string &name) const { return const_cast<PrinterModel*>(this)->variant(name); }
+- serialize · function · L171-L179 — template<class Archive>
+- VendorProfile · function · L186-L186 — VendorProfile() {}
+- VendorProfile · function · L187-L187 — VendorProfile(std::string id) : id(std::move(id)) {}
+- valid · function · L189-L189 — bool 		valid() const { return ! name.empty() && ! id.empty() && config_version.valid(); }
+- serialize · function · L192-L197 — template<class Archive>
+- from_ini · function · L201-L201 — static VendorProfile from_ini(const boost::filesystem::path &path, bool load_all=true);
+- from_ini · function · L202-L202 — static VendorProfile from_ini(const boost::property_tree::ptree &tree, const boost::filesystem::path &path, bool load_all=true);
+- num_variants · function · L204-L204 — size_t      num_variants() const { size_t n = 0; for (auto &model : models) n += model.variants.size(); return n; }
+- families · function · L205-L205 — std::vector<std::string> families() const;
+- Preset · class · L211-L211 — class Preset;
+- PresetWithVendorProfile · class · L216-L220 — struct PresetWithVendorProfile
+- PresetWithVendorProfile · function · L217-L217 — PresetWithVendorProfile(const Preset &preset, const VendorProfile *vendor) : preset(preset), vendor(vendor) {}
+- VendorMap · type · L226-L226 — typedef std::map<std::string, VendorProfile> VendorMap;
+- Preset · class · L228-L457 — class Preset
+- Type · type · L231-L247 — enum Type
+- is_user · function · L271-L271 — bool                is_user() const { return ! this->is_default && ! this->is_system && ! this->is_project_embedded && ! this->is_from_bundle(); }
+- can_overwrite · function · L272-L272 — bool                can_overwrite() const { return ! this->is_default && ! this->is_system && ! this->is_from_bundle(); }
+- is_from_bundle · function · L308-L308 — bool                is_from_bundle() const { return ! bundle_id.empty(); }
+- get_type_string · function · L322-L322 — static std::string  get_type_string(Preset::Type type);
+- get_iot_type_string · function · L324-L324 — static std::string  get_iot_type_string(Preset::Type type);
+- get_type_from_string · function · L325-L325 — static Preset::Type get_type_from_string(std::string type_str);
+- load_info · function · L326-L326 — void                load_info(const std::string& file);
+- save_info · function · L327-L327 — void                save_info(std::string file = "");
+- remove_files · function · L328-L328 — void                remove_files(bool cloud_already_deleted = false);
+- save · function · L332-L332 — void                save(DynamicPrintConfig* parent_config);
+- reload · function · L333-L333 — void                reload(Preset const & parent);
+- label · function · L336-L336 — std::string         label(bool no_alias) const;
+- set_dirty · function · L339-L339 — void                set_dirty(const DynamicPrintConfig &config) { this->is_dirty = ! this->config.diff(config).empty(); }
+- set_dirty · function · L340-L340 — void                set_dirty(bool dirty = true) { this->is_dirty = dirty; }
+- reset_dirty · function · L341-L341 — void                reset_dirty() { this->is_dirty = false; }
+- inherits · function · L344-L344 — static std::string& inherits(DynamicPrintConfig &cfg) { return cfg.option<ConfigOptionString>("inherits", true)->value; }
+- inherits · function · L345-L345 — std::string&        inherits() { return Preset::inherits(this->config); }
+- inherits · function · L346-L346 — const std::string&  inherits() const { return Preset::inherits(const_cast<Preset*>(this)->config); }
+- normalize_inherits · function · L353-L360 — static void normalize_inherits(DynamicPrintConfig &cfg, const Preset *resolved_parent)
+- compatible_prints_condition · function · L363-L363 — static std::string& compatible_prints_condition(DynamicPrintConfig &cfg) { return cfg.option<ConfigOptionString>("compatible_prints_condition", true)->value; }
+- compatible_prints_condition · function · L364-L364 — std::string&        compatible_prints_condition()
+- compatible_prints_condition · function · L368-L368 — const std::string&  compatible_prints_condition() const { return const_cast<Preset*>(this)->compatible_prints_condition(); }
+- compatible_printers_condition · function · L371-L371 — static std::string& compatible_printers_condition(DynamicPrintConfig &cfg) { return cfg.option<ConfigOptionString>("compatible_printers_condition", true)->value; }
+- compatible_printers_condition · function · L372-L372 — std::string&        compatible_printers_condition()
+- compatible_printers_condition · function · L376-L376 — const std::string&  compatible_printers_condition() const { return const_cast<Preset*>(this)->compatible_printers_condition(); }
+- printer_technology · function · L379-L385 — static PrinterTechnology printer_technology(const DynamicPrintConfig &cfg)
+- printer_technology · function · L386-L386 — PrinterTechnology   printer_technology() const { return Preset::printer_technology(this->config); }
+- printer_technology_ref · function · L388-L388 — PrinterTechnology&  printer_technology_ref() { return this->config.option<ConfigOptionEnum<PrinterTechnology>>("printer_technology", true)->value; }
+- set_visible_from_appconfig · function · L391-L391 — void                set_visible_from_appconfig(const AppConfig &app_config);
+- set_num_extruders · function · L394-L394 — void                set_num_extruders(unsigned int n) { this->config.set_num_extruders(n); }
+- get_filament_type · function · L400-L400 — std::string get_filament_type(std::string &display_filament_type);
+- get_printer_type · function · L401-L401 — std::string get_printer_type(PresetBundle *preset_bundle); // get edited preset type
+- get_current_printer_type · function · L402-L402 — std::string get_current_printer_type(PresetBundle *preset_bundle); // get current preset type
+- get_extruder_names_and_keysets · function · L404-L404 — static void get_extruder_names_and_keysets(Type type, std::string& extruder_id_name, std::string& extruder_variant_name, std::set<std::string>** p_key_set1, std::set<std::string>** p_key_set2);
+- get_printer_id · function · L405-L405 — std::string get_printer_id() const { return vendor ? vendor->id : ""; }
+- has_lidar · function · L407-L407 — bool has_lidar(PresetBundle *preset_bundle);
+- is_custom_defined · function · L408-L408 — bool is_custom_defined();
+- get_default_bed_type · function · L410-L410 — BedType get_default_bed_type(PresetBundle *preset_bundle);
+- has_cali_lines · function · L411-L411 — bool has_cali_lines(PresetBundle* preset_bundle);
+- convert_pellet_flow_to_filament_diameter · function · L414-L417 — static double convert_pellet_flow_to_filament_diameter(double pellet_flow_coefficient)
+- convert_filament_diameter_to_pellet_flow · function · L419-L422 — static double convert_filament_diameter_to_pellet_flow(double filament_diameter)
+- print_options · function · L424-L424 — static const std::vector<std::string>&  print_options();
+- filament_options · function · L425-L425 — static const std::vector<std::string>&  filament_options();
+- printer_options · function · L427-L427 — static const std::vector<std::string>&  printer_options();
+- nozzle_options · function · L429-L429 — static const std::vector<std::string>&  nozzle_options();
+- machine_limits_options · function · L431-L431 — static const std::vector<std::string>&  machine_limits_options();
+- plugin_overrides_key · function · L436-L436 — static const char*                      plugin_overrides_key(Type type);
+- sla_printer_options · function · L438-L438 — static const std::vector<std::string>&  sla_printer_options();
+- sla_material_options · function · L439-L439 — static const std::vector<std::string>&  sla_material_options();
+- sla_print_options · function · L440-L440 — static const std::vector<std::string>&  sla_print_options();
+- update_suffix_modified · function · L442-L442 — static void                             update_suffix_modified(const std::string& new_suffix_modified);
+- suffix_modified · function · L443-L443 — static const std::string&               suffix_modified();
+- remove_suffix_modified · function · L444-L444 — static std::string                      remove_suffix_modified(const std::string& name);
+- normalize · function · L445-L445 — static void                             normalize(DynamicPrintConfig &config);
+- remove_invalid_keys · function · L447-L447 — static std::string                      remove_invalid_keys(DynamicPrintConfig &config, const DynamicPrintConfig &default_config);
+- Preset · function · L450-L450 — Preset(Type type, const std::string &name, bool is_default = false) : type(type), is_default(is_default), name(name) {}
+- Preset · function · L456-L456 — Preset() = default;
+- is_compatible_with_print · function · L459-L459 — bool is_compatible_with_print  (const PresetWithVendorProfile &preset, const PresetWithVendorProfile &active_print, const PresetWithVendorProfile &active_printer);
+- is_compatible_with_printer · function · L460-L460 — bool is_compatible_with_printer(const PresetWithVendorProfile &preset, const PresetWithVendorProfile &active_printer, const DynamicPrintConfig *extra_config);
+- is_compatible_with_printer · function · L461-L461 — bool is_compatible_with_printer(const PresetWithVendorProfile &preset, const PresetWithVendorProfile &active_printer);
+- is_compatible_with_printer · function · L465-L466 — bool is_compatible_with_printer(const DynamicPrintConfig &preset_config, Preset::Type preset_type,
+- PresetOrigin · class · L469-L479 — struct PresetOrigin
+- Kind · type · L470-L470 — enum class Kind { Auto, User, LocalBundle, SubscribedBundle };
+- PresetOrigin · function · L475-L475 — PresetOrigin() = default;
+- PresetOrigin · function · L476-L476 — PresetOrigin(Kind kind, std::string bundle_id = {}) : kind(kind), bundle_id(std::move(bundle_id)) {}
+- is_bundle · function · L478-L478 — bool is_bundle() const { return kind == Kind::LocalBundle || kind == Kind::SubscribedBundle; }
+- get_preset_canonical_name · function · L482-L482 — std::string get_preset_canonical_name(const std::string &preset_bare_name, const PresetOrigin &origin);
+- get_preset_bare_name · function · L485-L485 — std::string get_preset_bare_name(const std::string &canonical_name);
+- detect_origin_from_path · function · L488-L488 — PresetOrigin detect_origin_from_path(const boost::filesystem::path &path, const PresetOrigin &explicit_origin = PresetOrigin());
+- PresetSelectCompatibleType · type · L490-L497 — enum class PresetSelectCompatibleType
+- PresetConfigSubstitutions · class · L500-L517 — struct PresetConfigSubstitutions
+- Source · type · L505-L511 — enum class Source
+- PresetCollection · class · L524-L989 — class PresetCollection
+- PresetCollection · function · L528-L528 — PresetCollection(Preset::Type type, const std::vector<std::string> &keys, const Slic3r::StaticPrintConfig &defaults, const std::string &default_name = "Default Setting");
+- Iterator · type · L530-L530 — typedef std::deque<Preset>::iterator Iterator;
+- ConstIterator · type · L531-L531 — typedef std::deque<Preset>::const_iterator ConstIterator;
+- SyncFunc · type · L532-L532 — typedef std::function<void(Preset* preset, std::string sync_info)> SyncFunc;
+- lbegin · function · L534-L534 — Iterator        lbegin() { return m_presets.begin(); }
+- validate_preset · function · L536-L536 — bool            validate_preset(const std::string &name, std::string &inherit);
+- begin · function · L538-L538 — Iterator        begin() { return m_presets.begin() + m_num_default_presets; }
+- begin · function · L539-L539 — ConstIterator   begin() const { return m_presets.cbegin() + m_num_default_presets; }
+- cbegin · function · L540-L540 — ConstIterator   cbegin() const { return m_presets.cbegin() + m_num_default_presets; }
+- end · function · L541-L541 — Iterator        end() { return m_presets.end(); }
+- end · function · L542-L542 — ConstIterator   end() const { return m_presets.cend(); }
+- cend · function · L543-L543 — ConstIterator   cend() const { return m_presets.cend(); }
+- erase · function · L546-L546 — Iterator        erase(Iterator it) { return m_presets.erase(it); }
+- set_sync_func · function · L548-L548 — void            set_sync_func(SyncFunc func) { sync_func = func; }
+- lock · function · L550-L550 — void            lock() { m_mutex.lock(); }
+- unlock · function · L551-L551 — void            unlock() { m_mutex.unlock(); }
+- reset · function · L553-L553 — void            reset(bool delete_files);
+- type · function · L555-L555 — Preset::Type    type() const { return m_type; }
+- name · function · L557-L557 — std::string     name() const;
+- section_name · function · L559-L559 — std::string     section_name() const;
+- add_default_preset · function · L563-L563 — void            add_default_preset(const std::vector<std::string> &keys, const Slic3r::StaticPrintConfig &defaults, const std::string &preset_name);
+- load_presets · function · L566-L566 — void            load_presets(const std::string &dir_path, const std::string &subdir, PresetsConfigSubstitutions& substitutions, ForwardCompatibilitySubstitutionRule rule, std::function<void(Preset&)> preset_loaded_fn = nullptr, const PresetOrigin &load_origin = PresetOrigin(), bool read_only = false);
+- update_user_presets_directory · function · L569-L569 — void            update_user_presets_directory(const std::string& dir_path, const std::string& type);
+- save_user_presets · function · L570-L570 — void            save_user_presets(const std::string& dir_path, const std::string& type, std::map<std::string, std::string>& need_to_delete_list);
+- load_user_preset · function · L571-L571 — bool            load_user_preset(std::string name, std::map<std::string, std::string> preset_values, PresetsConfigSubstitutions& substitutions, ForwardCompatibilitySubstitutionRule rule, const PresetOrigin &load_origin = PresetOrigin(PresetOrigin::Kind::User));
+- update_after_user_presets_loaded · function · L572-L572 — void            update_after_user_presets_loaded();
+- get_user_presets · function · L574-L574 — int  get_user_presets(PresetBundle *preset_bundle, std::vector<Preset> &result_presets);
+- set_sync_info_and_save · function · L575-L575 — void set_sync_info_and_save(std::string name, std::string setting_id, std::string syncinfo, long long update_time);
+- need_sync · function · L576-L576 — bool need_sync(std::string name, std::string setting_id, long long update_time);
+- get_preset_differed_for_save · function · L580-L580 — Preset* get_preset_differed_for_save(Preset& preset);
+- get_differed_values_to_update · function · L582-L582 — int get_differed_values_to_update(Preset& preset, std::map<std::string, std::string>& key_values);
+- load_project_embedded_presets · function · L585-L585 — void load_project_embedded_presets(std::vector<Preset*>& project_presets, const std::string& type, PresetsConfigSubstitutions& substitutions, ForwardCompatibilitySubstitutionRule rule);
+- get_project_embedded_presets · function · L586-L586 — std::vector<Preset*> get_project_embedded_presets();
+- reset_project_embedded_presets · function · L587-L587 — bool reset_project_embedded_presets();
+- load_preset · function · L591-L591 — Preset&         load_preset(const std::string &path, const std::string &name, const DynamicPrintConfig &config, bool select = true, Semver file_version = Semver());
+- load_preset · function · L592-L592 — Preset&         load_preset(const std::string &path, const std::string &name, DynamicPrintConfig &&config, bool select = true, Semver file_version = Semver());
+- clone_presets · function · L594-L594 — bool clone_presets(std::vector<Preset const *> const &presets, std::vector<std::string> &failures, std::function<void(Preset &, Preset::Type &)> modifier, bool force_rewritten = false);
+- clone_presets_for_printer · function · L595-L596 — bool clone_presets_for_printer(
+- clone_presets_for_filament · function · L597-L603 — bool clone_presets_for_filament(Preset const *const &     preset,
+- get_filament_presets · function · L605-L605 — std::map<std::string, std::vector<Preset const *>> get_filament_presets() const;
+- LoadAndSelect · type · L610-L617 — enum class LoadAndSelect
+- load_external_preset · function · L618-L632 — std::pair<Preset*, bool> load_external_preset(
+- save_current_preset · function · L638-L638 — void            save_current_preset(const std::string &new_name, bool detach = false, bool save_to_project = false, Preset* _curr_preset = nullptr);
+- add_detached_preset · function · L653-L654 — std::string     add_detached_preset(const std::string &name_base, DynamicPrintConfig config,
+- delete_current_preset · function · L658-L658 — bool            delete_current_preset();
+- delete_preset · function · L662-L662 — bool            delete_preset(const std::string& name, bool force = false);
+- check_and_fix_syncinfo · function · L665-L665 — void check_and_fix_syncinfo(Preset& preset, const std::string& user_id);
+- set_default_suppressed · function · L668-L668 — void            set_default_suppressed(bool default_suppressed);
+- is_default_suppressed · function · L669-L669 — bool            is_default_suppressed() const { return m_default_suppressed; }
+- select_preset · function · L672-L672 — Preset&         select_preset(size_t idx);
+- get_selected_preset · function · L674-L674 — Preset&         get_selected_preset()
+- get_selected_preset · function · L681-L681 — const Preset&   get_selected_preset() const { return m_presets[m_idx_selected]; }
+- get_selected_idx · function · L682-L682 — size_t          get_selected_idx()    const { return m_idx_selected; }
+- get_selected_preset_name · function · L684-L688 — std::string     get_selected_preset_name() const
+- get_selected_preset_parent · function · L693-L693 — const Preset*   get_selected_preset_parent() const;
+- get_preset_parent · function · L696-L696 — const Preset*	get_preset_parent(const Preset& child) const;
+- get_preset_base · function · L697-L697 — const Preset*	get_preset_base(const Preset& child) const;
+- get_edited_preset · function · L699-L699 — Preset&         get_edited_preset()         { return m_edited_preset; }
+- get_edited_preset · function · L700-L700 — const Preset&   get_edited_preset() const   { return m_edited_preset; }
+- get_selected_preset_base · function · L702-L702 — const Preset& get_selected_preset_base() const { return *get_preset_base(m_presets[m_idx_selected]); }
+- get_preset_with_vendor_profile · function · L708-L708 — PresetWithVendorProfile get_preset_with_vendor_profile(const Preset &preset) const;
+- get_edited_preset_with_vendor_profile · function · L709-L709 — PresetWithVendorProfile get_edited_preset_with_vendor_profile() const { return this->get_preset_with_vendor_profile(this->get_edited_preset()); }
+- get_preset_name_by_alias · function · L711-L711 — const std::string& 		get_preset_name_by_alias(const std::string& alias) const;
+- get_preset_name_renamed · function · L712-L712 — const std::string*		get_preset_name_renamed(const std::string &old_name) const;
+- is_alias_exist · function · L713-L713 — bool                    is_alias_exist(const std::string &alias, Preset* preset = nullptr);
+- set_printer_hold_alias · function · L714-L714 — void                    set_printer_hold_alias(const std::string &alias, Preset &preset, bool remove = false);
+- get_presets · function · L717-L717 — const std::deque<Preset>&	get_presets() const	{ return m_presets; }
+- get_idx_selected · function · L718-L718 — size_t                      get_idx_selected()	{ return m_idx_selected; }
+- get_suffix_modified · function · L719-L719 — static const std::string&	get_suffix_modified();
+- default_preset · function · L722-L722 — Preset&			default_preset(size_t idx = 0)		 { assert(idx < m_num_default_presets); return m_presets[idx]; }
+- default_preset · function · L723-L723 — const Preset&   default_preset(size_t idx = 0) const { assert(idx < m_num_default_presets); return m_presets[idx]; }
+- default_preset_for · function · L724-L724 — virtual const Preset& default_preset_for(const DynamicPrintConfig & /* config */) const { return this->default_preset(); }
+- preset · function · L726-L726 — Preset&         preset(size_t idx, bool real = false)
+- preset · function · L730-L730 — const Preset&   preset(size_t idx) const    { return const_cast<PresetCollection*>(this)->preset(idx); }
+- discard_current_changes · function · L731-L735 — void            discard_current_changes()
+- find_preset · function · L740-L740 — Preset* find_preset(const std::string& name, bool first_visible_if_not_found = false, bool real = false, bool only_from_library = false);
+- find_preset · function · L741-L741 — const Preset* find_preset(const std::string& name, bool first_visible_if_not_found = false) const
+- find_preset2 · function · L747-L747 — Preset* find_preset2(const std::string& name, bool auto_match = true);
+- find_preset2 · function · L748-L748 — const Preset* find_preset2(const std::string& name, bool auto_match = true) const
+- first_visible_idx · function · L753-L753 — size_t first_visible_idx() const;
+- first_visible_idx_by_type · function · L756-L756 — size_t first_visible_idx_by_type(const std::string& filament_type) const;
+- filament_id_by_type · function · L758-L758 — std::string filament_id_by_type(const std::string& filament_type) const;
+- first_compatible_idx · function · L761-L785 — template<typename PreferedCondition> size_t first_compatible_idx(PreferedCondition prefered_condition) const
+- first_compatible_idx · function · L787-L787 — size_t          first_compatible_idx() const { return this->first_compatible_idx([](const Preset&) -> int { return 0; }); }
+- diameters_of_selected_printer · function · L789-L789 — std::vector<std::string> diameters_of_selected_printer();
+- first_visible · function · L793-L793 — Preset&         first_visible()             { return this->preset(this->first_visible_idx()); }
+- first_visible · function · L794-L794 — const Preset&   first_visible() const       { return this->preset(this->first_visible_idx()); }
+- first_compatible · function · L795-L795 — Preset&         first_compatible()          { return this->preset(this->first_compatible_idx()); }
+- first_compatible · function · L797-L797 — Preset&         first_compatible(PreferedCondition prefered_condition) { return this->preset(this->first_compatible_idx(prefered_condition)); }
+- first_compatible · function · L798-L798 — const Preset&   first_compatible() const    { return this->preset(this->first_compatible_idx()); }
+- size · function · L801-L801 — size_t          size() const                { return m_presets.size(); }
+- has_defaults_only · function · L802-L802 — bool            has_defaults_only() const   { return m_presets.size() <= m_num_default_presets; }
+- update_compatible · function · L805-L813 — template<typename PreferedCondition>
+- update_compatible · function · L814-L815 — void            update_compatible(const PresetWithVendorProfile &active_printer, const PresetWithVendorProfile *active_print, PresetSelectCompatibleType select_other_if_incompatible)
+- num_visible · function · L817-L817 — size_t          num_visible() const { return std::count_if(m_presets.begin(), m_presets.end(), [](const Preset &preset){return preset.is_visible;}); }
+- current_is_dirty · function · L820-L821 — bool                        current_is_dirty() const
+- current_dirty_options · function · L823-L824 — std::vector<std::string>    current_dirty_options(const bool deep_compare = false) const
+- current_different_from_parent_options · function · L826-L827 — std::vector<std::string>    current_different_from_parent_options(const bool deep_compare = false) const
+- saved_is_dirty · function · L830-L831 — bool                        saved_is_dirty() const
+- update_saved_preset_from_current_preset · function · L836-L836 — void                        update_saved_preset_from_current_preset() { m_saved_preset = m_edited_preset; }
+- system_preset_names · function · L841-L841 — std::vector<std::string>    system_preset_names() const;
+- update_dirty · function · L845-L845 — bool            update_dirty();
+- select_preset_by_name · function · L850-L850 — bool            select_preset_by_name(const std::string &name, bool force);
+- is_base_preset · function · L851-L851 — bool is_base_preset(const Preset &preset) const { return preset.is_system || (preset.is_user() && preset.inherits().empty()); }
+- path_from_name · function · L854-L854 — std::string     path_from_name(const std::string &new_name, bool detach = false) const;
+- path_for_preset · function · L855-L855 — std::string     path_for_preset(const Preset & preset) const;
+- get_preset_alias · function · L858-L858 — std::string     get_preset_alias(Preset &preset, bool force = false);
+- num_default_presets · function · L860-L860 — size_t num_default_presets() { return m_num_default_presets; }
+- PresetCollection · function · L863-L863 — PresetCollection() = default;
+- PresetCollection · function · L865-L865 — PresetCollection(const PresetCollection &other) = delete;
+- update_vendor_ptrs_after_copy · function · L870-L870 — void            update_vendor_ptrs_after_copy(const VendorMap &vendors);
+- select_preset_by_name_strict · function · L874-L874 — bool            select_preset_by_name_strict(const std::string &name);
+- merge_presets · function · L877-L877 — std::vector<std::string> merge_presets(PresetCollection &&other, const VendorMap &new_vendors);
+- update_map_alias_to_profile_name · function · L880-L880 — void 			update_map_alias_to_profile_name();
+- update_map_system_profile_renamed · function · L883-L883 — void 			update_map_system_profile_renamed();
+- update_library_profile_excluded_from · function · L886-L886 — void 			update_library_profile_excluded_from();
+- set_custom_preset_alias · function · L889-L889 — void            set_custom_preset_alias(Preset &preset);
+- canonical_preset_name · function · L892-L892 — std::string canonical_preset_name(const std::string &name, const PresetOrigin &load_origin = PresetOrigin()) const;
+- filament_preset_less · function · L895-L901 — static bool filament_preset_less(const Preset &a, const Preset &b)
+- sort_presets · function · L904-L909 — void sort_presets()
+- find_preset_internal · function · L916-L937 — std::deque<Preset>::iterator find_preset_internal(const std::string &name, bool from_orca_lib_only = false)
+- find_preset_internal · function · L938-L939 — std::deque<Preset>::const_iterator find_preset_internal(const std::string &name) const
+- find_preset_renamed · function · L940-L945 — std::deque<Preset>::iterator 	   find_preset_renamed(const std::string &name)
+- find_preset_renamed · function · L946-L947 — std::deque<Preset>::const_iterator find_preset_renamed(const std::string &name) const
+- update_compatible_internal · function · L949-L949 — size_t update_compatible_internal(const PresetWithVendorProfile &active_printer, const PresetWithVendorProfile *active_print, PresetSelectCompatibleType unselect_if_incompatible);
+- is_dirty · function · L951-L951 — static bool                     is_dirty(const Preset *edited, const Preset *reference);
+- dirty_options · function · L952-L952 — static std::vector<std::string> dirty_options(const Preset *edited, const Preset *reference, const bool deep_compare = false);
+- dirty_options_without_option_list · function · L954-L954 — static std::vector<std::string> dirty_options_without_option_list(const Preset *edited, const Preset *reference, const std::set<std::string>& option_ignore_list, const bool deep_compare = false);
+- PrinterPresetCollection · class · L993-L1012 — class PrinterPresetCollection : public PresetCollection
+- PrinterPresetCollection · function · L996-L997 — PrinterPresetCollection(Preset::Type type, const std::vector<std::string> &keys, const Slic3r::StaticPrintConfig &defaults, const std::string &default_name = "Default Printer") :
+- default_preset_for · function · L999-L999 — const Preset&   default_preset_for(const DynamicPrintConfig &config) const override;
+- find_system_preset_by_model_and_variant · function · L1001-L1001 — const Preset*   find_system_preset_by_model_and_variant(const std::string &model_id, const std::string &variant) const;
+- find_custom_preset_by_model_and_variant · function · L1002-L1002 — const Preset*   find_custom_preset_by_model_and_variant(const std::string &model_id, const std::string &variant) const;
+- only_default_printers · function · L1004-L1004 — bool            only_default_printers() const;
+- PrinterPresetCollection · function · L1006-L1006 — PrinterPresetCollection() = default;
+- PrinterPresetCollection · function · L1008-L1008 — PrinterPresetCollection(const PrinterPresetCollection &other) = delete;
+- system_printer_model · function · L1016-L1016 — const VendorProfile::PrinterModel* system_printer_model(const Preset &preset);
+- system_printer_bed_model · function · L1017-L1017 — std::string system_printer_bed_model(const Preset& preset);
+- system_printer_bed_texture · function · L1018-L1018 — std::string system_printer_bed_texture(const Preset& preset);
+- system_printer_hotend_model · function · L1019-L1019 — std::string system_printer_hotend_model(const Preset& preset);
+- PhysicalPrinter · class · L1025-L1091 — class PhysicalPrinter
+- PhysicalPrinter · function · L1028-L1028 — PhysicalPrinter(const std::string& name, const DynamicPrintConfig &default_config);
+- PhysicalPrinter · function · L1029-L1029 — PhysicalPrinter(const std::string& name, const DynamicPrintConfig &default_config, const Preset& preset);
+- set_name · function · L1030-L1030 — void set_name(const std::string &name);
+- separator · function · L1044-L1044 — static std::string  separator();
+- printer_options · function · L1045-L1045 — static const std::vector<std::string>&  printer_options();
+- print_host_options · function · L1046-L1046 — static const std::vector<std::string>&  print_host_options();
+- presets_with_print_host_information · function · L1047-L1047 — static std::vector<std::string>         presets_with_print_host_information(const PrinterPresetCollection& printer_presets);
+- has_print_host_information · function · L1048-L1048 — static bool has_print_host_information(const DynamicPrintConfig& config);
+- get_preset_names · function · L1050-L1050 — const std::set<std::string>&            get_preset_names() const;
+- update_preset_names_in_config · function · L1052-L1052 — void                update_preset_names_in_config();
+- save · function · L1056-L1056 — void                save(DynamicPrintConfig* parent_config) { this->config.save_to_json(this->file, std::string("Physical_Printer"), std::string("User"), std::string(SLIC3R_VERSION)); }
+- save · function · L1057-L1057 — void                save(const std::string& file_name_from, const std::string& file_name_to);
+- update_from_preset · function · L1059-L1059 — void                update_from_preset(const Preset& preset);
+- update_from_config · function · L1060-L1060 — void                update_from_config(const DynamicPrintConfig &new_config);
+- add_preset · function · L1064-L1064 — bool                add_preset(const std::string& preset_name);
+- delete_preset · function · L1065-L1065 — bool                delete_preset(const std::string& preset_name);
+- reset_presets · function · L1066-L1066 — void                reset_presets();
+- printer_technology · function · L1069-L1074 — static PrinterTechnology printer_technology(const DynamicPrintConfig& cfg)
+- printer_technology · function · L1075-L1075 — PrinterTechnology   printer_technology() const { return printer_technology(this->config); }
+- get_full_name · function · L1081-L1081 — std::string         get_full_name(std::string preset_name) const;
+- get_short_name · function · L1084-L1084 — static std::string  get_short_name(std::string full_name);
+- get_preset_name · function · L1087-L1087 — static std::string  get_preset_name(std::string full_name);
+- PhysicalPrinterCollection · class · L1099-L1221 — class PhysicalPrinterCollection
+- PhysicalPrinterCollection · function · L1102-L1102 — PhysicalPrinterCollection(const std::vector<std::string>& keys);
+- Iterator · type · L1104-L1104 — typedef std::deque<PhysicalPrinter>::iterator Iterator;
+- ConstIterator · type · L1105-L1105 — typedef std::deque<PhysicalPrinter>::const_iterator ConstIterator;
+- begin · function · L1106-L1106 — Iterator        begin() { return m_printers.begin(); }
+- begin · function · L1107-L1107 — ConstIterator   begin() const { return m_printers.cbegin(); }
+- cbegin · function · L1108-L1108 — ConstIterator   cbegin() const { return m_printers.cbegin(); }
+- end · function · L1109-L1109 — Iterator        end() { return m_printers.end(); }
+- end · function · L1110-L1110 — ConstIterator   end() const { return m_printers.cend(); }
+- cend · function · L1111-L1111 — ConstIterator   cend() const { return m_printers.cend(); }
+- empty · function · L1113-L1113 — bool            empty() const {return m_printers.empty(); }
+- reset · function · L1115-L1115 — void            reset(bool delete_files) {};
+- load_printers · function · L1120-L1120 — void            load_printers(const std::string& dir_path, const std::string& subdir, PresetsConfigSubstitutions& substitutions, ForwardCompatibilitySubstitutionRule rule);
+- load_printers_from_presets · function · L1121-L1121 — void            load_printers_from_presets(PrinterPresetCollection &printer_presets);
+- load_printer · function · L1123-L1123 — void            load_printer(const std::string& path, const std::string& name, DynamicPrintConfig&& config, bool select, bool save=false);
+- save_printer · function · L1128-L1128 — void            save_printer(PhysicalPrinter& printer, const std::string& renamed_from = "");
+- delete_printer · function · L1132-L1132 — bool            delete_printer(const std::string& name);
+- delete_selected_printer · function · L1135-L1135 — bool            delete_selected_printer();
+- delete_preset_from_printers · function · L1139-L1139 — bool            delete_preset_from_printers(const std::string& preset_name);
+- get_printers_with_preset · function · L1142-L1142 — std::vector<std::string> get_printers_with_preset( const std::string &preset_name);
+- get_printers_with_only_preset · function · L1144-L1144 — std::vector<std::string> get_printers_with_only_preset( const std::string &preset_name);
+- get_selected_printer · function · L1147-L1147 — PhysicalPrinter&        get_selected_printer() { return m_printers[m_idx_selected]; }
+- get_selected_printer · function · L1148-L1148 — const PhysicalPrinter&  get_selected_printer() const { return m_printers[m_idx_selected]; }
+- get_selected_idx · function · L1150-L1150 — size_t                  get_selected_idx()    const { return m_idx_selected; }
+- get_selected_printer_name · function · L1152-L1152 — std::string             get_selected_printer_name() const { return (m_idx_selected == size_t(-1)) ? std::string() : this->get_selected_printer().name; }
+- get_selected_printer_config · function · L1154-L1154 — DynamicPrintConfig*     get_selected_printer_config() { return (m_idx_selected == size_t(-1)) ? nullptr : &(this->get_selected_printer().config); }
+- get_selected_printer_technology · function · L1156-L1156 — PrinterTechnology       get_selected_printer_technology() { return (m_idx_selected == size_t(-1)) ? PrinterTechnology::ptAny : this->get_selected_printer().printer_technology(); }
+- get_selected_full_printer_name · function · L1161-L1161 — std::string     get_selected_full_printer_name() const;
+- get_selected_printer_preset_name · function · L1163-L1163 — std::string     get_selected_printer_preset_name() const { return (m_idx_selected == size_t(-1)) ? std::string() : m_selected_preset; }
+- select_printer · function · L1167-L1167 — void select_printer(const std::string& full_name);
+- select_printer · function · L1168-L1168 — void select_printer(const PhysicalPrinter& printer);
+- select_printer · function · L1169-L1169 — void select_printer(const std::string& printer_name, const std::string& preset_name);
+- has_selection · function · L1170-L1170 — bool has_selection() const;
+- unselect_printer · function · L1171-L1171 — void unselect_printer() ;
+- is_selected · function · L1172-L1172 — bool is_selected(ConstIterator it, const std::string &preset_name) const;
+- printer · function · L1175-L1175 — PhysicalPrinter& printer(size_t idx) { return m_printers[idx]; }
+- printer · function · L1176-L1176 — const PhysicalPrinter& printer(size_t idx) const { return const_cast<PhysicalPrinterCollection*>(this)->printer(idx); }
+- find_printer · function · L1181-L1181 — PhysicalPrinter* find_printer(const std::string& name, bool case_sensitive_search = true);
+- find_printer · function · L1182-L1182 — const PhysicalPrinter* find_printer(const std::string& name, bool case_sensitive_search = true) const
+- path_from_name · function · L1188-L1188 — std::string     path_from_name(const std::string& new_name) const;
+- default_config · function · L1190-L1190 — const DynamicPrintConfig& default_config() const { return m_default_config; }
+- PhysicalPrinterCollection · function · L1194-L1194 — PhysicalPrinterCollection() = default;
+- find_printer_internal · function · L1200-L1200 — std::deque<PhysicalPrinter>::iterator find_printer_internal(const std::string& name, bool case_sensitive_search = true);
+- find_printer_internal · function · L1201-L1204 — std::deque<PhysicalPrinter>::const_iterator find_printer_internal(const std::string& name, bool case_sensitive_search = true) const

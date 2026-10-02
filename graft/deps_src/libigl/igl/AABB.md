@@ -1,0 +1,43 @@
+# deps_src/libigl/igl/AABB.h
+
+- Scalar · type · L41-L41 — typedef Eigen::Matrix<Scalar,DIM,1> VectorDIMS;
+- Scalar · type · L43-L43 — typedef Eigen::Matrix<Scalar,Eigen::Dynamic,DIM> MatrixXDIMS;
+- m_left · function · L71-L82 — AABB(const AABB& other):
+- AABB · function · L72-L72 — m_left (other.m_left  ? new AABB(*other.m_left)  : nullptr),
+- AABB · function · L73-L73 — m_right(other.m_right ? new AABB(*other.m_right) : nullptr),
+- m_primitive · function · L76-L76 — m_primitive(other.m_primitive)
+- clear · function · L116-L166 — IGL_INLINE void clear()
+- is_leaf · function · L173-L173 — IGL_INLINE bool is_leaf() const;
+- is_root · function · L175-L175 — IGL_INLINE bool is_root() const;
+- root · function · L177-L177 — IGL_INLINE AABB<DerivedV,DIM>* root() const;
+- detach · function · L178-L178 — IGL_INLINE AABB<DerivedV,DIM>* detach();
+- refit_lineage · function · L179-L179 — IGL_INLINE void refit_lineage();
+- gather_leaves · function · L184-L184 — IGL_INLINE std::vector<AABB<DerivedV,DIM>*> gather_leaves(const int m);
+- gather_leaves · function · L186-L186 — IGL_INLINE std::vector<AABB<DerivedV,DIM>*> gather_leaves();
+- pad · function · L191-L194 — IGL_INLINE AABB<DerivedV,DIM>* pad(
+- update · function · L212-L214 — IGL_INLINE AABB<DerivedV,DIM>* update(
+- insert · function · L251-L251 — IGL_INLINE AABB<DerivedV,DIM>* insert(AABB * other);
+- insert_as_sibling · function · L274-L274 — IGL_INLINE AABB<DerivedV,DIM>* insert_as_sibling(AABB * other);
+- rotate · function · L292-L292 — IGL_INLINE Scalar rotate(const bool dry_run = false);
+- rotate_across · function · L321-L321 — IGL_INLINE Scalar rotate_across(const bool dry_run = false);
+- rotate_up · function · L343-L343 — IGL_INLINE Scalar rotate_up(const bool dry_run = false);
+- rotate_down · function · L373-L373 — IGL_INLINE Scalar rotate_down(const bool dry_run = false);
+- rotate_up · function · L397-L403 — static IGL_INLINE Scalar rotate_up(
+- rotate_lineage · function · L405-L405 — IGL_INLINE void rotate_lineage();
+- subtree_size · function · L415-L415 — IGL_INLINE int subtree_size() const;
+- append_intersecting_leaves · function · L418-L420 — IGL_INLINE bool append_intersecting_leaves(
+- internal_surface_area · function · L422-L422 — IGL_INLINE typename DerivedV::Scalar internal_surface_area() const;
+- validate · function · L425-L425 — IGL_INLINE void validate() const;
+- print · function · L427-L427 — IGL_INLINE void print(const int depth = 0) const;
+- size · function · L432-L432 — IGL_INLINE int size() const;
+- height · function · L434-L434 — IGL_INLINE int height() const;
+- set_min · function · L452-L459 — IGL_INLINE void set_min(
+- init · function · L481-L487 — IGL_INLINE void init(
+- init · function · L493-L496 — template <typename DerivedEle>
+- init · function · L508-L513 — template <typename DerivedEle, typename DerivedSI, typename DerivedI>
+- update_primitive · function · L517-L520 — IGL_INLINE AABB<DerivedV,DIM>* update_primitive(
+- find · function · L533-L537 — IGL_INLINE std::vector<int> find(
+- serialize · function · L552-L556 — IGL_INLINE void serialize(
+- squared_distance · function · L569-L574 — IGL_INLINE Scalar squared_distance(
+- squared_distance · function · L593-L600 — IGL_INLINE Scalar squared_distance(
+- squared_distance · function · L614-L620 — IGL_INLINE Scalar squared_distance(

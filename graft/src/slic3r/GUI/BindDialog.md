@@ -1,0 +1,33 @@
+# src/slic3r/GUI/BindDialog.hpp
+
+- Plater · class · L45-L45 — class Plater;
+- MemoryStruct · class · L46-L51 — struct MemoryStruct
+- PingCodeBindDialog · class · L53-L84 — class PingCodeBindDialog : public DPIDialog
+- PingCodeBindDialog · function · L75-L75 — PingCodeBindDialog(Plater* plater = nullptr);
+- on_key_input · function · L78-L78 — void     on_key_input(wxKeyEvent& evt);
+- on_text_changed · function · L79-L79 — void     on_text_changed(wxCommandEvent& event);
+- on_key_backspace · function · L80-L80 — void     on_key_backspace(wxKeyEvent& event);
+- on_cancel · function · L81-L81 — void     on_cancel(wxCommandEvent& event);
+- on_bind_printer · function · L82-L82 — void     on_bind_printer(wxCommandEvent& event);
+- on_dpi_changed · function · L83-L83 — void     on_dpi_changed(const wxRect& suggested_rect) override;
+- BindMachineDialog · class · L86-L137 — class BindMachineDialog : public DPIDialog
+- BindMachineDialog · function · L122-L122 — BindMachineDialog(Plater *plater = nullptr);
+- show_bind_failed_info · function · L125-L125 — void     show_bind_failed_info(bool show, int code = 0, wxString description = wxEmptyString, wxString extra = wxEmptyString);
+- on_cancel · function · L126-L126 — void     on_cancel(wxCommandEvent& event);
+- on_bind_fail · function · L127-L127 — void     on_bind_fail(wxCommandEvent &event);
+- on_update_message · function · L128-L128 — void     on_update_message(wxCommandEvent &event);
+- on_bind_success · function · L129-L129 — void     on_bind_success(wxCommandEvent &event);
+- on_bind_printer · function · L130-L130 — void     on_bind_printer(wxCommandEvent &event);
+- on_dpi_changed · function · L131-L131 — void     on_dpi_changed(const wxRect &suggested_rect) override;
+- update_machine_info · function · L132-L132 — void     update_machine_info(MachineObject *info);
+- on_show · function · L133-L133 — void     on_show(wxShowEvent &event);
+- on_close · function · L134-L134 — void     on_close(wxCloseEvent& event);
+- on_destroy · function · L135-L135 — void     on_destroy();
+- get_print_error · function · L136-L136 — wxString get_print_error(wxString str);
+- UnBindMachineDialog · class · L139-L161 — class UnBindMachineDialog : public DPIDialog
+- UnBindMachineDialog · function · L153-L153 — UnBindMachineDialog(Plater *plater = nullptr);
+- on_cancel · function · L156-L156 — void on_cancel(wxCommandEvent &event);
+- on_unbind_printer · function · L157-L157 — void on_unbind_printer(wxCommandEvent &event);
+- on_dpi_changed · function · L158-L158 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- update_machine_info · function · L159-L159 — void update_machine_info(MachineObject *info) { m_machine_info = info; };
+- on_show · function · L160-L160 — void on_show(wxShowEvent &event);

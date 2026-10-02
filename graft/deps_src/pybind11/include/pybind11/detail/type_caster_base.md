@@ -1,0 +1,76 @@
+# deps_src/pybind11/include/pybind11/detail/type_caster_base.h
+
+- PYBIND11_NAMESPACE_BEGIN · function · L38-L66 — PYBIND11_NAMESPACE_BEGIN(PYBIND11_NAMESPACE)
+- Py_DECREF · function · L63-L64 — for (auto *item : keep_alive)
+- add_patient · function · L70-L85 — PYBIND11_NOINLINE static void add_patient(handle h)
+- all_type_info_get_cache · function · L91-L92 — inline std::pair<decltype(internals::registered_types_py)::iterator, bool>
+- decltype · function · L91-L91 — inline std::pair<decltype(internals::registered_types_py)::iterator, bool>
+- all_type_info_add_base_most_derived_first · function · L95-L105 — inline void all_type_info_add_base_most_derived_first(std::vector<type_info *> &bases,
+- all_type_info_populate · function · L108-L1575 — PYBIND11_NOINLINE void all_type_info_populate(PyTypeObject *t, std::vector<type_info *> &bases)
+- push_back · function · L112-L112 — check.push_back((PyTypeObject *) parent.ptr());
+- bases · function · L134-L135 — for (auto *known : bases)
+- get_type_info · function · L180-L180 — PYBIND11_NOINLINE detail::type_info *get_type_info(PyTypeObject *type)
+- get_local_type_info · function · L192-L192 — inline detail::type_info *get_local_type_info(const std::type_index &tp)
+- get_global_type_info · function · L201-L201 — inline detail::type_info *get_global_type_info(const std::type_index &tp)
+- get_type_info · function · L215-L216 — PYBIND11_NOINLINE detail::type_info *get_type_info(const std::type_index &tp,
+- try_incref · function · L238-L279 — inline bool try_incref(PyObject *obj)
+- find_registered_python_instance · function · L282-L1563 — PYBIND11_NOINLINE handle find_registered_python_instance(void *src,
+- all_type_info · function · L287-L287 — for (auto *instance_type : detail::all_type_info(Py_TYPE(it_i->second)))
+- same_type · function · L288-L288 — if (instance_type && same_type(*instance_type->cpptype, *tinfo->cpptype))
+- values_and_holders · class · L301-L858 — struct values_and_holders
+- empty · function · L313-L313 — if (!tinfo.empty())
+- iterator · function · L335-L335 — explicit iterator(size_t end) : curr(end) {}
+- begin · function · L356-L356 — auto it = begin(), endit = end();
+- vhs · function · L394-L394 — detail::values_and_holders vhs(this);
+- handle · function · L484-L490 — for (const auto &vh : values_and_holders(it->second))
+- values_and_holders · function · L484-L484 — for (const auto &vh : values_and_holders(it->second))
+- handle · function · L486-L486 — return handle((PyObject *) it->second);
+- throw_if_uninitialized_or_disowned_holder · function · L517-L527 — void throw_if_uninitialized_or_disowned_holder(const char *typeid_name) const
+- clean_type_id · function · L520-L520 — throw value_error(missing_value_msg + clean_type_id(typeid_name)
+- clean_type_id · function · L524-L524 — throw value_error(missing_value_msg + clean_type_id(typeid_name)
+- throw_if_uninitialized_or_disowned_holder · function · L529-L531 — void throw_if_uninitialized_or_disowned_holder(const std::type_info &type_info) const
+- throw_if_instance_is_currently_owned_by_shared_ptr · function · L534-L539 — void throw_if_instance_is_currently_owned_by_shared_ptr(const type_info *tinfo) const
+- get_void_ptr_or_nullptr · function · L541-L541 — void *get_void_ptr_or_nullptr() const
+- from_unique_ptr · function · L598-L598 — auto smhldr = smart_holder::from_unique_ptr(std::move(src), src_raw_void_ptr);
+- move · function · L598-L598 — auto smhldr = smart_holder::from_unique_ptr(std::move(src), src_raw_void_ptr);
+- from_shared_ptr · function · L660-L661 — auto smhldr
+- shared_ptr_parent_life_support · class · L682-L691 — struct shared_ptr_parent_life_support
+- operator · function · L688-L688 — void operator()(void *)
+- shared_ptr_trampoline_self_life_support · class · L694-L705 — struct shared_ptr_trampoline_self_life_support
+- operator · function · L702-L702 — void operator()(void *)
+- maybe_set_python_instance_is_alias · function · L734-L738 — void maybe_set_python_instance_is_alias(handle src)
+- make_shared_ptr_with_responsible_parent · function · L740-L742 — static std::shared_ptr<T> make_shared_ptr_with_responsible_parent(T *raw_ptr, handle parent)
+- move · function · L830-L830 — auto result = unique_with_deleter<T, D>(raw_type_ptr, std::move(extracted_deleter));
+- cpptype · function · L867-L868 — explicit type_caster_generic(const type_info *typeinfo)
+- type_caster_generic · function · L867-L868 — explicit type_caster_generic(const type_info *typeinfo)
+- load · function · L870-L870 — bool load(handle src, bool convert) { return load_impl<type_caster_generic>(src, convert); }
+- cast · function · L872-L878 — PYBIND11_NOINLINE static handle cast(const void *_src,
+- load_value · function · L965-L994 — void load_value(value_and_holder &&v_h)
+- new · function · L986-L986 — vptr = ::operator new(type->type_size);
+- new · function · L989-L989 — vptr = ::operator new(type->type_size);
+- try_implicit_casts · function · L995-L1064 — bool try_implicit_casts(handle src, bool convert)
+- bases · function · L1096-L1098 — for (auto *base : bases)
+- PyType_IsSubtype · function · L1097-L1098 — if (no_cpp_mi ? PyType_IsSubtype(base->type, typeinfo->type)
+- load_value · function · L1099-L1100 — this_.load_value(
+- ptr · function · L1100-L1100 — reinterpret_cast<instance *>(src.ptr())->get_value_and_holder(base));
+- caster · function · L1201-L1201 — type_caster_generic caster(*cpp_type_info);
+- recursive_bottom · class · L1291-L1291 — struct recursive_bottom {};
+- get · function · L1461-L1461 — static const void *get(const itype *src, const std::type_info *&type)
+- typeid · function · L1479-L1479 — type_caster_base() : type_caster_base(typeid(type)) {}
+- type_caster_base · function · L1480-L1480 — explicit type_caster_base(const std::type_info &info) : type_caster_generic(info) {}
+- cast · function · L1482-L1488 — static handle cast(const itype &src, return_value_policy policy, handle parent)
+- cast · function · L1490-L1492 — static handle cast(itype &&src, return_value_policy, handle parent)
+- src_and_type · function · L1497-L1497 — static std::pair<const void *, const type_info *> src_and_type(const itype *src)
+- cast · function · L1519-L1527 — static handle cast(const itype *src, return_value_policy policy, handle parent)
+- src_and_type · function · L1520-L1520 — auto st = src_and_type(src);
+- cast_holder · function · L1529-L1538 — static handle cast_holder(const itype *src, const void *holder)
+- src_and_type · function · L1530-L1530 — auto st = src_and_type(src);
+- reference_cast_error · function · L1548-L1548 — throw reference_cast_error();
+- decltype · function · L1566-L1569 — static auto make_move_constructor(const T *)
+- T · function · L1567-L1567 — -> decltype(new T(std::declval<T &&>()), Constructor{})
+- make_copy_constructor · function · L1573-L1573 — static Constructor make_copy_constructor(...) { return nullptr; }
+- make_move_constructor · function · L1574-L1574 — static Constructor make_move_constructor(...) { return nullptr; }
+- quote_cpp_type_name · function · L1577-L1579 — inline std::string quote_cpp_type_name(const std::string &cpp_type_name)
+- type_info_description · function · L1581-L1588 — PYBIND11_NOINLINE std::string type_info_description(const std::type_info &ti)
+- th · function · L1583-L1583 — handle th((PyObject *) type_data->type);
+- PYBIND11_NAMESPACE_END · function · L1591-L1591 — PYBIND11_NAMESPACE_END(PYBIND11_NAMESPACE)

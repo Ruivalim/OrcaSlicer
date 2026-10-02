@@ -1,0 +1,28 @@
+# src/slic3r/GUI/Widgets/TextInput.hpp
+
+- TextInput · class · L7-L89 — class TextInput : public wxNavigationEnabled<StaticBox>
+- TextInput · function · L25-L25 — TextInput();
+- TextInput · function · L27-L33 — TextInput(wxWindow *     parent,
+- Create · function · L36-L42 — void Create(wxWindow *     parent,
+- SetCornerRadius · function · L44-L44 — void SetCornerRadius(double radius);
+- GetCornerRadius · function · L47-L47 — int GetCornerRadius() const { return static_cast<int>(radius); }
+- SetLabel · function · L49-L49 — void SetLabel(const wxString& label) override;
+- SetStaticTips · function · L51-L51 — void SetStaticTips(const wxString& tips, const wxBitmap& bitmap);
+- SetIcon · function · L53-L53 — void SetIcon(const wxBitmap & icon);
+- SetIcon · function · L54-L54 — void SetIcon(const wxString & icon);
+- SetIcon_1 · function · L56-L56 — void SetIcon_1(const wxString &icon);
+- SetIcon_1 · function · L57-L57 — void SetIcon_1(const wxBitmap &icon);
+- SetLabelColor · function · L59-L59 — void SetLabelColor(StateColor const &color);
+- SetTextColor · function · L61-L61 — void SetTextColor(StateColor const &color);
+- Rescale · function · L63-L63 — virtual void Rescale();
+- Enable · function · L65-L65 — virtual bool Enable(bool enable = true) override;
+- SetMinSize · function · L67-L67 — virtual void SetMinSize(const wxSize& size) override;
+- GetTextCtrl · function · L69-L69 — wxTextCtrl *GetTextCtrl() { return text_ctrl; }
+- GetTextCtrl · function · L71-L71 — wxTextCtrl const *GetTextCtrl() const { return text_ctrl; }
+- OnEdit · function · L74-L74 — virtual void OnEdit() {}
+- DoSetSize · function · L76-L77 — virtual void DoSetSize(
+- DoSetToolTipText · function · L79-L79 — void DoSetToolTipText(wxString const &tip) override;
+- paintEvent · function · L82-L82 — void paintEvent(wxPaintEvent& evt);
+- render · function · L84-L84 — void render(wxDC& dc);
+- messureSize · function · L86-L86 — void messureSize();
+- DECLARE_EVENT_TABLE · function · L88-L88 — DECLARE_EVENT_TABLE()

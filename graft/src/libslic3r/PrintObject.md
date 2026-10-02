@@ -1,0 +1,94 @@
+# src/libslic3r/PrintObject.cpp
+
+- PrintObject · method · L88-L119 — PrintObject::PrintObject(Print* print, ModelObject* model_object, const Transform3d& trafo, PrintInstances&& instances) :
+- set_instances · method · L129-L149 — PrintBase::ApplyStatus PrintObject::set_instances(PrintInstances &&instances)
+- all_regions · method · L151-L161 — std::vector<std::reference_wrapper<const PrintRegion>> PrintObject::all_regions() const
+- create_polyholes · function · L163-L189 — Polygons create_polyholes(const Point center, const coord_t radius, const coord_t nozzle_diameter, bool multiple, int max_edges)
+- _transform_hole_to_polyholes · method · L192-L301 — void PrintObject::_transform_hole_to_polyholes()
+- detect_extruder_geometric_unprintables · method · L303-L452 — std::vector<std::set<int>> PrintObject::detect_extruder_geometric_unprintables() const
+- geometric_unprintables · function · L309-L309 — std::vector<std::set<int>> geometric_unprintables(extruder_size); // the container to return
+- tbb_geometric_unprintables · function · L350-L350 — std::vector<tbb::concurrent_unordered_set<int>> tbb_geometric_unprintables(extruder_size); // the container used in tbb
+- make_perimeters · method · L457-L562 — void PrintObject::make_perimeters()
+- prepare_infill · method · L564-L793 — void PrintObject::prepare_infill()
+- parent · function · L712-L712 — std::vector<size_t> parent(nreg);
+- body_bbox · function · L756-L756 — std::vector<BoundingBox> body_bbox(nreg);
+- infill · method · L795-L823 — void PrintObject::infill()
+- ironing · method · L825-L843 — void PrintObject::ironing()
+- need_z_contouring · method · L845-L854 — bool PrintObject::need_z_contouring() const
+- contour_z · method · L856-L902 — void PrintObject::contour_z()
+- imesh · function · L878-L878 — sla::IndexedMesh imesh(mesh);
+- lock · function · L891-L891 — std::scoped_lock lock(mtx);
+- clear_overhangs_for_lift · method · L905-L911 — void PrintObject::clear_overhangs_for_lift()
+- detect_overhangs_for_lift · method · L915-L945 — void PrintObject::detect_overhangs_for_lift()
+- generate_support_material · method · L947-L992 — void PrintObject::generate_support_material()
+- clock_ · type · L956-L956 — typedef std::chrono::high_resolution_clock clock_;
+- second_ · type · L957-L957 — typedef std::chrono::duration<double, std::ratio<1> > second_;
+- estimate_curled_extrusions · method · L994-L1013 — void PrintObject::estimate_curled_extrusions()
+- simplify_extrusion_path · method · L1015-L1069 — void PrintObject::simplify_extrusion_path()
+- prepare_adaptive_infill_data · method · L1071-L1107 — std::pair<FillAdaptive::OctreePtr, FillAdaptive::OctreePtr> PrintObject::prepare_adaptive_infill_data(
+- prepare_lightning_infill_data · method · L1109-L1119 — FillLightning::GeneratorPtr PrintObject::prepare_lightning_infill_data()
+- clear_layers · method · L1121-L1128 — void PrintObject::clear_layers()
+- add_layer · method · L1130-L1130 — Layer* PrintObject::add_layer(int id, coordf_t height, coordf_t print_z, coordf_t slice_z)
+- get_support_layer_at_printz · method · L1136-L1136 — const SupportLayer* PrintObject::get_support_layer_at_printz(coordf_t print_z, coordf_t epsilon) const
+- get_support_layer_at_printz · method · L1143-L1143 — SupportLayer* PrintObject::get_support_layer_at_printz(coordf_t print_z, coordf_t epsilon)
+- clear_support_layers · method · L1148-L1160 — void PrintObject::clear_support_layers()
+- alloc_tree_support_preview_cache · method · L1162-L1170 — std::shared_ptr<TreeSupportData> PrintObject::alloc_tree_support_preview_cache()
+- add_tree_support_layer · method · L1172-L1172 — SupportLayer* PrintObject::add_tree_support_layer(int id, coordf_t height, coordf_t print_z, coordf_t slice_z)
+- add_support_layer · method · L1179-L1179 — SupportLayer* PrintObject::add_support_layer(int id, int interface_id, coordf_t height, coordf_t print_z)
+- insert_support_layer · method · L1185-L1188 — SupportLayerPtrs::iterator PrintObject::insert_support_layer(SupportLayerPtrs::iterator pos, size_t id, size_t interface_id, coordf_t height, coordf_t print_z, coordf_t slice_z)
+- invalidate_state_by_config_options · method · L1192-L1600 — bool PrintObject::invalidate_state_by_config_options(
+- invalidate_step · method · L1602-L1632 — bool PrintObject::invalidate_step(PrintObjectStep step)
+- invalidate_all_steps · method · L1634-L1643 — bool PrintObject::invalidate_all_steps()
+- detect_surfaces_type · method · L1654-L2120 — void PrintObject::detect_surfaces_type()
+- bridge_polys_per_layer · function · L1949-L1949 — std::vector<Polygons> bridge_polys_per_layer(last);
+- s · function · L2063-L2063 — Surface s(stInternal, ex_remainder);
+- s · function · L2069-L2069 — Surface s(stInternalAfterExternalBridge, ex_overlap);
+- process_external_surfaces · method · L2122-L2202 — void PrintObject::process_external_surfaces()
+- discover_vertical_shells · method · L2204-L2642 — void PrintObject::discover_vertical_shells()
+- DiscoverVerticalShellsCacheEntry · class · L2210-L2216 — struct DiscoverVerticalShellsCacheEntry
+- cache_top_botom_regions · function · L2219-L2219 — std::vector<DiscoverVerticalShellsCacheEntry> cache_top_botom_regions(num_layers, DiscoverVerticalShellsCacheEntry());
+- debug_draw · function · L2646-L2660 — template<typename T> void debug_draw(std::string name, const T& a, const T& b, const T& c, const T& d)
+- bridge_over_infill · method · L2664-L3786 — void PrintObject::bridge_over_infill()
+- CandidateSurface · class · L2667-L2685 — struct CandidateSurface
+- CandidateSurface · function · L2669-L2679 — CandidateSurface(const Surface     *original_surface,
+- lines_tree · function · L3048-L3048 — AABBTreeLines::LinesDistancer<Line> lines_tree(anchors);
+- vertical_lines · function · L3151-L3151 — std::vector<Line> vertical_lines(n_vlines);
+- polygon_sections · function · L3165-L3165 — std::vector<std::vector<Line>> polygon_sections(n_vlines);
+- TracedPoly · class · L3224-L3228 — struct TracedPoly
+- LayerBridgeCache · class · L3633-L3638 — struct LayerBridgeCache
+- clamp_exturder_to_default · function · L3788-L3793 — static void clamp_exturder_to_default(ConfigOptionInt &opt, size_t num_extruders)
+- clamp_feature_filament_to_valid · function · L3795-L3799 — static void clamp_feature_filament_to_valid(ConfigOptionInt &opt, size_t num_extruders)
+- object_config_from_model_object · method · L3801-L3813 — PrintObjectConfig PrintObject::object_config_from_model_object(const PrintObjectConfig &default_object_config, const ModelObject &object, size_t num_extruders, std::vector<int>& variant_index)
+- FeatureFilamentOverrideMask · class · L3825-L3833 — struct FeatureFilamentOverrideMask
+- apply_to_print_region_config · function · L3835-L3905 — static void apply_to_print_region_config(PrintRegionConfig &out, const DynamicPrintConfig &in, FeatureFilamentOverrideMask &feature_overrides, std::vector<int>& variant_index)
+- region_config_from_model_volume · function · L3907-L3953 — PrintRegionConfig region_config_from_model_volume(const PrintRegionConfig &default_or_parent_region_config, const DynamicPrintConfig *layer_range_config, const ModelVolume &volume, size_t num_extruders, std::vector<int>& variant_index)
+- POProfiler · class · L3955-L3959 — struct POProfiler
+- generate_support_preview · method · L3961-L3973 — void PrintObject::generate_support_preview()
+- update_slicing_parameters · method · L3975-L3982 — void PrintObject::update_slicing_parameters()
+- slicing_parameters · method · L3985-L4024 — SlicingParameters PrintObject::slicing_parameters(const DynamicPrintConfig &full_config, const ModelObject &model_object, float object_max_z, const Vec3d &object_shrinkage_compensation, std::vector<int> variant_index)
+- object_extruders · method · L4027-L4046 — std::vector<unsigned int> PrintObject::object_extruders() const
+- update_layer_height_profile · method · L4048-L4077 — bool PrintObject::update_layer_height_profile(const ModelObject &model_object, const SlicingParameters &slicing_parameters, std::vector<coordf_t> &layer_height_profile)
+- get_certain_layers · method · L4079-L4092 — void PrintObject::get_certain_layers(float start, float end, std::vector<LayerPtrs> &out, std::vector<BoundingBox> &boundingbox_objects)
+- get_instances_shift_without_plate_offset · method · L4094-L4102 — Points PrintObject::get_instances_shift_without_plate_offset() const
+- clip_fill_surfaces · method · L4112-L4196 — void PrintObject::clip_fill_surfaces()
+- discover_horizontal_shells · method · L4198-L4404 — void PrintObject::discover_horizontal_shells()
+- combine_infill · method · L4409-L4530 — void PrintObject::combine_infill()
+- templ · function · L4515-L4515 — Surface templ(surface_type, ExPolygon());
+- _generate_support_material · method · L4532-L4543 — void PrintObject::_generate_support_material()
+- remove_bridges_from_contacts · method · L4548-L4671 — template<typename PolysType>
+- is_support_necessary · method · L4687-L4701 — SupportNecessaryType PrintObject::is_support_necessary()
+- project_triangles_to_slabs · function · L4703-L4887 — static void project_triangles_to_slabs(ConstLayerPtrsAdaptor layers, const indexed_triangle_set &custom_facets, const Transform3f &tr, bool seam, std::vector<Polygons> &out)
+- LightPolygon · class · L4714-L4729 — struct LightPolygon
+- LightPolygon · function · L4715-L4715 — LightPolygon() { pts.reserve(5); }
+- LightPolygon · function · L4716-L4721 — LightPolygon(const std::array<Vec2f, 3>& tri)
+- add · function · L4725-L4728 — void add(const Vec2f& pt)
+- TriangleProjections · class · L4733-L4736 — struct TriangleProjections
+- project_and_append_custom_facets · method · L4889-L4917 — void PrintObject::project_and_append_custom_facets(
+- get_layer_at_printz · method · L4919-L4919 — const Layer* PrintObject::get_layer_at_printz(coordf_t print_z) const
+- get_layer_at_printz · method · L4926-L4926 — Layer* PrintObject::get_layer_at_printz(coordf_t print_z) { return const_cast<Layer*>(std::as_const(*this).get_layer_at_printz(print_z)); }
+- get_layer_at_printz · method · L4931-L4931 — const Layer* PrintObject::get_layer_at_printz(coordf_t print_z, coordf_t epsilon) const
+- get_layer_at_printz · method · L4939-L4939 — Layer* PrintObject::get_layer_at_printz(coordf_t print_z, coordf_t epsilon) { return const_cast<Layer*>(std::as_const(*this).get_layer_at_printz(print_z, epsilon)); }
+- get_first_layer_bellow_printz · method · L4941-L4941 — const Layer *PrintObject::get_first_layer_bellow_printz(coordf_t print_z, coordf_t epsilon) const
+- get_layer_idx_get_printz · method · L4947-L4951 — int PrintObject::get_layer_idx_get_printz(coordf_t print_z, coordf_t epsilon)
+- get_layer_at_bottomz · method · L4953-L4953 — const Layer* PrintObject::get_layer_at_bottomz(coordf_t bottom_z, coordf_t epsilon) const
+- get_layer_at_bottomz · method · L4965-L4965 — Layer* PrintObject::get_layer_at_bottomz(coordf_t bottom_z, coordf_t epsilon) { return const_cast<Layer*>(std::as_const(*this).get_layer_at_bottomz(bottom_z, epsilon)); }

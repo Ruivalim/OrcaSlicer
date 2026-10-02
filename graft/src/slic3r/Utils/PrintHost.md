@@ -1,0 +1,45 @@
+# src/slic3r/Utils/PrintHost.hpp
+
+- wxArrayString · class · L15-L15 — class wxArrayString;
+- DynamicPrintConfig · class · L19-L19 — class DynamicPrintConfig;
+- PrintHostPostUploadAction · type · L21-L26 — enum class PrintHostPostUploadAction
+- PrintHostUpload · class · L30-L50 — struct PrintHostUpload
+- extended · function · L45-L49 — std::string extended(const std::string &key, const std::string &def = {}) const
+- PrintHost · class · L52-L99 — class PrintHost
+- ProgressFn · type · L57-L57 — typedef Http::ProgressFn ProgressFn;
+- ErrorFn · type · L58-L58 — typedef std::function<void(wxString /* error */)> ErrorFn;
+- InfoFn · type · L59-L59 — typedef std::function<void(wxString /* tag */, wxString /* status */)> InfoFn;
+- get_name · function · L61-L61 — virtual const char* get_name() const = 0;
+- test · function · L63-L63 — virtual bool test(wxString &curl_msg) const = 0;
+- get_test_ok_msg · function · L64-L64 — virtual wxString get_test_ok_msg () const = 0;
+- get_test_failed_msg · function · L65-L65 — virtual wxString get_test_failed_msg (wxString &msg) const = 0;
+- upload · function · L66-L66 — virtual bool upload(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const = 0;
+- has_auto_discovery · function · L67-L67 — virtual bool has_auto_discovery() const = 0;
+- can_test · function · L68-L68 — virtual bool can_test() const = 0;
+- get_post_upload_actions · function · L69-L69 — virtual PrintHostPostUploadActions get_post_upload_actions() const = 0;
+- supports_multiple_printers · function · L71-L71 — virtual bool supports_multiple_printers() const { return false; }
+- get_host · function · L72-L72 — virtual std::string get_host() const = 0;
+- get_sn · function · L78-L78 — virtual std::string get_sn() const { return ""; }
+- get_groups · function · L82-L82 — virtual bool get_groups(wxArrayString & /* groups */) const { return false; }
+- get_printers · function · L83-L83 — virtual bool get_printers(wxArrayString & /* printers */) const { return false; }
+- get_storage · function · L86-L86 — virtual bool get_storage(wxArrayString& /*storage_path*/, wxArrayString& /*storage_name*/) const { return false; }
+- get_print_host · function · L88-L88 — static PrintHost* get_print_host(DynamicPrintConfig *config);
+- get_print_host_webui · function · L89-L89 — static std::string get_print_host_webui(DynamicPrintConfig *config);
+- is_cloud · function · L92-L92 — virtual bool is_cloud() const { return false; }
+- is_logged_in · function · L93-L93 — virtual bool is_logged_in() const { return false; }
+- log_out · function · L94-L94 — virtual void log_out() const {}
+- get_login_url · function · L95-L95 — virtual bool get_login_url(wxString& auth_url) const { return false; }
+- format_error · function · L98-L98 — virtual wxString format_error(const std::string &body, const std::string &error, unsigned status) const;
+- PrintHostJob · class · L102-L134 — struct PrintHostJob
+- PrintHostJob · function · L109-L109 — PrintHostJob() {}
+- PrintHostJob · function · L110-L110 — PrintHostJob(const PrintHostJob&) = delete;
+- PrintHostJob · function · L111-L116 — PrintHostJob(PrintHostJob &&other)
+- PrintHostJob · function · L118-L120 — PrintHostJob(DynamicPrintConfig *config)
+- empty · function · L132-L132 — bool empty() const { return !printhost; }
+- PrintHostQueueDialog · class · L137-L137 — namespace GUI { class PrintHostQueueDialog; }
+- PrintHostJobQueue · class · L139-L156 — class PrintHostJobQueue
+- PrintHostJobQueue · function · L142-L142 — PrintHostJobQueue(GUI::PrintHostQueueDialog *queue_dialog);
+- PrintHostJobQueue · function · L143-L143 — PrintHostJobQueue(const PrintHostJobQueue &) = delete;
+- PrintHostJobQueue · function · L144-L144 — PrintHostJobQueue(PrintHostJobQueue &&other) = delete;
+- enqueue · function · L150-L150 — void enqueue(PrintHostJob job);
+- cancel · function · L151-L151 — void cancel(size_t id);

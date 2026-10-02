@@ -1,0 +1,148 @@
+# src/slic3r/Utils/OrcaCloudServiceAgent.hpp
+
+- wxSecretStore · class · L18-L18 — class wxSecretStore;
+- AppConfig · class · L23-L23 — class AppConfig;
+- PluginDownloadData · class · L28-L34 — struct PluginDownloadData
+- PluginDownloadNotFound · class · L36-L40 — struct PluginDownloadNotFound
+- RefreshResult · type · L44-L48 — enum class RefreshResult
+- ProfileUpsert · class · L75-L81 — struct ProfileUpsert
+- SyncPullResponse · class · L83-L87 — struct SyncPullResponse
+- SyncPushResult · class · L89-L96 — struct SyncPushResult
+- SyncState · class · L98-L100 — struct SyncState
+- OrcaCloudServiceAgent · class · L118-L445 — class OrcaCloudServiceAgent : public ICloudServiceAgent
+- SessionInfo · class · L123-L134 — struct SessionInfo
+- PkceBundle · class · L136-L142 — struct PkceBundle
+- OrcaCloudServiceAgent · function · L147-L147 — explicit OrcaCloudServiceAgent(std::string log_dir);
+- get_id · function · L150-L150 — std::string get_id() const override { return ORCA_CLOUD_PROVIDER; }
+- configure_urls · function · L153-L153 — void configure_urls(AppConfig* app_config);
+- set_api_base_url · function · L154-L154 — void set_api_base_url(const std::string& url);
+- set_auth_base_url · function · L155-L155 — void set_auth_base_url(const std::string& url);
+- set_cloud_base_url · function · L156-L156 — void set_cloud_base_url(const std::string& url);
+- get_cloud_base_url · function · L157-L157 — std::string get_cloud_base_url() const { return cloud_base_url; }
+- set_use_encrypted_token_file · function · L158-L158 — void set_use_encrypted_token_file(bool use);
+- get_use_encrypted_token_file · function · L159-L159 — bool get_use_encrypted_token_file() const;
+- init_log · function · L164-L164 — int init_log() override;
+- set_config_dir · function · L165-L165 — int set_config_dir(std::string config_dir) override;
+- set_cert_file · function · L166-L166 — int set_cert_file(std::string folder, std::string filename) override;
+- set_country_code · function · L167-L167 — int set_country_code(std::string country_code) override;
+- start · function · L168-L168 — int start() override;
+- change_user · function · L173-L173 — int change_user(std::string user_info) override;
+- is_user_login · function · L174-L174 — bool is_user_login() override;
+- user_logout · function · L175-L175 — int user_logout(bool request = false) override;
+- get_user_id · function · L176-L176 — std::string get_user_id() override;
+- get_user_name · function · L177-L177 — std::string get_user_name() override;
+- get_user_avatar · function · L178-L178 — std::string get_user_avatar() override;
+- get_user_nickname · function · L179-L179 — std::string get_user_nickname() override;
+- build_login_cmd · function · L184-L184 — std::string build_login_cmd() override;
+- build_logout_cmd · function · L185-L185 — std::string build_logout_cmd() override;
+- build_login_info · function · L186-L186 — std::string build_login_info() override;
+- get_access_token · function · L191-L191 — std::string get_access_token() const override;
+- get_refresh_token · function · L192-L192 — std::string get_refresh_token() const override;
+- ensure_token_fresh · function · L193-L193 — bool ensure_token_fresh(const std::string& reason) override;
+- get_cloud_service_host · function · L198-L198 — std::string get_cloud_service_host() override;
+- get_cloud_login_url · function · L199-L199 — std::string get_cloud_login_url(const std::string& language = "") override;
+- connect_server · function · L200-L200 — int connect_server() override;
+- is_server_connected · function · L201-L201 — bool is_server_connected() override;
+- refresh_connection · function · L202-L202 — int refresh_connection() override;
+- is_refresh_running · function · L203-L203 — bool is_refresh_running() const { return refresh_running.load(); }
+- start_subscribe · function · L204-L204 — int start_subscribe(std::string module) override;
+- stop_subscribe · function · L205-L205 — int stop_subscribe(std::string module) override;
+- add_subscribe · function · L206-L206 — int add_subscribe(std::vector<std::string> dev_list) override;
+- del_subscribe · function · L207-L207 — int del_subscribe(std::vector<std::string> dev_list) override;
+- enable_multi_machine · function · L208-L208 — void enable_multi_machine(bool enable) override;
+- get_user_presets · function · L213-L213 — int get_user_presets(std::map<std::string, std::map<std::string, std::string>>* user_presets) override;
+- request_setting_id · function · L214-L214 — std::string request_setting_id(std::string name, std::map<std::string, std::string>* values_map, unsigned int* http_code) override;
+- put_setting · function · L215-L215 — int put_setting(std::string setting_id, std::string name, std::map<std::string, std::string>* values_map, unsigned int* http_code, bool force = false) override;
+- sync_push · function · L216-L220 — SyncPushResult sync_push(const std::string& profile_id,
+- get_setting_list · function · L221-L221 — int get_setting_list(std::string bundle_version, ProgressFn pro_fn = nullptr, WasCancelledFn cancel_fn = nullptr) override;
+- get_setting_list2 · function · L222-L222 — int get_setting_list2(std::string bundle_version, CheckFn chk_fn, ProgressFn pro_fn = nullptr, WasCancelledFn cancel_fn = nullptr) override;
+- delete_setting · function · L223-L223 — int delete_setting(std::string setting_id) override;
+- get_my_message · function · L228-L228 — int get_my_message(int type, int after, int limit, unsigned int* http_code, std::string* http_body) override;
+- check_user_task_report · function · L229-L229 — int check_user_task_report(int* task_id, bool* printable) override;
+- get_user_print_info · function · L230-L230 — int get_user_print_info(unsigned int* http_code, std::string* http_body) override;
+- get_user_tasks · function · L231-L231 — int get_user_tasks(TaskQueryParams params, std::string* http_body) override;
+- get_printer_firmware · function · L232-L232 — int get_printer_firmware(std::string dev_id, unsigned* http_code, std::string* http_body) override;
+- get_task_plate_index · function · L233-L233 — int get_task_plate_index(std::string task_id, int* plate_index) override;
+- get_user_info · function · L234-L234 — int get_user_info(int* identifier) override;
+- get_subtask_info · function · L235-L235 — int get_subtask_info(std::string subtask_id, std::string* task_json, unsigned int* http_code, std::string* http_body) override;
+- get_slice_info · function · L236-L236 — int get_slice_info(std::string project_id, std::string profile_id, int plate_index, std::string* slice_json) override;
+- query_bind_status · function · L237-L237 — int query_bind_status(std::vector<std::string> query_list, unsigned int* http_code, std::string* http_body) override;
+- modify_printer_name · function · L238-L238 — int modify_printer_name(std::string dev_id, std::string dev_name) override;
+- get_camera_url · function · L243-L243 — int get_camera_url(std::string dev_id, std::function<void(std::string)> callback) override;
+- get_design_staffpick · function · L244-L244 — int get_design_staffpick(int offset, int limit, std::function<void(std::string)> callback) override;
+- start_publish · function · L245-L245 — int start_publish(PublishParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, std::string* out) override;
+- get_model_publish_url · function · L246-L246 — int get_model_publish_url(std::string* url) override;
+- get_subtask · function · L247-L247 — int get_subtask(BBLModelTask* task, OnGetSubTaskFn getsub_fn) override;
+- get_model_mall_home_url · function · L248-L248 — int get_model_mall_home_url(std::string* url) override;
+- get_model_mall_detail_url · function · L249-L249 — int get_model_mall_detail_url(std::string* url, std::string id) override;
+- get_my_profile · function · L250-L250 — int get_my_profile(std::string token, unsigned int* http_code, std::string* http_body) override;
+- get_my_token · function · L251-L251 — int get_my_token(std::string ticket, unsigned int* http_code, std::string* http_body) override;
+- track_enable · function · L256-L256 — int track_enable(bool enable) override;
+- track_remove_files · function · L257-L257 — int track_remove_files() override;
+- track_event · function · L258-L258 — int track_event(std::string evt_key, std::string content) override;
+- track_header · function · L259-L259 — int track_header(std::string header) override;
+- track_update_property · function · L260-L260 — int track_update_property(std::string name, std::string value, std::string type = "string") override;
+- track_get_property · function · L261-L261 — int track_get_property(std::string name, std::string& value, std::string type = "string") override;
+- get_track_enable · function · L262-L262 — bool get_track_enable() override;
+- put_model_mall_rating · function · L267-L267 — int put_model_mall_rating(int design_id, int score, std::string content, std::vector<std::string> images, unsigned int& http_code, std::string& http_error) override;
+- get_oss_config · function · L268-L268 — int get_oss_config(std::string& config, std::string country_code, unsigned int& http_code, std::string& http_error) override;
+- put_rating_picture_oss · function · L269-L269 — int put_rating_picture_oss(std::string& config, std::string& pic_oss_path, std::string model_id, int profile_id, unsigned int& http_code, std::string& http_error) override;
+- get_model_mall_rating_result · function · L270-L270 — int get_model_mall_rating_result(int job_id, std::string& rating_result, unsigned int& http_code, std::string& http_error) override;
+- get_mw_user_preference · function · L275-L275 — int get_mw_user_preference(std::function<void(std::string)> callback) override;
+- get_mw_user_4ulist · function · L276-L276 — int get_mw_user_4ulist(int seed, int limit, std::function<void(std::string)> callback) override;
+- get_version · function · L277-L277 — std::string get_version() override;
+- set_on_server_connected_fn · function · L282-L282 — int set_on_server_connected_fn(AppOnServerConnectedFn fn) override;
+- set_on_http_error_fn · function · L283-L283 — int set_on_http_error_fn(AppOnHttpErrorFn fn) override;
+- set_get_country_code_fn · function · L284-L284 — int set_get_country_code_fn(GetCountryCodeFn fn) override;
+- set_queue_on_main_fn · function · L285-L285 — int set_queue_on_main_fn(QueueOnMainFn fn) override;
+- load_sync_state · function · L288-L288 — void load_sync_state();
+- save_sync_state · function · L289-L289 — void save_sync_state();
+- clear_sync_state · function · L290-L290 — void clear_sync_state();
+- get_sync_state · function · L291-L291 — const SyncState& get_sync_state() const { return sync_state; }
+- unsubscribe_bundle · function · L296-L296 — bool unsubscribe_bundle(const std::string& bundle_id);
+- get_bundle_url · function · L297-L297 — std::string get_bundle_url(const std::string& bundle_id) const;
+- get_subscribed_bundles · function · L298-L298 — int get_subscribed_bundles(std::vector<std::pair<std::string, std::string>>* bundles,std::vector<std::string>& notfound, std::vector<std::string>& unauthorized);
+- get_shared_bundle · function · L299-L299 — int get_shared_bundle(const std::string& bundle_id, std::map<std::string, std::map<std::string, std::string>>* presets, BundleMetadata* bundle_metadata);
+- fetch_subscribed_manifests_into_descriptors · function · L304-L304 — int fetch_subscribed_manifests_into_descriptors(std::vector<PluginDescriptor>& descriptors, std::vector<std::string>& not_found, std::vector<std::string>& unauthorized);
+- fetch_mine_manifests_into_descriptors · function · L305-L305 — int fetch_mine_manifests_into_descriptors(std::vector<PluginDescriptor>& descriptors);
+- get_plugin_download_url · function · L306-L310 — int get_plugin_download_url(const std::string& uuid,
+- get_plugin_url · function · L311-L311 — std::string get_plugin_url(const std::string& sharing_token) const;
+- subscribe_plugin · function · L312-L312 — int subscribe_plugin(const std::string& plugin_uuid);
+- unsubscribe_plugins · function · L313-L313 — int unsubscribe_plugins(const std::vector<std::string>& plugin_uuids);
+- fetch_plugin_changelogs · function · L314-L314 — int fetch_plugin_changelogs(const std::vector<std::string>& uuids, std::unordered_map<std::string, std::vector<PluginChangelog>>& changelog);
+- set_session_handler · function · L319-L319 — void set_session_handler(SessionHandler handler);
+- set_on_login_complete_handler · function · L320-L320 — void set_on_login_complete_handler(OnLoginCompleteHandler handler);
+- pkce · function · L322-L322 — const PkceBundle& pkce();
+- regenerate_pkce · function · L323-L323 — void regenerate_pkce();
+- persist_user_secret · function · L325-L325 — void persist_user_secret(const std::string& secret);
+- load_user_secret · function · L326-L326 — bool load_user_secret(std::string& out_secret);
+- clear_user_secret · function · L327-L327 — void clear_user_secret();
+- refresh_if_expiring · function · L330-L330 — bool          refresh_if_expiring(std::chrono::seconds skew, const std::string& reason);
+- refresh_from_storage · function · L331-L331 — RefreshResult refresh_from_storage(const std::string& reason, bool async = false);
+- refresh_now · function · L332-L332 — RefreshResult refresh_now(const std::string& refresh_token, const std::string& reason, bool async = false);
+- refresh_session_with_token · function · L333-L333 — RefreshResult refresh_session_with_token(const std::string& refresh_token, const std::string& reason = "");
+- set_user_session · function · L336-L342 — bool set_user_session(const std::string& token,
+- set_user_session · function · L344-L344 — bool set_user_session(const nlohmann::json& session_json, bool notify_login = true);
+- clear_session · function · L345-L345 — void clear_session();
+- generate_uuid_for_setting_id · function · L347-L347 — static std::string generate_uuid_for_setting_id(const std::string& name, const std::string& user_id = "");
+- sync_pull · function · L351-L354 — int sync_pull(
+- HttpResult · class · L357-L361 — struct HttpResult
+- resolve_unauthorized · function · L367-L369 — bool resolve_unauthorized(HttpResult& res,
+- http_get · function · L372-L372 — int http_get(const std::string& path, std::string* response_body, unsigned int* http_code);
+- http_post · function · L373-L373 — int http_post(const std::string& path, const std::string& body, std::string* response_body, unsigned int* http_code);
+- http_put · function · L374-L374 — int http_put(const std::string& path, const std::string& body, std::string* response_body, unsigned int* http_code);
+- http_delete · function · L375-L375 — int http_delete(const std::string& path, std::string* response_body, unsigned int* http_code);
+- data_headers · function · L376-L376 — std::map<std::string, std::string> data_headers();
+- attempt_refresh_after_unauthorized · function · L377-L377 — RefreshResult attempt_refresh_after_unauthorized(const std::string& reason);
+- http_post_token · function · L380-L380 — bool http_post_token(const std::string& body, std::string* response_body, unsigned int* http_code, const std::string& url = "");
+- http_post_auth · function · L381-L381 — bool http_post_auth(const std::string& path, const std::string& body, std::string* response_body, unsigned int* http_code);
+- exchange_auth_code · function · L382-L382 — bool exchange_auth_code(const std::string& auth_code, const std::string& state, std::string& session_payload);
+- update_redirect_uri · function · L383-L383 — void update_redirect_uri();
+- compute_fallback_path · function · L384-L384 — void compute_fallback_path();
+- decode_jwt_expiry · function · L385-L385 — bool decode_jwt_expiry(const std::string& token, std::chrono::system_clock::time_point& out_tp);
+- should_refresh_locked · function · L386-L386 — bool should_refresh_locked(std::chrono::seconds skew) const;
+- invoke_server_connected_callback · function · L389-L389 — void invoke_server_connected_callback(int return_code, int reason_code);
+- invoke_http_error_callback · function · L390-L390 — void invoke_http_error_callback(unsigned http_code, const std::string& http_body);
+- map_to_json · function · L393-L393 — std::string map_to_json(const std::map<std::string, std::string>& map);
+- json_to_map · function · L394-L394 — void json_to_map(const std::string& json, std::map<std::string, std::string>& map);
+- token_lock_path · function · L397-L397 — std::string token_lock_path() const;

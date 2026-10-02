@@ -1,0 +1,91 @@
+# src/libslic3r/Polyline.hpp
+
+- Polyline · class · L14-L14 — class Polyline;
+- ThickPolyline · class · L15-L15 — class ThickPolyline;
+- Polylines · type · L16-L16 — typedef std::vector<Polyline> Polylines;
+- ThickPolylines · type · L17-L17 — typedef std::vector<ThickPolyline> ThickPolylines;
+- Polyline · class · L19-L141 — class Polyline : public MultiPoint
+- Polyline · function · L21-L21 — Polyline() {};
+- Polyline · function · L22-L22 — Polyline(const Polyline& other) : MultiPoint(other.points), fitting_result(other.fitting_result) {}
+- Polyline · function · L23-L23 — Polyline(Polyline &&other) : MultiPoint(std::move(other.points)), fitting_result(std::move(other.fitting_result))  {}
+- Polyline · function · L24-L26 — Polyline(std::initializer_list<Point> list) : MultiPoint(list)
+- Polyline · function · L27-L32 — explicit Polyline(const Point &p1, const Point &p2)
+- Polyline · function · L33-L35 — explicit Polyline(const Points &points) : MultiPoint(points)
+- Polyline · function · L36-L38 — explicit Polyline(Points &&points) : MultiPoint(std::move(points))
+- new_scale · function · L49-L57 — static Polyline new_scale(const std::vector<Vec2d> &points)
+- append · function · L59-L65 — void append(const Point &point)
+- append_before · function · L67-L80 — void append_before(const Point& point)
+- append · function · L82-L88 — void append(const Points &src)
+- append · function · L89-L96 — void append(const Points::const_iterator &begin, const Points::const_iterator &end)
+- append · function · L97-L101 — void append(Points &&src)
+- append · function · L102-L102 — void append(const Polyline& src);
+- append · function · L103-L103 — void append(Polyline&& src);
+- last_point · function · L108-L108 — const Point& last_point() const override { return this->points.back(); }
+- leftmost_point · function · L109-L109 — const Point& leftmost_point() const;
+- lines · function · L110-L110 — Lines lines() const override;
+- clear · function · L112-L112 — void clear() { MultiPoint::clear(); this->fitting_result.clear(); }
+- reverse · function · L113-L113 — void reverse();
+- clip_end · function · L114-L114 — void clip_end(double distance);
+- clip_start · function · L115-L115 — void clip_start(double distance);
+- extend_end · function · L116-L116 — void extend_end(double distance);
+- extend_start · function · L117-L117 — void extend_start(double distance);
+- equally_spaced_points · function · L118-L118 — Points equally_spaced_points(double distance) const;
+- simplify · function · L119-L119 — void simplify(double tolerance);
+- split_at · function · L121-L121 — void split_at(Point &point, Polyline* p1, Polyline* p2) const;
+- split_at_index · function · L122-L122 — bool split_at_index(const size_t index, Polyline* p1, Polyline* p2) const;
+- split_at_length · function · L123-L123 — bool split_at_length(const double length, Polyline* p1, Polyline* p2) const;
+- is_straight · function · L125-L125 — bool is_straight() const;
+- is_closed · function · L126-L126 — bool is_closed() const { return this->points.front() == this->points.back(); }
+- simplify_by_fitting_arc · function · L131-L131 — void simplify_by_fitting_arc(double tolerance);
+- reset_to_linear_move · function · L132-L132 — void reset_to_linear_move();
+- equally_spaced_lines · function · L134-L134 — Polylines equally_spaced_lines(double distance) const;
+- append_fitting_result_after_append_points · function · L137-L137 — void append_fitting_result_after_append_points();
+- append_fitting_result_after_append_polyline · function · L138-L138 — void append_fitting_result_after_append_polyline(const Polyline& src);
+- split_fitting_result_before_index · function · L139-L139 — bool split_fitting_result_before_index(const size_t index, Point &new_endpoint, std::vector<PathFittingData>& data) const;
+- split_fitting_result_after_index · function · L140-L140 — bool split_fitting_result_after_index(const size_t index, Point &new_startpoint, std::vector<PathFittingData>& data) const;
+- PolylineCollection · class · L148-L152 — class PolylineCollection
+- get_extents · function · L155-L155 — extern BoundingBox get_extents(const Polyline &polyline);
+- get_extents · function · L156-L156 — extern BoundingBox get_extents(const Polylines &polylines);
+- remove_same_neighbor · function · L159-L159 — bool remove_same_neighbor(Polyline &polyline);
+- remove_same_neighbor · function · L160-L160 — bool remove_same_neighbor(Polylines &polylines);
+- total_length · function · L162-L167 — inline double total_length(const Polylines &polylines)
+- to_lines · function · L169-L178 — inline Lines to_lines(const Polyline &poly)
+- to_lines · function · L180-L194 — inline Lines to_lines(const Polylines &polys)
+- to_polylines · function · L196-L203 — inline Polylines to_polylines(const std::vector<Points> &paths)
+- to_polylines · function · L205-L212 — inline Polylines to_polylines(std::vector<Points> &&paths)
+- polylines_append · function · L214-L217 — inline void polylines_append(Polylines &dst, const Polylines &src)
+- polylines_append · function · L219-L227 — inline void polylines_append(Polylines &dst, Polylines &&src)
+- polylines_merge · function · L234-L246 — template<typename PointsType>
+- leftmost_point · function · L248-L248 — const Point& leftmost_point(const Polylines &polylines);
+- remove_degenerate · function · L250-L250 — bool remove_degenerate(Polylines &polylines);
+- foot_pt · function · L253-L253 — std::pair<int, Point> foot_pt(const Points &polyline, const Point &pt);
+- foot_pt · function · L254-L254 — std::pair<int, Point3> foot_pt(const Points3 &polyline, const Point3 &pt);
+- ThickPolyline · class · L256-L277 — class ThickPolyline : public Polyline
+- ThickPolyline · function · L258-L258 — ThickPolyline() : endpoints(std::make_pair(false, false)) {}
+- thicklines · function · L259-L259 — ThickLines thicklines() const;
+- reverse · function · L260-L264 — void reverse()
+- clear · function · L265-L268 — void clear()
+- start_at_index · function · L273-L273 — void start_at_index(int index);
+- to_thick_polylines · function · L279-L289 — inline ThickPolylines to_thick_polylines(Polylines&& polylines, const coordf_t width)
+- Polyline3 · class · L291-L351 — class Polyline3 : public MultiPoint3
+- Polyline3 · function · L294-L294 — Polyline3() {}
+- Polyline3 · function · L295-L295 — explicit Polyline3(const Points3 &points) { this->points = points; }
+- Polyline3 · function · L296-L301 — explicit Polyline3(const Polyline &poly, coord_t z = 0)
+- lines · function · L303-L303 — virtual Lines3 lines() const;
+- to_polyline · function · L306-L306 — Polyline to_polyline() const;
+- clip_end · function · L309-L309 — void clip_end(double distance);
+- simplify · function · L312-L312 — void simplify(double tolerance);
+- simplify_by_fitting_arc · function · L315-L315 — void simplify_by_fitting_arc(double tolerance);
+- reverse · function · L318-L318 — void reverse();
+- split_at_index · function · L321-L321 — bool split_at_index(const size_t index, Polyline3 *p1, Polyline3 *p2) const;
+- split_at · function · L324-L324 — void split_at(Point &point, Polyline3* p1, Polyline3* p2) const;
+- split_at · function · L327-L327 — void split_at(Point3 &point, Polyline3* p1, Polyline3* p2) const;
+- split_at_length · function · L330-L330 — bool split_at_length(const double length, Polyline3 *p1, Polyline3 *p2) const;
+- append · function · L333-L333 — void append(const Point3& point);
+- append · function · L336-L336 — void append(const Polyline3& src);
+- append_before · function · L339-L339 — void append_before(const Point3& point);
+- append_fitting_result_after_append_points · function · L347-L347 — void append_fitting_result_after_append_points();
+- append_fitting_result_after_append_polyline · function · L348-L348 — void append_fitting_result_after_append_polyline(const Polyline3& src);
+- split_fitting_result_before_index · function · L349-L349 — bool split_fitting_result_before_index(size_t index, Point3& new_endpoint, std::vector<PathFittingData>& result) const;
+- split_fitting_result_after_index · function · L350-L350 — bool split_fitting_result_after_index(size_t index, Point3& new_startpoint, std::vector<PathFittingData>& result) const;
+- Polylines3 · type · L353-L353 — typedef std::vector<Polyline3> Polylines3;

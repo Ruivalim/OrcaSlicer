@@ -1,0 +1,41 @@
+# deps_src/qhull/src/libqhullcpp/PointCoordinates.h
+
+- PointCoordinates · function · L43-L43 — explicit            PointCoordinates(const std::string &aComment);
+- PointCoordinates · function · L46-L46 — explicit            PointCoordinates(const Qhull &q);
+- PointCoordinates · function · L51-L51 — explicit            PointCoordinates(QhullQh *qqh);
+- append · function · L63-L63 — void                append(const std::vector<coordT> &otherCoordinates) { if(!otherCoordinates.empty()){ append((int)otherCoordinates.size(), &otherCoordinates[0]); } }
+- append · function · L67-L67 — void                append(const QList<coordT> &pointCoordinates) { if(!pointCoordinates.isEmpty()){ append(pointCoordinates.count(), &pointCoordinates[0]); } }
+- checkValid · function · L73-L73 — void                checkValid() const;
+- comment · function · L74-L74 — std::string         comment() const { return describe_points; }
+- makeValid · function · L75-L75 — void                makeValid() { defineAs(point_coordinates.count(), point_coordinates.data()); }
+- getCoordinates · function · L76-L76 — const Coordinates & getCoordinates() const { return point_coordinates; }
+- setComment · function · L77-L77 — void                setComment(const std::string &s) { describe_points= s; }
+- setDimension · function · L78-L78 — void                setDimension(int i);
+- defineAs · function · L82-L82 — void                defineAs(countT coordinatesCount, coordT *c) { QhullPoints::defineAs(coordinatesCount, c); }
+- defineAs · function · L82-L82 — void                defineAs(countT coordinatesCount, coordT *c) { QhullPoints::defineAs(coordinatesCount, c); }
+- beginCoordinates · function · L90-L90 — Coordinates::ConstIterator  beginCoordinates() const { return point_coordinates.begin(); }
+- beginCoordinates · function · L91-L91 — Coordinates::Iterator       beginCoordinates() { return point_coordinates.begin(); }
+- beginCoordinates · function · L92-L92 — Coordinates::ConstIterator  beginCoordinates(countT pointIndex) const;
+- beginCoordinates · function · L93-L93 — Coordinates::Iterator       beginCoordinates(countT pointIndex);
+- endCoordinates · function · L94-L94 — Coordinates::ConstIterator  endCoordinates() const { return point_coordinates.end(); }
+- endCoordinates · function · L95-L95 — Coordinates::Iterator       endCoordinates() { return point_coordinates.end(); }
+- append · function · L105-L105 — void                append(countT coordinatesCount, const coordT *c);  //! Dimension previously defined
+- append · function · L106-L106 — void                append(const coordT &c) { append(1, &c); } //! Dimension previously defined
+- append · function · L107-L107 — void                append(const QhullPoint &p);
+- append · function · L109-L109 — void                append(const Coordinates &c) { append(c.count(), c.data()); }
+- append · function · L110-L110 — void                append(const PointCoordinates &other);
+- appendComment · function · L111-L111 — void                appendComment(const std::string &s);
+- appendPoints · function · L112-L112 — void                appendPoints(std::istream &in);
+- reserveCoordinates · function · L120-L120 — void                reserveCoordinates(countT newCoordinates);
+- indexOffset · function · L124-L124 — int                 indexOffset(int i) const;
+- const_iterator · type · L131-L131 — typedef PointCoordinates::const_iterator const_iterator;
+- toFront · function · L141-L141 — void                toFront() { i = c->constBegin(); }
+- toBack · function · L142-L142 — void                toBack() { i = c->constEnd(); }
+- hasNext · function · L143-L143 — bool                hasNext() const { return i != c->constEnd(); }
+- next · function · L144-L144 — const QhullPoint    next() { return *i++; }
+- peekNext · function · L145-L145 — const QhullPoint    peekNext() const { return *i; }
+- hasPrevious · function · L146-L146 — bool                hasPrevious() const { return i != c->constBegin(); }
+- previous · function · L147-L147 — const QhullPoint    previous() { return *--i; }
+- peekPrevious · function · L148-L149 — const QhullPoint    peekPrevious() const { const_iterator p = i; return *--p; }
+- findNext · function · L149-L149 — bool                findNext(const QhullPoint &t) { while(i != c->constEnd()){ if (*i++ == t) return true;} return false; }
+- findPrevious · function · L150-L150 — bool                findPrevious(const QhullPoint &t) { while(i != c->constBegin()){ if (*(--i) == t) return true;} return false;  }

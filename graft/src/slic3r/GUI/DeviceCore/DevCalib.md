@@ -1,0 +1,43 @@
+# src/slic3r/GUI/DeviceCore/DevCalib.h
+
+- class · type · L15-L15 — enum class CalibStatus
+- class · type · L22-L22 — enum class ManualPaCaliMethod
+- GetOwner · function · L36-L36 — MachineObject* GetOwner() const {return m_owner; };
+- RequestPAResult · function · L38-L38 — void RequestPAResult();
+- GetPAResultStatus · function · L39-L39 — CalibStatus GetPAResultStatus() const {return m_pa_results_status;}
+- IsPAResultReady · function · L40-L40 — bool IsPAResultReady() const { return m_pa_results_status == CalibStatus::FINISHED;}
+- ResetPAResult · function · L41-L41 — void ResetPAResult();
+- RequestPAHistory · function · L44-L44 — int RequestPAHistory(const PACalibExtruderInfo &calib_info);
+- GetPAHistoryStatus · function · L45-L45 — CalibStatus GetPAHistoryStatus() const {return m_pa_table_status;}
+- IsPAHistoryReady · function · L46-L46 — bool IsPAHistoryReady() const { return m_pa_table_status == CalibStatus::FINISHED;}
+- ResetPAHistory · function · L47-L47 — void ResetPAHistory();
+- RequestFlowRateResult · function · L49-L49 — void RequestFlowRateResult();
+- GetFlowRateResultStatus · function · L50-L50 — CalibStatus GetFlowRateResultStatus() const {return m_flow_results_status;}
+- IsFlowRateReady · function · L51-L51 — bool IsFlowRateReady() const { return m_flow_results_status == CalibStatus::FINISHED;}
+- ResetFlowRateResult · function · L52-L52 — void ResetFlowRateResult();
+- GetCalibVersion · function · L54-L54 — int  GetCalibVersion() const {return m_calib_version;}
+- SyncCalibVersion · function · L55-L55 — void SyncCalibVersion() { if (IsVersionInited()) { m_last_calib_version = m_calib_version; } }
+- ResetCalibVersion · function · L56-L56 — void ResetCalibVersion() {m_last_calib_version.reset();}
+- IsVersionExpired · function · L57-L63 — bool IsVersionExpired() const;
+- IsVersionInited · function · L58-L58 — bool IsVersionInited() const { return m_calib_version > -1;}
+- IsSupportNewAutoCali · function · L60-L60 — bool IsSupportNewAutoCali() const {return m_support_new_auto_cali;}
+- SetStashCalibFinished · function · L63-L63 — void                        SetStashCalibFinished(bool finished) {m_calib_finished = finished;}
+- GetStashCalibFinished · function · L64-L64 — bool                        GetStashCalibFinished() { return m_calib_finished;}
+- SetStashFlowRatio · function · L66-L66 — void                        SetStashFlowRatio(float ratio) { m_flow_ratio = ratio;}
+- GetStashFlowRatio · function · L67-L67 — float                       GetStashFlowRatio() const {return m_flow_ratio;}
+- GetFlowRatioCalibType · function · L69-L69 — FlowRatioCalibrationType    GetFlowRatioCalibType() {return m_flow_ratio_calibration_type;}
+- SetFlowRatioCalibType · function · L70-L70 — void                        SetFlowRatioCalibType(const FlowRatioCalibrationType &type) { m_flow_ratio_calibration_type = type; }
+- GetManualPaCalibMethod · function · L72-L72 — ManualPaCaliMethod          GetManualPaCalibMethod() {return m_manual_pa_cali_method;}
+- SetManualPaCalibMethod · function · L73-L73 — void                        SetManualPaCalibMethod(const ManualPaCaliMethod& method) { m_manual_pa_cali_method = method;}
+- GetSelectedNozzleDiameter · function · L75-L75 — NozzleDiameterType          GetSelectedNozzleDiameter() {return m_selected_nozzle_diameter;}
+- SetSelectedNozzleDiameter · function · L76-L76 — void                        SetSelectedNozzleDiameter(const NozzleDiameterType& diameter) { m_selected_nozzle_diameter = diameter;}
+- ResetSelectedCalibPreset · function · L79-L79 — void                        ResetSelectedCalibPreset() { m_selected_calib_preset.clear();}
+- SetSelectedCalibPreset · function · L80-L80 — void                        SetSelectedCalibPreset(const std::vector<CaliPresetInfo>& preset) { m_selected_calib_preset = preset;}
+- ExtrusionCalibSetParse · function · L87-L87 — void ExtrusionCalibSetParse(const json &jj);
+- ExtrusionCalibSelectParse · function · L88-L88 — void ExtrusionCalibSelectParse(const json &jj);
+- ExtrusionCalibGetTableParse · function · L89-L89 — void ExtrusionCalibGetTableParse(const json &jj);
+- ExtrusionCalibGetResultParse · function · L90-L90 — void ExtrusionCalibGetResultParse(const json &jj);
+- FlowrateGetResultParse · function · L91-L91 — void FlowrateGetResultParse(const json &jj);
+- ParseCalibVersion · function · L120-L120 — static void ParseCalibVersion(const json& j, DevCalib* system);
+- ParseSupportNewAutoCalib · function · L122-L122 — static void ParseSupportNewAutoCalib(int flag, DevCalib* system);
+- ParseV1_0 · function · L124-L124 — static void ParseV1_0(const json& print_json, DevCalib* system, bool key_field_only);

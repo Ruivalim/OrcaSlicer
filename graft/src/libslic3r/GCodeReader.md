@@ -1,0 +1,92 @@
+# src/libslic3r/GCodeReader.hpp
+
+- GCodeReader · class · L14-L204 — class GCodeReader
+- GCodeLine · class · L16-L101 — class GCodeLine
+- GCodeLine · function · L18-L18 — GCodeLine() { reset(); }
+- reset · function · L19-L19 — void reset() { m_mask = 0; memset(m_axis, 0, sizeof(m_axis)); m_raw.clear(); }
+- raw · function · L21-L21 — const std::string&      raw() const { return m_raw; }
+- cmd · function · L22-L25 — const std::string_view  cmd() const
+- comment · function · L26-L27 — const std::string_view  comment() const
+- axis_pos · function · L30-L30 — std::string_view axis_pos(char axis) const;
+- clear · function · L31-L31 — void  clear() { m_raw.clear(); }
+- has · function · L32-L32 — bool  has(Axis axis) const { return (m_mask & (1 << int(axis))) != 0; }
+- value · function · L33-L33 — float value(Axis axis) const { return m_axis[axis]; }
+- has · function · L34-L34 — bool  has(char axis) const;
+- has_value · function · L35-L35 — bool  has_value(char axis, float &value) const;
+- has_value · function · L37-L37 — static bool has_value(std::string_view axis_pos, float &value);
+- new_X · function · L38-L38 — float new_X(const GCodeReader &reader) const { return this->has(X) ? this->x() : reader.x(); }
+- new_Y · function · L39-L39 — float new_Y(const GCodeReader &reader) const { return this->has(Y) ? this->y() : reader.y(); }
+- new_Z · function · L40-L40 — float new_Z(const GCodeReader &reader) const { return this->has(Z) ? this->z() : reader.z(); }
+- new_E · function · L41-L41 — float new_E(const GCodeReader &reader) const { return this->has(E) ? this->e() : reader.e(); }
+- new_F · function · L42-L42 — float new_F(const GCodeReader &reader) const { return this->has(F) ? this->f() : reader.f(); }
+- dist_X · function · L43-L43 — float dist_X(const GCodeReader &reader) const { return this->has(X) ? (this->x() - reader.x()) : 0; }
+- dist_Y · function · L44-L44 — float dist_Y(const GCodeReader &reader) const { return this->has(Y) ? (this->y() - reader.y()) : 0; }
+- dist_Z · function · L45-L45 — float dist_Z(const GCodeReader &reader) const { return this->has(Z) ? (this->z() - reader.z()) : 0; }
+- dist_E · function · L46-L46 — float dist_E(const GCodeReader &reader) const { return this->has(E) ? (this->e() - reader.e()) : 0; }
+- dist_XY · function · L47-L51 — float dist_XY(const GCodeReader &reader) const
+- cmd_is · function · L52-L52 — bool cmd_is(const char *cmd_test)          const { return cmd_is(m_raw, cmd_test); }
+- extruding · function · L54-L54 — bool extruding(const GCodeReader &reader)  const { return (this->cmd_is("G1") || this->cmd_is("G2") || this->cmd_is("G3")) && this->dist_E(reader) > 0; }
+- retracting · function · L55-L55 — bool retracting(const GCodeReader &reader) const { return (this->cmd_is("G1") || this->cmd_is("G2") || this->cmd_is("G3")) && this->dist_E(reader) < 0; }
+- travel · function · L56-L56 — bool travel()     const { return (this->cmd_is("G1") || this->cmd_is("G2") || this->cmd_is("G3")) && ! this->has(E); }
+- set · function · L57-L57 — void set(const Axis axis, const float new_value, const int decimal_digits = 3);
+- has_x · function · L59-L59 — bool  has_x() const { return this->has(X); }
+- has_y · function · L60-L60 — bool  has_y() const { return this->has(Y); }
+- has_z · function · L61-L61 — bool  has_z() const { return this->has(Z); }
+- has_e · function · L62-L62 — bool  has_e() const { return this->has(E); }
+- has_f · function · L63-L63 — bool  has_f() const { return this->has(F); }
+- has_i · function · L65-L65 — bool  has_i() const { return this->has(I); }
+- has_j · function · L66-L66 — bool  has_j() const { return this->has(J); }
+- has_p · function · L67-L67 — bool  has_p() const { return this->has(P); }
+- has_unknown_axis · function · L69-L69 — bool  has_unknown_axis() const { return this->has(UNKNOWN_AXIS); }
+- x · function · L70-L70 — float x() const { return m_axis[X]; }
+- y · function · L71-L71 — float y() const { return m_axis[Y]; }
+- z · function · L72-L72 — float z() const { return m_axis[Z]; }
+- e · function · L73-L73 — float e() const { return m_axis[E]; }
+- f · function · L74-L74 — float f() const { return m_axis[F]; }
+- i · function · L76-L76 — float i() const { return m_axis[I]; }
+- j · function · L77-L77 — float j() const { return m_axis[J]; }
+- p · function · L78-L78 — float p() const { return m_axis[P]; }
+- cmd_is · function · L80-L84 — static bool cmd_is(const std::string &gcode_line, const char *cmd_test)
+- cmd_starts_with · function · L86-L88 — static bool cmd_starts_with(const std::string& gcode_line, const char* cmd_test)
+- extract_cmd · function · L90-L95 — static std::string extract_cmd(const std::string& gcode_line)
+- callback_t · type · L103-L103 — typedef std::function<void(GCodeReader&, const GCodeLine&)> callback_t;
+- raw_line_callback_t · type · L104-L104 — typedef std::function<void(GCodeReader&, const char*, const char*)> raw_line_callback_t;
+- GCodeReader · function · L106-L106 — GCodeReader() : m_verbose(false) { this->reset(); }
+- reset · function · L107-L107 — void reset() { memset(m_position, 0, sizeof(m_position)); }
+- apply_config · function · L108-L108 — void apply_config(const GCodeConfig &config);
+- apply_config · function · L109-L109 — void apply_config(const DynamicPrintConfig &config);
+- config · function · L110-L110 — const GCodeConfig& config() { return m_config; };
+- parse_buffer · function · L112-L123 — template<typename Callback>
+- parse_buffer · function · L125-L126 — void parse_buffer(const std::string &buffer)
+- parse_line · function · L129-L129 — const char* parse_line(const char *ptr, const char *end, GCodeLine &gline, Callback &callback)
+- parse_line · function · L138-L140 — template<typename Callback>
+- parse_file · function · L143-L143 — bool parse_file(const std::string &file, callback_t callback);
+- parse_file · function · L146-L146 — bool parse_file(const std::string &file, callback_t callback, std::vector<size_t> &lines_ends);
+- parse_file_raw · function · L148-L148 — bool parse_file_raw(const std::string &file, raw_line_callback_t callback);
+- quit_parsing · function · L151-L151 — void quit_parsing() { m_parsing = false; }
+- x · function · L153-L153 — float& x()       { return m_position[X]; }
+- x · function · L154-L154 — float  x() const { return m_position[X]; }
+- y · function · L155-L155 — float& y()       { return m_position[Y]; }
+- y · function · L156-L156 — float  y() const { return m_position[Y]; }
+- z · function · L157-L157 — float& z()       { return m_position[Z]; }
+- z · function · L158-L158 — float  z() const { return m_position[Z]; }
+- e · function · L159-L159 — float& e()       { return m_position[E]; }
+- e · function · L160-L160 — float  e() const { return m_position[E]; }
+- f · function · L161-L161 — float& f()       { return m_position[F]; }
+- f · function · L162-L162 — float  f() const { return m_position[F]; }
+- i · function · L164-L164 — float& i()       { return m_position[I]; }
+- i · function · L165-L165 — float  i() const { return m_position[I]; }
+- j · function · L166-L166 — float& j()       { return m_position[J]; }
+- j · function · L167-L167 — float  j() const { return m_position[J]; }
+- get_config · function · L169-L172 — GCodeConfig get_config() const
+- parse_file_raw_internal · function · L175-L176 — template<typename ParseLineCallback, typename LineEndCallback>
+- parse_file_internal · function · L177-L178 — template<typename ParseLineCallback, typename LineEndCallback>
+- parse_line_internal · function · L180-L180 — const char* parse_line_internal(const char *ptr, const char *end, GCodeLine &gline, std::pair<const char*, const char*> &command);
+- update_coordinates · function · L181-L181 — void        update_coordinates(GCodeLine &gline, std::pair<const char*, const char*> &command);
+- is_whitespace · function · L183-L183 — static bool         is_whitespace(char c)           { return c == ' ' || c == '\t'; }
+- is_end_of_line · function · L184-L184 — static bool         is_end_of_line(char c)          { return c == '\r' || c == '\n' || c == 0; }
+- is_end_of_gcode_line · function · L185-L185 — static bool         is_end_of_gcode_line(char c)    { return c == ';' || is_end_of_line(c); }
+- is_end_of_word · function · L186-L186 — static bool         is_end_of_word(char c)          { return is_whitespace(c) || is_end_of_gcode_line(c); }
+- skip_whitespaces · function · L187-L187 — static const char*  skip_whitespaces(const char *c)
+- skip_word · function · L192-L192 — static const char*  skip_word(const char *c)
+- axis_pos · function · L197-L197 — static const char*  axis_pos(const char *raw_str, char axis);

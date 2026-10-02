@@ -1,0 +1,103 @@
+# deps_src/mcut/source/hmesh.cpp
+
+- cbegin · method · L33-L37 — template <>
+- cend · method · L39-L43 — template <>
+- cbegin · method · L45-L49 — template <>
+- cend · method · L51-L55 — template <>
+- cbegin · method · L57-L61 — template <>
+- cend · method · L63-L67 — template <>
+- cbegin · method · L69-L73 — template <>
+- cend · method · L74-L78 — template <>
+- hmesh_t · method · L84-L86 — hmesh_t::hmesh_t()
+- null_vertex · method · L92-L95 — vertex_descriptor_t hmesh_t::null_vertex()
+- null_halfedge · method · L97-L100 — halfedge_descriptor_t hmesh_t::null_halfedge()
+- null_edge · method · L102-L105 — edge_descriptor_t hmesh_t::null_edge()
+- null_face · method · L107-L110 — face_descriptor_t hmesh_t::null_face()
+- number_of_vertices · method · L115-L118 — int hmesh_t::number_of_vertices() const
+- number_of_edges · method · L120-L123 — int hmesh_t::number_of_edges() const
+- number_of_halfedges · method · L125-L128 — int hmesh_t::number_of_halfedges() const
+- number_of_faces · method · L130-L133 — int hmesh_t::number_of_faces() const
+- source · method · L135-L142 — vertex_descriptor_t hmesh_t::source(const halfedge_descriptor_t& h) const
+- target · method · L144-L150 — vertex_descriptor_t hmesh_t::target(const halfedge_descriptor_t& h) const
+- opposite · method · L152-L162 — halfedge_descriptor_t hmesh_t::opposite(const halfedge_descriptor_t& h) const
+- prev · method · L164-L170 — halfedge_descriptor_t hmesh_t::prev(const halfedge_descriptor_t& h) const
+- next · method · L172-L178 — halfedge_descriptor_t hmesh_t::next(const halfedge_descriptor_t& h) const
+- set_next · method · L180-L188 — void hmesh_t::set_next(const halfedge_descriptor_t& h, const halfedge_descriptor_t& nxt)
+- set_previous · method · L190-L197 — void hmesh_t::set_previous(const halfedge_descriptor_t& h, const halfedge_descriptor_t& prev)
+- edge · method · L199-L209 — edge_descriptor_t hmesh_t::edge(const halfedge_descriptor_t& h) const
+- face · method · L211-L217 — face_descriptor_t hmesh_t::face(const halfedge_descriptor_t& h) const
+- vertex · method · L219-L242 — vertex_descriptor_t hmesh_t::vertex(const edge_descriptor_t e, const int v) const
+- is_border · method · L244-L248 — bool hmesh_t::is_border(const halfedge_descriptor_t h)
+- is_border · method · L250-L259 — bool hmesh_t::is_border(const edge_descriptor_t e)
+- halfedge · method · L261-L285 — halfedge_descriptor_t hmesh_t::halfedge(const edge_descriptor_t e, const int i) const
+- halfedge · method · L289-L340 — halfedge_descriptor_t hmesh_t::halfedge(const vertex_descriptor_t s, const vertex_descriptor_t t, bool strict_check) const
+- edge · method · L342-L346 — edge_descriptor_t hmesh_t::edge(const vertex_descriptor_t s, const vertex_descriptor_t t, bool strict_check) const
+- add_vertex · method · L348-L354 — vertex_descriptor_t hmesh_t::add_vertex(const vec3& point)
+- add_vertex · method · L356-L388 — vertex_descriptor_t hmesh_t::add_vertex(const double& x, const double& y, const double& z)
+- add_edge · method · L390-L505 — halfedge_descriptor_t hmesh_t::add_edge(const vertex_descriptor_t v0, const vertex_descriptor_t v1)
+- h0_idx · function · L396-L396 — halfedge_descriptor_t h0_idx(static_cast<face_descriptor_t::index_type>(number_of_halfedges())); // primary halfedge of new edge to be created
+- h1_idx · function · L419-L419 — halfedge_descriptor_t h1_idx(static_cast<face_descriptor_t::index_type>(number_of_halfedges())); // second halfedge of new edge to be created (opposite of h0_idx)
+- e_idx · function · L447-L447 — edge_descriptor_t e_idx(static_cast<face_descriptor_t::index_type>(number_of_edges())); // index of new edge
+- add_face · method · L507-L629 — face_descriptor_t hmesh_t::add_face(const std::vector<vertex_descriptor_t>& vi)
+- new_face_idx · function · L514-L514 — face_descriptor_t new_face_idx(static_cast<face_descriptor_t::index_type>(face_count));
+- is_insertable · method · L631-L664 — bool hmesh_t::is_insertable(const std::vector<vertex_descriptor_t>& vi) const
+- vertex · method · L666-L666 — const vec3& hmesh_t::vertex(const vertex_descriptor_t& vd) const
+- get_num_vertices_around_face · method · L674-L681 — uint32_t hmesh_t::get_num_vertices_around_face(const face_descriptor_t f) const
+- get_vertices_around_face · method · L683-L698 — std::vector<vertex_descriptor_t> hmesh_t::get_vertices_around_face(const face_descriptor_t f, uint32_t prepend_offset) const
+- get_vertices_around_face · method · L700-L711 — void hmesh_t::get_vertices_around_face(std::vector<vertex_descriptor_t>& vertex_descriptors, const face_descriptor_t f, uint32_t prepend_offset) const
+- get_vertices_around_vertex · method · L713-L726 — std::vector<vertex_descriptor_t> hmesh_t::get_vertices_around_vertex(const vertex_descriptor_t v) const
+- get_vertices_around_vertex · method · L728-L739 — void hmesh_t::get_vertices_around_vertex(std::vector<vertex_descriptor_t>& vertices_around_vertex, const vertex_descriptor_t v) const
+- get_halfedges_around_face · method · L741-L741 — const std::vector<halfedge_descriptor_t>& hmesh_t::get_halfedges_around_face(const face_descriptor_t f) const
+- get_faces_around_face · method · L748-L772 — const std::vector<face_descriptor_t> hmesh_t::get_faces_around_face(const face_descriptor_t f, const std::vector<halfedge_descriptor_t>* halfedges_around_face_) const
+- get_faces_around_face · method · L774-L797 — void hmesh_t::get_faces_around_face(std::vector<face_descriptor_t>& faces_around_face, const face_descriptor_t f, const std::vector<halfedge_descriptor_t>* halfedges_around_face_) const
+- get_num_faces_around_face · method · L799-L827 — uint32_t hmesh_t::get_num_faces_around_face(const face_descriptor_t f, const std::vector<halfedge_descriptor_t>* halfedges_around_face_) const
+- get_halfedges_around_vertex · method · L829-L829 — const std::vector<halfedge_descriptor_t>& hmesh_t::get_halfedges_around_vertex(const vertex_descriptor_t v) const
+- vertices_begin · method · L838-L848 — vertex_array_iterator_t hmesh_t::vertices_begin(bool account_for_removed_elems) const
+- vertices_end · method · L850-L853 — vertex_array_iterator_t hmesh_t::vertices_end() const
+- edges_begin · method · L855-L865 — edge_array_iterator_t hmesh_t::edges_begin(bool account_for_removed_elems) const
+- edges_end · method · L867-L870 — edge_array_iterator_t hmesh_t::edges_end() const
+- halfedges_begin · method · L872-L882 — halfedge_array_iterator_t hmesh_t::halfedges_begin(bool account_for_removed_elems) const
+- halfedges_end · method · L884-L887 — halfedge_array_iterator_t hmesh_t::halfedges_end() const
+- faces_begin · method · L889-L899 — face_array_iterator_t hmesh_t::faces_begin(bool account_for_removed_elems) const
+- faces_end · method · L901-L904 — face_array_iterator_t hmesh_t::faces_end() const
+- remove_face · method · L907-L963 — void hmesh_t::remove_face(const face_descriptor_t f)
+- remove_halfedge · method · L966-L1014 — void hmesh_t::remove_halfedge(halfedge_descriptor_t h)
+- remove_edge · method · L1017-L1041 — void hmesh_t::remove_edge(const edge_descriptor_t e, bool remove_halfedges)
+- remove_vertex · method · L1043-L1052 — void hmesh_t::remove_vertex(const vertex_descriptor_t v)
+- remove_elements · method · L1054-L1071 — void hmesh_t::remove_elements()
+- reset · method · L1073-L1091 — void hmesh_t::reset()
+- number_of_internal_faces · method · L1093-L1096 — int hmesh_t::number_of_internal_faces() const
+- number_of_internal_edges · method · L1098-L1101 — int hmesh_t::number_of_internal_edges() const
+- number_of_internal_halfedges · method · L1103-L1106 — int hmesh_t::number_of_internal_halfedges() const
+- number_of_internal_vertices · method · L1108-L1111 — int hmesh_t::number_of_internal_vertices() const
+- number_of_vertices_removed · method · L1114-L1117 — int hmesh_t::number_of_vertices_removed() const
+- number_of_edges_removed · method · L1119-L1122 — int hmesh_t::number_of_edges_removed() const
+- number_of_halfedges_removed · method · L1124-L1127 — int hmesh_t::number_of_halfedges_removed() const
+- number_of_faces_removed · method · L1129-L1132 — int hmesh_t::number_of_faces_removed() const
+- is_removed · method · L1134-L1137 — bool hmesh_t::is_removed(face_descriptor_t f) const
+- is_removed · method · L1139-L1142 — bool hmesh_t::is_removed(edge_descriptor_t e) const
+- is_removed · method · L1144-L1147 — bool hmesh_t::is_removed(halfedge_descriptor_t h) const
+- is_removed · method · L1149-L1152 — bool hmesh_t::is_removed(vertex_descriptor_t v) const
+- reserve_for_additional_vertices · method · L1154-L1157 — void hmesh_t::reserve_for_additional_vertices(std::uint32_t n)
+- reserve_for_additional_edges · method · L1159-L1162 — void hmesh_t::reserve_for_additional_edges(std::uint32_t n)
+- reserve_for_additional_halfedges · method · L1164-L1167 — void hmesh_t::reserve_for_additional_halfedges(std::uint32_t n)
+- reserve_for_additional_faces · method · L1169-L1172 — void hmesh_t::reserve_for_additional_faces(std::uint32_t n)
+- reserve_for_additional_elements · method · L1174-L1184 — void hmesh_t::reserve_for_additional_elements(std::uint32_t n)
+- get_removed_elements · method · L1186-L1186 — const std::vector<vertex_descriptor_t>& hmesh_t::get_removed_elements(id_<array_iterator_t<vertex_array_t>>) const
+- get_removed_elements · method · L1191-L1191 — const std::vector<edge_descriptor_t>& hmesh_t::get_removed_elements(id_<array_iterator_t<edge_array_t>>) const
+- get_removed_elements · method · L1196-L1196 — const std::vector<halfedge_descriptor_t>& hmesh_t::get_removed_elements(id_<array_iterator_t<halfedge_array_t>>) const
+- get_removed_elements · method · L1201-L1201 — const std::vector<face_descriptor_t>& hmesh_t::get_removed_elements(id_<array_iterator_t<face_array_t>>) const
+- get_removed_vertices · method · L1206-L1206 — const std::vector<vertex_descriptor_t>& hmesh_t::get_removed_vertices() const
+- get_removed_edges · method · L1211-L1211 — const std::vector<edge_descriptor_t>& hmesh_t::get_removed_edges() const
+- get_removed_halfedges · method · L1216-L1216 — const std::vector<halfedge_descriptor_t>& hmesh_t::get_removed_halfedges() const
+- get_removed_faces · method · L1221-L1221 — const std::vector<face_descriptor_t>& hmesh_t::get_removed_faces() const
+- elements_begin_ · method · L1226-L1229 — const vertex_array_iterator_t hmesh_t::elements_begin_(id_<array_iterator_t<vertex_array_t>>, bool account_for_removed_elems) const
+- elements_begin_ · method · L1231-L1234 — const edge_array_iterator_t hmesh_t::elements_begin_(id_<array_iterator_t<edge_array_t>>, bool account_for_removed_elems) const
+- elements_begin_ · method · L1236-L1239 — const halfedge_array_iterator_t hmesh_t::elements_begin_(id_<array_iterator_t<halfedge_array_t>>, bool account_for_removed_elems) const
+- elements_begin_ · method · L1241-L1244 — const face_array_iterator_t hmesh_t::elements_begin_(id_<array_iterator_t<face_array_t>>, bool account_for_removed_elems) const
+- write_off · function · L1246-L1306 — void write_off(const char* fpath, const hmesh_t& mesh)
+- outfile · function · L1249-L1249 — std::ofstream outfile(fpath);
+- read_off · function · L1308-L1411 — void read_off(hmesh_t& mesh, const char* fpath)
+- infile · function · L1319-L1319 — std::ifstream infile(fpath);
+- vtx_line_stream · function · L1366-L1366 — std::istringstream vtx_line_stream(info);
+- face_line_stream · function · L1390-L1390 — std::istringstream face_line_stream(info);

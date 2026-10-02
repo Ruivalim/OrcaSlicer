@@ -1,0 +1,24 @@
+# src/slic3r/Utils/SimplyPrint.hpp
+
+- DynamicPrintConfig · class · L9-L9 — class DynamicPrintConfig;
+- Http · class · L10-L10 — class Http;
+- SimplyPrint · class · L11-L69 — class SimplyPrint : public PrintHost
+- load_oauth_credential · function · L16-L16 — void load_oauth_credential();
+- do_api_call · function · L25-L27 — bool do_api_call(std::function<Http(bool /*is_retry*/)>                                                           build_request,
+- do_temp_upload · function · L38-L42 — bool do_temp_upload(const boost::filesystem::path& file_path,
+- do_chunk_upload · function · L44-L47 — bool do_chunk_upload(const boost::filesystem::path& file_path,
+- SimplyPrint · function · L50-L50 — SimplyPrint(DynamicPrintConfig* config);
+- get_name · function · L53-L53 — const char* get_name() const override { return "SimplyPrint"; }
+- can_test · function · L54-L54 — bool can_test() const override { return true; }
+- has_auto_discovery · function · L55-L55 — bool has_auto_discovery() const override { return false; }
+- is_cloud · function · L56-L56 — bool is_cloud() const override { return true; }
+- get_host · function · L57-L57 — std::string get_host() const override { return "https://simplyprint.io"; }
+- get_oauth_params · function · L59-L59 — GUI::OAuthParams get_oauth_params() const;
+- save_oauth_credential · function · L60-L60 — void             save_oauth_credential(const GUI::OAuthResult& cred) const;
+- get_test_ok_msg · function · L62-L62 — wxString                   get_test_ok_msg() const override;
+- get_test_failed_msg · function · L63-L63 — wxString                   get_test_failed_msg(wxString& msg) const override;
+- test · function · L64-L64 — bool                       test(wxString& curl_msg) const override;
+- get_post_upload_actions · function · L65-L65 — PrintHostPostUploadActions get_post_upload_actions() const override { return PrintHostPostUploadAction::QueuePrint; }
+- upload · function · L66-L66 — bool                       upload(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- is_logged_in · function · L67-L67 — bool                       is_logged_in() const override { return !cred.empty(); }
+- log_out · function · L68-L68 — void                       log_out() const override;

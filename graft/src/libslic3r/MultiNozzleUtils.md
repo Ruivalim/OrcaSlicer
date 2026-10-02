@@ -1,0 +1,76 @@
+# src/libslic3r/MultiNozzleUtils.hpp
+
+- NozzleInfo · class · L28-L43 — struct NozzleInfo
+- serialize · function · L35-L35 — std::string serialize() const;
+- NozzleGroupInfo · class · L46-L79 — struct NozzleGroupInfo
+- NozzleGroupInfo · function · L53-L53 — NozzleGroupInfo() = default;
+- NozzleGroupInfo · function · L55-L57 — NozzleGroupInfo(const std::string& nozzle_diameter_, const NozzleVolumeType volume_type_, const int extruder_id_, const int nozzle_count_)
+- is_same_type · function · L67-L70 — bool is_same_type(const NozzleGroupInfo &rhs) const
+- serialize · function · L77-L77 — std::string serialize() const;
+- deserialize · function · L78-L78 — static std::optional<NozzleGroupInfo> deserialize(const std::string& str);
+- FilamentChangeTimeParams · class · L84-L90 — struct FilamentChangeTimeParams
+- NozzleGroupResultBase · class · L95-L116 — class NozzleGroupResultBase
+- NozzleGroupResultBase · function · L101-L101 — NozzleGroupResultBase(bool support_dynamic_map = false) : support_dynamic_nozzle_map(support_dynamic_map) {}
+- get_nozzle_from_id · function · L104-L104 — virtual std::optional<NozzleInfo> get_nozzle_from_id(int nozzle_id) const = 0;
+- get_first_nozzle_for_filament · function · L105-L105 — virtual std::optional<NozzleInfo> get_first_nozzle_for_filament(int filament_id) const = 0; // logical nozzle a filament first uses
+- get_nozzles_for_filament · function · L107-L107 — virtual std::vector<NozzleInfo> get_nozzles_for_filament(int filament_id) const = 0; // every nozzle a filament may use (across all layers)
+- is_support_dynamic_nozzle_map · function · L109-L109 — bool is_support_dynamic_nozzle_map() const { return support_dynamic_nozzle_map; }
+- get_extruder_count · function · L111-L111 — virtual int get_extruder_count() const = 0;
+- get_used_nozzles_in_extruder · function · L113-L113 — virtual std::vector<NozzleInfo> get_used_nozzles_in_extruder(int extruder_id =-1) const = 0;
+- get_used_extruders · function · L114-L114 — virtual std::vector<int> get_used_extruders() const = 0;
+- get_used_filaments · function · L115-L115 — virtual std::vector<unsigned int> get_used_filaments() const = 0;
+- LayeredNozzleGroupResult · class · L122-L188 — class LayeredNozzleGroupResult : public NozzleGroupResultBase
+- LayeredNozzleGroupResult · function · L132-L132 — LayeredNozzleGroupResult(bool support_dynamic_map = false) : NozzleGroupResultBase(support_dynamic_map) {}
+- create · function · L135-L138 — static std::optional<LayeredNozzleGroupResult> create(
+- create · function · L141-L145 — static std::optional<LayeredNozzleGroupResult> create(
+- create · function · L148-L154 — static std::optional<LayeredNozzleGroupResult> create(
+- are_filaments_same_extruder · function · L156-L156 — bool are_filaments_same_extruder(int filament_id1, int filament_id2, int layer_id = -1) const;
+- are_filaments_same_nozzle · function · L157-L157 — bool are_filaments_same_nozzle(int filament_id1, int filament_id2, int layer_id = -1) const;
+- get_extruder_count · function · L158-L158 — int get_extruder_count() const override;
+- get_used_nozzles_in_extruder · function · L160-L160 — std::vector<NozzleInfo> get_used_nozzles_in_extruder(int target_extruder_id = -1) const override;
+- get_used_nozzles_in_extruder · function · L161-L161 — std::vector<NozzleInfo> get_used_nozzles_in_extruder(int target_extruder_id, int layer_id) const; // layer_id=-1 uses default map
+- get_used_extruders · function · L162-L162 — std::vector<int> get_used_extruders() const override;
+- get_used_extruders · function · L163-L163 — std::vector<int> get_used_extruders(int layer_id) const; // layer_id=-1 returns global extruders
+- get_extruder_map · function · L165-L165 — std::vector<int> get_extruder_map(bool zero_based = true, int layer_id = -1) const;
+- get_nozzle_map · function · L166-L166 — std::vector<int> get_nozzle_map(int layer_id = -1) const;
+- get_volume_map · function · L167-L167 — std::vector<int> get_volume_map(int layer_id = -1) const;
+- get_used_filaments · function · L169-L169 — std::vector<unsigned int> get_used_filaments() const override { return _used_filaments; }
+- get_used_filaments · function · L170-L170 — std::vector<unsigned int> get_used_filaments(int layer_id) const;
+- get_nozzle_for_filament · function · L172-L172 — std::optional<NozzleInfo> get_nozzle_for_filament(int filament_id, int layer_id = -1) const;
+- get_nozzles_for_filament · function · L173-L173 — std::vector<NozzleInfo> get_nozzles_for_filament(int filament_id) const override;
+- get_nozzle_from_id · function · L175-L175 — std::optional<NozzleInfo> get_nozzle_from_id(int nozzle_id) const override;
+- get_first_nozzle_for_filament · function · L176-L176 — std::optional<NozzleInfo> get_first_nozzle_for_filament(int filament_id) const override;
+- get_extruder_id · function · L177-L177 — int get_extruder_id(int filament_id, int layer_id = -1) const;
+- get_nozzle_id · function · L178-L178 — int get_nozzle_id(int filament_id, int layer_id = -1) const;
+- get_layer_count · function · L180-L180 — size_t get_layer_count() const { return _layer_filament_nozzle_maps.size(); }
+- get_layer_filament_nozzle_map · function · L181-L181 — const std::vector<int>& get_layer_filament_nozzle_map(int layer_id) const;
+- get_layer_filament_nozzle_maps · function · L182-L182 — const std::vector<std::vector<int>> &get_layer_filament_nozzle_maps() const { return _layer_filament_nozzle_maps; }
+- get_layer_filament_sequences · function · L183-L183 — const std::vector<std::vector<unsigned int>>& get_layer_filament_sequences() const { return _layer_filament_sequences; }
+- estimate_seq_flush_weight · function · L187-L187 — int estimate_seq_flush_weight(const std::vector<std::vector<std::vector<float>>>& flush_matrix, const std::vector<int>& filament_change_seq) const;
+- StaticNozzleGroupResult · class · L194-L221 — class StaticNozzleGroupResult : public NozzleGroupResultBase
+- StaticNozzleGroupResult · function · L203-L203 — StaticNozzleGroupResult(bool support_dynamic_map) : NozzleGroupResultBase(support_dynamic_map) {}
+- create · function · L205-L210 — static std::optional<StaticNozzleGroupResult> create(
+- get_extruder_count · function · L212-L212 — int get_extruder_count() const override;
+- get_used_nozzles_in_extruder · function · L213-L213 — std::vector<NozzleInfo> get_used_nozzles_in_extruder(int extruder_id = -1) const override;
+- get_used_extruders · function · L214-L214 — std::vector<int> get_used_extruders() const override;
+- get_used_filaments · function · L215-L215 — std::vector<unsigned int> get_used_filaments() const override;
+- get_nozzle_from_id · function · L217-L217 — std::optional<NozzleInfo> get_nozzle_from_id(int nozzle_id) const override;
+- get_nozzles_for_filament · function · L219-L219 — std::vector<NozzleInfo> get_nozzles_for_filament(int filament_id) const override;
+- get_first_nozzle_for_filament · function · L220-L220 — std::optional<NozzleInfo> get_first_nozzle_for_filament(int filament_id) const override;
+- NozzleStatusRecorder · class · L225-L249 — class NozzleStatusRecorder
+- NozzleStatusRecorder · function · L233-L233 — NozzleStatusRecorder() = default;
+- is_nozzle_empty · function · L234-L234 — bool is_nozzle_empty(int nozzle_id) const;
+- get_filament_in_nozzle · function · L235-L235 — int  get_filament_in_nozzle(int nozzle_id) const;
+- get_nozzle_in_extruder · function · L236-L236 — int  get_nozzle_in_extruder(int extruder_id) const;
+- get_current_extruder_id · function · L237-L237 — int  get_current_extruder_id() const { return current_extruder_id_; }
+- clear_nozzle_status · function · L239-L239 — void clear_nozzle_status(int nozzle_id);
+- set_current_extruder_id · function · L240-L240 — void set_current_extruder_id(int extruder_id) { current_extruder_id_ = extruder_id; }
+- set_nozzle_status · function · L243-L243 — void set_nozzle_status(int nozzle_id, int filament_id, int extruder_id = -1);
+- get_nozzle_filament_map · function · L246-L246 — const std::unordered_map<int, int>& get_nozzle_filament_map() const { return nozzle_filament_status; }
+- get_extruder_nozzle_map · function · L248-L248 — const std::unordered_map<int, int>& get_extruder_nozzle_map() const { return extruder_nozzle_status; }
+- FilamentChangeSimResult · class · L251-L254 — struct FilamentChangeSimResult
+- simulate_filament_change_time · function · L261-L269 — FilamentChangeSimResult simulate_filament_change_time(
+- normalize_nozzle_map_per_layer · function · L278-L279 — void normalize_nozzle_map_per_layer(std::vector<std::vector<int>>&                layer_filament_nozzle_maps,
+- build_nozzle_list · function · L280-L280 — std::vector<NozzleInfo> build_nozzle_list(std::vector<NozzleGroupInfo> info);
+- build_nozzle_list · function · L281-L282 — std::vector<NozzleInfo> build_nozzle_list(double diameter, const std::vector<int>& filament_nozzle_map,
+- load_nozzle_infos_with_compatibility · function · L286-L292 — std::vector<NozzleInfo> load_nozzle_infos_with_compatibility(

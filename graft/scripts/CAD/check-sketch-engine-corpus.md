@@ -1,0 +1,17 @@
+# scripts/CAD/check-sketch-engine-corpus.py
+
+- try_call · function · L47-L52 — def try_call(method, **params)
+- call · function · L55-L73 — def call(method, **params)
+- bezier · function · L80-L94 — def bezier(p0, p1, p2, p3, n=16)
+- path_segments · function · L97-L126 — def path_segments(d)
+- dist · function · L129-L130 — def dist(a, b)
+- drawing_segments · function · L133-L147 — def drawing_segments(pdf)
+- find_loops · function · L151-L186 — def find_loops(segs)
+- shoelace · function · L189-L193 — def shoelace(ring)
+- point_in · function · L196-L203 — def point_in(pt, ring)
+- interior_point · function · L206-L230 — def interior_point(ring)
+- grade · function · L234-L345 — def grade(pdf, name, report)
+- grade_scale · function · L349-L397 — def grade_scale(pdf, name, report, budget)
+- _pdf_error · function · L400-L403 — def _pdf_error(path)
+- main · function · L406-L488 — def main()
+- report · function · L450-L458 — def report(name, tag, msg, cond=True)

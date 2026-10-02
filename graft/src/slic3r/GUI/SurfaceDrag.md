@@ -1,0 +1,21 @@
+# src/slic3r/GUI/SurfaceDrag.hpp
+
+- GLVolume · class · L11-L11 — class GLVolume;
+- ModelVolume · class · L12-L12 — class ModelVolume;
+- GLCanvas3D · class · L16-L16 — class GLCanvas3D;
+- Selection · class · L17-L17 — class Selection;
+- TransformationType · class · L18-L18 — class TransformationType;
+- SurfaceDrag · class · L22-L51 — struct SurfaceDrag
+- on_mouse_surface_drag · function · L69-L74 — bool on_mouse_surface_drag(const wxMouseEvent         &mouse_event,
+- calc_surface_offset · function · L82-L82 — std::optional<Vec3d> calc_surface_offset(const Selection &selection, RaycastManager &raycast_manager);
+- calc_distance · function · L91-L91 — std::optional<float> calc_distance(const GLVolume &gl_volume, RaycastManager &raycaster, GLCanvas3D &canvas);
+- calc_distance · function · L92-L93 — std::optional<float> calc_distance(const GLVolume &gl_volume, const RaycastManager &raycaster,
+- calc_angle · function · L100-L100 — std::optional<float> calc_angle(const Selection &selection);
+- world_matrix_fixed · function · L109-L109 — Transform3d world_matrix_fixed(const GLVolume &gl_volume, const ModelObjectPtrs& objects);
+- world_matrix_fixed · function · L118-L118 — Transform3d world_matrix_fixed(const Selection &selection);
+- selection_transform · function · L126-L126 — void selection_transform(Selection &selection, const std::function<void()>& selection_transformation_fnc);
+- face_selected_volume_to_camera · function · L135-L135 — bool face_selected_volume_to_camera(const Camera &camera, GLCanvas3D &canvas, const std::optional<double> &wanted_up_limit = {});
+- do_local_z_rotate · function · L142-L142 — void do_local_z_rotate(Selection &selection, double relative_angle);
+- do_local_z_move · function · L149-L149 — void do_local_z_move(Selection &selection, double relative_move);
+- get_drag_transformation_type · function · L157-L157 — TransformationType get_drag_transformation_type(const Selection &selection);
+- dragging_rotate_gizmo · function · L167-L167 — void dragging_rotate_gizmo(double gizmo_angle, std::optional<float>& current_angle, std::optional<float> &start_angle, Selection &selection);

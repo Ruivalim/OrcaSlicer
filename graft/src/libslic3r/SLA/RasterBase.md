@@ -1,0 +1,28 @@
+# src/libslic3r/SLA/RasterBase.hpp
+
+- EncodedRaster · class · L18-L31 — class EncodedRaster
+- EncodedRaster · function · L23-L23 — EncodedRaster() = default;
+- EncodedRaster · function · L24-L26 — explicit EncodedRaster(std::vector<uint8_t> &&buf, std::string ext)
+- size · function · L28-L28 — size_t size() const { return m_buffer.size(); }
+- data · function · L29-L29 — const void * data() const { return m_buffer.data(); }
+- extension · function · L30-L30 — const char * extension() const { return m_ext.c_str(); }
+- Resolution · class · L34-L41 — struct Resolution
+- Resolution · function · L38-L38 — Resolution() = default;
+- Resolution · function · L39-L39 — Resolution(size_t w, size_t h) : width_px(w), height_px(h) {}
+- pixels · function · L40-L40 — size_t pixels() const { return width_px * height_px; }
+- PixelDim · class · L44-L52 — struct PixelDim
+- PixelDim · function · L48-L48 — PixelDim() = default;
+- PixelDim · function · L49-L51 — PixelDim(double px_width_mm, double px_height_mm)
+- RasterBase · class · L57-L97 — class RasterBase
+- Orientation · type · L60-L60 — enum Orientation { roLandscape, roPortrait };
+- Trafo · class · L68-L84 — struct Trafo
+- Trafo · function · L74-L79 — Trafo(Orientation o = roLandscape, const TMirroring &mirror = NoMirror)
+- get_mirror · function · L81-L81 — TMirroring get_mirror() const { return { (roPortrait ? !mirror_x : mirror_x), mirror_y}; }
+- get_orientation · function · L82-L82 — Orientation get_orientation() const { return flipXY ? roPortrait : roLandscape; }
+- get_center · function · L83-L83 — Point get_center() const { return {center_x, center_y}; }
+- draw · function · L89-L89 — virtual void draw(const ExPolygon& poly) = 0;
+- trafo · function · L94-L94 — virtual Trafo      trafo() const = 0;
+- encode · function · L96-L96 — virtual EncodedRaster encode(RasterEncoder encoder) const = 0;
+- PNGRasterEncoder · class · L99-L101 — struct PNGRasterEncoder
+- PPMRasterEncoder · class · L103-L105 — struct PPMRasterEncoder
+- create_raster_grayscale_aa · function · L110-L114 — std::unique_ptr<RasterBase> create_raster_grayscale_aa(

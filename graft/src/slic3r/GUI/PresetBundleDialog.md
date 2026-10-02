@@ -1,0 +1,23 @@
+# src/slic3r/GUI/PresetBundleDialog.hpp
+
+- PresetBundleDialog · class · L31-L93 — class PresetBundleDialog : public Slic3r::GUI::WebViewHostDialog
+- PresetBundleDialog · function · L34-L39 — PresetBundleDialog(wxWindow* parent,
+- create · function · L43-L43 — void create();
+- DeleteBundleById · function · L45-L45 — bool DeleteBundleById(const wxString& id);
+- UnsubscribeBundleById · function · L46-L46 — bool UnsubscribeBundleById(const std::string& id);
+- seq_top_layer_only_changed · function · L48-L48 — bool seq_top_layer_only_changed() const { return m_seq_top_layer_only_changed; }
+- recreate_GUI · function · L49-L49 — bool recreate_GUI() const { return m_recreate_GUI; }
+- ListBundles · function · L52-L52 — void ListBundles();
+- OpenFolder · function · L53-L53 — void OpenFolder(const std::string& id);
+- DeleteBundle · function · L54-L54 — void DeleteBundle(const std::string& id);
+- UnsubscribeBundle · function · L55-L55 — void UnsubscribeBundle(const std::string& id);
+- OpenBundleOnCloud · function · L56-L56 — void OpenBundleOnCloud(const std::string& id);
+- OnPresetBundlePage · function · L58-L58 — void OnPresetBundlePage();
+- on_script_message · function · L61-L61 — void on_script_message(const nlohmann::json& payload) override;
+- StartDialogWorker · function · L63-L63 — void StartDialogWorker();
+- StopDialogWorker · function · L64-L64 — void StopDialogWorker();
+- RefreshBundleMap · function · L66-L66 — void RefreshBundleMap();
+- CheckUpdateCloud · function · L68-L68 — bool CheckUpdateCloud();
+- OnBundleUpdate · function · L70-L70 — void OnBundleUpdate(wxCommandEvent& evt);
+- CompareVer · function · L73-L73 — bool CompareVer(const std::string& a, const std::string& b);
+- OnFSWatch · function · L78-L78 — void OnFSWatch(wxFileSystemWatcherEvent& e);

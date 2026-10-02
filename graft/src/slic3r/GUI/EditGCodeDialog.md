@@ -1,0 +1,73 @@
+# src/slic3r/GUI/EditGCodeDialog.hpp
+
+- wxListBox · class · L15-L15 — class wxListBox;
+- wxTextCtrl · class · L16-L16 — class wxTextCtrl;
+- ScalableButton · class · L17-L17 — class ScalableButton;
+- ParamsViewCtrl · class · L23-L23 — class ParamsViewCtrl;
+- EditGCodeDialog · class · L29-L68 — class EditGCodeDialog : public DPIDialog
+- EditGCodeDialog · function · L49-L49 — EditGCodeDialog(wxWindow*parent, const std::string&key, const std::string&value);
+- get_edited_gcode · function · L52-L52 — std::string get_edited_gcode() const;
+- on_search_update · function · L53-L53 — void        on_search_update();
+- init_params_list · function · L55-L55 — void init_params_list(const std::string& custom_gcode_name);
+- add_presets_placeholders · function · L56-L56 — wxDataViewItem add_presets_placeholders();
+- add_selected_value_to_gcode · function · L58-L58 — void add_selected_value_to_gcode();
+- bind_list_and_button · function · L59-L59 — void bind_list_and_button();
+- on_dpi_changed · function · L64-L64 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_sys_color_changed · function · L65-L65 — void on_sys_color_changed() override;
+- selection_changed · function · L67-L67 — void selection_changed(wxDataViewEvent& evt);
+- ParamsNode · class · L77-L77 — class ParamsNode;
+- ParamType · type · L80-L85 — enum class ParamType
+- ParamsNode · class · L93-L164 — class ParamsNode
+- ParamsNode · function · L130-L130 — ParamsNode(const wxString& group_name, const std::string& icon_name, wxDataViewCtrl* ctrl);
+- ParamsNode · function · L133-L136 — ParamsNode(ParamsNode*          parent,
+- ParamsNode · function · L139-L142 — ParamsNode( ParamsNode*         parent,
+- GetFormattedText · function · L144-L144 — wxString GetFormattedText();
+- IsContainer · function · L146-L146 — bool             IsContainer()      const { return m_container; }
+- IsGroupNode · function · L147-L147 — bool             IsGroupNode()      const { return m_parent == nullptr; }
+- IsParamNode · function · L148-L148 — bool             IsParamNode()      const { return m_param_type != ParamType::Undef; }
+- SetContainer · function · L149-L149 — void             SetContainer(bool is_container) { m_container = is_container; }
+- IsEnabled · function · L151-L151 — bool IsEnabled() { return m_enabled; }
+- Enable · function · L152-L152 — void Enable(bool enable = true) { m_enabled = enable; }
+- Disable · function · L153-L153 — void Disable() { Enable(false); }
+- StartSearch · function · L155-L155 — void StartSearch();
+- RefreshSearch · function · L156-L156 — void RefreshSearch(const wxString& search_text);
+- FinishSearch · function · L157-L157 — void FinishSearch();
+- GetParent · function · L159-L159 — ParamsNode* GetParent() { return m_parent; }
+- GetChildren · function · L160-L160 — ParamsNodePtrArray& GetChildren() { return m_children; }
+- GetEnabledChildren · function · L161-L161 — wxDataViewItemArray GetEnabledChildren();
+- Append · function · L163-L163 — void Append(std::unique_ptr<ParamsNode> child) { m_children.emplace_back(std::move(child)); }
+- ParamsModel · class · L171-L218 — class ParamsModel : public wxDataViewModel
+- ParamsModel · function · L179-L179 — ParamsModel();
+- SetAssociatedControl · function · L182-L182 — void            SetAssociatedControl(wxDataViewCtrl* ctrl) { m_ctrl = ctrl; }
+- AppendGroup · function · L184-L185 — wxDataViewItem AppendGroup(const wxString&    group_name,
+- AppendSubGroup · function · L187-L189 — wxDataViewItem AppendSubGroup(wxDataViewItem    parent,
+- AppendParam · function · L191-L193 — wxDataViewItem AppendParam( wxDataViewItem      parent,
+- Delete · function · L195-L195 — wxDataViewItem Delete(const wxDataViewItem& item);
+- GetParamName · function · L197-L197 — wxString        GetParamName(wxDataViewItem item);
+- GetParamKey · function · L198-L198 — std::string     GetParamKey(wxDataViewItem item);
+- GetTopLevelCategory · function · L199-L199 — std::string     GetTopLevelCategory(wxDataViewItem item);
+- RefreshSearch · function · L201-L201 — void RefreshSearch(const wxString& search_text);
+- FinishSearch · function · L202-L202 — void FinishSearch();
+- Clear · function · L204-L204 — void            Clear();
+- GetParent · function · L206-L206 — wxDataViewItem  GetParent(const wxDataViewItem& item) const override;
+- GetChildren · function · L207-L207 — unsigned int    GetChildren(const wxDataViewItem& parent, wxDataViewItemArray& array) const override;
+- GetColumnCount · function · L208-L208 — unsigned int    GetColumnCount() const override;
+- GetColumnType · function · L209-L209 — wxString        GetColumnType(unsigned int col) const override;
+- GetValue · function · L211-L211 — void GetValue(wxVariant& variant, const wxDataViewItem& item, unsigned int col) const override;
+- SetValue · function · L212-L212 — bool SetValue(const wxVariant& variant, const wxDataViewItem& item, unsigned int col) override;
+- IsContainer · function · L214-L214 — bool IsContainer(const wxDataViewItem& item) const override;
+- HasContainerColumns · function · L217-L217 — bool HasContainerColumns(const wxDataViewItem& WXUNUSED(item)) const override { return true; }
+- WXUNUSED · function · L217-L217 — bool HasContainerColumns(const wxDataViewItem& WXUNUSED(item)) const override { return true; }
+- ParamsViewCtrl · class · L225-L262 — class ParamsViewCtrl : public wxDataViewCtrl
+- ParamsViewCtrl · function · L230-L230 — ParamsViewCtrl(wxWindow* parent, wxSize size);
+- AppendGroup · function · L240-L241 — wxDataViewItem AppendGroup(const wxString&    group_name,
+- AppendSubGroup · function · L243-L245 — wxDataViewItem AppendSubGroup(wxDataViewItem    parent,
+- AppendParam · function · L247-L249 — wxDataViewItem AppendParam( wxDataViewItem      parent,
+- GetValue · function · L251-L251 — wxString        GetValue(wxDataViewItem item);
+- GetSelectedValue · function · L252-L252 — wxString        GetSelectedValue();
+- GetSelectedParamKey · function · L253-L253 — std::string     GetSelectedParamKey();
+- GetSelectedTopLevelCategory · function · L254-L254 — std::string     GetSelectedTopLevelCategory();
+- CheckAndDeleteIfEmpty · function · L256-L256 — void    CheckAndDeleteIfEmpty(wxDataViewItem item);
+- Clear · function · L258-L258 — void    Clear();
+- Rescale · function · L259-L259 — void    Rescale(int em = 0);
+- set_em_unit · function · L261-L261 — void    set_em_unit(int em) { m_em_unit = em; }

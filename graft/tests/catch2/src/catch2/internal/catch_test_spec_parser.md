@@ -1,0 +1,24 @@
+# tests/catch2/src/catch2/internal/catch_test_spec_parser.hpp
+
+- ITagAliasRegistry · class · L23-L23 — class ITagAliasRegistry;
+- TestSpecParser · class · L25-L73 — class TestSpecParser
+- Mode · type · L26-L26 — enum Mode{ None, Name, QuotedName, Tag, EscapedName };
+- TestSpecParser · function · L41-L41 — TestSpecParser( ITagAliasRegistry const& tagAliases );
+- parse · function · L43-L43 — TestSpecParser& parse( std::string const& arg );
+- testSpec · function · L44-L44 — TestSpec testSpec();
+- visitChar · function · L47-L47 — bool visitChar( char c );
+- startNewMode · function · L48-L48 — void startNewMode( Mode mode );
+- processNoneChar · function · L49-L49 — bool processNoneChar( char c );
+- processNameChar · function · L50-L50 — void processNameChar( char c );
+- processOtherChar · function · L51-L51 — bool processOtherChar( char c );
+- endMode · function · L52-L52 — void endMode();
+- escape · function · L53-L53 — void escape();
+- isControlChar · function · L54-L54 — bool isControlChar( char c ) const;
+- saveLastMode · function · L55-L55 — void saveLastMode();
+- revertBackToLastMode · function · L56-L56 — void revertBackToLastMode();
+- addFilter · function · L57-L57 — void addFilter();
+- separate · function · L58-L58 — bool separate();
+- preprocessPattern · function · L61-L61 — std::string preprocessPattern();
+- addNamePattern · function · L63-L63 — void addNamePattern();
+- addTagPattern · function · L65-L65 — void addTagPattern();
+- addCharToPattern · function · L67-L71 — inline void addCharToPattern(char c)

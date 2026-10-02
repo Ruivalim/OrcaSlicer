@@ -1,0 +1,51 @@
+# src/slic3r/GUI/Mouse3DController.hpp
+
+- AppConfig · class · L22-L22 — class AppConfig;
+- GLCanvas3D · class · L27-L27 — class GLCanvas3D;
+- Mouse3DController · class · L29-L241 — class Mouse3DController
+- Params · class · L34-L71 — struct Params
+- CustomParameters · class · L46-L51 — template <typename Number>
+- State · class · L74-L138 — class State
+- QueueItem · class · L77-L91 — struct QueueItem
+- translation · function · L78-L78 — static QueueItem translation(const Vec3d &translation) { QueueItem out; out.vector = translation; out.type_or_buttons = TranslationType; return out; }
+- rotation · function · L79-L79 — static QueueItem rotation(const Vec3d &rotation) { QueueItem out; out.vector = rotation; out.type_or_buttons = RotationType; return out; }
+- buttons · function · L80-L80 — static QueueItem buttons(unsigned int buttons) { QueueItem out; out.type_or_buttons = buttons; return out; }
+- is_translation · function · L82-L82 — bool 			 is_translation() const { return this->type_or_buttons == TranslationType; }
+- is_rotation · function · L83-L83 — bool 			 is_rotation() const { return this->type_or_buttons == RotationType; }
+- is_buttons · function · L84-L84 — bool 			 is_buttons() const { return ! this->is_translation() && ! this->is_rotation(); }
+- append_translation · function · L112-L112 — void append_translation(const Vec3d& translation, size_t input_queue_max_size);
+- append_rotation · function · L113-L113 — void append_rotation(const Vec3f& rotation, size_t input_queue_max_size);
+- append_button · function · L114-L114 — void append_button(unsigned int id, size_t input_queue_max_size);
+- process_mouse_wheel · function · L119-L119 — bool process_mouse_wheel();
+- get_first_vector_of_type · function · L123-L127 — Vec3d               get_first_vector_of_type(unsigned int type) const
+- lock · function · L124-L124 — std::scoped_lock<std::mutex> lock(m_input_queue_mutex);
+- input_queue_size_current · function · L128-L131 — size_t              input_queue_size_current() const
+- lock · function · L129-L129 — std::scoped_lock<std::mutex> lock(m_input_queue_mutex);
+- apply · function · L137-L137 — bool apply(const Params &params, Camera& camera);
+- load_config · function · L179-L179 — void load_config(const AppConfig &appconfig);
+- save_config · function · L181-L181 — void save_config(AppConfig &appconfig) const;
+- init · function · L185-L185 — void init();
+- shutdown · function · L189-L189 — void shutdown();
+- connected · function · L191-L191 — bool connected() const { return m_connected; }
+- connected · function · L195-L195 — void connected(std::string device_name);
+- disconnected · function · L196-L196 — void disconnected();
+- DataPacketAxis · type · L197-L197 — typedef std::array<double, 6> DataPacketAxis;
+- handle_input · function · L199-L199 — bool handle_input(const DataPacketAxis& packet);
+- handle_raw_input_win32 · function · L203-L203 — bool handle_raw_input_win32(const unsigned char *data, const int packet_lenght);
+- device_attached · function · L206-L206 — void device_attached(const std::string &device);
+- device_detached · function · L207-L207 — void device_detached(const std::string& device);
+- process_mouse_wheel · function · L212-L212 — bool process_mouse_wheel() { return m_state.process_mouse_wheel(); }
+- apply · function · L216-L216 — bool apply(Camera& camera);
+- is_settings_dialog_shown · function · L218-L218 — bool is_settings_dialog_shown() const { return m_show_settings_dialog; }
+- show_settings_dialog · function · L219-L219 — void show_settings_dialog(bool show) { m_show_settings_dialog = show && this->connected(); }
+- render_settings_dialog · function · L220-L220 — void render_settings_dialog(GLCanvas3D& canvas) const;
+- connect_device · function · L224-L224 — bool connect_device();
+- disconnect_device · function · L225-L225 — void disconnect_device();
+- run · function · L228-L228 — void run();
+- collect_input · function · L229-L229 — void collect_input();
+- DataPacketRaw · type · L231-L231 — typedef std::array<unsigned char, 13> DataPacketRaw;
+- handle_input · function · L234-L234 — static bool handle_input(const DataPacketRaw& packet, const int packet_length, const Params &params, State &state_in_out);
+- handle_packet · function · L236-L236 — static bool handle_packet(const DataPacketRaw& packet, const int packet_length, const Params &params, State &state_in_out);
+- handle_packet_translation · function · L237-L237 — static bool handle_packet_translation(const DataPacketRaw& packet, const Params &params, State &state_in_out);
+- handle_packet_rotation · function · L238-L238 — static bool handle_packet_rotation(const DataPacketRaw& packet, unsigned int first_byte, const Params &params, State &state_in_out);
+- handle_packet_button · function · L239-L239 — static bool handle_packet_button(const DataPacketRaw& packet, unsigned int packet_size, const Params &params, State &state_in_out);

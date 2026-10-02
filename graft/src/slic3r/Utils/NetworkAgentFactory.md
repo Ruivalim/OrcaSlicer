@@ -1,0 +1,23 @@
+# src/slic3r/Utils/NetworkAgentFactory.hpp
+
+- PrinterAgentInfo · class · L25-L40 — struct PrinterAgentInfo
+- is_plugin · function · L32-L32 — bool is_plugin() const { return !plugin_identifier.empty(); }
+- PrinterAgentInfo · function · L33-L35 — PrinterAgentInfo(const std::string& id_, const std::string& display_name_, PrinterAgentFactory factory_)
+- PrinterAgentInfo · function · L37-L39 — PrinterAgentInfo(const std::string& id_, const std::string& display_name_, const std::string& plugin_identifier, PrinterAgentFactory factory_)
+- NetworkAgentFactory · class · L64-L175 — class NetworkAgentFactory
+- register_all_agents · function · L76-L76 — static void register_all_agents();
+- register_printer_agent · function · L86-L86 — static bool register_printer_agent(const std::string& id, const std::string& display_name, PrinterAgentFactory factory);
+- is_printer_agent_registered · function · L91-L91 — static bool is_printer_agent_registered(const std::string& id);
+- get_printer_agent_info · function · L96-L96 — static const PrinterAgentInfo* get_printer_agent_info(const std::string& id);
+- get_printer_agent_plugin_identifier · function · L101-L101 — static std::string get_printer_agent_plugin_identifier(const std::string& id);
+- get_registered_printer_agents · function · L106-L106 — static std::vector<PrinterAgentInfo> get_registered_printer_agents();
+- create_printer_agent_by_id · function · L119-L121 — static std::shared_ptr<IPrinterAgent> create_printer_agent_by_id(const std::string&                  id,
+- clear_printer_agent_cache · function · L128-L128 — static void clear_printer_agent_cache();
+- create_cloud_agent · function · L142-L160 — static std::shared_ptr<ICloudServiceAgent> create_cloud_agent(const std::string& provider, const std::string& log_dir)
+- register_python_plugin · function · L163-L163 — static void register_python_plugin(const std::string& plugin_key);
+- deregister_python_plugin · function · L164-L164 — static void deregister_python_plugin(const std::string& plugin_key);
+- register_python_printer_agent · function · L166-L166 — static void register_python_printer_agent(const std::string& plugin_key, const std::string& capability_name);
+- deregister_python_printer_agent · function · L167-L167 — static void deregister_python_printer_agent(const std::string& plugin_key, const std::string& capability_name);
+- NetworkAgentFactory · function · L171-L171 — NetworkAgentFactory()                                      = delete;
+- NetworkAgentFactory · function · L173-L173 — NetworkAgentFactory(const NetworkAgentFactory&)            = delete;
+- create_agent_from_config · function · L191-L191 — std::unique_ptr<NetworkAgent> create_agent_from_config(const std::string& log_dir, AppConfig* app_config);

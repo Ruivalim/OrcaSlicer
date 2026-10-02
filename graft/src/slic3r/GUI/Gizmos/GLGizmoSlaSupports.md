@@ -1,0 +1,52 @@
+# src/slic3r/GUI/Gizmos/GLGizmoSlaSupports.hpp
+
+- ConfigOption · class · L16-L16 — class ConfigOption;
+- SLAGizmoEventType · type · L20-L20 — enum class SLAGizmoEventType : unsigned char;
+- GLGizmoSlaSupports · class · L22-L147 — class GLGizmoSlaSupports : public GLGizmoBase
+- unproject_on_mesh · function · L26-L26 — bool unproject_on_mesh(const Vec2d& mouse_pos, std::pair<Vec3f, Vec3f>& pos_and_normal);
+- CacheEntry · class · L30-L55 — class CacheEntry
+- CacheEntry · function · L32-L33 — CacheEntry() :
+- CacheEntry · function · L35-L36 — CacheEntry(const sla::SupportPoint& point, bool sel = false, const Vec3f& norm = Vec3f::Zero()) :
+- serialize · function · L50-L54 — template<class Archive>
+- GLGizmoSlaSupports · function · L58-L58 — GLGizmoSlaSupports(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- set_sla_support_data · function · L60-L60 — void set_sla_support_data(ModelObject* model_object, const Selection& selection);
+- gizmo_event · function · L61-L61 — bool gizmo_event(SLAGizmoEventType action, const Vec2d& mouse_position, bool shift_down, bool alt_down, bool control_down);
+- delete_selected_points · function · L62-L62 — void delete_selected_points(bool force = false);
+- is_in_editing_mode · function · L65-L65 — bool is_in_editing_mode() const { return m_editing_mode; }
+- is_selection_rectangle_dragging · function · L66-L66 — bool is_selection_rectangle_dragging() const { return m_selection_rectangle.is_dragging(); }
+- has_backend_supports · function · L67-L67 — bool has_backend_supports() const;
+- reslice_SLA_supports · function · L68-L68 — void reslice_SLA_supports(bool postpone_error_messages = false) const;
+- wants_enter_leave_snapshots · function · L70-L70 — bool wants_enter_leave_snapshots() const override { return true; }
+- get_gizmo_entering_text · function · L71-L71 — std::string get_gizmo_entering_text() const override { return "Entering SLA support points"; }
+- get_gizmo_leaving_text · function · L72-L72 — std::string get_gizmo_leaving_text() const override { return "Leaving SLA support points"; }
+- on_init · function · L75-L75 — bool on_init() override;
+- on_update · function · L76-L76 — void on_update(const UpdateData& data) override;
+- on_render · function · L77-L77 — void on_render() override;
+- render_points · function · L79-L79 — void render_points(const Selection& selection, bool picking = false);
+- unsaved_changes · function · L80-L80 — bool unsaved_changes() const;
+- get_config_options · function · L107-L107 — std::vector<const ConfigOption*> get_config_options(const std::vector<std::string>& keys) const;
+- is_mesh_point_clipped · function · L108-L108 — bool is_mesh_point_clipped(const Vec3d& point) const;
+- is_point_in_hole · function · L109-L109 — bool is_point_in_hole(const Vec3f& pt) const;
+- select_point · function · L118-L118 — void select_point(int i);
+- unselect_point · function · L119-L119 — void unselect_point(int i);
+- editing_mode_apply_changes · function · L120-L120 — void editing_mode_apply_changes();
+- editing_mode_discard_changes · function · L121-L121 — void editing_mode_discard_changes();
+- reload_cache · function · L122-L122 — void reload_cache();
+- get_data_from_backend · function · L123-L123 — void get_data_from_backend();
+- auto_generate · function · L124-L124 — void auto_generate();
+- switch_to_editing_mode · function · L125-L125 — void switch_to_editing_mode();
+- disable_editing_mode · function · L126-L126 — void disable_editing_mode();
+- ask_about_changes_call_after · function · L127-L127 — void ask_about_changes_call_after(std::function<void()> on_yes, std::function<void()> on_no);
+- on_set_state · function · L130-L130 — void on_set_state() override;
+- on_set_hover_id · function · L131-L136 — void on_set_hover_id() override
+- on_start_dragging · function · L137-L137 — void on_start_dragging() override;
+- on_stop_dragging · function · L138-L138 — void on_stop_dragging() override;
+- on_render_input_window · function · L139-L139 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_get_name · function · L141-L141 — std::string on_get_name() const override;
+- on_is_activable · function · L142-L142 — bool on_is_activable() const override;
+- on_is_selectable · function · L143-L143 — bool on_is_selectable() const override;
+- on_get_requirements · function · L144-L144 — virtual CommonGizmosDataID on_get_requirements() const override;
+- on_load · function · L145-L145 — void on_load(cereal::BinaryInputArchive& ar) override;
+- on_save · function · L146-L146 — void on_save(cereal::BinaryOutputArchive& ar) const override;
+- SlaGizmoHelpDialog · class · L150-L154 — class SlaGizmoHelpDialog : public wxDialog
+- SlaGizmoHelpDialog · function · L153-L153 — SlaGizmoHelpDialog();

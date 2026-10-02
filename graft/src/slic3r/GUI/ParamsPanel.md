@@ -1,0 +1,37 @@
+# src/slic3r/GUI/ParamsPanel.hpp
+
+- ModeSwitchButton · class · L34-L34 — class ModeSwitchButton;
+- SwitchButton · class · L35-L35 — class SwitchButton;
+- StaticBox · class · L36-L36 — class StaticBox;
+- TipsDialog · class · L43-L60 — class TipsDialog : public DPIDialog
+- TipsDialog · function · L50-L50 — TipsDialog(wxWindow *parent, const wxString &title, const wxString &description, std::string app_key = "", long style = wxOK, std::map<wxStandardID,wxString> option_map={});
+- on_dpi_changed · function · L57-L57 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- create_item_checkbox · function · L58-L58 — wxBoxSizer *create_item_checkbox(wxString title, wxWindow *parent, wxString tooltip, std::string param);
+- add_button · function · L59-L59 — Button* add_button(wxWindowID btn_id, const wxString &label, bool set_focus = false);
+- ParamsPanel · class · L65-L169 — class ParamsPanel : public wxPanel
+- free_sizers · function · L72-L72 — void free_sizers();
+- delete_subwindows · function · L73-L73 — void delete_subwindows();
+- refresh_tabs · function · L74-L74 — void refresh_tabs();
+- Highlighter · class · L126-L139 — struct Highlighter
+- set_timer_owner · function · L128-L128 — void set_timer_owner(wxEvtHandler *owner, int timerid = wxID_ANY);
+- init · function · L129-L129 — void init(std::pair<wxWindow *, bool *>, wxWindow *parent = nullptr);
+- blink · function · L130-L130 — void blink();
+- invalidate · function · L131-L131 — void invalidate();
+- OnToggled · function · L141-L141 — void OnToggled(wxCommandEvent& event);
+- ParamsPanel · function · L144-L144 — ParamsPanel( wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 1800,1080 ), long style = wxTAB_TRAVERSAL, const wxString& type = wxEmptyString );
+- rebuild_panels · function · L147-L147 — void rebuild_panels();
+- create_layout · function · L148-L148 — void create_layout();
+- clear_page · function · L150-L150 — void clear_page();
+- OnActivate · function · L151-L151 — void OnActivate();
+- set_active_tab · function · L152-L152 — void set_active_tab(wxPanel*tab);
+- is_active_and_shown_tab · function · L153-L153 — bool is_active_and_shown_tab(wxPanel*tab);
+- update_mode · function · L154-L154 — void update_mode();
+- msw_rescale · function · L155-L155 — void msw_rescale();
+- switch_to_global · function · L156-L156 — void switch_to_global();
+- switch_to_object · function · L157-L157 — void switch_to_object(bool with_tips = false);
+- notify_object_config_changed · function · L159-L159 — void notify_object_config_changed();
+- switch_to_object_if_has_object_configs · function · L160-L160 — void switch_to_object_if_has_object_configs();
+- get_top_panel · function · L162-L162 — StaticBox* get_top_panel() { return m_top_panel; }
+- filament_panel · function · L164-L164 — wxPanel* filament_panel() { return m_tab_filament; }
+- get_paged_view · function · L166-L166 — wxScrolledWindow* get_paged_view() { return m_page_view;}
+- get_current_tab · function · L167-L167 — wxPanel*    get_current_tab() { return m_current_tab; }

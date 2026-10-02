@@ -1,0 +1,78 @@
+# deps_src/agg/agg_array.h
+
+- size · function · L33-L33 — unsigned size() const { return m_size; }
+- value_at · function · L38-L38 — T  value_at(unsigned i) const           { return m_array[i]; }
+- T · type · L51-L51 — typedef pod_auto_array<T, Size> self_type;
+- pod_auto_array · function · L54-L57 — explicit pod_auto_array(const T* c)
+- size · function · L65-L65 — static unsigned size() { return Size; }
+- remove_all · function · L86-L86 — void remove_all()            { m_size = 0; }
+- clear · function · L87-L87 — void clear()                 { m_size = 0; }
+- add · function · L88-L88 — void add(const T& v)         { m_array[m_size++] = v; }
+- push_back · function · L89-L89 — void push_back(const T& v)   { m_array[m_size++] = v; }
+- inc_size · function · L90-L90 — void inc_size(unsigned size) { m_size += size; }
+- size · function · L92-L92 — unsigned size() const { return m_size; }
+- self_type · type · L110-L110 — typedef pod_array<T> self_type;
+- m_array · function · L115-L124 — pod_array(unsigned size) :
+- allocate · function · L116-L116 — m_array(pod_allocator<T>::allocate(size)),
+- m_size · function · L117-L117 — m_size(size)
+- pod_array · function · L120-L121 — pod_array(const self_type& v) :
+- m_size · function · L122-L122 — m_size(v.m_size)
+- resize · function · L127-L134 — void resize(unsigned size)
+- size · function · L142-L142 — unsigned size() const { return m_size; }
+- capacity · function · L176-L176 — void capacity(unsigned cap, unsigned extra_tail=0);
+- capacity · function · L177-L177 — unsigned capacity() const { return m_capacity; }
+- allocate · function · L181-L181 — void allocate(unsigned size, unsigned extra_tail=0);
+- resize · function · L184-L184 — void resize(unsigned new_size);
+- zero · function · L186-L189 — void zero()
+- add · function · L191-L191 — void add(const T& v)         { m_array[m_size++] = v; }
+- push_back · function · L192-L192 — void push_back(const T& v)   { m_array[m_size++] = v; }
+- insert_at · function · L193-L193 — void insert_at(unsigned pos, const T& val);
+- inc_size · function · L194-L194 — void inc_size(unsigned size) { m_size += size; }
+- size · function · L195-L195 — unsigned size()      const   { return m_size; }
+- byte_size · function · L196-L200 — unsigned byte_size() const   { return m_size * sizeof(T); }
+- sizeof · function · L196-L196 — unsigned byte_size() const   { return m_size * sizeof(T); }
+- serialize · function · L197-L197 — void serialize(int8u* ptr) const;
+- at · function · L201-L201 — const T& at(unsigned i) const           { return m_array[i]; }
+- value_at · function · L203-L203 — T  value_at(unsigned i) const           { return m_array[i]; }
+- data · function · L205-L205 — const T* data() const { return m_array; }
+- data · function · L206-L206 — T* data()       { return m_array; }
+- remove_all · function · L208-L208 — void remove_all()         { m_size = 0; }
+- clear · function · L209-L209 — void clear()              { m_size = 0; }
+- cut_at · function · L210-L210 — void cut_at(unsigned num) { if(num < m_size) m_size = num; }
+- block_scale_e · type · L329-L334 — enum block_scale_e
+- value_type · type · L336-L336 — typedef T value_type;
+- remove_all · function · L346-L346 — void remove_all() { m_size = 0; }
+- clear · function · L347-L347 — void clear()      { m_size = 0; }
+- free_all · function · L348-L348 — void free_all()   { free_tail(0); }
+- free_tail · function · L349-L349 — void free_tail(unsigned size);
+- add · function · L350-L350 — void add(const T& val);
+- push_back · function · L351-L351 — void push_back(const T& val) { add(val); }
+- modify_last · function · L352-L352 — void modify_last(const T& val);
+- remove_last · function · L353-L353 — void remove_last();
+- allocate_continuous_block · function · L355-L355 — int allocate_continuous_block(unsigned num_elements);
+- add_array · function · L357-L363 — void add_array(const T* ptr, unsigned num_elem)
+- cut_at · function · L374-L377 — void cut_at(unsigned size)
+- size · function · L379-L379 — unsigned size() const { return m_size; }
+- value_at · function · L401-L404 — T value_at(unsigned i) const
+- curr · function · L406-L409 — const T& curr(unsigned idx) const
+- prev · function · L416-L419 — const T& prev(unsigned idx) const
+- next · function · L426-L429 — const T& next(unsigned idx) const
+- last · function · L436-L436 — const T& last() const
+- byte_size · function · L446-L446 — unsigned byte_size() const;
+- serialize · function · L447-L447 — void serialize(int8u* ptr) const;
+- deserialize · function · L448-L448 — void deserialize(const int8u* data, unsigned byte_size);
+- deserialize · function · L449-L450 — void deserialize(unsigned start, const T& empty_val,
+- block · function · L499-L499 — const T* block(unsigned nb) const { return m_blocks[nb]; }
+- allocate_block · function · L502-L502 — void allocate_block(unsigned nb);
+- data_ptr · function · L503-L503 — T*   data_ptr();
+- block_type · class · L783-L787 — struct block_type
+- remove_all · function · L790-L790 — void remove_all()
+- allocate · function · L826-L826 — int8u* allocate(unsigned size, unsigned alignment=1)
+- allocate_block · function · L858-L858 — void allocate_block(unsigned size)
+- quick_sort_threshold_e · type · L903-L906 — enum quick_sort_threshold_e
+- size · function · L1093-L1093 — unsigned size() const { return m_size; }
+- value_at · function · L1098-L1098 — value_type  value_at(unsigned i) const           { return m_array[m_start + i]; }
+- int_less · function · L1107-L1107 — inline bool int_less(int a, int b) { return a < b; }
+- int_greater · function · L1110-L1110 — inline bool int_greater(int a, int b) { return a > b; }
+- unsigned_less · function · L1113-L1113 — inline bool unsigned_less(unsigned a, unsigned b) { return a < b; }
+- unsigned_greater · function · L1116-L1116 — inline bool unsigned_greater(unsigned a, unsigned b) { return a > b; }

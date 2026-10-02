@@ -1,0 +1,28 @@
+# src/slic3r/GUI/MultiMachineManagerPage.hpp
+
+- MultiMachineItem · class · L18-L43 — class MultiMachineItem : public DeviceItem
+- MultiMachineItem · function · L22-L22 — MultiMachineItem(wxWindow* parent, MachineObject* obj);
+- OnEnterWindow · function · L25-L25 — void OnEnterWindow(wxMouseEvent& evt);
+- OnLeaveWindow · function · L26-L26 — void OnLeaveWindow(wxMouseEvent& evt);
+- OnLeftDown · function · L27-L27 — void OnLeftDown(wxMouseEvent& evt);
+- OnMove · function · L28-L28 — void OnMove(wxMouseEvent& evt);
+- paintEvent · function · L30-L30 — void         paintEvent(wxPaintEvent& evt);
+- render · function · L31-L31 — void         render(wxDC& dc);
+- DrawTextWithEllipsis · function · L32-L32 — void         DrawTextWithEllipsis(wxDC& dc, const wxString& text, int maxWidth,  int left, int top = 0);
+- doRender · function · L33-L33 — void         doRender(wxDC& dc);
+- post_event · function · L34-L34 — void         post_event(wxCommandEvent&& event);
+- DoSetSize · function · L35-L35 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO);
+- get_left_time · function · L42-L42 — wxString get_left_time(int mc_left_time);
+- MultiMachineManagerPage · class · L45-L110 — class MultiMachineManagerPage : public wxPanel
+- MultiMachineManagerPage · function · L48-L48 — MultiMachineManagerPage(wxWindow* parent);
+- update_page · function · L51-L51 — void update_page();
+- refresh_user_device · function · L52-L52 — void refresh_user_device(bool clear = false);
+- sync_state · function · L54-L54 — void sync_state(MachineObject* obj_);
+- Show · function · L55-L55 — bool Show(bool show);
+- extractRange · function · L57-L57 — std::vector<ObjState> extractRange(const std::vector<ObjState>& source, int start, int end);
+- start_timer · function · L59-L59 — void start_timer();
+- update_page_number · function · L60-L60 — void update_page_number();
+- on_timer · function · L61-L61 — void on_timer(wxTimerEvent& event);
+- clear_page · function · L62-L62 — void clear_page();
+- page_num_enter_evt · function · L64-L64 — void page_num_enter_evt();
+- msw_rescale · function · L66-L66 — void msw_rescale();

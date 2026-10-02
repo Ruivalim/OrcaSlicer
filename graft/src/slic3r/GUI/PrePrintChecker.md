@@ -1,0 +1,22 @@
+# src/slic3r/GUI/PrePrintChecker.hpp
+
+- prePrintInfoLevel · type · L9-L13 — enum prePrintInfoLevel
+- prePrintInfoType · type · L15-L18 — enum prePrintInfoType
+- prePrintInfo · class · L20-L43 — struct prePrintInfo
+- PrintDialogStatus · type · L45-L154 — enum PrintDialogStatus : unsigned int
+- PrePrintChecker · class · L156-L180 — class PrePrintChecker
+- clear · function · L163-L163 — void clear();
+- add · function · L165-L165 — void add(PrintDialogStatus state, wxString msg, wxString tip, const wxString& wiki_url);
+- add_with_link · function · L167-L167 — void add_with_link(PrintDialogStatus state, wxString msg, wxString link_label, std::function<void()> link_callback);
+- add_with_checkbox · function · L170-L170 — void add_with_checkbox(PrintDialogStatus state, wxString msg, wxString checkbox_label, bool checked, std::function<void(bool)> checkbox_callback);
+- get_print_status_info · function · L171-L171 — static ::std::string get_print_status_info(PrintDialogStatus status);
+- get_pre_state_msg · function · L173-L173 — wxString get_pre_state_msg(PrintDialogStatus status);
+- is_error · function · L174-L174 — static bool is_error(PrintDialogStatus status) { return (PrintStatusErrorBegin < status) && (PrintStatusErrorEnd > status); };
+- is_error_printer · function · L175-L175 — static bool is_error_printer(PrintDialogStatus status) { return (PrintStatusPrinterErrorBegin < status) && (PrintStatusPrinterErrorEnd > status); };
+- is_error_filament · function · L176-L176 — static bool is_error_filament(PrintDialogStatus status) { return (PrintStatusFilamentErrorBegin < status) && (PrintStatusFilamentErrorEnd > status); };
+- is_warning · function · L177-L177 — static bool is_warning(PrintDialogStatus status) { return (PrintStatusWarningBegin < status) && (PrintStatusWarningEnd > status); };
+- is_warning_printer · function · L178-L178 — static bool is_warning_printer(PrintDialogStatus status) { return (PrintStatusPrinterWarningBegin < status) && (PrintStatusPrinterWarningEnd > status); };
+- is_warning_filament · function · L179-L179 — static bool is_warning_filament(PrintDialogStatus status) { return (PrintStatusFilamentWarningBegin < status) && (PrintStatusFilamentWarningEnd > status); };
+- PrinterMsgPanel · class · L210-L222 — class PrinterMsgPanel : public wxPanel
+- PrinterMsgPanel · function · L213-L213 — PrinterMsgPanel(wxWindow *parent);
+- UpdateInfos · function · L216-L216 — bool  UpdateInfos(const std::vector<prePrintInfo>& infos);

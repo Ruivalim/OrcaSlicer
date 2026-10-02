@@ -1,0 +1,34 @@
+# tests/libslic3r/test_caddocument.cpp
+
+- probe · function · L706-L706 — std::ifstream probe(font);
+- ar · function · L2054-L2054 — cereal::BinaryOutputArchive ar(oss);
+- ar · function · L2068-L2068 — cereal::BinaryOutputArchive ar(oss);
+- ar · function · L2100-L2100 — { cereal::BinaryOutputArchive ar(oss); uint32_t v = 999; ar(v); }
+- ar · function · L2108-L2108 — { cereal::BinaryOutputArchive ar(oss); uint32_t v = 1; ar(v); }
+- ifs · function · L2133-L2133 — std::ifstream ifs(path, std::ios::binary);
+- iss · function · L2142-L2142 — std::istringstream iss(blob);
+- ar · function · L2143-L2143 — cereal::BinaryInputArchive ar(iss);
+- ifs · function · L2170-L2170 — std::ifstream ifs(path, std::ios::binary);
+- ifs · function · L2311-L2311 — std::ifstream ifs(path, std::ios::binary);
+- ex · function · L2926-L2926 — for (TopExp_Explorer ex(w, TopAbs_EDGE); ex.More(); ex.Next())
+- curve · function · L2928-L2928 — BRepAdaptor_Curve curve(e);
+- ex · function · L2969-L2969 — for (TopExp_Explorer ex(w, TopAbs_EDGE); ex.More(); ex.Next())
+- curve · function · L2971-L2971 — BRepAdaptor_Curve curve(e);
+- ac · function · L3640-L3640 — BRepAdaptor_Curve ac(e);
+- ac · function · L3868-L3868 — BRepAdaptor_Curve ac(e);
+- make_golden_doc_v1 · function · L3914-L4103 — static CadDocument make_golden_doc_v1()
+- ofs · function · L4117-L4117 — std::ofstream ofs(path, std::ios::binary);
+- ifs · function · L4135-L4135 — std::ifstream ifs(path, std::ios::binary);
+- ifs · function · L4155-L4155 — std::ifstream ifs(path, std::ios::binary);
+- iss · function · L4165-L4165 — std::istringstream iss(blob);
+- ar · function · L4166-L4166 — cereal::BinaryInputArchive ar(iss);
+- ar · function · L5859-L5859 — cereal::BinaryOutputArchive ar(oss);
+- find_face_by_normal · function · L6234-L6241 — static int find_face_by_normal(const CadDocument& doc, int body_idx, const Vec3d& dir, double tol = 0.99)
+- find_edge_on_face · function · L6251-L6263 — static int find_edge_on_face(const CadDocument& doc, int body_idx, int face_idx)
+- rect_entities · function · L7525-L7534 — std::vector<SketchEntity> rect_entities(double w, double h)
+- circle_entity · function · L7536-L7542 — SketchEntity circle_entity(const Vec2d& c, double r)
+- plate_doc · function · L7544-L7561 — CadDocument plate_doc(const std::vector<SketchEntity>& entities, double distance)
+- make_centred_box · function · L7749-L7758 — CadDocument make_centred_box(double half, double height)
+- solid_volume · function · L7761-L7765 — double solid_volume(const TopoDS_Shape& s)
+- edge_mid · function · L7768-L7774 — Vec3d edge_mid(const TopoDS_Edge& e)
+- edge_near · function · L7778-L7788 — int edge_near(const TopoDS_Shape& shape, const Vec3d& target, double tol)

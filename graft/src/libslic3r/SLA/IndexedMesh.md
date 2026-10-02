@@ -1,0 +1,39 @@
+# src/libslic3r/SLA/IndexedMesh.hpp
+
+- TriangleMesh · class · L22-L22 — class TriangleMesh;
+- IndexedMesh · class · L31-L141 — class IndexedMesh
+- AABBImpl · class · L32-L32 — class AABBImpl;
+- init · function · L45-L45 — template<class M> void init(const M &mesh, bool calculate_epsilon);
+- IndexedMesh · function · L51-L51 — explicit IndexedMesh(const indexed_triangle_set &tmesh, bool calculate_epsilon = false);
+- IndexedMesh · function · L52-L52 — explicit IndexedMesh(const TriangleMesh &mesh, bool calculate_epsilon = false);
+- IndexedMesh · function · L54-L54 — IndexedMesh(const IndexedMesh& other);
+- IndexedMesh · function · L57-L57 — IndexedMesh(IndexedMesh &&other);
+- ground_level · function · L62-L62 — inline double ground_level() const { return m_ground_level + m_gnd_offset; }
+- ground_level_offset · function · L63-L63 — inline void ground_level_offset(double o) { m_gnd_offset = o; }
+- ground_level_offset · function · L64-L64 — inline double ground_level_offset() const { return m_gnd_offset; }
+- vertices · function · L66-L66 — const std::vector<Vec3f>& vertices() const;
+- indices · function · L67-L67 — const std::vector<Vec3i32>& indices()  const;
+- vertices · function · L68-L68 — const Vec3f& vertices(size_t idx) const;
+- indices · function · L69-L69 — const Vec3i32& indices(size_t idx) const;
+- hit_result · class · L72-L107 — class hit_result
+- hit_result · function · L84-L84 — explicit inline hit_result(const IndexedMesh& em): m_mesh(&em) {}
+- infty · function · L87-L87 — static inline constexpr double infty() { return std::numeric_limits<double>::infinity(); }
+- hit_result · function · L89-L89 — explicit inline hit_result(double val = infty()) : m_t(val) {}
+- distance · function · L91-L91 — inline double distance() const { return m_t; }
+- direction · function · L92-L92 — inline const Vec3d& direction() const { return m_dir; }
+- source · function · L93-L93 — inline const Vec3d& source() const { return m_source; }
+- position · function · L94-L94 — inline Vec3d position() const { return m_source + m_dir * m_t; }
+- face · function · L95-L95 — inline int face() const { return m_face_id; }
+- is_valid · function · L96-L96 — inline bool is_valid() const { return m_mesh != nullptr; }
+- is_hit · function · L97-L97 — inline bool is_hit() const { return m_face_id >= 0 && !std::isinf(m_t); }
+- normal · function · L99-L99 — inline const Vec3d& normal() const
+- is_inside · function · L104-L106 — inline bool is_inside() const
+- load_holes · function · L112-L114 — void load_holes(const std::vector<DrainHole>& holes)
+- filter_hits · function · L121-L121 — hit_result filter_hits(const std::vector<IndexedMesh::hit_result>& obj_hits) const;
+- query_ray_hit · function · L125-L125 — hit_result query_ray_hit(const Vec3d &s, const Vec3d &dir) const;
+- query_ray_hits · function · L128-L128 — std::vector<hit_result> query_ray_hits(const Vec3d &s, const Vec3d &dir) const;
+- squared_distance · function · L130-L130 — double squared_distance(const Vec3d& p, int& i, Vec3d& c) const;
+- squared_distance · function · L131-L136 — inline double squared_distance(const Vec3d &p) const
+- normal_by_face_id · function · L138-L138 — Vec3d normal_by_face_id(int face_id) const;
+- get_triangle_mesh · function · L140-L140 — const indexed_triangle_set * get_triangle_mesh() const { return m_tm; }
+- normals · function · L145-L149 — PointSet normals(const PointSet& points,

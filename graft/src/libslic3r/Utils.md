@@ -1,0 +1,138 @@
+# src/libslic3r/Utils.hpp
+
+- directory_entry · class · L80-L80 — namespace boost { namespace filesystem { class directory_entry; }}
+- set_logging_level · function · L84-L84 — extern void set_logging_level(unsigned int level);
+- set_logging_file · function · L85-L85 — extern void set_logging_file(const std::string &file);
+- level_string_to_boost · function · L86-L86 — extern unsigned int level_string_to_boost(std::string level);
+- get_string_logging_level · function · L87-L87 — extern std::string  get_string_logging_level(unsigned level);
+- get_logging_level · function · L88-L88 — extern unsigned get_logging_level();
+- trace · function · L89-L89 — extern void trace(unsigned int level, const char *message);
+- format_memsize_MB · function · L91-L91 — extern std::string format_memsize_MB(size_t n);
+- format_memsize · function · L92-L92 — extern std::string format_memsize(size_t bytes, unsigned int decimals = 1);
+- log_memory_info · function · L96-L96 — extern std::string log_memory_info(bool ignore_loglevel = false);
+- disable_multi_threading · function · L97-L97 — extern void disable_multi_threading();
+- total_physical_memory · function · L99-L99 — extern size_t total_physical_memory();
+- set_var_dir · function · L102-L102 — void set_var_dir(const std::string &path);
+- var_dir · function · L104-L104 — const std::string& var_dir();
+- var · function · L106-L106 — std::string var(const std::string &file_name);
+- format_diameter_to_str · function · L109-L109 — std::string format_diameter_to_str(double diameter, int precision = 1);
+- set_resources_dir · function · L112-L112 — void set_resources_dir(const std::string &path);
+- resources_dir · function · L114-L114 — const std::string& resources_dir();
+- set_temporary_dir · function · L117-L117 — void set_temporary_dir(const std::string &path);
+- temporary_dir · function · L118-L118 — const std::string& temporary_dir();
+- convert_to_full_version · function · L121-L137 — inline std::string convert_to_full_version(std::string short_version)
+- round_divide · function · L138-L142 — template<typename DataType>
+- convert_vector · function · L144-L165 — template <typename From, typename To>
+- set_local_dir · function · L168-L168 — void set_local_dir(const std::string &path);
+- localization_dir · function · L170-L170 — const std::string& localization_dir();
+- set_sys_shapes_dir · function · L173-L173 — void set_sys_shapes_dir(const std::string &path);
+- sys_shapes_dir · function · L175-L175 — const std::string& sys_shapes_dir();
+- custom_shapes_dir · function · L178-L178 — std::string custom_shapes_dir();
+- handy_models_dir · function · L181-L181 — std::string handy_models_dir();
+- set_custom_gcodes_dir · function · L184-L184 — void set_custom_gcodes_dir(const std::string &path);
+- custom_gcodes_dir · function · L186-L186 — const std::string& custom_gcodes_dir();
+- set_data_dir · function · L189-L189 — void set_data_dir(const std::string &path);
+- data_dir · function · L191-L191 — const std::string& data_dir();
+- makedir · function · L194-L194 — bool makedir(const std::string path);
+- debug_out_path · function · L199-L199 — std::string debug_out_path(const char *name, ...);
+- set_log_path_and_level · function · L201-L201 — void set_log_path_and_level(const std::string& file, unsigned int level);
+- flush_logs · function · L202-L202 — void flush_logs();
+- shutdown_console_logging · function · L203-L203 — void shutdown_console_logging();
+- get_log_file_name · function · L204-L204 — boost::filesystem::path get_log_file_name();
+- local_encoded_string · type · L208-L208 — typedef std::string local_encoded_string;
+- get_utf8_sequence_length · function · L212-L212 — extern size_t get_utf8_sequence_length(const std::string& text, size_t pos = 0);
+- get_utf8_sequence_length · function · L213-L213 — extern size_t get_utf8_sequence_length(const char *seq, size_t size);
+- encode_path · function · L218-L218 — extern local_encoded_string encode_path(const char *src);
+- decode_path · function · L219-L219 — extern std::string decode_path(const char *src);
+- normalize_utf8_nfc · function · L220-L220 — extern std::string normalize_utf8_nfc(const char *src);
+- split_string · function · L221-L221 — extern std::vector<std::string> split_string(const std::string &str, char delimiter);
+- rename_file · function · L226-L226 — extern std::error_code rename_file(const std::string &from, const std::string &to);
+- CopyFileResult · type · L228-L235 — enum CopyFileResult
+- copy_file_inner · function · L237-L237 — CopyFileResult copy_file_inner(const std::string &from, const std::string &to, std::string& error_message);
+- copy_file · function · L242-L242 — extern CopyFileResult copy_file(const std::string &from, const std::string &to, std::string& error_message, const bool with_check = false);
+- copy_framework · function · L243-L243 — extern bool           copy_framework(const std::string &from, const std::string &to);
+- check_copy · function · L245-L245 — extern CopyFileResult check_copy(const std::string& origin, const std::string& copy);
+- is_plain_file · function · L249-L249 — extern bool is_plain_file(const boost::filesystem::directory_entry &path);
+- is_ini_file · function · L250-L250 — extern bool is_ini_file(const boost::filesystem::directory_entry &path);
+- is_idx_file · function · L251-L251 — extern bool is_idx_file(const boost::filesystem::directory_entry &path);
+- is_gcode_file · function · L252-L252 — extern bool is_gcode_file(const std::string &path);
+- is_img_file · function · L253-L253 — extern bool is_img_file(const std::string& path);
+- is_gallery_file · function · L254-L254 — extern bool is_gallery_file(const boost::filesystem::directory_entry& path, char const* type);
+- is_gallery_file · function · L255-L255 — extern bool is_gallery_file(const std::string& path, char const* type);
+- is_shapes_dir · function · L256-L256 — extern bool is_shapes_dir(const std::string& dir);
+- is_json_file · function · L258-L258 — extern bool is_json_file(const std::string& path);
+- is_path_within_root · function · L262-L262 — extern bool is_path_within_root(const std::string &rel_path, const boost::filesystem::path &root);
+- is_orca_open · function · L265-L265 — inline bool is_orca_open(const std::string& url) { return boost::starts_with(url, "orcaslicer://open"); }
+- is_prusaslicer_open · function · L266-L266 — inline bool is_prusaslicer_open(const std::string& url) { return boost::starts_with(url, "prusaslicer://open"); }
+- is_bambustudio_open · function · L267-L267 — inline bool is_bambustudio_open(const std::string& url) { return boost::starts_with(url, "bambustudio://open") || boost::starts_with(url, "bambustudioopen://"); }
+- is_cura_open · function · L268-L268 — inline bool is_cura_open(const std::string& url) { return boost::starts_with(url, "cura://open"); }
+- is_supported_open_protocol · function · L269-L269 — inline bool is_supported_open_protocol(const std::string& url) { return is_orca_open(url) || is_prusaslicer_open(url) || is_bambustudio_open(url) || is_cura_open(url); }
+- is_printables_link · function · L270-L273 — inline bool is_printables_link(const std::string& url)
+- is_makerworld_link · function · L274-L277 — inline bool is_makerworld_link(const std::string& url)
+- is_thingiverse_link · function · L278-L281 — inline bool is_thingiverse_link(const std::string& url)
+- sanitize_filename · function · L284-L287 — inline std::string sanitize_filename(const std::string &filename)
+- path_to_filename · function · L292-L292 — extern std::string path_to_filename(const char *src);
+- path_to_stem · function · L294-L294 — extern std::string path_to_stem(const char *src);
+- path_to_extension · function · L296-L296 — extern std::string path_to_extension(const char *src);
+- path_to_parent_path · function · L298-L298 — extern std::string path_to_parent_path(const char *src);
+- string_printf · function · L301-L301 — std::string string_printf(const char *format, ...);
+- header_slic3r_generated · function · L305-L305 — std::string header_slic3r_generated();
+- header_gcodeviewer_generated · function · L309-L309 — std::string header_gcodeviewer_generated();
+- get_current_pid · function · L312-L312 — extern unsigned get_current_pid();
+- per_user_temp_id · function · L314-L314 — std::string per_user_temp_id();
+- per_user_temp_dir · function · L316-L316 — std::string per_user_temp_dir(const std::string &base, const std::string &user_id);
+- resolve_cli_input_path · function · L319-L319 — std::string resolve_cli_input_path(const std::string &path);
+- get_process_name · function · L321-L321 — std::string get_process_name(int pid);
+- next_highest_power_of_2 · function · L325-L334 — inline uint16_t next_highest_power_of_2(uint16_t v)
+- next_highest_power_of_2 · function · L335-L345 — inline uint32_t next_highest_power_of_2(uint32_t v)
+- next_highest_power_of_2 · function · L346-L357 — inline uint64_t next_highest_power_of_2(uint64_t v)
+- next_highest_power_of_2 · function · L362-L369 — template<class T> size_t next_highest_power_of_2(T v,
+- next_highest_power_of_2 · function · L370-L377 — template<class T> size_t next_highest_power_of_2(T v,
+- reserve_power_of_2 · function · L379-L381 — template <class VectorType> void reserve_power_of_2(VectorType &vector, size_t n)
+- reserve_more · function · L383-L386 — template<class VectorType> void reserve_more(VectorType &vector, size_t n)
+- reserve_more_power_of_2 · function · L388-L391 — template<class VectorType> void reserve_more_power_of_2(VectorType &vector, size_t n)
+- prev_idx_modulo · function · L393-L399 — template<typename INDEX_TYPE>
+- next_idx_modulo · function · L401-L407 — template<typename INDEX_TYPE>
+- round_up_divide · function · L411-L415 — template<typename INDEX_TYPE>
+- prev_idx_modulo · function · L417-L421 — template<typename CONTAINER_TYPE>
+- next_idx_modulo · function · L423-L427 — template<typename CONTAINER_TYPE>
+- prev_value_modulo · function · L430-L430 — inline const typename CONTAINER_TYPE::value_type& prev_value_modulo(typename CONTAINER_TYPE::size_type idx, const CONTAINER_TYPE &container)
+- prev_value_modulo · function · L436-L436 — inline typename CONTAINER_TYPE::value_type& prev_value_modulo(typename CONTAINER_TYPE::size_type idx, CONTAINER_TYPE &container)
+- next_value_modulo · function · L442-L442 — inline const typename CONTAINER_TYPE::value_type& next_value_modulo(typename CONTAINER_TYPE::size_type idx, const CONTAINER_TYPE &container)
+- next_value_modulo · function · L448-L448 — inline typename CONTAINER_TYPE::value_type& next_value_modulo(typename CONTAINER_TYPE::size_type idx, CONTAINER_TYPE &container)
+- xml_escape · function · L453-L453 — extern std::string xml_escape(std::string text, bool is_marked = false);
+- xml_escape_double_quotes_attribute_value · function · L454-L454 — extern std::string xml_escape_double_quotes_attribute_value(std::string text);
+- xml_unescape · function · L455-L455 — extern std::string xml_unescape(std::string text);
+- IsTriviallyCopyable · class · L462-L462 — template<typename T> struct IsTriviallyCopyable { static constexpr bool value = true; };
+- IsTriviallyCopyable · class · L464-L464 — template<typename T> struct IsTriviallyCopyable : public std::is_trivially_copyable<T> {};
+- FilePtr · class · L469-L479 — struct FilePtr
+- FilePtr · function · L470-L470 — FilePtr(FILE *f) : f(f) {}
+- close · function · L472-L477 — void close()
+- ScopeGuard · class · L481-L508 — class ScopeGuard
+- Closure · type · L484-L484 — typedef std::function<void()> Closure;
+- ScopeGuard · function · L490-L490 — ScopeGuard() {}
+- ScopeGuard · function · L491-L491 — ScopeGuard(Closure closure) : closure(std::move(closure)) {}
+- ScopeGuard · function · L492-L492 — ScopeGuard(const ScopeGuard&) = delete;
+- ScopeGuard · function · L493-L493 — ScopeGuard(ScopeGuard &&other) : closure(std::move(other.closure)) {}
+- reset · function · L507-L507 — void reset() { closure = Closure(); }
+- short_time · function · L512-L555 — inline std::string short_time(const std::string &time)
+- get_time_dhms · function · L558-L580 — inline std::string get_time_dhms(float time_in_secs)
+- get_bbl_time_dhms · function · L582-L602 — inline std::string get_bbl_time_dhms(float time_in_secs)
+- get_timezone_utc_hm · function · L604-L620 — inline std::string get_timezone_utc_hm(long second)
+- get_time_dhm · function · L622-L641 — inline std::string get_time_dhm(float time_in_secs)
+- get_time_hms · function · L643-L654 — inline std::string get_time_hms(float time_in_secs)
+- get_bbl_monitor_time_dhm · function · L656-L676 — inline std::string get_bbl_monitor_time_dhm(float time_in_secs)
+- get_bbl_monitor_end_time_dhm · function · L678-L691 — inline std::string get_bbl_monitor_end_time_dhm(float time_in_secs)
+- get_bbl_remain_time_dhms · function · L693-L713 — inline std::string get_bbl_remain_time_dhms(float time_in_secs)
+- bbl_calc_md5 · function · L715-L715 — bool bbl_calc_md5(std::string &filename, std::string &md5_out);
+- filter_characters · function · L717-L728 — inline std::string filter_characters(const std::string& str, const std::string& filterChars)
+- copy_directory_recursively · function · L730-L733 — void copy_directory_recursively(const boost::filesystem::path& source,
+- is_vendor_installed · function · L744-L744 — bool is_vendor_installed(const std::string& vendor);
+- installed_vendor_version · function · L749-L749 — Semver installed_vendor_version(const std::string& vendor);
+- remove_installed_vendor · function · L753-L753 — void remove_installed_vendor(const std::string& vendor);
+- vendor_names_in · function · L757-L757 — std::set<std::string> vendor_names_in(const boost::filesystem::path& dir);
+- resource_vendor_version · function · L762-L762 — Semver resource_vendor_version(const std::string& vendor);
+- install_vendor_bundles_from_resources · function · L771-L773 — bool install_vendor_bundles_from_resources(const std::vector<std::string>& bundle_names,
+- save_string_file · function · L776-L776 — void save_string_file(const boost::filesystem::path& p, const std::string& str);
+- load_string_file · function · L777-L777 — void load_string_file(const boost::filesystem::path& p, std::string& str);
+- check_layer_id_pattern · function · L779-L779 — bool check_layer_id_pattern(const std::string& pattern, int layer_id);

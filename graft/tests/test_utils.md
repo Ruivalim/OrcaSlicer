@@ -1,0 +1,26 @@
+# tests/test_utils.hpp
+
+- load_model · function · L21-L29 — inline Slic3r::TriangleMesh load_model(const std::string &obj_filename)
+- ScopedTemporaryPath · class · L37-L53 — class ScopedTemporaryPath
+- path · function · L40-L40 — const boost::filesystem::path &path() const { return m_path; }
+- string · function · L41-L41 — std::string string() const { return m_path.string(); }
+- ScopedTemporaryPath · function · L42-L42 — ScopedTemporaryPath(const ScopedTemporaryPath &) = delete;
+- ScopedTemporaryPath · function · L46-L49 — ScopedTemporaryPath(const std::string &prefix, const std::string &extension)
+- ScopedTemporaryFile · class · L57-L63 — class ScopedTemporaryFile : public ScopedTemporaryPath
+- ScopedTemporaryFile · function · L60-L61 — explicit ScopedTemporaryFile(const std::string &extension = ".tmp")
+- ScopedTemporaryDir · class · L66-L72 — class ScopedTemporaryDir : public ScopedTemporaryPath
+- ScopedTemporaryDir · function · L69-L70 — explicit ScopedTemporaryDir(const std::string &prefix = "orca")
+- ScopedSlic3rTemporaryDir · class · L78-L90 — class ScopedSlic3rTemporaryDir : public ScopedTemporaryDir
+- ScopedSlic3rTemporaryDir · function · L81-L83 — explicit ScopedSlic3rTemporaryDir(const std::string &prefix = "orca")
+- debug_artifact_path · function · L103-L115 — inline std::string debug_artifact_path(const std::string &name)
+- write_debug_obj · function · L118-L124 — inline void write_debug_obj([[maybe_unused]] const std::string &name,
+- write_debug_obj · function · L126-L132 — inline void write_debug_obj([[maybe_unused]] const std::string &name,
+- write_debug_stl · function · L135-L141 — inline void write_debug_stl([[maybe_unused]] const std::string &name,
+- write_debug_svg · function · L145-L153 — template<class Draw>
+- svg · function · L149-L149 — Slic3r::SVG svg(debug_artifact_path(name));
+- write_debug_svg · function · L155-L165 — template<class Draw>
+- svg · function · L161-L161 — Slic3r::SVG svg(debug_artifact_path(name), bbox);
+- write_debug_stream · function · L170-L177 — template<class Produce>
+- ScopedWorkingDirectory · class · L181-L195 — class ScopedWorkingDirectory
+- ScopedWorkingDirectory · function · L184-L188 — explicit ScopedWorkingDirectory(const boost::filesystem::path &dir)
+- ScopedWorkingDirectory · function · L190-L190 — ScopedWorkingDirectory(const ScopedWorkingDirectory &) = delete;

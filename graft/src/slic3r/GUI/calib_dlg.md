@@ -1,0 +1,43 @@
+# src/slic3r/GUI/calib_dlg.hpp
+
+- PA_Calibration_Dlg · class · L21-L49 — class PA_Calibration_Dlg : public DPIDialog
+- PA_Calibration_Dlg · function · L24-L24 — PA_Calibration_Dlg(wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L26-L26 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_show · function · L27-L27 — void on_show(wxShowEvent& event);
+- reset_params · function · L29-L29 — void reset_params();
+- on_start · function · L30-L30 — virtual void on_start(wxCommandEvent& event);
+- on_extruder_type_changed · function · L31-L31 — virtual void on_extruder_type_changed(wxCommandEvent& event);
+- on_method_changed · function · L32-L32 — virtual void on_method_changed(wxCommandEvent& event);
+- Temp_Calibration_Dlg · class · L51-L70 — class Temp_Calibration_Dlg : public DPIDialog
+- Temp_Calibration_Dlg · function · L54-L54 — Temp_Calibration_Dlg(wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L56-L56 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_start · function · L60-L60 — virtual void on_start(wxCommandEvent& event);
+- on_filament_type_changed · function · L61-L61 — virtual void on_filament_type_changed(wxCommandEvent& event);
+- MaxVolumetricSpeed_Test_Dlg · class · L72-L88 — class MaxVolumetricSpeed_Test_Dlg : public DPIDialog
+- MaxVolumetricSpeed_Test_Dlg · function · L75-L75 — MaxVolumetricSpeed_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L77-L77 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_start · function · L81-L81 — virtual void on_start(wxCommandEvent& event);
+- VFA_Test_Dlg · class · L90-L106 — class VFA_Test_Dlg : public DPIDialog
+- VFA_Test_Dlg · function · L92-L92 — VFA_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L94-L94 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_start · function · L97-L97 — virtual void on_start(wxCommandEvent& event);
+- Retraction_Test_Dlg · class · L109-L125 — class Retraction_Test_Dlg : public DPIDialog
+- Retraction_Test_Dlg · function · L112-L112 — Retraction_Test_Dlg (wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L114-L114 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_start · function · L118-L118 — virtual void on_start(wxCommandEvent& event);
+- Input_Shaping_Freq_Test_Dlg · class · L127-L147 — class Input_Shaping_Freq_Test_Dlg : public DPIDialog
+- Input_Shaping_Freq_Test_Dlg · function · L130-L130 — Input_Shaping_Freq_Test_Dlg (wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L132-L132 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_start · function · L136-L136 — virtual void on_start(wxCommandEvent& event);
+- Input_Shaping_Damp_Test_Dlg · class · L149-L168 — class Input_Shaping_Damp_Test_Dlg : public DPIDialog
+- Input_Shaping_Damp_Test_Dlg · function · L152-L152 — Input_Shaping_Damp_Test_Dlg (wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L154-L154 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_start · function · L158-L158 — virtual void on_start(wxCommandEvent& event);
+- Cornering_Test_Dlg · class · L170-L185 — class Cornering_Test_Dlg : public DPIDialog
+- Cornering_Test_Dlg · function · L173-L173 — Cornering_Test_Dlg(wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L175-L175 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_start · function · L178-L178 — virtual void on_start(wxCommandEvent& event);
+- FlowRateCalibrationDialog · class · L187-L201 — class FlowRateCalibrationDialog : public DPIDialog
+- FlowRateCalibrationDialog · function · L190-L190 — FlowRateCalibrationDialog(wxWindow* parent, wxWindowID id, Plater* plater);
+- on_dpi_changed · function · L192-L192 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_start · function · L195-L195 — virtual void on_start(wxCommandEvent& event);

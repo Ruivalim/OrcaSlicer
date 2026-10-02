@@ -1,0 +1,25 @@
+# src/slic3r/GUI/SliceInfoPanel.hpp
+
+- SliceInfoPopup · class · L17-L40 — class SliceInfoPopup : public PopupWindow
+- SliceInfoPopup · function · L20-L20 — SliceInfoPopup(wxWindow *parent, wxBitmap bmp= wxNullBitmap, BBLSliceInfo* info=nullptr);
+- Popup · function · L24-L24 — virtual void Popup(wxWindow *focus = NULL) wxOVERRIDE;
+- OnDismiss · function · L25-L25 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L26-L26 — virtual bool ProcessLeftDown(wxMouseEvent &event) wxOVERRIDE;
+- Show · function · L27-L27 — virtual bool Show(bool show = true) wxOVERRIDE;
+- OnMouse · function · L32-L32 — void OnMouse(wxMouseEvent &event);
+- OnSize · function · L33-L33 — void OnSize(wxSizeEvent &event);
+- OnSetFocus · function · L34-L34 — void OnSetFocus(wxFocusEvent &event);
+- OnKillFocus · function · L35-L35 — void OnKillFocus(wxFocusEvent &event);
+- wxDECLARE_ABSTRACT_CLASS · function · L38-L38 — wxDECLARE_ABSTRACT_CLASS(SliceInfoPopup);
+- wxDECLARE_EVENT_TABLE · function · L39-L39 — wxDECLARE_EVENT_TABLE();
+- SliceInfoPanel · class · L42-L86 — class SliceInfoPanel : public wxPanel
+- SliceInfoPanel · function · L63-L71 — SliceInfoPanel(wxWindow *      parent,
+- SetImages · function · L74-L74 — void SetImages(wxBitmap &prediction, wxBitmap &cost, wxBitmap &printing);
+- on_subtask_print · function · L76-L76 — void on_subtask_print(wxCommandEvent &evt);
+- on_thumbnail_enter · function · L77-L77 — void on_thumbnail_enter(wxMouseEvent &event);
+- on_thumbnail_leave · function · L78-L78 — void on_thumbnail_leave(wxMouseEvent &event);
+- on_mouse_enter · function · L80-L80 — void on_mouse_enter(wxMouseEvent &event);
+- on_mouse_leave · function · L81-L81 — void on_mouse_leave(wxMouseEvent &event);
+- on_webrequest_state · function · L83-L83 — void on_webrequest_state(wxWebRequestEvent &evt);
+- update · function · L84-L84 — void update(BBLSliceInfo* info);
+- msw_rescale · function · L85-L85 — void msw_rescale();

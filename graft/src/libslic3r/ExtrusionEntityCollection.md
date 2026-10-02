@@ -1,0 +1,56 @@
+# src/libslic3r/ExtrusionEntityCollection.hpp
+
+- filter_by_extrusion_role_in_place · function · L13-L13 — void filter_by_extrusion_role_in_place(ExtrusionEntitiesPtr &extrusion_entities, ExtrusionRole role);
+- filter_by_extrusion_role · function · L18-L23 — inline ExtrusionEntitiesPtr filter_by_extrusion_role(const ExtrusionEntitiesPtr &extrusion_entities, ExtrusionRole role)
+- ExtrusionEntityCollection · class · L25-L169 — class ExtrusionEntityCollection : public ExtrusionEntity
+- clone · function · L28-L28 — ExtrusionEntity* clone() const override;
+- clone_move · function · L30-L30 — ExtrusionEntity* clone_move() override { return new ExtrusionEntityCollection(std::move(*this)); }
+- ExtrusionEntityCollection · function · L34-L34 — ExtrusionEntityCollection(): no_sort(false) {}
+- ExtrusionEntityCollection · function · L35-L35 — ExtrusionEntityCollection(const ExtrusionEntityCollection &other) : no_sort(other.no_sort), is_reverse(other.is_reverse) { this->append(other.entities); }
+- ExtrusionEntityCollection · function · L36-L36 — ExtrusionEntityCollection(ExtrusionEntityCollection &&other) : entities(std::move(other.entities)), no_sort(other.no_sort), is_reverse(other.is_reverse) {}
+- ExtrusionEntityCollection · function · L37-L37 — explicit ExtrusionEntityCollection(const ExtrusionPaths &paths);
+- cbegin · function · L49-L49 — ExtrusionEntitiesPtr::const_iterator    cbegin() const { return this->entities.cbegin(); }
+- cend · function · L50-L50 — ExtrusionEntitiesPtr::const_iterator    cend()   const { return this->entities.cend(); }
+- begin · function · L51-L51 — ExtrusionEntitiesPtr::const_iterator    begin()  const { return this->entities.cbegin(); }
+- end · function · L52-L52 — ExtrusionEntitiesPtr::const_iterator    end()    const { return this->entities.cend(); }
+- begin · function · L53-L53 — ExtrusionEntitiesPtr::iterator          begin()        { return this->entities.begin(); }
+- end · function · L54-L54 — ExtrusionEntitiesPtr::iterator          end()          { return this->entities.end(); }
+- is_collection · function · L56-L56 — bool is_collection() const override { return true; }
+- role · function · L57-L64 — ExtrusionRole role() const override
+- has_perimeters · function · L65-L68 — bool has_perimeters() const
+- has_infill · function · L69-L72 — bool has_infill() const
+- has_solid_infill · function · L73-L76 — bool has_solid_infill() const
+- can_sort · function · L78-L78 — bool can_sort() const override { return !this->no_sort; }
+- can_reverse · function · L79-L85 — bool can_reverse() const override
+- set_reverse · function · L86-L86 — void set_reverse() override { is_reverse = false; }
+- empty · function · L87-L87 — bool empty() const { return this->entities.empty(); }
+- clear · function · L88-L88 — void clear();
+- swap · function · L89-L89 — void swap (ExtrusionEntityCollection &c);
+- append · function · L90-L90 — void append(const ExtrusionEntity &entity) { this->entities.emplace_back(entity.clone()); }
+- append · function · L91-L91 — void append(ExtrusionEntity &&entity) { this->entities.emplace_back(entity.clone_move()); }
+- append · function · L92-L96 — void append(const ExtrusionEntitiesPtr &entities)
+- append · function · L97-L104 — void append(ExtrusionEntitiesPtr &&src)
+- append · function · L105-L109 — void append(const ExtrusionPaths &paths)
+- append · function · L110-L114 — void append(ExtrusionPaths &&paths)
+- replace · function · L115-L115 — void replace(size_t i, const ExtrusionEntity &entity);
+- remove · function · L116-L116 — void remove(size_t i);
+- chained_path_from · function · L117-L117 — static ExtrusionEntityCollection chained_path_from(const ExtrusionEntitiesPtr &extrusion_entities, const Point &start_near, ExtrusionRole role = erMixed);
+- chained_path_from · function · L118-L119 — ExtrusionEntityCollection chained_path_from(const Point &start_near, ExtrusionRole role = erMixed) const
+- reverse · function · L120-L120 — void reverse() override;
+- first_point · function · L121-L121 — Point first_point() const override { return this->entities.front()->first_point(); }
+- first_point3 · function · L122-L122 — const Point3& first_point3() const override { return this->entities.front()->first_point3(); }
+- last_point · function · L123-L123 — Point last_point() const override { return this->entities.back()->last_point(); }
+- last_point3 · function · L124-L124 — const Point3& last_point3() const override { return this->entities.back()->last_point3(); }
+- polygons_covered_by_width · function · L128-L128 — void polygons_covered_by_width(Polygons &out, const float scaled_epsilon) const override;
+- polygons_covered_by_spacing · function · L132-L132 — void polygons_covered_by_spacing(Polygons &out, const float scaled_epsilon) const override;
+- polygons_covered_by_width · function · L133-L134 — Polygons polygons_covered_by_width(const float scaled_epsilon = 0.f) const
+- polygons_covered_by_spacing · function · L135-L136 — Polygons polygons_covered_by_spacing(const float scaled_epsilon = 0.f) const
+- items_count · function · L137-L137 — size_t items_count() const;
+- size · function · L138-L138 — size_t size() const { return entities.size(); }
+- flatten · function · L142-L142 — ExtrusionEntityCollection flatten(bool preserve_ordering = false) const;
+- min_mm3_per_mm · function · L143-L143 — double min_mm3_per_mm() const override;
+- total_volume · function · L144-L144 — double total_volume() const override { double volume=0.; for (const auto& ent : entities) volume+=ent->total_volume(); return volume; }
+- as_polyline · function · L147-L150 — Polyline as_polyline() const override
+- collect_polylines · function · L152-L155 — void collect_polylines(Polylines &dst) const override
+- collect_points · function · L157-L160 — void   collect_points(Points &dst) const override
+- length · function · L162-L165 — double length() const override

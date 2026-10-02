@@ -1,0 +1,27 @@
+# src/slic3r/GUI/RammingChart.hpp
+
+- Chart · class · L15-L121 — class Chart : public wxWindow
+- Chart · function · L18-L31 — Chart(wxWindow* parent, wxRect rect,const std::vector<std::pair<float,float>>& initial_buttons,int ramming_speed_size, float sampling, int scale_unit=10) :
+- set_xy_range · function · L32-L37 — void set_xy_range(float x,float y)
+- get_volume · function · L38-L38 — float get_volume() const { return m_total_volume; }
+- get_time · function · L39-L39 — float get_time()   const { return visible_area.m_width; }
+- get_ramming_speed · function · L41-L41 — std::vector<float> get_ramming_speed(float sampling) const; //returns sampled ramming speed
+- get_buttons · function · L42-L42 — std::vector<std::pair<float,float>> get_buttons() const; // returns buttons position
+- draw · function · L44-L44 — void draw();
+- mouse_clicked · function · L46-L46 — void mouse_clicked(wxMouseEvent& event);
+- mouse_right_button_clicked · function · L47-L47 — void mouse_right_button_clicked(wxMouseEvent& event);
+- mouse_moved · function · L48-L48 — void mouse_moved(wxMouseEvent& event);
+- mouse_double_clicked · function · L49-L49 — void mouse_double_clicked(wxMouseEvent& event);
+- mouse_left_window · function · L50-L50 — void mouse_left_window(wxMouseEvent&) { m_dragged = nullptr; SetCursor(wxNullCursor);}
+- mouse_released · function · L51-L51 — void mouse_released(wxMouseEvent&)    { m_dragged = nullptr; SetCursor(wxNullCursor);}
+- paint_event · function · L52-L52 — void paint_event(wxPaintEvent&) { draw(); }
+- DECLARE_EVENT_TABLE · function · L53-L53 — DECLARE_EVENT_TABLE()
+- ButtonToDrag · class · L67-L75 — class ButtonToDrag
+- ButtonToDrag · function · L70-L70 — ButtonToDrag(wxPoint2DDouble pos) : m_pos{pos} {};
+- get_pos · function · L71-L71 — wxPoint2DDouble get_pos() const { return m_pos; }
+- move · function · L72-L72 — void move(double x,double y) { m_pos.m_x+=x; m_pos.m_y+=y; }
+- math_to_screen · function · L79-L86 — wxPoint math_to_screen(const wxPoint2DDouble& math) const
+- screen_to_math · function · L87-L94 — wxPoint2DDouble screen_to_math(const wxPoint& screen) const
+- which_button_is_clicked · function · L96-L105 — int which_button_is_clicked(const wxPoint& point) const
+- recalculate_line · function · L108-L108 — void recalculate_line();
+- recalculate_volume · function · L109-L109 — void recalculate_volume();

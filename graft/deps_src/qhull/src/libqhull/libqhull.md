@@ -1,0 +1,86 @@
+# deps_src/qhull/src/libqhull/libqhull.h
+
+- qh_pointT · type · L97-L101 — typedef enum
+- qh_CENTER · type · L141-L147 — typedef enum
+- qh_PRINT · type · L161-L172 — typedef enum {qh_PRINTnone= 0,
+- vertexT · type · L218-L218 — typedef struct vertexT vertexT;
+- ridgeT · type · L219-L219 — typedef struct ridgeT ridgeT;
+- facetT · type · L220-L220 — typedef struct facetT facetT;
+- setT · type · L223-L223 — typedef struct setT setT;          /* defined in qset.h */
+- facetT · class · L262-L348 — struct facetT
+- ridgeT · class · L371-L381 — struct ridgeT
+- vertexT · class · L396-L409 — struct vertexT
+- qhT · type · L435-L435 — typedef struct qhT qhT;
+- qhT · class · L465-L803 — struct qhT
+- qh_qhull · function · L1032-L1032 — void    qh_qhull(void);
+- qh_addpoint · function · L1033-L1033 — boolT   qh_addpoint(pointT *furthest, facetT *facet, boolT checkdist);
+- qh_printsummary · function · L1034-L1034 — void    qh_printsummary(FILE *fp);
+- qh_errexit · function · L1038-L1038 — void    qh_errexit(int exitcode, facetT *facet, ridgeT *ridge);
+- qh_errprint · function · L1039-L1039 — void    qh_errprint(const char* string, facetT *atfacet, facetT *otherfacet, ridgeT *atridge, vertexT *atvertex);
+- qh_new_qhull · function · L1040-L1041 — int     qh_new_qhull(int dim, int numpoints, coordT *points, boolT ismalloc,
+- qh_printfacetlist · function · L1042-L1042 — void    qh_printfacetlist(facetT *facetlist, setT *facets, boolT printall);
+- qh_printhelp_degenerate · function · L1043-L1043 — void    qh_printhelp_degenerate(FILE *fp);
+- qh_printhelp_narrowhull · function · L1044-L1044 — void    qh_printhelp_narrowhull(FILE *fp, realT minangle);
+- qh_printhelp_singular · function · L1045-L1045 — void    qh_printhelp_singular(FILE *fp);
+- qh_user_memsizes · function · L1046-L1046 — void    qh_user_memsizes(void);
+- qh_exit · function · L1049-L1049 — void    qh_exit(int exitcode);
+- qh_fprintf_stderr · function · L1050-L1050 — void    qh_fprintf_stderr(int msgcode, const char *fmt, ... );
+- qh_free · function · L1051-L1051 — void    qh_free(void *mem);
+- qh_malloc · function · L1052-L1052 — void   *qh_malloc(size_t size);
+- qh_fprintf · function · L1055-L1055 — void    qh_fprintf(FILE *fp, int msgcode, const char *fmt, ... );
+- qh_fprintf_rbox · function · L1056-L1056 — void    qh_fprintf_rbox(FILE *fp, int msgcode, const char *fmt, ... );
+- qh_findbest · function · L1060-L1062 — facetT *qh_findbest(pointT *point, facetT *startfacet,
+- qh_findbestnew · function · L1063-L1064 — facetT *qh_findbestnew(pointT *point, facetT *startfacet,
+- qh_gram_schmidt · function · L1065-L1065 — boolT   qh_gram_schmidt(int dim, realT **rows);
+- qh_outerinner · function · L1066-L1066 — void    qh_outerinner(facetT *facet, realT *outerplane, realT *innerplane);
+- qh_printsummary · function · L1067-L1067 — void    qh_printsummary(FILE *fp);
+- qh_projectinput · function · L1068-L1068 — void    qh_projectinput(void);
+- qh_randommatrix · function · L1069-L1069 — void    qh_randommatrix(realT *buffer, int dim, realT **row);
+- qh_rotateinput · function · L1070-L1070 — void    qh_rotateinput(realT **rows);
+- qh_scaleinput · function · L1071-L1071 — void    qh_scaleinput(void);
+- qh_setdelaunay · function · L1072-L1072 — void    qh_setdelaunay(int dim, int count, pointT *points);
+- qh_sethalfspace_all · function · L1073-L1073 — coordT  *qh_sethalfspace_all(int dim, int count, coordT *halfspaces, pointT *feasible);
+- qh_clock · function · L1077-L1077 — unsigned long qh_clock(void);
+- qh_checkflags · function · L1078-L1078 — void    qh_checkflags(char *command, char *hiddenflags);
+- qh_clear_outputflags · function · L1079-L1079 — void    qh_clear_outputflags(void);
+- qh_freebuffers · function · L1080-L1080 — void    qh_freebuffers(void);
+- qh_freeqhull · function · L1081-L1081 — void    qh_freeqhull(boolT allmem);
+- qh_freeqhull2 · function · L1082-L1082 — void    qh_freeqhull2(boolT allmem);
+- qh_init_A · function · L1083-L1083 — void    qh_init_A(FILE *infile, FILE *outfile, FILE *errfile, int argc, char *argv[]);
+- qh_init_B · function · L1084-L1084 — void    qh_init_B(coordT *points, int numpoints, int dim, boolT ismalloc);
+- qh_init_qhull_command · function · L1085-L1085 — void    qh_init_qhull_command(int argc, char *argv[]);
+- qh_initbuffers · function · L1086-L1086 — void    qh_initbuffers(coordT *points, int numpoints, int dim, boolT ismalloc);
+- qh_initflags · function · L1087-L1087 — void    qh_initflags(char *command);
+- qh_initqhull_buffers · function · L1088-L1088 — void    qh_initqhull_buffers(void);
+- qh_initqhull_globals · function · L1089-L1089 — void    qh_initqhull_globals(coordT *points, int numpoints, int dim, boolT ismalloc);
+- qh_initqhull_mem · function · L1090-L1090 — void    qh_initqhull_mem(void);
+- qh_initqhull_outputflags · function · L1091-L1091 — void    qh_initqhull_outputflags(void);
+- qh_initqhull_start · function · L1092-L1092 — void    qh_initqhull_start(FILE *infile, FILE *outfile, FILE *errfile);
+- qh_initqhull_start2 · function · L1093-L1093 — void    qh_initqhull_start2(FILE *infile, FILE *outfile, FILE *errfile);
+- qh_initthresholds · function · L1094-L1094 — void    qh_initthresholds(char *command);
+- qh_lib_check · function · L1095-L1095 — void    qh_lib_check(int qhullLibraryType, int qhTsize, int vertexTsize, int ridgeTsize, int facetTsize, int setTsize, int qhmemTsize);
+- qh_option · function · L1096-L1096 — void    qh_option(const char *option, int *i, realT *r);
+- qh_restore_qhull · function · L1098-L1098 — void    qh_restore_qhull(qhT **oldqh);
+- qh_save_qhull · function · L1099-L1099 — qhT    *qh_save_qhull(void);
+- qh_dfacet · function · L1104-L1104 — void    qh_dfacet(unsigned id);
+- qh_dvertex · function · L1105-L1105 — void    qh_dvertex(unsigned id);
+- qh_printneighborhood · function · L1106-L1106 — void    qh_printneighborhood(FILE *fp, qh_PRINT format, facetT *facetA, facetT *facetB, boolT printall);
+- qh_produce_output · function · L1107-L1107 — void    qh_produce_output(void);
+- qh_readpoints · function · L1108-L1108 — coordT *qh_readpoints(int *numpoints, int *dimension, boolT *ismalloc);
+- qh_meminit · function · L1113-L1113 — void qh_meminit(FILE *ferr);
+- qh_memfreeshort · function · L1114-L1114 — void qh_memfreeshort(int *curlong, int *totlong);
+- qh_check_output · function · L1118-L1118 — void    qh_check_output(void);
+- qh_check_points · function · L1119-L1119 — void    qh_check_points(void);
+- qh_facetvertices · function · L1120-L1120 — setT   *qh_facetvertices(facetT *facetlist, setT *facets, boolT allfacets);
+- qh_findbestfacet · function · L1121-L1122 — facetT *qh_findbestfacet(pointT *point, boolT bestoutside,
+- qh_nearvertex · function · L1123-L1123 — vertexT *qh_nearvertex(facetT *facet, pointT *point, realT *bestdistp);
+- qh_point · function · L1124-L1124 — pointT *qh_point(int id);
+- qh_pointfacet · function · L1125-L1125 — setT   *qh_pointfacet(void /*qh.facet_list*/);
+- qh_pointid · function · L1126-L1126 — int     qh_pointid(pointT *point);
+- qh_pointvertex · function · L1127-L1127 — setT   *qh_pointvertex(void /*qh.facet_list*/);
+- qh_setvoronoi_all · function · L1128-L1128 — void    qh_setvoronoi_all(void);
+- qh_triangulate · function · L1129-L1129 — void    qh_triangulate(void /*qh.facet_list*/);
+- qh_rboxpoints · function · L1132-L1132 — int     qh_rboxpoints(FILE* fout, FILE* ferr, char* rbox_command);
+- qh_errexit_rbox · function · L1133-L1133 — void    qh_errexit_rbox(int exitcode);
+- qh_collectstatistics · function · L1137-L1137 — void    qh_collectstatistics(void);
+- qh_printallstatistics · function · L1138-L1138 — void    qh_printallstatistics(FILE *fp, const char *string);

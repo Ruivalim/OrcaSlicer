@@ -1,0 +1,46 @@
+# tests/catch2/src/catch2/internal/catch_textflow.hpp
+
+- Columns · class · L21-L21 — class Columns;
+- AnsiSkippingString · class · L35-L59 — class AnsiSkippingString
+- preprocessString · function · L40-L40 — void preprocessString();
+- const_iterator · class · L43-L43 — class const_iterator;
+- AnsiSkippingString · function · L49-L49 — explicit AnsiSkippingString( std::string const& text );
+- AnsiSkippingString · function · L50-L50 — explicit AnsiSkippingString( std::string&& text );
+- begin · function · L52-L52 — const_iterator begin() const;
+- end · function · L53-L53 — const_iterator end() const;
+- size · function · L55-L55 — size_t size() const { return m_size; }
+- substring · function · L57-L58 — std::string substring( const_iterator begin,
+- EndTag · class · L63-L63 — struct EndTag {};
+- const_iterator · function · L68-L69 — explicit const_iterator( const std::string& string, EndTag ):
+- tryParseAnsiEscapes · function · L71-L71 — void tryParseAnsiEscapes();
+- advance · function · L72-L72 — void advance();
+- unadvance · function · L73-L73 — void unadvance();
+- const_iterator · function · L82-L85 — explicit const_iterator( const std::string& string ):
+- oneBefore · function · L118-L121 — const_iterator oneBefore() const
+- Column · class · L131-L244 — class Column
+- const_iterator · class · L146-L199 — class const_iterator
+- EndTag · class · L148-L148 — struct EndTag {};
+- const_iterator · function · L160-L164 — const_iterator( Column const& column, EndTag ):
+- calcLength · function · L167-L167 — void calcLength();
+- indentSize · function · L170-L170 — size_t indentSize() const;
+- addIndentAndSuffix · function · L174-L176 — std::string addIndentAndSuffix(
+- const_iterator · function · L185-L185 — explicit const_iterator( Column const& column );
+- Column · function · L202-L202 — explicit Column( std::string const& text ): m_string( text ) {}
+- Column · function · L203-L204 — explicit Column( std::string&& text ):
+- width · function · L206-L206 — Column& width( size_t newWidth ) &
+- width · function · L211-L211 — Column&& width( size_t newWidth ) &&
+- indent · function · L216-L216 — Column& indent( size_t newIndent ) &
+- indent · function · L220-L220 — Column&& indent( size_t newIndent ) &&
+- initialIndent · function · L224-L224 — Column& initialIndent( size_t newIndent ) &
+- initialIndent · function · L228-L228 — Column&& initialIndent( size_t newIndent ) &&
+- width · function · L233-L233 — size_t width() const { return m_width; }
+- begin · function · L234-L234 — const_iterator begin() const { return const_iterator( *this ); }
+- end · function · L235-L237 — const_iterator end() const
+- Spacer · function · L247-L247 — Column Spacer( size_t spaceWidth );
+- Columns · class · L249-L294 — class Columns
+- iterator · class · L253-L281 — class iterator
+- EndTag · class · L255-L255 — struct EndTag {};
+- iterator · function · L261-L261 — iterator( Columns const& columns, EndTag );
+- iterator · function · L270-L270 — explicit iterator( Columns const& columns );
+- begin · function · L284-L284 — iterator begin() const { return iterator( *this ); }
+- end · function · L285-L285 — iterator end() const { return { *this, iterator::EndTag() }; }

@@ -1,0 +1,35 @@
+# deps_src/mcut/include/mcut/internal/cdt/kdtree.h
+
+- NodeSplitDirection · class · L16-L21 — struct NodeSplitDirection
+- Enum · type · L17-L20 — enum Enum
+- point_type · type · L42-L42 — typedef vec2_<coord_type> point_type;
+- point_type · type · L43-L43 — typedef std::pair<point_type, std::uint32_t> value_type;
+- point_data_vec · type · L44-L44 — typedef std::vector<std::uint32_t> point_data_vec;
+- pd_cit · type · L45-L45 — typedef point_data_vec::const_iterator pd_cit;
+- children_type · type · L46-L46 — typedef std::array<std::uint32_t, 2> children_type;
+- Node · class · L49-L63 — struct Node
+- isLeaf · function · L65-L65 — bool isLeaf() const
+- m_min · function · L73-L83 — : m_rootDir(NodeSplitDirection::X)
+- make · function · L74-L76 — , m_min(point_type::make(
+- max · function · L75-L75 — -std::numeric_limits<coord_type>::max(),
+- max · function · L76-L76 — -std::numeric_limits<coord_type>::max()))
+- make · function · L77-L79 — , m_max(point_type::make(
+- max · function · L78-L78 — std::numeric_limits<coord_type>::max(),
+- max · function · L79-L79 — std::numeric_limits<coord_type>::max()))
+- m_tasksStack · function · L81-L81 — , m_tasksStack(InitialStackDepth, NearestTask())
+- m_min · function · L88-L94 — : m_rootDir(NodeSplitDirection::X)
+- m_tasksStack · function · L92-L92 — , m_tasksStack(InitialStackDepth, NearestTask())
+- insert · function · L101-L156 — void
+- mid · function · L117-L117 — coord_type mid(0);
+- nearest · function · L162-L216 — value_type nearest(
+- mid · function · L186-L186 — coord_type mid(0);
+- addNewNode · function · L220-L220 — std::uint32_t addNewNode()
+- whichChild · function · L229-L232 — std::size_t whichChild(
+- calcSplitInfo · function · L239-L264 — static void calcSplitInfo(
+- isInsideBox · function · L267-L273 — static bool isInsideBox(
+- extendTree · function · L277-L302 — void extendTree(const point_type& point)
+- initializeRootBox · function · L305-L329 — void initializeRootBox(const std::vector<point_type>& points)
+- padding · function · L319-L319 — const TCoordType padding(1);
+- NearestTask · class · L340-L364 — struct NearestTask
+- initialize · function · L379-L379 — void initialize(const std::vector<vec2_<TCoordType>>& points)
+- add_point · function · L400-L403 — void add_point(const std::uint32_t i, const std::vector<vec2_<TCoordType>>& points)

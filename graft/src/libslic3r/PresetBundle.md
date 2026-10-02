@@ -1,0 +1,140 @@
+# src/libslic3r/PresetBundle.hpp
+
+- VendorType · type · L31-L37 — enum class VendorType
+- AMSMapInfo · class · L40-L45 — struct AMSMapInfo
+- AMSComboInfo · class · L46-L61 — struct AMSComboInfo
+- clear · function · L52-L57 — void  clear()
+- empty · function · L58-L60 — bool empty()
+- MergeFilamentInfo · class · L62-L65 — struct MergeFilamentInfo
+- is_empty · function · L64-L64 — bool  is_empty() { return merges.empty();}
+- FilamentBaseInfo · class · L68-L99 — struct FilamentBaseInfo
+- get_extruder_compatibility · function · L84-L92 — int get_extruder_compatibility(int extruder_id) const
+- set_filament_extruder_compatibility · function · L94-L94 — void set_filament_extruder_compatibility(int value) { m_filament_extruder_compatibility = value; }
+- get_filament_extruder_compatibility · function · L95-L95 — int  get_filament_extruder_compatibility() const    { return m_filament_extruder_compatibility; }
+- BundleType · type · L101-L105 — enum BundleType
+- BundleMetadata · class · L108-L134 — struct BundleMetadata
+- load_from_json · function · L132-L132 — bool load_from_json(const std::string& path);
+- save_to_json · function · L133-L133 — bool save_to_json(const std::string& path) const;
+- PresetBundleMetadata · class · L136-L172 — struct PresetBundleMetadata
+- PauseRead · function · L144-L147 — void PauseRead()
+- UnpauseRead · function · L149-L152 — void UnpauseRead()
+- ReadLock · function · L154-L157 — void ReadLock()
+- ReadUnlock · function · L158-L161 — void ReadUnlock()
+- WriteLock · function · L163-L166 — void WriteLock()
+- WriteUnlock · function · L168-L171 — void WriteUnlock()
+- PublishedConfig · class · L176-L196 — struct PublishedConfig
+- PresetBundle · class · L199-L709 — class PresetBundle
+- load_vendor_cache · function · L218-L219 — bool load_vendor_cache(const std::string& cache_path, const std::string& expected_vendor_name,
+- set_generate_vendor_caches · function · L225-L225 — void set_generate_vendor_caches(bool enable) { m_generate_vendor_caches = enable; }
+- construct_full_config · function · L227-L233 — static DynamicPrintConfig construct_full_config(Preset                         &in_printer_preset,
+- find_preset_vendor · function · L236-L236 — static std::string find_preset_vendor(const std::string& preset_name, Preset::Type type);
+- PresetBundle · function · L238-L238 — PresetBundle();
+- PresetBundle · function · L239-L239 — PresetBundle(const PresetBundle &rhs);
+- reset · function · L244-L244 — void            reset(bool delete_files);
+- setup_directories · function · L246-L246 — void            setup_directories();
+- copy_files · function · L247-L247 — void            copy_files(const std::string& from);
+- PresetPreferences · class · L249-L254 — struct PresetPreferences
+- load_presets · function · L259-L261 — PresetsConfigSubstitutions load_presets(AppConfig &config, ForwardCompatibilitySubstitutionRule rule,
+- resolve_preset_config · function · L266-L269 — bool resolve_preset_config(DynamicPrintConfig &config, Preset::Type type,
+- resolve_preset_config_type · function · L272-L275 — bool resolve_preset_config_type(DynamicPrintConfig &config, Preset::Type &type,
+- load_selections · function · L280-L280 — void     load_selections(AppConfig &config, const PresetPreferences& preferred_selection = PresetPreferences());
+- load_user_presets · function · L283-L283 — PresetsConfigSubstitutions load_user_presets(std::string user, ForwardCompatibilitySubstitutionRule rule, bool read_only = false);
+- load_user_presets · function · L284-L284 — PresetsConfigSubstitutions load_user_presets(AppConfig &config, std::map<std::string, std::map<std::string, std::string>>& my_presets, ForwardCompatibilitySubstitutionRule rule);
+- update_subscribed_presets · function · L286-L289 — PresetsConfigSubstitutions update_subscribed_presets(AppConfig& config,
+- import_presets · function · L291-L294 — PresetsConfigSubstitutions import_presets(std::vector<std::string>& files,
+- import_json_presets · function · L296-L302 — bool import_json_presets(PresetsConfigSubstitutions& substitutions,
+- save_user_presets · function · L304-L304 — void save_user_presets(AppConfig& config, std::map<std::string, std::string>& need_to_delete_list);
+- check_and_fix_user_presets_syncinfo · function · L305-L305 — void check_and_fix_user_presets_syncinfo(const std::string& user_id);
+- remove_users_preset · function · L306-L306 — void remove_users_preset(AppConfig &config, std::map<std::string, std::map<std::string, std::string>> * my_presets = nullptr);
+- update_user_presets_directory · function · L307-L307 — void update_user_presets_directory(const std::string preset_folder);
+- remove_user_presets_directory · function · L308-L308 — void remove_user_presets_directory(const std::string preset_folder);
+- update_system_preset_setting_ids · function · L309-L309 — void update_system_preset_setting_ids(std::map<std::string, std::map<std::string, std::string>>& system_presets);
+- apply_vendor_config · function · L323-L330 — bool apply_vendor_config(
+- validate_presets · function · L333-L333 — int validate_presets(const std::string &file_name, DynamicPrintConfig& config, std::set<std::string>& different_gcodes);
+- get_preset_differed_for_save · function · L337-L337 — Preset* get_preset_differed_for_save(Preset& preset);
+- get_differed_values_to_update · function · L338-L338 — int get_differed_values_to_update(Preset& preset, std::map<std::string, std::string>& key_values);
+- get_vendor_profile_version · function · L342-L342 — Semver get_vendor_profile_version(std::string vendor_name);
+- get_filament_by_filament_id · function · L344-L344 — std::optional<FilamentBaseInfo> get_filament_by_filament_id(const std::string& filament_id, const std::string& printer_name = std::string()) const;
+- get_current_vendor_type · function · L347-L347 — VendorType get_current_vendor_type();
+- is_bbl_vendor · function · L349-L349 — bool is_bbl_vendor() { return get_current_vendor_type() == VendorType::Marlin_BBL; }
+- use_bbl_network · function · L352-L352 — bool use_bbl_network();
+- use_bbl_device_tab · function · L354-L354 — bool use_bbl_device_tab();
+- backup_user_folder · function · L356-L356 — bool backup_user_folder() const;
+- load_project_embedded_presets · function · L359-L359 — PresetsConfigSubstitutions load_project_embedded_presets(std::vector<Preset*> project_presets, ForwardCompatibilitySubstitutionRule substitution_rule);
+- get_current_project_embedded_presets · function · L360-L360 — std::vector<Preset*> get_current_project_embedded_presets();
+- reset_project_embedded_presets · function · L361-L361 — void reset_project_embedded_presets();
+- get_texture_for_printer_model · function · L364-L364 — std::string get_texture_for_printer_model(std::string model_name);
+- get_stl_model_for_printer_model · function · L365-L365 — std::string get_stl_model_for_printer_model(std::string model_name);
+- get_hotend_model_for_printer_model · function · L366-L366 — std::string get_hotend_model_for_printer_model(std::string model_name);
+- export_selections · function · L369-L369 — void            export_selections(AppConfig &config);
+- set_num_filaments · function · L374-L374 — void            set_num_filaments(unsigned int n, std::string new_col = "");
+- update_num_filaments · function · L375-L375 — void         update_num_filaments(unsigned int to_del_flament_id);
+- get_ams_cobox_infos · function · L377-L377 — void get_ams_cobox_infos(AMSComboInfo &combox_info);
+- sync_ams_list · function · L378-L378 — unsigned int sync_ams_list(std::vector<std::pair<DynamicPrintConfig *,std::string>> &unknowns, bool use_map, std::map<int, AMSMapInfo> &maps, bool enable_append, MergeFilamentInfo &merge_info, bool color_only = false);
+- is_the_only_edited_filament · function · L380-L380 — bool is_the_only_edited_filament(unsigned int filament_index);
+- reset_default_nozzle_volume_type · function · L382-L382 — void reset_default_nozzle_volume_type();
+- get_used_tpu_filaments · function · L384-L384 — std::vector<int> get_used_tpu_filaments(const std::vector<int> &used_filaments);
+- update_selections · function · L386-L386 — void           update_selections(AppConfig &config);
+- set_calibrate_printer · function · L387-L387 — void set_calibrate_printer(std::string name);
+- set_is_validation_mode · function · L389-L389 — void set_is_validation_mode(bool mode) { validation_mode = mode; }
+- set_vendor_to_validate · function · L390-L390 — void set_vendor_to_validate(std::string vendor) { vendor_to_validate = vendor; }
+- get_extruder_filament_info · function · L392-L392 — std::vector<std::vector<DynamicPrintConfig>> get_extruder_filament_info() const;
+- get_printer_names_by_printer_type_and_nozzle · function · L394-L394 — std::set<std::string> get_printer_names_by_printer_type_and_nozzle(const std::string &printer_type, std::string nozzle_diameter_str, bool system_only = true);
+- get_filament_presets_for_machine · function · L399-L401 — std::vector<Preset *> get_filament_presets_for_machine(const std::string &printer_type,
+- check_filament_temp_equation_by_printer_type_and_nozzle_for_mas_tray · function · L402-L408 — bool                  check_filament_temp_equation_by_printer_type_and_nozzle_for_mas_tray(const std::string &printer_type,
+- get_similar_printer_preset · function · L409-L409 — Preset *                    get_similar_printer_preset(std::string printer_model, std::string printer_variant);
+- materials · function · L415-L415 — PresetCollection& 			materials(PrinterTechnology pt)       { return pt == ptFFF ? this->filaments : this->sla_materials; }
+- materials · function · L416-L416 — const PresetCollection& 	materials(PrinterTechnology pt) const { return pt == ptFFF ? this->filaments : this->sla_materials; }
+- ObsoletePresets · class · L451-L458 — struct ObsoletePresets
+- has_defauls_only · function · L461-L462 — bool                        has_defauls_only() const
+- full_config · function · L464-L464 — DynamicPrintConfig          full_config(bool apply_extruder = true, std::optional<std::vector<int>>filament_maps = std::nullopt, std::optional<std::vector<int>> filament_volume_maps = std::nullopt) const;
+- full_config_secure · function · L466-L466 — DynamicPrintConfig          full_config_secure(std::optional<std::vector<int>>filament_maps = std::nullopt) const;
+- get_default_nozzle_volume_types_for_filaments · function · L470-L470 — std::vector<int> get_default_nozzle_volume_types_for_filaments(std::vector<int>& f_maps);
+- get_full_flush_matrix · function · L475-L475 — std::vector<std::vector<std::vector<float>>> get_full_flush_matrix(bool with_multiplier = true) const;
+- get_printer_extruder_count · function · L478-L478 — int get_printer_extruder_count() const;
+- support_different_extruders · function · L479-L479 — bool support_different_extruders() const;
+- update_filament_count · function · L485-L485 — void update_filament_count();
+- load_config_from_wizard · function · L489-L490 — void                        load_config_from_wizard(const std::string &name, DynamicPrintConfig config, Semver file_version)
+- load_config_model · function · L494-L495 — void                        load_config_model(const std::string &name, DynamicPrintConfig config, Semver file_version = Semver(), PublishedConfig *published_config = nullptr)
+- load_config_file · function · L501-L501 — ConfigSubstitutions         load_config_file(const std::string &path, ForwardCompatibilitySubstitutionRule compatibility_rule);
+- LoadConfigBundleAttribute · type · L508-L517 — enum LoadConfigBundleAttribute
+- load_vendor_configs_from_json · function · L529-L532 — std::pair<PresetsConfigSubstitutions, size_t> load_vendor_configs_from_json(
+- export_current_configs · function · L540-L541 — std::vector<std::string> export_current_configs(const std::string &path, std::function<int(std::string const &)> override_confirm,
+- set_default_suppressed · function · L544-L544 — void                        set_default_suppressed(bool default_suppressed);
+- set_filament_preset · function · L548-L548 — void                        set_filament_preset(size_t idx, const std::string &name);
+- update_multi_material_filament_presets · function · L552-L552 — void                        update_multi_material_filament_presets(size_t to_delete_filament_id = size_t(-1));
+- is_mixed_filament · function · L554-L554 — bool                        is_mixed_filament(size_t idx) const;
+- physical_filament_config_indices · function · L555-L555 — std::vector<size_t>         physical_filament_config_indices() const;
+- num_mixed_filaments · function · L558-L558 — size_t                      num_mixed_filaments() const;
+- num_physical_filaments · function · L560-L560 — size_t                      num_physical_filaments() const;
+- on_extruders_count_changed · function · L562-L562 — void                        on_extruders_count_changed(int extruder_count);
+- update_compatible · function · L569-L569 — void                        update_compatible(PresetSelectCompatibleType select_other_print_if_incompatible, PresetSelectCompatibleType select_other_filament_if_incompatible);
+- update_compatible · function · L570-L570 — void                        update_compatible(PresetSelectCompatibleType select_other_if_incompatible) { this->update_compatible(select_other_if_incompatible, select_other_if_incompatible); }
+- normalize_compatible_presets · function · L575-L575 — void                        normalize_compatible_presets();
+- load_installed_printers · function · L580-L580 — void                        load_installed_printers(const AppConfig &config);
+- get_preset_name_by_alias · function · L582-L582 — const std::string&          get_preset_name_by_alias(const Preset::Type& preset_type, const std::string& alias) const;
+- get_required_hrc_by_filament_type · function · L584-L584 — const int                   get_required_hrc_by_filament_type(const std::string& filament_type) const;
+- save_changes_for_preset · function · L588-L588 — void                        save_changes_for_preset(const std::string& new_name, Preset::Type type, const std::vector<std::string>& unselected_options, bool save_to_project = false);
+- load_system_models_from_json · function · L590-L590 — std::pair<PresetsConfigSubstitutions, std::string> load_system_models_from_json(ForwardCompatibilitySubstitutionRule compatibility_rule);
+- load_system_filaments_json · function · L591-L591 — std::pair<PresetsConfigSubstitutions, std::string> load_system_filaments_json(ForwardCompatibilitySubstitutionRule compatibility_rule);
+- get_custom_vendor_models · function · L592-L592 — VendorProfile                                      get_custom_vendor_models() const;
+- types_list · function · L603-L607 — static std::array<Preset::Type, 3>  types_list(PrinterTechnology pt)
+- has_errors · function · L610-L610 — bool has_errors(bool check_duplicate_filament_subtypes = false) const;
+- error_count · function · L614-L614 — int error_count() const { return m_errors; }
+- check_preset_references · function · L618-L618 — bool check_preset_references() const;
+- check_printer_default_materials · function · L623-L623 — bool check_printer_default_materials() const;
+- merge_presets · function · L628-L628 — std::vector<std::string>    merge_presets(PresetBundle &&other);
+- load_vendor_cache · function · L635-L635 — bool load_vendor_cache(const boost::filesystem::path& dir, const std::string& vendor_name, const PresetBundle* base_bundle);
+- load_vendor_preset · function · L645-L652 — std::string load_vendor_preset(const CachedPreset& entry,
+- clear_printer_hold_aliases · function · L655-L655 — void clear_printer_hold_aliases();
+- load_source_vendor · function · L667-L670 — const PresetBundle *load_source_vendor(const boost::filesystem::path &root_dir,
+- check_duplicate_filament_subtypes · function · L674-L674 — bool check_duplicate_filament_subtypes() const;
+- load_system_presets_from_json · function · L678-L678 — std::pair<PresetsConfigSubstitutions, std::string> load_system_presets_from_json(ForwardCompatibilitySubstitutionRule compatibility_rule, bool allow_cache = true);
+- update_filament_multi_color · function · L680-L680 — void update_filament_multi_color();
+- update_system_maps · function · L682-L682 — void 						update_system_maps();
+- load_installed_filaments · function · L686-L686 — void                        load_installed_filaments(AppConfig &config);
+- load_installed_sla_materials · function · L687-L687 — void                        load_installed_sla_materials(AppConfig &config);
+- load_config_file_config · function · L692-L692 — void                        load_config_file_config(const std::string &name_or_path, bool is_external, DynamicPrintConfig &&config, Semver file_version = Semver(), bool selected = false, PublishedConfig *published_config = nullptr);
+- full_fff_config · function · L696-L696 — DynamicPrintConfig          full_fff_config(bool apply_extruder, std::optional<std::vector<int>> filament_maps=std::nullopt, std::optional<std::vector<int>> filament_volume_maps=std::nullopt) const;
+- full_sla_config · function · L697-L697 — DynamicPrintConfig          full_sla_config() const;
+- save_preset_to_bundle_dir · function · L705-L707 — bool save_preset_to_bundle_dir(Preset& preset, PresetCollection* collection,

@@ -1,0 +1,422 @@
+# deps_src/libigl/igl/FastWindingNumberForSoups.h
+
+- int8 · type · L95-L95 — typedef signed char	int8;
+- uint8 · type · L96-L96 — typedef	unsigned char	uint8;
+- int16 · type · L97-L97 — typedef short		int16;
+- uint16 · type · L98-L98 — typedef unsigned short	uint16;
+- int32 · type · L99-L99 — typedef	int		int32;
+- uint32 · type · L100-L100 — typedef unsigned int	uint32;
+- uint · type · L103-L103 — typedef unsigned int	uint;
+- int64 · type · L112-L112 — typedef __int64		int64;
+- uint64 · type · L113-L113 — typedef unsigned __int64	uint64;
+- int64 · type · L117-L117 — typedef int64_t		int64;
+- uint64 · type · L118-L118 — typedef uint64_t		uint64;
+- int64 · type · L120-L120 — typedef long		int64;
+- uint64 · type · L121-L121 — typedef unsigned long	uint64;
+- int64 · type · L123-L123 — typedef long long		int64;
+- uint64 · type · L124-L124 — typedef unsigned long long	uint64;
+- exint · type · L130-L130 — typedef int64 exint;
+- fpreal32 · type · L143-L143 — typedef float   fpreal32;
+- fpreal64 · type · L144-L144 — typedef double  fpreal64;
+- int_type · type · L153-L153 — typedef int32	int_type;
+- uint_type · type · L154-L154 — typedef uint32	uint_type;
+- fpreal_type · type · L155-L155 — typedef fpreal32	fpreal_type;
+- int_type · type · L177-L177 — typedef int64	int_type;
+- uint_type · type · L178-L178 — typedef uint64	uint_type;
+- fpreal_type · type · L179-L179 — typedef fpreal64	fpreal_type;
+- SYS_FPRealUnionF · type · L198-L198 — typedef union SYS_FPRealUnionT<fpreal32>    SYS_FPRealUnionF;
+- SYS_FPRealUnionD · type · L199-L199 — typedef union SYS_FPRealUnionT<fpreal64>    SYS_FPRealUnionD;
+- SYSmin · function · L260-L260 — static constexpr inline  int16 SYSmin(int16 a, int16 b)		{ return h_min(a,b); }
+- SYSmax · function · L261-L261 — static constexpr inline  int16 SYSmax(int16 a, int16 b)		{ return h_max(a,b); }
+- SYSabs · function · L262-L262 — static constexpr inline  int16 SYSabs(int16 a)			{ return h_abs(a); }
+- SYSmin · function · L263-L263 — static constexpr inline  int32 SYSmin(int32 a, int32 b)		{ return h_min(a,b); }
+- SYSmax · function · L264-L264 — static constexpr inline  int32 SYSmax(int32 a, int32 b)		{ return h_max(a,b); }
+- SYSabs · function · L265-L265 — static constexpr inline  int32 SYSabs(int32 a)			{ return h_abs(a); }
+- SYSmin · function · L266-L266 — static constexpr inline  int64 SYSmin(int64 a, int64 b)		{ return h_min(a,b); }
+- SYSmax · function · L267-L267 — static constexpr inline  int64 SYSmax(int64 a, int64 b)		{ return h_max(a,b); }
+- SYSmin · function · L268-L268 — static constexpr inline  int64 SYSmin(int32 a, int64 b)		{ return h_min(a,b); }
+- SYSmax · function · L269-L269 — static constexpr inline  int64 SYSmax(int32 a, int64 b)		{ return h_max(a,b); }
+- SYSmin · function · L270-L270 — static constexpr inline  int64 SYSmin(int64 a, int32 b)		{ return h_min(a,b); }
+- SYSmax · function · L271-L271 — static constexpr inline  int64 SYSmax(int64 a, int32 b)		{ return h_max(a,b); }
+- SYSabs · function · L272-L272 — static constexpr inline  int64 SYSabs(int64 a)			{ return h_abs(a); }
+- SYSmin · function · L273-L273 — static constexpr inline uint16 SYSmin(uint16 a, uint16 b)		{ return h_min(a,b); }
+- SYSmax · function · L274-L274 — static constexpr inline uint16 SYSmax(uint16 a, uint16 b)		{ return h_max(a,b); }
+- SYSmin · function · L275-L275 — static constexpr inline uint32 SYSmin(uint32 a, uint32 b)		{ return h_min(a,b); }
+- SYSmax · function · L276-L276 — static constexpr inline uint32 SYSmax(uint32 a, uint32 b)		{ return h_max(a,b); }
+- SYSmin · function · L277-L277 — static constexpr inline uint64 SYSmin(uint64 a, uint64 b)		{ return h_min(a,b); }
+- SYSmax · function · L278-L278 — static constexpr inline uint64 SYSmax(uint64 a, uint64 b)		{ return h_max(a,b); }
+- SYSmin · function · L279-L279 — static constexpr inline fpreal32 SYSmin(fpreal32 a, fpreal32 b)	{ return h_min(a,b); }
+- SYSmax · function · L280-L280 — static constexpr inline fpreal32 SYSmax(fpreal32 a, fpreal32 b)	{ return h_max(a,b); }
+- SYSmin · function · L281-L281 — static constexpr inline fpreal64 SYSmin(fpreal64 a, fpreal64 b)	{ return h_min(a,b); }
+- SYSmax · function · L282-L282 — static constexpr inline fpreal64 SYSmax(fpreal64 a, fpreal64 b)	{ return h_max(a,b); }
+- SYSmin · function · L286-L286 — static constexpr inline size_t SYSmin(size_t a, size_t b)		{ return h_min(a,b); }
+- SYSmax · function · L287-L287 — static constexpr inline size_t SYSmax(size_t a, size_t b)		{ return h_max(a,b); }
+- SYSclamp · function · L297-L299 — static constexpr inline int
+- SYSclamp · function · L301-L303 — static constexpr inline uint
+- SYSclamp · function · L305-L307 — static constexpr inline int64
+- SYSclamp · function · L309-L311 — static constexpr inline uint64
+- SYSclamp · function · L314-L314 — SYSclamp(fpreal32 v, fpreal32 min, fpreal32 max, fpreal32 tol=(fpreal32)0)
+- SYSclamp · function · L318-L318 — SYSclamp(fpreal64 v, fpreal64 min, fpreal64 max, fpreal64 tol=(fpreal64)0)
+- SYSsqrt · function · L323-L324 — static inline fpreal64 SYSsqrt(fpreal64 arg)
+- SYSsqrt · function · L325-L326 — static inline fpreal32 SYSsqrt(fpreal32 arg)
+- SYSatan2 · function · L327-L328 — static inline fpreal64 SYSatan2(fpreal64 a, fpreal64 b)
+- SYSatan2 · function · L329-L330 — static inline fpreal32 SYSatan2(fpreal32 a, fpreal32 b)
+- SYSabs · function · L332-L332 — static inline fpreal32 SYSabs(fpreal32 a) { return ::fabsf(a); }
+- SYSabs · function · L333-L333 — static inline fpreal64 SYSabs(fpreal64 a) { return ::fabs(a); }
+- v4sf · type · L394-L394 — typedef __m128	v4sf;
+- v4si · type · L395-L395 — typedef __m128i	v4si;
+- vm_v4sf · function · L403-L412 — static SYS_FORCE_INLINE v4sf
+- vm_v4si · function · L414-L423 — static SYS_FORCE_INLINE v4si
+- vm_shuffle · function · L438-L442 — static SYS_FORCE_INLINE v4sf
+- vm_shuffle · function · L445-L449 — static SYS_FORCE_INLINE v4si
+- vm_shuffle · function · L452-L456 — static SYS_FORCE_INLINE T
+- vm_shuffle · function · L459-L463 — static SYS_FORCE_INLINE T
+- vm_shuffle · function · L466-L470 — static SYS_FORCE_INLINE T
+- vm_insert · function · L474-L485 — static SYS_FORCE_INLINE v4si
+- vm_insert · function · L487-L498 — static SYS_FORCE_INLINE v4sf
+- vm_extract · function · L500-L511 — static SYS_FORCE_INLINE int
+- vm_extract · function · L513-L525 — static SYS_FORCE_INLINE float
+- vm_insert · function · L529-L536 — static SYS_FORCE_INLINE v4si
+- vm_insert · function · L538-L545 — static SYS_FORCE_INLINE v4sf
+- vm_extract · function · L547-L553 — static SYS_FORCE_INLINE int
+- vm_extract · function · L555-L561 — static SYS_FORCE_INLINE float
+- vm_splats · function · L565-L569 — static SYS_FORCE_INLINE v4sf
+- vm_splats · function · L571-L577 — static SYS_FORCE_INLINE v4si
+- vm_splats · function · L579-L585 — static SYS_FORCE_INLINE v4si
+- vm_splats · function · L587-L593 — static SYS_FORCE_INLINE v4sf
+- vm_splats · function · L595-L604 — static SYS_FORCE_INLINE v4si
+- vm_splats · function · L606-L615 — static SYS_FORCE_INLINE v4si
+- vm_load · function · L617-L621 — static SYS_FORCE_INLINE v4si
+- vm_load · function · L623-L627 — static SYS_FORCE_INLINE v4sf
+- vm_store · function · L629-L633 — static SYS_FORCE_INLINE void
+- vm_negate · function · L635-L639 — static SYS_FORCE_INLINE v4sf
+- vm_abs · function · L641-L645 — static SYS_FORCE_INLINE v4sf
+- vm_fdiv · function · L647-L651 — static SYS_FORCE_INLINE v4sf
+- vm_fsqrt · function · L653-L657 — static SYS_FORCE_INLINE v4sf
+- vm_madd · function · L659-L663 — static SYS_FORCE_INLINE v4sf
+- vm_allbits · function · L667-L671 — static SYS_FORCE_INLINE bool
+- v4si · class · L758-L760 — struct v4si
+- v4sf · class · L762-L764 — struct v4sf
+- V4SF · function · L766-L769 — static SYS_FORCE_INLINE v4sf V4SF(const v4si &v)
+- V4SI · function · L771-L774 — static SYS_FORCE_INLINE v4si V4SI(const v4sf &v)
+- conditionMask · function · L776-L778 — static SYS_FORCE_INLINE int32 conditionMask(bool c)
+- VM_SPLATS · function · L780-L783 — static SYS_FORCE_INLINE v4sf
+- VM_SPLATS · function · L785-L788 — static SYS_FORCE_INLINE v4si
+- VM_SPLATS · function · L790-L793 — static SYS_FORCE_INLINE v4si
+- VM_SPLATS · function · L795-L798 — static SYS_FORCE_INLINE v4sf
+- VM_SPLATS · function · L800-L803 — static SYS_FORCE_INLINE v4si
+- VM_SPLATS · function · L805-L808 — static SYS_FORCE_INLINE v4si
+- VM_LOAD · function · L810-L813 — static SYS_FORCE_INLINE v4si
+- VM_LOAD · function · L815-L818 — static SYS_FORCE_INLINE v4sf
+- VM_ICMPEQ · function · L821-L828 — static inline v4si VM_ICMPEQ(v4si a, v4si b)
+- VM_ICMPGT · function · L830-L837 — static inline v4si VM_ICMPGT(v4si a, v4si b)
+- VM_ICMPLT · function · L839-L846 — static inline v4si VM_ICMPLT(v4si a, v4si b)
+- VM_IADD · function · L848-L855 — static inline v4si VM_IADD(v4si a, v4si b)
+- VM_ISUB · function · L857-L864 — static inline v4si VM_ISUB(v4si a, v4si b)
+- VM_OR · function · L866-L873 — static inline v4si VM_OR(v4si a, v4si b)
+- VM_AND · function · L875-L882 — static inline v4si VM_AND(v4si a, v4si b)
+- VM_ANDNOT · function · L884-L891 — static inline v4si VM_ANDNOT(v4si a, v4si b)
+- VM_XOR · function · L893-L900 — static inline v4si VM_XOR(v4si a, v4si b)
+- VM_EXTRACT · function · L902-L905 — static SYS_FORCE_INLINE int
+- VM_EXTRACT · function · L907-L910 — static SYS_FORCE_INLINE float
+- VM_INSERT · function · L912-L916 — static SYS_FORCE_INLINE v4si
+- VM_INSERT · function · L918-L922 — static SYS_FORCE_INLINE v4sf
+- VM_CMPEQ · function · L924-L931 — static inline v4si VM_CMPEQ(v4sf a, v4sf b)
+- VM_CMPNE · function · L933-L940 — static inline v4si VM_CMPNE(v4sf a, v4sf b)
+- VM_CMPGT · function · L942-L949 — static inline v4si VM_CMPGT(v4sf a, v4sf b)
+- VM_CMPLT · function · L951-L958 — static inline v4si VM_CMPLT(v4sf a, v4sf b)
+- VM_CMPGE · function · L960-L967 — static inline v4si VM_CMPGE(v4sf a, v4sf b)
+- VM_CMPLE · function · L969-L976 — static inline v4si VM_CMPLE(v4sf a, v4sf b)
+- VM_ADD · function · L978-L985 — static inline v4sf VM_ADD(v4sf a, v4sf b)
+- VM_SUB · function · L987-L994 — static inline v4sf VM_SUB(v4sf a, v4sf b)
+- VM_NEG · function · L996-L1003 — static inline v4sf VM_NEG(v4sf a)
+- VM_MUL · function · L1005-L1012 — static inline v4sf VM_MUL(v4sf a, v4sf b)
+- VM_DIV · function · L1014-L1021 — static inline v4sf VM_DIV(v4sf a, v4sf b)
+- VM_MADD · function · L1023-L1030 — static inline v4sf VM_MADD(v4sf a, v4sf b, v4sf c)
+- VM_ABS · function · L1032-L1039 — static inline v4sf VM_ABS(v4sf a)
+- VM_MAX · function · L1041-L1048 — static inline v4sf VM_MAX(v4sf a, v4sf b)
+- VM_MIN · function · L1050-L1057 — static inline v4sf VM_MIN(v4sf a, v4sf b)
+- VM_INVERT · function · L1059-L1066 — static inline v4sf VM_INVERT(v4sf a)
+- VM_SQRT · function · L1068-L1075 — static inline v4sf VM_SQRT(v4sf a)
+- VM_INT · function · L1077-L1084 — static inline v4si VM_INT(v4sf a)
+- VM_IFLOAT · function · L1086-L1093 — static inline v4sf VM_IFLOAT(v4si a)
+- float · function · L1088-L1091 — float(a.v[0]),
+- VM_P_FLOOR · function · L1095-L1095 — static SYS_FORCE_INLINE void VM_P_FLOOR() {}
+- singleIntFloor · function · L1097-L1103 — static SYS_FORCE_INLINE int32 singleIntFloor(float f)
+- VM_FLOOR · function · L1104-L1111 — static inline v4si VM_FLOOR(v4sf a)
+- VM_E_FLOOR · function · L1113-L1113 — static SYS_FORCE_INLINE void VM_E_FLOOR() {}
+- vm_allbits · function · L1115-L1122 — static SYS_FORCE_INLINE bool vm_allbits(v4si a)
+- signbit · function · L1138-L1138 — int(std::signbit(v.v[0])) |
+- signbit · function · L1139-L1139 — (int(std::signbit(v.v[1]))<<1) |
+- signbit · function · L1140-L1140 — (int(std::signbit(v.v[2]))<<2) |
+- signbit · function · L1141-L1141 — (int(std::signbit(v.v[3]))<<3)
+- v4uu · function · L1193-L1193 — SYS_FORCE_INLINE v4uu() {}
+- v4uu · function · L1194-L1194 — SYS_FORCE_INLINE v4uu(const v4si &v) : vector(v) {}
+- v4uu · function · L1195-L1195 — SYS_FORCE_INLINE v4uu(const v4uu &v) : vector(v.vector) {}
+- v4uu · function · L1196-L1196 — explicit SYS_FORCE_INLINE v4uu(int32 v) { vector = VM_SPLATS(v); }
+- v4uu · function · L1197-L1198 — explicit SYS_FORCE_INLINE v4uu(const int32 v[4])
+- v4uu · function · L1199-L1200 — SYS_FORCE_INLINE v4uu(int32 a, int32 b, int32 c, int32 d)
+- condAssign · function · L1210-L1211 — SYS_FORCE_INLINE void condAssign(const v4uu &val, const v4uu &c)
+- setComp · function · L1264-L1264 — SYS_FORCE_INLINE void setComp(int idx, int32 v) { vector = VM_INSERT(vector, v, idx); }
+- toFloat · function · L1266-L1266 — v4uf toFloat() const;
+- v4uf · function · L1274-L1274 — SYS_FORCE_INLINE v4uf() {}
+- v4uf · function · L1275-L1275 — SYS_FORCE_INLINE v4uf(const v4sf &v) : vector(v) {}
+- v4uf · function · L1276-L1276 — SYS_FORCE_INLINE v4uf(const v4uf &v) : vector(v.vector) {}
+- v4uf · function · L1277-L1277 — explicit SYS_FORCE_INLINE v4uf(float v) { vector = VM_SPLATS(v); }
+- v4uf · function · L1278-L1279 — explicit SYS_FORCE_INLINE v4uf(const float v[4])
+- v4uf · function · L1280-L1281 — SYS_FORCE_INLINE v4uf(float a, float b, float c, float d)
+- condAssign · function · L1291-L1292 — SYS_FORCE_INLINE void condAssign(const v4uf &val, const v4uu &c)
+- setComp · function · L1370-L1370 — SYS_FORCE_INLINE void setComp(int idx, float v) { vector = VM_INSERT(vector, v, idx); }
+- abs · function · L1373-L1376 — SYS_FORCE_INLINE v4uf abs() const { return v4uf(VM_ABS(vector)); }
+- VM_ABS · function · L1373-L1373 — SYS_FORCE_INLINE v4uf abs() const { return v4uf(VM_ABS(vector)); }
+- clamp · function · L1374-L1374 — SYS_FORCE_INLINE v4uf clamp(const v4uf &low, const v4uf &high) const
+- clamp · function · L1377-L1379 — SYS_FORCE_INLINE v4uf clamp(float low, float high) const
+- recip · function · L1380-L1384 — SYS_FORCE_INLINE v4uf recip() const { return v4uf(VM_INVERT(vector)); }
+- VM_INVERT · function · L1380-L1380 — SYS_FORCE_INLINE v4uf recip() const { return v4uf(VM_INVERT(vector)); }
+- toUnsignedInt · function · L1383-L1383 — SYS_FORCE_INLINE v4uu toUnsignedInt() const { return VM_INT(vector); }
+- toSignedInt · function · L1384-L1384 — SYS_FORCE_INLINE v4uu toSignedInt() const { return VM_INT(vector); }
+- floor · function · L1386-L1386 — v4uu floor() const
+- splitFloat · function · L1396-L1401 — v4uu splitFloat()
+- swizzle · function · L1405-L1405 — SYS_FORCE_INLINE v4uf swizzle() const
+- isFinite · function · L1411-L1426 — SYS_FORCE_INLINE v4uu isFinite() const
+- toFloat · function · L1423-L1423 — v4uu::toFloat() const
+- sqrt · function · L1432-L1436 — static SYS_FORCE_INLINE v4uf
+- fabs · function · L1438-L1442 — static SYS_FORCE_INLINE v4uf
+- andn · function · L1447-L1451 — static SYS_FORCE_INLINE v4uf
+- andn · function · L1453-L1457 — static SYS_FORCE_INLINE v4uu
+- ternary · function · L1460-L1464 — static SYS_FORCE_INLINE v4uf
+- ternary · function · L1466-L1470 — static SYS_FORCE_INLINE v4uu
+- nand · function · L1473-L1477 — static SYS_FORCE_INLINE v4uu
+- vmin · function · L1479-L1483 — static SYS_FORCE_INLINE v4uf
+- vmax · function · L1485-L1489 — static SYS_FORCE_INLINE v4uf
+- clamp · function · L1491-L1495 — static SYS_FORCE_INLINE v4uf
+- clamp · function · L1497-L1501 — static SYS_FORCE_INLINE v4uf
+- allbits · function · L1503-L1507 — static SYS_FORCE_INLINE bool
+- anybits · function · L1509-L1513 — static SYS_FORCE_INLINE bool
+- madd · function · L1515-L1519 — static SYS_FORCE_INLINE v4uf
+- madd · function · L1521-L1525 — static SYS_FORCE_INLINE v4uf
+- madd · function · L1527-L1531 — static SYS_FORCE_INLINE v4uf
+- msub · function · L1533-L1537 — static SYS_FORCE_INLINE v4uf
+- msub · function · L1539-L1543 — static SYS_FORCE_INLINE v4uf
+- lerp · function · L1545-L1550 — static SYS_FORCE_INLINE v4uf
+- luminance · function · L1552-L1557 — static SYS_FORCE_INLINE v4uf
+- dot3 · function · L1559-L1564 — static SYS_FORCE_INLINE float
+- dot4 · function · L1566-L1571 — static SYS_FORCE_INLINE float
+- length · function · L1573-L1577 — static SYS_FORCE_INLINE float
+- normalize · function · L1579-L1583 — static SYS_FORCE_INLINE v4uf
+- cross · function · L1585-L1591 — static SYS_FORCE_INLINE v4uf
+- v4ui · type · L1594-L1594 — typedef v4uu v4ui;
+- UTbumpAlloc · function · L1653-L1683 — static inline T
+- SMALL_ALLOC · function · L1657-L1657 — constexpr T SMALL_ALLOC(16);
+- BIG_ALLOC · function · L1658-L1658 — constexpr T BIG_ALLOC(128);
+- UT_Array · function · L1701-L1701 — inline explicit UT_Array(const UT_Array<T> &a);
+- mySize · function · L1718-L1718 — explicit UT_Array(exint capacity = 0) : myCapacity(capacity), mySize(0)
+- UT_Array · function · L1718-L1718 — explicit UT_Array(exint capacity = 0) : myCapacity(capacity), mySize(0)
+- UT_Array · function · L1724-L1724 — inline explicit UT_Array(std::initializer_list<T> init);
+- swap · function · L1728-L1728 — inline void	    swap(UT_Array<T> &other);
+- append · function · L1741-L1741 — exint           append(void) { return insert(mySize); }
+- append · function · L1742-L1742 — exint           append(const T &t) { return appendImpl(t); }
+- append · function · L1743-L1743 — exint           append(T &&t) { return appendImpl(std::move(t)); }
+- append · function · L1744-L1744 — inline void            append(const T *pt, exint count);
+- appendMultiple · function · L1745-L1745 — inline void	    appendMultiple(const T &t, exint count);
+- insert · function · L1746-L1746 — inline exint	    insert(exint index);
+- insert · function · L1747-L1748 — exint	    insert(const T &t, exint i)
+- insert · function · L1749-L1750 — exint	    insert(T &&t, exint i)
+- concat · function · L1762-L1762 — inline exint	    concat(const UT_Array<T> &a);
+- multipleInsert · function · L1765-L1765 — inline exint	    multipleInsert(exint index, exint count);
+- insertAt · function · L1769-L1770 — exint	    insertAt(const T &t, exint index)
+- isValidIndex · function · L1773-L1774 — bool	    isValidIndex(exint index) const
+- removeIndex · function · L1780-L1783 — exint	    removeIndex(exint index)
+- removeLast · function · L1784-L1787 — void	    removeLast()
+- removeRange · function · L1790-L1790 — inline void	    removeRange(exint begin_i, exint end_i);
+- extractRange · function · L1794-L1795 — inline void            extractRange(exint begin_i, exint end_i,
+- removeIf · function · L1801-L1801 — inline exint	    removeIf(IsEqual is_equal);
+- move · function · L1815-L1815 — inline void	    move(exint srcIdx, exint destIdx, exint howMany);
+- cycle · function · L1818-L1818 — inline void	    cycle(exint howMany);
+- constant · function · L1821-L1821 — inline void	    constant(const T &v);
+- zero · function · L1823-L1823 — inline void	    zero();
+- index · function · L1827-L1827 — exint	    index(const T &t) const { return &t - myData; }
+- safeIndex · function · L1828-L1832 — exint	    safeIndex(const T &t) const
+- setCapacity · function · L1836-L1836 — inline void            setCapacity(exint newcapacity);
+- setCapacityIfNeeded · function · L1837-L1841 — void            setCapacityIfNeeded(exint mincapacity)
+- bumpCapacity · function · L1846-L1857 — void            bumpCapacity(exint mincapacity)
+- bumpSize · function · L1863-L1867 — void            bumpSize(exint newsize)
+- bumpEntries · function · L1870-L1873 — void            bumpEntries(exint newsize)
+- capacity · function · L1877-L1877 — exint           capacity() const { return myCapacity; }
+- size · function · L1880-L1880 — exint           size() const     { return mySize; }
+- entries · function · L1882-L1882 — exint           entries() const  { return mySize; }
+- isEmpty · function · L1884-L1884 — bool            isEmpty() const  { return mySize==0; }
+- setSize · function · L1890-L1902 — void            setSize(exint newsize)
+- entries · function · L1904-L1907 — void            entries(exint newsize)
+- setSizeNoInit · function · L1913-L1925 — void            setSizeNoInit(exint newsize)
+- truncate · function · L1928-L1932 — void            truncate(exint maxsize)
+- clear · function · L1934-L1939 — void            clear()
+- operator · function · L1970-L1970 — const T &	    operator()(exint i) const
+- forcedGet · function · L2006-L2009 — T               forcedGet(exint i) const
+- last · function · L2016-L2022 — const T &	    last() const
+- getArray · function · L2022-L2022 — T *		    getArray() const		    { return myData; }
+- getRawArray · function · L2023-L2023 — const T *	    getRawArray() const		    { return myData; }
+- array · function · L2025-L2025 — T *		    array()			    { return myData; }
+- array · function · L2026-L2026 — const T *	    array() const		    { return myData; }
+- data · function · L2028-L2028 — T *		    data()			    { return myData; }
+- data · function · L2029-L2029 — const T *	    data() const		    { return myData; }
+- aliasArray · function · L2033-L2033 — T *		    aliasArray(T *newdata)
+- advance · function · L2115-L2115 — void	 advance()		{ this->operator++(); }
+- T · type · L2182-L2182 — typedef base_iterator<T, true>		iterator;
+- T · type · L2183-L2183 — typedef base_iterator<const T, true>	const_iterator;
+- T · type · L2184-L2184 — typedef base_iterator<T, false>		reverse_iterator;
+- T · type · L2185-L2185 — typedef base_iterator<const T, false>	const_reverse_iterator;
+- traverser · type · L2186-L2186 — typedef const_iterator	traverser; // For backward compatibility
+- begin · function · L2190-L2193 — iterator		begin()
+- end · function · L2195-L2199 — iterator		end()
+- begin · function · L2203-L2203 — const_iterator	begin() const
+- end · function · L2208-L2208 — const_iterator	end() const
+- rbegin · function · L2215-L2219 — reverse_iterator	rbegin()
+- rend · function · L2221-L2224 — reverse_iterator	rend()
+- rbegin · function · L2226-L2226 — const_reverse_iterator rbegin() const
+- rend · function · L2232-L2232 — const_reverse_iterator rend() const
+- removeItem · function · L2238-L2241 — void		removeItem(const reverse_iterator &it)
+- unsafeShareData · function · L2247-L2252 — void	    unsafeShareData(UT_Array<T> &src)
+- unsafeShareData · function · L2253-L2258 — void	    unsafeShareData(T *src, exint srcsize)
+- unsafeShareData · function · L2259-L2264 — void	    unsafeShareData(T *src, exint size, exint capacity)
+- unsafeClearData · function · L2265-L2270 — void	    unsafeClearData()
+- isHeapBuffer · function · L2273-L2273 — inline bool	    isHeapBuffer() const
+- isHeapBuffer · function · L2277-L2280 — inline bool	    isHeapBuffer(T* data) const
+- isPOD · function · L2287-L2287 — static constexpr SYS_FORCE_INLINE bool isPOD()
+- copyConstruct · function · L2310-L2316 — static void	    copyConstruct(T &dst, const T &src)
+- copyConstructRange · function · L2317-L2332 — static void	    copyConstructRange(T *dst, const T *src, exint n)
+- trivialConstruct · function · L2335-L2341 — static void	    trivialConstruct(T &dst)
+- trivialConstructRange · function · L2342-L2362 — static void	    trivialConstructRange(T *dst, exint n)
+- trivialDestruct · function · L2365-L2369 — static void	    trivialDestruct(T &dst)
+- trivialDestructRange · function · L2370-L2377 — static void	    trivialDestructRange(T *dst, exint n)
+- removeAt · function · L2390-L2390 — inline exint	    removeAt(exint index);
+- allocateCapacity · function · L2392-L2392 — inline T *		    allocateCapacity(exint num_items);
+- ut_ArrayImplFree · function · L2443-L2443 — extern void ut_ArrayImplFree(void *p);
+- UT_SmallArray · function · L3142-L3148 — explicit UT_SmallArray(const UT_Array<T> &copy)
+- UT_SmallArray · function · L3149-L3155 — explicit UT_SmallArray(const UT_SmallArray<T,MAX_BYTES> &copy)
+- UT_SmallArray · function · L3175-L3180 — explicit UT_SmallArray(std::initializer_list<T> init)
+- value_type · type · L3270-L3270 — typedef T value_type;
+- theType · type · L3271-L3271 — typedef T theType;
+- UT_FixedVector · function · L3276-L3276 — SYS_FORCE_INLINE UT_FixedVector() = default;
+- UT_FixedVector · function · L3279-L3283 — SYS_FORCE_INLINE explicit UT_FixedVector(T that) noexcept
+- UT_FixedVector · function · L3285-L3285 — SYS_FORCE_INLINE UT_FixedVector(const ThisType &that) = default;
+- UT_FixedVector · function · L3286-L3286 — SYS_FORCE_INLINE UT_FixedVector(ThisType &&that) = default;
+- data · function · L3315-L3315 — SYS_FORCE_INLINE constexpr const T *data() const noexcept
+- data · function · L3319-L3319 — SYS_FORCE_INLINE T *data() noexcept
+- negate · function · L3453-L3457 — SYS_FORCE_INLINE void negate()
+- isZero · function · L3482-L3482 — SYS_FORCE_INLINE bool isZero() const noexcept
+- maxComponent · function · L3491-L3504 — SYS_FORCE_INLINE T maxComponent() const
+- minComponent · function · L3498-L3498 — SYS_FORCE_INLINE T minComponent() const
+- avgComponent · function · L3505-L3523 — SYS_FORCE_INLINE T avgComponent() const
+- length2 · function · L3513-L3513 — SYS_FORCE_INLINE T length2() const noexcept
+- a0 · function · L3515-L3515 — T a0(vec[0]);
+- result · function · L3516-L3516 — T result(a0*a0);
+- ai · function · L3519-L3519 — T ai(vec[i]);
+- length · function · L3524-L3548 — SYS_FORCE_INLINE T length() const
+- dot · function · L3530-L3530 — SYS_FORCE_INLINE auto dot(const UT_FixedVector<S,SIZE,S_INSTANTIATED> &that) const -> decltype(vec[0]*that[0])
+- distance2 · function · L3539-L3539 — SYS_FORCE_INLINE auto distance2(const UT_FixedVector<S,SIZE,S_INSTANTIATED> &that) const -> decltype(vec[0]-that[0])
+- decltype · function · L3552-L3556 — SYS_FORCE_INLINE auto distance(const UT_FixedVector<S,SIZE,S_INSTANTIATED> &that) const -> decltype(vec[0]-that[0])
+- distance2 · function · L3554-L3554 — auto dist2 = distance2(that);
+- normalize · function · L3558-L3571 — SYS_FORCE_INLINE T normalize()
+- t · function · L3580-L3580 — T t(that);
+- decltype · function · L3588-L3592 — SYS_FORCE_INLINE auto
+- decltype · function · L3595-L3598 — SYS_FORCE_INLINE auto
+- decltype · function · L3606-L3609 — SYS_FORCE_INLINE auto
+- T · type · L3619-L3619 — typedef UT_FixedVector<T,1> FixedVectorType;
+- DataType · type · L3620-L3620 — typedef T DataType;
+- DataType · type · L3629-L3629 — typedef T DataType;
+- getNumProcessors · function · L3670-L3672 — namespace UT_Thread { inline int getNumProcessors()
+- Box · function · L3918-L3918 — SYS_FORCE_INLINE Box() noexcept = default;
+- Box · function · L3919-L3919 — SYS_FORCE_INLINE constexpr Box(const Box &other) noexcept = default;
+- Box · function · L3920-L3920 — SYS_FORCE_INLINE constexpr Box(Box &&other) noexcept = default;
+- initBounds · function · L3959-L3964 — SYS_FORCE_INLINE void initBounds() noexcept
+- initBounds · function · L3968-L3973 — SYS_FORCE_INLINE void initBounds(const Box<T,NAXES>& src) noexcept
+- initBoundsUnordered · function · L3977-L3982 — SYS_FORCE_INLINE void initBoundsUnordered(const Box<T,NAXES>& src0, const Box<T,NAXES>& src1) noexcept
+- combine · function · L3983-L3992 — SYS_FORCE_INLINE void combine(const Box<T,NAXES>& src) noexcept
+- enlargeBounds · function · L3993-L3995 — SYS_FORCE_INLINE void enlargeBounds(const Box<T,NAXES>& src) noexcept
+- initBounds · function · L3999-L4004 — void initBounds(const UT_FixedVector<S,NAXES,INSTANTIATED>& pt) noexcept
+- initBounds · function · L4007-L4012 — void initBounds(const UT_FixedVector<T,NAXES,INSTANTIATED>& min, const UT_FixedVector<T,NAXES,INSTANTIATED>& max) noexcept
+- initBoundsUnordered · function · L4015-L4020 — void initBoundsUnordered(const UT_FixedVector<T,NAXES,INSTANTIATED>& p0, const UT_FixedVector<T,NAXES,INSTANTIATED>& p1) noexcept
+- enlargeBounds · function · L4023-L4028 — void enlargeBounds(const UT_FixedVector<T,NAXES,INSTANTIATED>& pt) noexcept
+- getMin · function · L4031-L4031 — UT_FixedVector<T,NAXES> getMin() const noexcept
+- getMax · function · L4040-L4040 — UT_FixedVector<T,NAXES> getMax() const noexcept
+- diameter2 · function · L4048-L4048 — T diameter2() const noexcept
+- volume · function · L4057-L4057 — T volume() const noexcept
+- half_surface_area · function · L4064-L4064 — T half_surface_area() const noexcept
+- axis_sum · function · L4105-L4105 — T axis_sum() const noexcept
+- intersect · function · L4129-L4135 — SYS_FORCE_INLINE void intersect(const Box& other, Box& dest) const noexcept
+- minDistance2 · function · L4137-L4148 — SYS_FORCE_INLINE T minDistance2(
+- maxDistance2 · function · L4150-L4161 — SYS_FORCE_INLINE T maxDistance2(
+- class · type · L4166-L4415 — enum class BVH_Heuristic
+- Node · class · L4217-L4226 — struct Node
+- isInternal · function · L4226-L4228 — SYS_FORCE_INLINE static bool isInternal(INT_TYPE node_int) noexcept
+- getInternalNum · function · L4229-L4231 — SYS_FORCE_INLINE static INT_TYPE getInternalNum(INT_TYPE node_int) noexcept
+- FreeDeleter · class · L4234-L4244 — struct FreeDeleter
+- BVH · function · L4247-L4247 — SYS_FORCE_INLINE BVH() noexcept : myRoot(nullptr), myNumNodes(0) {}
+- init · function · L4250-L4250 — inline void init(const BOX_TYPE* boxes, const INT_TYPE nboxes, SRC_INT_TYPE* indices=nullptr, bool reorder_indices=false, INT_TYPE max_items_per_leaf=1) noexcept;
+- getNumNodes · function · L4256-L4256 — INT_TYPE getNumNodes() const noexcept
+- getNodes · function · L4261-L4261 — const Node *getNodes() const noexcept
+- clear · function · L4266-L4270 — SYS_FORCE_INLINE
+- traverseParallel · function · L4296-L4299 — inline void traverseParallel(
+- debugDump · function · L4321-L4321 — inline void debugDump() const;
+- createTrivialIndices · function · L4324-L4324 — static inline void createTrivialIndices(SRC_INT_TYPE* indices, const INT_TYPE n) noexcept;
+- traverseHelper · function · L4328-L4332 — inline void traverseHelper(
+- traverseParallelHelper · function · L4335-L4341 — inline void traverseParallelHelper(
+- traverseVectorHelper · function · L4344-L4348 — inline void traverseVectorHelper(
+- computeFullBoundingBox · function · L4351-L4351 — static inline void computeFullBoundingBox(Box<T,NAXES>& axes_minmax, const BOX_TYPE* boxes, const INT_TYPE nboxes, SRC_INT_TYPE* indices) noexcept;
+- initNode · function · L4354-L4354 — static inline void initNode(UT_Array<Node>& nodes, Node &node, const Box<T,NAXES>& axes_minmax, const BOX_TYPE* boxes, SRC_INT_TYPE* indices, const INT_TYPE nboxes) noexcept;
+- initNodeReorder · function · L4357-L4357 — static inline void initNodeReorder(UT_Array<Node>& nodes, Node &node, const Box<T,NAXES>& axes_minmax, const BOX_TYPE* boxes, SRC_INT_TYPE* indices, const INT_TYPE nboxes, const INT_TYPE indices_offset, const INT_TYPE max_items_per_leaf) noexcept;
+- multiSplit · function · L4360-L4360 — static inline void multiSplit(const Box<T,NAXES>& axes_minmax, const BOX_TYPE* boxes, SRC_INT_TYPE* indices, INT_TYPE nboxes, SRC_INT_TYPE* sub_indices[N+1], Box<T,NAXES> sub_boxes[N]) noexcept;
+- split · function · L4363-L4363 — static inline void split(const Box<T,NAXES>& axes_minmax, const BOX_TYPE* boxes, SRC_INT_TYPE* indices, INT_TYPE nboxes, SRC_INT_TYPE*& split_indices, Box<T,NAXES>* split_boxes) noexcept;
+- adjustParallelChildNodes · function · L4366-L4366 — static inline void adjustParallelChildNodes(INT_TYPE nparallel, UT_Array<Node>& nodes, Node& node, UT_Array<Node>* parallel_nodes, SRC_INT_TYPE* sub_indices) noexcept;
+- nthElement · function · L4369-L4369 — static inline void nthElement(const BOX_TYPE* boxes, SRC_INT_TYPE* indices, const SRC_INT_TYPE* indices_end, const uint axis, SRC_INT_TYPE*const nth) noexcept;
+- partitionByCentre · function · L4372-L4372 — static inline void partitionByCentre(const BOX_TYPE* boxes, SRC_INT_TYPE*const indices, const SRC_INT_TYPE*const indices_end, const uint axis, const T pivotx2, SRC_INT_TYPE*& ppivot_start, SRC_INT_TYPE*& ppivot_end) noexcept;
+- nodeEstimate · function · L4379-L4381 — SYS_FORCE_INLINE static INT_TYPE nodeEstimate(const INT_TYPE nboxes) noexcept
+- unweightedHeuristic · function · L4384-L4407 — SYS_FORCE_INLINE static T unweightedHeuristic(const Box<T, NAXES>& box) noexcept
+- utBoxExclude · function · L4478-L4487 — SYS_FORCE_INLINE bool utBoxExclude(const UT::Box<T,NAXES>& box) noexcept
+- utBoxExclude · function · L4489-L4500 — SYS_FORCE_INLINE bool utBoxExclude(const UT::Box<fpreal32,NAXES>& box) noexcept
+- utBoxCenter · function · L4502-L4505 — SYS_FORCE_INLINE T utBoxCenter(const UT::Box<T,NAXES>& box, uint axis) noexcept
+- utBoxExclude · function · L4511-L4516 — SYS_FORCE_INLINE T utBoxExclude(const UT_FixedVector<T,NAXES,INSTANTIATED>& position) noexcept
+- utBoxExclude · function · L4518-L4525 — SYS_FORCE_INLINE bool utBoxExclude(const UT_FixedVector<fpreal32,NAXES,INSTANTIATED>& position) noexcept
+- utBoxCenter · function · L4527-L4529 — SYS_FORCE_INLINE T utBoxCenter(const UT_FixedVector<T,NAXES,INSTANTIATED>& position, uint axis) noexcept
+- utExcludeNaNInfBoxIndices · function · L4536-L4577 — inline INT_TYPE utExcludeNaNInfBoxIndices(const BOX_TYPE* boxes, SRC_INT_TYPE* indices, INT_TYPE& nboxes) noexcept
+- cross · function · L6046-L6049 — SYS_FORCE_INLINE T cross(const UT_Vector2T<T> &v1, const UT_Vector2T<T> &v2)
+- UTsignedSolidAngleTri · function · L6071-L6110 — inline T UTsignedSolidAngleTri(
+- UTsignedSolidAngleQuad · function · L6113-L6216 — inline T UTsignedSolidAngleQuad(
+- UT_SolidAngle · function · L6228-L6230 — inline UT_SolidAngle();
+- init · function · L6247-L6252 — inline void init(
+- clear · function · L6255-L6255 — inline void clear();
+- isClear · function · L6258-L6258 — bool isClear() const
+- computeSolidAngle · function · L6263-L6263 — inline T computeSolidAngle(const UT_Vector3T<T> &query_point, const T accuracy_scale = T(2.0)) const;
+- UTsignedAngleSegment · function · L6280-L6307 — inline T UTsignedAngleSegment(
+- UT_SubtendedAngle · function · L6319-L6321 — inline UT_SubtendedAngle();
+- init · function · L6338-L6343 — inline void init(
+- clear · function · L6346-L6346 — inline void clear();
+- isClear · function · L6349-L6349 — bool isClear() const
+- computeAngle · function · L6354-L6354 — inline T computeAngle(const UT_Vector2T<T> &query_point, const T accuracy_scale = T(2.0)) const;
+- ut_ArrayImplFree · function · L6414-L6417 — inline void ut_ArrayImplFree(void *p)
+- clear · function · L6480-L6484 — void clear()
+- getMax · function · L6679-L6679 — data_for_parent.myBox.initBounds(triangle_box.getMin(), triangle_box.getMax());
+- getMin · function · L6679-L6679 — data_for_parent.myBox.initBounds(triangle_box.getMin(), triangle_box.getMax());
+- post · function · L6892-L7118 — void post(const int nodei, const int /*parent_nodei*/, LocalData *data_for_parent, const int nchildren, const LocalData *child_data_array) const
+- array · function · L7124-L7124 — const PrecomputeFunctors functors(box_data, triangle_boxes.array(), triangle_points, positions, order);
+- functors · function · L7124-L7124 — const PrecomputeFunctors functors(box_data, triangle_boxes.array(), triangle_points, positions, order);
+- item · function · L7260-L7269 — void item(const int itemi, const int /*parent_nodei*/, T &data_for_parent) const
+- post · function · L7270-L7277 — SYS_FORCE_INLINE void post(const int /*nodei*/, const int /*parent_nodei*/, T *data_for_parent, const int nchildren, const T *child_data_array, const uint descend_bits) const
+- functors · function · L7279-L7279 — const SolidAngleFunctors functors(myData.get(), query_point, accuracy_scale2, myOrder, myPositions, myTrianglePoints);
+- get · function · L7279-L7279 — const SolidAngleFunctors functors(myData.get(), query_point, accuracy_scale2, myOrder, myPositions, myTrianglePoints);
+- clear · function · L7289-L7293 — void clear()
+- myNSegments · function · L7326-L7350 — , myData(nullptr)
+- myPositions · function · L7330-L7330 — , myPositions(nullptr)
+- UT_SubtendedAngle · function · L7334-L7334 — inline UT_SubtendedAngle<T,S>::~UT_SubtendedAngle()
+- init · function · L7342-L7347 — inline void UT_SubtendedAngle<T,S>::init(
+- LocalData · class · L7407-L7427 — struct LocalData
+- PrecomputeFunctors · class · L7429-L7517 — struct PrecomputeFunctors
+- post · function · L7519-L7669 — void post(const int nodei, const int /*parent_nodei*/, LocalData *data_for_parent, const int nchildren, const LocalData *child_data_array) const
+- array · function · L7675-L7675 — const PrecomputeFunctors functors(box_data, segment_boxes.array(), segment_points, positions, order);
+- functors · function · L7675-L7675 — const PrecomputeFunctors functors(box_data, segment_boxes.array(), segment_points, positions, order);
+- Type · function · L7782-L7782 — qlength_m3*(dot(q, typename BoxData::Type(3)*data.myNijkDiag + UT_FixedVector<typename BoxData::Type,2>(temp0))
+- item · function · L7801-L7809 — void item(const int itemi, const int /*parent_nodei*/, T &data_for_parent) const
+- post · function · L7810-L7817 — SYS_FORCE_INLINE void post(const int /*nodei*/, const int /*parent_nodei*/, T *data_for_parent, const int nchildren, const T *child_data_array, const uint descend_bits) const
+- functors · function · L7819-L7819 — const AngleFunctors functors(myData.get(), query_point, accuracy_scale2, myOrder, myPositions, mySegmentPoints);
+- get · function · L7819-L7819 — const AngleFunctors functors(myData.get(), query_point, accuracy_scale2, myOrder, myPositions, mySegmentPoints);

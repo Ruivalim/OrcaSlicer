@@ -1,0 +1,44 @@
+# src/glad/include/KHR/khrplatform.h
+
+- khronos_int32_t · type · L150-L150 — typedef int32_t                 khronos_int32_t;
+- khronos_uint32_t · type · L151-L151 — typedef uint32_t                khronos_uint32_t;
+- khronos_int64_t · type · L152-L152 — typedef int64_t                 khronos_int64_t;
+- khronos_uint64_t · type · L153-L153 — typedef uint64_t                khronos_uint64_t;
+- khronos_int32_t · type · L177-L177 — typedef int32_t                 khronos_int32_t;
+- khronos_uint32_t · type · L178-L178 — typedef uint32_t                khronos_uint32_t;
+- khronos_int64_t · type · L179-L179 — typedef int64_t                 khronos_int64_t;
+- khronos_uint64_t · type · L180-L180 — typedef uint64_t                khronos_uint64_t;
+- khronos_int32_t · type · L189-L189 — typedef __int32                 khronos_int32_t;
+- khronos_uint32_t · type · L190-L190 — typedef unsigned __int32        khronos_uint32_t;
+- khronos_int64_t · type · L191-L191 — typedef __int64                 khronos_int64_t;
+- khronos_uint64_t · type · L192-L192 — typedef unsigned __int64        khronos_uint64_t;
+- khronos_int32_t · type · L201-L201 — typedef int                     khronos_int32_t;
+- khronos_uint32_t · type · L202-L202 — typedef unsigned int            khronos_uint32_t;
+- khronos_int64_t · type · L204-L204 — typedef long int                khronos_int64_t;
+- khronos_uint64_t · type · L205-L205 — typedef unsigned long int       khronos_uint64_t;
+- khronos_int64_t · type · L207-L207 — typedef long long int           khronos_int64_t;
+- khronos_uint64_t · type · L208-L208 — typedef unsigned long long int  khronos_uint64_t;
+- khronos_int32_t · type · L218-L218 — typedef int                     khronos_int32_t;
+- khronos_uint32_t · type · L219-L219 — typedef unsigned int            khronos_uint32_t;
+- khronos_int32_t · type · L229-L229 — typedef int32_t                 khronos_int32_t;
+- khronos_uint32_t · type · L230-L230 — typedef uint32_t                khronos_uint32_t;
+- khronos_int64_t · type · L231-L231 — typedef int64_t                 khronos_int64_t;
+- khronos_uint64_t · type · L232-L232 — typedef uint64_t                khronos_uint64_t;
+- khronos_int8_t · type · L242-L242 — typedef signed   char          khronos_int8_t;
+- khronos_uint8_t · type · L243-L243 — typedef unsigned char          khronos_uint8_t;
+- khronos_int16_t · type · L244-L244 — typedef signed   short int     khronos_int16_t;
+- khronos_uint16_t · type · L245-L245 — typedef unsigned short int     khronos_uint16_t;
+- khronos_intptr_t · type · L253-L253 — typedef intptr_t               khronos_intptr_t;
+- khronos_uintptr_t · type · L254-L254 — typedef uintptr_t              khronos_uintptr_t;
+- khronos_intptr_t · type · L256-L256 — typedef signed   long long int khronos_intptr_t;
+- khronos_uintptr_t · type · L257-L257 — typedef unsigned long long int khronos_uintptr_t;
+- khronos_intptr_t · type · L259-L259 — typedef signed   long  int     khronos_intptr_t;
+- khronos_uintptr_t · type · L260-L260 — typedef unsigned long  int     khronos_uintptr_t;
+- khronos_ssize_t · type · L264-L264 — typedef signed   long long int khronos_ssize_t;
+- khronos_usize_t · type · L265-L265 — typedef unsigned long long int khronos_usize_t;
+- khronos_ssize_t · type · L267-L267 — typedef signed   long  int     khronos_ssize_t;
+- khronos_usize_t · type · L268-L268 — typedef unsigned long  int     khronos_usize_t;
+- khronos_float_t · type · L275-L275 — typedef          float         khronos_float_t;
+- khronos_utime_nanoseconds_t · type · L288-L288 — typedef khronos_uint64_t       khronos_utime_nanoseconds_t;
+- khronos_stime_nanoseconds_t · type · L289-L289 — typedef khronos_int64_t        khronos_stime_nanoseconds_t;
+- khronos_boolean_enum_t · type · L305-L309 — typedef enum

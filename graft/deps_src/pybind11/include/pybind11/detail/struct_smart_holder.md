@@ -1,0 +1,32 @@
+# deps_src/pybind11/include/pybind11/detail/struct_smart_holder.h
+
+- PYBIND11_NAMESPACE_BEGIN · function · L63-L63 — PYBIND11_NAMESPACE_BEGIN(memory)
+- type_has_shared_from_this · function · L66-L66 — static constexpr bool type_has_shared_from_this(...) { return false; }
+- type_has_shared_from_this · function · L78-L80 — static constexpr bool type_has_shared_from_this(const void *)
+- guarded_delete · class · L82-L100 — struct guarded_delete
+- get_guarded_delete · function · L105-L105 — inline guarded_delete *get_guarded_delete(const std::shared_ptr<void> &ptr)
+- has_pointee · function · L176-L176 — bool has_pointee() const { return vptr != nullptr; }
+- ensure_pointee_is_destructible · function · L179-L184 — static void ensure_pointee_is_destructible(const char *context)
+- ensure_is_populated · function · L186-L375 — void ensure_is_populated(const char *context) const
+- holder · function · L188-L188 — throw std::runtime_error(std::string("Unpopulated holder (") + context + ").");
+- runtime_error · function · L188-L230 — throw std::runtime_error(std::string("Unpopulated holder (") + context + ").");
+- string · function · L188-L214 — throw std::runtime_error(std::string("Unpopulated holder (") + context + ").");
+- ensure_is_not_disowned · function · L191-L191 — void ensure_is_not_disowned(const char *context) const
+- ensure_vptr_is_using_std_default_delete · function · L198-L198 — void ensure_vptr_is_using_std_default_delete(const char *context) const
+- string · function · L217-L217 — throw std::invalid_argument(std::string("Missing unique_ptr deleter (") + context
+- string · function · L227-L227 — throw std::invalid_argument(std::string("Incompatible unique_ptr deleter (") + context
+- ensure_has_pointee · function · L232-L331 — void ensure_has_pointee(const char *context) const
+- holder · function · L234-L234 — throw std::invalid_argument(std::string("Disowned holder (") + context + ").");
+- invalid_argument · function · L234-L260 — throw std::invalid_argument(std::string("Disowned holder (") + context + ").");
+- string · function · L234-L253 — throw std::invalid_argument(std::string("Disowned holder (") + context + ").");
+- ensure_use_count_1 · function · L238-L238 — void ensure_use_count_1(const char *context) const
+- string · function · L240-L240 — throw std::invalid_argument(std::string("Cannot disown nullptr (") + context + ").");
+- from_raw_ptr_unowned · function · L281-L287 — static smart_holder from_raw_ptr_unowned(void *raw_ptr)
+- from_raw_ptr_take_ownership · function · L295-L295 — static smart_holder from_raw_ptr_take_ownership(T *raw_ptr, bool void_cast_raw_ptr = false)
+- disown · function · L311-L314 — void disown(const get_guarded_delete_fn ggd_fn)
+- reclaim_disowned · function · L318-L321 — void reclaim_disowned(const get_guarded_delete_fn ggd_fn)
+- release_disowned · function · L325-L325 — void release_disowned() { vptr.reset(); }
+- ensure_can_release_ownership · function · L327-L327 — void ensure_can_release_ownership(const char *context = "ensure_can_release_ownership") const
+- release_ownership · function · L335-L338 — void release_ownership(const get_guarded_delete_fn ggd_fn)
+- from_unique_ptr · function · L341-L342 — static smart_holder from_unique_ptr(std::unique_ptr<T, D> &&unq_ptr,
+- PYBIND11_NAMESPACE_END · function · L378-L378 — PYBIND11_NAMESPACE_END(PYBIND11_NAMESPACE)

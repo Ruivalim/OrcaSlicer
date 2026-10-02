@@ -1,0 +1,40 @@
+# src/libslic3r/Semver.hpp
+
+- Semver · class · L18-L213 — class Semver
+- Major · class · L21-L21 — struct Major { const int i;  Major(int i) : i(i) {} };
+- Major · function · L21-L21 — struct Major { const int i;  Major(int i) : i(i) {} };
+- Minor · class · L22-L22 — struct Minor { const int i;  Minor(int i) : i(i) {} };
+- Minor · function · L22-L22 — struct Minor { const int i;  Minor(int i) : i(i) {} };
+- Patch · class · L23-L23 — struct Patch { const int i;  Patch(int i) : i(i) {} };
+- Patch · function · L23-L23 — struct Patch { const int i;  Patch(int i) : i(i) {} };
+- Semver · function · L25-L25 — Semver() : ver(semver_zero()) {}
+- Semver · function · L27-L36 — Semver(int major, int minor, int patch,
+- Semver · function · L38-L46 — Semver(int major, int minor, int patch, const char *metadata = nullptr, const char *prerelease = nullptr)
+- Semver · function · L48-L56 — Semver(const std::string &str) : ver(semver_zero())
+- parse · function · L58-L66 — static boost::optional<Semver> parse(const std::string &str)
+- zero · function · L68-L68 — static const Semver zero() { return Semver(semver_zero()); }
+- inf · function · L70-L74 — static const Semver inf()
+- invalid · function · L76-L80 — static const Semver invalid()
+- Semver · function · L82-L82 — Semver(Semver &&other) : ver(other.ver) { other.ver = semver_zero(); }
+- Semver · function · L83-L83 — Semver(const Semver &other) : ver(::semver_copy(&other.ver)) {}
+- maj · function · L103-L103 — int 		maj()        const { return ver.major; }
+- min · function · L104-L104 — int 		min()        const { return ver.minor; }
+- patch · function · L105-L105 — int 		patch() 	 const { return ver.patch; }
+- prerelease · function · L106-L106 — const char*	prerelease() const { return ver.prerelease; }
+- metadata · function · L107-L107 — const char*	metadata() 	 const { return ver.metadata; }
+- set_maj · function · L110-L110 — void set_maj(int maj) { ver.major = maj; }
+- set_min · function · L111-L111 — void set_min(int min) { ver.minor = min; }
+- set_patch · function · L112-L112 — void set_patch(int patch) { ver.patch = patch; }
+- set_metadata · function · L113-L118 — void set_metadata(boost::optional<const std::string &> meta)
+- set_metadata · function · L119-L124 — void set_metadata(const char *meta)
+- set_prerelease · function · L125-L130 — void set_prerelease(boost::optional<const std::string &> pre)
+- set_prerelease · function · L131-L136 — void set_prerelease(const char *pre)
+- in_range · function · L149-L149 — bool in_range(const Semver &low, const Semver &high) const { return low <= *this && *this <= high; }
+- valid · function · L150-L150 — bool valid()                    const { return *this != zero() && *this != inf() && *this != invalid(); }
+- to_string · function · L153-L163 — std::string to_string() const
+- to_string_sf · function · L164-L172 — std::string to_string_sf() const
+- save_minimal · function · L196-L197 — template<class Archive>
+- load_minimal · function · L198-L204 — template<class Archive>
+- Semver · function · L209-L209 — Semver(semver_t ver) : ver(ver) {}
+- semver_zero · function · L211-L211 — static semver_t semver_zero() { return { 0, 0, 0, nullptr, nullptr }; }
+- strdup · function · L212-L212 — static char * strdup(const std::string &str) { return ::semver_strdup(str.data()); }

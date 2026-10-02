@@ -1,0 +1,23 @@
+# src/slic3r/Utils/TCPConsole.hpp
+
+- TCPConsole · class · L19-L103 — class TCPConsole
+- TCPConsole · function · L22-L22 — TCPConsole() : m_resolver(m_io_context), m_socket(m_io_context) { set_defaults(); }
+- TCPConsole · function · L23-L24 — TCPConsole(const std::string& host_name, const std::string& port_name) : m_resolver(m_io_context), m_socket(m_io_context)
+- set_defaults · function · L27-L35 — void set_defaults()
+- set_write_timeout · function · L37-L39 — void set_write_timeout(std::chrono::steady_clock::duration timeout)
+- set_read_timeout · function · L41-L43 — void set_read_timeout(std::chrono::steady_clock::duration timeout)
+- set_tcp_queue_delay · function · L45-L47 — void set_tcp_queue_delay(std::chrono::steady_clock::duration delay)
+- set_line_delimiter · function · L49-L51 — void set_line_delimiter(const std::string& newline)
+- set_command_done_string · function · L52-L54 — void set_command_done_string(const std::string& done_string)
+- set_remote · function · L56-L60 — void set_remote(const std::string& host_name, const std::string& port_name)
+- enqueue_cmd · function · L62-L66 — bool enqueue_cmd(const SerialMessage& cmd)
+- run_queue · function · L68-L68 — bool run_queue();
+- error_message · function · L69-L69 — std::string error_message() const { return m_error_code.message(); }
+- handle_connect · function · L72-L72 — void handle_connect(const boost::system::error_code& ec);
+- handle_read · function · L73-L73 — void handle_read(const boost::system::error_code& ec, std::size_t bytes_transferred);
+- handle_write · function · L74-L74 — void handle_write(const boost::system::error_code& ec, std::size_t bytes_transferred, SerialMessageType messageType);
+- transmit_next_command · function · L76-L76 — void transmit_next_command();
+- wait_next_line · function · L77-L77 — void wait_next_line();
+- extract_next_line · function · L78-L78 — std::string extract_next_line();
+- set_deadline_in · function · L80-L80 — void set_deadline_in(std::chrono::steady_clock::duration);
+- is_deadline_over · function · L81-L81 — bool is_deadline_over() const;

@@ -1,0 +1,31 @@
+# tests/catch2/src/catch2/internal/catch_jsonwriter.hpp
+
+- JsonObjectWriter · class · L19-L19 — class JsonObjectWriter;
+- JsonArrayWriter · class · L20-L20 — class JsonArrayWriter;
+- JsonUtils · class · L22-L27 — struct JsonUtils
+- indent · function · L23-L23 — static void indent( std::ostream& os, std::uint64_t level );
+- appendCommaNewline · function · L24-L26 — static void appendCommaNewline( std::ostream& os,
+- JsonValueWriter · class · L29-L62 — class JsonValueWriter
+- JsonValueWriter · function · L31-L31 — JsonValueWriter( std::ostream& os CATCH_ATTR_LIFETIMEBOUND );
+- JsonValueWriter · function · L32-L32 — JsonValueWriter( std::ostream& os CATCH_ATTR_LIFETIMEBOUND, std::uint64_t indent_level );
+- writeObject · function · L34-L34 — JsonObjectWriter writeObject() &&;
+- writeArray · function · L35-L35 — JsonArrayWriter writeArray() &&;
+- write · function · L37-L40 — template <typename T>
+- write · function · L41-L41 — void write( StringRef value ) &&;
+- write · function · L42-L42 — void write( bool value ) &&;
+- writeImpl · function · L45-L45 — void writeImpl( StringRef value, bool quote );
+- writeImpl · function · L51-L57 — template <typename T,
+- JsonObjectWriter · class · L64-L81 — class JsonObjectWriter
+- JsonObjectWriter · function · L66-L66 — JsonObjectWriter( std::ostream& os CATCH_ATTR_LIFETIMEBOUND );
+- JsonObjectWriter · function · L67-L67 — JsonObjectWriter( std::ostream& os CATCH_ATTR_LIFETIMEBOUND, std::uint64_t indent_level );
+- JsonObjectWriter · function · L69-L69 — JsonObjectWriter( JsonObjectWriter&& source ) noexcept;
+- write · function · L74-L74 — JsonValueWriter write( StringRef key );
+- JsonArrayWriter · class · L83-L117 — class JsonArrayWriter
+- JsonArrayWriter · function · L85-L85 — JsonArrayWriter( std::ostream& os CATCH_ATTR_LIFETIMEBOUND );
+- JsonArrayWriter · function · L86-L86 — JsonArrayWriter( std::ostream& os CATCH_ATTR_LIFETIMEBOUND, std::uint64_t indent_level );
+- JsonArrayWriter · function · L88-L88 — JsonArrayWriter( JsonArrayWriter&& source ) noexcept;
+- writeObject · function · L93-L93 — JsonObjectWriter writeObject();
+- writeArray · function · L94-L94 — JsonArrayWriter writeArray();
+- write · function · L97-L97 — JsonArrayWriter& write( T const& value )
+- write · function · L101-L101 — JsonArrayWriter& write( bool value );
+- writeImpl · function · L105-L105 — JsonArrayWriter& writeImpl( T const& value )

@@ -1,0 +1,44 @@
+# src/slic3r/plugin/PythonInterpreter.hpp
+
+- scoped_interpreter · class · L17-L17 — class scoped_interpreter;
+- error_already_set · class · L18-L18 — class error_already_set;
+- PythonRuntimeLease · class · L23-L23 — class PythonRuntimeLease;
+- log_python_exception_keep · function · L34-L34 — void log_python_exception_keep(pybind11::error_already_set& err);
+- PythonInterpreter · class · L38-L124 — class PythonInterpreter
+- instance · function · L41-L41 — static PythonInterpreter& instance();
+- initialize · function · L44-L44 — bool initialize();
+- is_initialized · function · L47-L47 — bool is_initialized() const { return m_initialized.load(std::memory_order_acquire); }
+- acquire_runtime_lease · function · L51-L51 — PythonRuntimeLease acquire_runtime_lease();
+- last_error · function · L53-L53 — const std::string& last_error() const { return m_last_error; }
+- shared_packages_dir · function · L56-L56 — static std::string shared_packages_dir();
+- bundled_python_executable · function · L59-L59 — static std::string bundled_python_executable();
+- bundled_uv_path · function · L62-L62 — static std::string bundled_uv_path();
+- python_abi_tag · function · L65-L65 — static std::string python_abi_tag();
+- shutdown · function · L68-L68 — void shutdown();
+- add_plugin_sys_path · function · L72-L72 — bool add_plugin_sys_path(const std::string& path, std::string& error);
+- load_module_from_file · function · L75-L78 — PyObject* load_module_from_file(const std::string& file_path,
+- load_module_from_whl · function · L79-L83 — PyObject* load_module_from_whl(const std::string& whl_path,
+- load_module_from_directory · function · L84-L88 — PyObject* load_module_from_directory(const std::string& dir_path,
+- unload_module · function · L92-L95 — void unload_module(PyObject* module,
+- PythonInterpreter · function · L103-L103 — PythonInterpreter() = default;
+- PythonInterpreter · function · L104-L104 — PythonInterpreter(const PythonInterpreter&) = delete;
+- add_plugin_sys_path_locked · function · L107-L107 — bool add_plugin_sys_path_locked(const std::string& path, std::string& error);
+- remove_plugin_sys_paths_locked · function · L108-L108 — void remove_plugin_sys_paths_locked(const std::vector<std::string>& paths);
+- record_plugin_modules_locked · function · L109-L111 — void record_plugin_modules_locked(const std::string& module_name,
+- remove_plugin_modules_locked · function · L112-L112 — void remove_plugin_modules_locked(const std::vector<std::string>& plugin_modules);
+- remove_module_tree_locked · function · L113-L113 — void remove_module_tree_locked(const std::string& module_name);
+- PythonRuntimeLease · class · L126-L150 — class PythonRuntimeLease
+- PythonRuntimeLease · function · L129-L129 — PythonRuntimeLease() = default;
+- PythonRuntimeLease · function · L130-L130 — PythonRuntimeLease(PythonRuntimeLease&& other) noexcept;
+- PythonRuntimeLease · function · L134-L134 — PythonRuntimeLease(const PythonRuntimeLease&)            = delete;
+- PythonRuntimeLease · function · L142-L142 — explicit PythonRuntimeLease(PythonInterpreter& interpreter);
+- release · function · L143-L143 — void release();
+- acquire_runtime_lease · method · L152-L155 — inline PythonRuntimeLease PythonInterpreter::acquire_runtime_lease()
+- PythonGILState · class · L158-L180 — class PythonGILState
+- PythonGILState · function · L161-L167 — PythonGILState()
+- PyObjectPtr · class · L183-L215 — class PyObjectPtr
+- PyObjectPtr · function · L186-L186 — explicit PyObjectPtr(PyObject* obj = nullptr) : m_obj(obj) {}
+- get · function · L194-L194 — PyObject* get() const { return m_obj; }
+- release · function · L195-L195 — PyObject* release()
+- reset · function · L201-L206 — void reset(PyObject* obj = nullptr)
+- PyObjectPtr · function · L213-L213 — PyObjectPtr(const PyObjectPtr&) = delete;

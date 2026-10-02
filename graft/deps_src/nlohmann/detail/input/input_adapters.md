@@ -1,0 +1,40 @@
+# deps_src/nlohmann/detail/input/input_adapters.hpp
+
+- input_format_t · type · L26-L26 — enum class input_format_t { json, cbor, msgpack, ubjson, bson };
+- file_input_adapter · class · L37-L62 — class file_input_adapter
+- file_input_adapter · function · L43-L45 — explicit file_input_adapter(std::FILE* f) noexcept
+- file_input_adapter · function · L48-L48 — file_input_adapter(const file_input_adapter&) = delete;
+- file_input_adapter · function · L49-L49 — file_input_adapter(file_input_adapter&&) noexcept = default;
+- get_character · function · L54-L57 — std::char_traits<char>::int_type get_character() noexcept
+- input_stream_adapter · class · L74-L123 — class input_stream_adapter
+- input_stream_adapter · function · L89-L91 — explicit input_stream_adapter(std::istream& i)
+- input_stream_adapter · function · L94-L94 — input_stream_adapter(const input_stream_adapter&) = delete;
+- input_stream_adapter · function · L98-L103 — input_stream_adapter(input_stream_adapter&& rhs) noexcept
+- get_character · function · L108-L117 — std::char_traits<char>::int_type get_character()
+- iterator_input_adapter · class · L128-L161 — template<typename IteratorType>
+- iterator_input_adapter · function · L134-L136 — iterator_input_adapter(IteratorType first, IteratorType last)
+- get_character · function · L138-L148 — typename std::char_traits<char_type>::int_type get_character()
+- empty · function · L157-L160 — bool empty() const
+- fill_buffer · function · L171-L222 — static void fill_buffer(BaseInputAdapter& input,
+- fill_buffer · function · L229-L284 — static void fill_buffer(BaseInputAdapter& input,
+- wide_string_input_adapter · class · L288-L330 — template<typename BaseInputAdapter, typename WideCharType>
+- wide_string_input_adapter · function · L294-L295 — wide_string_input_adapter(BaseInputAdapter base)
+- get_character · function · L297-L312 — typename std::char_traits<char>::int_type get_character() noexcept
+- fill_buffer · function · L317-L321 — template<size_t T>
+- iterator_input_adapter_factory · class · L333-L344 — template<typename IteratorType, typename Enable = void>
+- create · function · L340-L343 — static adapter_type create(IteratorType first, IteratorType last)
+- is_iterator_of_multibyte · class · L346-L354 — template<typename T>
+- create · function · L364-L367 — static adapter_type create(IteratorType first, IteratorType last)
+- input_adapter · function · L371-L376 — template<typename IteratorType>
+- container_input_adapter_factory · class · L388-L389 — template<typename ContainerType, typename Enable = void>
+- create · function · L397-L400 — static adapter_type create(const ContainerType& container)
+- input_adapter · function · L405-L409 — template<typename ContainerType>
+- input_adapter · function · L413-L416 — inline file_input_adapter input_adapter(std::FILE* file)
+- input_adapter · function · L418-L421 — inline input_stream_adapter input_adapter(std::istream& stream)
+- input_adapter · function · L423-L426 — inline input_stream_adapter input_adapter(std::istream&& stream)
+- input_adapter · function · L432-L444 — template < typename CharT,
+- input_adapter · function · L446-L450 — template<typename T, std::size_t N>
+- span_input_adapter · class · L455-L481 — class span_input_adapter
+- span_input_adapter · function · L458-L465 — template < typename CharT,
+- span_input_adapter · function · L467-L472 — template<class IteratorType,
+- get · function · L474-L474 — contiguous_bytes_input_adapter&& get()

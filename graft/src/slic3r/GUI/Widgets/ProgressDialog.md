@@ -1,0 +1,55 @@
+# src/slic3r/GUI/Widgets/ProgressDialog.hpp
+
+- WXDLLIMPEXP_FWD_CORE · class · L11-L11 — class WXDLLIMPEXP_FWD_CORE wxButton;
+- WXDLLIMPEXP_FWD_CORE · class · L12-L12 — class WXDLLIMPEXP_FWD_CORE wxEventLoop;
+- WXDLLIMPEXP_FWD_CORE · class · L13-L13 — class WXDLLIMPEXP_FWD_CORE wxGauge;
+- WXDLLIMPEXP_FWD_CORE · class · L14-L14 — class WXDLLIMPEXP_FWD_CORE wxStaticText;
+- WXDLLIMPEXP_FWD_CORE · class · L15-L15 — class WXDLLIMPEXP_FWD_CORE wxWindowDisabler;
+- WXDLLIMPEXP_CORE · class · L27-L232 — class WXDLLIMPEXP_CORE ProgressDialog : public wxDialog
+- ProgressDialog · function · L31-L31 — ProgressDialog(const wxString &title, const wxString &message, int maximum = 100, wxWindow *parent = NULL, int style = wxPD_APP_MODAL | wxPD_AUTO_HIDE, bool adaptive = false);
+- OnPaint · function · L33-L33 — void OnPaint(wxPaintEvent &evt);
+- DoSetSize · function · L36-L36 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO) override;
+- Create · function · L37-L37 — bool Create(const wxString &title, const wxString &message, int maximum = 100, wxWindow *parent = NULL, int style = wxPD_APP_MODAL | wxPD_AUTO_HIDE);
+- Update · function · L39-L39 — virtual bool Update(int value, const wxString &newmsg = wxEmptyString, bool *skip = NULL);
+- Pulse · function · L40-L40 — virtual bool Pulse(const wxString &newmsg = wxEmptyString, bool *skip = NULL);
+- WasCanceled · function · L41-L41 — bool         WasCanceled() const;
+- Resume · function · L43-L43 — virtual void Resume();
+- GetValue · function · L45-L45 — virtual int      GetValue() const;
+- GetRange · function · L46-L46 — virtual int      GetRange() const;
+- GetMessage · function · L47-L47 — virtual wxString GetMessage() const;
+- SetRange · function · L49-L49 — virtual void SetRange(int maximum);
+- WasCancelled · function · L52-L52 — virtual bool WasCancelled() const;
+- WasSkipped · function · L53-L53 — virtual bool WasSkipped() const;
+- OnCancel · function · L55-L55 — virtual void OnCancel() {};
+- Show · function · L60-L60 — virtual bool Show(bool show = true) wxOVERRIDE;
+- State · type · L64-L70 — enum State
+- SetMaximum · function · L90-L90 — void SetMaximum(int maximum);
+- GetElapsedLabel · function · L93-L93 — static wxString GetElapsedLabel() { return wxGetTranslation("Elapsed time:"); }
+- GetEstimatedLabel · function · L94-L94 — static wxString GetEstimatedLabel() { return wxGetTranslation("Estimated time:"); }
+- GetRemainingLabel · function · L95-L95 — static wxString GetRemainingLabel() { return wxGetTranslation("Remaining time:"); }
+- HasPDFlag · function · L99-L99 — bool HasPDFlag(int flag) const { return (m_pdStyle & flag) != 0; }
+- GetPDStyle · function · L102-L102 — int  GetPDStyle() const { return m_pdStyle; }
+- SetPDStyle · function · L103-L103 — void SetPDStyle(int pdStyle) { m_pdStyle = pdStyle; }
+- set_panel_height · function · L104-L104 — void set_panel_height(int height);
+- UpdateTimeEstimates · function · L108-L108 — void UpdateTimeEstimates(int value, unsigned long &elapsedTime, unsigned long &estimatedTime, unsigned long &remainingTime);
+- GetFormattedTime · function · L111-L111 — static wxString GetFormattedTime(unsigned long timeInSec);
+- EnsureActiveEventLoopExists · function · L114-L114 — void EnsureActiveEventLoopExists();
+- OnCancel · function · L117-L117 — void OnCancel(wxCommandEvent &);
+- OnSkip · function · L120-L120 — void OnSkip(wxCommandEvent &);
+- OnClose · function · L123-L123 — void OnClose(wxCloseEvent &);
+- DisableOtherWindows · function · L126-L126 — void DisableOtherWindows();
+- ReenableOtherWindows · function · L130-L130 — void ReenableOtherWindows();
+- SetTopParent · function · L134-L134 — void SetTopParent(wxWindow *parent);
+- FormatString · function · L136-L136 — wxString FormatString(wxString title);
+- GetTopParent · function · L138-L138 — wxWindow *GetTopParent() const { return m_parentTop; }
+- SetTimeLabel · function · L161-L161 — static void SetTimeLabel(unsigned long val, wxStaticText *label);
+- Init · function · L164-L164 — void Init();
+- CreateLabel · function · L168-L168 — wxStaticText *CreateLabel(const wxString &text, wxSizer *sizer);
+- UpdateMessage · function · L171-L171 — void UpdateMessage(const wxString &newmsg);
+- DoBeforeUpdate · function · L174-L174 — bool DoBeforeUpdate(bool *skip);
+- DoAfterUpdate · function · L177-L177 — void DoAfterUpdate();
+- EnableClose · function · L180-L180 — void EnableClose();
+- EnableSkip · function · L181-L181 — void EnableSkip(bool enable = true);
+- EnableAbort · function · L182-L182 — void EnableAbort(bool enable = true);
+- DisableSkip · function · L183-L183 — void DisableSkip() { EnableSkip(false); }
+- DisableAbort · function · L184-L184 — void DisableAbort() { EnableAbort(false); }

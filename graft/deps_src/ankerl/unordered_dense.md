@@ -1,0 +1,90 @@
+# deps_src/ankerl/unordered_dense.h
+
+- on_error_key_not_found · function · L133-L135 — [[noreturn]] inline ANKERL_UNORDERED_DENSE_NOINLINE void on_error_key_not_found()
+- on_error_bucket_overflow · function · L136-L138 — [[noreturn]] inline ANKERL_UNORDERED_DENSE_NOINLINE void on_error_bucket_overflow()
+- on_error_too_many_elements · function · L139-L141 — [[noreturn]] inline ANKERL_UNORDERED_DENSE_NOINLINE void on_error_too_many_elements()
+- on_error_key_not_found · function · L145-L147 — [[noreturn]] inline void on_error_key_not_found()
+- on_error_bucket_overflow · function · L148-L150 — [[noreturn]] inline void on_error_bucket_overflow()
+- on_error_too_many_elements · function · L151-L153 — [[noreturn]] inline void on_error_too_many_elements()
+- mum · function · L166-L193 — inline void mum(uint64_t* a, uint64_t* b)
+- mum · function · L196-L197 — [[nodiscard]] inline auto mix(uint64_t a, uint64_t b) -> uint64_t
+- size_t · function · L215-L216 — [[nodiscard]] inline auto r3(const uint8_t* p, size_t k) -> uint64_t
+- mix · function · L266-L267 — [[nodiscard]] inline auto hash(uint64_t x) -> uint64_t
+- standard · class · L427-L433 — struct standard
+- big · class · L435-L441 — ANKERL_UNORDERED_DENSE_PACK(struct big
+- nonesuch · class · L447-L447 — struct nonesuch {};
+- default_container_t · class · L448-L448 — struct default_container_t {};
+- base_table_type_set · class · L503-L503 — struct base_table_type_set {};
+- num_bits_closest · function · L544-L544 — static constexpr auto num_bits = num_bits_closest(MaxSegmentSizeBytes, sizeof(T));
+- m_data · function · L575-L579 — constexpr iter_t(ptr_t data, size_t idx) noexcept
+- m_idx · function · L577-L577 — , m_idx(idx) {}
+- prev · function · L592-L592 — iter_t prev(*this);
+- increase_capacity · function · L626-L630 — void increase_capacity()
+- append_everything_from · function · L633-L702 — void append_everything_from(segmented_vector&& other)
+- emplace_back · function · L635-L636 — for (auto&& o : other)
+- move · function · L636-L636 — emplace_back(std::move(o));
+- append_everything_from · function · L641-L641 — void append_everything_from(segmented_vector const& other)
+- cbegin · function · L731-L743 — [[nodiscard]] constexpr auto begin() const -> const_iterator
+- end · function · L738-L738 — [[nodiscard]] constexpr auto end() -> iterator
+- pop_back · function · L751-L758 — [[nodiscard]] constexpr auto back() const -> const_reference
+- reserve · function · L764-L769 — void reserve(size_t new_capacity)
+- clear · function · L786-L793 — void clear()
+- shrink_to_fit · function · L795-L803 — void shrink_to_fit()
+- calc_num_blocks_for_capacity · function · L797-L797 — auto num_blocks_required = calc_num_blocks_for_capacity(m_size);
+- mixed_hash · function · L931-L931 — auto hash = mixed_hash(key);
+- dist_and_fingerprint_from_hash · function · L932-L932 — auto dist_and_fingerprint = dist_and_fingerprint_from_hash(hash);
+- bucket_idx_from_hash · function · L933-L933 — auto bucket_idx = bucket_idx_from_hash(hash);
+- place_and_shift_up · function · L942-L949 — void place_and_shift_up(Bucket bucket, value_idx_type place)
+- copy_buckets · function · L964-L981 — void copy_buckets(table const& other)
+- deallocate_buckets · function · L990-L994 — void deallocate_buckets()
+- allocate_buckets_from_shift · function · L996-L1014 — void allocate_buckets_from_shift()
+- calc_num_buckets · function · L997-L997 — auto num_buckets = calc_num_buckets(m_shifts);
+- clear_buckets · function · L1016-L1024 — void clear_buckets()
+- memset · function · L1018-L1019 — for (auto&& e : m_buckets)
+- clear_and_fill_buckets_from_values · function · L1026-L1036 — void clear_and_fill_buckets_from_values()
+- increase_size · function · L1038-L1050 — void increase_size()
+- next · function · L1057-L1057 — auto next_bucket_idx = next(bucket_idx);
+- mixed_hash · function · L1073-L1073 — auto mh = mixed_hash(get_key(val));
+- try_emplace · function · L1108-L1108 — auto it_isinserted = try_emplace(std::forward<K>(key), std::forward<M>(mapped));
+- mixed_hash · function · L1135-L1135 — auto hash = mixed_hash(key);
+- dist_and_fingerprint_from_hash · function · L1136-L1136 — auto dist_and_fingerprint = dist_and_fingerprint_from_hash(hash);
+- bucket_idx_from_hash · function · L1137-L1137 — auto bucket_idx = bucket_idx_from_hash(hash);
+- mixed_hash · function · L1163-L1163 — auto mh = mixed_hash(key);
+- dist_and_fingerprint_from_hash · function · L1164-L1164 — auto dist_and_fingerprint = dist_and_fingerprint_from_hash(mh);
+- bucket_idx_from_hash · function · L1165-L1165 — auto bucket_idx = bucket_idx_from_hash(mh);
+- m_buckets · function · L1216-L1225 — explicit table(size_t bucket_count,
+- table · function · L1216-L1220 — explicit table(size_t bucket_count,
+- Hash · function · L1217-L1217 — Hash const& hash = Hash(),
+- KeyEqual · function · L1218-L1218 — KeyEqual const& equal = KeyEqual(),
+- allocator_type · function · L1219-L1219 — allocator_type const& alloc_or_container = allocator_type())
+- m_equal · function · L1223-L1223 — , m_equal(equal)
+- table · function · L1236-L1236 — : table(bucket_count, Hash(), KeyEqual(), alloc) {}
+- table · function · L1238-L1239 — table(size_t bucket_count, Hash const& hash, allocator_type const& alloc)
+- table · function · L1241-L1242 — explicit table(allocator_type const& alloc)
+- table · function · L1245-L1247 — table(InputIt first,
+- table · function · L1263-L1264 — table(table const& other)
+- get_allocator · function · L1264-L1264 — : table(other, other.m_values.get_allocator()) {}
+- clear · function · L1394-L1407 — [[nodiscard]] static constexpr auto max_size() noexcept -> size_t
+- emplace · function · L1409-L1410 — auto insert(value_type const& value) -> std::pair<iterator, bool>
+- insert · function · L1443-L1445 — void insert(std::initializer_list<value_type> ilist)
+- mixed_hash · function · L1476-L1476 — auto hash = mixed_hash(key);
+- dist_and_fingerprint_from_hash · function · L1477-L1477 — auto dist_and_fingerprint = dist_and_fingerprint_from_hash(hash);
+- bucket_idx_from_hash · function · L1478-L1478 — auto bucket_idx = bucket_idx_from_hash(hash);
+- mixed_hash · function · L1554-L1554 — auto hash = mixed_hash(key);
+- dist_and_fingerprint_from_hash · function · L1555-L1555 — auto dist_and_fingerprint = dist_and_fingerprint_from_hash(hash);
+- bucket_idx_from_hash · function · L1556-L1556 — auto bucket_idx = bucket_idx_from_hash(hash);
+- mixed_hash · function · L1577-L1577 — auto hash = mixed_hash(key);
+- dist_and_fingerprint_from_hash · function · L1578-L1578 — auto dist_and_fingerprint = dist_and_fingerprint_from_hash(hash);
+- bucket_idx_from_hash · function · L1579-L1579 — auto bucket_idx = bucket_idx_from_hash(hash);
+- mixed_hash · function · L1653-L1653 — auto hash = mixed_hash(get_key(*it));
+- bucket_idx_from_hash · function · L1654-L1654 — auto bucket_idx = bucket_idx_from_hash(hash);
+- mixed_hash · function · L1667-L1667 — auto hash = mixed_hash(get_key(*it));
+- bucket_idx_from_hash · function · L1668-L1668 — auto bucket_idx = bucket_idx_from_hash(hash);
+- distance · function · L1695-L1695 — auto const first_to_last = std::distance(first, last);
+- distance · function · L1696-L1696 — auto const last_to_end = std::distance(last, cend());
+- swap · function · L1744-L1748 — void swap(table& other) noexcept(noexcept(std::is_nothrow_swappable_v<value_container_type> &&
+- do_find · function · L1841-L1841 — auto it = do_find(key);
+- max_load_factor · function · L1877-L1882 — void max_load_factor(float ml)
+- rehash · function · L1884-L1894 — void rehash(size_t count)
+- reserve · function · L1896-L1909 — void reserve(size_t capa)
+- table · function · L1928-L1929 — friend auto operator==(table const& a, table const& b) -> bool

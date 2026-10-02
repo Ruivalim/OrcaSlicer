@@ -1,0 +1,47 @@
+# src/libslic3r/SurfaceCollection.hpp
+
+- SurfaceCollection · class · L11-L85 — class SurfaceCollection
+- SurfaceCollection · function · L16-L16 — SurfaceCollection() = default;
+- SurfaceCollection · function · L17-L17 — SurfaceCollection(const Surfaces& surfaces) : surfaces(surfaces) {};
+- SurfaceCollection · function · L18-L18 — SurfaceCollection(Surfaces &&surfaces) : surfaces(std::move(surfaces)) {};
+- simplify · function · L20-L20 — void simplify(double tolerance);
+- group · function · L21-L21 — void group(std::vector<SurfacesPtr> *retval);
+- any_internal_contains · function · L22-L25 — template <class T> bool any_internal_contains(const T &item) const
+- any_bottom_contains · function · L26-L29 — template <class T> bool any_bottom_contains(const T &item) const
+- filter_by_type · function · L30-L30 — SurfacesPtr filter_by_type(const SurfaceType type) const;
+- filter_by_types · function · L31-L31 — SurfacesPtr filter_by_types(std::initializer_list<SurfaceType> types) const;
+- keep_type · function · L32-L32 — void keep_type(const SurfaceType type);
+- keep_types · function · L33-L33 — void keep_types(std::initializer_list<SurfaceType> types);
+- remove_type · function · L34-L34 — void remove_type(const SurfaceType type);
+- remove_types · function · L35-L35 — void remove_types(std::initializer_list<SurfaceType> types);
+- filter_by_type · function · L36-L36 — void filter_by_type(SurfaceType type, Polygons* polygons) const;
+- remove_type · function · L37-L37 — void remove_type(const SurfaceType type, ExPolygons *polygons);
+- set_type · function · L38-L41 — void set_type(SurfaceType type)
+- change_to_new_type · function · L43-L47 — void change_to_new_type(SurfaceType old_type, SurfaceType new_type)
+- clear · function · L49-L49 — void clear() { surfaces.clear(); }
+- empty · function · L50-L50 — bool empty() const { return surfaces.empty(); }
+- size · function · L51-L51 — size_t size() const { return surfaces.size(); }
+- has · function · L52-L56 — bool has(SurfaceType type) const
+- cbegin · function · L58-L58 — Surfaces::const_iterator    cbegin() const { return this->surfaces.cbegin(); }
+- cend · function · L59-L59 — Surfaces::const_iterator    cend()   const { return this->surfaces.cend(); }
+- begin · function · L60-L60 — Surfaces::const_iterator    begin()  const { return this->surfaces.cbegin(); }
+- end · function · L61-L61 — Surfaces::const_iterator    end()    const { return this->surfaces.cend(); }
+- begin · function · L62-L62 — Surfaces::iterator          begin()        { return this->surfaces.begin(); }
+- end · function · L63-L63 — Surfaces::iterator          end()          { return this->surfaces.end(); }
+- set · function · L65-L65 — void set(const SurfaceCollection &coll) { surfaces = coll.surfaces; }
+- set · function · L66-L66 — void set(SurfaceCollection &&coll) { surfaces = std::move(coll.surfaces); }
+- set · function · L67-L67 — void set(const ExPolygons &src, SurfaceType surfaceType) { clear(); this->append(src, surfaceType); }
+- set · function · L68-L68 — void set(const ExPolygons &src, const Surface &surfaceTempl) { clear(); this->append(src, surfaceTempl); }
+- set · function · L69-L69 — void set(const Surfaces &src) { clear(); this->append(src); }
+- set · function · L70-L70 — void set(ExPolygons &&src, SurfaceType surfaceType) { clear(); this->append(std::move(src), surfaceType); }
+- set · function · L71-L71 — void set(ExPolygons &&src, const Surface &surfaceTempl) { clear(); this->append(std::move(src), surfaceTempl); }
+- set · function · L72-L72 — void set(Surfaces &&src) { clear(); this->append(std::move(src)); }
+- append · function · L74-L74 — void append(const SurfaceCollection &coll) { this->append(coll.surfaces); }
+- append · function · L75-L75 — void append(SurfaceCollection &&coll) { this->append(std::move(coll.surfaces)); }
+- append · function · L76-L76 — void append(const ExPolygons &src, SurfaceType surfaceType) { surfaces_append(this->surfaces, src, surfaceType); }
+- append · function · L77-L77 — void append(const ExPolygons &src, const Surface &surfaceTempl) { surfaces_append(this->surfaces, src, surfaceTempl); }
+- append · function · L78-L78 — void append(const Surfaces &src) { surfaces_append(this->surfaces, src); }
+- append · function · L79-L79 — void append(ExPolygons &&src, SurfaceType surfaceType) { surfaces_append(this->surfaces, std::move(src), surfaceType); }
+- append · function · L80-L80 — void append(ExPolygons &&src, const Surface &surfaceTempl) { surfaces_append(this->surfaces, std::move(src), surfaceTempl); }
+- append · function · L81-L81 — void append(Surfaces &&src) { surfaces_append(this->surfaces, std::move(src)); }
+- export_to_svg · function · L84-L84 — void export_to_svg(const char *path, bool show_labels);

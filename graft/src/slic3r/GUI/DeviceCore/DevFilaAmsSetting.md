@@ -1,0 +1,21 @@
+# src/slic3r/GUI/DeviceCore/DevFilaAmsSetting.h
+
+- IsDetectOnPowerupEnabled · function · L19-L19 — bool IsDetectOnPowerupEnabled() const { return m_enable_detect_on_powerup; }
+- IsDetectRemainEnabled · function · L20-L20 — bool IsDetectRemainEnabled() const { return m_enable_detect_remain; }
+- IsAutoRefillEnabled · function · L21-L21 — bool IsAutoRefillEnabled() const { return m_enable_auto_refill; }
+- Reset · function · L24-L24 — void Reset();
+- SetDetectOnInsertEnabled · function · L25-L25 — void SetDetectOnInsertEnabled(bool enable) { m_enable_detect_on_insert = enable; }
+- SetDetectOnPowerupEnabled · function · L26-L26 — void SetDetectOnPowerupEnabled(bool enable) { m_enable_detect_on_powerup = enable; }
+- SetDetectRemainEnabled · function · L27-L27 — void SetDetectRemainEnabled(bool enable) { m_enable_detect_remain = enable; }
+- SetAutoRefillEnabled · function · L28-L28 — void SetAutoRefillEnabled(bool enable) { m_enable_auto_refill = enable; }
+- DevAmsSystemIdx · type · L42-L47 — enum DevAmsSystemIdx : int
+- DevAmsSystemFirmware · class · L49-L61 — struct DevAmsSystemFirmware
+- GetFilaSystem · function · L74-L74 — DevFilaSystem* GetFilaSystem() const { return m_owner; };
+- SupportSwitchFirmware · function · L75-L75 — bool SupportSwitchFirmware() const { return !m_firmwares.empty();};
+- GetCurrentFirmwareIdxSel · function · L77-L77 — DevAmsSystemIdx GetCurrentFirmwareIdxSel() const { return m_current_firmware_sel.m_firmare_idx; };
+- GetCurrentFirmwareIdxRun · function · L78-L78 — DevAmsSystemIdx GetCurrentFirmwareIdxRun() const { return m_current_firmware_run.m_firmare_idx; };
+- IsSwitching · function · L81-L81 — bool IsSwitching() const { return m_status == "SWITCHING";};
+- IsIdle · function · L82-L82 — bool IsIdle() const { return m_status == "IDLE";};
+- CrtlSwitchFirmware · function · L85-L85 — int CrtlSwitchFirmware(int firmware_idx);
+- Reset · function · L88-L88 — void Reset();
+- ParseFirmwareSwitch · function · L89-L89 — void ParseFirmwareSwitch(const nlohmann::json& j);

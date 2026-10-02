@@ -1,0 +1,142 @@
+# deps_src/nanosvg/nanosvg.h
+
+- NSVGpaintType · type · L74-L80 — enum NSVGpaintType
+- NSVGspreadType · type · L82-L86 — enum NSVGspreadType
+- NSVGlineJoin · type · L88-L92 — enum NSVGlineJoin
+- NSVGlineCap · type · L94-L98 — enum NSVGlineCap
+- NSVGfillRule · type · L100-L103 — enum NSVGfillRule
+- NSVGflags · type · L105-L107 — enum NSVGflags
+- NSVGgradientStop · class · L109-L112 — typedef struct NSVGgradientStop
+- NSVGgradient · class · L114-L120 — typedef struct NSVGgradient
+- NSVGpaint · class · L122-L128 — typedef struct NSVGpaint
+- NSVGpath · class · L130-L137 — typedef struct NSVGpath
+- NSVGshape · class · L139-L160 — typedef struct NSVGshape
+- NSVGimage · class · L162-L167 — typedef struct NSVGimage
+- nsvgParseFromFile · function · L170-L170 — NSVGimage* nsvgParseFromFile(const char* filename, const char* units, float dpi);
+- nsvgParse · function · L174-L174 — NSVGimage* nsvgParse(char* input, const char* units, float dpi);
+- nsvgDuplicatePath · function · L177-L177 — NSVGpath* nsvgDuplicatePath(NSVGpath* p);
+- nsvgDelete · function · L180-L180 — void nsvgDelete(NSVGimage* image);
+- nsvg__isspace · function · L221-L224 — static int nsvg__isspace(char c)
+- nsvg__isdigit · function · L226-L229 — static int nsvg__isdigit(char c)
+- nsvg__minf · function · L231-L231 — static NSVG_INLINE float nsvg__minf(float a, float b) { return a < b ? a : b; }
+- nsvg__maxf · function · L232-L232 — static NSVG_INLINE float nsvg__maxf(float a, float b) { return a > b ? a : b; }
+- nsvg__parseContent · function · L241-L251 — static void nsvg__parseContent(char* s,
+- nsvg__parseElement · function · L253-L327 — static void nsvg__parseElement(char* s,
+- nsvg__parseXML · function · L329-L357 — int nsvg__parseXML(char* input,
+- NSVGgradientUnits · type · L364-L367 — enum NSVGgradientUnits
+- NSVGunits · type · L371-L382 — enum NSVGunits
+- NSVGcoordinate · class · L384-L387 — typedef struct NSVGcoordinate
+- NSVGlinearData · class · L389-L391 — typedef struct NSVGlinearData
+- NSVGradialData · class · L393-L395 — typedef struct NSVGradialData
+- NSVGgradientData · class · L397-L412 — typedef struct NSVGgradientData
+- NSVGattrib · class · L414-L440 — typedef struct NSVGattrib
+- NSVGparser · class · L442-L458 — typedef struct NSVGparser
+- nsvg__xformIdentity · function · L460-L465 — static void nsvg__xformIdentity(float* t)
+- nsvg__xformSetTranslation · function · L467-L472 — static void nsvg__xformSetTranslation(float* t, float tx, float ty)
+- nsvg__xformSetScale · function · L474-L479 — static void nsvg__xformSetScale(float* t, float sx, float sy)
+- nsvg__xformSetSkewX · function · L481-L486 — static void nsvg__xformSetSkewX(float* t, float a)
+- nsvg__xformSetSkewY · function · L488-L493 — static void nsvg__xformSetSkewY(float* t, float a)
+- nsvg__xformSetRotation · function · L495-L501 — static void nsvg__xformSetRotation(float* t, float a)
+- nsvg__xformMultiply · function · L503-L514 — static void nsvg__xformMultiply(float* t, float* s)
+- nsvg__xformInverse · function · L516-L530 — static void nsvg__xformInverse(float* inv, float* t)
+- nsvg__xformPremultiply · function · L532-L538 — static void nsvg__xformPremultiply(float* t, float* s)
+- nsvg__xformPoint · function · L540-L544 — static void nsvg__xformPoint(float* dx, float* dy, float x, float y, float* t)
+- nsvg__xformVec · function · L546-L550 — static void nsvg__xformVec(float* dx, float* dy, float x, float y, float* t)
+- nsvg__ptInBounds · function · L554-L557 — static int nsvg__ptInBounds(float* pt, float* bounds)
+- nsvg__evalBezier · function · L560-L564 — static double nsvg__evalBezier(double t, double p0, double p1, double p2, double p3)
+- nsvg__curveBounds · function · L566-L615 — static void nsvg__curveBounds(float* bounds, float* curve)
+- nsvg__createParser · function · L617-L617 — static NSVGparser* nsvg__createParser(void)
+- nsvg__deletePaths · function · L655-L664 — static void nsvg__deletePaths(NSVGpath* path)
+- nsvg__deletePaint · function · L666-L670 — static void nsvg__deletePaint(NSVGpaint* paint)
+- nsvg__deleteGradientData · function · L672-L681 — static void nsvg__deleteGradientData(NSVGgradientData* grad)
+- nsvg__deleteParser · function · L683-L692 — static void nsvg__deleteParser(NSVGparser* p)
+- nsvg__resetPath · function · L694-L697 — static void nsvg__resetPath(NSVGparser* p)
+- nsvg__addPoint · function · L699-L709 — static void nsvg__addPoint(NSVGparser* p, float x, float y)
+- nsvg__moveTo · function · L711-L719 — static void nsvg__moveTo(NSVGparser* p, float x, float y)
+- nsvg__lineTo · function · L721-L733 — static void nsvg__lineTo(NSVGparser* p, float x, float y)
+- nsvg__cubicBezTo · function · L735-L742 — static void nsvg__cubicBezTo(NSVGparser* p, float cpx1, float cpy1, float cpx2, float cpy2, float x, float y)
+- nsvg__getAttr · function · L744-L744 — static NSVGattrib* nsvg__getAttr(NSVGparser* p)
+- nsvg__pushAttr · function · L749-L755 — static void nsvg__pushAttr(NSVGparser* p)
+- nsvg__popAttr · function · L757-L761 — static void nsvg__popAttr(NSVGparser* p)
+- nsvg__actualOrigX · function · L763-L766 — static float nsvg__actualOrigX(NSVGparser* p)
+- nsvg__actualOrigY · function · L768-L771 — static float nsvg__actualOrigY(NSVGparser* p)
+- nsvg__actualWidth · function · L773-L776 — static float nsvg__actualWidth(NSVGparser* p)
+- nsvg__actualHeight · function · L778-L781 — static float nsvg__actualHeight(NSVGparser* p)
+- nsvg__actualLength · function · L783-L787 — static float nsvg__actualLength(NSVGparser* p)
+- nsvg__convertToPixels · function · L789-L806 — static float nsvg__convertToPixels(NSVGparser* p, NSVGcoordinate c, float orig, float length)
+- nsvg__findGradientData · function · L808-L808 — static NSVGgradientData* nsvg__findGradientData(NSVGparser* p, const char* id)
+- nsvg__createGradient · function · L821-L821 — static NSVGgradient* nsvg__createGradient(NSVGparser* p, const char* id, const float* localBounds, float *xform, signed char* paintType)
+- nsvg__getAverageScale · function · L908-L913 — static float nsvg__getAverageScale(float* t)
+- nsvg__getLocalBounds · function · L915-L943 — static void nsvg__getLocalBounds(float* bounds, NSVGshape *shape, float* xform)
+- nsvg__addShape · function · L945-L1027 — static void nsvg__addShape(NSVGparser* p)
+- nsvg__addPath · function · L1029-L1087 — static void nsvg__addPath(NSVGparser* p, char closed)
+- nsvg__atof · function · L1090-L1154 — static double nsvg__atof(const char* s)
+- nsvg__parseNumber · function · L1157-L1157 — static const char* nsvg__parseNumber(const char* s, char* it, const int size)
+- nsvg__getNextPathItemWhenArcFlag · function · L1200-L1200 — static const char* nsvg__getNextPathItemWhenArcFlag(const char* s, char* it)
+- nsvg__getNextPathItem · function · L1213-L1213 — static const char* nsvg__getNextPathItem(const char* s, char* it)
+- nsvg__parseColorHex · function · L1231-L1239 — static unsigned int nsvg__parseColorHex(const char* str)
+- nsvg__parseColorRGB · function · L1245-L1293 — static unsigned int nsvg__parseColorRGB(const char* str)
+- NSVGNamedColor · class · L1295-L1298 — typedef struct NSVGNamedColor
+- nsvg__parseColorName · function · L1454-L1465 — static unsigned int nsvg__parseColorName(const char* str)
+- nsvg__parseColor · function · L1467-L1477 — static unsigned int nsvg__parseColor(const char* str)
+- nsvg__parseOpacity · function · L1479-L1485 — static float nsvg__parseOpacity(const char* str)
+- nsvg__parseMiterLimit · function · L1487-L1492 — static float nsvg__parseMiterLimit(const char* str)
+- nsvg__parseUnits · function · L1494-L1515 — static int nsvg__parseUnits(const char* units)
+- nsvg__isCoordinate · function · L1517-L1524 — static int nsvg__isCoordinate(const char* s)
+- nsvg__parseCoordinateRaw · function · L1526-L1533 — static NSVGcoordinate nsvg__parseCoordinateRaw(const char* str)
+- nsvg__coord · function · L1535-L1539 — static NSVGcoordinate nsvg__coord(float v, int units)
+- nsvg__parseCoordinate · function · L1541-L1545 — static float nsvg__parseCoordinate(NSVGparser* p, const char* str, float orig, float length)
+- nsvg__parseTransformArgs · function · L1547-L1573 — static int nsvg__parseTransformArgs(const char* str, float* args, int maxNa, int* na)
+- nsvg__parseMatrix · function · L1576-L1584 — static int nsvg__parseMatrix(float* xform, const char* str)
+- nsvg__parseTranslate · function · L1586-L1597 — static int nsvg__parseTranslate(float* xform, const char* str)
+- nsvg__parseScale · function · L1599-L1609 — static int nsvg__parseScale(float* xform, const char* str)
+- nsvg__parseSkewX · function · L1611-L1620 — static int nsvg__parseSkewX(float* xform, const char* str)
+- nsvg__parseSkewY · function · L1622-L1631 — static int nsvg__parseSkewY(float* xform, const char* str)
+- nsvg__parseRotate · function · L1633-L1660 — static int nsvg__parseRotate(float* xform, const char* str)
+- nsvg__parseTransform · function · L1662-L1694 — static void nsvg__parseTransform(float* xform, const char* str)
+- nsvg__parseUrl · function · L1696-L1707 — static void nsvg__parseUrl(char* id, const char* str)
+- nsvg__parseLineCap · function · L1709-L1719 — static char nsvg__parseLineCap(const char* str)
+- nsvg__parseLineJoin · function · L1721-L1731 — static char nsvg__parseLineJoin(const char* str)
+- nsvg__parseFillRule · function · L1733-L1741 — static char nsvg__parseFillRule(const char* str)
+- nsvg__getNextDashItem · function · L1743-L1743 — static const char* nsvg__getNextDashItem(const char* s, char* it)
+- nsvg__parseStrokeDashArray · function · L1759-L1783 — static int nsvg__parseStrokeDashArray(NSVGparser* p, const char* str, float* strokeDashArray)
+- nsvg__parseStyle · function · L1785-L1785 — static void nsvg__parseStyle(NSVGparser* p, const char* str);
+- nsvg__parseAttr · function · L1787-L1858 — static int nsvg__parseAttr(NSVGparser* p, const char* name, const char* value)
+- nsvg__parseNameValue · function · L1860-L1890 — static int nsvg__parseNameValue(NSVGparser* p, const char* start, const char* end)
+- nsvg__parseStyle · function · L1892-L1911 — static void nsvg__parseStyle(NSVGparser* p, const char* str)
+- nsvg__parseAttribs · function · L1913-L1923 — static void nsvg__parseAttribs(NSVGparser* p, const char** attr)
+- nsvg__getArgsPerElement · function · L1925-L1956 — static int nsvg__getArgsPerElement(char cmd)
+- nsvg__pathMoveTo · function · L1958-L1968 — static void nsvg__pathMoveTo(NSVGparser* p, float* cpx, float* cpy, float* args, int rel)
+- nsvg__pathLineTo · function · L1970-L1980 — static void nsvg__pathLineTo(NSVGparser* p, float* cpx, float* cpy, float* args, int rel)
+- nsvg__pathHLineTo · function · L1982-L1989 — static void nsvg__pathHLineTo(NSVGparser* p, float* cpx, float* cpy, float* args, int rel)
+- nsvg__pathVLineTo · function · L1991-L1998 — static void nsvg__pathVLineTo(NSVGparser* p, float* cpx, float* cpy, float* args, int rel)
+- nsvg__pathCubicBezTo · function · L2000-L2027 — static void nsvg__pathCubicBezTo(NSVGparser* p, float* cpx, float* cpy,
+- nsvg__pathCubicBezShortTo · function · L2029-L2057 — static void nsvg__pathCubicBezShortTo(NSVGparser* p, float* cpx, float* cpy,
+- nsvg__pathQuadBezTo · function · L2059-L2091 — static void nsvg__pathQuadBezTo(NSVGparser* p, float* cpx, float* cpy,
+- nsvg__pathQuadBezShortTo · function · L2093-L2124 — static void nsvg__pathQuadBezShortTo(NSVGparser* p, float* cpx, float* cpy,
+- nsvg__sqr · function · L2126-L2126 — static float nsvg__sqr(float x) { return x*x; }
+- nsvg__vmag · function · L2127-L2127 — static float nsvg__vmag(float x, float y) { return sqrtf(x*x + y*y); }
+- nsvg__vecrat · function · L2129-L2132 — static float nsvg__vecrat(float ux, float uy, float vx, float vy)
+- nsvg__vecang · function · L2134-L2140 — static float nsvg__vecang(float ux, float uy, float vx, float vy)
+- nsvg__pathArcTo · function · L2142-L2261 — static void nsvg__pathArcTo(NSVGparser* p, float* cpx, float* cpy, float* args, int rel)
+- nsvg__parsePath · function · L2263-L2409 — static void nsvg__parsePath(NSVGparser* p, const char** attr)
+- nsvg__parseRect · function · L2411-L2464 — static void nsvg__parseRect(NSVGparser* p, const char** attr)
+- nsvg__parseCircle · function · L2466-L2494 — static void nsvg__parseCircle(NSVGparser* p, const char** attr)
+- nsvg__parseEllipse · function · L2496-L2527 — static void nsvg__parseEllipse(NSVGparser* p, const char** attr)
+- nsvg__parseLine · function · L2529-L2554 — static void nsvg__parseLine(NSVGparser* p, const char** attr)
+- nsvg__parsePoly · function · L2556-L2590 — static void nsvg__parsePoly(NSVGparser* p, const char** attr, int closeFlag)
+- nsvg__parseSVG · function · L2592-L2645 — static void nsvg__parseSVG(NSVGparser* p, const char** attr)
+- nsvg__parseGradient · function · L2647-L2715 — static void nsvg__parseGradient(NSVGparser* p, const char** attr, signed char type)
+- nsvg__parseGradientStop · function · L2717-L2757 — static void nsvg__parseGradientStop(NSVGparser* p, const char** attr)
+- nsvg__startElement · function · L2759-L2819 — static void nsvg__startElement(void* ud, const char* el, const char** attr)
+- nsvg__endElement · function · L2821-L2832 — static void nsvg__endElement(void* ud, const char* el)
+- nsvg__content · function · L2834-L2839 — static void nsvg__content(void* ud, const char* s)
+- nsvg__imageBounds · function · L2841-L2859 — static void nsvg__imageBounds(NSVGparser* p, float* bounds)
+- nsvg__viewAlign · function · L2861-L2869 — static float nsvg__viewAlign(float content, float container, int type)
+- nsvg__scaleGradient · function · L2871-L2879 — static void nsvg__scaleGradient(NSVGgradient* grad, float tx, float ty, float sx, float sy)
+- nsvg__scaleToViewbox · function · L2881-L2970 — static void nsvg__scaleToViewbox(NSVGparser* p, const char* units)
+- nsvg__createGradients · function · L2972-L3000 — static void nsvg__createGradients(NSVGparser* p)
+- nsvgParse · function · L3002-L3002 — NSVGimage* nsvgParse(char* input, const char* units, float dpi)
+- nsvgParseFromFile · function · L3034-L3034 — NSVGimage* nsvgParseFromFile(const char* filename, const char* units, float dpi)
+- nsvgDuplicatePath · function · L3072-L3072 — NSVGpath* nsvgDuplicatePath(NSVGpath* p)
+- nsvgDelete · function · L3102-L3116 — void nsvgDelete(NSVGimage* image)

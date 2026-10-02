@@ -1,0 +1,66 @@
+# src/slic3r/GUI/Widgets/SwitchButton.hpp
+
+- SwitchButton · class · L16-L50 — class SwitchButton : public wxBitmapToggleButton
+- SwitchButton · function · L19-L19 — SwitchButton(wxWindow * parent = NULL, wxWindowID id = wxID_ANY);
+- SetLabels · function · L22-L22 — void SetLabels(wxString const & lbl_on, wxString const & lbl_off);
+- SetTextColor · function · L24-L24 — void SetTextColor(StateColor const &color);
+- SetTextColor2 · function · L26-L26 — void SetTextColor2(StateColor const &color);
+- SetTrackColor · function · L28-L28 — void SetTrackColor(StateColor const &color);
+- SetThumbColor · function · L30-L30 — void SetThumbColor(StateColor const &color);
+- SetValue · function · L32-L32 — void SetValue(bool value) override;
+- Rescale · function · L34-L34 — void Rescale();
+- SetBackgroundColour · function · L36-L36 — bool SetBackgroundColour(const wxColour& colour) override;
+- update · function · L39-L39 — void update();
+- ModeSwitchButton · class · L52-L90 — class ModeSwitchButton : public StaticBox
+- ModeSwitchButton · function · L55-L55 — ModeSwitchButton(wxWindow* parent = nullptr, wxWindowID id = wxID_ANY);
+- GetSelection · function · L57-L57 — int  GetSelection() const { return m_selection; }
+- SetSelection · function · L58-L58 — void SetSelection(int selection);
+- SelectAndNotify · function · L59-L59 — void SelectAndNotify(int selection);
+- Rescale · function · L61-L61 — void Rescale();
+- msw_rescale · function · L62-L62 — void msw_rescale() { Rescale(); }
+- Enable · function · L64-L64 — bool Enable(bool enable = true) override;
+- SetDevMode · function · L65-L65 — void SetDevMode(bool enable = true);
+- GetDevMode · function · L66-L66 — bool GetDevMode() const {return m_dev_mode;};
+- doRender · function · L69-L69 — void doRender(wxDC& dc) override;
+- mouseDown · function · L72-L72 — void mouseDown(wxMouseEvent& event);
+- mouseReleased · function · L73-L73 — void mouseReleased(wxMouseEvent& event);
+- mouseCaptureLost · function · L74-L74 — void mouseCaptureLost(wxMouseCaptureLostEvent& event);
+- hit_test_selection · function · L75-L75 — int  hit_test_selection(const wxPoint& point) const;
+- thumb_rect_for · function · L76-L76 — wxRect thumb_rect_for(int selection) const;
+- update_tooltip · function · L77-L77 — void update_tooltip();
+- SwitchBoard · class · L92-L125 — class SwitchBoard : public wxWindow
+- SwitchBoard · function · L95-L95 — SwitchBoard(wxWindow *parent = NULL, wxString leftL = "", wxString right = "", wxSize size = wxDefaultSize);
+- updateState · function · L99-L99 — void updateState(wxString target);
+- Enable · function · L108-L108 — bool Enable(bool enable = true) override;
+- Disable · function · L109-L109 — bool Disable() { return Enable(false); }
+- IsEnabled · function · L110-L110 — bool IsEnabled(){return is_enable;};
+- SetClientData · function · L112-L112 — void  SetClientData(void* data) { client_data = data; };
+- GetClientData · function · L113-L113 — void* GetClientData() { return client_data; };
+- SetAutoDisableWhenSwitch · function · L115-L115 — void SetAutoDisableWhenSwitch() { auto_disable_when_switch = true; };
+- paintEvent · function · L118-L118 — void paintEvent(wxPaintEvent& evt);
+- render · function · L119-L119 — void render(wxDC& dc);
+- doRender · function · L120-L120 — void doRender(wxDC& dc);
+- on_left_down · function · L121-L121 — void on_left_down(wxMouseEvent& evt);
+- MultiSwitchButton · class · L127-L184 — class MultiSwitchButton : public StaticBox
+- MultiSwitchButton · function · L130-L131 — MultiSwitchButton(wxWindow *parent = nullptr, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition,
+- AppendOption · function · L134-L134 — int AppendOption(const wxString &option, void *clientData = nullptr);
+- SetOptions · function · L135-L135 — void SetOptions(const std::vector<wxString> &options);
+- DeleteAllOptions · function · L136-L136 — void DeleteAllOptions();
+- GetCount · function · L138-L138 — unsigned int GetCount() const;
+- GetSelection · function · L140-L140 — int      GetSelection() const;
+- SetSelection · function · L141-L141 — void     SetSelection(int index);
+- GetSelectedText · function · L142-L142 — wxString GetSelectedText() const;
+- GetButton · function · L144-L144 — Button*  GetButton(unsigned int index) const
+- GetOptionText · function · L149-L149 — wxString GetOptionText(unsigned int index) const;
+- SetOptionText · function · L150-L150 — void     SetOptionText(unsigned int index, const wxString &text);
+- GetOptionData · function · L152-L152 — void *GetOptionData(unsigned int index) const;
+- SetOptionData · function · L153-L153 — void  SetOptionData(unsigned int index, void *clientData);
+- SetBackgroundColor · function · L155-L155 — void SetBackgroundColor(const StateColor &color);
+- SetTextColor · function · L156-L156 — void SetTextColor(const StateColor &color);
+- SetButtonTextColor · function · L157-L163 — void SetButtonTextColor(int index, const StateColor &color)
+- SetButtonCornerRadius · function · L164-L164 — void SetButtonCornerRadius(double radius);
+- SetButtonPadding · function · L165-L165 — void SetButtonPadding(const wxSize &padding);
+- Rescale · function · L167-L167 — void Rescale();
+- button_clicked · function · L170-L170 — void button_clicked(wxCommandEvent &event);
+- update_button_styles · function · L171-L171 — void update_button_styles();
+- send_selection_event · function · L173-L173 — bool send_selection_event();

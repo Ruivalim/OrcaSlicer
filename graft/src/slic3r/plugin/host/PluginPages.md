@@ -1,0 +1,29 @@
+# src/slic3r/plugin/host/PluginPages.hpp
+
+- Notebook · class · L17-L17 — class Notebook;
+- PluginPage · class · L21-L44 — class PluginPage : public GUI::WebPanel
+- PluginPage · function · L24-L24 — PluginPage(wxWindow* parent, std::shared_ptr<PagesPluginCapability> capability);
+- PluginPage · function · L27-L27 — PluginPage() = delete;
+- detach_capability · function · L29-L29 — void detach_capability();
+- push_message · function · L30-L30 — void push_message(const std::string& message);
+- set_icon · function · L31-L31 — void set_icon(const wxBitmap& icon) { m_icon = icon; }
+- icon · function · L32-L32 — const wxBitmap& icon() const { return m_icon; }
+- page_html · function · L35-L35 — std::optional<std::string> page_html() override;
+- on_page_message · function · L36-L36 — bool on_page_message(const std::string& kind, const nlohmann::json& data) override;
+- on_new_window · function · L39-L39 — void on_new_window(wxWebViewEvent& event);
+- PluginPages · class · L46-L83 — class PluginPages
+- PluginPages · function · L49-L49 — PluginPages() = default;
+- PluginPages · function · L52-L52 — PluginPages(const PluginPages&)            = delete;
+- initialize · function · L55-L55 — void initialize(Notebook* parent);
+- shutdown · function · L56-L56 — void shutdown();
+- on_cap_register · function · L58-L58 — void on_cap_register(const PluginCapabilityId& id);
+- on_cap_deregister · function · L59-L59 — void on_cap_deregister(const PluginCapabilityId& id);
+- on_plugin_register · function · L60-L60 — void on_plugin_register(const std::string& plugin_key);
+- on_plugin_deregister · function · L61-L61 — void on_plugin_deregister(const std::string& plugin_key);
+- set_visible_page_count · function · L63-L63 — void set_visible_page_count(int count);
+- relayout · function · L65-L65 — void relayout();
+- get_pages_cap · function · L68-L68 — std::shared_ptr<PagesPluginCapability> get_pages_cap(const PluginCapabilityId& id, bool is_enabled) const;
+- create_page · function · L69-L69 — bool create_page(const PluginCapabilityId& id);
+- remove_page · function · L70-L70 — void remove_page(const PluginCapabilityId& id);
+- show_overflow_menu · function · L72-L72 — void show_overflow_menu();
+- page_tab_id · function · L73-L73 — static wxString page_tab_id(const PluginCapabilityId& id);

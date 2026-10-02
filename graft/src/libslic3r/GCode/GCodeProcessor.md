@@ -1,0 +1,268 @@
+# src/libslic3r/GCode/GCodeProcessor.hpp
+
+- Print · class · L21-L21 — class Print;
+- EMoveType · type · L31-L45 — enum class EMoveType : unsigned char
+- SkipType · type · L51-L57 — enum SkipType
+- PrintEstimatedStatistics · class · L64-L136 — struct PrintEstimatedStatistics
+- ETimeMode · type · L66-L71 — enum class ETimeMode : unsigned char
+- Mode · class · L73-L85 — struct Mode
+- reset · function · L79-L84 — void reset()
+- PrintEstimatedStatistics · function · L111-L111 — PrintEstimatedStatistics() { reset(); }
+- reset · function · L113-L135 — void reset()
+- ConflictResult · class · L138-L150 — struct ConflictResult
+- ConflictResult · function · L146-L148 — ConflictResult(const std::string &objName1, const std::string &objName2, double height, const void *obj1, const void *obj2)
+- ConflictResult · function · L149-L149 — ConflictResult() = default;
+- GCodeCheckResult · class · L154-L165 — struct GCodeCheckResult
+- reset · function · L160-L164 — void reset()
+- FilamentPrintableResult · class · L167-L176 — struct FilamentPrintableResult
+- FilamentPrintableResult · function · L171-L171 — FilamentPrintableResult(){};
+- FilamentPrintableResult · function · L172-L172 — FilamentPrintableResult(std::vector<int> &conflict_filament, std::string plate_name) : conflict_filament(conflict_filament), plate_name(plate_name) {}
+- has_value · function · L173-L175 — bool has_value()
+- GCodeProcessorResult · class · L178-L377 — struct GCodeProcessorResult
+- FilamentSequenceHash · class · L180-L188 — struct FilamentSequenceHash
+- SettingsIds · class · L202-L213 — struct SettingsIds
+- reset · function · L208-L212 — void reset()
+- MoveVertex · class · L215-L249 — struct MoveVertex
+- volumetric_rate · function · L247-L247 — float volumetric_rate() const { return feedrate * mm3_per_mm; }
+- actual_volumetric_rate · function · L248-L248 — float actual_volumetric_rate() const { return actual_feedrate * mm3_per_mm; }
+- SliceWarning · class · L251-L256 — struct SliceWarning
+- reset · function · L322-L322 — void reset();
+- lock · function · L375-L375 — void  lock() const { result_mutex.lock(); }
+- unlock · function · L376-L376 — void  unlock() const { result_mutex.unlock(); }
+- FilamentUsageBlock · class · L386-L394 — struct FilamentUsageBlock
+- FilamentUsageBlock · function · L393-L393 — FilamentUsageBlock(int filament_id_, int extruder_id_, int nozzle_id_, unsigned int lower_gcode_id_, unsigned int upper_gcode_id_) :filament_id(filament_id_), extruder_id(extruder_id_), nozzle_id(nozzle_id_), lower_gcode_id(lower_gcode_id_), upper_gcode_id(upper_gcode_id_) {}
+- ExtruderUsageBlcok · class · L413-L445 — struct ExtruderUsageBlcok
+- initialize_step_1 · function · L426-L431 — void initialize_step_1(int extruder_id_, int start_id_, int start_filament_, int start_nozzle_id_)
+- initialize_step_2 · function · L432-L434 — void initialize_step_2(int post_extrusion_start_id_)
+- initialize_step_3 · function · L435-L440 — void initialize_step_3(int end_id_, int end_filament_, int post_extrusion_end_id_, int end_nozzle_id_)
+- reset · function · L441-L443 — void reset()
+- ExtruderUsageBlcok · function · L444-L444 — ExtruderUsageBlcok() = default;
+- CommandProcessor · class · L449-L464 — class CommandProcessor
+- TrieNode · class · L453-L457 — struct TrieNode
+- CommandProcessor · function · L459-L459 — CommandProcessor();
+- register_command · function · L460-L460 — void register_command(const std::string& str, command_handler_t handler,bool early_quit = false);
+- process_comand · function · L461-L461 — bool process_comand(std::string_view cmd, const GCodeReader::GCodeLine& line);
+- GCodeProcessor · class · L467-L1545 — class GCodeProcessor
+- ETags · type · L495-L521 — enum class ETags : unsigned char
+- reserved_tag · function · L523-L523 — static const std::string& reserved_tag(ETags tag) { return s_IsBBLPrinter ? Reserved_Tags[static_cast<unsigned char>(tag)] : Reserved_Tags_compatible[static_cast<unsigned char>(tag)]; }
+- contains_reserved_tag · function · L525-L525 — static bool contains_reserved_tag(const std::string& gcode, std::string& found_tag);
+- contains_reserved_tags · function · L528-L528 — static bool contains_reserved_tags(const std::string& gcode, unsigned int max_count, std::vector<std::string>& found_tag, bool is_bbl_printer);
+- get_gcode_last_filament · function · L530-L530 — static int get_gcode_last_filament(const std::string &gcode_str);
+- get_last_z_from_gcode · function · L531-L531 — static bool get_last_z_from_gcode(const std::string& gcode_str, double& z);
+- get_last_position_from_gcode · function · L532-L532 — static bool get_last_position_from_gcode(const std::string &gcode_str, Vec3f &pos);
+- EUnits · type · L544-L548 — enum class EUnits : unsigned char
+- EPositioningType · type · L550-L554 — enum class EPositioningType : unsigned char
+- CachedPosition · class · L556-L562 — struct CachedPosition
+- reset · function · L561-L561 — void reset();
+- CpColor · class · L564-L570 — struct CpColor
+- reset · function · L569-L569 — void reset();
+- FeedrateProfile · class · L573-L578 — struct FeedrateProfile
+- Trapezoid · class · L580-L593 — struct Trapezoid
+- acceleration_time · function · L586-L586 — float acceleration_time(float entry_feedrate, float acceleration) const;
+- cruise_time · function · L587-L587 — float cruise_time() const { return (cruise_feedrate != 0.0f) ? cruise_distance() / cruise_feedrate : 0.0f; }
+- deceleration_time · function · L588-L588 — float deceleration_time(float distance, float acceleration) const;
+- acceleration_distance · function · L589-L589 — float acceleration_distance() const { return accelerate_until; }
+- cruise_distance · function · L590-L590 — float cruise_distance() const { return decelerate_after - accelerate_until; }
+- deceleration_distance · function · L591-L591 — float deceleration_distance(float distance) const { return distance - decelerate_after; }
+- is_cruise_only · function · L592-L592 — bool is_cruise_only(float distance) const { return std::abs(cruise_distance() - distance) < EPSILON; }
+- TimeBlock · class · L595-L628 — struct TimeBlock
+- Flags · class · L597-L602 — struct Flags
+- calculate_trapezoid · function · L622-L622 — void calculate_trapezoid();
+- time · function · L624-L627 — float time() const
+- TimeMachine · class · L633-L735 — struct TimeMachine
+- State · class · L635-L653 — struct State
+- reset · function · L652-L652 — void reset();
+- CustomGCodeTime · class · L655-L662 — struct CustomGCodeTime
+- reset · function · L661-L661 — void reset();
+- G1LinesCacheItem · class · L664-L669 — struct G1LinesCacheItem
+- ActualSpeedMove · class · L671-L683 — struct ActualSpeedMove
+- StopTime · class · L699-L703 — struct StopTime
+- reset · function · L727-L727 — void reset();
+- merge_adjacent_additional_time_blocks · function · L730-L730 — static AdditionalBuffer merge_adjacent_additional_time_blocks(const AdditionalBuffer& buffer);
+- calculate_time · function · L734-L734 — void calculate_time(GCodeProcessorResult& result, PrintEstimatedStatistics::ETimeMode mode, size_t keep_last_n_blocks = 0, float additional_time = 0.0f, EMoveType target_move_type = EMoveType::Noop, bool is_final = false);
+- UsedFilaments · class · L737-L777 — struct UsedFilaments  // filaments per ColorChange
+- reset · function · L760-L760 — void reset();
+- increase_support_caches · function · L762-L762 — void increase_support_caches(double extruded_volume);
+- increase_model_caches · function · L763-L763 — void increase_model_caches(double extruded_volume);
+- increase_wipe_tower_caches · function · L764-L764 — void increase_wipe_tower_caches(double extruded_volume);
+- process_color_change_cache · function · L766-L766 — void process_color_change_cache();
+- process_model_cache · function · L767-L767 — void process_model_cache(GCodeProcessor* processor);
+- process_wipe_tower_cache · function · L768-L768 — void process_wipe_tower_cache(GCodeProcessor* processor);
+- process_support_cache · function · L769-L769 — void process_support_cache(GCodeProcessor* processor);
+- process_total_volume_cache · function · L770-L770 — void process_total_volume_cache(GCodeProcessor* processor);
+- update_flush_per_filament · function · L772-L772 — void update_flush_per_filament(size_t extrude_id, float flush_length);
+- process_role_cache · function · L773-L773 — void process_role_cache(GCodeProcessor* processor);
+- process_caches · function · L774-L774 — void process_caches(GCodeProcessor* processor);
+- TimeProcessor · class · L779-L826 — struct TimeProcessor
+- InsertLineType · type · L787-L795 — enum InsertLineType
+- Planner · class · L800-L808 — struct Planner
+- reset · function · L825-L825 — void reset();
+- PreCoolingInjector · class · L836-L937 — class PreCoolingInjector
+- ExtruderFreeBlock · class · L838-L850 — struct ExtruderFreeBlock
+- process_pre_cooling_and_heating · function · L852-L852 — void process_pre_cooling_and_heating(TimeProcessor::InsertedLinesMap& inserted_operation_lines);
+- build_extruder_free_blocks · function · L853-L853 — void build_extruder_free_blocks(const std::vector<ExtruderPreHeating::FilamentUsageBlock>& filament_usage_blocks, const std::vector<ExtruderPreHeating::ExtruderUsageBlcok>& extruder_usage_blocks);
+- PreCoolingInjector · function · L855-L900 — PreCoolingInjector(
+- inject_cooling_heating_command · function · L926-L933 — void inject_cooling_heating_command(
+- build_by_filament_blocks · function · L935-L935 — void build_by_filament_blocks(const std::vector<ExtruderPreHeating::FilamentUsageBlock>& filament_usage_blocks);
+- build_by_extruder_blocks · function · L936-L936 — void build_by_extruder_blocks(const std::vector<ExtruderPreHeating::ExtruderUsageBlcok>& extruder_usage_blocks);
+- SeamsDetector · class · L939-L958 — class SeamsDetector
+- activate · function · L945-L951 — void activate(bool active)
+- get_first_vertex · function · L953-L953 — std::optional<Vec3f> get_first_vertex() const { return m_first_vertex; }
+- set_first_vertex · function · L954-L954 — void set_first_vertex(const Vec3f& vertex) { m_first_vertex = vertex; }
+- is_active · function · L956-L956 — bool is_active() const { return m_active; }
+- has_first_vertex · function · L957-L957 — bool has_first_vertex() const { return m_first_vertex.has_value(); }
+- OptionsZCorrector · class · L962-L995 — class OptionsZCorrector
+- OptionsZCorrector · function · L969-L970 — explicit OptionsZCorrector(GCodeProcessorResult& result) : m_result(result)
+- set · function · L972-L975 — void set()
+- update · function · L977-L989 — void update(float height)
+- reset · function · L991-L994 — void reset()
+- DataChecker · class · L998-L1062 — struct DataChecker
+- Error · class · L1000-L1005 — struct Error
+- DataChecker · function · L1013-L1015 — DataChecker(const std::string& type, float threshold)
+- update · function · L1017-L1025 — void update(float value, ExtrusionRole role)
+- reset · function · L1027-L1027 — void reset() { last_tag_value = 0.0f; errors.clear(); count = 0; }
+- get_min · function · L1029-L1039 — std::pair<float, float> get_min() const
+- get_max · function · L1041-L1051 — std::pair<float, float> get_max() const
+- output · function · L1053-L1061 — void output() const
+- EProducer · type · L1187-L1199 — enum class EProducer
+- GCodeProcessor · function · L1213-L1213 — GCodeProcessor();
+- init_filament_maps_and_nozzle_type_when_import_only_gcode · function · L1214-L1214 — void init_filament_maps_and_nozzle_type_when_import_only_gcode();
+- ensure_nozzle_group_result · function · L1219-L1219 — void ensure_nozzle_group_result(int min_filament_count);
+- check_multi_extruder_gcode_valid · function · L1221-L1228 — bool check_multi_extruder_gcode_valid(const int                         extruder_size,
+- apply_config · function · L1229-L1229 — void apply_config(const PrintConfig& config);
+- set_print · function · L1230-L1230 — void set_print(Print* print) { m_print = print; }
+- initialize_from_context · function · L1233-L1235 — void initialize_from_context(const std::shared_ptr<MultiNozzleUtils::NozzleGroupResultBase>& nozzle_group_result)
+- export_config_for_render · function · L1237-L1237 — DynamicConfig export_config_for_render() const;
+- enable_stealth_time_estimator · function · L1239-L1239 — void enable_stealth_time_estimator(bool enabled);
+- is_stealth_time_estimator_enabled · function · L1240-L1242 — bool is_stealth_time_estimator_enabled() const
+- enable_machine_envelope_processing · function · L1243-L1243 — void enable_machine_envelope_processing(bool enabled) { m_time_processor.machine_envelope_processing_enabled = enabled; }
+- reset · function · L1244-L1244 — void reset();
+- get_result · function · L1246-L1246 — const GCodeProcessorResult& get_result() const { return m_result; }
+- result · function · L1247-L1247 — GCodeProcessorResult& result() { return m_result; }
+- extract_result · function · L1248-L1248 — GCodeProcessorResult&& extract_result() { return std::move(m_result); }
+- process_file · function · L1252-L1252 — void process_file(const std::string& filename, std::function<void()> cancel_callback = nullptr);
+- initialize · function · L1255-L1255 — void initialize(const std::string& filename);
+- initialize_result_moves · function · L1256-L1260 — void initialize_result_moves()
+- process_buffer · function · L1261-L1261 — void process_buffer(const std::string& buffer);
+- finalize · function · L1262-L1262 — void finalize(bool post_process);
+- get_time · function · L1264-L1264 — float get_time(PrintEstimatedStatistics::ETimeMode mode) const;
+- get_prepare_time · function · L1265-L1265 — float get_prepare_time(PrintEstimatedStatistics::ETimeMode mode) const;
+- get_time_dhm · function · L1266-L1266 — std::string get_time_dhm(PrintEstimatedStatistics::ETimeMode mode) const;
+- get_custom_gcode_times · function · L1267-L1267 — std::vector<std::pair<CustomGCode::Type, std::pair<float, float>>> get_custom_gcode_times(PrintEstimatedStatistics::ETimeMode mode, bool include_remaining) const;
+- get_first_layer_time · function · L1269-L1269 — float get_first_layer_time(PrintEstimatedStatistics::ETimeMode mode) const;
+- set_xy_offset · function · L1272-L1272 — void set_xy_offset(double x, double y) { m_x_offset = x; m_y_offset = y; }
+- detect_layer_based_on_tag · function · L1276-L1276 — void detect_layer_based_on_tag(bool enabled) { m_detect_layer_based_on_tag = enabled; }
+- register_commands · function · L1279-L1279 — void register_commands();
+- apply_config · function · L1280-L1280 — void apply_config(const DynamicPrintConfig& config);
+- apply_config_simplify3d · function · L1281-L1281 — void apply_config_simplify3d(const std::string& filename);
+- apply_config_superslicer · function · L1282-L1282 — void apply_config_superslicer(const std::string& filename);
+- process_gcode_line · function · L1283-L1283 — void process_gcode_line(const GCodeReader::GCodeLine& line, bool producers_enabled);
+- process_tags · function · L1286-L1286 — void process_tags(const std::string_view comment, bool producers_enabled);
+- process_producers_tags · function · L1287-L1287 — bool process_producers_tags(const std::string_view comment);
+- process_bambuslicer_tags · function · L1288-L1288 — bool process_bambuslicer_tags(const std::string_view comment);
+- process_cura_tags · function · L1289-L1289 — bool process_cura_tags(const std::string_view comment);
+- process_simplify3d_tags · function · L1290-L1290 — bool process_simplify3d_tags(const std::string_view comment);
+- process_craftware_tags · function · L1291-L1291 — bool process_craftware_tags(const std::string_view comment);
+- process_ideamaker_tags · function · L1292-L1292 — bool process_ideamaker_tags(const std::string_view comment);
+- process_kissslicer_tags · function · L1293-L1293 — bool process_kissslicer_tags(const std::string_view comment);
+- detect_producer · function · L1295-L1295 — bool detect_producer(const std::string_view comment);
+- process_G0 · function · L1298-L1298 — void process_G0(const GCodeReader::GCodeLine& line);
+- process_G1 · function · L1299-L1299 — void process_G1(const GCodeReader::GCodeLine& line, const std::optional<unsigned int>& remaining_internal_g1_lines = std::nullopt);
+- G1DiscretizationOrigin · type · L1300-L1303 — enum class G1DiscretizationOrigin
+- process_G1 · function · L1304-L1306 — void process_G1(const std::array<std::optional<double>, 4>& axes = { std::nullopt, std::nullopt, std::nullopt, std::nullopt },
+- process_G2_G3 · function · L1309-L1309 — void process_G2_G3(const GCodeReader::GCodeLine& line, bool clockwise);
+- process_VG1 · function · L1311-L1311 — void process_VG1(const GCodeReader::GCodeLine& line);
+- process_G4 · function · L1315-L1315 — void process_G4(const GCodeReader::GCodeLine& line);
+- process_G10 · function · L1318-L1318 — void process_G10(const GCodeReader::GCodeLine& line);
+- process_G11 · function · L1321-L1321 — void process_G11(const GCodeReader::GCodeLine& line);
+- process_G20 · function · L1324-L1324 — void process_G20(const GCodeReader::GCodeLine& line);
+- process_G21 · function · L1327-L1327 — void process_G21(const GCodeReader::GCodeLine& line);
+- process_G22 · function · L1330-L1330 — void process_G22(const GCodeReader::GCodeLine& line);
+- process_G23 · function · L1333-L1333 — void process_G23(const GCodeReader::GCodeLine& line);
+- process_G28 · function · L1336-L1336 — void process_G28(const GCodeReader::GCodeLine& line);
+- process_G29 · function · L1339-L1339 — void process_G29(const GCodeReader::GCodeLine& line);
+- process_G90 · function · L1342-L1342 — void process_G90(const GCodeReader::GCodeLine& line);
+- process_G91 · function · L1345-L1345 — void process_G91(const GCodeReader::GCodeLine& line);
+- process_G92 · function · L1348-L1348 — void process_G92(const GCodeReader::GCodeLine& line);
+- process_M1 · function · L1351-L1351 — void process_M1(const GCodeReader::GCodeLine& line);
+- process_M82 · function · L1354-L1354 — void process_M82(const GCodeReader::GCodeLine& line);
+- process_M83 · function · L1357-L1357 — void process_M83(const GCodeReader::GCodeLine& line);
+- process_M104 · function · L1360-L1360 — void process_M104(const GCodeReader::GCodeLine& line);
+- process_VM104 · function · L1363-L1363 — void process_VM104(const GCodeReader::GCodeLine& line);
+- process_VM109 · function · L1366-L1366 — void process_VM109(const GCodeReader::GCodeLine& line);
+- process_M106 · function · L1369-L1369 — void process_M106(const GCodeReader::GCodeLine& line);
+- process_M107 · function · L1372-L1372 — void process_M107(const GCodeReader::GCodeLine& line);
+- process_M900 · function · L1376-L1376 — void process_M900(const GCodeReader::GCodeLine& line);
+- process_M572 · function · L1377-L1377 — void process_M572(const GCodeReader::GCodeLine &line);
+- process_SET_PRESSURE_ADVANCE · function · L1378-L1378 — void process_SET_PRESSURE_ADVANCE(const GCodeReader::GCodeLine& line);
+- process_M108 · function · L1381-L1381 — void process_M108(const GCodeReader::GCodeLine& line);
+- process_M109 · function · L1384-L1384 — void process_M109(const GCodeReader::GCodeLine& line);
+- process_M132 · function · L1387-L1387 — void process_M132(const GCodeReader::GCodeLine& line);
+- process_M135 · function · L1390-L1390 — void process_M135(const GCodeReader::GCodeLine& line);
+- process_M140 · function · L1393-L1393 — void process_M140(const GCodeReader::GCodeLine& line);
+- process_M190 · function · L1396-L1396 — void process_M190(const GCodeReader::GCodeLine& line);
+- process_M191 · function · L1399-L1399 — void process_M191(const GCodeReader::GCodeLine& line);
+- process_M201 · function · L1402-L1402 — void process_M201(const GCodeReader::GCodeLine& line);
+- process_M203 · function · L1405-L1405 — void process_M203(const GCodeReader::GCodeLine& line);
+- process_M204 · function · L1408-L1408 — void process_M204(const GCodeReader::GCodeLine& line);
+- process_M205 · function · L1411-L1411 — void process_M205(const GCodeReader::GCodeLine& line);
+- process_SET_VELOCITY_LIMIT · function · L1414-L1414 — void process_SET_VELOCITY_LIMIT(const GCodeReader::GCodeLine& line);
+- process_M221 · function · L1417-L1417 — void process_M221(const GCodeReader::GCodeLine& line);
+- process_M400 · function · L1420-L1420 — void process_M400(const GCodeReader::GCodeLine& line);
+- process_M401 · function · L1423-L1423 — void process_M401(const GCodeReader::GCodeLine& line);
+- process_M402 · function · L1426-L1426 — void process_M402(const GCodeReader::GCodeLine& line);
+- process_M566 · function · L1429-L1429 — void process_M566(const GCodeReader::GCodeLine& line);
+- process_M702 · function · L1432-L1432 — void process_M702(const GCodeReader::GCodeLine& line);
+- process_M6211 · function · L1435-L1435 — void process_M6211(const GCodeReader::GCodeLine& line);
+- process_elegoo_M6211 · function · L1436-L1436 — void process_elegoo_M6211(const GCodeReader::GCodeLine& line);
+- process_SYNC · function · L1438-L1438 — void process_SYNC(const GCodeReader::GCodeLine& line);
+- process_T · function · L1441-L1441 — void process_T(const GCodeReader::GCodeLine& line);
+- process_T · function · L1442-L1442 — void process_T(const std::string_view command);
+- process_T · function · L1444-L1444 — void process_T(const std::string_view command, int nozzle_id);
+- process_M1020 · function · L1445-L1445 — void process_M1020(const GCodeReader::GCodeLine &line);
+- process_M622 · function · L1447-L1447 — void process_M622(const GCodeReader::GCodeLine &line);
+- process_M623 · function · L1448-L1448 — void process_M623(const GCodeReader::GCodeLine &line);
+- process_filament_change · function · L1450-L1450 — void process_filament_change(int id);
+- process_filament_change · function · L1454-L1454 — void process_filament_change(int id, int nozzle_id);
+- resolve_target_nozzle · function · L1458-L1459 — std::optional<MultiNozzleUtils::NozzleInfo> resolve_target_nozzle(
+- get_machine_config_idx · function · L1463-L1463 — int  get_machine_config_idx() const;
+- use_multi_nozzle_change_time_model · function · L1467-L1467 — bool use_multi_nozzle_change_time_model() const;
+- run_post_process · function · L1472-L1472 — void run_post_process();
+- run_second_pass_injection · function · L1478-L1478 — void run_second_pass_injection();
+- handle_offsets_of_second_process · function · L1481-L1481 — void handle_offsets_of_second_process(const TimeProcessor::InsertedLinesMap& inserted_operation_lines);
+- store_move_vertex · function · L1484-L1484 — void store_move_vertex(EMoveType type, EMovePathType path_type = EMovePathType::Noop_move, bool internal_only = false);
+- set_extrusion_role · function · L1486-L1486 — void set_extrusion_role(ExtrusionRole role);
+- set_skippable_type · function · L1488-L1488 — void set_skippable_type(const std::string_view type);
+- minimum_feedrate · function · L1490-L1490 — float minimum_feedrate(PrintEstimatedStatistics::ETimeMode mode, float feedrate) const;
+- minimum_travel_feedrate · function · L1491-L1491 — float minimum_travel_feedrate(PrintEstimatedStatistics::ETimeMode mode, float feedrate) const;
+- get_axis_max_feedrate · function · L1496-L1496 — float get_axis_max_feedrate(PrintEstimatedStatistics::ETimeMode mode, Axis axis) const;
+- get_axis_max_feedrate · function · L1497-L1497 — float get_axis_max_feedrate(PrintEstimatedStatistics::ETimeMode mode, Axis axis, int machine_idx) const;
+- get_axis_max_acceleration · function · L1498-L1498 — float get_axis_max_acceleration(PrintEstimatedStatistics::ETimeMode mode, Axis axis) const;
+- get_axis_max_acceleration · function · L1499-L1499 — float get_axis_max_acceleration(PrintEstimatedStatistics::ETimeMode mode, Axis axis, int machine_idx) const;
+- get_axis_max_jerk_with_jd · function · L1500-L1500 — float get_axis_max_jerk_with_jd(PrintEstimatedStatistics::ETimeMode mode, Axis axis, float acceleration) const;
+- get_axis_max_jerk_with_jd · function · L1501-L1501 — float get_axis_max_jerk_with_jd(PrintEstimatedStatistics::ETimeMode mode, Axis axis) const;
+- get_junction_deviation · function · L1503-L1503 — float get_junction_deviation(PrintEstimatedStatistics::ETimeMode mode, float acceleration) const;
+- calc_junction_acceleration · function · L1505-L1506 — float calc_junction_acceleration(const TimeBlock& block, const Vec4f& junction_unit_vec,
+- calc_vmax_junction_deviation · function · L1509-L1511 — float calc_vmax_junction_deviation(const TimeBlock& block, const TimeMachine::State& prev,
+- get_axis_max_jerk · function · L1512-L1512 — float get_axis_max_jerk(PrintEstimatedStatistics::ETimeMode mode, Axis axis) const;
+- get_xyz_max_jerk · function · L1513-L1513 — Vec3f get_xyz_max_jerk(PrintEstimatedStatistics::ETimeMode mode) const;
+- get_retract_acceleration · function · L1514-L1514 — float get_retract_acceleration(PrintEstimatedStatistics::ETimeMode mode) const;
+- set_retract_acceleration · function · L1515-L1515 — void  set_retract_acceleration(PrintEstimatedStatistics::ETimeMode mode, float value);
+- get_acceleration · function · L1516-L1516 — float get_acceleration(PrintEstimatedStatistics::ETimeMode mode) const;
+- set_acceleration · function · L1517-L1517 — void  set_acceleration(PrintEstimatedStatistics::ETimeMode mode, float value);
+- get_travel_acceleration · function · L1518-L1518 — float get_travel_acceleration(PrintEstimatedStatistics::ETimeMode mode) const;
+- set_travel_acceleration · function · L1519-L1519 — void  set_travel_acceleration(PrintEstimatedStatistics::ETimeMode mode, float value);
+- get_filament_load_time · function · L1520-L1520 — float get_filament_load_time(size_t extruder_id);
+- get_filament_unload_time · function · L1521-L1521 — float get_filament_unload_time(size_t extruder_id);
+- get_extruder_change_time · function · L1522-L1522 — float get_extruder_change_time(size_t extruder_id);
+- get_filament_vitrification_temperature · function · L1523-L1523 — int   get_filament_vitrification_temperature(size_t extrude_id);
+- process_custom_gcode_time · function · L1524-L1524 — void process_custom_gcode_time(CustomGCode::Type code);
+- process_filaments · function · L1525-L1525 — void process_filaments(CustomGCode::Type code);
+- calculate_time · function · L1527-L1527 — void calculate_time(GCodeProcessorResult& result, size_t keep_last_n_blocks = 0, float additional_time = 0.0f, EMoveType target_move_type = EMoveType::Noop, bool is_final = false);
+- simulate_st_synchronize · function · L1530-L1530 — void simulate_st_synchronize(float additional_time = 0.0f, EMoveType target_move_type = EMoveType::Noop);
+- update_estimated_times_stats · function · L1532-L1532 — void update_estimated_times_stats();
+- extract_absolute_position_on_axis · function · L1534-L1534 — double extract_absolute_position_on_axis(Axis axis, const GCodeReader::GCodeLine& line, double area_filament_cross_section);
+- update_slice_warnings · function · L1537-L1537 — void update_slice_warnings();
+- get_filament_id · function · L1540-L1540 — int get_filament_id(bool force_initialize = true) const;
+- get_last_filament_id · function · L1542-L1542 — int get_last_filament_id(bool force_initialize = true) const;
+- get_extruder_id · function · L1544-L1544 — int get_extruder_id(bool force_initialize = true)const;

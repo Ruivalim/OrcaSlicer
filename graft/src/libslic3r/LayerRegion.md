@@ -1,0 +1,34 @@
+# src/libslic3r/LayerRegion.cpp
+
+- flow · method · L21-L24 — Flow LayerRegion::flow(FlowRole role) const
+- flow · method · L26-L29 — Flow LayerRegion::flow(FlowRole role, double layer_height) const
+- bridging_flow · method · L31-L60 — Flow LayerRegion::bridging_flow(FlowRole role, bool thick_bridge) const
+- slices_to_fill_surfaces_clipped · method · L63-L80 — void LayerRegion::slices_to_fill_surfaces_clipped()
+- make_perimeters · method · L82-L146 — void LayerRegion::make_perimeters(const SurfaceCollection &slices, const LayerRegionPtrs &compatible_regions, SurfaceCollection* fill_surfaces, ExPolygons* fill_no_overlap)
+- fill_surfaces_extract_expolygons · function · L151-L168 — static ExPolygons fill_surfaces_extract_expolygons(Surfaces &surfaces, std::initializer_list<SurfaceType> surface_types, double &thickness)
+- ExpansionZone · class · L170-L175 — struct ExpansionZone
+- Bridge · class · L178-L183 — struct Bridge
+- group_id · function · L186-L194 — uint32_t group_id(std::vector<Bridge> &bridges, uint32_t src_id)
+- get_grouped_bridges · function · L196-L264 — std::vector<Bridge> get_grouped_bridges(
+- detect_bridge_directions · function · L266-L312 — void detect_bridge_directions(
+- merge_bridges · function · L314-L355 — Surfaces merge_bridges(
+- ExpansionResult · class · L357-L360 — struct ExpansionResult
+- expand_expolygons · function · L362-L397 — ExpansionResult expand_expolygons(
+- expand_bridges_detect_orientations · function · L402-L441 — Surfaces expand_bridges_detect_orientations(
+- expand_merge_surfaces · function · L443-L488 — Surfaces expand_merge_surfaces(
+- process_external_surfaces · method · L490-L627 — void LayerRegion::process_external_surfaces(const Layer *lower_layer, const Polygons *lower_layer_covered)
+- process_external_surfaces · method · L634-L936 — void LayerRegion::process_external_surfaces(const Layer *lower_layer, const Polygons *lower_layer_covered)
+- prepare_fill_surfaces · method · L939-L977 — void LayerRegion::prepare_fill_surfaces()
+- infill_area_threshold · method · L979-L983 — double LayerRegion::infill_area_threshold() const
+- trim_surfaces · method · L985-L992 — void LayerRegion::trim_surfaces(const Polygons &trimming_polygons)
+- elephant_foot_compensation_step · method · L994-L1003 — void LayerRegion::elephant_foot_compensation_step(const float elephant_foot_compensation_perimeter_step, const Polygons &trimming_polygons)
+- export_region_slices_to_svg · method · L1005-L1022 — void LayerRegion::export_region_slices_to_svg(const char *path) const
+- svg · function · L1014-L1014 — SVG svg(path, bbox);
+- export_region_slices_to_svg_debug · method · L1025-L1030 — void LayerRegion::export_region_slices_to_svg_debug(const char *name) const
+- export_region_fill_surfaces_to_svg · method · L1032-L1049 — void LayerRegion::export_region_fill_surfaces_to_svg(const char *path) const
+- svg · function · L1041-L1041 — SVG svg(path, bbox);
+- export_region_fill_surfaces_to_svg_debug · method · L1052-L1057 — void LayerRegion::export_region_fill_surfaces_to_svg_debug(const char *name) const
+- simplify_entity_collection · method · L1059-L1073 — void LayerRegion::simplify_entity_collection(ExtrusionEntityCollection* entity_collection)
+- simplify_path · method · L1075-L1091 — void LayerRegion::simplify_path(ExtrusionPath* path)
+- simplify_multi_path · method · L1093-L1111 — void LayerRegion::simplify_multi_path(ExtrusionMultiPath* multipath)
+- simplify_loop · method · L1113-L1131 — void LayerRegion::simplify_loop(ExtrusionLoop* loop)

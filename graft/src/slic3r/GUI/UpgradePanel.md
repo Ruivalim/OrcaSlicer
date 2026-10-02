@@ -1,0 +1,71 @@
+# src/slic3r/GUI/UpgradePanel.hpp
+
+- uiDeviceUpdateVersion · class · L16-L16 — class uiDeviceUpdateVersion;
+- ExtensionPanel · class · L18-L37 — class ExtensionPanel : public wxPanel
+- ExtensionPanel · function · L29-L34 — ExtensionPanel(wxWindow* parent,
+- msw_rescale · function · L36-L36 — void msw_rescale();
+- AmsPanel · class · L39-L59 — class AmsPanel : public wxPanel
+- AmsPanel · function · L50-L55 — AmsPanel(wxWindow *      parent,
+- msw_rescale · function · L58-L58 — void msw_rescale();
+- ExtraAmsPanel · class · L61-L70 — class ExtraAmsPanel : public AmsPanel
+- ExtraAmsPanel · function · L64-L69 — ExtraAmsPanel(wxWindow* parent,
+- WX_DEFINE_ARRAY · function · L72-L72 — WX_DEFINE_ARRAY(AmsPanel*, AmsPanelHash);
+- MachineInfoPanel · class · L75-L275 — class MachineInfoPanel : public wxPanel
+- create_caption_panel · function · L177-L177 — wxPanel* create_caption_panel(wxWindow *parent);
+- upgrade_firmware_internal · function · L201-L201 — void upgrade_firmware_internal();
+- on_show_release_note · function · L202-L202 — void on_show_release_note(wxMouseEvent &event);
+- confirm_upgrade · function · L203-L203 — void confirm_upgrade(MachineObject* obj = nullptr);
+- MachineInfoPanel · function · L206-L206 — MachineInfoPanel(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL, const wxString& name = wxEmptyString);
+- on_sys_color_changed · function · L209-L209 — void on_sys_color_changed();
+- update_printer_imgs · function · L210-L210 — void update_printer_imgs(MachineObject* obj);
+- init_bitmaps · function · L211-L211 — void init_bitmaps();
+- rescale_bitmaps · function · L212-L212 — void rescale_bitmaps();
+- get_btn · function · L214-L214 — Button* get_btn()
+- msw_rescale · function · L218-L218 — void msw_rescale();
+- update · function · L219-L219 — void update(MachineObject *obj);
+- update_version_text · function · L220-L220 — void update_version_text(MachineObject *obj);
+- update_ams_ext · function · L221-L221 — void update_ams_ext(MachineObject *obj);
+- show_status · function · L222-L222 — void show_status(int status, std::string upgrade_status_str = "");
+- show_ams · function · L223-L223 — void show_ams(bool show = false, bool force_update = false);
+- show_ext · function · L224-L224 — void show_ext(bool show = false, bool force_update = false);
+- show_extra_ams · function · L225-L225 — void show_extra_ams(bool show = false, bool force_update = false);
+- on_upgrade_firmware · function · L227-L227 — void on_upgrade_firmware(wxCommandEvent &event);
+- on_consisitency_upgrade_firmware · function · L228-L228 — void on_consisitency_upgrade_firmware(wxCommandEvent &event);
+- PanelType · type · L236-L241 — enum PanelType
+- createAirPumpWidgets · function · L244-L244 — void createAirPumpWidgets(wxBoxSizer* main_left_sizer);
+- createCuttingWidgets · function · L245-L245 — void createCuttingWidgets(wxBoxSizer* main_left_sizer);
+- createLaserWidgets · function · L246-L246 — void createLaserWidgets(wxBoxSizer* main_left_sizer);
+- createExtinguishWidgets · function · L247-L247 — void createExtinguishWidgets(wxBoxSizer* main_left_sizer);
+- createFilaTrackSwitchWidgets · function · L248-L248 — void createFilaTrackSwitchWidgets(wxBoxSizer* main_left_sizer);
+- createRotaryWidgets · function · L249-L249 — void createRotaryWidgets(wxBoxSizer* main_left_sizer);      // Orca: accessory firmware version display
+- createExhaustFan · function · L250-L250 — void createExhaustFan(wxBoxSizer* main_left_sizer);         // Orca: accessory firmware version display
+- createAmshubWidgets · function · L251-L251 — void createAmshubWidgets(wxBoxSizer* main_left_sizer);      // Orca: accessory firmware version display
+- createNozzleRackWidgets · function · L252-L252 — void createNozzleRackWidgets(wxBoxSizer* main_left_sizer);
+- update_air_pump · function · L254-L254 — void update_air_pump(MachineObject* obj);
+- update_cut · function · L255-L255 — void update_cut(MachineObject* obj);
+- update_laszer · function · L256-L256 — void update_laszer(MachineObject* obj);
+- update_extinguish · function · L257-L257 — void update_extinguish(MachineObject* obj);
+- update_filatrack · function · L258-L258 — void update_filatrack(MachineObject* obj);
+- update_rotary · function · L259-L259 — void update_rotary(MachineObject* obj);                     // Orca: accessory firmware version display
+- update_exhaustfan · function · L260-L260 — void update_exhaustfan(MachineObject* obj);                 // Orca: accessory firmware version display
+- update_amshub · function · L261-L261 — void update_amshub(MachineObject* obj);                     // Orca: accessory firmware version display
+- update_nozzle_rack · function · L262-L262 — void update_nozzle_rack(MachineObject* obj);
+- show_air_pump · function · L264-L264 — void show_air_pump(bool show = true);
+- show_cut · function · L265-L265 — void show_cut(bool show = true);
+- show_laszer · function · L266-L266 — void show_laszer(bool show = true);
+- show_extinguish · function · L267-L267 — void show_extinguish(bool show = true);
+- show_filatrack · function · L268-L268 — void show_filatrack(bool show = true);
+- show_rotary · function · L269-L269 — void show_rotary(bool show = true);                         // Orca: accessory firmware version display
+- show_exhaustfan · function · L270-L270 — void show_exhaustfan(bool show = true);                     // Orca: accessory firmware version display
+- show_amshub · function · L271-L271 — void show_amshub(bool show = true);                         // Orca: accessory firmware version display
+- show_nozzle_rack · function · L272-L272 — void show_nozzle_rack(bool show = true);
+- on_nozzle_rack_update · function · L274-L274 — void on_nozzle_rack_update(wxCommandEvent& event);
+- UpgradePanel · class · L284-L316 — class UpgradePanel : public wxPanel
+- UpgradePanel · function · L304-L304 — UpgradePanel(wxWindow *parent, wxWindowID id = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- clean_push_upgrade_panel · function · L306-L306 — void clean_push_upgrade_panel();
+- msw_rescale · function · L307-L307 — void msw_rescale();
+- Show · function · L308-L308 — bool Show(bool show = true) override;
+- refresh_version_and_firmware · function · L310-L310 — void refresh_version_and_firmware(MachineObject* obj);
+- update · function · L311-L311 — void update(MachineObject *obj);
+- show_status · function · L312-L312 — void show_status(int status);
+- on_sys_color_changed · function · L313-L313 — void on_sys_color_changed();

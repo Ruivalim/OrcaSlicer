@@ -1,0 +1,30 @@
+# src/libslic3r/PNGReadWrite.hpp
+
+- IStream · class · L12-L16 — struct IStream
+- read · function · L14-L14 — virtual size_t read(std::uint8_t *outp, size_t amount) = 0;
+- is_ok · function · L15-L15 — virtual bool is_ok() const = 0;
+- Image · class · L20-L24 — template<class PxT> struct Image
+- get · function · L23-L23 — PxT get(size_t row, size_t col) const { return buf[row * cols + col]; }
+- ImageColorscale · class · L27-L30 — struct ImageColorscale:Image<unsigned char>
+- decode_png · function · L35-L35 — bool decode_png(IStream &stream, ImageGreyscale &out_img);
+- decode_colored_png · function · L38-L38 — bool decode_colored_png(IStream &in_buf, ImageColorscale &out_img);
+- ReadBuf · class · L47-L47 — struct ReadBuf { const void *buf = nullptr; const size_t sz = 0; };
+- is_png · function · L49-L49 — bool is_png(const ReadBuf &pngbuf);
+- ReadBufStream · class · L51-L69 — struct ReadBufStream: public IStream
+- ReadBufStream · function · L55-L55 — explicit ReadBufStream(const ReadBuf &buf): rbuf_ref{buf} {}
+- read · function · L57-L66 — size_t read(std::uint8_t *outp, size_t amount) override
+- is_ok · function · L68-L68 — bool is_ok() const override { return pos < rbuf_ref.sz; }
+- decode_png · function · L71-L76 — template<class Img> bool decode_png(const ReadBuf &in_buf, Img &out_img)
+- decode_colored_png · function · L78-L78 — bool decode_colored_png(const ReadBuf &in_buf, ImageColorscale &out_img);
+- write_rgb_to_file · function · L86-L86 — bool write_rgb_to_file(const char *file_name_utf8, size_t width, size_t height, const uint8_t *data_rgb);
+- write_rgb_to_file · function · L87-L87 — bool write_rgb_to_file(const std::string &file_name_utf8, size_t width, size_t height, const uint8_t *data_rgb);
+- write_rgb_to_file · function · L88-L88 — bool write_rgb_to_file(const std::string &file_name_utf8, size_t width, size_t height, const std::vector<uint8_t> &data_rgb);
+- write_gray_to_file · function · L90-L90 — bool write_gray_to_file(const char *file_name_utf8, size_t width, size_t height, const uint8_t *data_gray);
+- write_gray_to_file · function · L91-L91 — bool write_gray_to_file(const std::string &file_name_utf8, size_t width, size_t height, const uint8_t *data_gray);
+- write_gray_to_file · function · L92-L92 — bool write_gray_to_file(const std::string &file_name_utf8, size_t width, size_t height, const std::vector<uint8_t> &data_gray);
+- write_rgb_to_file_scaled · function · L96-L96 — bool write_rgb_to_file_scaled(const char *file_name_utf8, size_t width, size_t height, const uint8_t *data_rgb, size_t scale);
+- write_rgb_to_file_scaled · function · L97-L97 — bool write_rgb_to_file_scaled(const std::string &file_name_utf8, size_t width, size_t height, const uint8_t *data_rgb, size_t scale);
+- write_rgb_to_file_scaled · function · L98-L98 — bool write_rgb_to_file_scaled(const std::string &file_name_utf8, size_t width, size_t height, const std::vector<uint8_t> &data_rgb, size_t scale);
+- write_gray_to_file_scaled · function · L100-L100 — bool write_gray_to_file_scaled(const char *file_name_utf8, size_t width, size_t height, const uint8_t *data_gray, size_t scale);
+- write_gray_to_file_scaled · function · L101-L101 — bool write_gray_to_file_scaled(const std::string &file_name_utf8, size_t width, size_t height, const uint8_t *data_gray, size_t scale);
+- write_gray_to_file_scaled · function · L102-L102 — bool write_gray_to_file_scaled(const std::string &file_name_utf8, size_t width, size_t height, const std::vector<uint8_t> &data_gray, size_t scale);

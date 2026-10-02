@@ -1,0 +1,104 @@
+# src/libslic3r/GCodeWriter.hpp
+
+- GCodeWriter · class · L15-L217 — class GCodeWriter
+- GCodeWriter · function · L20-L32 — GCodeWriter() :
+- filament · function · L33-L33 — Extruder* filament(size_t extruder_id) { assert(extruder_id < m_curr_filament_extruder.size()); return m_curr_filament_extruder[extruder_id]; }
+- filament · function · L34-L34 — const Extruder* filament(size_t extruder_id) const { assert(extruder_id < m_curr_filament_extruder.size()); return m_curr_filament_extruder[extruder_id]; }
+- filament · function · L35-L35 — Extruder* filament() { if (m_curr_extruder_id == -1) return nullptr; return m_curr_filament_extruder[m_curr_extruder_id]; }
+- filament · function · L36-L36 — const Extruder* filament() const { if(m_curr_extruder_id==-1) return nullptr; return m_curr_filament_extruder[m_curr_extruder_id]; }
+- apply_print_config · function · L38-L38 — void                 apply_print_config(const PrintConfig &print_config);
+- set_extruders · function · L40-L40 — void                 set_extruders(std::vector<unsigned int> extruder_ids);
+- extruders · function · L41-L41 — const std::vector<Extruder>& extruders() const { return m_filament_extruders; }
+- extruder_ids · function · L42-L48 — std::vector<unsigned int> extruder_ids() const
+- preamble · function · L49-L49 — std::string preamble();
+- postamble · function · L50-L50 — std::string postamble() const;
+- set_temperature · function · L51-L51 — static std::string set_temperature(unsigned int temperature, GCodeFlavor flavor, bool wait = false, int tool = -1, std::string comment = std::string());
+- set_temperature · function · L53-L53 — std::string set_temperature(unsigned int temperature, bool wait = false, int tool = -1) const;
+- set_bed_temperature · function · L54-L54 — std::string set_bed_temperature(int temperature, bool wait = false);
+- set_chamber_temperature · function · L55-L55 — std::string set_chamber_temperature(int temperature, bool wait = false);
+- set_print_acceleration · function · L56-L56 — std::string set_print_acceleration(unsigned int acceleration)   { return set_acceleration_internal(Acceleration::Print, acceleration); }
+- set_travel_acceleration · function · L57-L57 — std::string set_travel_acceleration(unsigned int acceleration)  { return set_acceleration_internal(Acceleration::Travel, acceleration); }
+- set_jerk_xy · function · L58-L58 — std::string set_jerk_xy(double jerk);
+- set_accel_and_jerk · function · L60-L60 — std::string set_accel_and_jerk(unsigned int acceleration, double jerk);
+- set_junction_deviation · function · L61-L61 — std::string set_junction_deviation(double junction_deviation);
+- set_pressure_advance · function · L62-L62 — std::string set_pressure_advance(double pa) const;
+- set_input_shaping · function · L63-L63 — std::string set_input_shaping(char axis, float damp, float freq, std::string type) const;
+- reset_e · function · L64-L64 — std::string reset_e(bool force = false);
+- update_progress · function · L65-L65 — std::string update_progress(unsigned int num, unsigned int tot, bool allow_100 = false) const;
+- enable_power_loss_recovery · function · L66-L66 — std::string enable_power_loss_recovery(PowerLossRecoveryMode mode);
+- need_toolchange · function · L68-L68 — bool        need_toolchange(unsigned int filament_id) const;
+- set_extruder · function · L69-L69 — std::string set_extruder(unsigned int filament_id);
+- init_extruder · function · L70-L70 — void init_extruder(unsigned int filament_id);
+- get_extruder_retracted_length · function · L73-L73 — double get_extruder_retracted_length(const int filament_id);
+- toolchange_prefix · function · L76-L76 — std::string toolchange_prefix() const;
+- toolchange · function · L77-L77 — std::string toolchange(unsigned int filament_id, int nozzle_id);
+- set_speed · function · L78-L78 — std::string set_speed(double F, const std::string &comment = std::string(), const std::string &cooling_marker = std::string());
+- get_current_speed · function · L80-L80 — double      get_current_speed() const { return m_current_speed;}
+- travel_to_xy · function · L81-L81 — std::string travel_to_xy(const Vec2d &point, const std::string &comment = std::string());
+- travel_to_xyz · function · L82-L82 — std::string travel_to_xyz(const Vec3d &point, const std::string &comment = std::string(), bool force_z = false);
+- travel_to_z · function · L83-L83 — std::string travel_to_z(double z, const std::string &comment = std::string(), bool force = false);
+- will_move_z · function · L84-L84 — bool        will_move_z(double z) const;
+- extrude_to_xy · function · L85-L85 — std::string extrude_to_xy(const Vec2d &point, double dE, const std::string &comment = std::string(), bool force_no_extrusion = false);
+- extrude_arc_to_xy · function · L87-L87 — std::string extrude_arc_to_xy(const Vec2d &point, const Vec2d &center_offset, double dE, const bool is_ccw, const std::string &comment = std::string(), bool force_no_extrusion = false);
+- extrude_to_xyz · function · L88-L88 — std::string extrude_to_xyz(const Vec3d &point, double dE, const std::string &comment = std::string(), bool force_no_extrusion = false);
+- retract · function · L89-L89 — std::string retract(bool before_wipe = false, double retract_length = 0);
+- retract_for_toolchange · function · L90-L90 — std::string retract_for_toolchange(bool before_wipe = false, double retract_length = 0);
+- unretract · function · L93-L93 — std::string unretract(float extra_retract = 0.f);
+- eager_lift · function · L95-L95 — std::string eager_lift(const LiftType type);
+- lazy_lift · function · L97-L97 — std::string lazy_lift(LiftType lift_type = LiftType::NormalLift, bool spiral_vase = false);
+- unlift · function · L98-L98 — std::string unlift();
+- get_position · function · L99-L99 — const Vec3d& get_position() const { return m_pos; }
+- get_position · function · L100-L100 — Vec3d&       get_position() { return m_pos; }
+- set_position · function · L101-L101 — void        set_position(const Vec3d& in) { m_pos = in; }
+- get_zhop · function · L102-L102 — double      get_zhop() const { return m_lifted; }
+- set_xy_offset · function · L105-L105 — void set_xy_offset(double x, double y) { m_x_offset = x; m_y_offset = y; }
+- get_xy_offset · function · L106-L106 — Vec2f get_xy_offset() { return Vec2f{m_x_offset, m_y_offset}; };
+- set_fan · function · L110-L110 — static std::string set_fan(const GCodeFlavor gcode_flavor, unsigned int speed, unsigned int part_cooling_fan_min_pwm = 0);
+- set_fan · function · L113-L113 — std::string set_fan(unsigned int speed) const;
+- set_additional_fan · function · L115-L115 — static std::string set_additional_fan(unsigned int speed);
+- set_exhaust_fan · function · L116-L116 — static std::string set_exhaust_fan(int speed);
+- set_object_start_str · function · L118-L118 — void set_object_start_str(std::string start_string) { m_gcode_label_objects_start = start_string; }
+- is_object_start_str_empty · function · L119-L119 — bool is_object_start_str_empty() { return m_gcode_label_objects_start.empty(); }
+- set_object_end_str · function · L120-L120 — void set_object_end_str(std::string end_string) { m_gcode_label_objects_end = end_string; }
+- is_object_end_str_empty · function · L121-L121 — bool is_object_end_str_empty() { return m_gcode_label_objects_end.empty(); }
+- add_object_start_labels · function · L122-L122 — void add_object_start_labels(std::string &gcode);
+- add_object_end_labels · function · L123-L123 — void add_object_end_labels(std::string &gcode);
+- add_object_change_labels · function · L124-L124 — void add_object_change_labels(std::string& gcode);
+- set_current_position_clear · function · L127-L127 — void set_current_position_clear(bool clear) { m_is_current_pos_clear = clear; };
+- is_current_position_clear · function · L128-L128 — bool is_current_position_clear() const { return m_is_current_pos_clear; };
+- set_is_bbl_machine · function · L132-L132 — void set_is_bbl_machine(bool bval) {m_is_bbl_printers = bval;}
+- is_bbl_printers · function · L133-L133 — const bool is_bbl_printers() const {return m_is_bbl_printers;}
+- set_is_first_layer · function · L134-L134 — void set_is_first_layer(bool bval) { m_is_first_layer = bval; }
+- get_gcode_flavor · function · L135-L135 — GCodeFlavor get_gcode_flavor() const { return config.gcode_flavor; }
+- invalidate_acceleration · function · L136-L136 — void invalidate_acceleration() { m_last_acceleration = 0; m_last_travel_acceleration = 0; }
+- invalidate_jerk · function · L137-L137 — void invalidate_jerk() { m_last_jerk = 0; }
+- supports_separate_travel_acceleration · function · L140-L140 — static bool supports_separate_travel_acceleration(GCodeFlavor flavor);
+- Acceleration · type · L203-L206 — enum class Acceleration
+- _travel_to_z · function · L208-L208 — std::string _travel_to_z(double z, const std::string &comment);
+- _spiral_travel_to_z · function · L209-L209 — std::string _spiral_travel_to_z(double z, const Vec2d &ij_offset, const std::string &comment);
+- active_printable_area · function · L211-L211 — const Polygon *active_printable_area() const;
+- spiral_lift_fits_printable_area · function · L213-L213 — bool spiral_lift_fits_printable_area(const Vec2d &center, double radius) const;
+- _retract · function · L214-L214 — std::string _retract(double length, double restart_extra, const std::string &comment);
+- set_acceleration_internal · function · L215-L215 — std::string set_acceleration_internal(Acceleration type, unsigned int acceleration);
+- GCodeFormatter · class · L219-L305 — class GCodeFormatter
+- GCodeFormatter · function · L221-L224 — GCodeFormatter()
+- GCodeFormatter · function · L226-L226 — GCodeFormatter(const GCodeFormatter&) = delete;
+- quantize · function · L249-L249 — static double quantize(double v, size_t ndigits) { return std::round(v * pow_10[ndigits]) * pow_10_inv[ndigits]; }
+- quantize_xyzf · function · L250-L250 — static double quantize_xyzf(double v) { return quantize(v, XYZF_EXPORT_DIGITS); }
+- quantize_e · function · L251-L251 — static double quantize_e(double v) { return quantize(v, E_EXPORT_DIGITS); }
+- emit_axis · function · L253-L253 — void emit_axis(const char axis, const double v, size_t digits);
+- emit_xy · function · L255-L258 — void emit_xy(const Vec2d &point)
+- emit_xyz · function · L260-L264 — void emit_xyz(const Vec3d &point)
+- emit_z · function · L266-L268 — void emit_z(const double z)
+- emit_e · function · L270-L272 — void emit_e(double v)
+- emit_f · function · L274-L276 — void emit_f(double speed)
+- emit_ij · function · L278-L281 — void emit_ij(const Vec2d &point)
+- emit_string · function · L283-L286 — void emit_string(const std::string &s)
+- emit_comment · function · L288-L293 — void emit_comment(bool allow_comments, const std::string &comment)
+- string · function · L295-L298 — std::string string()
+- GCodeG1Formatter · class · L307-L318 — class GCodeG1Formatter : public GCodeFormatter
+- GCodeG1Formatter · function · L309-L314 — GCodeG1Formatter()
+- GCodeG1Formatter · function · L316-L316 — GCodeG1Formatter(const GCodeG1Formatter&) = delete;
+- GCodeG2G3Formatter · class · L320-L331 — class GCodeG2G3Formatter : public GCodeFormatter
+- GCodeG2G3Formatter · function · L322-L327 — GCodeG2G3Formatter(bool is_ccw)
+- GCodeG2G3Formatter · function · L329-L329 — GCodeG2G3Formatter(const GCodeG2G3Formatter&) = delete;

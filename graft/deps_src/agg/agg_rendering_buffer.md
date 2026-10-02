@@ -1,0 +1,29 @@
+# deps_src/agg/agg_rendering_buffer.h
+
+- attach · function · L57-L67 — void attach(T* buf, unsigned width, unsigned height, int stride)
+- buf · function · L70-L70 — AGG_INLINE       T* buf()          { return m_buf;    }
+- buf · function · L71-L71 — AGG_INLINE const T* buf()    const { return m_buf;    }
+- width · function · L72-L72 — AGG_INLINE unsigned width()  const { return m_width;  }
+- height · function · L73-L73 — AGG_INLINE unsigned height() const { return m_height; }
+- stride · function · L74-L74 — AGG_INLINE int      stride() const { return m_stride; }
+- stride_abs · function · L75-L75 — AGG_INLINE unsigned stride_abs() const
+- row_ptr · function · L81-L81 — AGG_INLINE       T* row_ptr(int, int y, unsigned)
+- row_ptr · function · L85-L85 — AGG_INLINE       T* row_ptr(int y)       { return m_start + y * m_stride; }
+- row_ptr · function · L86-L86 — AGG_INLINE const T* row_ptr(int y) const { return m_start + y * m_stride; }
+- row_data · function · L87-L90 — AGG_INLINE row_data row    (int y) const
+- clear · function · L113-L127 — void clear(T value)
+- attach · function · L169-L194 — void attach(T* buf, unsigned width, unsigned height, int stride)
+- buf · function · L197-L197 — AGG_INLINE       T* buf()          { return m_buf;    }
+- buf · function · L198-L198 — AGG_INLINE const T* buf()    const { return m_buf;    }
+- width · function · L199-L199 — AGG_INLINE unsigned width()  const { return m_width;  }
+- height · function · L200-L200 — AGG_INLINE unsigned height() const { return m_height; }
+- stride · function · L201-L201 — AGG_INLINE int      stride() const { return m_stride; }
+- stride_abs · function · L202-L202 — AGG_INLINE unsigned stride_abs() const
+- row_ptr · function · L208-L208 — AGG_INLINE       T* row_ptr(int, int y, unsigned)
+- row_ptr · function · L212-L212 — AGG_INLINE       T* row_ptr(int y)       { return m_rows[y]; }
+- row_ptr · function · L213-L213 — AGG_INLINE const T* row_ptr(int y) const { return m_rows[y]; }
+- row_data · function · L214-L217 — AGG_INLINE row_data row    (int y) const
+- rows · function · L220-L220 — T const* const* rows() const { return &m_rows[0]; }
+- clear · function · L243-L257 — void clear(T value)
+- rendering_buffer · type · L291-L291 — typedef AGG_RENDERING_BUFFER rendering_buffer;
+- rendering_buffer · type · L294-L294 — typedef row_accessor<int8u> rendering_buffer;

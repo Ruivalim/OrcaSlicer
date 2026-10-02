@@ -1,0 +1,47 @@
+# deps_src/qhull/src/libqhullcpp/QhullLinkedList.h
+
+- ConstIterator · type · L48-L48 — typedef const_iterator  ConstIterator;
+- Iterator · type · L49-L49 — typedef iterator    Iterator;
+- difference_type · type · L50-L50 — typedef ptrdiff_t   difference_type;
+- size_type · type · L51-L51 — typedef countT      size_type;
+- value_type · type · L52-L52 — typedef T           value_type;
+- const_reference · type · L54-L54 — typedef const value_type &const_reference;
+- reference · type · L56-L56 — typedef value_type &reference;
+- size · function · L92-L92 — size_t              size() const { return count(); }
+- back · function · L96-L96 — const T             back() const { return last(); }
+- back · function · L97-L97 — T                   back() { return last(); }
+- first · function · L98-L99 — const T &           first() const { QHULL_ASSERT(!isEmpty()); return begin_node; }
+- first · function · L99-L99 — T &                 first() { QHULL_ASSERT(!isEmpty()); return begin_node; }
+- front · function · L100-L100 — const T &           front() const { return first(); }
+- end · function · L102-L102 — const T             last() const { QHULL_ASSERT(!isEmpty()); return *--end(); }
+- last · function · L102-L103 — const T             last() const { QHULL_ASSERT(!isEmpty()); return *--end(); }
+- last · function · L103-L103 — T                   last() { QHULL_ASSERT(!isEmpty()); return *--end(); }
+- contains · function · L108-L108 — bool                contains(const T &t) const;
+- begin · function · L109-L112 — countT              count(const T &t) const;
+- count · function · L109-L109 — countT              count(const T &t) const;
+- begin · function · L113-L113 — const_iterator      begin() const { return begin_node; }
+- constBegin · function · L114-L114 — const_iterator      constBegin() const { return begin_node; }
+- constEnd · function · L115-L115 — const_iterator      constEnd() const { return end_node; }
+- end · function · L116-L116 — iterator            end() { return end_node; }
+- end · function · L117-L117 — const_iterator      end() const { return end_node; }
+- value_type · type · L127-L127 — typedef T           value_type;
+- reference · type · L129-L129 — typedef value_type &reference;
+- difference_type · type · L130-L130 — typedef ptrdiff_t   difference_type;
+- i · function · L133-L133 — iterator(const T &t) : i(t) {}  //!< Automatic conversion to iterator
+- i · function · L134-L134 — iterator(const iterator &o) : i(o.i) {}
+- value_type · type · L163-L163 — typedef T                 value_type;
+- reference · type · L165-L165 — typedef const value_type &reference;
+- difference_type · type · L166-L166 — typedef ptrdiff_t         difference_type;
+- i · function · L169-L169 — const_iterator(const T &t) : i(t) {}  //!< Automatic conversion to const_iterator
+- i · function · L170-L170 — const_iterator(const iterator &o) : i(o.i) {}
+- i · function · L171-L171 — const_iterator(const const_iterator &o) : i(o.i) {}
+- findNext · function · L201-L201 — bool                findNext(const T &t);
+- findPrevious · function · L202-L202 — bool                findPrevious(const T &t);
+- hasNext · function · L203-L203 — bool                hasNext() const { return i != c->constEnd(); }
+- hasPrevious · function · L204-L204 — bool                hasPrevious() const { return i != c->constBegin(); }
+- next · function · L205-L205 — T                   next() { return *i++; }
+- peekNext · function · L206-L206 — T                   peekNext() const { return *i; }
+- peekPrevious · function · L207-L208 — T                   peekPrevious() const { const_iterator p= i; return *--p; }
+- previous · function · L208-L208 — T                   previous() { return *--i; }
+- toFront · function · L209-L209 — void                toFront() { i= c->constBegin(); }
+- toBack · function · L210-L210 — void                toBack() { i= c->constEnd(); }

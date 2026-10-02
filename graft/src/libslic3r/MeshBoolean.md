@@ -1,0 +1,39 @@
+# src/libslic3r/MeshBoolean.hpp
+
+- eigen_to_triangle_mesh · function · L16-L16 — TriangleMesh eigen_to_triangle_mesh(const EigenMesh &emesh);
+- triangle_mesh_to_eigen · function · L17-L17 — EigenMesh triangle_mesh_to_eigen(const TriangleMesh &mesh);
+- minus · function · L19-L19 — void minus(EigenMesh &A, const EigenMesh &B);
+- self_union · function · L20-L20 — void self_union(EigenMesh &A);
+- minus · function · L22-L22 — void minus(TriangleMesh& A, const TriangleMesh& B);
+- self_union · function · L23-L23 — void self_union(TriangleMesh& mesh);
+- CGALMeshDeleter · class · L28-L28 — struct CGALMeshDeleter { void operator()(CGALMesh *ptr); };
+- clone · function · L31-L31 — CGALMeshPtr clone(const CGALMesh &m);
+- save_CGALMesh · function · L33-L33 — void save_CGALMesh(const std::string& fname, const CGALMesh& cgal_mesh);
+- triangle_mesh_to_cgal · function · L35-L37 — CGALMeshPtr triangle_mesh_to_cgal(
+- triangle_mesh_to_cgal · function · L39-L42 — inline CGALMeshPtr triangle_mesh_to_cgal(const indexed_triangle_set &M)
+- triangle_mesh_to_cgal · function · L43-L46 — inline CGALMeshPtr triangle_mesh_to_cgal(const TriangleMesh &M)
+- cgal_to_triangle_mesh · function · L48-L48 — TriangleMesh cgal_to_triangle_mesh(const CGALMesh &cgalmesh);
+- cgal_to_indexed_triangle_set · function · L49-L49 — indexed_triangle_set cgal_to_indexed_triangle_set(const CGALMesh &cgalmesh);
+- minus · function · L52-L52 — void minus(TriangleMesh &A, const TriangleMesh &B);
+- plus · function · L53-L53 — void plus(TriangleMesh &A, const TriangleMesh &B);
+- intersect · function · L54-L54 — void intersect(TriangleMesh &A, const TriangleMesh &B);
+- minus · function · L56-L56 — void minus(indexed_triangle_set &A, const indexed_triangle_set &B);
+- plus · function · L57-L57 — void plus(indexed_triangle_set &A, const indexed_triangle_set &B);
+- intersect · function · L58-L58 — void intersect(indexed_triangle_set &A, const indexed_triangle_set &B);
+- minus · function · L60-L60 — void minus(CGALMesh &A, CGALMesh &B);
+- plus · function · L61-L61 — void plus(CGALMesh &A, CGALMesh &B);
+- intersect · function · L62-L62 — void intersect(CGALMesh &A, CGALMesh &B);
+- does_self_intersect · function · L64-L64 — bool does_self_intersect(const TriangleMesh &mesh);
+- does_self_intersect · function · L65-L65 — bool does_self_intersect(const CGALMesh &mesh);
+- segment · function · L68-L68 — std::vector<TriangleMesh> segment(const TriangleMesh& src, double smoothing_alpha = 0.5, int segment_number = 5);
+- merge · function · L69-L69 — TriangleMesh merge(std::vector<TriangleMesh> meshes);
+- does_bound_a_volume · function · L71-L71 — bool does_bound_a_volume(const CGALMesh &mesh);
+- empty · function · L72-L72 — bool empty(const CGALMesh &mesh);
+- repair · function · L75-L75 — bool repair(TriangleMesh &mesh, RepairedMeshErrors *repaired_errors = nullptr, std::string *error = nullptr);
+- McutMeshDeleter · class · L80-L83 — struct McutMeshDeleter
+- empty · function · L85-L85 — bool empty(const McutMesh &mesh);
+- triangle_mesh_to_mcut · function · L87-L87 — McutMeshPtr  triangle_mesh_to_mcut(const indexed_triangle_set &M);
+- mcut_to_triangle_mesh · function · L88-L88 — TriangleMesh mcut_to_triangle_mesh(const McutMesh &mcutmesh);
+- do_boolean_single · function · L92-L92 — bool do_boolean_single(McutMesh& srcMesh, const McutMesh& cutMesh, const std::string& boolean_opts);
+- do_boolean · function · L95-L95 — void do_boolean(McutMesh &srcMesh, const McutMesh &cutMesh, const std::string &boolean_opts);
+- make_boolean · function · L99-L99 — void make_boolean(const TriangleMesh &src_mesh, const TriangleMesh &cut_mesh, std::vector<TriangleMesh> &dst_mesh, const std::string &boolean_opts);

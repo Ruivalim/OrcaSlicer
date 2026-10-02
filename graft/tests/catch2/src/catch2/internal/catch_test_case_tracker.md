@@ -1,0 +1,51 @@
+# tests/catch2/src/catch2/internal/catch_test_case_tracker.hpp
+
+- NameAndLocation · class · L22-L39 — struct NameAndLocation
+- NameAndLocation · function · L26-L26 — NameAndLocation( std::string&& _name, SourceLineInfo const& _location );
+- NameAndLocationRef · class · L48-L70 — struct NameAndLocationRef
+- NameAndLocationRef · function · L52-L54 — constexpr NameAndLocationRef( StringRef name_ CATCH_ATTR_LIFETIMEBOUND,
+- ITracker · class · L72-L72 — class ITracker;
+- ITracker · class · L76-L162 — class ITracker
+- CycleState · type · L82-L89 — enum CycleState
+- ITracker · function · L96-L99 — ITracker( NameAndLocation&& nameAndLoc, ITracker* parent ):
+- nameAndLocation · function · L103-L103 — NameAndLocation const& nameAndLocation() const
+- parent · function · L106-L106 — ITracker* parent() const
+- isComplete · function · L116-L116 — virtual bool isComplete() const = 0;
+- isSuccessfullyCompleted · function · L118-L120 — bool isSuccessfullyCompleted() const
+- isOpen · function · L122-L122 — bool isOpen() const;
+- hasStarted · function · L124-L124 — bool hasStarted() const;
+- close · function · L127-L127 — virtual void close() = 0; // Successfully complete
+- fail · function · L128-L128 — virtual void fail() = 0;
+- markAsNeedingAnotherRun · function · L129-L129 — void markAsNeedingAnotherRun();
+- addChild · function · L132-L132 — void addChild( ITrackerPtr&& child );
+- findChild · function · L138-L138 — ITracker* findChild( NameAndLocationRef const& nameAndLocation );
+- hasChildren · function · L140-L142 — bool hasChildren() const
+- openChild · function · L146-L146 — void openChild();
+- isSectionTracker · function · L154-L154 — virtual bool isSectionTracker() const;
+- isGeneratorTracker · function · L161-L161 — virtual bool isGeneratorTracker() const;
+- TrackerContext · class · L164-L189 — class TrackerContext
+- RunState · type · L166-L170 — enum RunState
+- startRun · function · L178-L178 — ITracker& startRun();
+- startCycle · function · L180-L183 — void startCycle()
+- completeCycle · function · L184-L184 — void completeCycle();
+- completedCycle · function · L186-L186 — bool completedCycle() const;
+- currentTracker · function · L187-L187 — ITracker& currentTracker() { return *m_currentTracker; }
+- setCurrentTracker · function · L188-L188 — void setCurrentTracker( ITracker* tracker );
+- TrackerBase · class · L191-L209 — class TrackerBase : public ITracker
+- TrackerBase · function · L197-L197 — TrackerBase( NameAndLocation&& nameAndLocation, TrackerContext& ctx, ITracker* parent );
+- isComplete · function · L199-L199 — bool isComplete() const override;
+- open · function · L201-L201 — void open();
+- close · function · L203-L203 — void close() override;
+- fail · function · L204-L204 — void fail() override;
+- moveToParent · function · L207-L207 — void moveToParent();
+- moveToThis · function · L208-L208 — void moveToThis();
+- SectionTracker · class · L211-L235 — class SectionTracker : public TrackerBase
+- SectionTracker · function · L219-L219 — SectionTracker( NameAndLocation&& nameAndLocation, TrackerContext& ctx, ITracker* parent );
+- isSectionTracker · function · L221-L221 — bool isSectionTracker() const override;
+- isComplete · function · L223-L223 — bool isComplete() const override;
+- acquire · function · L225-L225 — static SectionTracker& acquire( TrackerContext& ctx, NameAndLocationRef const& nameAndLocation );
+- tryOpen · function · L227-L227 — void tryOpen();
+- addInitialFilters · function · L229-L229 — void addInitialFilters( std::vector<std::string> const& filters );
+- addNextFilters · function · L230-L230 — void addNextFilters( std::vector<StringRef> const& filters );
+- getFilters · function · L232-L232 — std::vector<StringRef> const& getFilters() const { return m_filters; }
+- trimmedName · function · L234-L234 — StringRef trimmedName() const;

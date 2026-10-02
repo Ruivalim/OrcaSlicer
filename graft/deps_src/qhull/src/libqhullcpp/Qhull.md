@@ -1,0 +1,52 @@
+# deps_src/qhull/src/libqhullcpp/Qhull.h
+
+- allocateQhullQh · function · L63-L63 — void                allocateQhullQh();
+- checkIfQhullInitialized · function · L68-L68 — void                checkIfQhullInitialized();
+- dimension · function · L69-L69 — int                 dimension() const { return qh_qh->input_dim; } //!< Dimension of input and result
+- disableOutputStream · function · L70-L70 — void                disableOutputStream() { qh_qh->disableOutputStream(); }
+- enableOutputStream · function · L71-L71 — void                enableOutputStream() { qh_qh->enableOutputStream(); }
+- facetCount · function · L72-L72 — countT              facetCount() const { return qh_qh->num_facets; }
+- feasiblePoint · function · L73-L75 — Coordinates         feasiblePoint() const;
+- hullDimension · function · L74-L74 — int                 hullDimension() const { return qh_qh->hull_dim; } //!< Dimension of the computed hull
+- hasOutputStream · function · L75-L75 — bool                hasOutputStream() const { return qh_qh->hasOutputStream(); }
+- initialized · function · L76-L76 — bool                initialized() const { return (qh_qh->hull_dim>0); }
+- inputComment · function · L77-L77 — const char *        inputComment() const { return qh_qh->rbox_command; }
+- inputOrigin · function · L78-L78 — QhullPoint          inputOrigin();
+- origin · function · L80-L80 — QhullPoint          origin() { QHULL_ASSERT(initialized()); return QhullPoint(qh_qh, origin_point.data()); }
+- qh · function · L81-L81 — QhullQh *           qh() const { return qh_qh; };
+- qhullCommand · function · L82-L82 — const char *        qhullCommand() const { return qh_qh->qhull_command; }
+- rboxCommand · function · L83-L83 — const char *        rboxCommand() const { return qh_qh->rbox_command; }
+- rotateRandom · function · L84-L84 — int                 rotateRandom() const { return qh_qh->ROTATErandom; } //!< Return QRn for repeating QR0 runs
+- setFeasiblePoint · function · L85-L85 — void                setFeasiblePoint(const Coordinates &c) { feasible_point= c; } //!< Sets qh.feasible_point via initializeFeasiblePoint
+- vertexCount · function · L86-L86 — countT              vertexCount() const { return qh_qh->num_vertices; }
+- angleEpsilon · function · L89-L89 — double              angleEpsilon() const { return qh_qh->angleEpsilon(); } //!< Epsilon for hyperplane angle equality
+- appendQhullMessage · function · L90-L90 — void                appendQhullMessage(const std::string &s) { qh_qh->appendQhullMessage(s); }
+- clearQhullMessage · function · L91-L91 — void                clearQhullMessage() { qh_qh->clearQhullMessage(); }
+- distanceEpsilon · function · L92-L92 — double              distanceEpsilon() const { return qh_qh->distanceEpsilon(); } //!< Epsilon for distance to hyperplane
+- factorEpsilon · function · L93-L93 — double              factorEpsilon() const { return qh_qh->factorEpsilon(); }  //!< Factor for angleEpsilon and distanceEpsilon
+- qhullMessage · function · L94-L94 — std::string         qhullMessage() const { return qh_qh->qhullMessage(); }
+- hasQhullMessage · function · L95-L95 — bool                hasQhullMessage() const { return qh_qh->hasQhullMessage(); }
+- qhullStatus · function · L96-L96 — int                 qhullStatus() const { return qh_qh->qhullStatus(); }
+- setErrorStream · function · L97-L97 — void                setErrorStream(std::ostream *os) { qh_qh->setErrorStream(os); }
+- setFactorEpsilon · function · L98-L98 — void                setFactorEpsilon(double a) { qh_qh->setFactorEpsilon(a); }
+- setOutputStream · function · L99-L99 — void                setOutputStream(std::ostream *os) { qh_qh->setOutputStream(os); }
+- beginFacet · function · L102-L102 — QhullFacet          beginFacet() const { return QhullFacet(qh_qh, qh_qh->facet_list); }
+- beginVertex · function · L103-L103 — QhullVertex         beginVertex() const { return QhullVertex(qh_qh, qh_qh->vertex_list); }
+- defineVertexNeighborFacets · function · L104-L104 — void                defineVertexNeighborFacets(); //!< Automatically called if merging facets or Voronoi diagram
+- endFacet · function · L105-L105 — QhullFacet          endFacet() const { return QhullFacet(qh_qh, qh_qh->facet_tail); }
+- endVertex · function · L106-L106 — QhullVertex         endVertex() const { return QhullVertex(qh_qh, qh_qh->vertex_tail); }
+- facetList · function · L107-L109 — QhullFacetList      facetList() const;
+- firstFacet · function · L108-L108 — QhullFacet          firstFacet() const { return beginFacet(); }
+- firstVertex · function · L109-L109 — QhullVertex         firstVertex() const { return beginVertex(); }
+- points · function · L110-L114 — QhullPoints         points() const;
+- otherPoints · function · L111-L111 — QhullPointSet       otherPoints() const;
+- pointCoordinateBegin · function · L113-L113 — coordT *            pointCoordinateBegin() const { return qh_qh->first_point; }
+- pointCoordinateEnd · function · L114-L114 — coordT *            pointCoordinateEnd() const { return qh_qh->first_point + qh_qh->num_points*qh_qh->hull_dim; }
+- area · function · L115-L118 — QhullVertexList     vertexList() const;
+- vertexList · function · L115-L115 — QhullVertexList     vertexList() const;
+- outputQhull · function · L119-L119 — void                outputQhull();
+- outputQhull · function · L120-L120 — void                outputQhull(const char * outputflags);
+- runQhull · function · L121-L121 — void                runQhull(const RboxPoints &rboxPoints, const char *qhullCommand2);
+- runQhull · function · L122-L122 — void                runQhull(const char *inputComment2, int pointDimension, int pointCount, const realT *pointCoordinates, const char *qhullCommand2);
+- volume · function · L123-L123 — double              volume();
+- initializeFeasiblePoint · function · L127-L127 — void                initializeFeasiblePoint(int hulldim);

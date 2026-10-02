@@ -1,0 +1,31 @@
+# deps_src/minilzo/lzoconf.h
+
+- lzo_uint · type · L95-L95 — typedef unsigned __int64   lzo_uint;
+- lzo_int · type · L96-L96 — typedef __int64            lzo_int;
+- lzo_uint · type · L99-L99 — typedef lzo_ullong_t       lzo_uint;
+- lzo_int · type · L100-L100 — typedef lzo_llong_t        lzo_int;
+- lzo_uint · type · L108-L108 — typedef unsigned int       lzo_uint;
+- lzo_int · type · L109-L109 — typedef int                lzo_int;
+- lzo_uint · type · L116-L116 — typedef unsigned long      lzo_uint;
+- lzo_int · type · L117-L117 — typedef long               lzo_int;
+- lzo_bool · type · L135-L135 — typedef int lzo_bool;
+- lzo_callback_t · type · L271-L271 — typedef struct lzo_callback_t lzo_callback_t;
+- lzo_callback_t · class · L284-L299 — struct lzo_callback_t
+- __lzo_init_v2 · function · L340-L340 — LZO_EXTERN(int) __lzo_init_v2(unsigned,int,int,int,int,int,int,int,int,int);
+- lzo_version · function · L343-L343 — LZO_EXTERN(unsigned) lzo_version(void);
+- lzo_version_string · function · L344-L344 — LZO_EXTERN(const char *) lzo_version_string(void);
+- lzo_version_date · function · L345-L345 — LZO_EXTERN(const char *) lzo_version_date(void);
+- _lzo_version_string · function · L346-L346 — LZO_EXTERN(const lzo_charp) _lzo_version_string(void);
+- _lzo_version_date · function · L347-L347 — LZO_EXTERN(const lzo_charp) _lzo_version_date(void);
+- lzo_memcmp · function · L350-L351 — LZO_EXTERN(int)
+- lzo_memcpy · function · L352-L353 — LZO_EXTERN(lzo_voidp)
+- lzo_memmove · function · L354-L355 — LZO_EXTERN(lzo_voidp)
+- lzo_memset · function · L356-L357 — LZO_EXTERN(lzo_voidp)
+- lzo_adler32 · function · L360-L361 — LZO_EXTERN(lzo_uint32_t)
+- lzo_crc32 · function · L362-L363 — LZO_EXTERN(lzo_uint32_t)
+- lzo_get_crc32_table · function · L364-L365 — LZO_EXTERN(const lzo_uint32_tp)
+- _lzo_config_check · function · L368-L368 — LZO_EXTERN(int) _lzo_config_check(void);
+- lzo_align_t · type · L369-L375 — typedef union
+- __lzo_align_gap · function · L378-L378 — LZO_EXTERN(unsigned) __lzo_align_gap(const lzo_voidp p, lzo_uint size);
+- __lzo_pu_u · type · L405-L405 — typedef union { lzo_bytep a; lzo_uint b; } __lzo_pu_u;
+- __lzo_pu32_u · type · L406-L406 — typedef union { lzo_bytep a; lzo_uint32_t b; } __lzo_pu32_u;

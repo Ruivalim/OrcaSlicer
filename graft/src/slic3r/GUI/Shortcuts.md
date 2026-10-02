@@ -1,0 +1,30 @@
+# src/slic3r/GUI/Shortcuts.hpp
+
+- AppConfig · class · L14-L14 — class AppConfig;
+- ShortcutContext · type · L20-L20 — enum class ShortcutContext : uint8_t { Global, Plater, Preview, ObjectList, Painting, Count };
+- context_bit · function · L22-L22 — constexpr uint8_t context_bit(ShortcutContext context) { return uint8_t(1u << unsigned(context)); }
+- Shortcut · type · L24-L52 — enum class Shortcut : uint8_t
+- ShortcutInfo · class · L54-L65 — struct ShortcutInfo
+- ShortcutSection · type · L68-L71 — enum class ShortcutSection : uint8_t
+- shortcut_info · function · L73-L73 — const ShortcutInfo&   shortcut_info(Shortcut shortcut);
+- shortcut_section · function · L74-L74 — ShortcutSection       shortcut_section(Shortcut shortcut);
+- section_name · function · L75-L75 — const char*           section_name(ShortcutSection section);   // untranslated heading
+- shortcuts_in · function · L76-L76 — std::vector<Shortcut> shortcuts_in(ShortcutContext context);   // in table order
+- ShortcutRegistry · class · L80-L124 — class ShortcutRegistry
+- ShortcutRegistry · function · L83-L83 — ShortcutRegistry();
+- binding · function · L85-L85 — KeyChord binding(Shortcut shortcut) const;   // invalid when unbound
+- is_customized · function · L86-L86 — bool     is_customized(Shortcut shortcut) const;
+- display · function · L88-L88 — std::string display(Shortcut shortcut) const;      // "Ctrl+N" for tooltips and the shortcuts dialog
+- with_key · function · L89-L89 — std::string with_key(const std::string& text, Shortcut shortcut) const;   // "text [Ctrl+N]", or text alone when unbound
+- accelerator · function · L90-L90 — std::string accelerator(Shortcut shortcut) const;  // wx accelerator text for menu labels; empty when unbound or not menu-safe
+- lookup · function · L93-L93 — std::optional<Shortcut> lookup(ShortcutContext context, const KeyChord& chord) const;
+- Match · class · L97-L101 — struct Match
+- match · function · L102-L102 — std::optional<Match> match(ShortcutContext context, const KeyChord& chord) const;
+- conflicts · function · L106-L106 — std::vector<Shortcut> conflicts(Shortcut shortcut, const KeyChord& chord) const;
+- step_owner · function · L110-L110 — std::optional<Shortcut> step_owner(Shortcut shortcut, const KeyChord& chord) const;
+- bind · function · L112-L112 — void bind(Shortcut shortcut, const KeyChord& chord);  // an invalid chord unbinds
+- reset · function · L113-L113 — void reset(Shortcut shortcut);
+- reset_all · function · L114-L114 — void reset_all();
+- load · function · L116-L116 — void load(const AppConfig& config);
+- save · function · L117-L117 — void save(AppConfig& config) const;
+- rebuild_index · function · L120-L120 — void rebuild_index();

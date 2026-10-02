@@ -1,0 +1,32 @@
+# deps_src/libnest2d/include/libnest2d/optimizer.hpp
+
+- limits · class · L17-L21 — template<class T, class B = void >
+- min · function · L19-L19 — inline static T min() { return std::numeric_limits<T>::min(); }
+- max · function · L20-L20 — inline static T max() { return std::numeric_limits<T>::max(); }
+- min · function · L25-L25 — inline static T min() { return -std::numeric_limits<T>::infinity(); }
+- max · function · L26-L26 — inline static T max() { return std::numeric_limits<T>::infinity(); }
+- Bound · class · L30-L39 — template<class T>
+- Bound · function · L35-L36 — Bound(const T& min = limits<T>::min(),
+- min · function · L37-L37 — inline const T min() const BP2D_NOEXCEPT { return min_; }
+- max · function · L38-L38 — inline const T max() const BP2D_NOEXCEPT { return max_; }
+- bound · function · L44-L45 — template<class T>
+- initvals · function · L53-L54 — template<class...Args>
+- Method · type · L60-L66 — enum class Method
+- ResultCodes · type · L72-L84 — enum ResultCodes
+- Result · class · L89-L94 — template<class...Args>
+- StopCriteria · class · L99-L116 — struct StopCriteria
+- Optimizer · class · L121-L211 — template<class Subclass>
+- OptDir · type · L124-L127 — enum class OptDir
+- Optimizer · function · L133-L133 — inline explicit Optimizer(const StopCriteria& scr = {}): stopcr_(scr) {}
+- optimize_min · function · L152-L160 — template<class Func, class...Args>
+- optimize_min · function · L162-L169 — template<class Func, class...Args>
+- optimize_min · function · L171-L179 — template<class...Args, class Func>
+- optimize_max · function · L182-L190 — template<class Func, class...Args>
+- optimize_max · function · L192-L199 — template<class Func, class...Args>
+- optimize_max · function · L201-L209 — template<class...Args, class Func>
+- DummyOptimizer · class · L215-L235 — template<class T = void>
+- DummyOptimizer · function · L220-L222 — DummyOptimizer()
+- DummyOptimizer · function · L224-L226 — DummyOptimizer(const StopCriteria&)
+- optimize · function · L228-L234 — template<class Func, class...Args>
+- OptimizerSubclass · class · L239-L239 — template<Method m> struct OptimizerSubclass { using Type = DummyOptimizer<>; };
+- GlobalOptimizer · function · L245-L249 — template<Method m>

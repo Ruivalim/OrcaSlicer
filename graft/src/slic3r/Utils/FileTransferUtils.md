@@ -1,0 +1,42 @@
+# src/slic3r/Utils/FileTransferUtils.hpp
+
+- ft_job_result · class · L27-L34 — struct ft_job_result
+- ft_job_msg · class · L36-L40 — struct ft_job_msg
+- ft_err · type · L45-L45 — typedef enum { FT_OK = 0, FT_EINVAL = -1, FT_ESTATE = -2, FT_EIO = -3, FT_ETIMEOUT = -4, FT_ECANCELLED = -5, FT_EXCEPTION = -6, FT_EUNKNOWN = -128 } ft_err;
+- sym_lookup_raw · function · L50-L50 — inline void *sym_lookup_raw(ModuleHandle mh, const char *name)
+- sym_lookup · function · L59-L69 — template<class T> inline T sym_lookup(ModuleHandle mh, const char *name)
+- FileTransferModule · class · L100-L135 — struct FileTransferModule
+- FileTransferModule · function · L131-L131 — explicit FileTransferModule(ModuleHandle networking_module, int required_abi_version = 1);
+- FileTransferModule · function · L133-L133 — FileTransferModule(const FileTransferModule &)            = delete;
+- FileTransferTunnel · class · L137-L176 — class FileTransferTunnel
+- FileTransferTunnel · function · L143-L143 — explicit FileTransferTunnel(FileTransferModule &m, const std::string &url);
+- FileTransferTunnel · function · L146-L146 — FileTransferTunnel(const FileTransferTunnel &)            = delete;
+- FileTransferTunnel · function · L148-L148 — FileTransferTunnel(FileTransferTunnel &&)                 = delete;
+- start_connect · function · L151-L151 — void start_connect();
+- sync_start_connect · function · L152-L152 — bool sync_start_connect();
+- on_connection · function · L153-L153 — void on_connection(ConnectionCb cb);
+- on_status · function · L154-L154 — void on_status(TunnelStatusCb cb);
+- shutdown · function · L156-L156 — void shutdown();
+- get_status · function · L158-L158 — int              get_status() const { return status_; }
+- check_valid · function · L159-L159 — bool             check_valid() const { return h_ != nullptr; }
+- native · function · L160-L160 — FT_TunnelHandle *native() const noexcept { return h_; }
+- reset · function · L163-L169 — void reset() noexcept
+- FileTransferJob · class · L178-L233 — class FileTransferJob
+- FileTransferJob · function · L184-L184 — explicit FileTransferJob(FileTransferModule &m, const std::string &params_json);
+- FileTransferJob · function · L187-L187 — FileTransferJob(const FileTransferJob &)            = delete;
+- FileTransferJob · function · L189-L189 — FileTransferJob(FileTransferJob &&)                 = delete;
+- on_result · function · L192-L192 — void on_result(ResultCb cb);
+- get_result · function · L194-L194 — bool get_result(int &ec, int &resp_ec, std::string &json, std::vector<std::byte> &bin, uint32_t timeout_ms);
+- start_on · function · L196-L196 — void start_on(FileTransferTunnel &t);
+- on_msg · function · L198-L198 — void on_msg(MsgCb cb);
+- try_get_msg · function · L200-L200 — bool try_get_msg(int &kind, std::string &json);
+- get_msg · function · L202-L202 — bool get_msg(uint32_t timeout_ms, int &kind, std::string &json);
+- native · function · L204-L204 — FT_JobHandle *native() const noexcept { return h_; }
+- check_valid · function · L205-L205 — bool          check_valid() const { return h_ != nullptr; }
+- finished · function · L206-L206 — bool          finished() const { return finished_; }
+- cancel · function · L208-L211 — void cancel()
+- reset · function · L214-L220 — void reset() noexcept
+- solve_result · function · L222-L222 — void solve_result(ft_job_result result);
+- InitFTModule · function · L239-L243 — inline void InitFTModule(ModuleHandle networking_module, int abi_required = 1)
+- UnloadFTModule · function · L244-L248 — inline void UnloadFTModule() noexcept
+- module · function · L249-L249 — inline FileTransferModule &module()

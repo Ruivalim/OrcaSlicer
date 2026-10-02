@@ -1,0 +1,31 @@
+# deps_src/qhull/src/libqhull_r/qhull_ra.h
+
+- qh_qhull · function · L118-L118 — void    qh_qhull(qhT *qh);
+- qh_addpoint · function · L119-L119 — boolT   qh_addpoint(qhT *qh, pointT *furthest, facetT *facet, boolT checkdist);
+- qh_buildhull · function · L120-L120 — void    qh_buildhull(qhT *qh);
+- qh_buildtracing · function · L121-L121 — void    qh_buildtracing(qhT *qh, pointT *furthest, facetT *facet);
+- qh_build_withrestart · function · L122-L122 — void    qh_build_withrestart(qhT *qh);
+- qh_errexit2 · function · L123-L123 — void    qh_errexit2(qhT *qh, int exitcode, facetT *facet, facetT *otherfacet);
+- qh_findhorizon · function · L124-L124 — void    qh_findhorizon(qhT *qh, pointT *point, facetT *facet, int *goodvisible,int *goodhorizon);
+- qh_nextfurthest · function · L125-L125 — pointT *qh_nextfurthest(qhT *qh, facetT **visible);
+- qh_partitionall · function · L126-L126 — void    qh_partitionall(qhT *qh, setT *vertices, pointT *points,int npoints);
+- qh_partitioncoplanar · function · L127-L127 — void    qh_partitioncoplanar(qhT *qh, pointT *point, facetT *facet, realT *dist);
+- qh_partitionpoint · function · L128-L128 — void    qh_partitionpoint(qhT *qh, pointT *point, facetT *facet);
+- qh_partitionvisible · function · L129-L129 — void    qh_partitionvisible(qhT *qh, boolT allpoints, int *numpoints);
+- qh_precision · function · L130-L130 — void    qh_precision(qhT *qh, const char *reason);
+- qh_printsummary · function · L131-L131 — void    qh_printsummary(qhT *qh, FILE *fp);
+- qh_appendprint · function · L135-L135 — void    qh_appendprint(qhT *qh, qh_PRINT format);
+- qh_freebuild · function · L136-L136 — void    qh_freebuild(qhT *qh, boolT allmem);
+- qh_freebuffers · function · L137-L137 — void    qh_freebuffers(qhT *qh);
+- qh_initbuffers · function · L138-L138 — void    qh_initbuffers(qhT *qh, coordT *points, int numpoints, int dim, boolT ismalloc);
+- qh_allstatA · function · L142-L142 — void    qh_allstatA(qhT *qh);
+- qh_allstatB · function · L143-L143 — void    qh_allstatB(qhT *qh);
+- qh_allstatC · function · L144-L144 — void    qh_allstatC(qhT *qh);
+- qh_allstatD · function · L145-L145 — void    qh_allstatD(qhT *qh);
+- qh_allstatE · function · L146-L146 — void    qh_allstatE(qhT *qh);
+- qh_allstatE2 · function · L147-L147 — void    qh_allstatE2(qhT *qh);
+- qh_allstatF · function · L148-L148 — void    qh_allstatF(qhT *qh);
+- qh_allstatG · function · L149-L149 — void    qh_allstatG(qhT *qh);
+- qh_allstatH · function · L150-L150 — void    qh_allstatH(qhT *qh);
+- qh_freebuffers · function · L151-L151 — void    qh_freebuffers(qhT *qh);
+- qh_initbuffers · function · L152-L152 — void    qh_initbuffers(qhT *qh, coordT *points, int numpoints, int dim, boolT ismalloc);

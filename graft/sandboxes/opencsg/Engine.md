@@ -1,0 +1,125 @@
+# sandboxes/opencsg/Engine.hpp
+
+- SLAPrint · class · L16-L16 — class SLAPrint;
+- cleanup · function · L23-L27 — template<class L> inline void cleanup(vector<std::weak_ptr<L>> &listeners)
+- call · function · L31-L35 — template<class F, class L, class...Args>
+- MouseInput · class · L38-L98 — class MouseInput
+- WheelAxis · type · L41-L41 — enum WheelAxis { waVertical, waHorizontal };
+- Listener · class · L45-L56 — class Listener
+- on_left_click_down · function · L49-L49 — virtual void on_left_click_down() {}
+- on_left_click_up · function · L50-L50 — virtual void on_left_click_up() {}
+- on_right_click_down · function · L51-L51 — virtual void on_right_click_down() {}
+- on_right_click_up · function · L52-L52 — virtual void on_right_click_up() {}
+- on_double_click · function · L53-L53 — virtual void on_double_click() {}
+- on_scroll · function · L54-L54 — virtual void on_scroll(long /*v*/, long /*delta*/, WheelAxis ) {}
+- on_moved_to · function · L55-L55 — virtual void on_moved_to(long /*x*/, long /*y*/) {}
+- left_click_down · function · L64-L67 — virtual void left_click_down()
+- left_click_up · function · L68-L71 — virtual void left_click_up()
+- right_click_down · function · L72-L75 — virtual void right_click_down()
+- right_click_up · function · L76-L79 — virtual void right_click_up()
+- double_click · function · L80-L83 — virtual void double_click()
+- scroll · function · L84-L87 — virtual void scroll(long v, long d, WheelAxis wa)
+- move_to · function · L88-L91 — virtual void move_to(long x, long y)
+- add_listener · function · L93-L97 — void add_listener(std::shared_ptr<Listener> listener)
+- IndexedVertexArray · class · L101-L164 — class IndexedVertexArray
+- push_geometry · function · L125-L125 — void push_geometry(float x, float y, float z, float nx, float ny, float nz);
+- push_geometry · function · L127-L131 — inline void push_geometry(
+- push_geometry · function · L133-L136 — inline void push_geometry(const Vec3d &p, const Vec3d &n)
+- push_triangle · function · L138-L138 — void push_triangle(int idx1, int idx2, int idx3);
+- load_mesh · function · L140-L140 — void load_mesh(const TriangleMesh &mesh);
+- has_VBOs · function · L142-L145 — inline bool has_VBOs() const
+- finalize_geometry · function · L151-L151 — void finalize_geometry();
+- release_geometry · function · L153-L153 — void release_geometry();
+- render · function · L155-L155 — void render() const;
+- empty · function · L158-L158 — bool empty() const { return vertices_and_normals_interleaved_size == 0; }
+- clear · function · L160-L160 — void clear();
+- shrink_to_fit · function · L163-L163 — void shrink_to_fit();
+- enable_multisampling · function · L167-L167 — bool enable_multisampling(bool e = true);
+- Volume · class · L169-L187 — class Volume
+- render · function · L175-L175 — void render();
+- translation · function · L177-L177 — void translation(const Vec3d &offset) { m_trafo.set_offset(offset); }
+- rotation · function · L178-L178 — void rotation(const Vec3d &rot) { m_trafo.set_rotation(rot); }
+- scale · function · L179-L179 — void scale(const Vec3d &scaleing) { m_trafo.set_scaling_factor(scaleing); }
+- scale · function · L180-L180 — void scale(double s) { scale({s, s, s}); }
+- load_mesh · function · L182-L186 — inline void load_mesh(const TriangleMesh &mesh)
+- Primitive · class · L191-L199 — class Primitive : public Volume, public OpenCSG::Primitive
+- Primitive · function · L196-L196 — Primitive() : OpenCSG::Primitive(OpenCSG::Intersection, 1) {}
+- render · function · L198-L198 — void render() override { Volume::render(); }
+- Camera · class · L202-L220 — class Camera
+- view · function · L212-L212 — virtual void view();
+- set_screen · function · L213-L213 — virtual void set_screen(long width, long height) = 0;
+- set_rotation · function · L215-L215 — void set_rotation(const Vec2f &rotation) { m_rot = rotation; }
+- rotate · function · L216-L216 — void rotate(const Vec2f &rotation) { m_rot += rotation; }
+- set_zoom · function · L217-L217 — void set_zoom(double z) { m_zoom = z; }
+- set_reference_point · function · L218-L218 — void set_reference_point(const Vec3d &p) { m_referene = p; }
+- set_clip_z · function · L219-L219 — void set_clip_z(double z) { m_clip_z = z; }
+- reset · function · L223-L229 — inline void reset(Camera &cam)
+- PerspectiveCamera · class · L232-L236 — class PerspectiveCamera: public Camera
+- set_screen · function · L235-L235 — void set_screen(long width, long height) override;
+- FpsCounter · class · L240-L274 — class FpsCounter
+- to_sec · function · L253-L256 — static double to_sec(Duration d)
+- update · function · L260-L260 — void update();
+- add_listener · function · L262-L265 — void add_listener(std::function<void(double)> lst)
+- clear_listeners · function · L267-L267 — void clear_listeners() { m_listeners = {}; }
+- set_notification_interval · function · L269-L269 — void set_notification_interval(double seconds);
+- set_measure_window_size · function · L270-L270 — void set_measure_window_size(double seconds);
+- get_notification_interval · function · L272-L272 — double get_notification_interval() const { return m_resolution; }
+- get_mesure_window_size · function · L273-L273 — double get_mesure_window_size() const { return m_window_size; }
+- CSGSettings · class · L277-L315 — class CSGSettings
+- get_algo · function · L289-L289 — int get_algo() const { return int(m_csgalg); }
+- set_algo · function · L290-L294 — void set_algo(int alg)
+- get_depth_algo · function · L296-L296 — int get_depth_algo() const { return int(m_depth_algo); }
+- set_depth_algo · function · L297-L301 — void set_depth_algo(int alg)
+- get_optimization · function · L303-L303 — int  get_optimization() const { return int(m_optim); }
+- set_optimization · function · L304-L308 — void set_optimization(int o)
+- enable_csg · function · L310-L310 — void enable_csg(bool en = true) { m_enable = en; }
+- is_enabled · function · L311-L311 — bool is_enabled() const { return m_enable; }
+- get_convexity · function · L313-L313 — unsigned get_convexity() const { return m_convexity; }
+- set_convexity · function · L314-L314 — void set_convexity(unsigned c) { m_convexity = c; }
+- Scene · class · L318-L351 — class Scene
+- Listener · class · L329-L333 — class Listener
+- on_scene_updated · function · L332-L332 — virtual void on_scene_updated(const Scene &scene) = 0;
+- Scene · function · L335-L335 — Scene();
+- set_print · function · L338-L338 — void set_print(std::unique_ptr<SLAPrint> &&print);
+- get_print · function · L339-L339 — const SLAPrint * get_print() const { return m_print.get(); }
+- get_bounding_box · function · L341-L341 — BoundingBoxf3 get_bounding_box() const;
+- add_listener · function · L343-L347 — void add_listener(std::shared_ptr<Listener> listener)
+- Display · class · L358-L398 — class Display : public Scene::Listener
+- Display · function · L369-L371 — explicit Display(std::shared_ptr<Camera> camera = nullptr)
+- get_camera · function · L375-L375 — std::shared_ptr<const Camera> get_camera() const { return m_camera; }
+- get_camera · function · L376-L376 — std::shared_ptr<Camera> get_camera() { return m_camera; }
+- set_camera · function · L377-L377 — void set_camera(std::shared_ptr<Camera> cam) { m_camera = cam; }
+- swap_buffers · function · L379-L379 — virtual void swap_buffers() = 0;
+- set_active · function · L380-L380 — virtual void set_active(long width, long height);
+- set_screen_size · function · L381-L381 — virtual void set_screen_size(long width, long height);
+- get_screen_size · function · L382-L382 — Vec2i32 get_screen_size() const { return m_size; }
+- repaint · function · L384-L384 — virtual void repaint();
+- is_initialized · function · L386-L386 — bool is_initialized() const { return m_initialized; }
+- clear_screen · function · L388-L388 — virtual void clear_screen();
+- render_scene · function · L389-L389 — virtual void render_scene() {}
+- set_fps_counter · function · L391-L394 — template<class _FpsCounter> void set_fps_counter(_FpsCounter &&fpsc)
+- get_fps_counter · function · L396-L396 — const FpsCounter &get_fps_counter() const { return m_fps_counter; }
+- get_fps_counter · function · L397-L397 — FpsCounter &get_fps_counter() { return m_fps_counter; }
+- CSGDisplay · class · L401-L429 — class CSGDisplay : public Display
+- SceneCache · class · L407-L418 — struct SceneCache
+- clear · function · L412-L412 — void clear();
+- add_mesh · function · L414-L414 — std::shared_ptr<Primitive> add_mesh(const TriangleMesh &mesh);
+- add_mesh · function · L415-L417 — std::shared_ptr<Primitive> add_mesh(const TriangleMesh &mesh,
+- get_csgsettings · function · L423-L423 — const CSGSettings & get_csgsettings() const { return m_csgsettings; }
+- apply_csgsettings · function · L424-L424 — void apply_csgsettings(const CSGSettings &settings);
+- render_scene · function · L426-L426 — void render_scene() override;
+- on_scene_updated · function · L428-L428 — void on_scene_updated(const Scene &scene) override;
+- Controller · class · L436-L485 — class Controller : public std::enable_shared_from_this<Controller>,
+- call_cameras · function · L448-L453 — template<class F, class...Args>
+- set_scene · function · L458-L462 — void set_scene(std::shared_ptr<Scene> scene)
+- get_scene · function · L464-L464 — const Scene * get_scene() const { return m_scene.get(); }
+- add_display · function · L466-L470 — void add_display(std::shared_ptr<Display> disp)
+- remove_displays · function · L472-L472 — void remove_displays() { m_displays = {}; }
+- on_scene_updated · function · L474-L474 — void on_scene_updated(const Scene &scene) override;
+- on_left_click_down · function · L476-L476 — void on_left_click_down() override { m_left_btn = true; }
+- on_left_click_up · function · L477-L477 — void on_left_click_up() override { m_left_btn = false;  }
+- on_right_click_down · function · L478-L478 — void on_right_click_down() override { m_right_btn = true;  }
+- on_right_click_up · function · L479-L479 — void on_right_click_up() override { m_right_btn = false; }
+- on_scroll · function · L481-L481 — void on_scroll(long v, long d, MouseInput::WheelAxis wa) override;
+- on_moved_to · function · L482-L482 — void on_moved_to(long x, long y) override;
+- move_clip_plane · function · L484-L484 — void move_clip_plane(double z) { call_cameras(&Camera::set_clip_z, z); }

@@ -1,0 +1,16 @@
+# resources/web/include/swiper/modules/scrollbar/scrollbar.js
+
+- Scrollbar · function · L5-L361 — function Scrollbar({ swiper, extendParams, on, emit })
+- setTranslate · function · L37-L84 — function setTranslate()
+- setTransition · function · L86-L89 — function setTransition(duration)
+- updateSize · function · L91-L130 — function updateSize()
+- getPointerPosition · function · L132-L138 — function getPointerPosition(e)
+- setDragPosition · function · L140-L161 — function setDragPosition(e)
+- onDragStart · function · L163-L192 — function onDragStart(e)
+- onDragMove · function · L194-L210 — function onDragMove(e)
+- onDragEnd · function · L212-L242 — function onDragEnd(e)
+- events · function · L244-L274 — function events(method)
+- enableDraggable · function · L276-L279 — function enableDraggable()
+- disableDraggable · function · L281-L284 — function disableDraggable()
+- init · function · L286-L323 — function init()
+- destroy · function · L325-L327 — function destroy()

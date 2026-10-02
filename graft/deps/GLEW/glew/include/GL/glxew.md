@@ -1,0 +1,44 @@
+# deps/GLEW/glew/include/GL/glxew.h
+
+- GLXDrawable · type · L142-L142 — typedef XID GLXDrawable;
+- GLXPixmap · type · L143-L143 — typedef XID GLXPixmap;
+- GLXVideoDeviceNV · type · L150-L150 — typedef unsigned int GLXVideoDeviceNV;
+- glXQueryExtension · function · L152-L152 — extern Bool glXQueryExtension (Display *dpy, int *errorBase, int *eventBase);
+- glXQueryVersion · function · L153-L153 — extern Bool glXQueryVersion (Display *dpy, int *major, int *minor);
+- glXGetConfig · function · L154-L154 — extern int glXGetConfig (Display *dpy, XVisualInfo *vis, int attrib, int *value);
+- glXChooseVisual · function · L155-L155 — extern XVisualInfo* glXChooseVisual (Display *dpy, int screen, int *attribList);
+- glXCreateGLXPixmap · function · L156-L156 — extern GLXPixmap glXCreateGLXPixmap (Display *dpy, XVisualInfo *vis, Pixmap pixmap);
+- glXDestroyGLXPixmap · function · L157-L157 — extern void glXDestroyGLXPixmap (Display *dpy, GLXPixmap pix);
+- glXCreateContext · function · L158-L158 — extern GLXContext glXCreateContext (Display *dpy, XVisualInfo *vis, GLXContext shareList, Bool direct);
+- glXDestroyContext · function · L159-L159 — extern void glXDestroyContext (Display *dpy, GLXContext ctx);
+- glXIsDirect · function · L160-L160 — extern Bool glXIsDirect (Display *dpy, GLXContext ctx);
+- glXCopyContext · function · L161-L161 — extern void glXCopyContext (Display *dpy, GLXContext src, GLXContext dst, GLulong mask);
+- glXMakeCurrent · function · L162-L162 — extern Bool glXMakeCurrent (Display *dpy, GLXDrawable drawable, GLXContext ctx);
+- glXGetCurrentContext · function · L163-L163 — extern GLXContext glXGetCurrentContext (void);
+- glXGetCurrentDrawable · function · L164-L164 — extern GLXDrawable glXGetCurrentDrawable (void);
+- glXWaitGL · function · L165-L165 — extern void glXWaitGL (void);
+- glXWaitX · function · L166-L166 — extern void glXWaitX (void);
+- glXSwapBuffers · function · L167-L167 — extern void glXSwapBuffers (Display *dpy, GLXDrawable drawable);
+- glXUseXFont · function · L168-L168 — extern void glXUseXFont (Font font, int first, int count, int listBase);
+- glXQueryExtensionsString · function · L183-L183 — extern const char* glXQueryExtensionsString (Display *dpy, int screen);
+- glXGetClientString · function · L184-L184 — extern const char* glXGetClientString (Display *dpy, int name);
+- glXQueryServerString · function · L185-L185 — extern const char* glXQueryServerString (Display *dpy, int screen, int name);
+- GLXFBConfigID · type · L266-L266 — typedef XID GLXFBConfigID;
+- GLXPbuffer · type · L267-L267 — typedef XID GLXPbuffer;
+- GLXWindow · type · L268-L268 — typedef XID GLXWindow;
+- GLXPbufferClobberEvent · type · L271-L283 — typedef struct
+- GLXEvent · type · L284-L287 — typedef union __GLXEvent
+- glXGetProcAddress · function · L337-L337 — extern void ( * glXGetProcAddress (const GLubyte *procName)) (void);
+- glXGetProcAddressARB · function · L493-L493 — extern void ( * glXGetProcAddressARB (const GLubyte *procName)) (void);
+- GLXContextID · type · L687-L687 — typedef XID GLXContextID;
+- GLXVideoCaptureDeviceNV · type · L1144-L1144 — typedef XID GLXVideoCaptureDeviceNV;
+- GLXFBConfigIDSGIX · type · L1292-L1292 — typedef XID GLXFBConfigIDSGIX;
+- GLXHyperpipeNetworkSGIX · type · L1329-L1332 — typedef struct
+- GLXPipeRectLimits · type · L1333-L1339 — typedef struct
+- GLXHyperpipeConfigSGIX · type · L1340-L1345 — typedef struct
+- GLXPipeRect · type · L1346-L1356 — typedef struct
+- GLXPbufferSGIX · type · L1411-L1411 — typedef XID GLXPbufferSGIX;
+- GLXBufferClobberEventSGIX · type · L1412-L1412 — typedef struct { int type; unsigned long serial; Bool send_event; Display *display; GLXDrawable drawable; int event_type; int draw_type; unsigned int mask; int x, y; int width, height; int count; } GLXBufferClobberEventSGIX;
+- glxewInit · function · L1814-L1814 — GLEWAPI GLenum GLEWAPIENTRY glxewInit ();
+- glxewIsSupported · function · L1815-L1815 — GLEWAPI GLboolean GLEWAPIENTRY glxewIsSupported (const char *name);
+- glxewGetExtension · function · L1825-L1825 — GLEWAPI GLboolean GLEWAPIENTRY glxewGetExtension (const char *name);

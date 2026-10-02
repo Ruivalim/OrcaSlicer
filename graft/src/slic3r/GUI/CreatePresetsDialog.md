@@ -1,0 +1,133 @@
+# src/slic3r/GUI/CreatePresetsDialog.hpp
+
+- CreateFilamentPresetDialog · class · L20-L89 — class CreateFilamentPresetDialog : public DPIDialog
+- CreateFilamentPresetDialog · function · L23-L23 — CreateFilamentPresetDialog(wxWindow *parent);
+- FilamentOptionType · type · L27-L34 — enum FilamentOptionType
+- on_dpi_changed · function · L37-L37 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- is_check_box_selected · function · L38-L38 — bool        is_check_box_selected();
+- create_item · function · L39-L39 — wxBoxSizer *create_item(FilamentOptionType option_type);
+- create_vendor_item · function · L40-L40 — wxBoxSizer *create_vendor_item();
+- create_type_item · function · L41-L41 — wxBoxSizer *create_type_item();
+- create_serial_item · function · L42-L42 — wxBoxSizer *create_serial_item();
+- create_filament_preset_item · function · L43-L43 — wxBoxSizer *create_filament_preset_item();
+- create_filament_preset_for_printer_item · function · L44-L44 — wxBoxSizer *create_filament_preset_for_printer_item();
+- create_dialog_buttons · function · L45-L45 — wxWindow   *create_dialog_buttons();
+- clear_filament_preset_map · function · L48-L48 — void          clear_filament_preset_map();
+- get_filament_preset_choices · function · L49-L49 — wxArrayString get_filament_preset_choices();
+- create_radio_item · function · L50-L50 — wxBoxSizer *  create_radio_item(wxString title, wxWindow *parent, wxString tooltip, std::vector<std::pair<RadioBox *, wxString>> &radiobox_list);
+- select_curr_radiobox · function · L51-L51 — void          select_curr_radiobox(std::vector<std::pair<RadioBox *, wxString>> &radiobox_list, int btn_idx);
+- curr_create_filament_type · function · L52-L52 — wxString      curr_create_filament_type();
+- get_filament_presets_by_machine · function · L53-L53 — void          get_filament_presets_by_machine();
+- get_all_filament_presets · function · L54-L54 — void          get_all_filament_presets();
+- get_all_visible_printer_name · function · L55-L55 — void          get_all_visible_printer_name();
+- update_dialog_size · function · L56-L56 — void          update_dialog_size();
+- sort_printer_by_nozzle · function · L57-L58 — template<typename T>
+- CreateType · class · L61-L65 — struct CreateType
+- CreatePrinterPresetDialog · class · L91-L212 — class CreatePrinterPresetDialog : public DPIDialog
+- CreatePrinterPresetDialog · function · L94-L94 — CreatePrinterPresetDialog(wxWindow *parent);
+- on_dpi_changed · function · L98-L98 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- create_step_switch_item · function · L101-L101 — wxBoxSizer *create_step_switch_item();
+- create_printer_page1 · function · L103-L103 — void        create_printer_page1(wxWindow *parent);
+- create_type_item · function · L104-L104 — wxBoxSizer *create_type_item(wxWindow *parent);
+- create_printer_item · function · L105-L105 — wxBoxSizer *create_printer_item(wxWindow *parent);
+- create_nozzle_diameter_item · function · L106-L106 — wxBoxSizer *create_nozzle_diameter_item(wxWindow *parent);
+- create_bed_shape_item · function · L107-L107 — wxBoxSizer *create_bed_shape_item(wxWindow *parent);
+- create_bed_size_item · function · L108-L108 — wxBoxSizer *create_bed_size_item(wxWindow *parent);
+- create_origin_item · function · L109-L109 — wxBoxSizer *create_origin_item(wxWindow *parent);
+- create_hot_bed_stl_item · function · L110-L110 — wxBoxSizer *create_hot_bed_stl_item(wxWindow *parent);
+- create_hot_bed_svg_item · function · L111-L111 — wxBoxSizer *create_hot_bed_svg_item(wxWindow *parent);
+- create_max_print_height_item · function · L112-L112 — wxBoxSizer *create_max_print_height_item(wxWindow *parent);
+- create_page1_dialog_buttons · function · L113-L113 — wxWindow   *create_page1_dialog_buttons(wxWindow *parent);
+- create_printer_page2 · function · L115-L115 — void create_printer_page2(wxWindow *parent);
+- create_printer_preset_item · function · L116-L116 — wxBoxSizer *create_printer_preset_item(wxWindow *parent);
+- create_presets_item · function · L117-L117 — wxBoxSizer *create_presets_item(wxWindow *parent);
+- create_presets_template_item · function · L118-L118 — wxBoxSizer *create_presets_template_item(wxWindow *parent);
+- create_page2_dialog_buttons · function · L119-L119 — wxWindow   *create_page2_dialog_buttons(wxWindow *parent);
+- show_page1 · function · L121-L121 — void show_page1();
+- show_page2 · function · L122-L122 — void show_page2();
+- data_init · function · L125-L125 — bool          data_init();
+- on_select_printer_model · function · L126-L126 — void          on_select_printer_model(wxCommandEvent &e);
+- set_current_visible_printer · function · L127-L127 — void          set_current_visible_printer();
+- select_curr_radiobox · function · L128-L128 — void          select_curr_radiobox(std::vector<std::pair<RadioBox *, wxString>> &radiobox_list, int btn_idx);
+- select_all_preset_template · function · L129-L129 — void          select_all_preset_template(std::vector<std::pair<::CheckBox *, Preset *>> &preset_templates);
+- deselect_all_preset_template · function · L130-L130 — void          deselect_all_preset_template(std::vector<std::pair<::CheckBox *, Preset *>> &preset_templates);
+- update_presets_list · function · L131-L131 — void          update_presets_list(bool jast_template = false);
+- on_preset_model_value_change · function · L132-L132 — void          on_preset_model_value_change(wxCommandEvent &e);
+- clear_preset_combobox · function · L133-L133 — void          clear_preset_combobox();
+- save_printable_area_config · function · L134-L134 — bool          save_printable_area_config(Preset *preset);
+- check_printable_area · function · L135-L135 — bool          check_printable_area();
+- validate_input_valid · function · L136-L136 — bool          validate_input_valid();
+- load_texture · function · L137-L137 — void          load_texture();
+- load_model_stl · function · L138-L138 — void          load_model_stl();
+- load_system_and_user_presets_with_curr_model · function · L139-L139 — bool          load_system_and_user_presets_with_curr_model(PresetBundle &temp_preset_bundle, bool just_template = false);
+- generate_process_presets_data · function · L140-L140 — void          generate_process_presets_data(std::vector<Preset const *> presets, std::string nozzle);
+- update_preset_list_size · function · L141-L141 — void          update_preset_list_size();
+- get_printer_vendor · function · L142-L142 — std::string   get_printer_vendor() const;
+- get_printer_model · function · L143-L143 — std::string   get_printer_model() const;
+- get_nozzle_diameter · function · L144-L144 — std::string   get_nozzle_diameter() const;
+- get_custom_printer_model · function · L145-L145 — std::string   get_custom_printer_model() const;
+- get_custom_printer_name · function · L146-L146 — std::string   get_custom_printer_name() const;
+- printer_preset_sort_with_nozzle_diameter · function · L147-L147 — wxArrayString printer_preset_sort_with_nozzle_diameter(const VendorProfile &vendor_profile, float nozzle_diameter);
+- create_radio_item · function · L149-L149 — wxBoxSizer *create_radio_item(wxString title, wxWindow *parent, wxString tooltip, std::vector<std::pair<RadioBox *, wxString>> &radiobox_list);
+- curr_create_preset_type · function · L151-L151 — wxString    curr_create_preset_type() const;
+- curr_create_printer_type · function · L152-L152 — wxString    curr_create_printer_type() const;
+- CreatePrinterType · class · L155-L161 — struct CreatePrinterType
+- SuccessType · type · L214-L217 — enum SuccessType
+- CreatePresetSuccessfulDialog · class · L219-L228 — class CreatePresetSuccessfulDialog : public DPIDialog
+- CreatePresetSuccessfulDialog · function · L222-L222 — CreatePresetSuccessfulDialog(wxWindow *parent, const SuccessType &create_success_type);
+- on_dpi_changed · function · L226-L226 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- ExportConfigsDialog · class · L230-L294 — class ExportConfigsDialog : public DPIDialog
+- ExportConfigsDialog · function · L233-L233 — ExportConfigsDialog(wxWindow *parent);
+- ExportType · class · L238-L245 — struct ExportType
+- ExportCase · type · L247-L256 — enum ExportCase
+- data_init · function · L259-L259 — void        data_init();
+- select_curr_radiobox · function · L260-L260 — void        select_curr_radiobox(std::vector<std::pair<RadioBox *, wxString>> &radiobox_list, int btn_idx);
+- on_dpi_changed · function · L261-L261 — void        on_dpi_changed(const wxRect &suggested_rect) override;
+- show_export_result · function · L262-L262 — void        show_export_result(const ExportCase &export_case);
+- has_check_box_selected · function · L263-L263 — bool        has_check_box_selected();
+- earse_preset_fields_for_safe · function · L264-L264 — bool        earse_preset_fields_for_safe(Preset *preset);
+- initial_file_path · function · L265-L265 — std::string initial_file_path(const wxString &path, const std::string &sub_file_path);
+- initial_file_name · function · L266-L266 — std::string initial_file_name(const wxString &path, const std::string file_name);
+- create_export_config_item · function · L267-L267 — wxBoxSizer *create_export_config_item(wxWindow *parent);
+- create_dialog_buttons · function · L268-L268 — wxWindow   *create_dialog_buttons(wxWindow *parent);
+- create_select_printer · function · L269-L269 — wxBoxSizer *create_select_printer(wxWindow *parent);
+- create_radio_item · function · L270-L270 — wxBoxSizer *create_radio_item(wxString title, wxWindow *parent, wxString tooltip, std::vector<std::pair<RadioBox *, wxString>> &radiobox_list);
+- initial_zip_archive · function · L271-L271 — int         initial_zip_archive(mz_zip_archive &zip_archive, const std::string &file_path);
+- save_zip_archive_to_file · function · L272-L272 — ExportCase  save_zip_archive_to_file(mz_zip_archive &zip_archive);
+- save_presets_to_zip · function · L273-L273 — ExportCase  save_presets_to_zip(const std::string &export_file, const std::vector<std::pair<std::string, std::string>> &config_paths);
+- archive_preset_bundle_to_file · function · L274-L274 — ExportCase  archive_preset_bundle_to_file(const wxString &path);
+- archive_filament_bundle_to_file · function · L275-L275 — ExportCase  archive_filament_bundle_to_file(const wxString &path);
+- archive_printer_preset_to_file · function · L276-L276 — ExportCase  archive_printer_preset_to_file(const wxString &path);
+- archive_filament_preset_to_file · function · L277-L277 — ExportCase  archive_filament_preset_to_file(const wxString &path);
+- archive_process_preset_to_file · function · L278-L278 — ExportCase  archive_process_preset_to_file(const wxString &path);
+- CreatePresetForPrinterDialog · class · L296-L319 — class CreatePresetForPrinterDialog : public DPIDialog
+- CreatePresetForPrinterDialog · function · L299-L299 — CreatePresetForPrinterDialog(wxWindow *parent, std::string filament_type, std::string filament_id, std::string filament_vendor, std::string filament_name);
+- on_dpi_changed · function · L303-L303 — void        on_dpi_changed(const wxRect &suggested_rect) override;
+- get_visible_printer_and_compatible_filament_presets · function · L304-L304 — void        get_visible_printer_and_compatible_filament_presets();
+- create_selected_printer_preset_sizer · function · L305-L305 — wxBoxSizer *create_selected_printer_preset_sizer();
+- create_selected_filament_preset_sizer · function · L306-L306 — wxBoxSizer *create_selected_filament_preset_sizer();
+- create_dialog_buttons · function · L307-L307 — wxWindow   *create_dialog_buttons();
+- EditFilamentPresetDialog · class · L321-L321 — class EditFilamentPresetDialog;
+- PresetTree · class · L323-L343 — class PresetTree
+- PresetTree · function · L326-L326 — PresetTree(EditFilamentPresetDialog *dialog);
+- get_preset_tree · function · L328-L328 — wxPanel *get_preset_tree(std::pair<std::string, std::vector<std::shared_ptr<Preset>>> printer_and_presets);
+- get_root_item · function · L331-L331 — wxPanel *get_root_item(wxPanel *parent, const std::string &printer_name);
+- get_child_item · function · L333-L333 — wxPanel *get_child_item(wxPanel *parent, std::shared_ptr<Preset> preset, std::string printer_name, int preset_index, bool is_last = false);
+- delete_preset · function · L335-L335 — void delete_preset(std::string printer_name, int need_delete_preset_index);
+- edit_preset · function · L337-L337 — void edit_preset(std::string printer_name, int need_edit_preset_index);
+- EditFilamentPresetDialog · class · L345-L387 — class EditFilamentPresetDialog : public DPIDialog
+- EditFilamentPresetDialog · function · L348-L348 — EditFilamentPresetDialog(wxWindow *parent, Filamentinformation *filament_info);
+- get_preset_tree_panel · function · L351-L351 — wxPanel *get_preset_tree_panel() { return m_preset_tree_panel; }
+- get_need_edit_preset · function · L352-L352 — std::shared_ptr<Preset> get_need_edit_preset() { return m_need_edit_preset; }
+- set_printer_name · function · L353-L353 — void     set_printer_name(const std::string &printer_name) { m_selected_printer = printer_name; }
+- set_need_delete_preset_index · function · L354-L354 — void     set_need_delete_preset_index(int need_delete_preset_index) { m_need_delete_preset_index = need_delete_preset_index; }
+- set_need_edit_preset_index · function · L355-L355 — void     set_need_edit_preset_index(int need_edit_preset_index) { m_need_edit_preset_index = need_edit_preset_index; }
+- delete_preset · function · L356-L356 — void     delete_preset();
+- edit_preset · function · L357-L357 — void     edit_preset();
+- on_dpi_changed · function · L360-L360 — void        on_dpi_changed(const wxRect &suggested_rect) override;
+- get_same_filament_id_presets · function · L361-L361 — bool        get_same_filament_id_presets(std::string filament_id);
+- update_preset_tree · function · L362-L362 — void        update_preset_tree();
+- create_filament_basic_info · function · L363-L363 — wxBoxSizer *create_filament_basic_info();
+- create_add_filament_btn · function · L364-L364 — wxBoxSizer *create_add_filament_btn();
+- create_preset_tree_sizer · function · L365-L365 — wxBoxSizer *create_preset_tree_sizer();
+- create_dialog_buttons · function · L366-L366 — wxWindow   *create_dialog_buttons();

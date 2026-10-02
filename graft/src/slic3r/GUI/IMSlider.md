@@ -1,0 +1,94 @@
+# src/slic3r/GUI/IMSlider.hpp
+
+- wxMenu · class · L10-L10 — class wxMenu;
+- PrintObject · class · L16-L16 — class PrintObject;
+- Layer · class · L17-L17 — class Layer;
+- epsilon · function · L24-L24 — constexpr double epsilon() { return 0.0011; }
+- equivalent_areas · function · L26-L26 — bool equivalent_areas(const double &bottom_area, const double &top_area);
+- check_color_change · function · L29-L32 — bool check_color_change(PrintObject* object, size_t frst_layer_id, size_t layers_cnt, bool check_overhangs,
+- SelectedSlider · type · L34-L38 — enum SelectedSlider
+- DrawMode · type · L40-L46 — enum DrawMode
+- LabelType · type · L48-L53 — enum LabelType
+- IMSlider · class · L55-L233 — class IMSlider
+- IMSlider · function · L58-L58 — IMSlider(int lowerValue, int higherValue, int minValue, int maxValue, long style = wxSL_VERTICAL);
+- init_texture · function · L60-L60 — bool init_texture();
+- GetMinValue · function · L64-L64 — int    GetMinValue() const { return m_min_value; }
+- GetMaxValue · function · L65-L65 — int    GetMaxValue() const { return m_max_value; }
+- GetMinValueD · function · L66-L66 — double GetMinValueD() { return m_values.empty() ? 0. : m_values[m_min_value]; }
+- GetMaxValueD · function · L67-L67 — double GetMaxValueD() { return m_values.empty() ? 0. : m_values[m_max_value]; }
+- GetLowerValue · function · L68-L68 — int    GetLowerValue() const { return m_lower_value; }
+- GetHigherValue · function · L69-L69 — int    GetHigherValue() const { return m_higher_value; }
+- GetActiveValue · function · L70-L70 — int    GetActiveValue() const;
+- GetLowerValueD · function · L71-L71 — double GetLowerValueD() { return get_double_value(ssLower); }
+- GetHigherValueD · function · L72-L72 — double GetHigherValueD() { return get_double_value(ssHigher); }
+- GetSelection · function · L73-L73 — SelectedSlider GetSelection() { return m_selection; }
+- SetLowerValue · function · L76-L76 — void SetLowerValue(const int lower_val);
+- SetHigherValue · function · L77-L77 — void SetHigherValue(const int higher_val);
+- SetSelectionSpan · function · L78-L78 — void SetSelectionSpan(const int lower_val, const int higher_val);
+- SetMaxValue · function · L79-L79 — void SetMaxValue(const int max_value);
+- SetKoefForLabels · function · L80-L80 — void SetKoefForLabels(const double koef) { m_label_koef = koef; }
+- SetSliderValues · function · L81-L81 — void SetSliderValues(const std::vector<double> &values);
+- SetSliderAlternateValues · function · L82-L82 — void SetSliderAlternateValues(const std::vector<double> &values) { m_alternate_values = values; }
+- GetTicksValues · function · L84-L84 — Info GetTicksValues() const;
+- SetTicksValues · function · L85-L85 — void SetTicksValues(const Info &custom_gcode_per_print_z);
+- SetLayersTimes · function · L86-L86 — void SetLayersTimes(const std::vector<float> &layers_times, float total_time);
+- SetLayersTimes · function · L87-L87 — void SetLayersTimes(const std::vector<double> &layers_times);
+- SetDrawMode · function · L89-L89 — void SetDrawMode(bool is_sequential_print);
+- SetDrawMode · function · L90-L90 — void SetDrawMode(DrawMode mode) { m_draw_mode = mode; }
+- SetExtraStyle · function · L92-L92 — void SetExtraStyle(long style) { m_extra_style = style; }
+- SetManipulationMode · function · L93-L93 — void SetManipulationMode(Mode mode) { m_mode = mode; }
+- GetManipulationMode · function · L94-L94 — Mode GetManipulationMode() const { return m_mode; }
+- SetModeAndOnlyExtruder · function · L95-L95 — void SetModeAndOnlyExtruder(const bool is_one_extruder_printed_model, const int only_extruder, bool can_change_color);
+- SetExtruderColors · function · L96-L96 — void SetExtruderColors(const std::vector<std::string> &extruder_colors);
+- IsNewPrint · function · L98-L98 — bool IsNewPrint();
+- set_render_as_disabled · function · L100-L100 — void set_render_as_disabled(bool value) { m_render_as_disabled = value; }
+- is_rendering_as_disabled · function · L101-L101 — bool is_rendering_as_disabled() const { return m_render_as_disabled; }
+- is_horizontal · function · L103-L103 — bool is_horizontal() const { return m_style == wxSL_HORIZONTAL; }
+- is_one_layer · function · L104-L104 — bool is_one_layer() const { return m_is_one_layer; }
+- is_lower_at_min · function · L105-L105 — bool is_lower_at_min() const { return m_lower_value == m_min_value; }
+- is_higher_at_max · function · L106-L106 — bool is_higher_at_max() const { return m_higher_value == m_max_value; }
+- is_full_span · function · L107-L107 — bool is_full_span() const { return this->is_lower_at_min() && this->is_higher_at_max(); }
+- UseDefaultColors · function · L109-L109 — void UseDefaultColors(bool def_colors_on) { m_ticks.set_default_colors(def_colors_on); }
+- on_mouse_wheel · function · L111-L111 — void on_mouse_wheel(wxMouseEvent& evt);
+- post_ticks_changed_event · function · L112-L112 — void post_ticks_changed_event(Type type = Unknown);
+- check_ticks_changed_event · function · L113-L113 — bool check_ticks_changed_event(Type type);
+- switch_one_layer_mode · function · L114-L114 — bool switch_one_layer_mode();
+- show_go_to_layer · function · L115-L115 — void show_go_to_layer(bool show) { m_show_go_to_layer_dialog = show; }
+- render · function · L117-L117 — bool render(int canvas_width, int canvas_height);
+- is_dirty · function · L120-L120 — bool is_dirty() { return m_dirty; }
+- set_as_dirty · function · L121-L121 — void set_as_dirty(bool dirty = true) { m_dirty = dirty; }
+- is_need_post_tick_event · function · L122-L122 — bool is_need_post_tick_event() { return m_is_need_post_tick_changed_event; }
+- reset_post_tick_event · function · L123-L126 — void reset_post_tick_event(bool val = false)
+- get_post_tick_event_type · function · L127-L127 — Type get_post_tick_event_type() { return m_tick_change_event_type; }
+- set_scale · function · L130-L130 — void set_scale(float scale = 1.0);
+- vertical_slider_window_width · function · L132-L132 — static float vertical_slider_window_width();
+- on_change_color_mode · function · L133-L133 — void on_change_color_mode(bool is_dark);
+- set_menu_enable · function · L134-L134 — void set_menu_enable(bool enable = true) { m_menu_enable = enable; }
+- add_custom_gcode · function · L137-L137 — void add_custom_gcode(std::string custom_gcode);
+- add_code_as_tick · function · L138-L138 — void add_code_as_tick(Type type, int selected_extruder = -1);
+- delete_tick · function · L139-L139 — void delete_tick(const TickCode& tick);
+- do_go_to_layer · function · L140-L140 — void do_go_to_layer(size_t layer_number); //menu
+- correct_lower_value · function · L141-L141 — void correct_lower_value();
+- correct_higher_value · function · L142-L142 — void correct_higher_value();
+- horizontal_slider · function · L143-L143 — bool horizontal_slider(const char* str_id, int* v, int v_min, int v_max, const ImVec2& size, float scale = 1.0);
+- render_go_to_layer_dialog · function · L144-L144 — void render_go_to_layer_dialog(); //menu
+- render_input_custom_gcode · function · L145-L145 — void render_input_custom_gcode(std::string custom_gcode = ""); //menu
+- render_menu · function · L146-L146 — void render_menu();
+- render_add_menu · function · L147-L147 — void render_add_menu(); //menu
+- render_edit_menu · function · L148-L148 — void render_edit_menu(const TickCode& tick); //menu
+- draw_background_and_groove · function · L149-L149 — void draw_background_and_groove(const ImRect& bg_rect, const ImRect& groove);
+- draw_colored_band · function · L150-L150 — void draw_colored_band(const ImRect& groove, const ImRect& slideable_region);
+- draw_custom_label_block · function · L151-L151 — void draw_custom_label_block(const ImVec2 anchor, Type type);
+- draw_ticks · function · L152-L152 — void draw_ticks(const ImRect& slideable_region);
+- draw_tick_on_mouse_position · function · L153-L153 — void draw_tick_on_mouse_position(const ImRect& slideable_region);
+- show_tooltip · function · L154-L154 — void show_tooltip(const TickCode& tick); //menu
+- show_tooltip · function · L155-L155 — void show_tooltip(const std::string tooltip); //menu
+- vertical_slider · function · L156-L159 — bool vertical_slider(const char* str_id, int* higher_value, int* lower_value,
+- is_wipe_tower_layer · function · L160-L160 — bool is_wipe_tower_layer(int tick) const;
+- get_label · function · L163-L163 — std::string get_label(int tick, LabelType label_type = ltHeightWithLayer);
+- get_double_value · function · L164-L164 — double get_double_value(const SelectedSlider& selection);
+- get_tick_from_value · function · L165-L165 — int    get_tick_from_value(double value, bool force_lower_bound = false);
+- get_pos_from_value · function · L166-L166 — float get_pos_from_value(int v_min, int v_max, int value, const ImRect& rect);
+- get_tick_near_point · function · L167-L167 — int    get_tick_near_point(int v_min, int v_max, const ImVec2& pt, const ImRect& rect);
+- get_color_for_tool_change_tick · function · L169-L169 — std::string get_color_for_tool_change_tick(std::set<TickCode>::const_iterator it) const;
+- get_active_extruders_for_tick · function · L174-L174 — std::array<int, 2> get_active_extruders_for_tick(int tick) const;

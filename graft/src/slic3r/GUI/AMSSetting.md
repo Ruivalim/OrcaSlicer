@@ -1,0 +1,34 @@
+# src/slic3r/GUI/AMSSetting.hpp
+
+- AnimaIcon · class · L24-L24 — class AnimaIcon;
+- ComboBox · class · L25-L25 — class ComboBox;
+- AMSSettingTypePanel · class · L28-L28 — class AMSSettingTypePanel;
+- AMSSetting · class · L29-L104 — class AMSSetting : public DPIDialog
+- AMSSetting · function · L32-L32 — AMSSetting(wxWindow *parent, wxWindowID id, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize, long style = wxDEFAULT_DIALOG_STYLE);
+- UpdateByObj · function · L36-L36 — void UpdateByObj(MachineObject* obj);
+- create · function · L39-L39 — void create();
+- update_ams_img · function · L41-L41 — void update_ams_img(MachineObject* obj);
+- update_starting_read_mode · function · L42-L42 — void update_starting_read_mode(bool selected);
+- update_remain_mode · function · L43-L43 — void update_remain_mode(bool selected);
+- update_switch_filament · function · L44-L44 — void update_switch_filament(bool selected);
+- update_insert_material_read_mode · function · L45-L45 — void update_insert_material_read_mode(MachineObject* obj);
+- update_insert_material_read_mode · function · L46-L46 — void update_insert_material_read_mode(bool selected, std::string version);
+- update_air_printing_detection · function · L47-L47 — void update_air_printing_detection(MachineObject* obj);
+- update_firmware_switching_status · function · L49-L49 — void update_firmware_switching_status();
+- on_insert_material_read · function · L52-L52 — void on_insert_material_read(wxCommandEvent& event);
+- on_starting_read · function · L53-L53 — void on_starting_read(wxCommandEvent& event);
+- on_remain · function · L54-L54 — void on_remain(wxCommandEvent& event);
+- on_switch_filament · function · L55-L55 — void on_switch_filament(wxCommandEvent& event);
+- on_air_print_detect · function · L56-L56 — void on_air_print_detect(wxCommandEvent& event);
+- on_dpi_changed · function · L57-L57 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- AMSSettingTypePanel · class · L106-L130 — class AMSSettingTypePanel : public wxPanel
+- AMSSettingTypePanel · function · L109-L109 — AMSSettingTypePanel(wxWindow* parent, AMSSetting* setting_dlg);
+- UpdateInfo · function · L113-L113 — void UpdateInfo(const MachineObject* obj);
+- CreateGui · function · L116-L116 — void CreateGui();
+- OnAmsTypeChanged · function · L117-L117 — void OnAmsTypeChanged(wxCommandEvent& event);
+- AMSSettingArrangeAMSOrder · class · L134-L150 — class AMSSettingArrangeAMSOrder : public wxPanel
+- AMSSettingArrangeAMSOrder · function · L137-L137 — AMSSettingArrangeAMSOrder(wxWindow* parent);
+- Update · function · L140-L140 — void Update(const MachineObject* obj);
+- Rescale · function · L141-L141 — void Rescale() { m_btn_rearrange->msw_rescale(); Layout(); };
+- CreateGui · function · L144-L144 — void CreateGui();
+- OnBtnRearrangeClicked · function · L145-L145 — void OnBtnRearrangeClicked(wxCommandEvent& event);

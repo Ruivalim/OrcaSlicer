@@ -1,0 +1,24 @@
+# src/slic3r/GUI/DeviceCore/DevUtil.h
+
+- get_flag_bits · function · L36-L36 — static int get_flag_bits(std::string str, int start, int count = 1);
+- get_flag_bits · function · L37-L37 — static int get_flag_bits(int num, int start, int count = 1, int base = 10);
+- get_flag_bits_no_border · function · L38-L38 — static uint32_t get_flag_bits_no_border(std::string str, int start_idx, int count = 1);
+- get_hex_bits · function · L41-L41 — static int get_hex_bits(int num, int pos, int input_num_base = 10) { return get_flag_bits(num, pos * 4, 4, input_num_base);};
+- string_to_float · function · L43-L43 — static float string_to_float(const std::string& str_value);
+- convertToIp · function · L45-L45 — static std::string convertToIp(long long ip);
+- is_studio_cmd · function · L48-L48 — static bool is_studio_cmd(int seq) { return seq >= STUDIO_START_SEQ_ID && seq < STUDIO_END_SEQ_ID;};
+- is_cloud_cmd · function · L49-L49 — static bool is_cloud_cmd(int seq) { return seq == CLOUD_SEQ_ID;};
+- GetVal · function · L57-L70 — static T GetVal(const nlohmann::json& j, const std::string& key, const T& default_val = T())
+- T · function · L57-L57 — static T GetVal(const nlohmann::json& j, const std::string& key, const T& default_val = T())
+- ParseVal · function · L73-L84 — static void ParseVal(const nlohmann::json& j, const std::string& key, T& val)
+- ParseVal · function · L87-L98 — static void ParseVal(const nlohmann::json& j, const std::string& key, T& val, T default_val)
+- NumericStrCompare · class · L105-L112 — struct NumericStrCompare
+- class · type · L123-L169 — enum class DirtyMode
+- m_mode · function · L131-L131 — DevDirtyHandler(T init_value, int setting_threshold, DirtyMode mode): m_value(init_value), m_setting_threshold(setting_threshold), m_mode(mode)
+- m_value · function · L131-L133 — DevDirtyHandler(T init_value, int setting_threshold, DirtyMode mode): m_value(init_value), m_setting_threshold(setting_threshold), m_mode(mode)
+- GetValue · function · L137-L137 — T GetValue() const { return m_value; };
+- SetOptimisticValue · function · L139-L144 — void SetOptimisticValue(const T& data)
+- UpdateValue · function · L146-L160 — void UpdateValue(const T& data)
+- s_get_diameter_str · function · L172-L175 — static std::string s_get_diameter_str(float diameter)
+- s_get_diameter_str · function · L177-L194 — static std::string s_get_diameter_str(const std::string& diameter)
+- s_get_diameter · function · L196-L211 — static float s_get_diameter(const std::string& diameter)

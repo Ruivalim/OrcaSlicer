@@ -1,0 +1,28 @@
+# deps_src/hidapi/linux/hid.c
+
+- hid_wrapper_udev_close · function · L88-L108 — static void hid_wrapper_udev_close()
+- hid_wrapper_udev_init · function · L114-L173 — static int hid_wrapper_udev_init()
+- device_string_id · type · L193-L199 — enum device_string_id
+- hid_device_ · class · L201-L205 — struct hid_device_
+- detect_kernel_version · function · L210-L229 — static __u32 detect_kernel_version(void)
+- new_hid_device · function · L231-L231 — static hid_device *new_hid_device(void)
+- utf8_to_wchar_t · function · L243-L243 — static wchar_t *utf8_to_wchar_t(const char *utf8)
+- copy_udev_string · function · L262-L262 — static wchar_t *copy_udev_string(struct udev_device *dev, const char *udev_name)
+- uses_numbered_reports · function · L269-L327 — static int uses_numbered_reports(__u8 *report_descriptor, __u32 size)
+- parse_uevent_info · function · L333-L384 — static int
+- device_string_id · type · L387-L387 — static int get_device_string(hid_device *dev, enum device_string_id key, wchar_t *string, size_t maxlen)
+- get_device_string · function · L387-L487 — static int get_device_string(hid_device *dev, enum device_string_id key, wchar_t *string, size_t maxlen)
+- hid_enumerate · function · L510-L510 — struct hid_device_info  HID_API_EXPORT *hid_enumerate(unsigned short vendor_id, unsigned short product_id)
+- hid_free_enumeration · function · L698-L710 — void  HID_API_EXPORT hid_free_enumeration(struct hid_device_info *devs)
+- hid_open · function · L712-L712 — hid_device * hid_open(unsigned short vendor_id, unsigned short product_id, const wchar_t *serial_number)
+- hid_write · function · L795-L802 — int HID_API_EXPORT hid_write(hid_device *dev, const unsigned char *data, size_t length)
+- hid_read_timeout · function · L805-L849 — int HID_API_EXPORT hid_read_timeout(hid_device *dev, unsigned char *data, size_t length, int milliseconds)
+- hid_read · function · L851-L854 — int HID_API_EXPORT hid_read(hid_device *dev, unsigned char *data, size_t length)
+- hid_set_nonblocking · function · L856-L864 — int HID_API_EXPORT hid_set_nonblocking(hid_device *dev, int nonblock)
+- hid_send_feature_report · function · L867-L876 — int HID_API_EXPORT hid_send_feature_report(hid_device *dev, const unsigned char *data, size_t length)
+- hid_get_feature_report · function · L878-L888 — int HID_API_EXPORT hid_get_feature_report(hid_device *dev, unsigned char *data, size_t length)
+- hid_close · function · L891-L897 — void HID_API_EXPORT hid_close(hid_device *dev)
+- hid_get_manufacturer_string · function · L900-L903 — int HID_API_EXPORT_CALL hid_get_manufacturer_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_product_string · function · L905-L908 — int HID_API_EXPORT_CALL hid_get_product_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_serial_number_string · function · L910-L913 — int HID_API_EXPORT_CALL hid_get_serial_number_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_indexed_string · function · L915-L918 — int HID_API_EXPORT_CALL hid_get_indexed_string(hid_device *dev, int string_index, wchar_t *string, size_t maxlen)

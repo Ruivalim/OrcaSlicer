@@ -1,0 +1,34 @@
+# src/slic3r/GUI/ConfigManipulation.hpp
+
+- ModelConfig · class · L16-L16 — class ModelConfig;
+- ObjectBase · class · L17-L17 — class ObjectBase;
+- ConfigManipulation · class · L21-L108 — class ConfigManipulation
+- ConfigManipulation · function · L43-L57 — ConfigManipulation(std::function<void()> load_config,
+- ConfigManipulation · function · L58-L58 — ConfigManipulation() {}
+- is_applying · function · L68-L68 — bool    is_applying() const;
+- apply · function · L70-L70 — void    apply(DynamicPrintConfig* config, DynamicPrintConfig* new_config);
+- applying_keys · function · L71-L71 — t_config_option_keys const &applying_keys() const;
+- toggle_field · function · L72-L72 — void    toggle_field(const std::string& field_key, const bool toggle, int opt_index = -1);
+- toggle_line · function · L73-L73 — void    toggle_line(const std::string& field_key, const bool toggle, int opt_index = -1);
+- set_option_label · function · L74-L74 — void    set_option_label(const std::string& field_key, const wxString& label, int opt_index = -1);
+- update_print_fff_config · function · L77-L77 — void    update_print_fff_config(DynamicPrintConfig* config, const bool is_global_config = false, const bool is_plate_config = false);
+- toggle_print_fff_options · function · L78-L78 — void    toggle_print_fff_options(DynamicPrintConfig* config, int variant_index, const bool is_global_config = false);
+- apply_null_fff_config · function · L79-L79 — void    apply_null_fff_config(DynamicPrintConfig *config, std::vector<std::string> const &keys, std::map<ObjectBase*, ModelConfig*> const & configs);
+- check_nozzle_recommended_temperature_range · function · L82-L82 — void    check_nozzle_recommended_temperature_range(DynamicPrintConfig *config);
+- check_nozzle_temperature_range · function · L83-L83 — void    check_nozzle_temperature_range(DynamicPrintConfig* config);
+- check_nozzle_temperature_initial_layer_range · function · L84-L84 — void    check_nozzle_temperature_initial_layer_range(DynamicPrintConfig* config);
+- check_adaptive_pressure_advance_model · function · L85-L85 — void    check_adaptive_pressure_advance_model(DynamicPrintConfig* config);
+- check_filament_max_volumetric_speed · function · L86-L86 — void    check_filament_max_volumetric_speed(DynamicPrintConfig *config);
+- check_chamber_temperature · function · L87-L87 — void    check_chamber_temperature(DynamicPrintConfig* config);
+- check_chamber_minimal_temperature · function · L88-L88 — void    check_chamber_minimal_temperature(DynamicPrintConfig* config);
+- check_layer_height · function · L89-L89 — bool    check_layer_height(DynamicPrintConfig* config);
+- layer_height_out_of_range_dialog · function · L90-L90 — bool    layer_height_out_of_range_dialog(DynamicPrintConfig* config, double clamp_to);
+- layer_height_limits · function · L91-L91 — void    layer_height_limits(double& min_layer_height, double& max_layer_height) const;
+- set_is_BBL_Printer · function · L92-L92 — void    set_is_BBL_Printer(bool is_bbl_printer) { is_BBL_Printer = is_bbl_printer; };
+- get_is_BBL_Printer · function · L93-L93 — bool    get_is_BBL_Printer() { return is_BBL_Printer; };
+- update_print_sla_config · function · L95-L95 — void    update_print_sla_config(DynamicPrintConfig* config, const bool is_global_config = false);
+- toggle_print_sla_options · function · L96-L96 — void    toggle_print_sla_options(DynamicPrintConfig* config);
+- is_initialized_support_material_overhangs_queried · function · L98-L98 — bool    is_initialized_support_material_overhangs_queried() { return m_is_initialized_support_material_overhangs_queried; }
+- initialize_support_material_overhangs_queried · function · L99-L103 — void    initialize_support_material_overhangs_queried(bool queried)
+- show_spiral_mode_settings_dialog · function · L104-L104 — int    show_spiral_mode_settings_dialog(bool is_object_config = false);
+- get_temperature_range · function · L107-L107 — bool get_temperature_range(DynamicPrintConfig *config, int &range_low, int &range_high);

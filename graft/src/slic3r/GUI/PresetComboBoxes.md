@@ -1,0 +1,93 @@
+# src/slic3r/GUI/PresetComboBoxes.hpp
+
+- wxString · class · L16-L16 — class wxString;
+- wxTextCtrl · class · L17-L17 — class wxTextCtrl;
+- wxStaticText · class · L18-L18 — class wxStaticText;
+- ScalableButton · class · L19-L19 — class ScalableButton;
+- wxBoxSizer · class · L20-L20 — class wxBoxSizer;
+- wxComboBox · class · L21-L21 — class wxComboBox;
+- wxStaticBitmap · class · L22-L22 — class wxStaticBitmap;
+- BitmapCache · class · L28-L28 — class BitmapCache;
+- PresetComboBox · class · L35-L177 — class PresetComboBox : public ::ComboBox // BBS
+- PresetComboBox · function · L39-L39 — PresetComboBox(wxWindow* parent, Preset::Type preset_type, const wxSize& size = wxDefaultSize, PresetBundle* preset_bundle = nullptr);
+- LabelItemType · type · L42-L54 — enum LabelItemType : std::size_t
+- FilamentAMSType · type · L56-L59 — enum FilamentAMSType :unsigned int
+- set_label_marker · function · L61-L61 — void set_label_marker(int item, LabelItemType label_item_type = LABEL_ITEM_MARKER);
+- set_printer_technology · function · L62-L62 — bool set_printer_technology(PrinterTechnology pt);
+- set_selection_changed_function · function · L64-L64 — void set_selection_changed_function(std::function<void(int)> sel_changed) { on_selection_changed = sel_changed; }
+- is_selected_physical_printer · function · L66-L66 — bool is_selected_physical_printer();
+- is_selected_printer_model · function · L68-L68 — bool is_selected_printer_model();
+- selection_is_changed_according_to_physical_printers · function · L72-L72 — bool selection_is_changed_according_to_physical_printers();
+- update · function · L74-L74 — void update(std::string select_preset);
+- update_from_bundle · function · L76-L76 — void update_from_bundle();
+- add_connected_printers · function · L79-L79 — void add_connected_printers(std::string selected, bool alias_name = false);
+- selected_connected_printer · function · L80-L80 — int  selected_connected_printer() const;
+- add_ams_filaments · function · L83-L83 — bool add_ams_filaments(std::string selected, bool alias_name = false);
+- selected_ams_filament · function · L84-L84 — int  selected_ams_filament() const;
+- set_filament_idx · function · L86-L86 — void set_filament_idx(const int extr_idx) { m_filament_idx = extr_idx; }
+- get_filament_idx · function · L87-L87 — int  get_filament_idx() const { return m_filament_idx; }
+- get_selected_dev_id · function · L89-L89 — std::string get_selected_dev_id() const { return m_selected_dev_id; }
+- clear_selected_dev_id · function · L90-L90 — void clear_selected_dev_id() { m_selected_dev_id.clear(); }
+- get_tooltip · function · L93-L93 — wxString get_tooltip(const Preset& preset);
+- get_preset_item_name · function · L95-L95 — wxString get_preset_item_name(unsigned int index);
+- different_color · function · L97-L97 — static wxColor different_color(wxColor const & color);
+- get_preset_name · function · L99-L99 — virtual wxString get_preset_name(const Preset& preset);
+- get_type · function · L100-L100 — Preset::Type     get_type() { return m_type; }
+- show_all · function · L101-L101 — void             show_all(bool show_all);
+- update · function · L102-L102 — virtual void update();
+- msw_rescale · function · L103-L103 — virtual void msw_rescale();
+- sys_color_changed · function · L104-L104 — virtual void sys_color_changed();
+- OnSelect · function · L105-L105 — virtual void OnSelect(wxCommandEvent& evt);
+- Marker · type · L108-L108 — typedef std::size_t Marker;
+- bitmap_cache · function · L118-L118 — static BitmapCache& bitmap_cache();
+- invalidate_selection · function · L150-L150 — void invalidate_selection();
+- validate_selection · function · L151-L151 — void validate_selection(bool predicate = false);
+- update_selection · function · L152-L152 — void update_selection();
+- update_ams_color · function · L155-L155 — int  update_ams_color();
+- separator_head · function · L158-L158 — static const char* separator_head() { return "-- "; }
+- separator_tail · function · L159-L159 — static const char* separator_tail() { return " --"; }
+- separator_head · function · L161-L161 — static const char* separator_head() { return "--"; }
+- separator_tail · function · L162-L162 — static const char* separator_tail() { return " --"; }
+- separator · function · L164-L164 — static wxString    separator(const std::string& label);
+- get_bmp · function · L166-L168 — wxBitmap* get_bmp(  std::string bitmap_key, bool wide_icons, const std::string& main_icon_name,
+- get_bmp · function · L170-L171 — wxBitmap* get_bmp(  std::string bitmap_key, const std::string& main_icon_name, const std::string& next_icon_name,
+- get_bmp · function · L173-L173 — wxBitmap *get_bmp(Preset const &preset);
+- fill_width_height · function · L176-L176 — void fill_width_height();
+- PlaterPresetComboBox · class · L184-L217 — class PlaterPresetComboBox : public PresetComboBox
+- PlaterPresetComboBox · function · L187-L187 — PlaterPresetComboBox(wxWindow *parent, Preset::Type preset_type);
+- get_color · function · L196-L196 — wxColor get_color() { return m_color; }
+- switch_to_tab · function · L198-L198 — bool switch_to_tab();
+- change_extruder_color · function · L199-L199 — void change_extruder_color();
+- show_add_menu · function · L200-L200 — void show_add_menu();
+- show_edit_menu · function · L201-L201 — void show_edit_menu();
+- get_preset_name · function · L203-L203 — wxString get_preset_name(const Preset& preset) override;
+- update · function · L204-L204 — void update() override;
+- msw_rescale · function · L205-L205 — void msw_rescale() override;
+- OnSelect · function · L206-L206 — void OnSelect(wxCommandEvent& evt) override;
+- update_badge_according_flag · function · L207-L207 — void update_badge_according_flag();
+- get_cur_color_info · function · L209-L209 — FilamentColor get_cur_color_info();
+- show_default_color_picker · function · L210-L210 — void show_default_color_picker();
+- sync_colour_config · function · L211-L211 — void sync_colour_config(const std::vector<std::string> &clrs, bool is_gradient);
+- sys_color_changed · function · L212-L212 — void sys_color_changed() override;
+- TabPresetComboBox · class · L224-L246 — class TabPresetComboBox : public PresetComboBox
+- TabPresetComboBox · function · L230-L230 — TabPresetComboBox(wxWindow *parent, Preset::Type preset_type);
+- set_show_incompatible_presets · function · L232-L234 — void set_show_incompatible_presets(bool show_incompatible_presets)
+- get_preset_name · function · L236-L236 — wxString get_preset_name(const Preset& preset) override;
+- update · function · L237-L237 — void update() override;
+- update_dirty · function · L238-L238 — void update_dirty();
+- msw_rescale · function · L239-L239 — void msw_rescale() override;
+- OnSelect · function · L240-L240 — void OnSelect(wxCommandEvent& evt) override;
+- set_enable_all · function · L242-L242 — void set_enable_all(bool enable=true) { m_enable_all = enable; }
+- presets · function · L244-L244 — PresetCollection*   presets()   const { return m_collection; }
+- type · function · L245-L245 — Preset::Type        type()      const { return m_type; }
+- CalibrateFilamentComboBox · class · L252-L280 — class CalibrateFilamentComboBox : public PlaterPresetComboBox
+- CalibrateFilamentComboBox · function · L255-L255 — CalibrateFilamentComboBox(wxWindow *parent);
+- load_tray · function · L258-L258 — void load_tray(DynamicPrintConfig & config);
+- update · function · L260-L260 — void update() override;
+- msw_rescale · function · L261-L261 — void msw_rescale() override;
+- OnSelect · function · L262-L262 — void OnSelect(wxCommandEvent &evt) override;
+- get_selected_preset · function · L263-L263 — const Preset* get_selected_preset() { return m_selected_preset; }
+- get_tray_name · function · L264-L264 — std::string get_tray_name() { return m_tray_name; }
+- get_tag_uid · function · L265-L265 — std::string get_tag_uid() { return m_tag_uid; }
+- is_tray_exist · function · L266-L266 — bool is_tray_exist() { return m_filament_exist; }
+- is_compatible_with_printer · function · L267-L267 — bool is_compatible_with_printer() { return m_is_compatible; }

@@ -1,0 +1,41 @@
+# src/slic3r/GUI/GLTexture.hpp
+
+- wxImage · class · L13-L13 — class wxImage;
+- GLTexture · class · L18-L145 — class GLTexture
+- Compressor · class · L22-L65 — class Compressor
+- Level · class · L24-L33 — struct Level
+- Level · function · L32-L32 — Level(unsigned int w, unsigned int h, const std::vector<unsigned char>& data) : w(w), h(h), src_data(data), sent_to_gpu(false) {}
+- Compressor · function · L48-L48 — explicit Compressor(GLTexture& texture) : m_texture(texture), m_abort_compressing(false), m_num_levels_compressed(0) {}
+- reset · function · L51-L51 — void reset();
+- add_level · function · L53-L53 — void add_level(unsigned int w, unsigned int h, const std::vector<unsigned char>& data) { m_levels.emplace_back(w, h, data); }
+- start_compressing · function · L55-L55 — void start_compressing();
+- unsent_compressed_data_available · function · L57-L57 — bool unsent_compressed_data_available() const;
+- send_compressed_data_to_gpu · function · L58-L58 — void send_compressed_data_to_gpu();
+- all_compressed_data_sent_to_gpu · function · L59-L59 — bool all_compressed_data_sent_to_gpu() const { return m_levels.empty(); }
+- has_compressed_texture_to_refresh · function · L61-L61 — static bool has_compressed_texture_to_refresh() { return m_dirty.exchange(false); }
+- compress · function · L64-L64 — void compress();
+- ECompressionType · type · L67-L72 — enum ECompressionType : unsigned char
+- UV · class · L74-L78 — struct UV
+- Quad_UVs · class · L80-L86 — struct Quad_UVs
+- GLTexture · function · L98-L98 — GLTexture();
+- load_from_file · function · L101-L101 — bool load_from_file(const std::string& filename, bool use_mipmaps, ECompressionType compression_type, bool apply_anisotropy);
+- load_from_svg_file · function · L102-L102 — bool load_from_svg_file(const std::string& filename, bool use_mipmaps, bool compress, bool apply_anisotropy, unsigned int max_size_px);
+- load_from_raw_data · function · L104-L104 — bool load_from_raw_data(std::vector<unsigned char> data, unsigned int w, unsigned int h, bool apply_anisotropy = false);
+- load_from_svg_files_as_sprites_array · function · L113-L113 — bool load_from_svg_files_as_sprites_array(const std::vector<std::string>& filenames, const std::vector<std::pair<int, bool>>& states, unsigned int sprite_size_px, bool compress);
+- reset · function · L114-L114 — void reset();
+- generate_texture_from_text · function · L119-L119 — bool generate_texture_from_text(const std::string& text_str, wxFont& font, int& ww, int& hh, int &hl, wxColor background = *wxBLACK, wxColor foreground = *wxWHITE);
+- generate_from_text · function · L120-L120 — bool generate_from_text(const std::string& text_str, wxFont& font, wxColor background = *wxBLACK, wxColor foreground = *wxWHITE);
+- generate_from_text_string · function · L121-L121 — bool generate_from_text_string(const std::string& text_str, wxFont& font, wxColor background = *wxBLACK, wxColor foreground = *wxWHITE);
+- get_id · function · L123-L123 — unsigned int get_id() const { return m_id; }
+- get_original_width · function · L124-L124 — int get_original_width() const { return m_original_width; }
+- get_width · function · L125-L125 — int get_width() const { return m_width; }
+- get_height · function · L126-L126 — int get_height() const { return m_height; }
+- get_source · function · L128-L128 — const std::string& get_source() const { return m_source; }
+- unsent_compressed_data_available · function · L130-L130 — bool unsent_compressed_data_available() const { return m_compressor.unsent_compressed_data_available(); }
+- send_compressed_data_to_gpu · function · L131-L131 — void send_compressed_data_to_gpu() { m_compressor.send_compressed_data_to_gpu(); }
+- all_compressed_data_sent_to_gpu · function · L132-L132 — bool all_compressed_data_sent_to_gpu() const { return m_compressor.all_compressed_data_sent_to_gpu(); }
+- render_texture · function · L134-L134 — static void render_texture(unsigned int tex_id, float left, float right, float bottom, float top);
+- render_sub_texture · function · L135-L135 — static void render_sub_texture(unsigned int tex_id, float left, float right, float bottom, float top, const Quad_UVs& uvs);
+- copy_from_framebuffer · function · L138-L138 — static void copy_from_framebuffer(unsigned int& tex_id, std::array<unsigned int, 2>& tex_size, unsigned int width, unsigned int height, int filter);
+- load_from_png · function · L141-L141 — bool load_from_png(const std::string& filename, bool use_mipmaps, ECompressionType compression_type, bool apply_anisotropy);
+- load_from_svg · function · L142-L142 — bool load_from_svg(const std::string& filename, bool use_mipmaps, bool compress, bool apply_anisotropy, unsigned int max_size_px);

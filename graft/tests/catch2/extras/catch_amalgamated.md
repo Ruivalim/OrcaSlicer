@@ -1,0 +1,1826 @@
+# tests/catch2/extras/catch_amalgamated.hpp
+
+- IResultCapture · class · L567-L567 — class IResultCapture;
+- IConfig · class · L568-L568 — class IConfig;
+- Context · class · L570-L587 — class Context
+- getCurrentMutableContext · function · L575-L575 — friend Context& getCurrentMutableContext();
+- getCurrentContext · function · L576-L576 — friend Context const& getCurrentContext();
+- getResultCapture · function · L579-L579 — constexpr IResultCapture* getResultCapture() const
+- getConfig · function · L582-L582 — constexpr IConfig const* getConfig() const { return m_config; }
+- setResultCapture · function · L583-L585 — constexpr void setResultCapture( IResultCapture* resultCapture )
+- setConfig · function · L586-L586 — constexpr void setConfig( IConfig const* config ) { m_config = config; }
+- getCurrentMutableContext · function · L589-L589 — Context& getCurrentMutableContext();
+- getCurrentContext · function · L591-L591 — inline Context const& getCurrentContext()
+- SimplePcg32 · class · L595-L595 — class SimplePcg32;
+- sharedRng · function · L596-L596 — SimplePcg32& sharedRng();
+- TestFailureException · class · L622-L622 — struct TestFailureException{};
+- TestSkipException · class · L624-L624 — struct TestSkipException {};
+- throw_test_failure_exception · function · L631-L631 — [[noreturn]] void throw_test_failure_exception();
+- throw_test_skip_exception · function · L638-L638 — [[noreturn]] void throw_test_skip_exception();
+- StringRef · class · L709-L797 — class StringRef
+- StringRef · function · L723-L723 — constexpr StringRef() noexcept = default;
+- StringRef · function · L725-L725 — StringRef( char const* rawChars ) noexcept;
+- StringRef · function · L727-L730 — constexpr StringRef( char const* rawChars, size_type size ) noexcept
+- StringRef · function · L732-L735 — StringRef( std::string const& stdString ) noexcept
+- empty · function · L758-L760 — constexpr auto empty() const noexcept -> bool
+- size · function · L761-L763 — constexpr auto size() const noexcept -> size_type
+- substr · function · L768-L775 — constexpr StringRef substr(size_type start, size_type length) const noexcept
+- data · function · L778-L778 — constexpr char const* data() const noexcept
+- begin · function · L782-L782 — constexpr const_iterator begin() const { return m_start; }
+- end · function · L783-L783 — constexpr const_iterator end() const { return m_start + m_size; }
+- compare · function · L796-L796 — int compare( StringRef rhs ) const;
+- OfType · type · L818-L838 — struct ResultWas { enum OfType
+- ResultWas · class · L818-L838 — struct ResultWas { enum OfType
+- isOk · function · L840-L842 — constexpr bool isOk( ResultWas::OfType resultType )
+- isJustInfo · function · L843-L843 — constexpr bool isJustInfo( int flags ) { return flags == ResultWas::Info; }
+- Flags · type · L847-L853 — struct ResultDisposition { enum Flags
+- ResultDisposition · class · L847-L853 — struct ResultDisposition { enum Flags
+- isFalseTest · function · L861-L863 — constexpr bool isFalseTest( int flags )
+- shouldSuppressFailure · function · L864-L866 — constexpr bool shouldSuppressFailure( int flags )
+- unique_ptr · class · L887-L967 — template <typename T>
+- unique_ptr · function · L891-L893 — constexpr unique_ptr(std::nullptr_t = nullptr):
+- unique_ptr · function · L894-L896 — explicit constexpr unique_ptr(T* ptr):
+- unique_ptr · function · L898-L901 — template <typename U, typename = std::enable_if_t<std::is_base_of<T, U>::value>>
+- unique_ptr · function · L910-L910 — unique_ptr(unique_ptr const&) = delete;
+- unique_ptr · function · L913-L916 — unique_ptr(unique_ptr&& rhs) noexcept:
+- get · function · L944-L944 — T* get() { return m_ptr; }
+- get · function · L945-L945 — T const* get() const { return m_ptr; }
+- reset · function · L947-L950 — void reset(T* ptr = nullptr)
+- release · function · L952-L952 — T* release()
+- swap · function · L962-L966 — friend void swap(unique_ptr& lhs, unique_ptr& rhs)
+- make_unique · function · L973-L976 — template <typename T, typename... Args>
+- AssertionResult · class · L1025-L1025 — class AssertionResult;
+- ITransientExpression · class · L1035-L1035 — class ITransientExpression;
+- IGeneratorTracker · class · L1036-L1036 — class IGeneratorTracker;
+- GeneratorUntypedBase · class · L1041-L1041 — class GeneratorUntypedBase;
+- IResultCapture · class · L1046-L1106 — class IResultCapture
+- notifyAssertionStarted · function · L1050-L1050 — virtual void notifyAssertionStarted( AssertionInfo const& info ) = 0;
+- sectionStarted · function · L1051-L1053 — virtual bool sectionStarted( StringRef sectionName,
+- sectionEnded · function · L1054-L1054 — virtual void sectionEnded( SectionEndInfo&& endInfo ) = 0;
+- sectionEndedEarly · function · L1055-L1055 — virtual void sectionEndedEarly( SectionEndInfo&& endInfo ) = 0;
+- acquireGeneratorTracker · function · L1058-L1059 — acquireGeneratorTracker( StringRef generatorName,
+- createGeneratorTracker · function · L1061-L1063 — createGeneratorTracker( StringRef generatorName,
+- benchmarkPreparing · function · L1065-L1065 — virtual void benchmarkPreparing( StringRef name ) = 0;
+- benchmarkStarting · function · L1066-L1066 — virtual void benchmarkStarting( BenchmarkInfo const& info ) = 0;
+- benchmarkEnded · function · L1067-L1067 — virtual void benchmarkEnded( BenchmarkStats<> const& stats ) = 0;
+- benchmarkFailed · function · L1068-L1068 — virtual void benchmarkFailed( StringRef error ) = 0;
+- pushScopedMessage · function · L1070-L1070 — static void pushScopedMessage( MessageInfo&& message );
+- popScopedMessage · function · L1071-L1071 — static void popScopedMessage( unsigned int messageId );
+- emplaceUnscopedMessage · function · L1072-L1072 — static void emplaceUnscopedMessage( MessageBuilder&& builder );
+- handleFatalErrorCondition · function · L1074-L1074 — virtual void handleFatalErrorCondition( StringRef message ) = 0;
+- handleExpr · function · L1076-L1079 — virtual void handleExpr
+- handleMessage · function · L1080-L1084 — virtual void handleMessage
+- handleUnexpectedExceptionNotThrown · function · L1085-L1087 — virtual void handleUnexpectedExceptionNotThrown
+- handleUnexpectedInflightException · function · L1088-L1091 — virtual void handleUnexpectedInflightException
+- handleIncomplete · function · L1092-L1093 — virtual void handleIncomplete
+- handleNonExpr · function · L1094-L1097 — virtual void handleNonExpr
+- lastAssertionPassed · function · L1100-L1100 — virtual bool lastAssertionPassed() = 0;
+- getCurrentTestName · function · L1103-L1103 — virtual std::string getCurrentTestName() const = 0;
+- getLastResult · function · L1104-L1104 — virtual const AssertionResult* getLastResult() const = 0;
+- exceptionEarlyReported · function · L1105-L1105 — virtual void exceptionEarlyReported() = 0;
+- missingCaptureInstance · function · L1109-L1110 — [[noreturn]]
+- getResultCapture · function · L1112-L1112 — inline IResultCapture& getResultCapture()
+- NonCopyable · class · L1137-L1146 — class NonCopyable
+- NonCopyable · function · L1139-L1139 — NonCopyable( NonCopyable const& ) = delete;
+- NonCopyable · function · L1140-L1140 — NonCopyable( NonCopyable&& ) = delete;
+- NonCopyable · function · L1145-L1145 — NonCopyable() noexcept = default;
+- Verbosity · type · L1159-L1163 — enum class Verbosity
+- WarnAbout · class · L1165-L1171 — struct WarnAbout { enum What
+- What · type · L1165-L1171 — struct WarnAbout { enum What
+- ShowDurations · type · L1173-L1177 — enum class ShowDurations
+- TestRunOrder · type · L1178-L1182 — enum class TestRunOrder
+- ColourMode · type · L1183-L1192 — enum class ColourMode : std::uint8_t
+- WaitForKeypress · class · L1193-L1198 — struct WaitForKeypress { enum When
+- When · type · L1193-L1198 — struct WaitForKeypress { enum When
+- TestSpec · class · L1200-L1200 — class TestSpec;
+- IStream · class · L1201-L1201 — class IStream;
+- IConfig · class · L1203-L1235 — class IConfig : public Detail::NonCopyable
+- allowThrows · function · L1207-L1207 — virtual bool allowThrows() const = 0;
+- name · function · L1208-L1208 — virtual StringRef name() const = 0;
+- includeSuccessfulResults · function · L1209-L1209 — virtual bool includeSuccessfulResults() const = 0;
+- shouldDebugBreak · function · L1210-L1210 — virtual bool shouldDebugBreak() const = 0;
+- warnAboutMissingAssertions · function · L1211-L1211 — virtual bool warnAboutMissingAssertions() const = 0;
+- warnAboutUnmatchedTestSpecs · function · L1212-L1212 — virtual bool warnAboutUnmatchedTestSpecs() const = 0;
+- zeroTestsCountAsSuccess · function · L1213-L1213 — virtual bool zeroTestsCountAsSuccess() const = 0;
+- abortAfter · function · L1214-L1214 — virtual int abortAfter() const = 0;
+- showInvisibles · function · L1215-L1215 — virtual bool showInvisibles() const = 0;
+- showDurations · function · L1216-L1216 — virtual ShowDurations showDurations() const = 0;
+- minDuration · function · L1217-L1217 — virtual double minDuration() const = 0;
+- testSpec · function · L1218-L1218 — virtual TestSpec const& testSpec() const = 0;
+- hasTestFilters · function · L1219-L1219 — virtual bool hasTestFilters() const = 0;
+- getTestsOrTags · function · L1220-L1220 — virtual std::vector<std::string> const& getTestsOrTags() const = 0;
+- runOrder · function · L1221-L1221 — virtual TestRunOrder runOrder() const = 0;
+- rngSeed · function · L1222-L1222 — virtual uint32_t rngSeed() const = 0;
+- shardCount · function · L1223-L1223 — virtual unsigned int shardCount() const = 0;
+- shardIndex · function · L1224-L1224 — virtual unsigned int shardIndex() const = 0;
+- defaultColourMode · function · L1225-L1225 — virtual ColourMode defaultColourMode() const = 0;
+- getSectionsToRun · function · L1226-L1226 — virtual std::vector<std::string> const& getSectionsToRun() const = 0;
+- verbosity · function · L1227-L1227 — virtual Verbosity verbosity() const = 0;
+- skipBenchmarks · function · L1229-L1229 — virtual bool skipBenchmarks() const = 0;
+- benchmarkNoAnalysis · function · L1230-L1230 — virtual bool benchmarkNoAnalysis() const = 0;
+- benchmarkSamples · function · L1231-L1231 — virtual unsigned int benchmarkSamples() const = 0;
+- benchmarkConfidenceInterval · function · L1232-L1232 — virtual double benchmarkConfidenceInterval() const = 0;
+- benchmarkResamples · function · L1233-L1233 — virtual unsigned int benchmarkResamples() const = 0;
+- benchmarkWarmupTime · function · L1234-L1234 — virtual std::chrono::milliseconds benchmarkWarmupTime() const = 0;
+- TestCaseHandle · class · L1249-L1249 — class TestCaseHandle;
+- ITestCaseRegistry · class · L1251-L1251 — class ITestCaseRegistry;
+- IExceptionTranslatorRegistry · class · L1252-L1252 — class IExceptionTranslatorRegistry;
+- IExceptionTranslator · class · L1253-L1253 — class IExceptionTranslator;
+- ReporterRegistry · class · L1254-L1254 — class ReporterRegistry;
+- IReporterFactory · class · L1255-L1255 — class IReporterFactory;
+- ITagAliasRegistry · class · L1256-L1256 — class ITagAliasRegistry;
+- ITestInvoker · class · L1257-L1257 — class ITestInvoker;
+- IMutableEnumValuesRegistry · class · L1258-L1258 — class IMutableEnumValuesRegistry;
+- StartupExceptionRegistry · class · L1261-L1261 — class StartupExceptionRegistry;
+- EventListenerFactory · class · L1262-L1262 — class EventListenerFactory;
+- IRegistryHub · class · L1266-L1277 — class IRegistryHub
+- getReporterRegistry · function · L1270-L1270 — virtual ReporterRegistry const& getReporterRegistry() const = 0;
+- getTestCaseRegistry · function · L1271-L1271 — virtual ITestCaseRegistry const& getTestCaseRegistry() const = 0;
+- getTagAliasRegistry · function · L1272-L1272 — virtual ITagAliasRegistry const& getTagAliasRegistry() const = 0;
+- getExceptionTranslatorRegistry · function · L1273-L1273 — virtual IExceptionTranslatorRegistry const& getExceptionTranslatorRegistry() const = 0;
+- getStartupExceptionRegistry · function · L1276-L1276 — virtual StartupExceptionRegistry const& getStartupExceptionRegistry() const = 0;
+- IMutableRegistryHub · class · L1279-L1289 — class IMutableRegistryHub
+- registerReporter · function · L1282-L1282 — virtual void registerReporter( std::string const& name, IReporterFactoryPtr factory ) = 0;
+- registerListener · function · L1283-L1283 — virtual void registerListener( Detail::unique_ptr<EventListenerFactory> factory ) = 0;
+- registerTest · function · L1284-L1284 — virtual void registerTest(Detail::unique_ptr<TestCaseInfo>&& testInfo, Detail::unique_ptr<ITestInvoker>&& invoker) = 0;
+- registerTranslator · function · L1285-L1285 — virtual void registerTranslator( Detail::unique_ptr<IExceptionTranslator>&& translator ) = 0;
+- registerTagAlias · function · L1286-L1286 — virtual void registerTagAlias( std::string const& alias, std::string const& tag, SourceLineInfo const& lineInfo ) = 0;
+- registerStartupException · function · L1287-L1287 — virtual void registerStartupException() noexcept = 0;
+- getMutableEnumValuesRegistry · function · L1288-L1288 — virtual IMutableEnumValuesRegistry& getMutableEnumValuesRegistry() = 0;
+- getRegistryHub · function · L1291-L1291 — IRegistryHub const& getRegistryHub();
+- getMutableRegistryHub · function · L1292-L1292 — IMutableRegistryHub& getMutableRegistryHub();
+- cleanUp · function · L1293-L1293 — void cleanUp();
+- translateActiveException · function · L1294-L1294 — std::string translateActiveException();
+- Estimate · class · L1313-L1319 — template <typename Type>
+- OutlierClassification · class · L1333-L1343 — struct OutlierClassification
+- total · function · L1340-L1342 — constexpr int total() const
+- BenchmarkInfo · class · L1356-L1364 — struct BenchmarkInfo
+- BenchmarkStats · class · L1368-L1377 — template <class Dummy>
+- EnvironmentEstimate · class · L1393-L1396 — struct EnvironmentEstimate
+- Environment · class · L1397-L1400 — struct Environment
+- keep_memory · function · L1443-L1446 — template <typename T>
+- keep_memory · function · L1447-L1449 — inline void keep_memory()
+- optimizer_barrier · function · L1452-L1452 — inline void optimizer_barrier() { keep_memory(); }
+- keep_memory · function · L1462-L1466 — template <typename T>
+- optimizer_barrier · function · L1473-L1475 — inline void optimizer_barrier()
+- deoptimize_value · function · L1480-L1483 — template <typename T>
+- invoke_deoptimized · function · L1485-L1488 — template <typename Fn, typename... Args>
+- invoke_deoptimized · function · L1490-L1493 — template <typename Fn, typename... Args>
+- true_given · class · L1506-L1507 — template <typename>
+- is_callable_tester · class · L1509-L1514 — struct is_callable_tester
+- test · function · L1510-L1511 — template <typename Fun, typename... Args>
+- test · function · L1512-L1513 — template <typename...>
+- ChronometerConcept · class · L1544-L1552 — struct ChronometerConcept
+- start · function · L1545-L1545 — virtual void start() = 0;
+- finish · function · L1546-L1546 — virtual void finish() = 0;
+- ChronometerConcept · function · L1549-L1549 — ChronometerConcept() = default;
+- ChronometerConcept · function · L1550-L1550 — ChronometerConcept(ChronometerConcept const&) = default;
+- ChronometerModel · class · L1553-L1565 — template <typename Clock>
+- start · function · L1555-L1555 — void start() override { started = Clock::now(); }
+- finish · function · L1556-L1556 — void finish() override { finished = Clock::now(); }
+- elapsed · function · L1558-L1561 — IDuration elapsed() const
+- Chronometer · class · L1568-L1596 — struct Chronometer
+- measure · function · L1570-L1571 — template <typename Fun>
+- runs · function · L1573-L1573 — int runs() const { return repeats; }
+- Chronometer · function · L1575-L1577 — Chronometer(Detail::ChronometerConcept& meter, int repeats_)
+- measure · function · L1580-L1583 — template <typename Fun>
+- measure · function · L1585-L1592 — template <typename Fun>
+- BenchmarkFunction · class · L1617-L1666 — struct BenchmarkFunction
+- callable · class · L1619-L1626 — struct callable
+- call · function · L1620-L1620 — virtual void call(Chronometer meter) const = 0;
+- callable · function · L1623-L1623 — callable() = default;
+- callable · function · L1624-L1624 — callable(callable&&) = default;
+- model · class · L1627-L1643 — template <typename Fun>
+- model · function · L1629-L1629 — model(Fun&& fun_) : fun(CATCH_MOVE(fun_)) {}
+- model · function · L1630-L1630 — model(Fun const& fun_) : fun(fun_) {}
+- call · function · L1632-L1634 — void call(Chronometer meter) const override
+- call · function · L1635-L1637 — void call(Chronometer meter, std::true_type) const
+- call · function · L1638-L1640 — void call(Chronometer meter, std::false_type) const
+- BenchmarkFunction · function · L1646-L1646 — BenchmarkFunction();
+- BenchmarkFunction · function · L1648-L1651 — template <typename Fun,
+- BenchmarkFunction · function · L1653-L1654 — BenchmarkFunction( BenchmarkFunction&& that ) noexcept:
+- repeater · class · L1684-L1692 — template <typename Fun>
+- repeat · function · L1693-L1696 — template <typename Fun>
+- CompleteType · class · L1727-L1728 — template <typename T>
+- type · class · L1730-L1730 — struct CompleteType<void> { struct type {}; };
+- CompleteInvoker · class · L1735-L1741 — template <typename Result>
+- invoke · function · L1737-L1740 — template <typename Fun, typename... Args>
+- invoke · function · L1744-L1748 — template <typename Fun, typename... Args>
+- complete_invoke · function · L1752-L1755 — template <typename Fun, typename... Args>
+- user_code · function · L1759-L1762 — template <typename Fun>
+- Timing · class · L1777-L1782 — template <typename Result>
+- measure · function · L1793-L1800 — template <typename Clock, typename Fun, typename... Args>
+- measure_one · function · L1812-L1815 — template <typename Clock, typename Fun>
+- measure_one · function · L1816-L1822 — template <typename Clock, typename Fun>
+- throw_optimized_away_error · function · L1828-L1829 — [[noreturn]]
+- run_for_at_least · function · L1831-L1846 — template <typename Clock, typename Fun>
+- ExecutionPlan · class · L1857-L1887 — struct ExecutionPlan
+- run · function · L1864-L1886 — template <typename Clock>
+- weighted_average_quantile · function · L1914-L1917 — double weighted_average_quantile( int k,
+- classify_outliers · function · L1919-L1920 — OutlierClassification
+- mean · function · L1922-L1922 — double mean( double const* first, double const* last );
+- normal_cdf · function · L1924-L1924 — double normal_cdf( double x );
+- erfc_inv · function · L1926-L1926 — double erfc_inv(double x);
+- normal_quantile · function · L1928-L1928 — double normal_quantile(double p);
+- bootstrap · function · L1930-L1935 — Estimate<double>
+- bootstrap_analysis · class · L1937-L1941 — struct bootstrap_analysis
+- analyse_samples · function · L1943-L1946 — bootstrap_analysis analyse_samples(double confidence_level,
+- resolution · function · L1960-L1978 — template <typename Clock>
+- times · function · L1965-L1965 — std::vector<TimePoint<Clock>> times(points);
+- warmup · function · L1990-L1994 — template <typename Clock>
+- estimate_clock_resolution · function · L1995-L2003 — template <typename Clock>
+- estimate_clock_cost · function · L2004-L2032 — template <typename Clock>
+- measure_environment · function · L2034-L2054 — template <typename Clock>
+- SampleAnalysis · class · L2079-L2085 — struct SampleAnalysis
+- IConfig · class · L2093-L2093 — class IConfig;
+- analyse · function · L2097-L2097 — SampleAnalysis analyse(const IConfig &cfg, FDuration* first, FDuration* last);
+- Benchmark · class · L2112-L2179 — struct Benchmark
+- Benchmark · function · L2113-L2114 — Benchmark(std::string&& benchmarkName)
+- Benchmark · function · L2116-L2118 — template <class FUN>
+- prepare · function · L2120-L2127 — template <typename Clock>
+- run · function · L2129-L2162 — template <typename Clock = default_clock>
+- ObjectStorage · class · L2233-L2270 — template <typename T, bool Destruct>
+- ObjectStorage · function · L2236-L2236 — ObjectStorage() = default;
+- ObjectStorage · function · L2238-L2241 — ObjectStorage(const ObjectStorage& other)
+- ObjectStorage · function · L2243-L2246 — ObjectStorage(ObjectStorage&& other)
+- construct · function · L2250-L2254 — template <typename... Args>
+- destruct · function · L2256-L2260 — template <bool AllowManualDestruction = !Destruct>
+- stored_object · function · L2274-L2274 — T& stored_object() { return *reinterpret_cast<T*>( data ); }
+- stored_object · function · L2276-L2276 — T const& stored_object() const
+- ReusableStringStream · class · L2356-L2390 — class ReusableStringStream : Detail::NonCopyable
+- ReusableStringStream · function · L2360-L2360 — ReusableStringStream();
+- str · function · L2364-L2364 — std::string str() const;
+- str · function · L2366-L2366 — void str(std::string const& str);
+- get · function · L2389-L2389 — auto get() -> std::ostream& { return *m_oss; }
+- make_void · class · L2403-L2404 — template <typename...>
+- EnumInfo · class · L2425-L2432 — struct EnumInfo
+- lookup · function · L2431-L2431 — StringRef lookup( int value ) const;
+- IMutableEnumValuesRegistry · class · L2435-L2450 — class IMutableEnumValuesRegistry
+- registerEnum · function · L2439-L2439 — virtual Detail::EnumInfo const& registerEnum( StringRef enumName, StringRef allEnums, std::vector<int> const& values ) = 0;
+- registerEnum · function · L2442-L2442 — Detail::EnumInfo const& registerEnum( StringRef enumName, StringRef allEnums, std::initializer_list<E> values )
+- Catch_global_namespace_dummy · class · L2466-L2466 — struct Catch_global_namespace_dummy{};
+- catch_strnlen · function · L2476-L2482 — inline std::size_t catch_strnlen(const char *str, std::size_t n)
+- convertIntoString · function · L2487-L2487 — std::string convertIntoString( StringRef string, bool escapeInvisibles );
+- convertIntoString · function · L2491-L2491 — std::string convertIntoString( StringRef string );
+- rawMemoryToString · function · L2493-L2493 — std::string rawMemoryToString( const void *object, std::size_t size );
+- rawMemoryToString · function · L2495-L2498 — template<typename T>
+- convertUnknownEnumToString · function · L2509-L2510 — template<typename E>
+- convertUnstreamable · function · L2512-L2517 — template<typename T>
+- convertUnstreamable · function · L2518-L2523 — template<typename T>
+- convertUnstreamable · function · L2526-L2531 — template<typename T>
+- StringMaker · class · L2548-L2571 — template <typename T, typename = void>
+- convert · function · L2550-L2559 — template <typename Fake = T>
+- convert · function · L2561-L2570 — template <typename Fake = T>
+- makeExceptionHappenedString · function · L2575-L2575 — std::string makeExceptionHappenedString();
+- stringify · function · L2579-L2584 — template <typename T>
+- convertUnknownEnumToString · function · L2588-L2591 — template<typename E>
+- convert · function · L2606-L2606 — static std::string convert(const std::string& str);
+- convert · function · L2612-L2612 — static std::string convert(std::string_view str);
+- convert · function · L2618-L2618 — static std::string convert(char const * str);
+- convert · function · L2622-L2622 — static std::string convert(char * str);
+- convert · function · L2628-L2628 — static std::string convert(const std::wstring& wstr);
+- convert · function · L2634-L2634 — static std::string convert(std::wstring_view str);
+- convert · function · L2640-L2640 — static std::string convert(wchar_t const * str);
+- convert · function · L2644-L2644 — static std::string convert(wchar_t * str);
+- convert · function · L2650-L2653 — static std::string convert(char const* str)
+- convert · function · L2657-L2661 — static std::string convert(signed char const* str)
+- convert · function · L2665-L2669 — static std::string convert(unsigned char const* str)
+- convert · function · L2675-L2675 — static std::string convert(std::byte value);
+- convert · function · L2680-L2680 — static std::string convert(int value);
+- convert · function · L2684-L2684 — static std::string convert(long value);
+- convert · function · L2688-L2688 — static std::string convert(long long value);
+- convert · function · L2692-L2692 — static std::string convert(unsigned int value);
+- convert · function · L2696-L2696 — static std::string convert(unsigned long value);
+- convert · function · L2700-L2700 — static std::string convert(unsigned long long value);
+- convert · function · L2705-L2708 — static std::string convert(bool b)
+- convert · function · L2713-L2713 — static std::string convert(char c);
+- convert · function · L2717-L2717 — static std::string convert(signed char value);
+- convert · function · L2721-L2721 — static std::string convert(unsigned char value);
+- convert · function · L2726-L2729 — static std::string convert(std::nullptr_t)
+- convert · function · L2734-L2734 — static std::string convert(float value);
+- convert · function · L2740-L2740 — static std::string convert(double value);
+- convert · function · L2746-L2753 — template <typename U>
+- convert · function · L2758-L2764 — static std::string convert(R C::* p)
+- convert · function · L2770-L2772 — static std::string convert( T^ ref )
+- rangeToString · function · L2777-L2788 — template<typename InputIterator, typename Sentinel = InputIterator>
+- convert · function · L2810-L2818 — static std::string convert(const std::pair<T1, T2>& pair)
+- convert · function · L2828-L2834 — static std::string convert(const std::optional<T>& optional)
+- convert · function · L2838-L2840 — static std::string convert(const std::nullopt_t&)
+- TupleElementPrinter · class · L2850-L2861 — template<
+- print · function · L2856-L2860 — static void print(const Tuple& tuple, std::ostream& os)
+- print · function · L2868-L2868 — static void print(const Tuple&, std::ostream&) {}
+- convert · function · L2876-L2882 — static std::string convert(const std::tuple<Types...>& tuple)
+- convert · function · L2892-L2894 — static std::string convert(const std::monostate&)
+- convert · function · L2899-L2910 — static std::string convert(const std::variant<Elements...>& variant)
+- is_range_impl · class · L2921-L2922 — template <typename T, typename = void>
+- is_range · class · L2928-L2929 — template <typename T>
+- rangeToString · function · L2938-L2941 — template<typename Range>
+- rangeToString · function · L2944-L2958 — template<typename Allocator>
+- convert · function · L2962-L2964 — static std::string convert( R const& range )
+- convert · function · L2969-L2971 — static std::string convert(T const(&arr)[SZ])
+- ratio_string · class · L2985-L2993 — template <class Ratio>
+- symbol · function · L2987-L2992 — static std::string symbol()
+- symbol · function · L2997-L2997 — static char symbol() { return 'a'; }
+- symbol · function · L3001-L3001 — static char symbol() { return 'f'; }
+- symbol · function · L3005-L3005 — static char symbol() { return 'p'; }
+- symbol · function · L3009-L3009 — static char symbol() { return 'n'; }
+- symbol · function · L3013-L3013 — static char symbol() { return 'u'; }
+- symbol · function · L3017-L3017 — static char symbol() { return 'm'; }
+- convert · function · L3024-L3028 — static std::string convert(std::chrono::duration<Value, Ratio> const& duration)
+- convert · function · L3032-L3036 — static std::string convert(std::chrono::duration<Value, std::ratio<1>> const& duration)
+- convert · function · L3040-L3044 — static std::string convert(std::chrono::duration<Value, std::ratio<60>> const& duration)
+- convert · function · L3048-L3052 — static std::string convert(std::chrono::duration<Value, std::ratio<3600>> const& duration)
+- convert · function · L3060-L3062 — static std::string convert(std::chrono::time_point<Clock, Duration> const& time_point)
+- convert · function · L3067-L3093 — static std::string convert(std::chrono::time_point<std::chrono::system_clock, Duration> const& time_point)
+- Approx · class · L3120-L3217 — class Approx
+- equalityComparisonImpl · function · L3122-L3122 — bool equalityComparisonImpl(double other) const;
+- setMargin · function · L3124-L3124 — void setMargin(double margin);
+- setEpsilon · function · L3126-L3126 — void setEpsilon(double epsilon);
+- Approx · function · L3129-L3129 — explicit Approx ( double value );
+- custom · function · L3131-L3131 — static Approx custom();
+- approx · function · L3137-L3137 — Approx approx( static_cast<double>(value) );
+- Approx · function · L3144-L3146 — template <typename T, typename = std::enable_if_t<std::is_constructible<double, T>::value>>
+- epsilon · function · L3191-L3191 — Approx& epsilon( T const& newEpsilon )
+- margin · function · L3198-L3198 — Approx& margin( T const& newMargin )
+- scale · function · L3205-L3205 — Approx& scale( T const& newScale )
+- toString · function · L3210-L3210 — std::string toString() const;
+- convert · function · L3226-L3226 — static std::string convert(Catch::Approx const& value);
+- SourceLineInfo · class · L3247-L3262 — struct SourceLineInfo
+- SourceLineInfo · function · L3249-L3249 — SourceLineInfo() = delete;
+- SourceLineInfo · function · L3250-L3253 — constexpr SourceLineInfo( char const* _file, std::size_t _line ) noexcept:
+- AssertionInfo · class · L3272-L3279 — struct AssertionInfo
+- ITransientExpression · class · L3298-L3298 — class ITransientExpression;
+- LazyExpression · class · L3300-L3319 — class LazyExpression
+- LazyExpression · function · L3308-L3310 — constexpr LazyExpression( bool isNegated ):
+- LazyExpression · function · L3311-L3311 — constexpr LazyExpression(LazyExpression const& other) = default;
+- AssertionResultData · class · L3329-L3341 — struct AssertionResultData
+- AssertionResultData · function · L3331-L3331 — AssertionResultData() = delete;
+- AssertionResultData · function · L3333-L3333 — AssertionResultData( ResultWas::OfType _resultType, LazyExpression const& _lazyExpression );
+- reconstructExpression · function · L3340-L3340 — std::string reconstructExpression() const;
+- AssertionResult · class · L3343-L3364 — class AssertionResult
+- AssertionResult · function · L3345-L3345 — AssertionResult() = delete;
+- AssertionResult · function · L3346-L3346 — AssertionResult( AssertionInfo const& info, AssertionResultData&& data );
+- isOk · function · L3348-L3348 — bool isOk() const;
+- succeeded · function · L3349-L3349 — bool succeeded() const;
+- getResultType · function · L3350-L3350 — ResultWas::OfType getResultType() const;
+- hasExpression · function · L3351-L3351 — bool hasExpression() const;
+- hasMessage · function · L3352-L3352 — bool hasMessage() const;
+- getExpression · function · L3353-L3353 — std::string getExpression() const;
+- getExpressionInMacro · function · L3354-L3354 — std::string getExpressionInMacro() const;
+- hasExpandedExpression · function · L3355-L3355 — bool hasExpandedExpression() const;
+- getExpandedExpression · function · L3356-L3356 — std::string getExpandedExpression() const;
+- getMessage · function · L3357-L3357 — StringRef getMessage() const;
+- getSourceInfo · function · L3358-L3358 — SourceLineInfo getSourceInfo() const;
+- getTestMacroName · function · L3359-L3359 — StringRef getTestMacroName() const;
+- CaseSensitive · type · L3376-L3376 — enum class CaseSensitive { Yes, No };
+- WildcardPattern · class · L3406-L3424 — class WildcardPattern
+- WildcardPosition · type · L3407-L3412 — enum WildcardPosition
+- WildcardPattern · function · L3416-L3416 — WildcardPattern( std::string const& pattern, CaseSensitive caseSensitivity );
+- matches · function · L3417-L3417 — bool matches( std::string const& str ) const;
+- normaliseString · function · L3420-L3420 — std::string normaliseString( std::string const& str ) const;
+- IConfig · class · L3435-L3435 — class IConfig;
+- TestCaseHandle · class · L3437-L3437 — class TestCaseHandle;
+- TestSpec · class · L3439-L3522 — class TestSpec
+- Pattern · class · L3441-L3457 — class Pattern
+- Pattern · function · L3443-L3443 — explicit Pattern( std::string const& name );
+- matches · function · L3445-L3445 — virtual bool matches( TestCaseInfo const& testCase ) const = 0;
+- name · function · L3446-L3446 — std::string const& name() const;
+- serializeTo · function · L3448-L3448 — virtual void serializeTo( std::ostream& out ) const = 0;
+- NamePattern · class · L3459-L3467 — class NamePattern : public Pattern
+- NamePattern · function · L3461-L3461 — explicit NamePattern( std::string const& name, std::string const& filterString );
+- matches · function · L3462-L3462 — bool matches( TestCaseInfo const& testCase ) const override;
+- serializeTo · function · L3464-L3464 — void serializeTo( std::ostream& out ) const override;
+- TagPattern · class · L3469-L3477 — class TagPattern : public Pattern
+- TagPattern · function · L3471-L3471 — explicit TagPattern( std::string const& tag, std::string const& filterString );
+- matches · function · L3472-L3472 — bool matches( TestCaseInfo const& testCase ) const override;
+- serializeTo · function · L3474-L3474 — void serializeTo( std::ostream& out ) const override;
+- Filter · class · L3479-L3492 — struct Filter
+- serializeTo · function · L3485-L3485 — void serializeTo( std::ostream& out ) const;
+- matches · function · L3491-L3491 — bool matches( TestCaseInfo const& testCase ) const;
+- extractFilterName · function · L3494-L3494 — static std::string extractFilterName( Filter const& filter );
+- FilterMatch · class · L3497-L3500 — struct FilterMatch
+- hasFilters · function · L3504-L3504 — bool hasFilters() const;
+- matches · function · L3505-L3505 — bool matches( TestCaseInfo const& testCase ) const;
+- matchesByFilter · function · L3506-L3506 — Matches matchesByFilter( std::vector<TestCaseHandle> const& testCases, IConfig const& config ) const;
+- getInvalidSpecs · function · L3507-L3507 — const vectorStrings & getInvalidSpecs() const;
+- serializeTo · function · L3516-L3516 — void serializeTo( std::ostream& out ) const;
+- Optional · class · L3541-L3636 — template<typename T>
+- Optional · function · L3544-L3544 — Optional(): nullableValue( nullptr ) {}
+- Optional · function · L3547-L3548 — Optional( T const& _value ):
+- Optional · function · L3549-L3550 — Optional( T&& _value ):
+- Optional · function · L3563-L3564 — Optional( Optional const& _other ):
+- Optional · function · L3565-L3567 — Optional( Optional&& _other ):
+- reset · function · L3586-L3589 — void reset()
+- valueOr · function · L3608-L3610 — T valueOr( T const& defaultValue ) const
+- some · function · L3612-L3612 — bool some() const { return nullableValue != nullptr; }
+- none · function · L3613-L3613 — bool none() const { return nullableValue == nullptr; }
+- GenerateFrom · type · L3650-L3655 — enum class GenerateFrom
+- generateRandomSeed · function · L3657-L3657 — std::uint32_t generateRandomSeed(GenerateFrom from);
+- ColourMode · type · L3674-L3674 — enum class ColourMode : std::uint8_t;
+- splitReporterSpec · function · L3678-L3678 — std::vector<std::string> splitReporterSpec( StringRef reporterSpec );
+- stringToColourMode · function · L3680-L3680 — Optional<ColourMode> stringToColourMode( StringRef colourMode );
+- ReporterSpec · class · L3691-L3722 — class ReporterSpec
+- ReporterSpec · function · L3705-L3709 — ReporterSpec(
+- name · function · L3711-L3711 — std::string const& name() const { return m_name; }
+- outputFile · function · L3713-L3713 — Optional<std::string> const& outputFile() const
+- colourMode · function · L3717-L3717 — Optional<ColourMode> const& colourMode() const { return m_colourMode; }
+- customOptions · function · L3719-L3719 — std::map<std::string, std::string> const& customOptions() const
+- parseReporterSpec · function · L3734-L3734 — Optional<ReporterSpec> parseReporterSpec( StringRef reporterSpec );
+- IStream · class · L3747-L3747 — class IStream;
+- ProcessedReporterSpec · class · L3754-L3765 — struct ProcessedReporterSpec
+- ConfigData · class · L3767-L3813 — struct ConfigData
+- Config · class · L3816-L3875 — class Config : public IConfig
+- Config · function · L3819-L3819 — Config() = default;
+- Config · function · L3820-L3820 — Config( ConfigData const& data );
+- listTests · function · L3823-L3823 — bool listTests() const;
+- listTags · function · L3824-L3824 — bool listTags() const;
+- listReporters · function · L3825-L3825 — bool listReporters() const;
+- listListeners · function · L3826-L3826 — bool listListeners() const;
+- getReporterSpecs · function · L3828-L3828 — std::vector<ReporterSpec> const& getReporterSpecs() const;
+- getProcessedReporterSpecs · function · L3830-L3830 — getProcessedReporterSpecs() const;
+- getTestsOrTags · function · L3832-L3832 — std::vector<std::string> const& getTestsOrTags() const override;
+- getSectionsToRun · function · L3833-L3833 — std::vector<std::string> const& getSectionsToRun() const override;
+- testSpec · function · L3835-L3835 — TestSpec const& testSpec() const override;
+- hasTestFilters · function · L3836-L3836 — bool hasTestFilters() const override;
+- showHelp · function · L3838-L3838 — bool showHelp() const;
+- getExitGuardFilePath · function · L3840-L3840 — std::string const& getExitGuardFilePath() const;
+- allowThrows · function · L3843-L3843 — bool allowThrows() const override;
+- name · function · L3844-L3844 — StringRef name() const override;
+- includeSuccessfulResults · function · L3845-L3845 — bool includeSuccessfulResults() const override;
+- warnAboutMissingAssertions · function · L3846-L3846 — bool warnAboutMissingAssertions() const override;
+- warnAboutUnmatchedTestSpecs · function · L3847-L3847 — bool warnAboutUnmatchedTestSpecs() const override;
+- zeroTestsCountAsSuccess · function · L3848-L3848 — bool zeroTestsCountAsSuccess() const override;
+- showDurations · function · L3849-L3849 — ShowDurations showDurations() const override;
+- minDuration · function · L3850-L3850 — double minDuration() const override;
+- runOrder · function · L3851-L3851 — TestRunOrder runOrder() const override;
+- rngSeed · function · L3852-L3852 — uint32_t rngSeed() const override;
+- shardCount · function · L3853-L3853 — unsigned int shardCount() const override;
+- shardIndex · function · L3854-L3854 — unsigned int shardIndex() const override;
+- defaultColourMode · function · L3855-L3855 — ColourMode defaultColourMode() const override;
+- shouldDebugBreak · function · L3856-L3856 — bool shouldDebugBreak() const override;
+- abortAfter · function · L3857-L3857 — int abortAfter() const override;
+- showInvisibles · function · L3858-L3858 — bool showInvisibles() const override;
+- verbosity · function · L3859-L3859 — Verbosity verbosity() const override;
+- skipBenchmarks · function · L3860-L3860 — bool skipBenchmarks() const override;
+- benchmarkNoAnalysis · function · L3861-L3861 — bool benchmarkNoAnalysis() const override;
+- benchmarkSamples · function · L3862-L3862 — unsigned int benchmarkSamples() const override;
+- benchmarkConfidenceInterval · function · L3863-L3863 — double benchmarkConfidenceInterval() const override;
+- benchmarkResamples · function · L3864-L3864 — unsigned int benchmarkResamples() const override;
+- benchmarkWarmupTime · function · L3865-L3865 — std::chrono::milliseconds benchmarkWarmupTime() const override;
+- readBazelEnvVars · function · L3869-L3869 — void readBazelEnvVars();
+- getSeed · function · L3888-L3888 — std::uint32_t getSeed();
+- StreamEndStop · class · L3932-L3939 — struct StreamEndStop
+- MessageInfo · function · L3968-L3970 — MessageInfo(    StringRef _macroName,
+- IResultCapture · class · L4001-L4001 — class IResultCapture;
+- MessageStream · class · L4003-L4012 — struct MessageStream
+- MessageBuilder · class · L4014-L4027 — struct MessageBuilder : MessageStream
+- MessageBuilder · function · L4015-L4018 — MessageBuilder( StringRef macroName,
+- ScopedMessage · class · L4029-L4038 — class ScopedMessage
+- ScopedMessage · function · L4031-L4031 — explicit ScopedMessage( MessageBuilder&& builder );
+- ScopedMessage · function · L4032-L4032 — ScopedMessage( ScopedMessage& duplicate ) = delete;
+- ScopedMessage · function · L4033-L4033 — ScopedMessage( ScopedMessage&& old ) noexcept;
+- Capturer · class · L4040-L4063 — class Capturer
+- Capturer · function · L4044-L4044 — Capturer( StringRef macroName, SourceLineInfo const& lineInfo, ResultWas::OfType resultType, StringRef names );
+- Capturer · function · L4046-L4046 — Capturer(Capturer const&) = delete;
+- captureValue · function · L4051-L4051 — void captureValue( size_t index, std::string const& value );
+- captureValues · function · L4053-L4056 — template<typename T>
+- captureValues · function · L4058-L4062 — template<typename T, typename... Ts>
+- Counts · class · L4140-L4152 — struct Counts
+- total · function · L4144-L4144 — std::uint64_t total() const;
+- allPassed · function · L4145-L4145 — bool allPassed() const;
+- allOk · function · L4146-L4146 — bool allOk() const;
+- Totals · class · L4154-L4163 — struct Totals
+- delta · function · L4159-L4159 — Totals delta( Totals const& prevTotals ) const;
+- SectionInfo · class · L4172-L4184 — struct SectionInfo
+- SectionInfo · function · L4176-L4180 — SectionInfo( SourceLineInfo const& _lineInfo, std::string _name,
+- SectionEndInfo · class · L4186-L4190 — struct SectionEndInfo
+- Args · class · L4243-L4243 — class Args;
+- Parser · class · L4244-L4244 — class Parser;
+- ParseResultType · type · L4247-L4252 — enum class ParseResultType
+- accept_many_t · class · L4254-L4254 — struct accept_many_t {};
+- fake_arg · class · L4258-L4261 — struct fake_arg
+- UnaryLambdaTraits · class · L4274-L4276 — template <typename L>
+- TokenStream · class · L4290-L4290 — class TokenStream;
+- TokenType · type · L4295-L4295 — enum class TokenType { Option, Argument };
+- Token · class · L4296-L4299 — struct Token
+- TokenStream · class · L4303-L4333 — class TokenStream
+- loadBuffer · function · L4308-L4308 — void loadBuffer();
+- TokenStream · function · L4311-L4311 — explicit TokenStream( Args const& args );
+- TokenStream · function · L4312-L4312 — TokenStream( Iterator it, Iterator itEnd );
+- count · function · L4318-L4320 — size_t count() const
+- ResultType · type · L4336-L4341 — enum class ResultType
+- ResultBase · class · L4343-L4357 — class ResultBase
+- ResultBase · function · L4345-L4345 — ResultBase( ResultType type ): m_type( type ) {}
+- ResultBase · function · L4349-L4349 — ResultBase(ResultBase const&) = default;
+- ResultBase · function · L4351-L4351 — ResultBase(ResultBase&&) = default;
+- enforceOk · function · L4354-L4354 — virtual void enforceOk() const = 0;
+- ResultValueBase · class · L4359-L4420 — template <typename T>
+- value · function · L4362-L4362 — T const& value() const&
+- value · function · L4366-L4366 — T&& value() &&
+- ResultValueBase · function · L4372-L4372 — ResultValueBase( ResultType type ): ResultBase( type ) {}
+- ResultValueBase · function · L4374-L4378 — ResultValueBase( ResultValueBase const& other ):
+- ResultValueBase · function · L4379-L4383 — ResultValueBase( ResultValueBase&& other ):
+- ResultValueBase · function · L4386-L4389 — ResultValueBase( ResultType, T const& value ):
+- ResultValueBase · function · L4390-L4393 — ResultValueBase( ResultType, T&& value ):
+- BasicResult · class · L4427-L4481 — template <typename T = void>
+- BasicResult · function · L4430-L4435 — template <typename U>
+- ok · function · L4437-L4440 — template <typename U>
+- ok · function · L4441-L4441 — static auto ok() -> BasicResult { return { ResultType::Ok }; }
+- logicError · function · L4442-L4445 — static auto logicError( std::string&& message )
+- runtimeError · function · L4446-L4449 — static auto runtimeError( std::string&& message )
+- type · function · L4454-L4454 — auto type() const -> ResultType { return m_type; }
+- errorMessage · function · L4455-L4457 — auto errorMessage() const -> std::string const&
+- enforceOk · function · L4460-L4468 — void enforceOk() const override
+- BasicResult · function · L4473-L4477 — BasicResult( ResultType type,
+- ParseState · class · L4483-L4499 — class ParseState
+- ParseState · function · L4485-L4486 — ParseState( ParseResultType type,
+- type · function · L4488-L4488 — ParseResultType type() const { return m_type; }
+- remainingTokens · function · L4489-L4489 — TokenStream const& remainingTokens() const&
+- remainingTokens · function · L4492-L4492 — TokenStream&& remainingTokens() &&
+- HelpColumns · class · L4505-L4508 — struct HelpColumns
+- convertInto · function · L4510-L4521 — template <typename T>
+- ss · function · L4512-L4512 — std::stringstream ss( source );
+- convertInto · function · L4522-L4523 — ParserResult convertInto( std::string const& source,
+- convertInto · function · L4524-L4524 — ParserResult convertInto( std::string const& source, bool& target );
+- convertInto · function · L4527-L4536 — template <typename T>
+- BoundRef · class · L4539-L4543 — struct BoundRef : Catch::Detail::NonCopyable
+- isContainer · function · L4541-L4541 — virtual bool isContainer() const;
+- isFlag · function · L4542-L4542 — virtual bool isFlag() const;
+- BoundValueRefBase · class · L4544-L4547 — struct BoundValueRefBase : BoundRef
+- setValue · function · L4545-L4546 — virtual auto setValue( std::string const& arg )
+- BoundFlagRefBase · class · L4548-L4551 — struct BoundFlagRefBase : BoundRef
+- setFlag · function · L4549-L4549 — virtual auto setFlag( bool flag ) -> ParserResult = 0;
+- isFlag · function · L4550-L4550 — bool isFlag() const override;
+- BoundValueRef · class · L4553-L4561 — template <typename T> struct BoundValueRef : BoundValueRefBase
+- BoundValueRef · function · L4556-L4556 — explicit BoundValueRef( T& ref ): m_ref( ref ) {}
+- setValue · function · L4558-L4560 — ParserResult setValue( std::string const& arg ) override
+- BoundValueRef · function · L4567-L4567 — explicit BoundValueRef( std::vector<T>& ref ): m_ref( ref ) {}
+- isContainer · function · L4569-L4569 — auto isContainer() const -> bool override { return true; }
+- setValue · function · L4571-L4578 — auto setValue( std::string const& arg )
+- BoundFlagRef · class · L4581-L4587 — struct BoundFlagRef : BoundFlagRefBase
+- BoundFlagRef · function · L4584-L4584 — explicit BoundFlagRef( bool& ref ): m_ref( ref ) {}
+- setFlag · function · L4586-L4586 — ParserResult setFlag( bool flag ) override;
+- LambdaInvoker · class · L4589-L4599 — template <typename ReturnType> struct LambdaInvoker
+- invoke · function · L4594-L4598 — template <typename L, typename ArgType>
+- invoke · function · L4602-L4607 — template <typename L, typename ArgType>
+- invokeLambda · function · L4610-L4618 — template <typename ArgType, typename L>
+- BoundLambda · class · L4620-L4633 — template <typename L> struct BoundLambda : BoundValueRefBase
+- BoundLambda · function · L4626-L4626 — explicit BoundLambda( L const& lambda ): m_lambda( lambda ) {}
+- setValue · function · L4628-L4632 — auto setValue( std::string const& arg )
+- BoundManyLambda · class · L4635-L4638 — template <typename L> struct BoundManyLambda : BoundLambda<L>
+- BoundManyLambda · function · L4636-L4636 — explicit BoundManyLambda( L const& lambda ): BoundLambda<L>( lambda ) {}
+- isContainer · function · L4637-L4637 — bool isContainer() const override { return true; }
+- BoundFlagLambda · class · L4640-L4658 — template <typename L> struct BoundFlagLambda : BoundFlagRefBase
+- BoundFlagLambda · function · L4651-L4652 — explicit BoundFlagLambda( L const& lambda ):
+- setFlag · function · L4654-L4657 — auto setFlag( bool flag ) -> ParserResult override
+- Optionality · type · L4660-L4660 — enum class Optionality { Optional, Required };
+- ParserBase · class · L4662-L4672 — class ParserBase
+- validate · function · L4665-L4665 — virtual auto validate() const -> Result { return Result::ok(); }
+- parse · function · L4666-L4668 — virtual auto parse( std::string const& exeName,
+- cardinality · function · L4669-L4669 — virtual size_t cardinality() const;
+- parse · function · L4671-L4671 — InternalParseResult parse( Args const& args ) const;
+- ComposableParserImpl · class · L4674-L4679 — template <typename DerivedT>
+- ParserRefImpl · class · L4682-L4746 — template <typename DerivedT>
+- ParserRefImpl · function · L4690-L4691 — explicit ParserRefImpl( std::shared_ptr<BoundRef> const& ref ):
+- ParserRefImpl · function · L4694-L4699 — template <typename LambdaT>
+- ParserRefImpl · function · L4701-L4706 — template <typename T,
+- ParserRefImpl · function · L4708-L4713 — template <typename LambdaT,
+- optional · function · L4724-L4727 — auto optional() -> DerivedT&
+- required · function · L4729-L4732 — auto required() -> DerivedT&
+- isOptional · function · L4734-L4736 — auto isOptional() const -> bool
+- cardinality · function · L4738-L4743 — auto cardinality() const -> size_t override
+- hint · function · L4745-L4745 — StringRef hint() const { return m_hint; }
+- Arg · class · L4752-L4760 — class Arg : public Detail::ParserRefImpl<Arg>
+- parse · function · L4757-L4759 — Detail::InternalParseResult
+- Opt · class · L4763-L4811 — class Opt : public Detail::ParserRefImpl<Opt>
+- Opt · function · L4768-L4771 — template <typename LambdaT>
+- Opt · function · L4773-L4773 — explicit Opt(bool& ref);
+- Opt · function · L4775-L4779 — template <typename LambdaT,
+- Opt · function · L4781-L4783 — template <typename LambdaT>
+- Opt · function · L4785-L4789 — template <typename T,
+- getHelpColumns · function · L4800-L4800 — Detail::HelpColumns getHelpColumns() const;
+- isMatch · function · L4802-L4802 — bool isMatch(StringRef optToken) const;
+- parse · function · L4806-L4808 — Detail::InternalParseResult
+- validate · function · L4810-L4810 — Detail::Result validate() const override;
+- ExeName · class · L4814-L4835 — class ExeName : public Detail::ComposableParserImpl<ExeName>
+- ExeName · function · L4819-L4819 — ExeName();
+- ExeName · function · L4820-L4820 — explicit ExeName(std::string& ref);
+- ExeName · function · L4822-L4825 — template <typename LambdaT>
+- parse · function · L4829-L4831 — Detail::InternalParseResult
+- name · function · L4833-L4833 — std::string const& name() const { return *m_name; }
+- set · function · L4834-L4834 — Detail::ParserResult set(std::string const& newName);
+- Parser · class · L4839-L4896 — class Parser : Detail::ParserBase
+- temp · function · L4869-L4869 — Parser temp( p );
+- getHelpColumns · function · L4880-L4880 — std::vector<Detail::HelpColumns> getHelpColumns() const;
+- writeToStream · function · L4882-L4882 — void writeToStream(std::ostream& os) const;
+- validate · function · L4890-L4890 — Detail::Result validate() const override;
+- parse · function · L4893-L4895 — Detail::InternalParseResult
+- Args · class · L4901-L4912 — class Args
+- Args · function · L4907-L4907 — Args(int argc, char const* const* argv);
+- Args · function · L4909-L4909 — Args(std::initializer_list<StringRef> args);
+- exeName · function · L4911-L4911 — StringRef exeName() const { return m_exeName; }
+- Help · class · L4916-L4918 — struct Help : Opt
+- Help · function · L4917-L4917 — Help(bool& showHelpFlag);
+- makeCommandLineParser · function · L4949-L4949 — Clara::Parser makeCommandLineParser( ConfigData& config );
+- Session · class · L4965-L5004 — class Session : Detail::NonCopyable
+- Session · function · L4968-L4968 — Session();
+- showHelp · function · L4971-L4971 — void showHelp() const;
+- libIdentify · function · L4972-L4972 — void libIdentify();
+- applyCommandLine · function · L4974-L4974 — int applyCommandLine( int argc, char const * const * argv );
+- applyCommandLine · function · L4976-L4976 — int applyCommandLine( int argc, wchar_t const * const * argv );
+- useConfigData · function · L4979-L4979 — void useConfigData( ConfigData const& configData );
+- run · function · L4981-L4989 — template<typename CharT>
+- run · function · L4991-L4991 — int run();
+- cli · function · L4993-L4993 — Clara::Parser const& cli() const;
+- cli · function · L4994-L4994 — void cli( Clara::Parser const& newParser );
+- configData · function · L4995-L4995 — ConfigData& configData();
+- config · function · L4996-L4996 — Config& config();
+- runInternal · function · L4998-L4998 — int runInternal();
+- TagAlias · class · L5019-L5027 — struct TagAlias
+- TagAlias · function · L5020-L5023 — TagAlias(std::string const& _tag, SourceLineInfo _lineInfo):
+- RegistrarForTagAliases · class · L5040-L5042 — struct RegistrarForTagAliases
+- RegistrarForTagAliases · function · L5041-L5041 — RegistrarForTagAliases( char const* alias, char const* tag, SourceLineInfo const& lineInfo );
+- BinaryExpr · class · L5373-L5447 — template<typename LhsT, typename RhsT>
+- streamReconstructedExpression · function · L5379-L5382 — void streamReconstructedExpression( std::ostream &os ) const override
+- BinaryExpr · function · L5385-L5390 — constexpr BinaryExpr( bool comparisonResult, LhsT lhs, StringRef op, RhsT rhs )
+- UnaryExpr · class · L5449-L5462 — template<typename LhsT>
+- streamReconstructedExpression · function · L5453-L5455 — void streamReconstructedExpression( std::ostream &os ) const override
+- UnaryExpr · function · L5458-L5461 — explicit constexpr UnaryExpr( LhsT lhs )
+- ExprLhs · class · L5465-L5617 — template<typename LhsT>
+- ExprLhs · function · L5469-L5469 — explicit constexpr ExprLhs( LhsT lhs ) : m_lhs( lhs ) {}
+- op · function · L5522-L5532 — #undef CATCH_INTERNAL_DEFINE_EXPRESSION_EQUALITY_OPERATOR
+- CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR · function · L5525-L5525 — #define CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR( id, op )         \
+- CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR · function · L5569-L5616 — CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR( lt, < )
+- op · function · L5574-L5584 — #undef CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR
+- CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR · function · L5577-L5577 — #define CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR( op )                        \
+- op · function · L5587-L5591 — constexpr friend auto operator op( ExprLhs&& lhs, RhsT rhs )               \
+- CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR · function · L5594-L5594 — CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR(|)
+- CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR · function · L5595-L5595 — CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR(&)
+- CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR · function · L5596-L5596 — CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR(^)
+- Decomposer · class · L5619-L5632 — struct Decomposer
+- AssertionReaction · class · L5651-L5655 — struct AssertionReaction
+- AssertionHandler · class · L5657-L5694 — class AssertionHandler
+- AssertionHandler · function · L5664-L5668 — AssertionHandler
+- handleExpr · function · L5676-L5679 — template<typename T>
+- handleExpr · function · L5680-L5680 — void handleExpr( ITransientExpression const& expr );
+- handleMessage · function · L5682-L5682 — void handleMessage(ResultWas::OfType resultType, std::string&& message);
+- handleExceptionThrownAsExpected · function · L5684-L5684 — void handleExceptionThrownAsExpected();
+- handleUnexpectedExceptionNotThrown · function · L5685-L5685 — void handleUnexpectedExceptionNotThrown();
+- handleExceptionNotThrownAsExpected · function · L5686-L5686 — void handleExceptionNotThrownAsExpected();
+- handleThrowingCallSkipped · function · L5687-L5687 — void handleThrowingCallSkipped();
+- handleUnexpectedInflightException · function · L5688-L5688 — void handleUnexpectedInflightException();
+- complete · function · L5690-L5690 — void complete();
+- allowThrows · function · L5693-L5693 — auto allowThrows() const -> bool;
+- handleExceptionMatchExpr · function · L5696-L5696 — void handleExceptionMatchExpr( AssertionHandler& handler, std::string const& str );
+- catchAssertionHandler · function · L5743-L5743 — Catch::AssertionHandler catchAssertionHandler( macroName##_catch_sr, CATCH_INTERNAL_LINEINFO, CATCH_INTERNAL_STRINGIFY(__VA_ARGS__), resultDisposition ); \
+- Timer · class · L5895-L5903 — class Timer
+- start · function · L5898-L5898 — void start();
+- getElapsedNanoseconds · function · L5899-L5899 — auto getElapsedNanoseconds() const -> uint64_t;
+- getElapsedMicroseconds · function · L5900-L5900 — auto getElapsedMicroseconds() const -> uint64_t;
+- getElapsedMilliseconds · function · L5901-L5901 — auto getElapsedMilliseconds() const -> unsigned int;
+- getElapsedSeconds · function · L5902-L5902 — auto getElapsedSeconds() const -> double;
+- Section · class · L5911-L5928 — class Section : Detail::NonCopyable
+- Section · function · L5913-L5913 — Section( SectionInfo&& info );
+- Section · function · L5914-L5916 — Section( SourceLineInfo const& _lineInfo,
+- GetNewSectionHint · function · L5964-L5964 — int GetNewSectionHint( StringRef, const char* const = nullptr );
+- ITestInvoker · class · L6007-L6013 — class ITestInvoker
+- prepareTestCase · function · L6009-L6009 — virtual void prepareTestCase();
+- tearDownTestCase · function · L6010-L6010 — virtual void tearDownTestCase();
+- invoke · function · L6011-L6011 — virtual void invoke() const = 0;
+- TestInvokerAsMethod · class · L6044-L6055 — template<typename C>
+- TestInvokerAsMethod · function · L6048-L6049 — constexpr TestInvokerAsMethod( void ( C::*testAsMethod )() ) noexcept:
+- invoke · function · L6051-L6054 — void invoke() const override
+- makeTestInvoker · function · L6059-L6062 — template<typename C>
+- TestInvokerFixture · class · L6064-L6085 — template <typename C>
+- TestInvokerFixture · function · L6070-L6071 — constexpr TestInvokerFixture( void ( C::*testAsMethod )() const ) noexcept:
+- prepareTestCase · function · L6073-L6075 — void prepareTestCase() override
+- tearDownTestCase · function · L6077-L6079 — void tearDownTestCase() override
+- invoke · function · L6081-L6084 — void invoke() const override
+- makeTestInvokerFixture · function · L6087-L6090 — template<typename C>
+- NameAndTags · class · L6092-L6098 — struct NameAndTags
+- NameAndTags · function · L6093-L6095 — constexpr NameAndTags( StringRef name_ = StringRef(),
+- AutoReg · class · L6100-L6102 — struct AutoReg : Detail::NonCopyable
+- AutoReg · function · L6101-L6101 — AutoReg( Detail::unique_ptr<ITestInvoker> invoker, SourceLineInfo const& lineInfo, StringRef classOrMethod, NameAndTags const& nameAndTags ) noexcept;
+- INTERNAL_CATCH_TESTCASE · function · L6130-L6130 — #define INTERNAL_CATCH_TESTCASE( ... ) \
+- DummyUse · class · L6139-L6141 — struct DummyUse
+- DummyUse · function · L6140-L6140 — DummyUse( void ( * )( int ), Catch::NameAndTags const& );
+- Unreachable · function · L6265-L6279 — [[noreturn]]
+- priority_tag · class · L6532-L6533 — template <int N>
+- INTERNAL_CATCH_UNIQUE_NAME · function · L6836-L6836 — static const int INTERNAL_CATCH_UNIQUE_NAME( globalRegistrar ) = [](){\
+- INTERNAL_CATCH_UNIQUE_NAME · function · L6884-L6884 — static const int INTERNAL_CATCH_UNIQUE_NAME( globalRegistrar ) = [](){ \
+- INTERNAL_CATCH_UNIQUE_NAME · function · L6930-L6930 — static const int INTERNAL_CATCH_UNIQUE_NAME( globalRegistrar ) = [](){ \
+- INTERNAL_CATCH_UNIQUE_NAME · function · L7016-L7016 — static const int INTERNAL_CATCH_UNIQUE_NAME( globalRegistrar ) = [](){\
+- INTERNAL_CATCH_UNIQUE_NAME · function · L7065-L7065 — static const int INTERNAL_CATCH_UNIQUE_NAME( globalRegistrar ) = [](){\
+- Tag · class · L7208-L7216 — struct Tag
+- Tag · function · L7209-L7211 — constexpr Tag(StringRef original_):
+- ITestInvoker · class · L7218-L7218 — class ITestInvoker;
+- TestCaseProperties · type · L7221-L7229 — enum class TestCaseProperties : uint8_t
+- TestCaseInfo · class · L7240-L7272 — struct TestCaseInfo : Detail::NonCopyable
+- TestCaseInfo · function · L7242-L7244 — TestCaseInfo(StringRef _className,
+- isHidden · function · L7246-L7246 — bool isHidden() const;
+- throws · function · L7247-L7247 — bool throws() const;
+- okToFail · function · L7248-L7248 — bool okToFail() const;
+- expectedToFail · function · L7249-L7249 — bool expectedToFail() const;
+- addFilenameTag · function · L7252-L7252 — void addFilenameTag();
+- tagsAsString · function · L7259-L7259 — std::string tagsAsString() const;
+- internalAppendTag · function · L7267-L7267 — void internalAppendTag(StringRef tagString);
+- TestCaseHandle · class · L7280-L7302 — class TestCaseHandle
+- TestCaseHandle · function · L7284-L7285 — constexpr TestCaseHandle(TestCaseInfo* info, ITestInvoker* invoker) :
+- prepareTestCase · function · L7287-L7289 — void prepareTestCase() const
+- tearDownTestCase · function · L7291-L7293 — void tearDownTestCase() const
+- invoke · function · L7295-L7297 — void invoke() const
+- getTestCaseInfo · function · L7299-L7299 — constexpr TestCaseInfo const& getTestCaseInfo() const
+- makeTestCaseInfo · function · L7304-L7307 — Detail::unique_ptr<TestCaseInfo>
+- TestRunInfo · class · L7323-L7326 — struct TestRunInfo
+- TestRunInfo · function · L7324-L7324 — constexpr TestRunInfo(StringRef _name) : name(_name) {}
+- IExceptionTranslator · class · L7348-L7348 — class IExceptionTranslator;
+- IExceptionTranslator · class · L7351-L7355 — class IExceptionTranslator
+- translate · function · L7354-L7354 — virtual std::string translate( ExceptionTranslators::const_iterator it, ExceptionTranslators::const_iterator itEnd ) const = 0;
+- IExceptionTranslatorRegistry · class · L7357-L7361 — class IExceptionTranslatorRegistry
+- translateActiveException · function · L7360-L7360 — virtual std::string translateActiveException() const = 0;
+- registerTranslatorImpl · function · L7371-L7372 — void registerTranslatorImpl(
+- ExceptionTranslatorRegistrar · class · L7375-L7411 — class ExceptionTranslatorRegistrar
+- ExceptionTranslator · class · L7376-L7402 — template<typename T>
+- ExceptionTranslator · function · L7380-L7382 — constexpr ExceptionTranslator( std::string(*translateFunction)( T const& ) )
+- translate · function · L7384-L7398 — std::string translate( ExceptionTranslators::const_iterator it, ExceptionTranslators::const_iterator itEnd ) const override
+- ExceptionTranslatorRegistrar · function · L7405-L7410 — template<typename T>
+- Version · class · L7451-L7469 — struct Version
+- Version · function · L7452-L7452 — Version( Version const& ) = delete;
+- Version · function · L7454-L7458 — Version(    unsigned int _majorVersion,
+- libraryVersion · function · L7471-L7471 — Version const& libraryVersion();
+- GeneratorException · class · L7515-L7524 — class GeneratorException : public std::exception
+- GeneratorException · function · L7519-L7521 — GeneratorException(const char* msg):
+- what · function · L7523-L7523 — const char* what() const noexcept final;
+- GeneratorUntypedBase · class · L7545-L7601 — class GeneratorUntypedBase
+- next · function · L7559-L7559 — virtual bool next() = 0;
+- stringifyImpl · function · L7562-L7562 — virtual std::string stringifyImpl() const = 0;
+- GeneratorUntypedBase · function · L7565-L7565 — GeneratorUntypedBase() = default;
+- GeneratorUntypedBase · function · L7568-L7568 — GeneratorUntypedBase(GeneratorUntypedBase const&) = default;
+- countedNext · function · L7583-L7583 — bool countedNext();
+- currentElementIndex · function · L7585-L7585 — std::size_t currentElementIndex() const { return m_currentElementIndex; }
+- currentElementAsString · function · L7600-L7600 — StringRef currentElementAsString() const;
+- IGeneratorTracker · class · L7606-L7612 — class IGeneratorTracker
+- hasGenerator · function · L7609-L7609 — virtual auto hasGenerator() const -> bool = 0;
+- getGenerator · function · L7610-L7610 — virtual auto getGenerator() const -> Generators::GeneratorBasePtr const& = 0;
+- setGenerator · function · L7611-L7611 — virtual void setGenerator( Generators::GeneratorBasePtr&& generator ) = 0;
+- throw_generator_exception · function · L7628-L7629 — [[noreturn]]
+- IGenerator · class · L7633-L7646 — template<typename T>
+- stringifyImpl · function · L7635-L7637 — std::string stringifyImpl() const override
+- get · function · L7644-L7644 — virtual T const& get() const = 0;
+- GeneratorWrapper · class · L7651-L7667 — template <typename T>
+- GeneratorWrapper · function · L7656-L7657 — GeneratorWrapper(IGenerator<T>* generator):
+- GeneratorWrapper · function · L7658-L7659 — GeneratorWrapper(GeneratorPtr<T> generator):
+- get · function · L7661-L7661 — T const& get() const
+- next · function · L7664-L7666 — bool next()
+- SingleValueGenerator · class · L7670-L7687 — template<typename T>
+- SingleValueGenerator · function · L7674-L7676 — SingleValueGenerator(T const& value) :
+- SingleValueGenerator · function · L7677-L7679 — SingleValueGenerator(T&& value):
+- get · function · L7681-L7681 — T const& get() const override
+- next · function · L7684-L7686 — bool next() override
+- FixedValuesGenerator · class · L7689-L7706 — template<typename T>
+- FixedValuesGenerator · function · L7697-L7697 — FixedValuesGenerator( std::initializer_list<T> values ) : m_values( values ) {}
+- get · function · L7699-L7699 — T const& get() const override
+- next · function · L7702-L7705 — bool next() override
+- value · function · L7708-L7713 — template <typename T, typename DecayedT = std::decay_t<T>>
+- values · function · L7714-L7717 — template <typename T>
+- Generators · class · L7719-L7770 — template<typename T>
+- add_generator · function · L7724-L7726 — void add_generator( GeneratorWrapper<T>&& generator )
+- add_generator · function · L7727-L7729 — void add_generator( T const& val )
+- add_generator · function · L7730-L7732 — void add_generator( T&& val )
+- add_generator · function · L7733-L7737 — template <typename U>
+- add_generators · function · L7739-L7741 — template <typename U> void add_generators( U&& valueOrGenerator )
+- add_generators · function · L7743-L7747 — template <typename U, typename... Gs>
+- Generators · function · L7750-L7754 — template <typename... Gs>
+- get · function · L7756-L7756 — T const& get() const override
+- next · function · L7760-L7769 — bool next() override
+- table · function · L7773-L7777 — template <typename... Ts>
+- as · class · L7780-L7781 — template <typename T>
+- makeGenerators · function · L7783-L7786 — template<typename T, typename... Gs>
+- makeGenerators · function · L7787-L7790 — template<typename T>
+- makeGenerators · function · L7791-L7794 — template<typename T, typename... Gs>
+- makeGenerators · function · L7795-L7798 — template<typename T, typename U, typename... Gs>
+- acquireGeneratorTracker · function · L7800-L7801 — IGeneratorTracker* acquireGeneratorTracker( StringRef generatorName,
+- createGeneratorTracker · function · L7802-L7804 — IGeneratorTracker* createGeneratorTracker( StringRef generatorName,
+- generate · function · L7806-L7823 — template<typename L>
+- TakeGenerator · class · L7856-L7885 — template <typename T>
+- TakeGenerator · function · L7862-L7867 — TakeGenerator(size_t target, GeneratorWrapper<T>&& generator):
+- get · function · L7868-L7868 — T const& get() const override
+- next · function · L7871-L7884 — bool next() override
+- take · function · L7887-L7890 — template <typename T>
+- FilterGenerator · class · L7893-L7926 — template <typename T, typename Predicate>
+- FilterGenerator · function · L7899-L7912 — template <typename P>
+- get · function · L7914-L7914 — T const& get() const override
+- next · function · L7918-L7925 — bool next() override
+- filter · function · L7929-L7932 — template <typename T, typename Predicate>
+- RepeatGenerator · class · L7934-L7983 — template <typename T>
+- RepeatGenerator · function · L7945-L7950 — RepeatGenerator(size_t repeats, GeneratorWrapper<T>&& generator):
+- get · function · L7952-L7952 — T const& get() const override
+- next · function · L7960-L7982 — bool next() override
+- repeat · function · L7985-L7988 — template <typename T>
+- MapGenerator · class · L7990-L8015 — template <typename T, typename U, typename Func>
+- MapGenerator · function · L7998-L8003 — template <typename F2 = Func>
+- get · function · L8005-L8005 — T const& get() const override
+- next · function · L8008-L8014 — bool next() override
+- map · function · L8017-L8022 — template <typename Func, typename U, typename T = FunctionReturnType<Func, U>>
+- map · function · L8024-L8029 — template <typename T, typename U, typename Func>
+- ChunkGenerator · class · L8031-L8065 — template <typename T>
+- ChunkGenerator · function · L8038-L8051 — ChunkGenerator(size_t size, GeneratorWrapper<T> generator) :
+- get · function · L8052-L8052 — std::vector<T> const& get() const override
+- next · function · L8055-L8064 — bool next() override
+- chunk · function · L8067-L8072 — template <typename T>
+- SimplePcg32 · class · L8098-L8133 — class SimplePcg32
+- result_type · function · L8102-L8102 — static constexpr result_type (min)()
+- result_type · function · L8105-L8105 — static constexpr result_type (max)()
+- SimplePcg32 · function · L8110-L8110 — SimplePcg32():SimplePcg32(0xed743cc4U) {}
+- SimplePcg32 · function · L8112-L8112 — explicit SimplePcg32(result_type seed_);
+- seed · function · L8114-L8114 — void seed(result_type seed_);
+- discard · function · L8115-L8115 — void discard(uint64_t skip);
+- ExtendedMultResult · class · L8206-L8213 — template <typename T>
+- extendedMultPortable · function · L8221-L8242 — constexpr ExtendedMultResult<std::uint64_t>
+- extendedMult · function · L8245-L8258 — inline ExtendedMultResult<std::uint64_t>
+- extendedMult · function · L8261-L8274 — template <typename UInt>
+- fillBitsFrom · function · L8280-L8280 — TargetType> fillBitsFrom(Generator& gen)
+- fillBitsFrom · function · L8296-L8318 — template <typename TargetType,
+- transposeToNaturalOrder · function · L8327-L8343 — template <typename OriginalType, typename UnsignedType>
+- transposeToNaturalOrder · function · L8347-L8358 — template <typename OriginalType,
+- uniform_integer_distribution · class · L8377-L8454 — template <typename IntegerType>
+- computeDistance · function · L8401-L8405 — static constexpr UnsignedIntegerType computeDistance(IntegerType a, IntegerType b)
+- computeRejectionThreshold · function · L8407-L8412 — static constexpr UnsignedIntegerType computeRejectionThreshold(UnsignedIntegerType ab_distance)
+- transposeTo · function · L8414-L8417 — static constexpr UnsignedIntegerType transposeTo(IntegerType in)
+- transposeBack · function · L8418-L8421 — static constexpr IntegerType transposeBack(UnsignedIntegerType in)
+- uniform_integer_distribution · function · L8426-L8431 — constexpr uniform_integer_distribution( IntegerType a, IntegerType b ):
+- a · function · L8452-L8452 — constexpr result_type a() const { return transposeBack(m_a); }
+- b · function · L8453-L8453 — constexpr result_type b() const { return transposeBack(m_ab_distance + m_a - 1); }
+- isnan · function · L8478-L8478 — bool isnan(float f);
+- isnan · function · L8479-L8479 — bool isnan(double d);
+- nextafter · function · L8481-L8481 — float nextafter(float x, float y);
+- nextafter · function · L8482-L8482 — double nextafter(double x, double y);
+- gamma · function · L8502-L8514 — template <typename FloatType>
+- count_equidistant_floats · function · L8543-L8559 — template <typename FloatType>
+- calculate_max_steps_in_one_go · function · L8584-L8587 — constexpr std::uint64_t calculate_max_steps_in_one_go(double gamma)
+- calculate_max_steps_in_one_go · function · L8588-L8591 — constexpr std::uint32_t calculate_max_steps_in_one_go(float gamma)
+- uniform_floating_point_distribution · class · L8623-L8682 — template <typename FloatType>
+- uniform_floating_point_distribution · function · L8646-L8656 — uniform_floating_point_distribution( FloatType a, FloatType b ):
+- a · function · L8680-L8680 — result_type a() const { return m_a; }
+- b · function · L8681-L8681 — result_type b() const { return m_b; }
+- getSeed · function · L8694-L8694 — std::uint32_t getSeed();
+- RandomFloatingGenerator · class · L8697-L8716 — template <typename Float>
+- RandomFloatingGenerator · function · L8703-L8707 — RandomFloatingGenerator( Float a, Float b, std::uint32_t seed ):
+- get · function · L8709-L8709 — Float const& get() const override
+- next · function · L8712-L8715 — bool next() override
+- RandomFloatingGenerator · function · L8727-L8727 — RandomFloatingGenerator( long double a, long double b, std::uint32_t seed );
+- get · function · L8729-L8729 — long double const& get() const override { return m_current_number; }
+- next · function · L8730-L8730 — bool next() override;
+- RandomIntegerGenerator · class · L8735-L8754 — template <typename Integer>
+- RandomIntegerGenerator · function · L8741-L8745 — RandomIntegerGenerator( Integer a, Integer b, std::uint32_t seed ):
+- get · function · L8747-L8747 — Integer const& get() const override
+- next · function · L8750-L8753 — bool next() override
+- random · function · L8756-L8762 — template <typename T>
+- random · function · L8764-L8771 — template <typename T>
+- RangeGenerator · class · L8792-L8823 — template <typename T>
+- RangeGenerator · function · L8800-L8809 — RangeGenerator(T const& start, T const& end, T const& step):
+- RangeGenerator · function · L8811-L8813 — RangeGenerator(T const& start, T const& end):
+- get · function · L8815-L8815 — T const& get() const override
+- next · function · L8819-L8822 — bool next() override
+- range · function · L8825-L8829 — template <typename T>
+- range · function · L8831-L8835 — template <typename T>
+- IteratorGenerator · class · L8838-L8862 — template <typename T>
+- IteratorGenerator · function · L8847-L8852 — template <typename InputIterator, typename InputSentinel>
+- get · function · L8854-L8854 — T const& get() const override
+- next · function · L8858-L8861 — bool next() override
+- from_range · function · L8864-L8869 — template <typename InputIterator,
+- from_range · function · L8871-L8876 — template <typename Container>
+- TestCaseHandle · class · L8921-L8921 — class TestCaseHandle;
+- IConfig · class · L8922-L8922 — class IConfig;
+- IStream · class · L8923-L8923 — class IStream;
+- ColourMode · type · L8924-L8924 — enum class ColourMode : std::uint8_t;
+- ReporterConfig · class · L8926-L8946 — struct ReporterConfig
+- ReporterConfig · function · L8927-L8930 — ReporterConfig( IConfig const* _fullConfig,
+- ReporterConfig · function · L8932-L8932 — ReporterConfig( ReporterConfig&& ) = default;
+- takeStream · function · L8936-L8936 — Detail::unique_ptr<IStream> takeStream() &&;
+- fullConfig · function · L8937-L8937 — IConfig const* fullConfig() const;
+- colourMode · function · L8938-L8938 — ColourMode colourMode() const;
+- customOptions · function · L8939-L8939 — std::map<std::string, std::string> const& customOptions() const;
+- AssertionStats · class · L8948-L8961 — struct AssertionStats
+- AssertionStats · function · L8949-L8951 — AssertionStats( AssertionResult const& _assertionResult,
+- AssertionStats · function · L8953-L8953 — AssertionStats( AssertionStats const& )              = default;
+- AssertionStats · function · L8954-L8954 — AssertionStats( AssertionStats && )                  = default;
+- SectionStats · class · L8963-L8973 — struct SectionStats
+- SectionStats · function · L8964-L8967 — SectionStats(   SectionInfo&& _sectionInfo,
+- TestCaseStats · class · L8975-L8987 — struct TestCaseStats
+- TestCaseStats · function · L8976-L8980 — TestCaseStats(  TestCaseInfo const& _testInfo,
+- TestRunStats · class · L8989-L8997 — struct TestRunStats
+- TestRunStats · function · L8990-L8992 — TestRunStats(   TestRunInfo const& _runInfo,
+- ReporterPreferences · class · L9002-L9014 — struct ReporterPreferences
+- IEventListener · class · L9028-L9113 — class IEventListener
+- IEventListener · function · L9036-L9036 — IEventListener( IConfig const* config ): m_config( config ) {}
+- getPreferences · function · L9043-L9043 — ReporterPreferences const& getPreferences() const
+- noMatchingTestCases · function · L9048-L9048 — virtual void noMatchingTestCases( StringRef unmatchedSpec ) = 0;
+- reportInvalidTestSpec · function · L9050-L9050 — virtual void reportInvalidTestSpec( StringRef invalidArgument ) = 0;
+- testRunStarting · function · L9057-L9057 — virtual void testRunStarting( TestRunInfo const& testRunInfo ) = 0;
+- testCaseStarting · function · L9060-L9060 — virtual void testCaseStarting( TestCaseInfo const& testInfo ) = 0;
+- testCasePartialStarting · function · L9062-L9062 — virtual void testCasePartialStarting( TestCaseInfo const& testInfo, uint64_t partNumber ) = 0;
+- sectionStarting · function · L9064-L9064 — virtual void sectionStarting( SectionInfo const& sectionInfo ) = 0;
+- benchmarkPreparing · function · L9067-L9067 — virtual void benchmarkPreparing( StringRef benchmarkName ) = 0;
+- benchmarkStarting · function · L9069-L9069 — virtual void benchmarkStarting( BenchmarkInfo const& benchmarkInfo ) = 0;
+- benchmarkEnded · function · L9071-L9071 — virtual void benchmarkEnded( BenchmarkStats<> const& benchmarkStats ) = 0;
+- benchmarkFailed · function · L9073-L9073 — virtual void benchmarkFailed( StringRef benchmarkName ) = 0;
+- assertionStarting · function · L9076-L9076 — virtual void assertionStarting( AssertionInfo const& assertionInfo ) = 0;
+- assertionEnded · function · L9079-L9079 — virtual void assertionEnded( AssertionStats const& assertionStats ) = 0;
+- sectionEnded · function · L9082-L9082 — virtual void sectionEnded( SectionStats const& sectionStats ) = 0;
+- testCasePartialEnded · function · L9084-L9084 — virtual void testCasePartialEnded(TestCaseStats const& testCaseStats, uint64_t partNumber ) = 0;
+- testCaseEnded · function · L9086-L9086 — virtual void testCaseEnded( TestCaseStats const& testCaseStats ) = 0;
+- testRunEnded · function · L9092-L9092 — virtual void testRunEnded( TestRunStats const& testRunStats ) = 0;
+- skipTest · function · L9100-L9100 — virtual void skipTest( TestCaseInfo const& testInfo ) = 0;
+- fatalErrorEncountered · function · L9103-L9103 — virtual void fatalErrorEncountered( StringRef error ) = 0;
+- listReporters · function · L9106-L9106 — virtual void listReporters(std::vector<ReporterDescription> const& descriptions) = 0;
+- listListeners · function · L9108-L9108 — virtual void listListeners(std::vector<ListenerDescription> const& descriptions) = 0;
+- listTests · function · L9110-L9110 — virtual void listTests(std::vector<TestCaseHandle> const& tests) = 0;
+- listTags · function · L9112-L9112 — virtual void listTags(std::vector<TagInfo> const& tags) = 0;
+- IConfig · class · L9130-L9130 — class IConfig;
+- IEventListener · class · L9131-L9131 — class IEventListener;
+- IReporterFactory · class · L9135-L9142 — class IReporterFactory
+- create · function · L9139-L9140 — virtual IEventListenerPtr
+- getDescription · function · L9141-L9141 — virtual std::string getDescription() const = 0;
+- EventListenerFactory · class · L9145-L9153 — class EventListenerFactory
+- create · function · L9148-L9148 — virtual IEventListenerPtr create( IConfig const* config ) const = 0;
+- getName · function · L9150-L9150 — virtual StringRef getName() const = 0;
+- getDescription · function · L9152-L9152 — virtual std::string getDescription() const = 0;
+- ITagAliasRegistry · class · L9168-L9176 — class ITagAliasRegistry
+- find · function · L9172-L9172 — virtual TagAlias const* find( std::string const& alias ) const = 0;
+- expandAliases · function · L9173-L9173 — virtual std::string expandAliases( std::string const& unexpandedTestSpec ) const = 0;
+- get · function · L9175-L9175 — static ITagAliasRegistry const& get();
+- TestCaseHandle · class · L9191-L9191 — class TestCaseHandle;
+- IConfig · class · L9192-L9192 — class IConfig;
+- ITestCaseRegistry · class · L9194-L9201 — class ITestCaseRegistry
+- getAllInfos · function · L9198-L9198 — virtual std::vector<TestCaseInfo* > const& getAllInfos() const = 0;
+- getAllTests · function · L9199-L9199 — virtual std::vector<TestCaseHandle> const& getAllTests() const = 0;
+- getAllTestsSorted · function · L9200-L9200 — virtual std::vector<TestCaseHandle> const& getAllTestsSorted( IConfig const& config ) const = 0;
+- CaseInsensitiveLess · class · L9217-L9220 — struct CaseInsensitiveLess
+- CaseInsensitiveEqualTo · class · L9223-L9226 — struct CaseInsensitiveEqualTo
+- ColourMode · type · L9310-L9310 — enum class ColourMode : std::uint8_t;
+- IStream · class · L9311-L9311 — class IStream;
+- Colour · class · L9313-L9350 — struct Colour
+- Code · type · L9314-L9349 — enum Code
+- ColourImpl · class · L9352-L9422 — class ColourImpl
+- ColourImpl · function · L9357-L9357 — ColourImpl( IStream* stream ): m_stream( stream ) {}
+- ColourGuard · class · L9361-L9409 — class ColourGuard
+- ColourGuard · function · L9368-L9369 — ColourGuard( Colour::Code code,
+- ColourGuard · function · L9371-L9371 — ColourGuard( ColourGuard const& rhs ) = delete;
+- ColourGuard · function · L9374-L9374 — ColourGuard( ColourGuard&& rhs ) noexcept;
+- engage · function · L9385-L9385 — ColourGuard& engage( std::ostream& stream ) &;
+- engage · function · L9391-L9391 — ColourGuard&& engage( std::ostream& stream ) &&;
+- engageImpl · function · L9407-L9407 — void engageImpl( std::ostream& stream );
+- guardColour · function · L9418-L9418 — ColourGuard guardColour( Colour::Code colourCode );
+- use · function · L9421-L9421 — virtual void use( Colour::Code colourCode ) const = 0;
+- makeColourImpl · function · L9425-L9426 — Detail::unique_ptr<ColourImpl> makeColourImpl( ColourMode colourSelection,
+- isColourImplAvailable · function · L9429-L9429 — bool isColourImplAvailable( ColourMode colourSelection );
+- empty · function · L9481-L9484 — template <typename Container>
+- empty · function · L9485-L9491 — template <typename T, std::size_t N>
+- empty · function · L9492-L9495 — template <typename T>
+- size · function · L9498-L9501 — template <typename Container>
+- size · function · L9502-L9505 — template <typename T, std::size_t N>
+- writeToDebugConsole · function · L9522-L9522 — void writeToDebugConsole( std::string const& text );
+- isDebuggerActive · function · L9533-L9533 — bool isDebuggerActive();
+- DebugBreak · function · L9583-L9583 — extern "C" __declspec(dllimport) void __stdcall DebugBreak();
+- CATCH_TRAP · function · L9584-L9584 — #define CATCH_TRAP() DebugBreak()
+- DebugBreak · function · L9584-L9584 — #define CATCH_TRAP() DebugBreak()
+- throw_exception · function · L9608-L9612 — template <typename Ex>
+- throw_exception · function · L9614-L9615 — [[noreturn]]
+- throw_logic_error · function · L9618-L9619 — [[noreturn]]
+- throw_domain_error · function · L9620-L9621 — [[noreturn]]
+- throw_runtime_error · function · L9622-L9623 — [[noreturn]]
+- makeEnumInfo · function · L9656-L9656 — Catch::Detail::unique_ptr<EnumInfo> makeEnumInfo( StringRef enumName, StringRef allValueNames, std::vector<int> const& values );
+- EnumValuesRegistry · class · L9658-L9663 — class EnumValuesRegistry : public IMutableEnumValuesRegistry
+- registerEnum · function · L9662-L9662 — EnumInfo const& registerEnum( StringRef enumName, StringRef allValueNames, std::vector<int> const& values) override;
+- parseEnums · function · L9665-L9665 — std::vector<StringRef> parseEnums( StringRef enums );
+- ErrnoGuard · class · L9681-L9689 — class ErrnoGuard
+- ErrnoGuard · function · L9685-L9685 — ErrnoGuard();
+- ExceptionTranslatorRegistry · class · L9704-L9712 — class ExceptionTranslatorRegistry : public IExceptionTranslatorRegistry
+- registerTranslator · function · L9707-L9707 — void registerTranslator( Detail::unique_ptr<IExceptionTranslator>&& translator );
+- translateActiveException · function · L9708-L9708 — std::string translateActiveException() const override;
+- FatalConditionHandler · class · L9735-L9759 — class FatalConditionHandler
+- engage_platform · function · L9741-L9741 — void engage_platform();
+- disengage_platform · function · L9742-L9742 — void disengage_platform() noexcept;
+- FatalConditionHandler · function · L9745-L9745 — FatalConditionHandler();
+- engage · function · L9748-L9752 — void engage()
+- disengage · function · L9754-L9758 — void disengage() noexcept
+- FatalConditionHandlerGuard · class · L9762-L9772 — class FatalConditionHandlerGuard
+- FatalConditionHandlerGuard · function · L9765-L9768 — FatalConditionHandlerGuard(FatalConditionHandler* handler):
+- convertToBits · function · L9792-L9792 — uint32_t convertToBits(float f);
+- convertToBits · function · L9793-L9793 — uint64_t convertToBits(double d);
+- directCompare · function · L9797-L9797 — bool directCompare( float lhs, float rhs );
+- directCompare · function · L9798-L9798 — bool directCompare( double lhs, double rhs );
+- ulpDistance · function · L9829-L9869 — template <typename FP>
+- getEnv · function · L9888-L9888 — char const* getEnv(char const* varName);
+- find_sentinel · function · L9905-L9919 — template <typename ForwardIter,
+- count_sentinel · function · L9921-L9936 — template <typename ForwardIter,
+- sentinel_distance · function · L9938-L9949 — template <typename ForwardIter, typename Sentinel>
+- sentinel_distance · function · L9951-L9955 — template <typename ForwardIter>
+- check_element_counts · function · L9957-L9989 — template <typename ForwardIter1,
+- is_permutation · function · L9991-L10024 — template <typename ForwardIter1,
+- IStream · class · L10041-L10057 — class IStream
+- stream · function · L10044-L10044 — virtual std::ostream& stream() = 0;
+- isConsole · function · L10056-L10056 — virtual bool isConsole() const { return false; }
+- makeStream · function · L10070-L10070 — auto makeStream( std::string const& filename ) -> Detail::unique_ptr<IStream>;
+- JsonObjectWriter · class · L10085-L10085 — class JsonObjectWriter;
+- JsonArrayWriter · class · L10086-L10086 — class JsonArrayWriter;
+- JsonUtils · class · L10088-L10093 — struct JsonUtils
+- indent · function · L10089-L10089 — static void indent( std::ostream& os, std::uint64_t level );
+- appendCommaNewline · function · L10090-L10092 — static void appendCommaNewline( std::ostream& os,
+- JsonValueWriter · class · L10095-L10128 — class JsonValueWriter
+- JsonValueWriter · function · L10097-L10097 — JsonValueWriter( std::ostream& os );
+- JsonValueWriter · function · L10098-L10098 — JsonValueWriter( std::ostream& os, std::uint64_t indent_level );
+- writeObject · function · L10100-L10100 — JsonObjectWriter writeObject() &&;
+- writeArray · function · L10101-L10101 — JsonArrayWriter writeArray() &&;
+- write · function · L10103-L10106 — template <typename T>
+- write · function · L10107-L10107 — void write( StringRef value ) &&;
+- write · function · L10108-L10108 — void write( bool value ) &&;
+- writeImpl · function · L10111-L10111 — void writeImpl( StringRef value, bool quote );
+- writeImpl · function · L10117-L10123 — template <typename T,
+- JsonObjectWriter · class · L10130-L10147 — class JsonObjectWriter
+- JsonObjectWriter · function · L10132-L10132 — JsonObjectWriter( std::ostream& os );
+- JsonObjectWriter · function · L10133-L10133 — JsonObjectWriter( std::ostream& os, std::uint64_t indent_level );
+- JsonObjectWriter · function · L10135-L10135 — JsonObjectWriter( JsonObjectWriter&& source ) noexcept;
+- write · function · L10140-L10140 — JsonValueWriter write( StringRef key );
+- JsonArrayWriter · class · L10149-L10183 — class JsonArrayWriter
+- JsonArrayWriter · function · L10151-L10151 — JsonArrayWriter( std::ostream& os );
+- JsonArrayWriter · function · L10152-L10152 — JsonArrayWriter( std::ostream& os, std::uint64_t indent_level );
+- JsonArrayWriter · function · L10154-L10154 — JsonArrayWriter( JsonArrayWriter&& source ) noexcept;
+- writeObject · function · L10159-L10159 — JsonObjectWriter writeObject();
+- writeArray · function · L10160-L10160 — JsonArrayWriter writeArray();
+- write · function · L10163-L10163 — JsonArrayWriter& write( T const& value )
+- write · function · L10167-L10167 — JsonArrayWriter& write( bool value );
+- writeImpl · function · L10171-L10171 — JsonArrayWriter& writeImpl( T const& value )
+- LeakDetector · class · L10195-L10198 — struct LeakDetector
+- LeakDetector · function · L10196-L10196 — LeakDetector();
+- IEventListener · class · L10214-L10214 — class IEventListener;
+- Config · class · L10215-L10215 — class Config;
+- ReporterDescription · class · L10218-L10220 — struct ReporterDescription
+- ListenerDescription · class · L10221-L10224 — struct ListenerDescription
+- TagInfo · class · L10226-L10232 — struct TagInfo
+- add · function · L10227-L10227 — void add(StringRef spelling);
+- all · function · L10228-L10228 — std::string all() const;
+- list · function · L10234-L10234 — bool list( IEventListener& reporter, Config const& config );
+- OutputRedirect · class · L10250-L10281 — class OutputRedirect
+- activateImpl · function · L10252-L10252 — virtual void activateImpl() = 0;
+- deactivateImpl · function · L10253-L10253 — virtual void deactivateImpl() = 0;
+- Kind · type · L10255-L10262 — enum Kind
+- getStdout · function · L10267-L10267 — virtual std::string getStdout() = 0;
+- getStderr · function · L10268-L10268 — virtual std::string getStderr() = 0;
+- clearBuffers · function · L10269-L10269 — virtual void clearBuffers() = 0;
+- isActive · function · L10270-L10270 — bool isActive() const { return m_redirectActive; }
+- activate · function · L10271-L10275 — void activate()
+- deactivate · function · L10276-L10280 — void deactivate()
+- isRedirectAvailable · function · L10283-L10283 — bool isRedirectAvailable( OutputRedirect::Kind kind);
+- makeOutputRedirect · function · L10284-L10284 — Detail::unique_ptr<OutputRedirect> makeOutputRedirect( bool actual );
+- RedirectGuard · class · L10286-L10302 — class RedirectGuard
+- RedirectGuard · function · L10293-L10293 — RedirectGuard( bool activate, OutputRedirect& redirectImpl );
+- RedirectGuard · function · L10296-L10296 — RedirectGuard( RedirectGuard const& ) = delete;
+- RedirectGuard · function · L10300-L10300 — RedirectGuard( RedirectGuard&& rhs ) noexcept;
+- scopedActivate · function · L10304-L10304 — RedirectGuard scopedActivate( OutputRedirect& redirectImpl );
+- scopedDeactivate · function · L10305-L10305 — RedirectGuard scopedDeactivate( OutputRedirect& redirectImpl );
+- parseUInt · function · L10326-L10326 — Optional<unsigned int> parseUInt(std::string const& input, int base = 10);
+- IEventListener · class · L10342-L10342 — class IEventListener;
+- IReporterFactory · class · L10344-L10344 — class IReporterFactory;
+- EventListenerFactory · class · L10347-L10347 — class EventListenerFactory;
+- ReporterRegistry · class · L10349-L10373 — class ReporterRegistry
+- ReporterRegistry · function · L10354-L10354 — ReporterRegistry();
+- create · function · L10357-L10358 — IEventListenerPtr create( std::string const& name,
+- registerReporter · function · L10360-L10361 — void registerReporter( std::string const& name,
+- registerListener · function · L10363-L10364 — void
+- getFactories · function · L10369-L10369 — getFactories() const;
+- getListeners · function · L10372-L10372 — getListeners() const;
+- NameAndLocation · class · L10395-L10412 — struct NameAndLocation
+- NameAndLocation · function · L10399-L10399 — NameAndLocation( std::string&& _name, SourceLineInfo const& _location );
+- NameAndLocationRef · class · L10421-L10443 — struct NameAndLocationRef
+- NameAndLocationRef · function · L10425-L10427 — constexpr NameAndLocationRef( StringRef name_,
+- ITracker · class · L10445-L10445 — class ITracker;
+- ITracker · class · L10449-L10535 — class ITracker
+- CycleState · type · L10455-L10462 — enum CycleState
+- ITracker · function · L10469-L10472 — ITracker( NameAndLocation&& nameAndLoc, ITracker* parent ):
+- nameAndLocation · function · L10476-L10476 — NameAndLocation const& nameAndLocation() const
+- parent · function · L10479-L10479 — ITracker* parent() const
+- isComplete · function · L10489-L10489 — virtual bool isComplete() const = 0;
+- isSuccessfullyCompleted · function · L10491-L10493 — bool isSuccessfullyCompleted() const
+- isOpen · function · L10495-L10495 — bool isOpen() const;
+- hasStarted · function · L10497-L10497 — bool hasStarted() const;
+- close · function · L10500-L10500 — virtual void close() = 0; // Successfully complete
+- fail · function · L10501-L10501 — virtual void fail() = 0;
+- markAsNeedingAnotherRun · function · L10502-L10502 — void markAsNeedingAnotherRun();
+- addChild · function · L10505-L10505 — void addChild( ITrackerPtr&& child );
+- findChild · function · L10511-L10511 — ITracker* findChild( NameAndLocationRef const& nameAndLocation );
+- hasChildren · function · L10513-L10515 — bool hasChildren() const
+- openChild · function · L10519-L10519 — void openChild();
+- isSectionTracker · function · L10527-L10527 — virtual bool isSectionTracker() const;
+- isGeneratorTracker · function · L10534-L10534 — virtual bool isGeneratorTracker() const;
+- TrackerContext · class · L10537-L10562 — class TrackerContext
+- RunState · type · L10539-L10543 — enum RunState
+- startRun · function · L10551-L10551 — ITracker& startRun();
+- startCycle · function · L10553-L10556 — void startCycle()
+- completeCycle · function · L10557-L10557 — void completeCycle();
+- completedCycle · function · L10559-L10559 — bool completedCycle() const;
+- currentTracker · function · L10560-L10560 — ITracker& currentTracker() { return *m_currentTracker; }
+- setCurrentTracker · function · L10561-L10561 — void setCurrentTracker( ITracker* tracker );
+- TrackerBase · class · L10564-L10582 — class TrackerBase : public ITracker
+- TrackerBase · function · L10570-L10570 — TrackerBase( NameAndLocation&& nameAndLocation, TrackerContext& ctx, ITracker* parent );
+- isComplete · function · L10572-L10572 — bool isComplete() const override;
+- open · function · L10574-L10574 — void open();
+- close · function · L10576-L10576 — void close() override;
+- fail · function · L10577-L10577 — void fail() override;
+- moveToParent · function · L10580-L10580 — void moveToParent();
+- moveToThis · function · L10581-L10581 — void moveToThis();
+- SectionTracker · class · L10584-L10608 — class SectionTracker : public TrackerBase
+- SectionTracker · function · L10592-L10592 — SectionTracker( NameAndLocation&& nameAndLocation, TrackerContext& ctx, ITracker* parent );
+- isSectionTracker · function · L10594-L10594 — bool isSectionTracker() const override;
+- isComplete · function · L10596-L10596 — bool isComplete() const override;
+- acquire · function · L10598-L10598 — static SectionTracker& acquire( TrackerContext& ctx, NameAndLocationRef const& nameAndLocation );
+- tryOpen · function · L10600-L10600 — void tryOpen();
+- addInitialFilters · function · L10602-L10602 — void addInitialFilters( std::vector<std::string> const& filters );
+- addNextFilters · function · L10603-L10603 — void addNextFilters( std::vector<StringRef> const& filters );
+- getFilters · function · L10605-L10605 — std::vector<StringRef> const& getFilters() const { return m_filters; }
+- trimmedName · function · L10607-L10607 — StringRef trimmedName() const;
+- AtomicCounts · class · L10636-L10641 — struct AtomicCounts
+- Mutex · class · L10645-L10648 — struct Mutex
+- lock · function · L10646-L10646 — void lock() {}
+- unlock · function · L10647-L10647 — void unlock() {}
+- LockGuard · class · L10650-L10652 — struct LockGuard
+- LockGuard · function · L10651-L10651 — LockGuard( Mutex ) {}
+- IGeneratorTracker · class · L10666-L10666 — class IGeneratorTracker;
+- IConfig · class · L10667-L10667 — class IConfig;
+- IEventListener · class · L10668-L10668 — class IEventListener;
+- OutputRedirect · class · L10670-L10670 — class OutputRedirect;
+- RunContext · class · L10674-L10798 — class RunContext final : public IResultCapture
+- RunContext · function · L10677-L10677 — RunContext( RunContext const& ) = delete;
+- RunContext · function · L10680-L10680 — explicit RunContext( IConfig const* _config, IEventListenerPtr&& reporter );
+- runTest · function · L10684-L10684 — Totals runTest(TestCaseHandle const& testCase);
+- handleExpr · function · L10689-L10692 — void handleExpr
+- handleMessage · function · L10693-L10697 — void handleMessage
+- handleUnexpectedExceptionNotThrown · function · L10698-L10700 — void handleUnexpectedExceptionNotThrown
+- handleUnexpectedInflightException · function · L10701-L10704 — void handleUnexpectedInflightException
+- handleIncomplete · function · L10705-L10706 — void handleIncomplete
+- handleNonExpr · function · L10707-L10710 — void handleNonExpr
+- notifyAssertionStarted · function · L10712-L10712 — void notifyAssertionStarted( AssertionInfo const& info ) override;
+- sectionStarted · function · L10713-L10715 — bool sectionStarted( StringRef sectionName,
+- sectionEnded · function · L10717-L10717 — void sectionEnded( SectionEndInfo&& endInfo ) override;
+- sectionEndedEarly · function · L10718-L10718 — void sectionEndedEarly( SectionEndInfo&& endInfo ) override;
+- acquireGeneratorTracker · function · L10721-L10722 — acquireGeneratorTracker( StringRef generatorName,
+- createGeneratorTracker · function · L10723-L10726 — IGeneratorTracker* createGeneratorTracker(
+- benchmarkPreparing · function · L10729-L10729 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L10730-L10730 — void benchmarkStarting( BenchmarkInfo const& info ) override;
+- benchmarkEnded · function · L10731-L10731 — void benchmarkEnded( BenchmarkStats<> const& stats ) override;
+- benchmarkFailed · function · L10732-L10732 — void benchmarkFailed( StringRef error ) override;
+- getCurrentTestName · function · L10734-L10734 — std::string getCurrentTestName() const override;
+- getLastResult · function · L10736-L10736 — const AssertionResult* getLastResult() const override;
+- exceptionEarlyReported · function · L10738-L10738 — void exceptionEarlyReported() override;
+- handleFatalErrorCondition · function · L10740-L10740 — void handleFatalErrorCondition( StringRef message ) override;
+- lastAssertionPassed · function · L10742-L10742 — bool lastAssertionPassed() override;
+- aborting · function · L10746-L10746 — bool aborting() const;
+- assertionPassedFastPath · function · L10749-L10749 — void assertionPassedFastPath( SourceLineInfo lineInfo );
+- updateTotalsFromAtomics · function · L10751-L10751 — void updateTotalsFromAtomics();
+- runCurrentTest · function · L10753-L10753 — void runCurrentTest();
+- invokeActiveTestCase · function · L10754-L10754 — void invokeActiveTestCase();
+- testForMissingAssertions · function · L10756-L10756 — bool testForMissingAssertions( Counts& assertions );
+- assertionEnded · function · L10758-L10758 — void assertionEnded( AssertionResult&& result );
+- reportExpr · function · L10759-L10763 — void reportExpr
+- populateReaction · function · L10765-L10765 — void populateReaction( AssertionReaction& reaction, bool has_normal_disposition );
+- makeDummyAssertionInfo · function · L10770-L10770 — AssertionInfo makeDummyAssertionInfo();
+- handleUnfinishedSections · function · L10774-L10774 — void handleUnfinishedSections();
+- seedRng · function · L10800-L10800 — void seedRng(IConfig const& config);
+- rngSeed · function · L10801-L10801 — unsigned int rngSeed();
+- createShard · function · L10815-L10835 — template<typename Container>
+- ISingleton · class · L10847-L10849 — struct ISingleton
+- addSingleton · function · L10852-L10852 — void addSingleton( ISingleton* singleton );
+- cleanupSingletons · function · L10853-L10853 — void cleanupSingletons();
+- Singleton · class · L10856-L10875 — template<typename SingletonImplT, typename InterfaceT = SingletonImplT, typename MutableInterfaceT = InterfaceT>
+- getInternal · function · L10859-L10866 — static auto getInternal() -> Singleton*
+- get · function · L10869-L10871 — static auto get() -> InterfaceT const&
+- getMutable · function · L10872-L10874 — static auto getMutable() -> MutableInterfaceT&
+- StartupExceptionRegistry · class · L10891-L10899 — class StartupExceptionRegistry
+- add · function · L10894-L10894 — void add(std::exception_ptr const& exception) noexcept;
+- getExceptions · function · L10895-L10895 — std::vector<std::exception_ptr> const& getExceptions() const noexcept;
+- cout · function · L10914-L10914 — std::ostream& cout();
+- cerr · function · L10915-L10915 — std::ostream& cerr();
+- clog · function · L10916-L10916 — std::ostream& clog();
+- startsWith · function · L10934-L10934 — bool startsWith( std::string const& s, std::string const& prefix );
+- startsWith · function · L10935-L10935 — bool startsWith( StringRef s, char prefix );
+- endsWith · function · L10936-L10936 — bool endsWith( std::string const& s, std::string const& suffix );
+- endsWith · function · L10937-L10937 — bool endsWith( std::string const& s, char suffix );
+- contains · function · L10938-L10938 — bool contains( std::string const& s, std::string const& infix );
+- toLowerInPlace · function · L10939-L10939 — void toLowerInPlace( std::string& s );
+- toLower · function · L10940-L10940 — std::string toLower( std::string const& s );
+- toLower · function · L10941-L10941 — char toLower( char c );
+- trim · function · L10943-L10943 — std::string trim( std::string const& str );
+- trim · function · L10945-L10945 — StringRef trim(StringRef ref);
+- splitStringRef · function · L10948-L10948 — std::vector<StringRef> splitStringRef( StringRef str, char delimiter );
+- replaceInPlace · function · L10949-L10949 — bool replaceInPlace( std::string& str, std::string const& replaceThis, std::string const& withThis );
+- pluralise · class · L10961-L10972 — class pluralise
+- pluralise · function · L10966-L10969 — constexpr pluralise(std::uint64_t count, StringRef label):
+- TagAliasRegistry · class · L10988-L10997 — class TagAliasRegistry : public ITagAliasRegistry
+- find · function · L10991-L10991 — TagAlias const* find( std::string const& alias ) const override;
+- expandAliases · function · L10992-L10992 — std::string expandAliases( std::string const& unexpandedTestSpec ) const override;
+- add · function · L10993-L10993 — void add( std::string const& alias, std::string const& tag, SourceLineInfo const& lineInfo );
+- TestCaseInfoHasher · class · L11013-L11021 — class TestCaseInfoHasher
+- TestCaseInfoHasher · function · L11016-L11016 — TestCaseInfoHasher( hash_t seed );
+- IConfig · class · L11036-L11036 — class IConfig;
+- ITestInvoker · class · L11037-L11037 — class ITestInvoker;
+- TestCaseHandle · class · L11038-L11038 — class TestCaseHandle;
+- TestSpec · class · L11039-L11039 — class TestSpec;
+- sortTests · function · L11041-L11041 — std::vector<TestCaseHandle> sortTests( IConfig const& config, std::vector<TestCaseHandle> const& unsortedTestCases );
+- isThrowSafe · function · L11043-L11043 — bool isThrowSafe( TestCaseHandle const& testCase, IConfig const& config );
+- filterTests · function · L11045-L11045 — std::vector<TestCaseHandle> filterTests( std::vector<TestCaseHandle> const& testCases, TestSpec const& testSpec, IConfig const& config );
+- getAllTestCasesSorted · function · L11046-L11046 — std::vector<TestCaseHandle> const& getAllTestCasesSorted( IConfig const& config );
+- TestRegistry · class · L11048-L11068 — class TestRegistry : public ITestCaseRegistry
+- registerTest · function · L11050-L11050 — void registerTest( Detail::unique_ptr<TestCaseInfo> testInfo, Detail::unique_ptr<ITestInvoker> testInvoker );
+- getAllInfos · function · L11052-L11052 — std::vector<TestCaseInfo*> const& getAllInfos() const override;
+- getAllTests · function · L11053-L11053 — std::vector<TestCaseHandle> const& getAllTests() const override;
+- getAllTestsSorted · function · L11054-L11054 — std::vector<TestCaseHandle> const& getAllTestsSorted( IConfig const& config ) const override;
+- ITagAliasRegistry · class · L11093-L11093 — class ITagAliasRegistry;
+- TestSpecParser · class · L11095-L11143 — class TestSpecParser
+- Mode · type · L11096-L11096 — enum Mode{ None, Name, QuotedName, Tag, EscapedName };
+- TestSpecParser · function · L11111-L11111 — TestSpecParser( ITagAliasRegistry const& tagAliases );
+- parse · function · L11113-L11113 — TestSpecParser& parse( std::string const& arg );
+- testSpec · function · L11114-L11114 — TestSpec testSpec();
+- visitChar · function · L11117-L11117 — bool visitChar( char c );
+- startNewMode · function · L11118-L11118 — void startNewMode( Mode mode );
+- processNoneChar · function · L11119-L11119 — bool processNoneChar( char c );
+- processNameChar · function · L11120-L11120 — void processNameChar( char c );
+- processOtherChar · function · L11121-L11121 — bool processOtherChar( char c );
+- endMode · function · L11122-L11122 — void endMode();
+- escape · function · L11123-L11123 — void escape();
+- isControlChar · function · L11124-L11124 — bool isControlChar( char c ) const;
+- saveLastMode · function · L11125-L11125 — void saveLastMode();
+- revertBackToLastMode · function · L11126-L11126 — void revertBackToLastMode();
+- addFilter · function · L11127-L11127 — void addFilter();
+- separate · function · L11128-L11128 — bool separate();
+- preprocessPattern · function · L11131-L11131 — std::string preprocessPattern();
+- addNamePattern · function · L11133-L11133 — void addNamePattern();
+- addTagPattern · function · L11135-L11135 — void addTagPattern();
+- addCharToPattern · function · L11137-L11141 — inline void addCharToPattern(char c)
+- Columns · class · L11165-L11165 — class Columns;
+- AnsiSkippingString · class · L11179-L11203 — class AnsiSkippingString
+- preprocessString · function · L11184-L11184 — void preprocessString();
+- const_iterator · class · L11187-L11187 — class const_iterator;
+- AnsiSkippingString · function · L11193-L11193 — explicit AnsiSkippingString( std::string const& text );
+- AnsiSkippingString · function · L11194-L11194 — explicit AnsiSkippingString( std::string&& text );
+- begin · function · L11196-L11196 — const_iterator begin() const;
+- end · function · L11197-L11197 — const_iterator end() const;
+- size · function · L11199-L11199 — size_t size() const { return m_size; }
+- substring · function · L11201-L11202 — std::string substring( const_iterator begin,
+- EndTag · class · L11207-L11207 — struct EndTag {};
+- const_iterator · function · L11212-L11213 — explicit const_iterator( const std::string& string, EndTag ):
+- tryParseAnsiEscapes · function · L11215-L11215 — void tryParseAnsiEscapes();
+- advance · function · L11216-L11216 — void advance();
+- unadvance · function · L11217-L11217 — void unadvance();
+- const_iterator · function · L11226-L11229 — explicit const_iterator( const std::string& string ):
+- oneBefore · function · L11262-L11265 — const_iterator oneBefore() const
+- Column · class · L11275-L11388 — class Column
+- const_iterator · class · L11290-L11343 — class const_iterator
+- EndTag · class · L11292-L11292 — struct EndTag {};
+- const_iterator · function · L11304-L11308 — const_iterator( Column const& column, EndTag ):
+- calcLength · function · L11311-L11311 — void calcLength();
+- indentSize · function · L11314-L11314 — size_t indentSize() const;
+- addIndentAndSuffix · function · L11318-L11320 — std::string addIndentAndSuffix(
+- const_iterator · function · L11329-L11329 — explicit const_iterator( Column const& column );
+- Column · function · L11346-L11346 — explicit Column( std::string const& text ): m_string( text ) {}
+- Column · function · L11347-L11348 — explicit Column( std::string&& text ):
+- width · function · L11350-L11350 — Column& width( size_t newWidth ) &
+- width · function · L11355-L11355 — Column&& width( size_t newWidth ) &&
+- indent · function · L11360-L11360 — Column& indent( size_t newIndent ) &
+- indent · function · L11364-L11364 — Column&& indent( size_t newIndent ) &&
+- initialIndent · function · L11368-L11368 — Column& initialIndent( size_t newIndent ) &
+- initialIndent · function · L11372-L11372 — Column&& initialIndent( size_t newIndent ) &&
+- width · function · L11377-L11377 — size_t width() const { return m_width; }
+- begin · function · L11378-L11378 — const_iterator begin() const { return const_iterator( *this ); }
+- end · function · L11379-L11381 — const_iterator end() const
+- Spacer · function · L11391-L11391 — Column Spacer( size_t spaceWidth );
+- Columns · class · L11393-L11438 — class Columns
+- iterator · class · L11397-L11425 — class iterator
+- EndTag · class · L11399-L11399 — struct EndTag {};
+- iterator · function · L11405-L11405 — iterator( Columns const& columns, EndTag );
+- iterator · function · L11414-L11414 — explicit iterator( Columns const& columns );
+- begin · function · L11428-L11428 — iterator begin() const { return iterator( *this ); }
+- end · function · L11429-L11429 — iterator end() const { return { *this, iterator::EndTag() }; }
+- to_string · function · L11452-L11461 — template <typename T>
+- uncaught_exceptions · function · L11471-L11471 — bool uncaught_exceptions();
+- XmlFormatting · type · L11486-L11490 — enum class XmlFormatting : std::uint8_t
+- XmlEncode · class · L11509-L11524 — class XmlEncode
+- ForWhat · type · L11511-L11511 — enum ForWhat { ForTextNodes, ForAttributes };
+- XmlEncode · function · L11513-L11514 — constexpr XmlEncode( StringRef str, ForWhat forWhat = ForTextNodes ):
+- encodeTo · function · L11517-L11517 — void encodeTo( std::ostream& os ) const;
+- XmlWriter · class · L11526-L11626 — class XmlWriter
+- ScopedElement · class · L11529-L11561 — class ScopedElement
+- ScopedElement · function · L11531-L11531 — ScopedElement( XmlWriter* writer, XmlFormatting fmt );
+- ScopedElement · function · L11533-L11533 — ScopedElement( ScopedElement&& other ) noexcept;
+- writeText · function · L11539-L11541 — writeText( StringRef text,
+- writeAttribute · function · L11543-L11544 — ScopedElement& writeAttribute( StringRef name,
+- writeAttribute · function · L11552-L11553 — ScopedElement& writeAttribute( StringRef name,
+- XmlWriter · function · L11563-L11563 — XmlWriter( std::ostream& os );
+- XmlWriter · function · L11566-L11566 — XmlWriter( XmlWriter const& ) = delete;
+- startElement · function · L11569-L11569 — XmlWriter& startElement( std::string const& name, XmlFormatting fmt = XmlFormatting::Newline | XmlFormatting::Indent);
+- scopedElement · function · L11571-L11571 — ScopedElement scopedElement( std::string const& name, XmlFormatting fmt = XmlFormatting::Newline | XmlFormatting::Indent);
+- endElement · function · L11573-L11573 — XmlWriter& endElement(XmlFormatting fmt = XmlFormatting::Newline | XmlFormatting::Indent);
+- writeAttribute · function · L11576-L11576 — XmlWriter& writeAttribute( StringRef name, StringRef attribute );
+- writeAttribute · function · L11579-L11579 — XmlWriter& writeAttribute( StringRef name, bool attribute );
+- writeAttribute · function · L11582-L11582 — XmlWriter& writeAttribute( StringRef name, char const* attribute );
+- writeAttribute · function · L11593-L11593 — XmlWriter& writeAttribute( StringRef name, T const& attribute )
+- writeText · function · L11600-L11602 — XmlWriter& writeText( StringRef text,
+- writeComment · function · L11605-L11607 — XmlWriter& writeComment( StringRef text,
+- writeStylesheetRef · function · L11609-L11609 — void writeStylesheetRef( StringRef url );
+- ensureTagClosed · function · L11611-L11611 — void ensureTagClosed();
+- applyFormatting · function · L11615-L11615 — void applyFormatting(XmlFormatting fmt);
+- writeDeclaration · function · L11617-L11617 — void writeDeclaration();
+- newlineIfNecessary · function · L11619-L11619 — void newlineIfNecessary();
+- MatchExpr · class · L11673-L11689 — template<typename ArgT, typename MatcherT>
+- MatchExpr · function · L11678-L11682 — constexpr MatchExpr( ArgT && arg, MatcherT const& matcher )
+- streamReconstructedExpression · function · L11684-L11688 — void streamReconstructedExpression( std::ostream& os ) const override
+- MatcherBase · class · L11699-L11700 — template <typename ArgT>
+- handleExceptionMatchExpr · function · L11705-L11705 — void handleExceptionMatchExpr( AssertionHandler& handler, StringMatcher const& matcher );
+- makeMatchExpr · function · L11707-L11711 — template<typename ArgT, typename MatcherT>
+- MatcherUntypedBase · class · L11759-L11775 — class MatcherUntypedBase
+- MatcherUntypedBase · function · L11761-L11761 — MatcherUntypedBase() = default;
+- MatcherUntypedBase · function · L11763-L11763 — MatcherUntypedBase(MatcherUntypedBase const&) = default;
+- MatcherUntypedBase · function · L11764-L11764 — MatcherUntypedBase(MatcherUntypedBase&&) = default;
+- toString · function · L11769-L11769 — std::string toString() const;
+- describe · function · L11773-L11773 — virtual std::string describe() const = 0;
+- MatcherBase · class · L11778-L11782 — template<typename T>
+- match · function · L11781-L11781 — virtual bool match( T const& arg ) const = 0;
+- MatchAllOf · class · L11786-L11829 — template<typename ArgT>
+- MatchAllOf · function · L11791-L11791 — MatchAllOf() = default;
+- MatchAllOf · function · L11792-L11792 — MatchAllOf(MatchAllOf const&) = delete;
+- MatchAllOf · function · L11794-L11794 — MatchAllOf(MatchAllOf&&) = default;
+- match · function · L11798-L11804 — bool match( ArgT const& arg ) const override
+- describe · function · L11805-L11819 — std::string describe() const override
+- MatchAnyOf · class · L11840-L11881 — template<typename ArgT>
+- MatchAnyOf · function · L11844-L11844 — MatchAnyOf() = default;
+- MatchAnyOf · function · L11845-L11845 — MatchAnyOf(MatchAnyOf const&) = delete;
+- MatchAnyOf · function · L11847-L11847 — MatchAnyOf(MatchAnyOf&&) = default;
+- match · function · L11850-L11856 — bool match( ArgT const& arg ) const override
+- describe · function · L11857-L11871 — std::string describe() const override
+- MatchNotOf · class · L11892-L11908 — template<typename ArgT>
+- MatchNotOf · function · L11897-L11899 — explicit MatchNotOf( MatcherBase<ArgT> const& underlyingMatcher ):
+- match · function · L11901-L11903 — bool match( ArgT const& arg ) const override
+- describe · function · L11905-L11907 — std::string describe() const override
+- MatcherGenericBase · class · L11995-L12005 — class MatcherGenericBase : public MatcherUntypedBase
+- MatcherGenericBase · function · L11997-L11997 — MatcherGenericBase() = default;
+- MatcherGenericBase · function · L12000-L12000 — MatcherGenericBase(MatcherGenericBase const&) = default;
+- MatcherGenericBase · function · L12001-L12001 — MatcherGenericBase(MatcherGenericBase&&) = default;
+- array_cat · function · L12009-L12015 — template<std::size_t N, std::size_t M>
+- array_cat · function · L12017-L12023 — template<std::size_t N>
+- array_cat · function · L12025-L12030 — template<std::size_t N>
+- match_all_of · function · L12048-L12051 — template<std::size_t N, typename Arg>
+- match_all_of · function · L12053-L12056 — template<typename T, typename... MatcherTs, std::size_t N, typename Arg, std::size_t Idx, std::size_t... Indices>
+- match_any_of · function · L12059-L12062 — template<std::size_t N, typename Arg>
+- match_any_of · function · L12064-L12067 — template<typename T, typename... MatcherTs, std::size_t N, typename Arg, std::size_t Idx, std::size_t... Indices>
+- describe_multi_matcher · function · L12069-L12069 — std::string describe_multi_matcher(StringRef combine, std::string const* descriptions_begin, std::string const* descriptions_end);
+- describe_multi_matcher · function · L12071-L12078 — template<typename... MatcherTs, std::size_t... Idx>
+- MatchAllOfGeneric · class · L12081-L12133 — template<typename... MatcherTs>
+- MatchAllOfGeneric · function · L12084-L12084 — MatchAllOfGeneric(MatchAllOfGeneric const&) = delete;
+- MatchAllOfGeneric · function · L12086-L12086 — MatchAllOfGeneric(MatchAllOfGeneric&&) = default;
+- MatchAllOfGeneric · function · L12089-L12089 — MatchAllOfGeneric(MatcherTs const&... matchers) : m_matchers{ {std::addressof(matchers)...} } {}
+- MatchAllOfGeneric · function · L12090-L12090 — explicit MatchAllOfGeneric(std::array<void const*, sizeof...(MatcherTs)> matchers) : m_matchers{matchers} {}
+- match · function · L12092-L12095 — template<typename Arg>
+- describe · function · L12097-L12099 — std::string describe() const override
+- MatchAnyOfGeneric · class · L12136-L12187 — template<typename... MatcherTs>
+- MatchAnyOfGeneric · function · L12139-L12139 — MatchAnyOfGeneric(MatchAnyOfGeneric const&) = delete;
+- MatchAnyOfGeneric · function · L12141-L12141 — MatchAnyOfGeneric(MatchAnyOfGeneric&&) = default;
+- MatchAnyOfGeneric · function · L12144-L12144 — MatchAnyOfGeneric(MatcherTs const&... matchers) : m_matchers{ {std::addressof(matchers)...} } {}
+- MatchAnyOfGeneric · function · L12145-L12145 — explicit MatchAnyOfGeneric(std::array<void const*, sizeof...(MatcherTs)> matchers) : m_matchers{matchers} {}
+- match · function · L12147-L12150 — template<typename Arg>
+- describe · function · L12152-L12154 — std::string describe() const override
+- MatchNotOfGeneric · class · L12190-L12215 — template<typename MatcherT>
+- MatchNotOfGeneric · function · L12195-L12195 — MatchNotOfGeneric(MatchNotOfGeneric const&) = delete;
+- MatchNotOfGeneric · function · L12197-L12197 — MatchNotOfGeneric(MatchNotOfGeneric&&) = default;
+- MatchNotOfGeneric · function · L12200-L12200 — explicit MatchNotOfGeneric(MatcherT const& matcher) : m_matcher{matcher} {}
+- match · function · L12202-L12205 — template<typename Arg>
+- describe · function · L12207-L12209 — std::string describe() const override
+- IsEmptyMatcher · class · L12273-L12286 — class IsEmptyMatcher final : public MatcherGenericBase
+- match · function · L12275-L12283 — template <typename RangeLike>
+- describe · function · L12285-L12285 — std::string describe() const override;
+- HasSizeMatcher · class · L12288-L12306 — class HasSizeMatcher final : public MatcherGenericBase
+- HasSizeMatcher · function · L12291-L12293 — explicit HasSizeMatcher(std::size_t target_size):
+- match · function · L12295-L12303 — template <typename RangeLike>
+- describe · function · L12305-L12305 — std::string describe() const override;
+- SizeMatchesMatcher · class · L12308-L12329 — template <typename Matcher>
+- SizeMatchesMatcher · function · L12312-L12314 — explicit SizeMatchesMatcher(Matcher m):
+- match · function · L12316-L12324 — template <typename RangeLike>
+- describe · function · L12326-L12328 — std::string describe() const override
+- IsEmpty · function · L12333-L12333 — IsEmptyMatcher IsEmpty();
+- SizeIs · function · L12335-L12335 — HasSizeMatcher SizeIs(std::size_t sz);
+- SizeIs · function · L12336-L12340 — template <typename Matcher>
+- ContainsElementMatcher · class · L12358-L12380 — template <typename T, typename Equality>
+- ContainsElementMatcher · function · L12363-L12367 — template <typename T2, typename Equality2>
+- describe · function · L12369-L12371 — std::string describe() const override
+- match · function · L12373-L12379 — template <typename RangeLike>
+- ContainsMatcherMatcher · class · L12383-L12407 — template <typename Matcher>
+- ContainsMatcherMatcher · function · L12390-L12392 — ContainsMatcherMatcher(Matcher matcher):
+- match · function · L12394-L12402 — template <typename RangeLike>
+- describe · function · L12404-L12406 — std::string describe() const override
+- Contains · function · L12414-L12418 — template <typename T>
+- Contains · function · L12421-L12425 — template <typename Matcher>
+- Contains · function · L12432-L12435 — template <typename T, typename Equality>
+- ExceptionMessageMatcher · class · L12450-L12461 — class ExceptionMessageMatcher final : public MatcherBase<std::exception>
+- ExceptionMessageMatcher · function · L12454-L12456 — ExceptionMessageMatcher(std::string const& message):
+- match · function · L12458-L12458 — bool match(std::exception const& ex) const override;
+- describe · function · L12460-L12460 — std::string describe() const override;
+- Message · function · L12464-L12464 — ExceptionMessageMatcher Message(std::string const& message);
+- ExceptionMessageMatchesMatcher · class · L12466-L12482 — template <typename StringMatcherType>
+- ExceptionMessageMatchesMatcher · function · L12472-L12473 — ExceptionMessageMatchesMatcher( StringMatcherType matcher ):
+- match · function · L12475-L12477 — bool match( std::exception const& ex ) const override
+- describe · function · L12479-L12481 — std::string describe() const override
+- MessageMatches · function · L12486-L12490 — template <typename StringMatcherType>
+- FloatingPointKind · type · L12506-L12506 — enum class FloatingPointKind : uint8_t;
+- WithinAbsMatcher · class · L12509-L12517 — class  WithinAbsMatcher final : public MatcherBase<double>
+- WithinAbsMatcher · function · L12511-L12511 — WithinAbsMatcher(double target, double margin);
+- match · function · L12512-L12512 — bool match(double const& matchee) const override;
+- describe · function · L12513-L12513 — std::string describe() const override;
+- WithinAbs · function · L12520-L12520 — WithinAbsMatcher WithinAbs( double target, double margin );
+- WithinUlpsMatcher · class · L12524-L12535 — class WithinUlpsMatcher final : public MatcherBase<double>
+- WithinUlpsMatcher · function · L12526-L12528 — WithinUlpsMatcher( double target,
+- match · function · L12529-L12529 — bool match(double const& matchee) const override;
+- describe · function · L12530-L12530 — std::string describe() const override;
+- WithinULP · function · L12538-L12538 — WithinUlpsMatcher WithinULP(double target, uint64_t maxUlpDiff);
+- WithinULP · function · L12540-L12540 — WithinUlpsMatcher WithinULP(float target, uint64_t maxUlpDiff);
+- WithinRelMatcher · class · L12550-L12558 — class WithinRelMatcher final : public MatcherBase<double>
+- WithinRelMatcher · function · L12552-L12552 — WithinRelMatcher( double target, double epsilon );
+- match · function · L12553-L12553 — bool match(double const& matchee) const override;
+- describe · function · L12554-L12554 — std::string describe() const override;
+- WithinRel · function · L12561-L12561 — WithinRelMatcher WithinRel(double target, double eps);
+- WithinRel · function · L12563-L12563 — WithinRelMatcher WithinRel(double target);
+- WithinRel · function · L12565-L12565 — WithinRelMatcher WithinRel(float target, float eps);
+- WithinRel · function · L12567-L12567 — WithinRelMatcher WithinRel(float target);
+- IsNaNMatcher · class · L12571-L12576 — class IsNaNMatcher final : public MatcherBase<double>
+- IsNaNMatcher · function · L12573-L12573 — IsNaNMatcher() = default;
+- match · function · L12574-L12574 — bool match( double const& matchee ) const override;
+- describe · function · L12575-L12575 — std::string describe() const override;
+- IsNaN · function · L12578-L12578 — IsNaNMatcher IsNaN();
+- finalizeDescription · function · L12596-L12596 — std::string finalizeDescription(const std::string& desc);
+- PredicateMatcher · class · L12599-L12617 — template <typename T, typename Predicate>
+- PredicateMatcher · function · L12605-L12608 — PredicateMatcher(Predicate&& elem, std::string const& descr)
+- match · function · L12610-L12612 — bool match( T const& item ) const override
+- describe · function · L12614-L12616 — std::string describe() const override
+- Predicate · function · L12624-L12629 — template<typename T, typename Pred>
+- AllMatchMatcher · class · L12644-L12665 — template <typename Matcher>
+- AllMatchMatcher · function · L12648-L12650 — AllMatchMatcher(Matcher matcher):
+- describe · function · L12652-L12654 — std::string describe() const override
+- match · function · L12656-L12664 — template <typename RangeLike>
+- NoneMatchMatcher · class · L12668-L12689 — template <typename Matcher>
+- NoneMatchMatcher · function · L12672-L12674 — NoneMatchMatcher(Matcher matcher):
+- describe · function · L12676-L12678 — std::string describe() const override
+- match · function · L12680-L12688 — template <typename RangeLike>
+- AnyMatchMatcher · class · L12692-L12713 — template <typename Matcher>
+- AnyMatchMatcher · function · L12696-L12698 — AnyMatchMatcher(Matcher matcher):
+- describe · function · L12700-L12702 — std::string describe() const override
+- match · function · L12704-L12712 — template <typename RangeLike>
+- AllTrueMatcher · class · L12716-L12729 — class AllTrueMatcher final : public MatcherGenericBase
+- describe · function · L12718-L12718 — std::string describe() const override;
+- match · function · L12720-L12728 — template <typename RangeLike>
+- NoneTrueMatcher · class · L12732-L12745 — class NoneTrueMatcher final : public MatcherGenericBase
+- describe · function · L12734-L12734 — std::string describe() const override;
+- match · function · L12736-L12744 — template <typename RangeLike>
+- AnyTrueMatcher · class · L12748-L12761 — class AnyTrueMatcher final : public MatcherGenericBase
+- describe · function · L12750-L12750 — std::string describe() const override;
+- match · function · L12752-L12760 — template <typename RangeLike>
+- AllMatch · function · L12764-L12767 — template <typename Matcher>
+- NoneMatch · function · L12770-L12773 — template <typename Matcher>
+- AnyMatch · function · L12776-L12779 — template <typename Matcher>
+- AllTrue · function · L12782-L12782 — AllTrueMatcher AllTrue();
+- NoneTrue · function · L12785-L12785 — NoneTrueMatcher NoneTrue();
+- AnyTrue · function · L12788-L12788 — AnyTrueMatcher AnyTrue();
+- RangeEqualsMatcher · class · L12808-L12842 — template <typename TargetRangeLike, typename Equality>
+- RangeEqualsMatcher · function · L12814-L12819 — template <typename TargetRangeLike2, typename Equality2>
+- match · function · L12821-L12837 — template <typename RangeLike>
+- describe · function · L12839-L12841 — std::string describe() const override
+- UnorderedRangeEqualsMatcher · class · L12848-L12877 — template <typename TargetRangeLike, typename Equality>
+- UnorderedRangeEqualsMatcher · function · L12854-L12859 — template <typename TargetRangeLike2, typename Equality2>
+- match · function · L12861-L12871 — template <typename RangeLike>
+- describe · function · L12873-L12876 — std::string describe() const override
+- RangeEquals · function · L12886-L12893 — template <typename RangeLike,
+- RangeEquals · function · L12902-L12909 — template <typename T,
+- UnorderedRangeEquals · function · L12918-L12925 — template <typename RangeLike,
+- UnorderedRangeEquals · function · L12934-L12941 — template <typename T,
+- CasedString · class · L12957-L12964 — struct CasedString
+- CasedString · function · L12958-L12958 — CasedString( std::string const& str, CaseSensitive caseSensitivity );
+- adjustString · function · L12959-L12959 — std::string adjustString( std::string const& str ) const;
+- caseSensitivitySuffix · function · L12960-L12960 — StringRef caseSensitivitySuffix() const;
+- StringMatcherBase · class · L12966-L12975 — class StringMatcherBase : public MatcherBase<std::string>
+- StringMatcherBase · function · L12972-L12973 — StringMatcherBase( StringRef operation,
+- describe · function · L12974-L12974 — std::string describe() const override;
+- StringEqualsMatcher · class · L12977-L12981 — class StringEqualsMatcher final : public StringMatcherBase
+- StringEqualsMatcher · function · L12979-L12979 — StringEqualsMatcher( CasedString const& comparator );
+- match · function · L12980-L12980 — bool match( std::string const& source ) const override;
+- StringContainsMatcher · class · L12982-L12986 — class StringContainsMatcher final : public StringMatcherBase
+- StringContainsMatcher · function · L12984-L12984 — StringContainsMatcher( CasedString const& comparator );
+- match · function · L12985-L12985 — bool match( std::string const& source ) const override;
+- StartsWithMatcher · class · L12987-L12991 — class StartsWithMatcher final : public StringMatcherBase
+- StartsWithMatcher · function · L12989-L12989 — StartsWithMatcher( CasedString const& comparator );
+- match · function · L12990-L12990 — bool match( std::string const& source ) const override;
+- EndsWithMatcher · class · L12992-L12996 — class EndsWithMatcher final : public StringMatcherBase
+- EndsWithMatcher · function · L12994-L12994 — EndsWithMatcher( CasedString const& comparator );
+- match · function · L12995-L12995 — bool match( std::string const& source ) const override;
+- RegexMatcher · class · L12998-L13006 — class RegexMatcher final : public MatcherBase<std::string>
+- RegexMatcher · function · L13003-L13003 — RegexMatcher( std::string regex, CaseSensitive caseSensitivity );
+- match · function · L13004-L13004 — bool match( std::string const& matchee ) const override;
+- describe · function · L13005-L13005 — std::string describe() const override;
+- Equals · function · L13009-L13009 — StringEqualsMatcher Equals( std::string const& str, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- ContainsSubstring · function · L13011-L13011 — StringContainsMatcher ContainsSubstring( std::string const& str, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- EndsWith · function · L13013-L13013 — EndsWithMatcher EndsWith( std::string const& str, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- StartsWith · function · L13015-L13015 — StartsWithMatcher StartsWith( std::string const& str, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- Matches · function · L13017-L13017 — RegexMatcher Matches( std::string const& regex, CaseSensitive caseSensitivity = CaseSensitive::Yes );
+- VectorContainsElementMatcher · class · L13034-L13055 — template<typename T, typename Alloc>
+- VectorContainsElementMatcher · function · L13039-L13041 — VectorContainsElementMatcher(T const& comparator):
+- match · function · L13043-L13050 — bool match(std::vector<T, Alloc> const& v) const override
+- describe · function · L13052-L13054 — std::string describe() const override
+- ContainsMatcher · class · L13057-L13087 — template<typename T, typename AllocComp, typename AllocMatch>
+- ContainsMatcher · function · L13062-L13064 — ContainsMatcher(std::vector<T, AllocComp> const& comparator):
+- match · function · L13066-L13083 — bool match(std::vector<T, AllocMatch> const& v) const override
+- describe · function · L13084-L13086 — std::string describe() const override
+- EqualsMatcher · class · L13089-L13112 — template<typename T, typename AllocComp, typename AllocMatch>
+- EqualsMatcher · function · L13094-L13096 — EqualsMatcher(std::vector<T, AllocComp> const& comparator):
+- match · function · L13098-L13108 — bool match(std::vector<T, AllocMatch> const& v) const override
+- describe · function · L13109-L13111 — std::string describe() const override
+- ApproxMatcher · class · L13114-L13150 — template<typename T, typename AllocComp, typename AllocMatch>
+- ApproxMatcher · function · L13120-L13122 — ApproxMatcher(std::vector<T, AllocComp> const& comparator):
+- match · function · L13124-L13131 — bool match(std::vector<T, AllocMatch> const& v) const override
+- describe · function · L13132-L13134 — std::string describe() const override
+- epsilon · function · L13136-L13136 — ApproxMatcher& epsilon( T const& newEpsilon )
+- margin · function · L13141-L13141 — ApproxMatcher& margin( T const& newMargin )
+- scale · function · L13146-L13146 — ApproxMatcher& scale( T const& newScale )
+- UnorderedEqualsMatcher · class · L13152-L13170 — template<typename T, typename AllocComp, typename AllocMatch>
+- UnorderedEqualsMatcher · function · L13157-L13159 — UnorderedEqualsMatcher(std::vector<T, AllocComp> const& target):
+- match · function · L13160-L13165 — bool match(std::vector<T, AllocMatch> const& vec) const override
+- describe · function · L13167-L13169 — std::string describe() const override
+- Contains · function · L13177-L13180 — template<typename T, typename AllocComp = std::allocator<T>, typename AllocMatch = AllocComp>
+- VectorContains · function · L13183-L13186 — template<typename T, typename Alloc = std::allocator<T>>
+- Equals · function · L13189-L13192 — template<typename T, typename AllocComp = std::allocator<T>, typename AllocMatch = AllocComp>
+- Approx · function · L13195-L13198 — template<typename T, typename AllocComp = std::allocator<T>, typename AllocMatch = AllocComp>
+- UnorderedEquals · function · L13201-L13204 — template<typename T, typename AllocComp = std::allocator<T>, typename AllocMatch = AllocComp>
+- ColourImpl · class · L13250-L13250 — class ColourImpl;
+- ReporterBase · class · L13262-L13309 — class ReporterBase : public IEventListener
+- ReporterBase · function · L13275-L13275 — ReporterBase( ReporterConfig&& config );
+- listReporters · function · L13284-L13285 — void listReporters(
+- listListeners · function · L13292-L13293 — void listListeners(
+- listTests · function · L13301-L13301 — void listTests( std::vector<TestCaseHandle> const& tests ) override;
+- listTags · function · L13308-L13308 — void listTags( std::vector<TagInfo> const& tags ) override;
+- StreamingReporterBase · class · L13318-L13369 — class StreamingReporterBase : public ReporterBase
+- StreamingReporterBase · function · L13322-L13324 — StreamingReporterBase(ReporterConfig&& _config):
+- benchmarkPreparing · function · L13327-L13327 — void benchmarkPreparing( StringRef ) override {}
+- benchmarkStarting · function · L13328-L13328 — void benchmarkStarting( BenchmarkInfo const& ) override {}
+- benchmarkEnded · function · L13329-L13329 — void benchmarkEnded( BenchmarkStats<> const& ) override {}
+- benchmarkFailed · function · L13330-L13330 — void benchmarkFailed( StringRef ) override {}
+- fatalErrorEncountered · function · L13332-L13332 — void fatalErrorEncountered( StringRef /*error*/ ) override {}
+- noMatchingTestCases · function · L13333-L13333 — void noMatchingTestCases( StringRef /*unmatchedSpec*/ ) override {}
+- reportInvalidTestSpec · function · L13334-L13334 — void reportInvalidTestSpec( StringRef /*invalidArgument*/ ) override {}
+- testRunStarting · function · L13336-L13336 — void testRunStarting( TestRunInfo const& _testRunInfo ) override;
+- testCaseStarting · function · L13338-L13340 — void testCaseStarting(TestCaseInfo const& _testInfo) override
+- testCasePartialStarting · function · L13341-L13341 — void testCasePartialStarting( TestCaseInfo const&, uint64_t ) override {}
+- sectionStarting · function · L13342-L13344 — void sectionStarting(SectionInfo const& _sectionInfo) override
+- assertionStarting · function · L13346-L13346 — void assertionStarting( AssertionInfo const& ) override {}
+- assertionEnded · function · L13347-L13347 — void assertionEnded( AssertionStats const& ) override {}
+- sectionEnded · function · L13349-L13351 — void sectionEnded(SectionStats const& /* _sectionStats */) override
+- testCasePartialEnded · function · L13352-L13352 — void testCasePartialEnded( TestCaseStats const&, uint64_t ) override {}
+- testCaseEnded · function · L13353-L13355 — void testCaseEnded(TestCaseStats const& /* _testCaseStats */) override
+- testRunEnded · function · L13356-L13356 — void testRunEnded( TestRunStats const& /* _testRunStats */ ) override;
+- skipTest · function · L13358-L13361 — void skipTest(TestCaseInfo const&) override
+- AutomakeReporter · class · L13379-L13397 — class AutomakeReporter final : public StreamingReporterBase
+- AutomakeReporter · function · L13383-L13386 — AutomakeReporter( ReporterConfig&& _config ):
+- getDescription · function · L13390-L13393 — static std::string getDescription()
+- testCaseEnded · function · L13395-L13395 — void testCaseEnded(TestCaseStats const& _testCaseStats) override;
+- skipTest · function · L13396-L13396 — void skipTest(TestCaseInfo const& testInfo) override;
+- CompactReporter · class · L13412-L13433 — class CompactReporter final : public StreamingReporterBase
+- CompactReporter · function · L13414-L13417 — CompactReporter( ReporterConfig&& _config ):
+- getDescription · function · L13421-L13421 — static std::string getDescription();
+- noMatchingTestCases · function · L13423-L13423 — void noMatchingTestCases( StringRef unmatchedSpec ) override;
+- testRunStarting · function · L13425-L13425 — void testRunStarting( TestRunInfo const& _testInfo ) override;
+- assertionEnded · function · L13427-L13427 — void assertionEnded(AssertionStats const& _assertionStats) override;
+- sectionEnded · function · L13429-L13429 — void sectionEnded(SectionStats const& _sectionStats) override;
+- testRunEnded · function · L13431-L13431 — void testRunEnded(TestRunStats const& _testRunStats) override;
+- TablePrinter · class · L13446-L13446 — class TablePrinter;
+- ConsoleReporter · class · L13448-L13491 — class ConsoleReporter final : public StreamingReporterBase
+- ConsoleReporter · function · L13452-L13452 — ConsoleReporter(ReporterConfig&& config);
+- getDescription · function · L13454-L13454 — static std::string getDescription();
+- noMatchingTestCases · function · L13456-L13456 — void noMatchingTestCases( StringRef unmatchedSpec ) override;
+- reportInvalidTestSpec · function · L13457-L13457 — void reportInvalidTestSpec( StringRef arg ) override;
+- assertionEnded · function · L13459-L13459 — void assertionEnded(AssertionStats const& _assertionStats) override;
+- sectionStarting · function · L13461-L13461 — void sectionStarting(SectionInfo const& _sectionInfo) override;
+- sectionEnded · function · L13462-L13462 — void sectionEnded(SectionStats const& _sectionStats) override;
+- benchmarkPreparing · function · L13464-L13464 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L13465-L13465 — void benchmarkStarting(BenchmarkInfo const& info) override;
+- benchmarkEnded · function · L13466-L13466 — void benchmarkEnded(BenchmarkStats<> const& stats) override;
+- benchmarkFailed · function · L13467-L13467 — void benchmarkFailed( StringRef error ) override;
+- testCaseEnded · function · L13469-L13469 — void testCaseEnded(TestCaseStats const& _testCaseStats) override;
+- testRunEnded · function · L13470-L13470 — void testRunEnded(TestRunStats const& _testRunStats) override;
+- testRunStarting · function · L13471-L13471 — void testRunStarting(TestRunInfo const& _testRunInfo) override;
+- lazyPrint · function · L13474-L13474 — void lazyPrint();
+- lazyPrintWithoutClosingBenchmarkTable · function · L13476-L13476 — void lazyPrintWithoutClosingBenchmarkTable();
+- lazyPrintRunInfo · function · L13477-L13477 — void lazyPrintRunInfo();
+- printTestCaseAndSectionHeader · function · L13478-L13478 — void printTestCaseAndSectionHeader();
+- printClosedHeader · function · L13480-L13480 — void printClosedHeader(std::string const& _name);
+- printOpenHeader · function · L13481-L13481 — void printOpenHeader(std::string const& _name);
+- printHeaderString · function · L13485-L13485 — void printHeaderString(std::string const& _string, std::size_t indent = 0);
+- printTotalsDivider · function · L13487-L13487 — void printTotalsDivider(Totals const& totals);
+- AssertionOrBenchmarkResult · class · L13510-L13525 — class AssertionOrBenchmarkResult
+- AssertionOrBenchmarkResult · function · L13517-L13517 — AssertionOrBenchmarkResult(AssertionStats const& assertion);
+- AssertionOrBenchmarkResult · function · L13518-L13518 — AssertionOrBenchmarkResult(BenchmarkStats<> const& benchmark);
+- isAssertion · function · L13520-L13520 — bool isAssertion() const;
+- isBenchmark · function · L13521-L13521 — bool isBenchmark() const;
+- asAssertion · function · L13523-L13523 — AssertionStats const& asAssertion() const;
+- asBenchmark · function · L13524-L13524 — BenchmarkStats<> const& asBenchmark() const;
+- CumulativeReporterBase · class · L13548-L13633 — class CumulativeReporterBase : public ReporterBase
+- Node · class · L13550-L13557 — template<typename T, typename ChildNodeT>
+- Node · function · L13552-L13552 — explicit Node( T const& _value ) : value( _value ) {}
+- SectionNode · class · L13558-L13572 — struct SectionNode
+- SectionNode · function · L13559-L13559 — explicit SectionNode(SectionStats const& _stats) : stats(_stats) {}
+- hasAnyAssertions · function · L13565-L13565 — bool hasAnyAssertions() const;
+- CumulativeReporterBase · function · L13580-L13582 — CumulativeReporterBase(ReporterConfig&& _config):
+- benchmarkPreparing · function · L13585-L13585 — void benchmarkPreparing( StringRef ) override {}
+- benchmarkStarting · function · L13586-L13586 — void benchmarkStarting( BenchmarkInfo const& ) override {}
+- benchmarkEnded · function · L13587-L13587 — void benchmarkEnded( BenchmarkStats<> const& benchmarkStats ) override;
+- benchmarkFailed · function · L13588-L13588 — void benchmarkFailed( StringRef ) override {}
+- noMatchingTestCases · function · L13590-L13590 — void noMatchingTestCases( StringRef ) override {}
+- reportInvalidTestSpec · function · L13591-L13591 — void reportInvalidTestSpec( StringRef ) override {}
+- fatalErrorEncountered · function · L13592-L13592 — void fatalErrorEncountered( StringRef /*error*/ ) override {}
+- testRunStarting · function · L13594-L13594 — void testRunStarting( TestRunInfo const& ) override {}
+- testCaseStarting · function · L13596-L13596 — void testCaseStarting( TestCaseInfo const& ) override {}
+- testCasePartialStarting · function · L13597-L13597 — void testCasePartialStarting( TestCaseInfo const&, uint64_t ) override {}
+- sectionStarting · function · L13598-L13598 — void sectionStarting( SectionInfo const& sectionInfo ) override;
+- assertionStarting · function · L13600-L13600 — void assertionStarting( AssertionInfo const& ) override {}
+- assertionEnded · function · L13602-L13602 — void assertionEnded( AssertionStats const& assertionStats ) override;
+- sectionEnded · function · L13603-L13603 — void sectionEnded( SectionStats const& sectionStats ) override;
+- testCasePartialEnded · function · L13604-L13604 — void testCasePartialEnded( TestCaseStats const&, uint64_t ) override {}
+- testCaseEnded · function · L13605-L13605 — void testCaseEnded( TestCaseStats const& testCaseStats ) override;
+- testRunEnded · function · L13606-L13606 — void testRunEnded( TestRunStats const& testRunStats ) override;
+- testRunEndedCumulative · function · L13608-L13608 — virtual void testRunEndedCumulative() = 0;
+- skipTest · function · L13610-L13610 — void skipTest(TestCaseInfo const&) override {}
+- EventListenerBase · class · L13653-L13687 — class EventListenerBase : public IEventListener
+- reportInvalidTestSpec · function · L13657-L13657 — void reportInvalidTestSpec( StringRef unmatchedSpec ) override;
+- fatalErrorEncountered · function · L13658-L13658 — void fatalErrorEncountered( StringRef error ) override;
+- benchmarkPreparing · function · L13660-L13660 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L13661-L13661 — void benchmarkStarting( BenchmarkInfo const& benchmarkInfo ) override;
+- benchmarkEnded · function · L13662-L13662 — void benchmarkEnded( BenchmarkStats<> const& benchmarkStats ) override;
+- benchmarkFailed · function · L13663-L13663 — void benchmarkFailed( StringRef error ) override;
+- assertionStarting · function · L13665-L13665 — void assertionStarting( AssertionInfo const& assertionInfo ) override;
+- assertionEnded · function · L13666-L13666 — void assertionEnded( AssertionStats const& assertionStats ) override;
+- listReporters · function · L13668-L13669 — void listReporters(
+- listListeners · function · L13670-L13671 — void listListeners(
+- listTests · function · L13672-L13672 — void listTests( std::vector<TestCaseHandle> const& tests ) override;
+- listTags · function · L13673-L13673 — void listTags( std::vector<TagInfo> const& tagInfos ) override;
+- noMatchingTestCases · function · L13675-L13675 — void noMatchingTestCases( StringRef unmatchedSpec ) override;
+- testRunStarting · function · L13676-L13676 — void testRunStarting( TestRunInfo const& testRunInfo ) override;
+- testCaseStarting · function · L13677-L13677 — void testCaseStarting( TestCaseInfo const& testInfo ) override;
+- testCasePartialStarting · function · L13678-L13679 — void testCasePartialStarting( TestCaseInfo const& testInfo,
+- sectionStarting · function · L13680-L13680 — void sectionStarting( SectionInfo const& sectionInfo ) override;
+- sectionEnded · function · L13681-L13681 — void sectionEnded( SectionStats const& sectionStats ) override;
+- testCasePartialEnded · function · L13682-L13683 — void testCasePartialEnded( TestCaseStats const& testCaseStats,
+- testCaseEnded · function · L13684-L13684 — void testCaseEnded( TestCaseStats const& testCaseStats ) override;
+- testRunEnded · function · L13685-L13685 — void testRunEnded( TestRunStats const& testRunStats ) override;
+- skipTest · function · L13686-L13686 — void skipTest( TestCaseInfo const& testInfo ) override;
+- IConfig · class · L13704-L13704 — class IConfig;
+- TestCaseHandle · class · L13705-L13705 — class TestCaseHandle;
+- ColourImpl · class · L13706-L13706 — class ColourImpl;
+- getFormattedDuration · function · L13709-L13709 — std::string getFormattedDuration( double duration );
+- shouldShowDuration · function · L13712-L13712 — bool shouldShowDuration( IConfig const& config, double duration );
+- serializeFilters · function · L13714-L13714 — std::string serializeFilters( std::vector<std::string> const& filters );
+- lineOfChars · class · L13716-L13721 — struct lineOfChars
+- lineOfChars · function · L13718-L13718 — constexpr lineOfChars( char c_ ): c( c_ ) {}
+- defaultListReporters · function · L13731-L13734 — void
+- defaultListListeners · function · L13740-L13741 — void defaultListListeners( std::ostream& out,
+- defaultListTags · function · L13750-L13750 — void defaultListTags( std::ostream& out, std::vector<TagInfo> const& tags, bool isFiltered );
+- defaultListTests · function · L13761-L13765 — void defaultListTests( std::ostream& out,
+- printTestRunTotals · function · L13772-L13774 — void printTestRunTotals( std::ostream& stream,
+- JsonReporter · class · L13789-L13861 — class JsonReporter : public StreamingReporterBase
+- JsonReporter · function · L13791-L13791 — JsonReporter( ReporterConfig&& config );
+- getDescription · function · L13795-L13795 — static std::string getDescription();
+- testRunStarting · function · L13798-L13798 — void testRunStarting( TestRunInfo const& runInfo ) override;
+- testRunEnded · function · L13799-L13799 — void testRunEnded( TestRunStats const& runStats ) override;
+- testCaseStarting · function · L13801-L13801 — void testCaseStarting( TestCaseInfo const& tcInfo ) override;
+- testCaseEnded · function · L13802-L13802 — void testCaseEnded( TestCaseStats const& tcStats ) override;
+- testCasePartialStarting · function · L13804-L13805 — void testCasePartialStarting( TestCaseInfo const& tcInfo,
+- testCasePartialEnded · function · L13806-L13807 — void testCasePartialEnded( TestCaseStats const& tcStats,
+- sectionStarting · function · L13809-L13809 — void sectionStarting( SectionInfo const& sectionInfo ) override;
+- sectionEnded · function · L13810-L13810 — void sectionEnded( SectionStats const& sectionStats ) override;
+- assertionEnded · function · L13812-L13812 — void assertionEnded( AssertionStats const& assertionStats ) override;
+- benchmarkPreparing · function · L13816-L13816 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L13817-L13817 — void benchmarkStarting( BenchmarkInfo const& ) override;
+- benchmarkEnded · function · L13818-L13818 — void benchmarkEnded( BenchmarkStats<> const& ) override;
+- benchmarkFailed · function · L13819-L13819 — void benchmarkFailed( StringRef error ) override;
+- listReporters · function · L13821-L13822 — void listReporters(
+- listListeners · function · L13823-L13824 — void listListeners(
+- listTests · function · L13825-L13825 — void listTests( std::vector<TestCaseHandle> const& tests ) override;
+- listTags · function · L13826-L13826 — void listTags( std::vector<TagInfo> const& tags ) override;
+- Writer · type · L13830-L13833 — enum class Writer
+- startArray · function · L13835-L13835 — JsonArrayWriter& startArray();
+- startArray · function · L13836-L13836 — JsonArrayWriter& startArray( StringRef key );
+- startObject · function · L13838-L13838 — JsonObjectWriter& startObject();
+- startObject · function · L13839-L13839 — JsonObjectWriter& startObject( StringRef key );
+- endObject · function · L13841-L13841 — void endObject();
+- endArray · function · L13842-L13842 — void endArray();
+- isInside · function · L13844-L13844 — bool isInside( Writer writer );
+- startListing · function · L13846-L13846 — void startListing();
+- endListing · function · L13847-L13847 — void endListing();
+- JunitReporter · class · L13874-L13908 — class JunitReporter final : public CumulativeReporterBase
+- JunitReporter · function · L13876-L13876 — JunitReporter(ReporterConfig&& _config);
+- getDescription · function · L13878-L13878 — static std::string getDescription();
+- testRunStarting · function · L13880-L13880 — void testRunStarting(TestRunInfo const& runInfo) override;
+- testCaseStarting · function · L13882-L13882 — void testCaseStarting(TestCaseInfo const& testCaseInfo) override;
+- assertionEnded · function · L13883-L13883 — void assertionEnded(AssertionStats const& assertionStats) override;
+- testCaseEnded · function · L13885-L13885 — void testCaseEnded(TestCaseStats const& testCaseStats) override;
+- testRunEndedCumulative · function · L13887-L13887 — void testRunEndedCumulative() override;
+- writeRun · function · L13890-L13890 — void writeRun(TestRunNode const& testRunNode, double suiteTime);
+- writeTestCase · function · L13892-L13892 — void writeTestCase(TestCaseNode const& testCaseNode);
+- writeSection · function · L13894-L13897 — void writeSection( std::string const& className,
+- writeAssertions · function · L13899-L13899 — void writeAssertions(SectionNode const& sectionNode);
+- writeAssertion · function · L13900-L13900 — void writeAssertion(AssertionStats const& stats);
+- MultiReporter · class · L13921-L13979 — class MultiReporter final : public IEventListener
+- updatePreferences · function · L13935-L13935 — void updatePreferences(IEventListener const& reporterish);
+- MultiReporter · function · L13938-L13941 — MultiReporter( IConfig const* config ):
+- addListener · function · L13945-L13945 — void addListener( IEventListenerPtr&& listener );
+- addReporter · function · L13946-L13946 — void addReporter( IEventListenerPtr&& reporter );
+- noMatchingTestCases · function · L13950-L13950 — void noMatchingTestCases( StringRef unmatchedSpec ) override;
+- fatalErrorEncountered · function · L13951-L13951 — void fatalErrorEncountered( StringRef error ) override;
+- reportInvalidTestSpec · function · L13952-L13952 — void reportInvalidTestSpec( StringRef arg ) override;
+- benchmarkPreparing · function · L13954-L13954 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L13955-L13955 — void benchmarkStarting( BenchmarkInfo const& benchmarkInfo ) override;
+- benchmarkEnded · function · L13956-L13956 — void benchmarkEnded( BenchmarkStats<> const& benchmarkStats ) override;
+- benchmarkFailed · function · L13957-L13957 — void benchmarkFailed( StringRef error ) override;
+- testRunStarting · function · L13959-L13959 — void testRunStarting( TestRunInfo const& testRunInfo ) override;
+- testCaseStarting · function · L13960-L13960 — void testCaseStarting( TestCaseInfo const& testInfo ) override;
+- testCasePartialStarting · function · L13961-L13961 — void testCasePartialStarting(TestCaseInfo const& testInfo, uint64_t partNumber) override;
+- sectionStarting · function · L13962-L13962 — void sectionStarting( SectionInfo const& sectionInfo ) override;
+- assertionStarting · function · L13963-L13963 — void assertionStarting( AssertionInfo const& assertionInfo ) override;
+- assertionEnded · function · L13965-L13965 — void assertionEnded( AssertionStats const& assertionStats ) override;
+- sectionEnded · function · L13966-L13966 — void sectionEnded( SectionStats const& sectionStats ) override;
+- testCasePartialEnded · function · L13967-L13967 — void testCasePartialEnded(TestCaseStats const& testStats, uint64_t partNumber) override;
+- testCaseEnded · function · L13968-L13968 — void testCaseEnded( TestCaseStats const& testCaseStats ) override;
+- testRunEnded · function · L13969-L13969 — void testRunEnded( TestRunStats const& testRunStats ) override;
+- skipTest · function · L13971-L13971 — void skipTest( TestCaseInfo const& testInfo ) override;
+- listReporters · function · L13973-L13973 — void listReporters(std::vector<ReporterDescription> const& descriptions) override;
+- listListeners · function · L13974-L13974 — void listListeners(std::vector<ListenerDescription> const& descriptions) override;
+- listTests · function · L13975-L13975 — void listTests(std::vector<TestCaseHandle> const& tests) override;
+- listTags · function · L13976-L13976 — void listTags(std::vector<TagInfo> const& tags) override;
+- has_description · class · L13996-L13997 — template <typename T, typename = void>
+- registerReporterImpl · function · L14007-L14008 — void registerReporterImpl( std::string const& name,
+- registerListenerImpl · function · L14010-L14010 — void registerListenerImpl( Detail::unique_ptr<EventListenerFactory> listenerFactory );
+- IEventListener · class · L14013-L14013 — class IEventListener;
+- ReporterFactory · class · L14016-L14026 — template <typename T>
+- create · function · L14019-L14021 — IEventListenerPtr create( ReporterConfig&& config ) const override
+- getDescription · function · L14023-L14025 — std::string getDescription() const override
+- ReporterRegistrar · class · L14029-L14036 — template<typename T>
+- ReporterRegistrar · function · L14032-L14035 — explicit ReporterRegistrar( std::string const& name )
+- ListenerRegistrar · class · L14038-L14073 — template<typename T>
+- TypedListenerFactory · class · L14041-L14067 — class TypedListenerFactory : public EventListenerFactory
+- getDescriptionImpl · function · L14044-L14046 — std::string getDescriptionImpl( std::true_type ) const
+- getDescriptionImpl · function · L14048-L14050 — std::string getDescriptionImpl( std::false_type ) const
+- TypedListenerFactory · function · L14053-L14054 — TypedListenerFactory( StringRef listenerName ):
+- create · function · L14056-L14058 — IEventListenerPtr create( IConfig const* config ) const override
+- getName · function · L14060-L14062 — StringRef getName() const override
+- getDescription · function · L14064-L14066 — std::string getDescription() const override
+- ListenerRegistrar · function · L14070-L14072 — ListenerRegistrar(StringRef listenerName)
+- SonarQubeReporter · class · L14115-L14152 — class SonarQubeReporter final : public CumulativeReporterBase
+- SonarQubeReporter · function · L14117-L14124 — SonarQubeReporter(ReporterConfig&& config)
+- getDescription · function · L14126-L14129 — static std::string getDescription()
+- testRunStarting · function · L14131-L14131 — void testRunStarting( TestRunInfo const& testRunInfo ) override;
+- testRunEndedCumulative · function · L14133-L14136 — void testRunEndedCumulative() override
+- writeRun · function · L14138-L14138 — void writeRun( TestRunNode const& runNode );
+- writeTestFile · function · L14140-L14140 — void writeTestFile(StringRef filename, std::vector<TestCaseNode const*> const& testCaseNodes);
+- writeTestCase · function · L14142-L14142 — void writeTestCase(TestCaseNode const& testCaseNode);
+- writeSection · function · L14144-L14144 — void writeSection(std::string const& rootName, SectionNode const& sectionNode, bool okToFail);
+- writeAssertions · function · L14146-L14146 — void writeAssertions(SectionNode const& sectionNode, bool okToFail);
+- writeAssertion · function · L14148-L14148 — void writeAssertion(AssertionStats const& stats, bool okToFail);
+- TAPReporter · class · L14166-L14189 — class TAPReporter final : public StreamingReporterBase
+- TAPReporter · function · L14168-L14172 — TAPReporter( ReporterConfig&& config ):
+- getDescription · function · L14174-L14177 — static std::string getDescription()
+- testRunStarting · function · L14179-L14179 — void testRunStarting( TestRunInfo const& testInfo ) override;
+- noMatchingTestCases · function · L14181-L14181 — void noMatchingTestCases( StringRef unmatchedSpec ) override;
+- assertionEnded · function · L14183-L14183 — void assertionEnded(AssertionStats const& _assertionStats) override;
+- testRunEnded · function · L14185-L14185 — void testRunEnded(TestRunStats const& _testRunStats) override;
+- TeamCityReporter · class · L14209-L14245 — class TeamCityReporter final : public StreamingReporterBase
+- TeamCityReporter · function · L14211-L14216 — TeamCityReporter( ReporterConfig&& _config )
+- getDescription · function · L14220-L14223 — static std::string getDescription()
+- testRunStarting · function · L14225-L14225 — void testRunStarting( TestRunInfo const& runInfo ) override;
+- testRunEnded · function · L14226-L14226 — void testRunEnded( TestRunStats const& runStats ) override;
+- assertionEnded · function · L14229-L14229 — void assertionEnded(AssertionStats const& assertionStats) override;
+- sectionStarting · function · L14231-L14234 — void sectionStarting(SectionInfo const& sectionInfo) override
+- testCaseStarting · function · L14236-L14236 — void testCaseStarting(TestCaseInfo const& testInfo) override;
+- testCaseEnded · function · L14238-L14238 — void testCaseEnded(TestCaseStats const& testCaseStats) override;
+- printSectionHeader · function · L14241-L14241 — void printSectionHeader(std::ostream& os);
+- XmlReporter · class · L14263-L14305 — class XmlReporter : public StreamingReporterBase
+- XmlReporter · function · L14265-L14265 — XmlReporter(ReporterConfig&& _config);
+- getDescription · function · L14269-L14269 — static std::string getDescription();
+- getStylesheetRef · function · L14271-L14271 — virtual std::string getStylesheetRef() const;
+- writeSourceInfo · function · L14273-L14273 — void writeSourceInfo(SourceLineInfo const& sourceInfo);
+- testRunStarting · function · L14277-L14277 — void testRunStarting(TestRunInfo const& testInfo) override;
+- testCaseStarting · function · L14279-L14279 — void testCaseStarting(TestCaseInfo const& testInfo) override;
+- sectionStarting · function · L14281-L14281 — void sectionStarting(SectionInfo const& sectionInfo) override;
+- assertionEnded · function · L14283-L14283 — void assertionEnded(AssertionStats const& assertionStats) override;
+- sectionEnded · function · L14285-L14285 — void sectionEnded(SectionStats const& sectionStats) override;
+- testCaseEnded · function · L14287-L14287 — void testCaseEnded(TestCaseStats const& testCaseStats) override;
+- testRunEnded · function · L14289-L14289 — void testRunEnded(TestRunStats const& testRunStats) override;
+- benchmarkPreparing · function · L14291-L14291 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L14292-L14292 — void benchmarkStarting(BenchmarkInfo const&) override;
+- benchmarkEnded · function · L14293-L14293 — void benchmarkEnded(BenchmarkStats<> const&) override;
+- benchmarkFailed · function · L14294-L14294 — void benchmarkFailed( StringRef error ) override;
+- listReporters · function · L14296-L14296 — void listReporters(std::vector<ReporterDescription> const& descriptions) override;
+- listListeners · function · L14297-L14297 — void listListeners(std::vector<ListenerDescription> const& descriptions) override;
+- listTests · function · L14298-L14298 — void listTests(std::vector<TestCaseHandle> const& tests) override;
+- listTags · function · L14299-L14299 — void listTags(std::vector<TagInfo> const& tags) override;

@@ -1,0 +1,163 @@
+# src/libslic3r/Point.hpp
+
+- BoundingBox · class · L21-L21 — class BoundingBox;
+- BoundingBoxf · class · L22-L22 — class BoundingBoxf;
+- Line · class · L23-L23 — class Line;
+- Line3 · class · L24-L24 — class Line3;
+- MultiPoint · class · L25-L25 — class MultiPoint;
+- MultiPoint3 · class · L26-L26 — class MultiPoint3;
+- Point · class · L27-L27 — class Point;
+- Point3 · class · L28-L28 — class Point3;
+- Polyline · class · L29-L29 — class Polyline;
+- Polyline3 · class · L30-L30 — class Polyline3;
+- to_polyline · function · L88-L88 — Polyline to_polyline(const Points &points);
+- to_polyline · function · L89-L89 — Polyline3 to_polyline(const Points3 &points);
+- to_points · function · L90-L90 — Points to_points(const Points3 &points);
+- to_points3 · function · L91-L91 — Points3   to_points3(const Points& points);
+- identity · function · L95-L95 — template<int N, class T> Transform<N, T> identity() { return Transform<N, T>::Identity(); }
+- cross2 · function · L102-L102 — int32_t cross2(const Eigen::MatrixBase<Eigen::Matrix<int32_t, 2, 1, Options>> &v1, const Eigen::MatrixBase<Eigen::Matrix<int32_t, 2, 1, Options>> &v2) = delete;
+- cross2 · function · L104-L108 — template<typename T, int Options>
+- cross2 · function · L110-L115 — template<typename Derived, typename Derived2>
+- perp · function · L118-L123 — template<typename Derived>
+- angle · function · L126-L133 — template<typename Derived, typename Derived2>
+- to_2d · function · L135-L139 — template<typename Derived>
+- to_3d · function · L141-L145 — template<typename Derived>
+- unscale · function · L147-L147 — inline Vec2d   unscale(coord_t x, coord_t y) { return Vec2d(unscale<double>(x), unscale<double>(y)); }
+- unscale · function · L148-L148 — inline Vec2d   unscale(const Vec2crd &pt) { return Vec2d(unscale<double>(pt.x()), unscale<double>(pt.y())); }
+- unscale · function · L149-L149 — inline Vec2d   unscale(const Vec2d   &pt) { return Vec2d(unscale<double>(pt.x()), unscale<double>(pt.y())); }
+- unscale · function · L150-L150 — inline Vec3d   unscale(coord_t x, coord_t y, coord_t z) { return Vec3d(unscale<double>(x), unscale<double>(y), unscale<double>(z)); }
+- unscale · function · L151-L151 — inline Vec3d   unscale(const Vec3crd &pt) { return Vec3d(unscale<double>(pt.x()), unscale<double>(pt.y()), unscale<double>(pt.z())); }
+- unscale · function · L152-L152 — inline Vec3d   unscale(const Vec3d   &pt) { return Vec3d(unscale<double>(pt.x()), unscale<double>(pt.y()), unscale<double>(pt.z())); }
+- to_string · function · L154-L154 — inline std::string to_string(const Vec2crd &pt) { return std::string("[") + float_to_string_decimal_point(pt.x()) + ", " + float_to_string_decimal_point(pt.y()) + "]"; }
+- to_string · function · L155-L155 — inline std::string to_string(const Vec2d   &pt) { return std::string("[") + float_to_string_decimal_point(pt.x()) + ", " + float_to_string_decimal_point(pt.y()) + "]"; }
+- to_string · function · L156-L156 — inline std::string to_string(const Vec3crd &pt) { return std::string("[") + float_to_string_decimal_point(pt.x()) + ", " + float_to_string_decimal_point(pt.y()) + ", " + float_to_string_decimal_point(pt.z()) + "]"; }
+- to_string · function · L157-L157 — inline std::string to_string(const Vec3d   &pt) { return std::string("[") + float_to_string_decimal_point(pt.x()) + ", " + float_to_string_decimal_point(pt.y()) + ", " + float_to_string_decimal_point(pt.z()) + "]"; }
+- transform · function · L159-L159 — std::vector<Vec3f> transform(const std::vector<Vec3f>& points, const Transform3f& t);
+- transform · function · L160-L160 — Pointf3s transform(const Pointf3s& points, const Transform3d& t);
+- has_reflection · function · L168-L168 — inline bool has_reflection(const Transform3d &transform) { return transform.matrix().determinant() < 0; }
+- get_base · function · L176-L176 — inline const Vec3d get_base(unsigned index, const Transform3d &transform) { return transform.linear().col(index); }
+- get_x_base · function · L177-L177 — inline const Vec3d get_x_base(const Transform3d &transform) { return get_base(0, transform); }
+- get_y_base · function · L178-L178 — inline const Vec3d get_y_base(const Transform3d &transform) { return get_base(1, transform); }
+- get_z_base · function · L179-L179 — inline const Vec3d get_z_base(const Transform3d &transform) { return get_base(2, transform); }
+- get_base · function · L180-L180 — inline const Vec3d get_base(unsigned index, const Transform3d::LinearPart &transform) { return transform.col(index); }
+- get_x_base · function · L181-L181 — inline const Vec3d get_x_base(const Transform3d::LinearPart &transform) { return get_base(0, transform); }
+- get_y_base · function · L182-L182 — inline const Vec3d get_y_base(const Transform3d::LinearPart &transform) { return get_base(1, transform); }
+- get_z_base · function · L183-L183 — inline const Vec3d get_z_base(const Transform3d::LinearPart &transform) { return get_base(2, transform); }
+- Point · class · L187-L259 — class Point : public Vec2crd
+- Point · function · L192-L192 — Point() : Vec2crd(0, 0) {}
+- Point · function · L193-L193 — Point(int32_t x, int32_t y) : Vec2crd(coord_t(x), coord_t(y)) {}
+- Point · function · L194-L194 — Point(int64_t x, int64_t y) : Vec2crd(coord_t(x), coord_t(y)) {}
+- Point · function · L195-L195 — Point(int64_t x, int32_t y) : Vec2crd(coord_t(x), coord_t(y)) {}
+- Point · function · L196-L196 — Point(int32_t x, int64_t y) : Vec2crd(coord_t(x), coord_t(y)) {}
+- Point · function · L197-L197 — Point(double x, double y) : Vec2crd(coord_t(std::round(x)), coord_t(std::round(y))) {}
+- Point · function · L198-L198 — explicit Point(const Vec2d& rhs) : Vec2crd(coord_t(std::round(rhs.x())), coord_t(std::round(rhs.y()))) {}
+- Point · function · L201-L202 — template<typename OtherDerived>
+- new_scale · function · L203-L203 — static Point new_scale(coordf_t x, coordf_t y) { return Point(coord_t(scale_(x)), coord_t(scale_(y))); }
+- new_scale · function · L204-L205 — template<typename OtherDerived>
+- both_comp · function · L219-L225 — bool   both_comp(const Point &rhs, const std::string& op)
+- any_comp · function · L226-L233 — bool any_comp(const Point &rhs, const std::string &op)
+- rotate · function · L235-L235 — void   rotate(double angle) { this->rotate(std::cos(angle), std::sin(angle)); }
+- rotate · function · L236-L241 — void   rotate(double cos_a, double sin_a)
+- rotate · function · L243-L243 — void   rotate(double angle, const Point &center);
+- rotated · function · L244-L244 — Point  rotated(double angle) const { Point res(*this); res.rotate(angle); return res; }
+- rotated · function · L245-L245 — Point  rotated(double cos_a, double sin_a) const { Point res(*this); res.rotate(cos_a, sin_a); return res; }
+- rotated · function · L246-L246 — Point  rotated(double angle, const Point &center) const { Point res(*this); res.rotate(angle, center); return res; }
+- rotate_90_degree_ccw · function · L247-L247 — Point  rotate_90_degree_ccw() const { return Point(-this->y(), this->x()); }
+- nearest_point_index · function · L248-L248 — int    nearest_point_index(const Points &points) const;
+- nearest_point_index · function · L249-L249 — int    nearest_point_index(const PointConstPtrs &points) const;
+- nearest_point_index · function · L250-L250 — int    nearest_point_index(const PointPtrs &points) const;
+- nearest_point · function · L251-L251 — bool   nearest_point(const Points &points, Point* point) const;
+- ccw · function · L252-L252 — double ccw(const Point &p1, const Point &p2) const;
+- ccw · function · L253-L253 — double ccw(const Line &line) const;
+- ccw_angle · function · L254-L254 — double ccw_angle(const Point &p1, const Point &p2) const;
+- projection_onto · function · L255-L255 — Point  projection_onto(const MultiPoint &poly) const;
+- projection_onto · function · L256-L256 — Point  projection_onto(const Line &line) const;
+- distance_to · function · L258-L258 — double distance_to(const Point &point) const { return (point - *this).cast<double>().norm(); }
+- Point3 · class · L272-L366 — class Point3 : public Vec3crd
+- Point3 · function · L276-L276 — Point3() : Vec3crd(0, 0, 0) {}
+- Point3 · function · L277-L277 — Point3(int32_t x, int32_t y, int32_t z = 0) : Vec3crd(coord_t(x), coord_t(y), coord_t(z)) {}
+- Point3 · function · L278-L278 — Point3(int64_t x, int64_t y, int64_t z = 0) : Vec3crd(coord_t(x), coord_t(y), coord_t(z)) {}
+- Point3 · function · L279-L279 — Point3(double x, double y, double z = 0.0) : Vec3crd(coord_t(std::round(x)), coord_t(std::round(y)), coord_t(std::round(z))) {}
+- Point3 · function · L280-L280 — explicit Point3(const Vec2crd& vec2crd, coord_t z = 0) : Vec3crd(vec2crd.x(), vec2crd.y(), z) {}
+- Point3 · function · L281-L281 — explicit Point3(const Vec3crd &vec3crd) : Vec3crd(vec3crd) {}
+- Point3 · function · L283-L284 — template<typename OtherDerived>
+- new_scale · function · L286-L288 — static Point3 new_scale(coordf_t x, coordf_t y, coordf_t z)
+- new_scale · function · L289-L291 — static Point3 new_scale(const Vec3d &v)
+- new_scale · function · L292-L294 — static Point3 new_scale(const Vec3f &v)
+- both_comp · function · L314-L320 — bool both_comp(const Point3 &rhs, const std::string& op)
+- any_comp · function · L321-L328 — bool any_comp(const Point3 &rhs, const std::string &op)
+- any_comp · function · L329-L336 — bool any_comp(const coord_t val, const std::string &op)
+- rotate · function · L338-L338 — void rotate(double angle) { this->rotate(std::cos(angle), std::sin(angle)); }
+- rotate · function · L339-L344 — void rotate(double cos_a, double sin_a)
+- rotate · function · L345-L345 — void rotate(double angle, const Point3 &center);
+- rotated · function · L347-L347 — Point3 rotated(double angle) const { Point3 res(*this); res.rotate(angle); return res; }
+- rotated · function · L348-L348 — Point3 rotated(double cos_a, double sin_a) const { Point3 res(*this); res.rotate(cos_a, sin_a); return res; }
+- rotated · function · L349-L349 — Point3 rotated(double angle, const Point3 &center) const { Point3 res(*this); res.rotate(angle, center); return res; }
+- rotate_90_degree_ccw · function · L350-L350 — Point3 rotate_90_degree_ccw() const { return Point3(-this->y(), this->x(), this->z()); }
+- nearest_point_index · function · L352-L352 — int nearest_point_index(const Points &points) const;
+- nearest_point · function · L353-L353 — bool nearest_point(const Points &points, Point3* point) const;
+- ccw · function · L354-L354 — double ccw(const Point3 &p1, const Point3 &p2) const;
+- ccw · function · L355-L355 — double ccw(const Line3 &line) const;
+- ccw_angle · function · L356-L356 — double ccw_angle(const Point3 &p1, const Point3 &p2) const;
+- projection_onto · function · L357-L357 — Point3 projection_onto(const MultiPoint3 &poly) const;
+- projection_onto · function · L358-L358 — Point3 projection_onto(const Line3 &line) const;
+- to_point · function · L361-L363 — Point to_point() const
+- distance_to · function · L365-L365 — double distance_to(const Point3 &point) const { return (point - *this).cast<double>().norm(); }
+- append_points · function · L369-L375 — inline void append_points(Points &dst, const Points3 &src)
+- is_approx · function · L388-L392 — inline bool is_approx(const Point &p1, const Point &p2, coord_t epsilon = coord_t(SCALED_EPSILON))
+- is_approx · function · L394-L398 — inline bool is_approx(const Vec2f &p1, const Vec2f &p2, float epsilon = float(EPSILON))
+- is_approx · function · L400-L404 — inline bool is_approx(const Vec2d &p1, const Vec2d &p2, double epsilon = EPSILON)
+- is_approx · function · L406-L410 — inline bool is_approx(const Vec3f &p1, const Vec3f &p2, float epsilon = float(EPSILON))
+- is_approx · function · L412-L416 — inline bool is_approx(const Vec3d &p1, const Vec3d &p2, double epsilon = EPSILON)
+- lerp · function · L418-L422 — inline Point lerp(const Point &a, const Point &b, double t)
+- lerp · function · L424-L428 — inline Point3 lerp(const Point3& a, const Point3& b, double t)
+- get_extents · function · L432-L433 — template<bool IncludeBoundary = false>
+- get_extents · function · L439-L440 — template<bool IncludeBoundary = false>
+- get_extents · function · L444-L444 — BoundingBoxf get_extents(const std::vector<Vec2d> &pts);
+- has_duplicate_points · function · L448-L448 — bool        has_duplicate_points(Points &&pts);
+- has_duplicate_points · function · L449-L453 — inline bool has_duplicate_points(const Points &pts)
+- has_duplicate_successive_points · function · L457-L463 — inline bool has_duplicate_successive_points(const Points &pts)
+- has_duplicate_successive_points_closed · function · L467-L470 — inline bool has_duplicate_successive_points_closed(const Points &pts)
+- collect_duplicates · function · L473-L473 — Points collect_duplicates(Points pts /* Copy */);
+- shorter_then · function · L475-L482 — inline bool shorter_then(const Point& p0, const coord_t len)
+- orient · function · L487-L487 — int orient(const Vec2crd &p1, const Vec2crd &p2, const Vec2crd &p3);
+- cross · function · L490-L490 — int cross(const Vec2crd &v1, const Vec2crd &v2);
+- PointHash · class · L494-L498 — struct PointHash
+- ClosestPointInRadiusLookup · class · L504-L635 — template<typename ValueType, typename PointAccessor> class ClosestPointInRadiusLookup
+- ClosestPointInRadiusLookup · function · L507-L537 — ClosestPointInRadiusLookup(coord_t search_radius, PointAccessor point_accessor = PointAccessor()) :
+- insert · function · L539-L543 — void insert(const ValueType &value)
+- insert · function · L545-L549 — void insert(ValueType &&value)
+- erase · function · L553-L567 — bool erase(const ValueType &value)
+- find · function · L570-L599 — std::pair<const ValueType*, double> find(const Vec2crd &pt)
+- find_all · function · L602-L626 — std::vector<std::pair<const ValueType*, double>> find_all(const Vec2crd &pt)
+- scaled · function · L650-L656 — template<class Tout,
+- scaled · function · L662-L667 — template<class Tout = coord_t, class Tin, class = FloatingOnly<Tin>>
+- scaled · function · L670-L679 — template<class Tout = coord_t,
+- unscaled · function · L682-L689 — template<class Tout = double,
+- unscaled · function · L693-L703 — template<class Tout = double,
+- align_to_grid · function · L707-L716 — inline coord_t align_to_grid(const coord_t coord, const coord_t spacing)
+- align_to_grid · function · L717-L718 — inline Point   align_to_grid(Point   coord, Point   spacing)
+- align_to_grid · function · L719-L720 — inline coord_t align_to_grid(coord_t coord, coord_t spacing, coord_t base)
+- align_to_grid · function · L721-L722 — inline Point   align_to_grid(Point   coord, Point   spacing, Point   base)
+- MinMax · class · L725-L725 — template<typename T> struct MinMax { T min; T max;};
+- apply · function · L726-L730 — template<typename T>
+- apply · function · L731-L743 — template<typename T>
+- get · function · L786-L788 — static inline coordinate_type get(const Slic3r::Point& point, orientation_2d orient)
+- set · function · L794-L796 — static inline void set(Slic3r::Point& point, orientation_2d orient, coord_t value)
+- construct · function · L797-L799 — static inline Slic3r::Point construct(coord_t x_value, coord_t y_value)
+- serialize · function · L808-L808 — template<class Archive> void serialize(Archive& archive, Slic3r::Vec2i32   &v) { archive(v.x(), v.y()); }
+- serialize · function · L809-L809 — template<class Archive> void serialize(Archive& archive, Slic3r::Vec3i32   &v) { archive(v.x(), v.y(), v.z()); }
+- serialize · function · L810-L810 — template<class Archive> void serialize(Archive& archive, Slic3r::Vec2i64 &v) { archive(v.x(), v.y()); }
+- serialize · function · L811-L811 — template<class Archive> void serialize(Archive& archive, Slic3r::Vec3i64 &v) { archive(v.x(), v.y(), v.z()); }
+- serialize · function · L812-L812 — template<class Archive> void serialize(Archive& archive, Slic3r::Vec2f   &v) { archive(v.x(), v.y()); }
+- serialize · function · L813-L813 — template<class Archive> void serialize(Archive& archive, Slic3r::Vec3f   &v) { archive(v.x(), v.y(), v.z()); }
+- serialize · function · L814-L814 — template<class Archive> void serialize(Archive& archive, Slic3r::Vec2d   &v) { archive(v.x(), v.y()); }
+- serialize · function · L815-L815 — template<class Archive> void serialize(Archive& archive, Slic3r::Vec3d   &v) { archive(v.x(), v.y(), v.z()); }
+- load · function · L817-L817 — template<class Archive> void load(Archive& archive, Slic3r::Matrix2f &m) { archive.loadBinary((char*)m.data(), sizeof(float) * 4); }
+- save · function · L818-L818 — template<class Archive> void save(Archive& archive, Slic3r::Matrix2f &m) { archive.saveBinary((char*)m.data(), sizeof(float) * 4); }
+- load · function · L820-L820 — template<class Archive> void load(Archive &archive, Slic3r::Transform3d &m) { archive.loadBinary((char *) m.data(), sizeof(double) * 16); }
+- save · function · L821-L821 — template<class Archive> void save(Archive &archive, const Slic3r::Transform3d &m) { archive.saveBinary((char *) m.data(), sizeof(double) * 16); }
+- begin · function · L827-L827 — T* begin(Slic3r::Mat<N, M, T> &mat) { return mat.data(); }
+- end · function · L830-L830 — T* end(Slic3r::Mat<N, M, T> &mat) { return mat.data() + N * M; }
+- begin · function · L833-L833 — const T* begin(const Slic3r::Mat<N, M, T> &mat) { return mat.data(); }
+- end · function · L836-L836 — const T* end(const Slic3r::Mat<N, M, T> &mat) { return mat.data() + N * M; }

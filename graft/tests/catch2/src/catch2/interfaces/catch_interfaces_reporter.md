@@ -1,0 +1,49 @@
+# tests/catch2/src/catch2/interfaces/catch_interfaces_reporter.hpp
+
+- TestCaseHandle · class · L30-L30 — class TestCaseHandle;
+- IConfig · class · L31-L31 — class IConfig;
+- IStream · class · L32-L32 — class IStream;
+- ColourMode · type · L33-L33 — enum class ColourMode : std::uint8_t;
+- ReporterConfig · class · L35-L55 — struct ReporterConfig
+- ReporterConfig · function · L36-L39 — ReporterConfig( IConfig const* _fullConfig,
+- ReporterConfig · function · L41-L41 — ReporterConfig( ReporterConfig&& ) = default;
+- takeStream · function · L45-L45 — Detail::unique_ptr<IStream> takeStream() &&;
+- fullConfig · function · L46-L46 — IConfig const* fullConfig() const;
+- colourMode · function · L47-L47 — ColourMode colourMode() const;
+- customOptions · function · L48-L48 — std::map<std::string, std::string> const& customOptions() const;
+- AssertionStats · class · L57-L70 — struct AssertionStats
+- AssertionStats · function · L58-L60 — AssertionStats( AssertionResult const& _assertionResult,
+- AssertionStats · function · L62-L62 — AssertionStats( AssertionStats const& )              = default;
+- AssertionStats · function · L63-L63 — AssertionStats( AssertionStats && )                  = default;
+- SectionStats · class · L72-L82 — struct SectionStats
+- SectionStats · function · L73-L76 — SectionStats(   SectionInfo&& _sectionInfo,
+- TestCaseStats · class · L84-L96 — struct TestCaseStats
+- TestCaseStats · function · L85-L89 — TestCaseStats(  TestCaseInfo const& _testInfo,
+- TestRunStats · class · L98-L106 — struct TestRunStats
+- TestRunStats · function · L99-L101 — TestRunStats(   TestRunInfo const& _runInfo,
+- ReporterPreferences · class · L111-L123 — struct ReporterPreferences
+- IEventListener · class · L137-L222 — class IEventListener
+- IEventListener · function · L145-L145 — IEventListener( IConfig const* config ): m_config( config ) {}
+- getPreferences · function · L152-L152 — ReporterPreferences const& getPreferences() const
+- noMatchingTestCases · function · L157-L157 — virtual void noMatchingTestCases( StringRef unmatchedSpec ) = 0;
+- reportInvalidTestSpec · function · L159-L159 — virtual void reportInvalidTestSpec( StringRef invalidArgument ) = 0;
+- testRunStarting · function · L166-L166 — virtual void testRunStarting( TestRunInfo const& testRunInfo ) = 0;
+- testCaseStarting · function · L169-L169 — virtual void testCaseStarting( TestCaseInfo const& testInfo ) = 0;
+- testCasePartialStarting · function · L171-L171 — virtual void testCasePartialStarting( TestCaseInfo const& testInfo, uint64_t partNumber ) = 0;
+- sectionStarting · function · L173-L173 — virtual void sectionStarting( SectionInfo const& sectionInfo ) = 0;
+- benchmarkPreparing · function · L176-L176 — virtual void benchmarkPreparing( StringRef benchmarkName ) = 0;
+- benchmarkStarting · function · L178-L178 — virtual void benchmarkStarting( BenchmarkInfo const& benchmarkInfo ) = 0;
+- benchmarkEnded · function · L180-L180 — virtual void benchmarkEnded( BenchmarkStats<> const& benchmarkStats ) = 0;
+- benchmarkFailed · function · L182-L182 — virtual void benchmarkFailed( StringRef benchmarkName ) = 0;
+- assertionStarting · function · L185-L185 — virtual void assertionStarting( AssertionInfo const& assertionInfo ) = 0;
+- assertionEnded · function · L188-L188 — virtual void assertionEnded( AssertionStats const& assertionStats ) = 0;
+- sectionEnded · function · L191-L191 — virtual void sectionEnded( SectionStats const& sectionStats ) = 0;
+- testCasePartialEnded · function · L193-L193 — virtual void testCasePartialEnded(TestCaseStats const& testCaseStats, uint64_t partNumber ) = 0;
+- testCaseEnded · function · L195-L195 — virtual void testCaseEnded( TestCaseStats const& testCaseStats ) = 0;
+- testRunEnded · function · L201-L201 — virtual void testRunEnded( TestRunStats const& testRunStats ) = 0;
+- skipTest · function · L209-L209 — virtual void skipTest( TestCaseInfo const& testInfo ) = 0;
+- fatalErrorEncountered · function · L212-L212 — virtual void fatalErrorEncountered( StringRef error ) = 0;
+- listReporters · function · L215-L215 — virtual void listReporters(std::vector<ReporterDescription> const& descriptions) = 0;
+- listListeners · function · L217-L217 — virtual void listListeners(std::vector<ListenerDescription> const& descriptions) = 0;
+- listTests · function · L219-L219 — virtual void listTests(std::vector<TestCaseHandle> const& tests) = 0;
+- listTags · function · L221-L221 — virtual void listTags(std::vector<TagInfo> const& tags) = 0;

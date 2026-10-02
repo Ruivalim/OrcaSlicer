@@ -1,0 +1,24 @@
+# deps_src/mcut/source/mcut.cpp
+
+- mcCreateContext · function · L36-L58 — MCAPI_ATTR McResult MCAPI_CALL mcCreateContext(McContext* pOutContext, McFlags contextFlags)
+- mcCreateContextWithHelpers · function · L60-L80 — MCAPI_ATTR McResult MCAPI_CALL mcCreateContextWithHelpers(McContext* pOutContext, McFlags contextFlags, uint32_t helperThreadCount)
+- mcDebugMessageCallback · function · L82-L108 — MCAPI_ATTR McResult MCAPI_CALL mcDebugMessageCallback(McContext pContext, pfn_mcDebugOutput_CALLBACK cb, const McVoid* userParam)
+- mcGetDebugMessageLog · function · L110-L147 — MCAPI_ATTR McResult MCAPI_CALL mcGetDebugMessageLog(
+- mcDebugMessageControl · function · L149-L190 — MCAPI_ATTR McResult MCAPI_CALL mcDebugMessageControl(McContext pContext, McDebugSource source, McDebugType type, McDebugSeverity severity, bool enabled)
+- mcGetInfo · function · L192-L226 — MCAPI_ATTR McResult MCAPI_CALL mcGetInfo(const McContext context, McFlags info, McSize bytes, McVoid* pMem, McSize* pNumBytes)
+- mcBindState · function · L228-L270 — MCAPI_ATTR McResult MCAPI_CALL mcBindState(
+- mcCreateUserEvent · function · L272-L299 — MCAPI_ATTR McResult MCAPI_CALL mcCreateUserEvent(
+- mcSetUserEventStatus · function · L301-L326 — MCAPI_ATTR McResult MCAPI_CALL mcSetUserEventStatus(
+- mcGetEventInfo · function · L328-L359 — MCAPI_ATTR McResult MCAPI_CALL mcGetEventInfo(const McEvent event, McFlags info, McSize bytes, McVoid* pMem, McSize* pNumBytes)
+- mcWaitForEvents · function · L361-L395 — MCAPI_ATTR McResult MCAPI_CALL mcWaitForEvents(
+- mcSetEventCallback · function · L397-L428 — MCAPI_ATTR McResult MCAPI_CALL mcSetEventCallback(
+- mcEnqueueDispatch · function · L430-L523 — MCAPI_ATTR McResult MCAPI_CALL mcEnqueueDispatch(
+- mcDispatch · function · L525-L574 — MCAPI_ATTR McResult MCAPI_CALL mcDispatch(
+- mcEnqueueDispatchPlanarSection · function · L576-L657 — MCAPI_ATTR McResult MCAPI_CALL mcEnqueueDispatchPlanarSection(
+- mcEnqueueGetConnectedComponents · function · L659-L703 — MCAPI_ATTR McResult MCAPI_CALL mcEnqueueGetConnectedComponents(
+- mcGetConnectedComponents · function · L705-L726 — MCAPI_ATTR McResult MCAPI_CALL mcGetConnectedComponents(
+- mcEnqueueGetConnectedComponentData · function · L728-L775 — MCAPI_ATTR McResult MCAPI_CALL mcEnqueueGetConnectedComponentData(
+- mcGetConnectedComponentData · function · L777-L800 — MCAPI_ATTR McResult MCAPI_CALL mcGetConnectedComponentData(
+- mcReleaseEvents · function · L802-L831 — MCAPI_ATTR McResult MCAPI_CALL mcReleaseEvents(
+- mcReleaseConnectedComponents · function · L833-L865 — MCAPI_ATTR McResult MCAPI_CALL mcReleaseConnectedComponents(
+- mcReleaseContext · function · L867-L892 — MCAPI_ATTR McResult MCAPI_CALL mcReleaseContext(const McContext context)

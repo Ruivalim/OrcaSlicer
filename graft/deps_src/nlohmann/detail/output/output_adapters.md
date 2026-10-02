@@ -1,0 +1,24 @@
+# deps_src/nlohmann/detail/output/output_adapters.hpp
+
+- output_adapter_protocol · class · L22-L33 — template<typename CharType> struct output_adapter_protocol
+- write_character · function · L24-L24 — virtual void write_character(CharType c) = 0;
+- write_characters · function · L25-L25 — virtual void write_characters(const CharType* s, std::size_t length) = 0;
+- output_adapter_protocol · function · L28-L28 — output_adapter_protocol() = default;
+- output_adapter_protocol · function · L29-L29 — output_adapter_protocol(const output_adapter_protocol&) = default;
+- output_adapter_protocol · function · L30-L30 — output_adapter_protocol(output_adapter_protocol&&) noexcept = default;
+- output_vector_adapter · class · L40-L61 — template<typename CharType, typename AllocatorType = std::allocator<CharType>>
+- output_vector_adapter · function · L44-L46 — explicit output_vector_adapter(std::vector<CharType, AllocatorType>& vec) noexcept
+- write_character · function · L48-L51 — void write_character(CharType c) override
+- write_characters · function · L54-L54 — void write_characters(const CharType* s, std::size_t length) override
+- output_stream_adapter · class · L65-L86 — template<typename CharType>
+- output_stream_adapter · function · L69-L71 — explicit output_stream_adapter(std::basic_ostream<CharType>& s) noexcept
+- write_character · function · L73-L76 — void write_character(CharType c) override
+- write_characters · function · L79-L79 — void write_characters(const CharType* s, std::size_t length) override
+- output_string_adapter · class · L90-L111 — template<typename CharType, typename StringType = std::basic_string<CharType>>
+- output_string_adapter · function · L94-L96 — explicit output_string_adapter(StringType& s) noexcept
+- write_character · function · L98-L101 — void write_character(CharType c) override
+- write_characters · function · L104-L104 — void write_characters(const CharType* s, std::size_t length) override
+- output_adapter · class · L113-L136 — template<typename CharType, typename StringType = std::basic_string<CharType>>
+- output_adapter · function · L117-L119 — template<typename AllocatorType = std::allocator<CharType>>
+- output_adapter · function · L122-L123 — output_adapter(std::basic_ostream<CharType>& s)
+- output_adapter · function · L126-L127 — output_adapter(StringType& s)

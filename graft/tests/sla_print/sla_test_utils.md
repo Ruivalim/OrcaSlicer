@@ -1,0 +1,27 @@
+# tests/sla_print/sla_test_utils.hpp
+
+- e_validity · type · L28-L32 — enum e_validity
+- check_validity · function · L34-L36 — void check_validity(const TriangleMesh &input_mesh,
+- PadByproducts · class · L38-L43 — struct PadByproducts
+- test_concave_hull · function · L45-L45 — void test_concave_hull(const ExPolygons &polys);
+- test_pad · function · L47-L49 — void test_pad(const std::string &   obj_filename,
+- test_pad · function · L51-L56 — inline void test_pad(const std::string &   obj_filename,
+- SupportByproducts · class · L58-L65 — struct SupportByproducts
+- check_support_tree_integrity · function · L69-L70 — void check_support_tree_integrity(const sla::SupportTreeBuilder &stree,
+- test_supports · function · L72-L76 — void test_supports(const std::string          &obj_filename,
+- test_supports · function · L78-L85 — inline void test_supports(const std::string &obj_filename,
+- test_supports · function · L87-L92 — inline void test_supports(const std::string &obj_filename,
+- export_failed_case · function · L94-L95 — void export_failed_case(const std::vector<ExPolygons> &support_slices,
+- test_support_model_collision · function · L98-L102 — void test_support_model_collision(
+- test_support_model_collision · function · L104-L111 — inline void test_support_model_collision(
+- test_pairhash · function · L114-L163 — template <class I, class II> void test_pairhash()
+- gen · function · L122-L122 — std::mt19937 gen(rd());
+- dis · function · L132-L132 — std::uniform_int_distribution<I> dis(Imin, Imax);
+- arraysize · function · L171-L171 — template <class A, int N> constexpr int arraysize(const A (&)[N]) { return N; }
+- check_raster_transformations · function · L173-L174 — void check_raster_transformations(sla::RasterBase::Orientation o,
+- square_with_hole · function · L176-L176 — ExPolygon square_with_hole(double v);
+- pixel_area · function · L178-L181 — inline double pixel_area(TPixel px, const sla::PixelDim &pxdim)
+- raster_white_area · function · L183-L183 — double raster_white_area(const sla::RasterGrayscaleAA &raster);
+- raster_pxsum · function · L184-L184 — long raster_pxsum(const sla::RasterGrayscaleAA &raster);
+- predict_error · function · L186-L186 — double predict_error(const ExPolygon &p, const sla::PixelDim &pd);
+- calc_support_pts · function · L188-L190 — sla::SupportPoints calc_support_pts(

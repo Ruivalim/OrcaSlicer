@@ -1,0 +1,36 @@
+# src/slic3r/GUI/Widgets/TabCtrl.hpp
+
+- TabCtrl · class · L9-L86 — class TabCtrl : public StaticBox
+- TabCtrl · function · L19-L19 — TabCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = 0);
+- SetFont · function · L24-L24 — virtual bool SetFont(wxFont const& font) override;
+- AppendItem · function · L27-L27 — int AppendItem(const wxString& item, int image = -1, int selImage = -1, void* clientData = nullptr);
+- AppendItem · function · L28-L28 — int AppendItem(const wxString& item, const wxBitmap& bitmap, void* clientData = nullptr);
+- DeleteItem · function · L30-L30 — bool DeleteItem(int item);
+- DeleteAllItems · function · L32-L32 — void DeleteAllItems();
+- GetCount · function · L34-L34 — unsigned int GetCount() const;
+- GetSelection · function · L36-L36 — int GetSelection() const;
+- SelectItem · function · L38-L38 — void SelectItem(int item);
+- Unselect · function · L40-L40 — void Unselect();
+- Rescale · function · L42-L42 — virtual void Rescale();
+- GetItemText · function · L44-L44 — wxString GetItemText(unsigned int item) const;
+- SetItemText · function · L45-L45 — void SetItemText(unsigned int item, wxString const& value);
+- SetItemBitmap · function · L46-L46 — void SetItemBitmap(unsigned int item, const wxBitmap& bitmap);
+- SetItemIndicator · function · L49-L49 — void SetItemIndicator(unsigned int item, bool on);
+- GetItemBold · function · L51-L51 — bool GetItemBold(unsigned int item) const;
+- SetItemBold · function · L52-L52 — void SetItemBold(unsigned int item, bool bold);
+- GetItemData · function · L54-L54 — void* GetItemData(unsigned int item) const;
+- SetItemData · function · L55-L55 — void SetItemData(unsigned int item, void* clientData);
+- AssignImageList · function · L57-L57 — void AssignImageList(wxImageList* imageList);
+- SetItemTextColour · function · L59-L59 — void SetItemTextColour(unsigned int item, const StateColor& col);
+- GetFirstVisibleItem · function · L62-L62 — int GetFirstVisibleItem() const;
+- GetNextVisible · function · L63-L63 — int GetNextVisible(int item) const;
+- IsVisible · function · L64-L64 — bool IsVisible(unsigned int item) const;
+- GetFullSize · function · L66-L66 — int GetFullSize() const;
+- DoSetSize · function · L69-L69 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO) override;
+- MSWWindowProc · function · L72-L72 — WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) override;
+- relayout · function · L75-L75 — void relayout();
+- buttonClicked · function · L77-L77 — void buttonClicked(wxCommandEvent& event);
+- keyDown · function · L78-L78 — void keyDown(wxKeyEvent& event);
+- doRender · function · L80-L80 — void doRender(wxDC& dc) override;
+- sendTabCtrlEvent · function · L83-L83 — bool sendTabCtrlEvent(bool changing = false);
+- DECLARE_EVENT_TABLE · function · L85-L85 — DECLARE_EVENT_TABLE()

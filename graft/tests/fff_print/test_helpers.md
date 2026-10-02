@@ -1,0 +1,35 @@
+# tests/fff_print/test_helpers.hpp
+
+- _equiv · function · L21-L22 — template <typename T>
+- _equiv · function · L25-L26 — template <typename T>
+- TestMesh · type · L29-L48 — enum class TestMesh
+- TestMeshHash · class · L51-L55 — struct TestMeshHash
+- mesh · function · L61-L61 — TriangleMesh mesh(TestMesh m);
+- mesh · function · L62-L62 — TriangleMesh mesh(TestMesh m, Vec3d translate, Vec3d scale = Vec3d(1.0, 1.0, 1.0));
+- mesh · function · L63-L63 — TriangleMesh mesh(TestMesh m, Vec3d translate, double scale = 1.0);
+- cube · function · L66-L66 — inline TriangleMesh cube(double size) { return make_cube(size, size, size); }
+- model · function · L69-L69 — Slic3r::Model model(const std::string& model_name, TriangleMesh&& _mesh);
+- multifilament_config · function · L72-L73 — DynamicPrintConfig multifilament_config(unsigned int filaments,
+- init_print · function · L76-L77 — void init_print(std::vector<TriangleMesh> &&meshes, Slic3r::Print &print, Slic3r::Model &model, const DynamicPrintConfig &config_in,
+- init_print · function · L78-L78 — void init_print(std::initializer_list<TestMesh> meshes, Slic3r::Print &print, Slic3r::Model &model, const Slic3r::DynamicPrintConfig &config_in = Slic3r::DynamicPrintConfig::full_print_config());
+- init_print · function · L79-L79 — void init_print(std::initializer_list<TriangleMesh> meshes, Slic3r::Print &print, Slic3r::Model &model, const Slic3r::DynamicPrintConfig &config_in = Slic3r::DynamicPrintConfig::full_print_config());
+- init_print · function · L80-L80 — void init_print(std::initializer_list<TestMesh> meshes, Slic3r::Print &print, Slic3r::Model &model, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items);
+- init_print · function · L81-L81 — void init_print(std::initializer_list<TriangleMesh> meshes, Slic3r::Print &print, Slic3r::Model &model, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items);
+- init_and_process_print · function · L84-L84 — void init_and_process_print(std::initializer_list<TestMesh> meshes, Slic3r::Print &print, const DynamicPrintConfig& config);
+- init_and_process_print · function · L85-L85 — void init_and_process_print(std::initializer_list<TriangleMesh> meshes, Slic3r::Print &print, const DynamicPrintConfig& config);
+- init_and_process_print · function · L86-L86 — void init_and_process_print(std::initializer_list<TestMesh> meshes, Slic3r::Print &print, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items);
+- init_and_process_print · function · L87-L87 — void init_and_process_print(std::initializer_list<TriangleMesh> meshes, Slic3r::Print &print, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items);
+- gcode · function · L90-L90 — std::string gcode(Print& print);
+- slice · function · L93-L93 — std::string slice(std::initializer_list<TestMesh> meshes, const DynamicPrintConfig &config);
+- slice · function · L94-L94 — std::string slice(std::initializer_list<TriangleMesh> meshes, const DynamicPrintConfig &config);
+- slice · function · L95-L95 — std::string slice(std::initializer_list<TestMesh> meshes, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items);
+- slice · function · L96-L96 — std::string slice(std::initializer_list<TriangleMesh> meshes, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items);
+- slice_with_object_overrides · function · L99-L100 — std::string slice_with_object_overrides(std::initializer_list<TriangleMesh> meshes, const DynamicPrintConfig &config,
+- slice_two_cubes_arranged · function · L103-L103 — std::string slice_two_cubes_arranged(std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items);
+- place_two_cubes_apart · function · L106-L107 — void place_two_cubes_apart(double gap, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items,
+- slice_two_cubes_apart · function · L109-L109 — std::string slice_two_cubes_apart(double gap, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items);
+- place_two_cube_instances_apart · function · L112-L113 — void place_two_cube_instances_apart(double gap, std::initializer_list<Slic3r::ConfigBase::SetDeserializeItem> config_items,
+- layers_with_role · function · L116-L116 — std::set<double> layers_with_role(const std::string &gcode, const std::string &role);
+- max_z · function · L119-L119 — double max_z(const std::string &gcode);
+- role_passes · function · L122-L122 — int role_passes(const std::string &gcode, const std::string &role);
+- role_sequence · function · L125-L125 — std::vector<std::string> role_sequence(const std::string &gcode, const std::vector<std::string> &roles);

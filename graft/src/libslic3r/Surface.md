@@ -1,0 +1,51 @@
+# src/libslic3r/Surface.hpp
+
+- SurfaceType · type · L9-L33 — enum SurfaceType
+- Surface · class · L35-L114 — class Surface
+- Surface · function · L45-L48 — Surface(SurfaceType _surface_type = stInternal)
+- Surface · function · L49-L53 — Surface(const Slic3r::Surface &rhs)
+- Surface · function · L55-L58 — Surface(SurfaceType _surface_type, const ExPolygon &_expolygon)
+- Surface · function · L59-L63 — Surface(const Surface &other, const ExPolygon &_expolygon)
+- Surface · function · L64-L68 — Surface(Surface &&rhs)
+- Surface · function · L69-L72 — Surface(SurfaceType _surface_type, const ExPolygon &&_expolygon)
+- Surface · function · L73-L77 — Surface(const Surface &other, const ExPolygon &&_expolygon)
+- area · function · L101-L101 — double area() 		 const { return this->expolygon.area(); }
+- empty · function · L102-L102 — bool   empty() 		 const { return expolygon.empty(); }
+- clear · function · L103-L103 — void   clear() 			   { expolygon.clear(); }
+- is_top · function · L106-L106 — bool   is_top()      const { return this->surface_type == stTop; }
+- is_bottom · function · L107-L107 — bool   is_bottom()   const { return this->surface_type == stBottom || this->surface_type == stBottomBridge; }
+- is_bridge · function · L108-L108 — bool   is_bridge()   const { return this->surface_type == stBottomBridge || this->surface_type == stInternalBridge; }
+- is_internal_bridge · function · L109-L109 — bool   is_internal_bridge() const { return this->surface_type == stInternalBridge; }
+- is_external · function · L110-L110 — bool   is_external() const { return this->is_top() || this->is_bottom(); }
+- is_internal · function · L111-L111 — bool   is_internal() const { return ! this->is_external(); }
+- is_solid · function · L112-L112 — bool   is_solid()    const { return this->is_external() || this->surface_type == stInternalSolid || this->surface_type == stInternalBridge; }
+- is_solid_infill · function · L113-L113 — bool   is_solid_infill() const { return this->surface_type == stInternalSolid; }
+- Surfaces · type · L116-L116 — typedef std::vector<Surface> Surfaces;
+- SurfacesPtr · type · L117-L117 — typedef std::vector<const Surface*> SurfacesPtr;
+- to_polygons · function · L119-L122 — inline Polygons to_polygons(const Surface &surface)
+- to_polygons · function · L124-L127 — inline Polygons to_polygons(Surface &&surface)
+- to_polygons · function · L129-L142 — inline Polygons to_polygons(const Surfaces &src)
+- to_polygons · function · L144-L157 — inline Polygons to_polygons(const SurfacesPtr &src)
+- to_expolygons · function · L159-L166 — inline ExPolygons to_expolygons(const Surfaces &src)
+- to_expolygons · function · L168-L176 — inline ExPolygons to_expolygons(Surfaces &&src)
+- to_expolygons · function · L178-L185 — inline ExPolygons to_expolygons(const SurfacesPtr &src)
+- number_polygons · function · L189-L195 — inline size_t number_polygons(const Surfaces &surfaces)
+- number_polygons · function · L196-L202 — inline size_t number_polygons(const SurfacesPtr &surfaces)
+- polygons_append · function · L205-L212 — inline void polygons_append(Polygons &dst, const Surfaces &src)
+- polygons_append · function · L214-L222 — inline void polygons_append(Polygons &dst, Surfaces &&src)
+- polygons_append · function · L225-L232 — inline void polygons_append(Polygons &dst, const SurfacesPtr &src)
+- surfaces_append · function · L247-L252 — inline void surfaces_append(Surfaces &dst, const ExPolygons &src, SurfaceType surfaceType)
+- surfaces_append · function · L253-L258 — inline void surfaces_append(Surfaces &dst, const ExPolygons &src, const Surface &surfaceTempl)
+- surfaces_append · function · L259-L262 — inline void surfaces_append(Surfaces &dst, const Surfaces &src)
+- surfaces_append · function · L264-L270 — inline void surfaces_append(Surfaces &dst, ExPolygons &&src, SurfaceType surfaceType)
+- surfaces_append · function · L272-L278 — inline void surfaces_append(Surfaces &dst, ExPolygons &&src, const Surface &surfaceTempl)
+- surfaces_append · function · L280-L288 — inline void surfaces_append(Surfaces &dst, Surfaces &&src)
+- get_extents · function · L290-L290 — extern BoundingBox get_extents(const Surface &surface);
+- get_extents · function · L291-L291 — extern BoundingBox get_extents(const Surfaces &surfaces);
+- get_extents · function · L292-L292 — extern BoundingBox get_extents(const SurfacesPtr &surfaces);
+- surfaces_could_merge · function · L294-L301 — inline bool surfaces_could_merge(const Surface &s1, const Surface &s2)
+- SVG · class · L303-L303 — class SVG;
+- surface_type_to_color_name · function · L305-L305 — extern const char* surface_type_to_color_name(const SurfaceType surface_type);
+- export_surface_type_legend_to_svg · function · L306-L306 — extern void export_surface_type_legend_to_svg(SVG &svg, const Point &pos);
+- export_surface_type_legend_to_svg_box_size · function · L307-L307 — extern Point export_surface_type_legend_to_svg_box_size();
+- export_to_svg · function · L308-L308 — extern bool export_to_svg(const char *path, const Surfaces &surfaces, const float transparency = 1.f);

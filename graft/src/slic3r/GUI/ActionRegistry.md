@@ -1,0 +1,42 @@
+# src/slic3r/GUI/ActionRegistry.hpp
+
+- ActionChange · type · L22-L22 — enum class ActionChange { Added, Removed };
+- AppActionKind · type · L25-L25 — enum class AppActionKind { Plugin, Command };
+- AppActionRunResult · class · L29-L35 — struct AppActionRunResult
+- Level · type · L31-L31 — enum class Level { Success, Info, Error, Busy };
+- AppActionId · class · L40-L43 — struct AppActionId
+- AppAction · class · L50-L122 — struct AppAction
+- id · function · L52-L52 — const std::string& id() const { return m_id; }
+- title · function · L53-L53 — const std::string& title() const { return m_title; }
+- source_key · function · L54-L54 — const std::string& source_key() const { return m_source_key; }   // stable source identity
+- source_name · function · L55-L55 — const std::string& source_name() const { return m_source_name; } // source display name
+- compose_id · function · L60-L66 — static std::string compose_id(std::string_view prefix, std::string_view title, std::string_view source_key)
+- run · function · L97-L97 — virtual AppActionRunResult run(const std::string& param = {}) const = 0;
+- AppAction · function · L104-L109 — AppAction(std::string_view prefix, std::string title, std::string source_key, std::string source_name)
+- AppAction · function · L113-L115 — AppAction(AppActionId id, std::string title, std::string source_key, std::string source_name)
+- requires_mode_switch · function · L132-L135 — inline bool requires_mode_switch(ConfigOptionMode setting_mode, ConfigOptionMode current_mode)
+- cap_favourites · function · L139-L139 — std::vector<std::string> cap_favourites(const std::vector<std::string>& ids, size_t limit);
+- ActionRegistry · class · L155-L245 — class ActionRegistry
+- init · function · L163-L163 — void init();
+- relocalize_builtins · function · L169-L169 — void relocalize_builtins();
+- upsert · function · L173-L173 — void upsert(std::unique_ptr<AppAction> action);
+- remove · function · L176-L176 — void remove(const std::string& id);
+- by_id · function · L179-L179 — const AppAction* by_id(const std::string& id) const;
+- run · function · L185-L185 — AppActionRunResult run(const std::string& id, const std::string& param = {}); // runs + bumps stats
+- set_favourite · function · L188-L188 — bool set_favourite(const std::string& id, bool on);
+- reorder_favourites · function · L189-L189 — void reorder_favourites(const std::vector<std::string>& ids); // persist a new bar order
+- favourite_ids · function · L193-L193 — std::vector<std::string> favourite_ids() const;
+- should_ask · function · L196-L196 — bool should_ask(const std::string& id) const;
+- suppress_ask · function · L197-L197 — void suppress_ask(const std::string& id);
+- tooltip_expanded · function · L201-L201 — bool tooltip_expanded() const;
+- set_tooltip_expanded · function · L202-L202 — void set_tooltip_expanded(bool expanded);
+- snapshot · function · L206-L206 — nlohmann::json snapshot();
+- tab_options · function · L214-L214 — nlohmann::json tab_options() const;
+- seed_state · function · L217-L217 — void seed_state(AppAction& a) const; // favourite/stats from config
+- find · function · L218-L218 — AppAction* find(const std::string& id);
+- load_persisted · function · L221-L221 — void load_persisted(nlohmann::json& stats, std::vector<std::string>& favs) const;
+- materialize_setting_actions · function · L226-L226 — void materialize_setting_actions();
+- materialize_plate_actions · function · L231-L231 — void materialize_plate_actions();
+- materialize_recent_project_actions · function · L236-L236 — void materialize_recent_project_actions();
+- refresh_source · function · L240-L240 — void refresh_source(const std::string& plugin_key, ActionChange change);
+- refresh_capability · function · L241-L241 — void refresh_capability(const std::string& plugin_key, const std::string& capability, ActionChange change);

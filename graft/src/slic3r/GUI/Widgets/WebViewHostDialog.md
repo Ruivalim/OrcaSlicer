@@ -1,0 +1,24 @@
+# src/slic3r/GUI/Widgets/WebViewHostDialog.hpp
+
+- WebViewHostDialog · class · L16-L90 — class WebViewHostDialog : public Slic3r::GUI::DPIDialog
+- WebViewHostDialog · function · L19-L26 — WebViewHostDialog(wxWindow* parent,
+- create_webview · function · L29-L32 — bool create_webview(const std::string& resource_path,
+- load_url · function · L34-L34 — void load_url(const wxString& url);
+- run_script · function · L35-L35 — bool run_script(const wxString& script);
+- call_web_handler · function · L36-L36 — void call_web_handler(const nlohmann::json& payload, const wxString& handler = wxT("HandleStudio"));
+- document_start_injector · function · L46-L50 — static std::string document_start_injector(const std::string& markup,
+- theme_user_script · function · L53-L53 — static std::string theme_user_script();
+- element_defaults_user_script · function · L54-L54 — static std::string element_defaults_user_script();
+- theme_apply_script · function · L56-L56 — static std::string theme_apply_script();
+- browser · function · L59-L59 — wxWebView* browser() const { return m_browser; }
+- build_resource_url · function · L61-L61 — wxString build_resource_url(const std::string& resource_path) const;
+- handle_common_script_command · function · L62-L62 — bool handle_common_script_command(const nlohmann::json& payload, int close_return_code = wxID_CANCEL);
+- on_dpi_changed · function · L64-L64 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_script_message · function · L66-L66 — virtual void on_script_message(const nlohmann::json& payload) = 0;
+- on_script_message_parse_error · function · L67-L67 — virtual void on_script_message_parse_error(const wxString& payload, const std::exception& error);
+- append_language_to_url · function · L68-L68 — virtual bool append_language_to_url() const { return true; }
+- register_theme_user_scripts · function · L74-L74 — void register_theme_user_scripts();
+- add_user_scripts · function · L79-L79 — virtual void add_user_scripts() {}
+- apply_theme_live · function · L83-L83 — void apply_theme_live();
+- on_script_message_event · function · L86-L86 — void on_script_message_event(wxWebViewEvent& event);
+- on_webview_recreated · function · L87-L87 — void on_webview_recreated(wxCommandEvent& event);

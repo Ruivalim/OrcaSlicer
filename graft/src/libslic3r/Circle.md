@@ -1,0 +1,39 @@
+# src/libslic3r/Circle.hpp
+
+- Circle · class · L11-L56 — class Circle
+- Circle · function · L13-L16 — Circle()
+- Circle · function · L17-L20 — Circle(Point &p, double r)
+- get_closest_point · function · L24-L27 — Point get_closest_point(const Point& input)
+- try_create_circle · function · L29-L29 — static bool try_create_circle(const Point &p1, const Point &p2, const Point &p3, const double max_radius, Circle& new_circle);
+- try_create_circle · function · L30-L30 — static bool try_create_circle(const Points& points, const double max_radius, const double tolerance, Circle& new_circle);
+- try_create_circle · function · L31-L31 — static bool try_create_circle(const Points3& points, const double max_radius, const double tolerance, Circle& new_circle);
+- get_polar_radians · function · L32-L32 — double get_polar_radians(const Point& p1) const;
+- is_over_deviation · function · L33-L33 — bool is_over_deviation(const Points& points, const double tolerance);
+- get_deviation_sum_squared · function · L34-L34 — bool get_deviation_sum_squared(const Points& points, const double tolerance, double& sum_deviation);
+- calc_tangential_vector · function · L37-L37 — static Vec3f calc_tangential_vector(const Vec3f& pos, const Vec3f& center_pos, const bool is_ccw);
+- get_closest_perpendicular_point · function · L38-L38 — static bool get_closest_perpendicular_point(const Point& p1, const Point& p2, const Point& c, Point& out);
+- is_equal · function · L39-L42 — static bool is_equal(double x, double y, double tolerance = ZERO_TOLERANCE)
+- greater_than · function · L43-L45 — static bool greater_than(double x, double y, double tolerance = ZERO_TOLERANCE)
+- greater_than_or_equal · function · L46-L48 — static bool greater_than_or_equal(double x, double y, double tolerance = ZERO_TOLERANCE)
+- less_than · function · L49-L51 — static bool less_than(double x, double y, double tolerance = ZERO_TOLERANCE)
+- less_than_or_equal · function · L52-L54 — static bool less_than_or_equal(double x, double y, double tolerance = ZERO_TOLERANCE)
+- ArcDirection · type · L58-L63 — enum class ArcDirection : unsigned char
+- ArcSegment · class · L69-L140 — class ArcSegment: public Circle
+- ArcSegment · function · L71-L71 — ArcSegment(): Circle() {}
+- ArcSegment · function · L72-L86 — ArcSegment(Point center, double radius, Point start, Point end, ArcDirection dir) :
+- is_valid · function · L97-L97 — bool is_valid() const { return is_arc; }
+- clip_start · function · L98-L98 — bool clip_start(const Point& point);
+- clip_end · function · L99-L99 — bool clip_end(const Point& point);
+- reverse · function · L100-L100 — bool reverse();
+- split_at · function · L101-L101 — bool split_at(const Point& point, ArcSegment& p1, ArcSegment& p2);
+- is_point_inside · function · L102-L102 — bool is_point_inside(const Point& point) const;
+- update_angle_and_length · function · L105-L105 — void update_angle_and_length();
+- try_create_arc · function · L108-L114 — static bool try_create_arc(
+- try_create_arc · function · L115-L121 — static bool try_create_arc(
+- are_points_within_slice · function · L123-L123 — static bool are_points_within_slice(const ArcSegment& test_arc, const Points &points);
+- are_points_within_slice · function · L124-L124 — static bool are_points_within_slice(const ArcSegment& test_arc, const Points3 &points);
+- ray_intersects_segment · function · L126-L126 — static bool ray_intersects_segment(const Point& rayOrigin, const Vec2d& rayDirection, const Line& segment);
+- calc_arc_radian · function · L128-L128 — static float calc_arc_radian(Vec3f start_pos, Vec3f end_pos, Vec3f center_pos, bool is_ccw);
+- calc_arc_radius · function · L129-L129 — static float calc_arc_radius(Vec3f start_pos, Vec3f center_pos);
+- calc_arc_length · function · L130-L130 — static float calc_arc_length(Vec3f start_pos, Vec3f end_pos, Vec3f center_pos, bool is_ccw);
+- try_create_arc · function · L132-L139 — static bool try_create_arc(

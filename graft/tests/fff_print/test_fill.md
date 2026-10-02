@@ -1,0 +1,30 @@
+# tests/fff_print/test_fill.cpp
+
+- test_if_solid_surface_filled · function · L26-L26 — bool test_if_solid_surface_filled(const ExPolygon& expolygon, double flow_spacing, double angle = 0, double density = 1.0);
+- surface · function · L47-L47 — Slic3r::Surface surface(stTop, poly);
+- e · function · L93-L93 — ExPolygon e(test_square, test_hole);
+- expolygon · function · L131-L131 — Slic3r::ExPolygon expolygon(square);
+- surface · function · L136-L136 — Surface surface(stTop, expolygon);
+- expolygon · function · L158-L158 — Slic3r::ExPolygon expolygon(points);
+- expolygon · function · L186-L186 — Slic3r::ExPolygon expolygon(points);
+- expolygon · function · L195-L195 — Slic3r::ExPolygon expolygon(points);
+- test_if_solid_surface_filled · function · L440-L486 — bool test_if_solid_surface_filled(const ExPolygon& expolygon, double flow_spacing, double angle, double density)
+- surface · function · L453-L453 — Surface surface(stBottom, expolygon);
+- dominant_fill_angle · function · L490-L527 — template<typename RolePred> static int dominant_fill_angle(const Layer &layer, RolePred role_wanted)
+- angles_per_layer · function · L529-L535 — template<typename RolePred> static std::vector<int> angles_per_layer(const Print &print, RolePred role_wanted)
+- solid_role · function · L537-L537 — static bool solid_role(ExtrusionRole role) { return is_solid_infill(role) && role != erIroning; }
+- sparse_role · function · L538-L538 — static bool sparse_role(ExtrusionRole role) { return role == erInternalInfill; }
+- ironing_role · function · L539-L539 — static bool ironing_role(ExtrusionRole role) { return role == erIroning; }
+- ironing_config · function · L683-L696 — PrintRegionConfig ironing_config(IroningType type,
+- spiral_inset_fill · function · L776-L789 — Slic3r::Polylines spiral_inset_fill(const Slic3r::ExPolygon &surface_shape, double spacing)
+- surface · function · L787-L787 — Slic3r::Surface surface(Slic3r::stBottom, surface_shape);
+- rectangle · function · L791-L795 — Slic3r::ExPolygon rectangle(double x, double y, double w, double h)
+- uncovered_area · function · L799-L808 — std::pair<double, double> uncovered_area(const Slic3r::ExPolygon &surface_shape, const Slic3r::Polygons &covered)
+- beads_of · function · L810-L813 — Slic3r::Polygons beads_of(const Slic3r::Polylines &paths, double width)
+- beads_of · function · L815-L826 — Slic3r::Polygons beads_of(const Slic3r::ThickPolylines &paths)
+- surface · function · L946-L946 — const Slic3r::Surface surface(Slic3r::stTop, ring);
+- surface · function · L996-L996 — Slic3r::Surface surface(stInternal, square);
+- SparseInfillShape · class · L1029-L1037 — struct SparseInfillShape
+- sparse_infill_shape · function · L1039-L1076 — static SparseInfillShape sparse_infill_shape(const Print &print)
+- surface · function · L1250-L1250 — Slic3r::Surface surface(stInternal, region);
+- printed_tree · function · L1352-L1352 — const AABBTreeLines::LinesDistancer<Line> printed_tree(to_lines(printed));

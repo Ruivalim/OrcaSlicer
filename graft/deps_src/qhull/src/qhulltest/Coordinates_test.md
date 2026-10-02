@@ -1,0 +1,35 @@
+# deps_src/qhull/src/qhulltest/Coordinates_test.cpp
+
+- Coordinates_test · class · L26-L44 — class Coordinates_test : public RoadTest
+- t_construct · function · L32-L32 — void t_construct();
+- t_convert · function · L33-L33 — void t_convert();
+- t_element · function · L34-L34 — void t_element();
+- t_readonly · function · L35-L35 — void t_readonly();
+- t_operator · function · L36-L36 — void t_operator();
+- t_const_iterator · function · L37-L37 — void t_const_iterator();
+- t_iterator · function · L38-L38 — void t_iterator();
+- t_coord_iterator · function · L39-L39 — void t_coord_iterator();
+- t_mutable_coord_iterator · function · L40-L40 — void t_mutable_coord_iterator();
+- t_readwrite · function · L41-L41 — void t_readwrite();
+- t_search · function · L42-L42 — void t_search();
+- t_io · function · L43-L43 — void t_io();
+- add_Coordinates_test · function · L46-L50 — void
+- t_construct · method · L52-L78 — void Coordinates_test::
+- c2 · function · L60-L60 — Coordinates c2(c);
+- c4 · function · L71-L71 — Coordinates c4(vc);
+- c5 · function · L73-L73 — Coordinates c5(c3);
+- t_convert · method · L80-L105 — void Coordinates_test::
+- t_element · method · L107-L138 — void Coordinates_test::
+- t_readonly · method · L140-L151 — void Coordinates_test::
+- t_operator · method · L153-L182 — void Coordinates_test::
+- c2 · function · L157-L157 — Coordinates c2(c);
+- t_const_iterator · method · L184-L216 — void Coordinates_test::
+- i3 · function · L213-L213 — Coordinates::const_iterator i3(i2);
+- t_iterator · method · L218-L251 — void Coordinates_test::
+- t_coord_iterator · method · L253-L299 — void Coordinates_test::
+- i · function · L258-L258 — CoordinatesIterator i(c);
+- t_mutable_coord_iterator · method · L301-L402 — void Coordinates_test::
+- i · function · L307-L307 — MutableCoordinatesIterator i(c);
+- t_readwrite · method · L404-L478 — void Coordinates_test::
+- t_search · method · L480-L523 — void Coordinates_test::
+- t_io · method · L525-L535 — void Coordinates_test::

@@ -1,0 +1,48 @@
+# deps_src/clipper2/Clipper2Lib/include/clipper2/clipper.export.h
+
+- CRect64 · type · L145-L145 — typedef CRect<int64_t> CRect64;
+- CRectD · type · L146-L146 — typedef CRect<double> CRectD;
+- CRectIsEmpty · function · L149-L152 — inline bool CRectIsEmpty(const CRect<T>& rect)
+- Reinterpret · function · L166-L168 — inline T1 Reinterpret(T2 value)
+- Version · function · L182-L182 — EXTERN_DLL_EXPORT const char* Version();
+- BooleanOp64 · function · L194-L198 — EXTERN_DLL_EXPORT int BooleanOp64(uint8_t cliptype,
+- BooleanOp_PolyTree64 · function · L200-L204 — EXTERN_DLL_EXPORT int BooleanOp_PolyTree64(uint8_t cliptype,
+- BooleanOpD · function · L206-L209 — EXTERN_DLL_EXPORT int BooleanOpD(uint8_t cliptype,
+- BooleanOp_PolyTreeD · function · L212-L215 — EXTERN_DLL_EXPORT int BooleanOp_PolyTreeD(uint8_t cliptype,
+- InflatePaths64 · function · L218-L220 — EXTERN_DLL_EXPORT CPaths64 InflatePaths64(const CPaths64 paths,
+- InflatePathsD · function · L223-L225 — EXTERN_DLL_EXPORT CPathsD InflatePathsD(const CPathsD paths,
+- InflatePath64 · function · L228-L230 — EXTERN_DLL_EXPORT CPaths64 InflatePath64(const CPath64 path,
+- InflatePathD · function · L233-L235 — EXTERN_DLL_EXPORT CPathsD InflatePathD(const CPathD path,
+- GetPathCountAndCPathsArrayLen · function · L262-L835 — static void GetPathCountAndCPathsArrayLen(const Paths<T>& paths,
+- paths · function · L267-L268 — for (const Path<T>& path : paths)
+- size · function · L267-L270 — for (const Path<T>& path : paths)
+- size · function · L268-L268 — if (path.size())
+- GetPolytreeCountAndCStorageSize64 · function · L295-L300 — static void GetPolytreeCountAndCStorageSize64(const PolyTree64& tree,
+- GetPolytreeCountAndCStorageSizeD · function · L302-L307 — static void GetPolytreeCountAndCStorageSizeD(const PolyTreeD& tree,
+- CreateCPathsFromPathsT · function · L310-L310 — static T* CreateCPathsFromPathsT(const Paths<T>& paths)
+- ConvertCPathDToPath64WithScale · function · L435-L455 — static Path64 ConvertCPathDToPath64WithScale(const CPathD path, double scale)
+- ConvertCPathsDToPaths64 · function · L457-L485 — static Paths64 ConvertCPathsDToPaths64(const CPathsD paths, double scale)
+- CreateCPolyPath64 · function · L487-L532 — static void CreateCPolyPath64(const PolyPath64* pp, int64_t*& v)
+- Polygon · function · L491-L491 — for (const Point64& pt : pp->Polygon())
+- CreateCPolyTreeD · function · L534-L534 — static double* CreateCPolyTreeD(const PolyTreeD& tree)
+- Version · function · L554-L554 — EXTERN_DLL_EXPORT const char* Version()
+- BooleanOp64 · function · L559-L588 — EXTERN_DLL_EXPORT int BooleanOp64(uint8_t cliptype,
+- BooleanOp_PolyTree64 · function · L590-L620 — EXTERN_DLL_EXPORT int BooleanOp_PolyTree64(uint8_t cliptype,
+- BooleanOpD · function · L622-L653 — EXTERN_DLL_EXPORT int BooleanOpD(uint8_t cliptype,
+- clipper · function · L638-L638 — ClipperD clipper(precision);
+- BooleanOp_PolyTreeD · function · L655-L689 — EXTERN_DLL_EXPORT int BooleanOp_PolyTreeD(uint8_t cliptype,
+- clipper · function · L673-L673 — ClipperD clipper(precision);
+- InflatePaths64 · function · L691-L703 — EXTERN_DLL_EXPORT CPaths64 InflatePaths64(const CPaths64 paths,
+- clip_offset · function · L697-L698 — ClipperOffset clip_offset( miter_limit,
+- InflatePathsD · function · L705-L719 — EXTERN_DLL_EXPORT CPathsD InflatePathsD(const CPathsD paths,
+- clip_offset · function · L713-L713 — ClipperOffset clip_offset(miter_limit, arc_tolerance, reverse_solution);
+- InflatePath64 · function · L722-L734 — EXTERN_DLL_EXPORT CPaths64 InflatePath64(const CPath64 path,
+- clip_offset · function · L728-L729 — ClipperOffset clip_offset(miter_limit,
+- InflatePathD · function · L736-L751 — EXTERN_DLL_EXPORT CPathsD InflatePathD(const CPathD path,
+- clip_offset · function · L744-L744 — ClipperOffset clip_offset(miter_limit, arc_tolerance, reverse_solution);
+- int · function · L763-L765 — EXTERN_DLL_EXPORT CPathsD RectClipD(const CRectD& rect, const CPathsD paths, int precision)
+- RectClipLines64 · function · L783-L783 — class RectClipLines64 rcl (r);
+- int · function · L790-L792 — const CPathsD paths, int precision)
+- CRectToRect · function · L796-L796 — Rect64 r = ScaleRect<int64_t, double>(CRectToRect(rect), scale);
+- SetZCallback64 · function · L823-L826 — EXTERN_DLL_EXPORT void SetZCallback64(DLLZCallback64 callback)
+- SetZCallbackD · function · L828-L831 — EXTERN_DLL_EXPORT void SetZCallbackD(DLLZCallbackD callback)

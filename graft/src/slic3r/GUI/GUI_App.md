@@ -1,0 +1,390 @@
+# src/slic3r/GUI/GUI_App.hpp
+
+- wxMenuItem · class · L41-L41 — class wxMenuItem;
+- wxMenuBar · class · L42-L42 — class wxMenuBar;
+- wxTopLevelWindow · class · L43-L43 — class wxTopLevelWindow;
+- wxDataViewCtrl · class · L44-L44 — class wxDataViewCtrl;
+- wxBookCtrlBase · class · L45-L45 — class wxBookCtrlBase;
+- Notebook · class · L47-L47 — class Notebook;
+- AppConfig · class · L53-L53 — class AppConfig;
+- FilamentColorCodeQuery · class · L54-L54 — class FilamentColorCodeQuery;
+- PresetBundle · class · L55-L55 — class PresetBundle;
+- PresetUpdater · class · L56-L56 — class PresetUpdater;
+- ModelObject · class · L57-L57 — class ModelObject;
+- Model · class · L58-L58 — class Model;
+- UserManager · class · L59-L59 — class UserManager;
+- DeviceManager · class · L60-L60 — class DeviceManager;
+- MachineObject · class · L61-L61 — class MachineObject;
+- NetworkAgent · class · L62-L62 — class NetworkAgent;
+- IPrinterAgent · class · L63-L63 — class IPrinterAgent;
+- TaskManager · class · L64-L64 — class TaskManager;
+- WasCancelledFn · type · L67-L67 — typedef std::function<bool()> WasCancelledFn;
+- RemovableDriveManager · class · L71-L71 — class RemovableDriveManager;
+- OtherInstanceMessageHandler · class · L72-L72 — class OtherInstanceMessageHandler;
+- ShortcutRegistry · class · L73-L73 — class ShortcutRegistry;
+- ShortcutContext · type · L74-L74 — enum class ShortcutContext : uint8_t;
+- PreferencesTab · type · L75-L75 — enum class PreferencesTab;
+- MainFrame · class · L76-L76 — class MainFrame;
+- Sidebar · class · L77-L77 — class Sidebar;
+- ObjectSettings · class · L78-L78 — class ObjectSettings;
+- ObjectList · class · L79-L79 — class ObjectList;
+- ObjectLayers · class · L80-L80 — class ObjectLayers;
+- Plater · class · L81-L81 — class Plater;
+- ParamsPanel · class · L82-L82 — class ParamsPanel;
+- NotificationManager · class · L83-L83 — class NotificationManager;
+- Downloader · class · L84-L84 — class Downloader;
+- ParamsDialog · class · L86-L86 — class ParamsDialog;
+- HMSQuery · class · L87-L87 — class HMSQuery;
+- ModelMallDialog · class · L88-L88 — class ModelMallDialog;
+- PingCodeBindDialog · class · L89-L89 — class PingCodeBindDialog;
+- PresetBundleDialog · class · L90-L90 — class PresetBundleDialog;
+- ZUserLogin · class · L91-L91 — class ZUserLogin;
+- NetworkErrorDialog · class · L92-L92 — class NetworkErrorDialog;
+- PluginsDialog · class · L93-L93 — class PluginsDialog;
+- SpeedDialWebDialog · class · L94-L94 — class SpeedDialWebDialog;
+- TerminalDialog · class · L95-L95 — class TerminalDialog;
+- FileType · type · L98-L122 — enum FileType
+- file_wildcards · function · L124-L124 — extern wxString file_wildcards(FileType file_type, const std::string &custom_extension = std::string{});
+- ConfigMenuIDs · type · L126-L139 — enum ConfigMenuIDs
+- OrcaSlicerMenuIDs · type · L141-L144 — enum OrcaSlicerMenuIDs
+- CameraMenuIDs · type · L146-L150 — enum CameraMenuIDs
+- Tab · class · L153-L153 — class Tab;
+- ConfigWizard · class · L154-L154 — class ConfigWizard;
+- GizmoObjectManipulation · class · L155-L155 — class GizmoObjectManipulation;
+- VersionInfo · class · L166-L232 — class VersionInfo
+- VersionInfo · function · L175-L181 — VersionInfo()
+- parse_version_str · function · L183-L197 — void parse_version_str(std::string str)
+- convert_full_version · function · L198-L198 — static std::string convert_full_version(std::string short_version);
+- convert_short_version · function · L199-L199 — static std::string convert_short_version(std::string full_version);
+- get_full_version · function · L200-L202 — static std::string get_full_version()
+- compare · function · L205-L231 — int compare(std::string ver_str)
+- GUI_App · class · L234-L843 — class GUI_App : public wxApp
+- EAppMode · type · L239-L243 — enum class EAppMode : unsigned char
+- on_start_subscribe_again · function · L350-L350 — void            on_start_subscribe_again(std::string dev_id);
+- reset_unsigned_plugin_warning · function · L351-L351 — void            reset_unsigned_plugin_warning() { m_unsigned_plugin_warning_shown = false; }
+- get_local_models_path · function · L352-L352 — std::string     get_local_models_path();
+- OnInit · function · L353-L353 — bool            OnInit() override;
+- OnExit · function · L354-L354 — int             OnExit() override;
+- initialized · function · L355-L355 — bool            initialized() const { return m_initialized; }
+- is_enable_multi_machine · function · L356-L356 — inline bool     is_enable_multi_machine() { return this->app_config&& this->app_config->get("enable_multi_machine") == "true"; }
+- is_enable_cad_feature · function · L358-L358 — inline bool     is_enable_cad_feature() { return this->app_config && this->app_config->get_bool("enable_cad_feature"); }
+- is_auto_close_sketch_loops · function · L359-L360 — inline bool     is_auto_close_sketch_loops() { return !this->app_config
+- GUI_App · function · L366-L366 — explicit GUI_App();
+- show_message_box · function · L370-L370 — void show_message_box(std::string msg) { wxMessageBox(msg); }
+- get_app_mode · function · L371-L371 — EAppMode get_app_mode() const { return m_app_mode; }
+- getDeviceManager · function · L372-L372 — Slic3r::DeviceManager* getDeviceManager() { return m_device_manager; }
+- is_blocking_printing · function · L373-L373 — bool                   is_blocking_printing(MachineObject *obj_ = nullptr);
+- getTaskManager · function · L374-L374 — Slic3r::TaskManager*   getTaskManager() { return m_task_manager; }
+- get_hms_query · function · L375-L375 — HMSQuery* get_hms_query() { return hms_query; }
+- getAgent · function · L376-L376 — NetworkAgent* getAgent() { return m_agent; }
+- switch_printer_agent · function · L379-L379 — void switch_printer_agent();
+- resolve_printer_agent_id · function · L381-L381 — std::string resolve_printer_agent_id(const std::string& stored_id);
+- canonical_printer_agent_id · function · L384-L384 — std::string canonical_printer_agent_id(const std::string& picked_id);
+- get_filament_color_code_query · function · L386-L386 — FilamentColorCodeQuery* get_filament_color_code_query();
+- is_editor · function · L387-L387 — bool is_editor() const { return m_app_mode == EAppMode::Editor; }
+- is_gcode_viewer · function · L388-L388 — bool is_gcode_viewer() const { return m_app_mode == EAppMode::GCodeViewer; }
+- is_recreating_gui · function · L389-L389 — bool is_recreating_gui() const { return m_is_recreating_gui; }
+- logo_name · function · L390-L390 — std::string logo_name() const { return is_editor() ? "OrcaSlicer" : "OrcaSlicer-gcodeviewer"; }
+- is_closing · function · L392-L392 — bool is_closing() const { return m_is_closing.load(std::memory_order_acquire); }
+- set_closing · function · L393-L393 — void set_closing(bool closing) { m_is_closing.store(closing, std::memory_order_release); }
+- show_gcode_window · function · L396-L396 — bool show_gcode_window() const { return m_show_gcode_window; }
+- toggle_show_gcode_window · function · L397-L397 — void toggle_show_gcode_window();
+- show_3d_navigator · function · L399-L399 — bool show_3d_navigator() const { return app_config->get_bool("show_3d_navigator"); }
+- toggle_show_3d_navigator · function · L400-L400 — void toggle_show_3d_navigator() const { app_config->set_bool("show_3d_navigator", !show_3d_navigator()); }
+- show_plate_gridlines · function · L402-L402 — bool show_plate_gridlines() const { return app_config->get_bool("show_plate_gridlines"); }
+- toggle_show_plate_gridlines · function · L403-L403 — void toggle_show_plate_gridlines() const { app_config->set_bool("show_plate_gridlines", !show_plate_gridlines()); }
+- show_canvas_zoom_button · function · L405-L405 — bool show_canvas_zoom_button() const { return app_config->get_bool("show_canvas_zoom_button"); }
+- toggle_canvas_zoom_button · function · L406-L406 — void toggle_canvas_zoom_button() const { app_config->set_bool("show_canvas_zoom_button", !show_canvas_zoom_button()); }
+- show_outline · function · L408-L408 — bool show_outline() const { return app_config->get_bool("show_outline"); }
+- toggle_show_outline · function · L409-L409 — void toggle_show_outline() const { app_config->set_bool("show_outline", !show_outline()); }
+- get_inf_dialog_contect · function · L411-L411 — wxString get_inf_dialog_contect () {return m_info_dialog_content;};
+- split_str · function · L413-L413 — std::vector<std::string> split_str(std::string src, std::string separator);
+- post_init · function · L417-L417 — void            post_init();
+- shutdown · function · L418-L418 — void            shutdown();
+- get_gl_info · function · L421-L421 — static std::string get_gl_info(bool for_github);
+- init_glcontext · function · L422-L422 — wxGLContext*    init_glcontext(wxGLCanvas& canvas);
+- init_opengl · function · L423-L423 — bool            init_opengl();
+- init_download_path · function · L425-L425 — void            init_download_path();
+- init_webview_runtime · function · L427-L427 — void            init_webview_runtime();
+- get_colour_approx_luma · function · L429-L429 — static unsigned get_colour_approx_luma(const wxColour& colour);
+- dark_mode · function · L430-L430 — static bool     dark_mode();
+- get_label_default_clr_system · function · L431-L431 — const wxColour  get_label_default_clr_system();
+- get_label_default_clr_modified · function · L432-L432 — const wxColour  get_label_default_clr_modified();
+- init_label_colours · function · L433-L433 — void            init_label_colours();
+- update_label_colours_from_appconfig · function · L434-L434 — void            update_label_colours_from_appconfig();
+- update_publish_status · function · L435-L435 — void            update_publish_status();
+- has_model_mall · function · L436-L436 — bool            has_model_mall();
+- update_label_colours · function · L437-L437 — void            update_label_colours();
+- UpdateDarkUI · function · L439-L439 — void            UpdateDarkUI(wxWindow *window, bool highlited = false, bool just_font = false);
+- UpdateDarkUIWin · function · L440-L440 — void            UpdateDarkUIWin(wxWindow* win);
+- Update_dark_mode_flag · function · L441-L441 — void            Update_dark_mode_flag();
+- UpdateDlgDarkUI · function · L443-L443 — void            UpdateDlgDarkUI(wxDialog* dlg);
+- UpdateFrameDarkUI · function · L444-L444 — void            UpdateFrameDarkUI(wxFrame* dlg);
+- UpdateDVCDarkUI · function · L446-L446 — void            UpdateDVCDarkUI(wxDataViewCtrl* dvc, bool highlited = false);
+- UpdateAllStaticTextDarkUI · function · L448-L448 — void            UpdateAllStaticTextDarkUI(wxWindow* parent);
+- init_fonts · function · L449-L449 — void            init_fonts();
+- update_fonts · function · L450-L450 — void            update_fonts(const MainFrame *main_frame = nullptr);
+- set_label_clr_modified · function · L451-L451 — void            set_label_clr_modified(const wxColour& clr);
+- set_label_clr_sys · function · L452-L452 — void            set_label_clr_sys(const wxColour& clr);
+- get_side_menu_popup_status · function · L454-L454 — bool            get_side_menu_popup_status();
+- set_side_menu_popup_status · function · L455-L455 — void            set_side_menu_popup_status(bool status);
+- link_to_network_check · function · L456-L456 — std::string     link_to_network_check(); // ORCA
+- link_to_lan_only_wiki · function · L457-L457 — std::string     link_to_lan_only_wiki(); // ORCA
+- get_label_clr_modified · function · L459-L459 — const wxColour& get_label_clr_modified() { return m_color_label_modified; }
+- get_label_clr_sys · function · L460-L460 — const wxColour& get_label_clr_sys()     { return m_color_label_sys; }
+- get_label_clr_default · function · L461-L461 — const wxColour& get_label_clr_default() { return m_color_label_default; }
+- get_window_default_clr · function · L462-L462 — const wxColour& get_window_default_clr(){ return m_color_window_default; }
+- get_label_highlight_clr · function · L466-L466 — const wxColour& get_label_highlight_clr()   { return m_color_highlight_label_default; }
+- get_highlight_default_clr · function · L467-L467 — const wxColour& get_highlight_default_clr() { return m_color_highlight_default; }
+- get_color_hovered_btn_label · function · L468-L468 — const wxColour& get_color_hovered_btn_label() { return m_color_hovered_btn_label; }
+- get_color_selected_btn_bg · function · L469-L469 — const wxColour& get_color_selected_btn_bg() { return m_color_selected_btn_bg; }
+- force_colors_update · function · L470-L470 — void            force_colors_update();
+- force_menu_update · function · L472-L472 — void            force_menu_update();
+- small_font · function · L476-L476 — const wxFont&   small_font()            { return m_small_font; }
+- bold_font · function · L477-L477 — const wxFont&   bold_font()             { return m_bold_font; }
+- normal_font · function · L478-L478 — const wxFont&   normal_font()           { return m_normal_font; }
+- code_font · function · L479-L479 — const wxFont&   code_font()             { return m_code_font; }
+- link_font · function · L480-L480 — const wxFont&   link_font()             { return m_link_font; }
+- em_unit · function · L481-L481 — int             em_unit() const         { return m_em_unit; }
+- tabs_as_menu · function · L482-L482 — bool            tabs_as_menu() const;
+- get_min_size · function · L483-L483 — wxSize          get_min_size() const;
+- toolbar_icon_scale · function · L484-L484 — float           toolbar_icon_scale(const bool is_limited = false) const;
+- set_auto_toolbar_icon_scale · function · L485-L485 — void            set_auto_toolbar_icon_scale(float scale) const;
+- check_printer_presets · function · L486-L486 — void            check_printer_presets();
+- recreate_GUI · function · L488-L488 — void            recreate_GUI(const wxString& message);
+- system_info · function · L489-L489 — void            system_info();
+- keyboard_shortcuts · function · L490-L490 — void            keyboard_shortcuts(ShortcutContext page, wxWindow* parent = nullptr);   // the main frame when null
+- troubleshoot · function · L491-L491 — void            troubleshoot();
+- load_project · function · L492-L492 — void            load_project(wxWindow *parent, wxString& input_file) const;
+- import_model · function · L493-L493 — void            import_model(wxWindow *parent, wxArrayString& input_files) const;
+- import_zip · function · L494-L494 — void            import_zip(wxWindow* parent, wxString& input_file) const;
+- load_gcode · function · L495-L495 — void            load_gcode(wxWindow* parent, wxString& input_file) const;
+- transition_tridid · function · L497-L497 — wxString        transition_tridid(int trid_id) const;
+- ShowUserGuide · function · L498-L498 — void            ShowUserGuide();
+- ShowDownNetPluginDlg · function · L499-L499 — void            ShowDownNetPluginDlg();
+- ShowUserLogin · function · L500-L500 — void            ShowUserLogin(bool show = true, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- ShowOnlyFilament · function · L501-L501 — void            ShowOnlyFilament();
+- request_login · function · L503-L503 — void            request_login(bool show_user_info = false, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- check_login · function · L504-L504 — bool            check_login(const std::string& provider = ORCA_CLOUD_PROVIDER);
+- get_login_info · function · L505-L505 — void            get_login_info(const std::string& provider = ORCA_CLOUD_PROVIDER);
+- is_user_login · function · L506-L506 — bool            is_user_login(const std::string& provider = ORCA_CLOUD_PROVIDER);
+- get_printer_cloud_provider · function · L507-L507 — const std::string& get_printer_cloud_provider() const;
+- request_user_login · function · L509-L509 — void            request_user_login(int online_login = 0, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- request_user_handle · function · L510-L510 — void            request_user_handle(int online_login = 0, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- request_user_logout · function · L511-L511 — void            request_user_logout(const std::string& provider = ORCA_CLOUD_PROVIDER);
+- post_logout_to_webview · function · L512-L512 — void            post_logout_to_webview(const std::string& provider);
+- request_user_unbind · function · L513-L513 — int             request_user_unbind(std::string dev_id, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- handle_web_request · function · L514-L514 — std::string     handle_web_request(std::string cmd);
+- handle_script_message · function · L515-L515 — void            handle_script_message(std::string msg, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- request_model_download · function · L516-L516 — void            request_model_download(wxString url);
+- download_project · function · L517-L517 — void            download_project(std::string project_id);
+- request_project_download · function · L518-L518 — void            request_project_download(std::string project_id);
+- request_open_project · function · L519-L519 — void            request_open_project(std::string project_id);
+- request_remove_project · function · L520-L520 — void            request_remove_project(std::string project_id);
+- handle_http_error · function · L522-L522 — void            handle_http_error(unsigned int status, std::string body, const std::string& provider = "");
+- on_http_error · function · L523-L523 — void            on_http_error(wxCommandEvent &evt);
+- on_update_machine_list · function · L524-L524 — void            on_update_machine_list(wxCommandEvent& evt);
+- on_user_login · function · L525-L525 — void            on_user_login(wxCommandEvent &evt);
+- on_user_login_handle · function · L526-L526 — void            on_user_login_handle(wxCommandEvent& evt);
+- enable_user_preset_folder · function · L527-L527 — void            enable_user_preset_folder(bool enable);
+- is_studio_active · function · L530-L530 — bool            is_studio_active();
+- reset_to_active · function · L531-L531 — void            reset_to_active();
+- check_update · function · L535-L535 — void            check_update(bool show_tips, int by_user);
+- check_new_version · function · L536-L536 — void            check_new_version(bool show_tips = false, int by_user = 0);
+- check_new_version_sf · function · L537-L537 — void            check_new_version_sf(bool show_tips = false, int by_user = 0);
+- process_network_msg · function · L538-L538 — bool            process_network_msg(std::string dev_id, std::string msg);
+- request_new_version · function · L539-L539 — void            request_new_version(int by_user);
+- enter_force_upgrade · function · L540-L540 — void            enter_force_upgrade();
+- set_skip_version · function · L541-L541 — void            set_skip_version(bool skip = true);
+- no_new_version · function · L542-L542 — void            no_new_version();
+- format_display_version · function · L543-L543 — static std::string format_display_version();
+- format_IP · function · L544-L544 — std::string     format_IP(const std::string& ip);
+- show_dialog · function · L545-L545 — void            show_dialog(wxString msg);
+- push_notification · function · L546-L546 — void            push_notification(const MachineObject* obj, wxString msg, wxString title = wxEmptyString, UserNotificationStyle style = UserNotificationStyle::UNS_NORMAL);
+- reload_settings · function · L547-L547 — void            reload_settings();
+- remove_user_presets · function · L548-L548 — void            remove_user_presets();
+- maybe_migrate_user_presets_on_login · function · L550-L550 — bool            maybe_migrate_user_presets_on_login();
+- check_preset_parent_available · function · L553-L553 — bool            check_preset_parent_available(const std::pair<std::string, std::map<std::string, std::string>>& preset_data);
+- add_pending_vendor_preset · function · L554-L554 — void            add_pending_vendor_preset(const std::pair<std::string, std::map<std::string, std::string>>& preset_data);
+- load_pending_vendors · function · L555-L555 — void            load_pending_vendors();
+- sync_preset · function · L557-L557 — void            sync_preset(Preset* preset, bool force = false);
+- start_sync_user_preset · function · L558-L558 — void            start_sync_user_preset(bool with_progress_dlg = false);
+- stop_sync_user_preset · function · L559-L559 — void            stop_sync_user_preset();
+- restart_sync_user_preset · function · L560-L560 — void            restart_sync_user_preset();
+- force_push_conflicting_preset · function · L563-L563 — void            force_push_conflicting_preset(const std::string& setting_id);
+- on_stealth_mode_enter · function · L564-L564 — void            on_stealth_mode_enter();
+- check_bundle_updates · function · L567-L567 — void            check_bundle_updates();
+- sync_bundle · function · L568-L568 — int             sync_bundle(std::string bundle_id, std::string version);
+- unsubscribe_bundle · function · L569-L569 — bool            unsubscribe_bundle(const std::string& id);
+- update_single_bundle · function · L570-L570 — void            update_single_bundle(wxCommandEvent& evt);
+- start_http_server · function · L579-L579 — void            start_http_server(const std::string& provider = ORCA_CLOUD_PROVIDER);
+- start_http_server · function · L580-L580 — void            start_http_server(int port, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- stop_http_server · function · L581-L581 — void            stop_http_server();
+- on_show_check_privacy_dlg · function · L583-L583 — void            on_show_check_privacy_dlg(int online_login = 0, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- show_check_privacy_dlg · function · L584-L584 — void            show_check_privacy_dlg(wxCommandEvent& evt);
+- on_check_privacy_update · function · L585-L585 — void            on_check_privacy_update(wxCommandEvent &evt);
+- check_privacy_update · function · L586-L586 — bool            check_privacy_update();
+- check_privacy_version · function · L587-L587 — void            check_privacy_version(int online_login = 0, const std::string& provider = ORCA_CLOUD_PROVIDER);
+- check_track_enable · function · L588-L588 — void            check_track_enable();
+- catch_error · function · L590-L590 — static bool     catch_error(std::function<void()> cb, const std::string& err);
+- persist_window_geometry · function · L592-L592 — void            persist_window_geometry(wxTopLevelWindow *window, bool default_maximized = false);
+- update_ui_from_settings · function · L593-L593 — void            update_ui_from_settings();
+- load_language · function · L595-L595 — bool            load_language(wxString language, bool initial);
+- get_tab · function · L597-L597 — Tab*            get_tab(Preset::Type type);
+- get_plate_tab · function · L598-L598 — Tab*            get_plate_tab();
+- get_model_tab · function · L599-L599 — Tab*            get_model_tab(bool part = false);
+- get_layer_tab · function · L600-L600 — Tab*            get_layer_tab();
+- get_saved_mode · function · L601-L601 — ConfigOptionMode get_saved_mode();
+- get_mode · function · L602-L602 — ConfigOptionMode get_mode();
+- get_saved_mode_str · function · L603-L603 — std::string     get_saved_mode_str();
+- get_mode_str · function · L604-L604 — std::string     get_mode_str();
+- save_mode · function · L605-L605 — void            save_mode(const /*ConfigOptionMode*/int mode) ;
+- set_mode · function · L608-L608 — void            set_mode(ConfigOptionMode mode);
+- enable_developer_mode · function · L610-L610 — void            enable_developer_mode();
+- update_mode · function · L611-L611 — void            update_mode();
+- update_internal_development · function · L612-L612 — void            update_internal_development();
+- show_ip_address_enter_dialog · function · L613-L613 — void            show_ip_address_enter_dialog(wxString title = wxEmptyString);
+- show_ip_address_enter_dialog_handler · function · L614-L614 — void            show_ip_address_enter_dialog_handler(wxCommandEvent &evt);
+- show_modal_ip_address_enter_dialog · function · L615-L615 — bool            show_modal_ip_address_enter_dialog(bool input_sn, wxString title = wxEmptyString);
+- has_unsaved_preset_changes · function · L620-L620 — bool            has_unsaved_preset_changes() const;
+- has_current_preset_changes · function · L621-L621 — bool            has_current_preset_changes() const;
+- update_saved_preset_from_current_preset · function · L622-L622 — void            update_saved_preset_from_current_preset();
+- get_selected_presets · function · L623-L623 — std::vector<std::pair<unsigned int, std::string>> get_selected_presets() const;
+- check_and_save_current_preset_changes · function · L624-L624 — bool            check_and_save_current_preset_changes(const wxString& caption, const wxString& header, bool remember_choice = true, bool use_dont_save_insted_of_discard = false);
+- apply_keeped_preset_modifications · function · L625-L625 — void            apply_keeped_preset_modifications();
+- check_and_keep_current_preset_changes · function · L626-L626 — bool            check_and_keep_current_preset_changes(const wxString& caption, const wxString& header, int action_buttons, bool* postponed_apply_of_keeped_changes = nullptr);
+- can_load_project · function · L627-L627 — bool            can_load_project();
+- check_print_host_queue · function · L628-L628 — bool            check_print_host_queue();
+- checked_tab · function · L629-L629 — bool            checked_tab(Tab* tab);
+- load_current_presets · function · L631-L631 — void            load_current_presets(bool active_preset_combox = false, bool check_printer_presets = true);
+- get_delete_cache_presets · function · L632-L632 — std::map<std::string, std::string> &get_delete_cache_presets();
+- get_delete_cache_presets_lock · function · L633-L633 — std::map<std::string, std::string> get_delete_cache_presets_lock();
+- process_delete_presets · function · L634-L634 — void            process_delete_presets();
+- delete_preset_from_cloud · function · L635-L635 — void            delete_preset_from_cloud(std::string setting_id, std::string preset_file_path);
+- preset_deleted_from_cloud · function · L636-L636 — void            preset_deleted_from_cloud(std::string setting_id);
+- scan_orphaned_info_files · function · L637-L637 — void            scan_orphaned_info_files();
+- extract_setting_id_from_info · function · L638-L638 — static std::string extract_setting_id_from_info(const std::string& info_file_path);
+- filter_string · function · L640-L640 — wxString        filter_string(wxString str);
+- current_language_code · function · L641-L641 — wxString        current_language_code() const { return m_active_language_code.empty() && m_wxLocale ? m_wxLocale->GetCanonicalName() : m_active_language_code; }
+- current_language_code_safe · function · L643-L643 — wxString 		current_language_code_safe() const;
+- is_localized · function · L644-L644 — bool            is_localized() const { return m_wxLocale->GetLocale() != "English"; }
+- open_preferences · function · L646-L646 — void            open_preferences();   // on the General tab
+- open_preferences · function · L647-L647 — void            open_preferences(PreferencesTab tab, const std::string& highlight_option = std::string());
+- open_presetbundledialog · function · L648-L648 — void            open_presetbundledialog(size_t open_on_tab = 0, const std::string& highlight_option = std::string());
+- open_plugins_dialog · function · L649-L649 — void            open_plugins_dialog(size_t open_on_tab = 0, const std::string& highlight_option = std::string());
+- refresh_plugins · function · L651-L651 — void            refresh_plugins();
+- install_local_plugin · function · L652-L652 — void            install_local_plugin();
+- open_terminal_dialog · function · L653-L653 — void            open_terminal_dialog();
+- open_speed_dial · function · L654-L654 — void            open_speed_dial();
+- action_registry · function · L655-L655 — ActionRegistry& action_registry() { return m_action_registry; }
+- open_exportpresetbundledialog · function · L656-L656 — void            open_exportpresetbundledialog(size_t open_on_tab = 0, const std::string& highlight_option = std::string());
+- OnExceptionInMainLoop · function · L657-L657 — virtual bool OnExceptionInMainLoop() override;
+- open_browser_with_warning_dialog · function · L659-L659 — bool            open_browser_with_warning_dialog(const wxString& url, int flags = 0);
+- OSXStoreOpenFiles · function · L661-L661 — void            OSXStoreOpenFiles(const wxArrayString &files);
+- MacOpenFiles · function · L663-L663 — void            MacOpenFiles(const wxArrayString &fileNames) override;
+- MacOpenURL · function · L664-L664 — void            MacOpenURL(const wxString& url) override;
+- sidebar · function · L667-L667 — Sidebar&             sidebar();
+- obj_manipul · function · L668-L668 — GizmoObjectManipulation *obj_manipul();
+- obj_settings · function · L669-L669 — ObjectSettings*      obj_settings();
+- obj_list · function · L670-L670 — ObjectList*          obj_list();
+- obj_layers · function · L671-L671 — ObjectLayers*        obj_layers();
+- plater · function · L672-L672 — Plater*              plater();
+- plater · function · L673-L673 — const Plater*        plater() const;
+- params_panel · function · L674-L674 — ParamsPanel*         params_panel();
+- params_dialog · function · L675-L675 — ParamsDialog*        params_dialog();
+- model · function · L676-L676 — Model&      		 model();
+- notification_manager · function · L677-L677 — NotificationManager * notification_manager();
+- downloader · function · L678-L678 — Downloader*          downloader();
+- set_download_model_url · function · L688-L688 — void            set_download_model_url(std::string url) {m_mall_model_download_url = url;}
+- set_download_model_name · function · L689-L689 — void            set_download_model_name(std::string name) {m_mall_model_download_name = name;}
+- get_download_model_url · function · L690-L690 — std::string     get_download_model_url() {return m_mall_model_download_url;}
+- get_download_model_name · function · L691-L691 — std::string     get_download_model_name() {return m_mall_model_download_name;}
+- is_running_on_arm64 · function · L694-L694 — bool            is_running_on_arm64() { return m_is_arm64; }
+- load_url · function · L697-L697 — void            load_url(wxString url);
+- open_mall_page_dialog · function · L698-L698 — void            open_mall_page_dialog();
+- open_publish_page_dialog · function · L699-L699 — void            open_publish_page_dialog();
+- remove_mall_system_dialog · function · L700-L700 — void            remove_mall_system_dialog();
+- run_script · function · L701-L701 — void            run_script(wxString js);
+- is_adding_script_handler · function · L702-L702 — bool            is_adding_script_handler() { return m_adding_script_handler; }
+- set_adding_script_handler · function · L703-L703 — void            set_adding_script_handler(bool status) { m_adding_script_handler = status; }
+- from_hex · function · L705-L705 — char            from_hex(char ch);
+- url_encode · function · L706-L706 — std::string     url_encode(std::string value);
+- url_decode · function · L707-L707 — std::string     url_decode(std::string value);
+- popup_ping_bind_dialog · function · L709-L709 — void            popup_ping_bind_dialog();
+- remove_ping_bind_dialog · function · L710-L710 — void            remove_ping_bind_dialog();
+- get_preset_updater · function · L721-L721 — PresetUpdater*  get_preset_updater() { return preset_updater; }
+- tab_panel · function · L723-L723 — Notebook*       tab_panel() const ;
+- extruders_cnt · function · L724-L724 — int             extruders_cnt() const;
+- extruders_edited_cnt · function · L725-L725 — int             extruders_edited_cnt() const;
+- filaments_cnt · function · L728-L728 — int             filaments_cnt() const;
+- global_print_sequence · function · L729-L729 — PrintSequence   global_print_sequence() const;
+- removable_drive_manager · function · L735-L735 — RemovableDriveManager* removable_drive_manager() { return m_removable_drive_manager.get(); }
+- other_instance_message_handler · function · L736-L736 — OtherInstanceMessageHandler* other_instance_message_handler() { return m_other_instance_message_handler.get(); }
+- single_instance_checker · function · L737-L737 — wxSingleInstanceChecker* single_instance_checker() {return m_single_instance_checker.get();}
+- init_single_instance_checker · function · L739-L739 — void        init_single_instance_checker(const std::string &name, const std::string &path);
+- set_instance_hash · function · L740-L740 — void        set_instance_hash (const size_t hash) { m_instance_hash_int = hash; m_instance_hash_string = std::to_string(hash); }
+- get_instance_hash_string · function · L741-L741 — std::string get_instance_hash_string ()           { return m_instance_hash_string; }
+- get_instance_hash_int · function · L742-L742 — size_t      get_instance_hash_int ()              { return m_instance_hash_int; }
+- imgui · function · L744-L744 — ImGuiWrapper* imgui() { return m_imgui.get(); }
+- shortcuts · function · L745-L745 — ShortcutRegistry& shortcuts() { return *m_shortcuts; }
+- on_shortcuts_changed · function · L747-L747 — void          on_shortcuts_changed();
+- printhost_job_queue · function · L749-L749 — PrintHostJobQueue& printhost_job_queue() { return *m_printhost_job_queue.get(); }
+- open_web_page_localized · function · L751-L751 — void            open_web_page_localized(const std::string &http_address);
+- may_switch_to_SLA_preset · function · L752-L752 — bool            may_switch_to_SLA_preset(const wxString& caption);
+- run_wizard · function · L753-L753 — bool            run_wizard(ConfigWizard::RunReason reason, ConfigWizard::StartPage start_page = ConfigWizard::SP_WELCOME);
+- show_desktop_integration_dialog · function · L754-L754 — void            show_desktop_integration_dialog();
+- gcode_thumbnails_debug · function · L758-L758 — void            gcode_thumbnails_debug();
+- get_opengl_manager · function · L761-L761 — OpenGLManager& get_opengl_manager() { return m_opengl_mgr; }
+- get_shader · function · L762-L762 — GLShaderProgram* get_shader(const std::string& shader_name) { return m_opengl_mgr.get_shader(shader_name); }
+- get_current_shader · function · L763-L763 — GLShaderProgram* get_current_shader() { return m_opengl_mgr.get_current_shader(); }
+- is_gl_version_greater_or_equal_to · function · L765-L765 — bool is_gl_version_greater_or_equal_to(unsigned int major, unsigned int minor) const { return m_opengl_mgr.get_gl_info().is_version_greater_or_equal_to(major, minor); }
+- is_glsl_version_greater_or_equal_to · function · L766-L766 — bool is_glsl_version_greater_or_equal_to(unsigned int major, unsigned int minor) const { return m_opengl_mgr.get_gl_info().is_glsl_version_greater_or_equal_to(major, minor); }
+- GetSingleChoiceIndex · function · L767-L767 — int  GetSingleChoiceIndex(const wxString& message, const wxString& caption, const wxArrayString& choices, int initialSelection);
+- associate_files · function · L770-L770 — void            associate_files(std::wstring extend);
+- disassociate_files · function · L771-L771 — void            disassociate_files(std::wstring extend);
+- check_url_association · function · L772-L772 — bool            check_url_association(std::wstring url_prefix, std::wstring& reg_bin);
+- associate_url · function · L773-L773 — void            associate_url(std::wstring url_prefix);
+- disassociate_url · function · L774-L774 — void            disassociate_url(std::wstring url_prefix);
+- start_download · function · L777-L777 — void            start_download(std::string url);
+- get_plugin_url · function · L779-L779 — std::string     get_plugin_url(std::string name, std::string country_code);
+- download_plugin · function · L780-L780 — int             download_plugin(std::string name, std::string package_name, InstallProgressFn pro_fn = nullptr, WasCancelledFn cancel_fn = nullptr);
+- install_plugin · function · L781-L781 — int             install_plugin(std::string name, std::string package_name, InstallProgressFn pro_fn = nullptr, WasCancelledFn cancel_fn = nullptr);
+- get_http_url · function · L782-L782 — std::string     get_http_url(std::string country_code, std::string path = {});
+- get_model_http_url · function · L783-L783 — std::string     get_model_http_url(std::string country_code);
+- use_legacy_network_plugin · function · L784-L784 — bool            use_legacy_network_plugin() const;
+- is_compatibility_version · function · L785-L785 — bool            is_compatibility_version();
+- check_networking_version · function · L786-L786 — bool            check_networking_version();
+- cancel_networking_install · function · L787-L787 — void            cancel_networking_install();
+- restart_networking · function · L788-L788 — void            restart_networking();
+- check_config_updates_from_updater · function · L789-L789 — void            check_config_updates_from_updater() { check_updates(false); }
+- show_network_plugin_download_dialog · function · L791-L791 — void            show_network_plugin_download_dialog(bool is_update = false);
+- migrate_network_plugin_config · function · L795-L795 — void            migrate_network_plugin_config();
+- hot_reload_network_plugin · function · L796-L796 — bool            hot_reload_network_plugin();
+- install_network_plugin_from_ota · function · L797-L797 — bool            install_network_plugin_from_ota(bool& had_cache);
+- get_latest_network_version · function · L798-L798 — std::string     get_latest_network_version() const;
+- has_network_update_available · function · L799-L799 — bool            has_network_update_available() const;
+- get_bbl_client_version · function · L803-L803 — std::string     get_bbl_client_version();
+- updating_bambu_networking · function · L806-L806 — int             updating_bambu_networking();
+- on_init_inner · function · L807-L807 — bool            on_init_inner();
+- copy_network_if_available · function · L808-L808 — void            copy_network_if_available();
+- on_init_network · function · L809-L809 — bool            on_init_network(bool try_backup = false);
+- init_networking_callbacks · function · L810-L810 — void            init_networking_callbacks();
+- init_app_config · function · L811-L811 — void            init_app_config();
+- init_plugin_gui_wiring · function · L814-L814 — void            init_plugin_gui_wiring();
+- remove_old_networking_plugins · function · L815-L815 — void            remove_old_networking_plugins();
+- drain_pending_events · function · L816-L816 — void            drain_pending_events(int timeout_ms);
+- wait_for_network_idle · function · L817-L817 — bool            wait_for_network_idle(int timeout_ms);
+- check_older_app_config · function · L818-L818 — bool            check_older_app_config(Semver current_version, bool backup);
+- copy_older_config · function · L819-L819 — void            copy_older_config();
+- window_pos_save · function · L820-L820 — void            window_pos_save(wxTopLevelWindow* window, const std::string &name);
+- window_pos_restore · function · L821-L821 — bool            window_pos_restore(wxTopLevelWindow* window, const std::string &name, bool default_maximized = false);
+- window_pos_sanitize · function · L822-L822 — void            window_pos_sanitize(wxTopLevelWindow* window);
+- window_pos_center · function · L823-L823 — void            window_pos_center(wxTopLevelWindow *window);
+- refresh_printer_agent_dropdown · function · L827-L827 — void refresh_printer_agent_dropdown();
+- set_live_printer_agent · function · L828-L828 — void set_live_printer_agent(std::shared_ptr<IPrinterAgent> agent); // null clears the selection
+- config_wizard_startup · function · L830-L830 — bool            config_wizard_startup();
+- check_updates · function · L831-L831 — void            check_updates(const bool verbose);
+- select_machine · function · L834-L834 — void            select_machine(const std::string& agent_id);
+- is_support_filament · function · L851-L851 — bool is_support_filament(int extruder_id, bool strict_check = true);
+- is_soluble_filament · function · L852-L852 — bool is_soluble_filament(int extruder_id);
+- has_filaments · function · L854-L854 — bool has_filaments(const std::vector<std::string>& model_filaments);

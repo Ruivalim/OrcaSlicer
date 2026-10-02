@@ -1,0 +1,40 @@
+# src/slic3r/plugin/PluginAuditManager.hpp
+
+- AuditDecision · class · L17-L20 — struct AuditDecision
+- AuditViolation · class · L22-L26 — struct AuditViolation
+- AllowedRoot · class · L31-L34 — struct AllowedRoot
+- AuditEventCategory · type · L38-L48 — enum class AuditEventCategory
+- is_inside_allowed_root · function · L52-L53 — bool is_inside_allowed_root(const boost::filesystem::path& candidate,
+- PluginAuditManager · class · L55-L180 — class PluginAuditManager
+- instance · function · L58-L58 — static PluginAuditManager& instance();
+- install_hook · function · L61-L61 — void install_hook();
+- set_current_plugin · function · L64-L64 — void        set_current_plugin(const std::string& plugin_key);
+- current_plugin · function · L65-L65 — std::string current_plugin() const;
+- clear_current_plugin · function · L66-L66 — void        clear_current_plugin();
+- set_current_capability · function · L72-L72 — void        set_current_capability(const std::string& capability_name);
+- current_capability · function · L73-L73 — std::string current_capability() const;
+- clear_current_capability · function · L74-L74 — void        clear_current_capability();
+- add_global_allowed_root · function · L80-L80 — void add_global_allowed_root(const boost::filesystem::path& root, bool allow_write = true);
+- add_scoped_allowed_root · function · L81-L81 — void add_scoped_allowed_root(const boost::filesystem::path& root, bool allow_write = true);
+- add_denied_filename · function · L92-L92 — void add_denied_filename(const std::string& filename);
+- default_denied_filenames · function · L97-L97 — static std::vector<std::string> default_denied_filenames();
+- is_denied_filename · function · L102-L102 — bool is_denied_filename(const boost::filesystem::path& candidate) const;
+- add_denied_path_keyword · function · L113-L113 — void add_denied_path_keyword(const std::string& keyword);
+- default_denied_path_keywords · function · L117-L117 — static std::vector<std::string> default_denied_path_keywords();
+- is_denied_path_keyword · function · L121-L121 — bool is_denied_path_keyword(const boost::filesystem::path& candidate) const;
+- is_denied_path · function · L126-L126 — bool is_denied_path(const boost::filesystem::path& candidate) const;
+- check_path_access · function · L132-L132 — AuditDecision check_path_access(const boost::filesystem::path& candidate, bool is_write);
+- check_open · function · L133-L133 — AuditDecision check_open(const std::string& path, const std::string& mode);
+- request_filesystem_read_permissions · function · L139-L140 — bool request_filesystem_read_permissions(const std::string& plugin_key,
+- report_violation · function · L142-L142 — void report_violation(const AuditViolation& violation);
+- audit_denial_pending · function · L143-L143 — bool audit_denial_pending() const;
+- clear_audit_denial · function · L144-L144 — void clear_audit_denial();
+- clear_last_violation · function · L145-L145 — void clear_last_violation();
+- last_violation · function · L146-L146 — bool last_violation(AuditViolation& violation) const;
+- has_approved_ancestor · function · L155-L155 — bool has_approved_ancestor(const std::string& plugin_key, const std::vector<std::string>& call_site_ids) const;
+- record_approved_call_sites · function · L156-L156 — void record_approved_call_sites(const std::string& plugin_key, const std::vector<std::string>& call_site_ids);
+- PluginAuditManager · function · L163-L163 — PluginAuditManager() = default;
+- audit_hook · function · L165-L165 — static int audit_hook(const char* event, PyObject* args, void* user_data);
+- ScopedPluginAuditContext · class · L185-L201 — class ScopedPluginAuditContext
+- ScopedPluginAuditContext · function · L188-L190 — explicit ScopedPluginAuditContext(
+- ScopedPluginAuditContext · function · L194-L194 — ScopedPluginAuditContext(const ScopedPluginAuditContext&)            = delete;

@@ -1,0 +1,61 @@
+# src/slic3r/GUI/Printer/PrinterFileSystem.h
+
+- FileType · type · L81-L86 — enum FileType
+- GroupMode · type · L88-L92 — enum GroupMode
+- SetFileType · function · L94-L94 — void SetFileType(FileType type, std::string const & storage = {});
+- SetGroupMode · function · L96-L96 — void SetGroupMode(GroupMode mode);
+- EnterSubGroup · function · L98-L98 — size_t EnterSubGroup(size_t index);
+- GetFileType · function · L100-L100 — FileType GetFileType() const { return m_file_type; }
+- GetGroupMode · function · L102-L102 — GroupMode GetGroupMode() const { return m_group_mode; }
+- Flags · type · L106-L116 — enum Flags
+- UploadStatus · type · L118-L123 — enum UploadStatus
+- RequestMediaAbilityStatus · type · L125-L129 — enum RequestMediaAbilityStatus
+- Progress · class · L131-L136 — struct Progress
+- File · class · L141-L159 — struct File
+- DownloadProgress · function · L155-L155 — int DownloadProgress() const;
+- Title · function · L156-L156 — std::string Title() const;
+- Metadata · function · L157-L157 — std::string Metadata(std::string const &key, std::string const &dflt) const;
+- UploadFile · class · L162-L167 — struct UploadFile
+- IsUploading · function · L172-L172 — bool IsUploading() const { return flags & FF_UPLOADING; }
+- Void · class · L176-L176 — struct Void {};
+- FileList · type · L178-L178 — typedef std::vector<File> FileList;
+- MediaAbilityList · type · L179-L179 — typedef std::vector<std::string> MediaAbilityList;
+- ListAllFiles · function · L181-L181 — void ListAllFiles();
+- DeleteFiles · function · L183-L183 — void DeleteFiles(size_t index);
+- DownloadFiles · function · L185-L185 — void DownloadFiles(size_t index, std::string const &path);
+- GetPickImage · function · L187-L187 — void GetPickImage(int id, const std::string &local_path, const std::string &path);
+- GetPickImages · function · L189-L189 — void GetPickImages(const std::vector<std::string> &local_paths, const std::vector<std::string> &targetpaths);
+- DownloadRamFile · function · L192-L192 — void DownloadRamFile(int index, const std::string &local_path, const std::string &param);
+- SendExistedFile · function · L194-L194 — void SendExistedFile();
+- SendConnectFail · function · L196-L196 — void SendConnectFail();
+- DownloadCheckFiles · function · L198-L198 — void DownloadCheckFiles(std::string const &path);
+- DownloadCheckFile · function · L200-L200 — bool DownloadCheckFile(size_t index);
+- DownloadCancel · function · L202-L202 — void DownloadCancel(size_t index);
+- FetchModel · function · L204-L204 — void FetchModel(size_t index, std::function<void(int, std::string const &)> callback);
+- FetchModelCancel · function · L206-L206 — void FetchModelCancel();
+- GetCount · function · L208-L233 — size_t GetCount() const;
+- GetSelectCount · function · L216-L216 — size_t GetSelectCount() const;
+- GetStatus · function · L233-L233 — Status GetStatus() const { return m_status; }
+- GetLastError · function · L234-L234 — int GetLastError() const { return m_last_error; }
+- Attached · function · L236-L236 — void Attached();
+- Start · function · L238-L238 — void Start();
+- Retry · function · L240-L240 — void Retry();
+- SetUrl · function · L242-L242 — void SetUrl(std::string const &url);
+- Stop · function · L244-L244 — void Stop(bool quit = false);
+- RequestMediaAbility · function · L246-L246 — boost::uint32_t RequestMediaAbility(int api_version);
+- RequestUploadFile · function · L248-L248 — void RequestUploadFile();
+- GetMediaAbilityList · function · L250-L333 — MediaAbilityList GetMediaAbilityList() const;
+- CancelUploadTask · function · L254-L254 — void CancelUploadTask(bool send_cancel_req = true);
+- SendChangedEvent · function · L277-L277 — void SendChangedEvent(wxEventType type, size_t index = (size_t)-1, std::string const &str = {}, long extra = 0);
+- SendRequest · function · L290-L290 — template<typename T> boost::uint32_t SendRequest(int type, json const &req, Translator<T> const &translator, Callback<T> const &callback, const std::string &param = "")
+- SendRequest · function · L337-L337 — boost::uint32_t SendRequest(int type, json const &req, callback_t2 const &callback, const std::string &param = "");
+- InstallNotify · function · L339-L339 — void InstallNotify(int type, callback_t2 const &callback);
+- CancelRequest · function · L341-L341 — void CancelRequest(boost::uint32_t seq);
+- CancelRequests · function · L343-L343 — void CancelRequests(std::vector<boost::uint32_t> const &seqs);
+- CancelRequests2 · function · L345-L345 — void CancelRequests2(std::vector<boost::uint32_t> const & seqs);
+- RecvMessageThread · function · L347-L347 — void RecvMessageThread();
+- HandleResponse · function · L349-L349 — void HandleResponse(boost::unique_lock<boost::mutex> &l, Bambu_Sample const &sample);
+- Reconnect · function · L351-L351 — void Reconnect(boost::unique_lock<boost::mutex> & l, int result);
+- PostCallback · function · L359-L359 — void PostCallback(std::function<void(void)> const & callback);
+- UploadFileTask · function · L361-L361 — int UploadFileTask(std::shared_ptr<UploadFile> upload_file, boost::uint64_t seq, std::string &msg);
+- Session · class · L383-L387 — struct Session

@@ -1,0 +1,42 @@
+# src/slic3r/GUI/PrintOptionsDialog.hpp
+
+- SwitchBoard · class · L22-L22 — class SwitchBoard;
+- MultiSwitchButton · class · L23-L23 — class MultiSwitchButton;
+- PrinterPartsDialog · class · L27-L72 — class PrinterPartsDialog : public DPIDialog
+- PrinterPartsDialog · function · L57-L57 — PrinterPartsDialog(wxWindow* parent);
+- on_dpi_changed · function · L60-L60 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- update_machine_obj · function · L61-L61 — void update_machine_obj(MachineObject* obj_);
+- Show · function · L62-L62 — bool Show(bool show) override;
+- UpdateNozzleInfo · function · L63-L63 — void UpdateNozzleInfo();
+- EnableEditing · function · L66-L66 — void  EnableEditing(bool enable);
+- OnWikiClicked · function · L67-L67 — void  OnWikiClicked(wxMouseEvent& e);
+- OnNozzleRefresh · function · L68-L68 — void  OnNozzleRefresh(wxCommandEvent& e);
+- GetString · function · L70-L70 — wxString GetString(NozzleType nozzle_type) const;
+- GetString · function · L71-L71 — wxString GetString(NozzleFlowType nozzle_flow_type) const;
+- PrintOptionsDialog · class · L75-L217 — class PrintOptionsDialog : public DPIDialog
+- create_settings_group · function · L170-L170 — wxBoxSizer* create_settings_group(wxWindow* parent);
+- PrintOptionsDialog · function · L177-L177 — PrintOptionsDialog(wxWindow* parent);
+- on_dpi_changed · function · L179-L179 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- update_ai_monitor_status · function · L181-L181 — void update_ai_monitor_status();
+- update_spaghetti_detection_status · function · L183-L183 — void update_spaghetti_detection_status();
+- update_purgechutepileup_detection_status · function · L184-L184 — void update_purgechutepileup_detection_status();
+- update_nozzleclumping_detection_status · function · L185-L185 — void update_nozzleclumping_detection_status();
+- update_airprinting_detection_status · function · L186-L186 — void update_airprinting_detection_status();
+- update_purify_air_at_print_end · function · L187-L187 — void update_purify_air_at_print_end(MachineObject *obj_);
+- update_smart_nozzle_blob_mode_desc · function · L188-L188 — void update_smart_nozzle_blob_mode_desc(int selection);
+- update_options · function · L194-L194 — void             update_options(MachineObject *obj_);
+- update_machine_obj · function · L195-L195 — void             update_machine_obj(MachineObject *obj_);
+- Show · function · L196-L196 — bool             Show(bool show) override;
+- AiMonitorSensitivityLevel · type · L198-L203 — enum AiMonitorSensitivityLevel
+- AiMonitorSensitivityLevel · type · L204-L204 — wxString sensitivity_level_to_label_string(enum AiMonitorSensitivityLevel level);
+- sensitivity_level_to_label_string · function · L204-L204 — wxString sensitivity_level_to_label_string(enum AiMonitorSensitivityLevel level);
+- AiMonitorSensitivityLevel · type · L205-L205 — std::string sensitivity_level_to_msg_string(enum AiMonitorSensitivityLevel level);
+- sensitivity_level_to_msg_string · function · L205-L205 — std::string sensitivity_level_to_msg_string(enum AiMonitorSensitivityLevel level);
+- set_ai_monitor_sensitivity · function · L207-L207 — void set_ai_monitor_sensitivity(wxCommandEvent &evt);
+- set_spaghetti_detection_sensitivity · function · L208-L208 — void set_spaghetti_detection_sensitivity(wxCommandEvent& evt);
+- set_purgechutepileup_detection_sensitivity · function · L209-L209 — void set_purgechutepileup_detection_sensitivity(wxCommandEvent &evt);
+- set_nozzleclumping_detection_sensitivity · function · L210-L210 — void set_nozzleclumping_detection_sensitivity(wxCommandEvent &evt);
+- set_airprinting_detection_sensitivity · function · L211-L211 — void set_airprinting_detection_sensitivity(wxCommandEvent &evt);
+- UpdateOptionSavePrintFileToStorage · function · L214-L214 — void UpdateOptionSavePrintFileToStorage(MachineObject *obj);
+- UpdateOptionOpenDoorCheck · function · L215-L215 — void UpdateOptionOpenDoorCheck(MachineObject *obj);
+- UpdateOptionSnapshot · function · L216-L216 — void UpdateOptionSnapshot(MachineObject *obj);

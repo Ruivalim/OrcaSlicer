@@ -1,0 +1,23 @@
+# src/slic3r/GUI/Widgets/StaticBox.hpp
+
+- StaticBox · class · L9-L71 — class StaticBox : public wxWindow
+- StaticBox · function · L12-L12 — StaticBox();
+- StaticBox · function · L14-L18 — StaticBox(wxWindow* parent,
+- Create · function · L20-L24 — bool Create(wxWindow* parent,
+- SetCornerRadius · function · L26-L26 — void SetCornerRadius(double radius);
+- SetBorderWidth · function · L28-L28 — void SetBorderWidth(int width);
+- SetTopMargin · function · L30-L30 — void SetTopMargin(int margin); // ORCA
+- SetBorderColor · function · L32-L32 — void SetBorderColor(StateColor const & color);
+- SetBorderColorNormal · function · L34-L34 — void SetBorderColorNormal(wxColor const &color);
+- SetBorderStyle · function · L36-L36 — void SetBorderStyle(wxPenStyle style);
+- SetBackgroundColor · function · L38-L38 — void SetBackgroundColor(StateColor const &color);
+- SetBackgroundColorNormal · function · L40-L40 — void SetBackgroundColorNormal(wxColor const &color);
+- SetBackgroundColor2 · function · L42-L42 — void SetBackgroundColor2(StateColor const &color);
+- GetParentBackgroundColor · function · L44-L44 — static wxColor GetParentBackgroundColor(wxWindow * parent);
+- ShowBadge · function · L46-L46 — void ShowBadge(bool show);
+- eraseEvent · function · L49-L49 — void eraseEvent(wxEraseEvent& evt);
+- sizeEvent · function · L51-L51 — void sizeEvent(wxSizeEvent& evt);
+- paintEvent · function · L53-L53 — void paintEvent(wxPaintEvent& evt);
+- render · function · L55-L55 — void render(wxDC& dc);
+- doRender · function · L57-L57 — virtual void doRender(wxDC& dc);
+- DECLARE_EVENT_TABLE · function · L70-L70 — DECLARE_EVENT_TABLE()

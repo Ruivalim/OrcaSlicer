@@ -1,0 +1,173 @@
+# src/slic3r/GUI/3DScene.hpp
+
+- glAssertRecentCallImpl · function · L27-L27 — extern void glAssertRecentCallImpl(const char *file_name, unsigned int line, const char *function_name);
+- glAssertRecentCall · function · L28-L28 — inline void glAssertRecentCall() { glAssertRecentCallImpl(__FILE__, __LINE__, __FUNCTION__); }
+- glAssertRecentCall · function · L32-L32 — inline void glAssertRecentCall() { }
+- adjust_color_for_rendering · function · L38-L38 — extern Slic3r::ColorRGBA              adjust_color_for_rendering(const Slic3r::ColorRGBA &colors);
+- Size · class · L43-L43 — class Size;
+- SLAPrintObject · class · L46-L46 — class SLAPrintObject;
+- SLAPrintObjectStep · type · L47-L47 — enum  SLAPrintObjectStep : unsigned int;
+- BuildVolume · class · L48-L48 — class BuildVolume;
+- DynamicPrintConfig · class · L49-L49 — class DynamicPrintConfig;
+- ExtrusionPath · class · L50-L50 — class ExtrusionPath;
+- ExtrusionMultiPath · class · L51-L51 — class ExtrusionMultiPath;
+- ExtrusionLoop · class · L52-L52 — class ExtrusionLoop;
+- ExtrusionEntity · class · L53-L53 — class ExtrusionEntity;
+- ExtrusionEntityCollection · class · L54-L54 — class ExtrusionEntityCollection;
+- ModelObject · class · L55-L55 — class ModelObject;
+- ModelVolume · class · L56-L56 — class ModelVolume;
+- GLShaderProgram · class · L57-L57 — class GLShaderProgram;
+- ModelInstanceEPrintVolumeState · type · L58-L58 — enum ModelInstanceEPrintVolumeState : unsigned char;
+- ObjectFilamentInfo · class · L62-L67 — struct ObjectFilamentInfo
+- ObjectFilamentResults · class · L69-L76 — struct ObjectFilamentResults
+- color_from_model_volume · function · L79-L79 — extern ColorRGBA color_from_model_volume(const ModelVolume& model_volume);
+- GLVolume · class · L81-L374 — class GLVolume
+- update_render_colors · function · L97-L97 — static void update_render_colors();
+- load_render_colors · function · L98-L98 — static void load_render_colors();
+- brighten_color · function · L99-L99 — static ColorRGBA brighten_color(const ColorRGBA& color, float multiplier = 1.25f);
+- EHoverState · type · L104-L110 — enum EHoverState : unsigned char
+- GLVolume · function · L112-L112 — GLVolume(float r = 1.f, float g = 1.f, float b = 1.f, float a = 1.f);
+- GLVolume · function · L113-L113 — GLVolume(const ColorRGBA& color) : GLVolume(color.r(), color.g(), color.b(), color.a()) {}
+- SinkingContours · class · L134-L148 — class SinkingContours
+- SinkingContours · function · L143-L143 — SinkingContours(GLVolume& volume) : m_parent(volume) {}
+- render · function · L144-L144 — void render();
+- update · function · L147-L147 — void update();
+- CompositeID · class · L158-L174 — struct CompositeID
+- CompositeID · function · L159-L159 — CompositeID(int object_id, int volume_id, int instance_id) : object_id(object_id), volume_id(volume_id), instance_id(instance_id) {}
+- CompositeID · function · L160-L160 — CompositeID() : object_id(-1), volume_id(-1), instance_id(-1) {}
+- bounding_box · function · L245-L247 — BoundingBoxf3 bounding_box() const
+- set_color · function · L249-L249 — void set_color(const ColorRGBA& rgba)        { color = rgba; }
+- set_render_color · function · L250-L250 — void set_render_color(const ColorRGBA& rgba) { render_color = rgba; }
+- set_render_color · function · L252-L252 — void set_render_color();
+- set_color_from_model_volume · function · L254-L254 — void set_color_from_model_volume(const ModelVolume& model_volume);
+- get_instance_transformation · function · L256-L256 — const Geometry::Transformation& get_instance_transformation() const { return m_instance_transformation; }
+- set_instance_transformation · function · L257-L257 — void set_instance_transformation(const Geometry::Transformation& transformation) { m_instance_transformation = transformation; set_bounding_boxes_as_dirty(); }
+- set_instance_transformation · function · L258-L258 — void set_instance_transformation(const Transform3d& transform) { m_instance_transformation.set_matrix(transform); set_bounding_boxes_as_dirty(); }
+- get_instance_offset · function · L260-L260 — Vec3d get_instance_offset() const { return m_instance_transformation.get_offset(); }
+- get_instance_offset · function · L261-L261 — double get_instance_offset(Axis axis) const { return m_instance_transformation.get_offset(axis); }
+- set_instance_offset · function · L263-L263 — void set_instance_offset(const Vec3d& offset) { m_instance_transformation.set_offset(offset); set_bounding_boxes_as_dirty(); }
+- set_instance_offset · function · L264-L264 — void set_instance_offset(Axis axis, double offset) { m_instance_transformation.set_offset(axis, offset); set_bounding_boxes_as_dirty(); }
+- get_instance_rotation · function · L266-L266 — Vec3d get_instance_rotation() const { return m_instance_transformation.get_rotation(); }
+- get_instance_rotation · function · L267-L267 — double get_instance_rotation(Axis axis) const { return m_instance_transformation.get_rotation(axis); }
+- set_instance_rotation · function · L269-L269 — void set_instance_rotation(const Vec3d& rotation) { m_instance_transformation.set_rotation(rotation); set_bounding_boxes_as_dirty(); }
+- set_instance_rotation · function · L270-L270 — void set_instance_rotation(Axis axis, double rotation) { m_instance_transformation.set_rotation(axis, rotation); set_bounding_boxes_as_dirty(); }
+- get_instance_scaling_factor · function · L272-L272 — Vec3d get_instance_scaling_factor() const { return m_instance_transformation.get_scaling_factor(); }
+- get_instance_scaling_factor · function · L273-L273 — double get_instance_scaling_factor(Axis axis) const { return m_instance_transformation.get_scaling_factor(axis); }
+- set_instance_scaling_factor · function · L275-L275 — void set_instance_scaling_factor(const Vec3d& scaling_factor) { m_instance_transformation.set_scaling_factor(scaling_factor); set_bounding_boxes_as_dirty(); }
+- set_instance_scaling_factor · function · L276-L276 — void set_instance_scaling_factor(Axis axis, double scaling_factor) { m_instance_transformation.set_scaling_factor(axis, scaling_factor); set_bounding_boxes_as_dirty(); }
+- get_instance_mirror · function · L278-L278 — Vec3d get_instance_mirror() const { return m_instance_transformation.get_mirror(); }
+- get_instance_mirror · function · L279-L279 — double get_instance_mirror(Axis axis) const { return m_instance_transformation.get_mirror(axis); }
+- set_instance_mirror · function · L281-L281 — void set_instance_mirror(const Vec3d& mirror) { m_instance_transformation.set_mirror(mirror); set_bounding_boxes_as_dirty(); }
+- set_instance_mirror · function · L282-L282 — void set_instance_mirror(Axis axis, double mirror) { m_instance_transformation.set_mirror(axis, mirror); set_bounding_boxes_as_dirty(); }
+- get_volume_transformation · function · L284-L284 — const Geometry::Transformation& get_volume_transformation() const { return m_volume_transformation; }
+- set_volume_transformation · function · L285-L285 — void set_volume_transformation(const Geometry::Transformation& transformation) { m_volume_transformation = transformation; set_bounding_boxes_as_dirty(); }
+- set_volume_transformation · function · L286-L286 — void set_volume_transformation(const Transform3d& transform) { m_volume_transformation.set_matrix(transform); set_bounding_boxes_as_dirty(); }
+- get_volume_offset · function · L288-L288 — Vec3d get_volume_offset() const { return m_volume_transformation.get_offset(); }
+- get_volume_offset · function · L289-L289 — double get_volume_offset(Axis axis) const { return m_volume_transformation.get_offset(axis); }
+- set_volume_offset · function · L291-L291 — void set_volume_offset(const Vec3d& offset) { m_volume_transformation.set_offset(offset); set_bounding_boxes_as_dirty(); }
+- set_volume_offset · function · L292-L292 — void set_volume_offset(Axis axis, double offset) { m_volume_transformation.set_offset(axis, offset); set_bounding_boxes_as_dirty(); }
+- get_volume_rotation · function · L294-L294 — Vec3d get_volume_rotation() const { return m_volume_transformation.get_rotation(); }
+- get_volume_rotation · function · L295-L295 — double get_volume_rotation(Axis axis) const { return m_volume_transformation.get_rotation(axis); }
+- set_volume_rotation · function · L297-L297 — void set_volume_rotation(const Vec3d& rotation) { m_volume_transformation.set_rotation(rotation); set_bounding_boxes_as_dirty(); }
+- set_volume_rotation · function · L298-L298 — void set_volume_rotation(Axis axis, double rotation) { m_volume_transformation.set_rotation(axis, rotation); set_bounding_boxes_as_dirty(); }
+- get_volume_scaling_factor · function · L300-L300 — Vec3d get_volume_scaling_factor() const { return m_volume_transformation.get_scaling_factor(); }
+- get_volume_scaling_factor · function · L301-L301 — double get_volume_scaling_factor(Axis axis) const { return m_volume_transformation.get_scaling_factor(axis); }
+- set_volume_scaling_factor · function · L303-L303 — void set_volume_scaling_factor(const Vec3d& scaling_factor) { m_volume_transformation.set_scaling_factor(scaling_factor); set_bounding_boxes_as_dirty(); }
+- set_volume_scaling_factor · function · L304-L304 — void set_volume_scaling_factor(Axis axis, double scaling_factor) { m_volume_transformation.set_scaling_factor(axis, scaling_factor); set_bounding_boxes_as_dirty(); }
+- get_volume_mirror · function · L306-L306 — Vec3d get_volume_mirror() const { return m_volume_transformation.get_mirror(); }
+- get_volume_mirror · function · L307-L307 — double get_volume_mirror(Axis axis) const { return m_volume_transformation.get_mirror(axis); }
+- set_volume_mirror · function · L309-L309 — void set_volume_mirror(const Vec3d& mirror) { m_volume_transformation.set_mirror(mirror); set_bounding_boxes_as_dirty(); }
+- set_volume_mirror · function · L310-L310 — void set_volume_mirror(Axis axis, double mirror) { m_volume_transformation.set_mirror(axis, mirror); set_bounding_boxes_as_dirty(); }
+- get_sla_shift_z · function · L312-L312 — double get_sla_shift_z() const { return m_sla_shift_z; }
+- set_sla_shift_z · function · L313-L313 — void set_sla_shift_z(double z) { m_sla_shift_z = z; }
+- set_convex_hull · function · L315-L315 — void set_convex_hull(std::shared_ptr<const TriangleMesh> convex_hull) { m_convex_hull = std::move(convex_hull); }
+- set_convex_hull · function · L316-L316 — void set_convex_hull(const TriangleMesh &convex_hull) { m_convex_hull = std::make_shared<const TriangleMesh>(convex_hull); }
+- set_convex_hull · function · L317-L317 — void set_convex_hull(TriangleMesh &&convex_hull) { m_convex_hull = std::make_shared<const TriangleMesh>(std::move(convex_hull)); }
+- set_offset_to_assembly · function · L319-L319 — void set_offset_to_assembly(const Vec3d& offset) { m_offset_to_assembly = offset; set_bounding_boxes_as_dirty(); }
+- get_offset_to_assembly · function · L320-L320 — Vec3d get_offset_to_assembly() { return m_offset_to_assembly; }
+- object_idx · function · L322-L322 — int                 object_idx() const { return this->composite_id.object_id; }
+- volume_idx · function · L323-L323 — int                 volume_idx() const { return this->composite_id.volume_id; }
+- instance_idx · function · L324-L324 — int                 instance_idx() const { return this->composite_id.instance_id; }
+- world_matrix · function · L326-L326 — Transform3d         world_matrix() const;
+- is_left_handed · function · L327-L327 — bool                is_left_handed() const;
+- transformed_bounding_box · function · L329-L329 — const BoundingBoxf3& transformed_bounding_box() const;
+- transformed_convex_hull_bounding_box · function · L331-L331 — BoundingBoxf3        transformed_convex_hull_bounding_box(const Transform3d &trafo) const;
+- transformed_convex_hull_bounding_box · function · L333-L333 — const BoundingBoxf3& transformed_convex_hull_bounding_box() const;
+- transformed_non_sinking_bounding_box · function · L335-L335 — BoundingBoxf3        transformed_non_sinking_bounding_box(const Transform3d& trafo) const;
+- transformed_non_sinking_bounding_box · function · L337-L337 — const BoundingBoxf3& transformed_non_sinking_bounding_box() const;
+- convex_hull · function · L339-L339 — const TriangleMesh*  convex_hull() const { return m_convex_hull.get(); }
+- empty · function · L341-L341 — bool                empty() const { return this->model.is_empty(); }
+- set_range · function · L343-L343 — void                set_range(double low, double high);
+- render · function · L345-L345 — virtual void        render();
+- render_with_outline · function · L348-L348 — virtual void render_with_outline(const GUI::Size& cnv_size);
+- simple_render · function · L351-L351 — void simple_render(GLShaderProgram* shader, ModelObjectPtrs& model_objects, std::vector<ColorRGBA>& extruder_colors, bool ban_light =false);
+- set_bounding_boxes_as_dirty · function · L353-L357 — void                set_bounding_boxes_as_dirty()
+- is_sla_support · function · L359-L359 — bool                is_sla_support() const;
+- is_sla_pad · function · L360-L360 — bool                is_sla_pad() const;
+- is_sinking · function · L362-L362 — bool                is_sinking() const;
+- is_below_printbed · function · L363-L363 — bool                is_below_printbed() const;
+- render_sinking_contours · function · L364-L364 — void                render_sinking_contours();
+- cpu_memory_used · function · L367-L370 — size_t 				cpu_memory_used() const
+- gpu_memory_used · function · L372-L372 — size_t 				gpu_memory_used() const { return this->model.gpu_memory_used(); }
+- total_memory_used · function · L373-L373 — size_t 				total_memory_used() const { return this->cpu_memory_used() + this->gpu_memory_used(); }
+- GLWipeTowerVolume · class · L377-L388 — class GLWipeTowerVolume : public GLVolume
+- GLWipeTowerVolume · function · L379-L379 — GLWipeTowerVolume(const std::vector<ColorRGBA>& colors);
+- render · function · L380-L380 — void render() override;
+- render_with_outline · function · L381-L381 — void render_with_outline(const GUI::Size& cnv_size) override { render(); }
+- IsTransparent · function · L384-L384 — bool                              IsTransparent();
+- GLVolumePtrs · type · L390-L390 — typedef std::vector<GLVolume*> GLVolumePtrs;
+- GLVolumeWithIdAndZ · type · L391-L391 — typedef std::pair<GLVolume*, std::pair<unsigned int, double>> GLVolumeWithIdAndZ;
+- GLVolumeWithIdAndZList · type · L392-L392 — typedef std::vector<GLVolumeWithIdAndZ> GLVolumeWithIdAndZList;
+- GLVolumeCollection · class · L394-L562 — class GLVolumeCollection
+- ERenderType · type · L397-L402 — enum class ERenderType : unsigned char
+- PrintVolume · class · L404-L416 — struct PrintVolume
+- Slope · class · L434-L440 — struct Slope
+- GLVolumeCollection · function · L448-L453 — GLVolumeCollection()
+- load_object · function · L456-L462 — std::vector<int> load_object(
+- load_object_volume · function · L464-L473 — int load_object_volume(
+- load_object_auxiliary · function · L475-L482 — void load_object_auxiliary(
+- load_wipe_tower_preview · function · L484-L485 — int load_wipe_tower_preview(
+- load_real_wipe_tower_preview · function · L486-L487 — int load_real_wipe_tower_preview(
+- new_toolpath_volume · function · L488-L488 — GLVolume* new_toolpath_volume(const ColorRGBA& rgba);
+- new_nontoolpath_volume · function · L489-L489 — GLVolume* new_nontoolpath_volume(const ColorRGBA& rgba);
+- get_selection_support_normal_z · function · L491-L491 — float get_selection_support_normal_z() const;
+- render · function · L494-L504 — void render(ERenderType                           type,
+- clear · function · L507-L507 — void clear() { for (auto *v : volumes) delete v; volumes.clear(); }
+- empty · function · L509-L509 — bool empty() const { return volumes.empty(); }
+- set_range · function · L510-L510 — void set_range(double low, double high) { for (GLVolume *vol : this->volumes) vol->set_range(low, high); }
+- set_print_volume · function · L512-L512 — void set_print_volume(const PrintVolume& print_volume) { m_print_volume = print_volume; }
+- set_z_range · function · L514-L514 — void set_z_range(float min_z, float max_z) { m_z_range[0] = min_z; m_z_range[1] = max_z; }
+- set_clipping_plane · function · L515-L515 — void set_clipping_plane(const std::array<double, 4>& coeffs) { m_clipping_plane = coeffs; }
+- get_z_range · function · L517-L517 — const std::array<float, 2>& get_z_range() const { return m_z_range; }
+- get_clipping_plane · function · L518-L518 — const std::array<double, 4>& get_clipping_plane() const { return m_clipping_plane; }
+- set_use_color_clip_plane · function · L520-L520 — void set_use_color_clip_plane(bool use) { m_use_color_clip_plane = use; }
+- set_color_clip_plane · function · L521-L525 — void set_color_clip_plane(const Vec3d& cp_normal, double offset)
+- set_color_clip_plane_colors · function · L526-L526 — void set_color_clip_plane_colors(const std::array<ColorRGBA, 2>& colors) { m_color_clip_plane_colors = colors; }
+- is_slope_GlobalActive · function · L528-L528 — bool is_slope_GlobalActive() const { return m_slope.isGlobalActive; }
+- is_slope_active · function · L529-L529 — bool is_slope_active() const { return m_slope.active; }
+- set_slope_active · function · L530-L530 — void set_slope_active(bool active) { m_slope.active = active; }
+- set_slope_GlobalActive · function · L531-L531 — void set_slope_GlobalActive(bool active) { m_slope.isGlobalActive = active; }
+- get_slope_normal_z · function · L533-L533 — float get_slope_normal_z() const { return m_slope.normal_z; }
+- set_slope_normal_z · function · L534-L534 — void set_slope_normal_z(float normal_z) { m_slope.normal_z = normal_z; }
+- set_default_slope_normal_z · function · L535-L535 — void set_default_slope_normal_z() { m_slope.normal_z = -::cos(Geometry::deg2rad(90.0f - 45.0f)); }
+- set_show_sinking_contours · function · L536-L536 — void set_show_sinking_contours(bool show) { m_show_sinking_contours = show; }
+- check_outside_state · function · L540-L540 — bool check_outside_state(const Slic3r::BuildVolume& build_volume, ModelInstanceEPrintVolumeState* out_state, ObjectFilamentResults* object_results) const;
+- reset_outside_state · function · L541-L541 — void reset_outside_state();
+- check_wipe_tower_outside_state · function · L542-L542 — bool check_wipe_tower_outside_state(const Slic3r::BuildVolume &build_volume, int plate_id) const;
+- update_colors_by_extruder · function · L544-L544 — void update_colors_by_extruder(const DynamicPrintConfig *config, bool is_update_alpha = true);
+- get_current_print_zs · function · L547-L547 — std::vector<double> get_current_print_zs(bool active_only) const;
+- cpu_memory_used · function · L550-L550 — size_t 				cpu_memory_used() const;
+- gpu_memory_used · function · L552-L552 — size_t 				gpu_memory_used() const;
+- total_memory_used · function · L553-L553 — size_t 				total_memory_used() const { return this->cpu_memory_used() + this->gpu_memory_used(); }
+- log_memory_info · function · L555-L555 — std::string         log_memory_info() const;
+- set_transparency · function · L557-L557 — void set_transparency(float alpha);
+- GLVolumeCollection · function · L560-L560 — GLVolumeCollection(const GLVolumeCollection &other);
+- volumes_to_render · function · L564-L564 — GLVolumeWithIdAndZList volumes_to_render(const GLVolumePtrs& volumes, GLVolumeCollection::ERenderType type, const Transform3d& view_matrix, std::function<bool(const GLVolume&)> filter_func = nullptr);
+- _3DScene · class · L566-L575 — struct _3DScene
+- thick_lines_to_verts · function · L568-L568 — static void thick_lines_to_verts(const Lines& lines, const std::vector<double>& widths, const std::vector<double>& heights, bool closed, double top_z, GUI::GLModel::Geometry& geometry);
+- thick_lines_to_verts · function · L569-L569 — static void thick_lines_to_verts(const Lines3& lines, const std::vector<double>& widths, const std::vector<double>& heights, bool closed, GUI::GLModel::Geometry& geometry);
+- extrusionentity_to_verts · function · L570-L570 — static void extrusionentity_to_verts(const ExtrusionPath& extrusion_path, float print_z, const Point& copy, GUI::GLModel::Geometry& geometry);
+- extrusionentity_to_verts · function · L571-L571 — static void extrusionentity_to_verts(const ExtrusionLoop& extrusion_loop, float print_z, const Point& copy, GUI::GLModel::Geometry& geometry);
+- extrusionentity_to_verts · function · L572-L572 — static void extrusionentity_to_verts(const ExtrusionMultiPath& extrusion_multi_path, float print_z, const Point& copy, GUI::GLModel::Geometry& geometry);
+- extrusionentity_to_verts · function · L573-L573 — static void extrusionentity_to_verts(const ExtrusionEntityCollection& extrusion_entity_collection, float print_z, const Point& copy, GUI::GLModel::Geometry& geometry);
+- extrusionentity_to_verts · function · L574-L574 — static void extrusionentity_to_verts(const ExtrusionEntity* extrusion_entity, float print_z, const Point& copy, GUI::GLModel::Geometry& geometry);

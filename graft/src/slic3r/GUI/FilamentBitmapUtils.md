@@ -1,0 +1,28 @@
+# src/slic3r/GUI/FilamentBitmapUtils.hpp
+
+- DynamicPrintConfig · class · L15-L15 — namespace Slic3r { class DynamicPrintConfig; struct GradientCurve; }
+- TriPoint · class · L21-L21 — struct TriPoint { double x, y; };
+- tri_signed_area2 · function · L23-L23 — double tri_signed_area2(TriPoint a, TriPoint b, TriPoint c);
+- tri_contains · function · L24-L24 — bool tri_contains(TriPoint p, TriPoint v0, TriPoint v1, TriPoint v2);
+- tri_barycentric · function · L25-L26 — void tri_barycentric(TriPoint p, TriPoint v0, TriPoint v1, TriPoint v2,
+- tri_clamp · function · L27-L27 — TriPoint tri_clamp(TriPoint p, TriPoint v0, TriPoint v1, TriPoint v2);
+- fill_gradient_rect_east · function · L32-L32 — void fill_gradient_rect_east(wxDC& dc, const wxRect& rect, const wxColour& from, const wxColour& to);
+- FilamentRenderMode · type · L34-L40 — enum class FilamentRenderMode
+- create_filament_bitmap · function · L44-L46 — wxBitmap create_filament_bitmap(const std::vector<wxColour>& colors,
+- blend_n_colors · function · L50-L50 — wxColour blend_n_colors(const std::vector<wxColour>& cols, const std::vector<double>& weights);
+- sample_gradient_ramp · function · L56-L59 — std::vector<wxColour> sample_gradient_ramp(const wxColour& first,
+- mixed_gradient_ramp · function · L65-L65 — std::vector<wxColour> mixed_gradient_ramp(const Slic3r::DynamicPrintConfig& cfg, size_t slot, int steps);
+- mixed_gradient_curve · function · L71-L71 — Slic3r::GradientCurve mixed_gradient_curve(const Slic3r::DynamicPrintConfig& cfg, size_t slot);
+- fill_gradient_ramp_rect · function · L74-L74 — void fill_gradient_ramp_rect(wxDC& dc, const wxRect& rect, const std::vector<wxColour>& ramp);
+- create_gradient_ramp_bitmap · function · L77-L77 — wxBitmap create_gradient_ramp_bitmap(const std::vector<wxColour>& ramp, const wxSize& size);
+- recompute_mixed_slot_colors · function · L82-L83 — void recompute_mixed_slot_colors(std::vector<wxColour>& colors,
+- MixedGradientCurve · class · L92-L97 — struct MixedGradientCurve
+- MixedGradientTheme · class · L100-L109 — struct MixedGradientTheme
+- mixed_gradient_plot_rect · function · L112-L112 — wxRect mixed_gradient_plot_rect(const wxSize& canvas);
+- draw_mixed_gradient_plot · function · L118-L121 — void draw_mixed_gradient_plot(wxDC& dc, const wxSize& canvas,
+- draw_mixed_ratio_blend_bar · function · L126-L127 — void draw_mixed_ratio_blend_bar(wxDC& dc, const wxRect& rect, const wxColour& first,
+- draw_mixed_ratio_segments · function · L132-L133 — void draw_mixed_ratio_segments(wxDC& dc, const wxRect& rect, const std::vector<wxColour>& colours,
+- MixedTriangleTheme · class · L136-L142 — struct MixedTriangleTheme
+- mixed_triangle_vertices · function · L146-L146 — std::array<TriPoint, 3> mixed_triangle_vertices(const wxSize& size, double margin_dip = 20.0);
+- draw_mixed_triangle_picker · function · L152-L153 — void draw_mixed_triangle_picker(wxDC& dc, const wxSize& size, const std::array<wxColour, 3>& colours,
+- draw_mixed_triangle_labels · function · L157-L158 — void draw_mixed_triangle_labels(wxDC& dc, const wxSize& size, const std::array<double, 3>& weights,

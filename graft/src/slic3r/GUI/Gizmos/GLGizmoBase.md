@@ -1,0 +1,98 @@
+# src/slic3r/GUI/Gizmos/GLGizmoBase.hpp
+
+- wxWindow · class · L20-L20 — class wxWindow;
+- BoundingBoxf3 · class · L24-L24 — class BoundingBoxf3;
+- Linef3 · class · L25-L25 — class Linef3;
+- ModelObject · class · L26-L26 — class ModelObject;
+- ImGuiWrapper · class · L32-L32 — class ImGuiWrapper;
+- Shortcut · type · L33-L33 — enum class Shortcut : uint8_t;
+- GLCanvas3D · class · L34-L34 — class GLCanvas3D;
+- CommonGizmosDataID · type · L35-L35 — enum class CommonGizmosDataID;
+- CommonGizmosDataPool · class · L36-L36 — class CommonGizmosDataPool;
+- Selection · class · L37-L37 — class Selection;
+- GLGizmoBase · class · L39-L288 — class GLGizmoBase
+- update_render_colors · function · L63-L63 — static void update_render_colors();
+- load_render_colors · function · L64-L64 — static void load_render_colors();
+- EGrabberExtension · type · L66-L75 — enum class EGrabberExtension
+- Grabber · class · L78-L115 — struct Grabber
+- Grabber · function · L98-L98 — Grabber() = default;
+- render · function · L101-L101 — void render(bool hover, float size) { render(size, hover ? hover_color : color); }
+- get_half_size · function · L103-L103 — float get_half_size(float size) const;
+- get_dragging_half_size · function · L104-L104 — float get_dragging_half_size(float size) const;
+- get_cube · function · L105-L105 — PickingModel &get_cube();
+- register_raycasters_for_picking · function · L107-L107 — void register_raycasters_for_picking(int id);
+- unregister_raycasters_for_picking · function · L108-L108 — void unregister_raycasters_for_picking();
+- render · function · L111-L111 — void render(float size, const ColorRGBA& render_color);
+- EState · type · L118-L123 — enum EState
+- UpdateData · class · L125-L133 — struct UpdateData
+- UpdateData · function · L130-L132 — UpdateData(const Linef3& mouse_ray, const Point& mouse_pos)
+- render_combo · function · L152-L153 — bool render_combo(const std::string &label, const std::vector<std::string> &lines,
+- render_cross_mark · function · L154-L154 — void render_cross_mark(const Vec3f& target,bool is_single =false);
+- GLGizmoBase · function · L156-L158 — GLGizmoBase(GLCanvas3D& parent,
+- init · function · L161-L161 — bool init() { return on_init(); }
+- load · function · L163-L163 — void load(cereal::BinaryInputArchive& ar) { m_state = On; on_load(ar); }
+- save · function · L164-L164 — void save(cereal::BinaryOutputArchive& ar) const { on_save(ar); }
+- get_name · function · L166-L166 — std::string get_name(bool include_shortcut = true) const;
+- get_state · function · L168-L168 — EState get_state() const { return m_state; }
+- set_state · function · L169-L169 — void set_state(EState state) { m_state = state; on_set_state(); }
+- shortcut · function · L171-L171 — std::optional<Shortcut> shortcut() const { return m_shortcut; }
+- get_icon_filename · function · L173-L173 — const std::string& get_icon_filename() const { return m_icon_filename; }
+- set_icon_filename · function · L175-L175 — void set_icon_filename(const std::string& filename);
+- is_activable · function · L177-L177 — bool is_activable() const { return on_is_activable(); }
+- is_selectable · function · L178-L178 — bool is_selectable() const { return on_is_selectable(); }
+- get_requirements · function · L179-L179 — CommonGizmosDataID get_requirements() const { return on_get_requirements(); }
+- wants_enter_leave_snapshots · function · L180-L180 — virtual bool wants_enter_leave_snapshots() const { return false; }
+- render_follows_cursor · function · L182-L182 — virtual bool render_follows_cursor() const { return false; }
+- get_gizmo_entering_text · function · L183-L183 — virtual std::string get_gizmo_entering_text() const { assert(false); return ""; }
+- get_gizmo_leaving_text · function · L184-L184 — virtual std::string get_gizmo_leaving_text() const { assert(false); return ""; }
+- get_action_snapshot_name · function · L185-L185 — virtual std::string get_action_snapshot_name() const;
+- set_common_data_pool · function · L186-L186 — void set_common_data_pool(CommonGizmosDataPool* ptr) { m_c = ptr; }
+- apply_clipping_plane · function · L188-L188 — virtual bool apply_clipping_plane() { return true; }
+- on_mouse · function · L196-L196 — virtual bool on_mouse(const wxMouseEvent &mouse_event) { return false; }
+- get_sprite_id · function · L197-L197 — unsigned int get_sprite_id() const { return m_sprite_id; }
+- get_hover_id · function · L199-L199 — int get_hover_id() const { return m_hover_id; }
+- set_hover_id · function · L200-L200 — void set_hover_id(int id);
+- is_dragging · function · L202-L202 — bool is_dragging() const { return m_dragging; }
+- update_items_state · function · L205-L205 — bool update_items_state();
+- render · function · L207-L207 — void render() { on_render(); }
+- render_input_window · function · L208-L208 — void render_input_window(float x, float y, float bottom_limit);
+- on_change_color_mode · function · L209-L209 — virtual void on_change_color_mode(bool is_dark) {  m_is_dark_mode = is_dark; }
+- get_tooltip · function · L215-L215 — virtual std::string get_tooltip() const { return ""; }
+- get_count · function · L217-L217 — int get_count() { return ++count; }
+- get_gizmo_name · function · L218-L218 — std::string get_gizmo_name() { return on_get_name(); }
+- data_changed · function · L223-L223 — virtual void data_changed(bool is_serializing){};
+- register_raycasters_for_picking · function · L225-L225 — void register_raycasters_for_picking()   { register_grabbers_for_picking(); on_register_raycasters_for_picking(); }
+- unregister_raycasters_for_picking · function · L226-L226 — void unregister_raycasters_for_picking() { unregister_grabbers_for_picking(); on_unregister_raycasters_for_picking(); }
+- is_in_editing_mode · function · L228-L228 — virtual bool is_in_editing_mode() const { return false; }
+- is_selection_rectangle_dragging · function · L229-L229 — virtual bool is_selection_rectangle_dragging() const { return false; }
+- on_init · function · L233-L233 — virtual bool on_init() = 0;
+- on_load · function · L234-L234 — virtual void on_load(cereal::BinaryInputArchive& ar) {}
+- on_save · function · L235-L235 — virtual void on_save(cereal::BinaryOutputArchive& ar) const {}
+- on_get_name · function · L236-L236 — virtual std::string on_get_name() const = 0;
+- on_set_state · function · L237-L237 — virtual void on_set_state() {}
+- on_set_hover_id · function · L238-L238 — virtual void on_set_hover_id() {}
+- on_is_activable · function · L239-L239 — virtual bool on_is_activable() const { return true; }
+- on_is_selectable · function · L240-L240 — virtual bool on_is_selectable() const { return true; }
+- on_get_requirements · function · L241-L241 — virtual CommonGizmosDataID on_get_requirements() const { return CommonGizmosDataID(0); }
+- on_enable_grabber · function · L242-L242 — virtual void on_enable_grabber(unsigned int id) {}
+- on_disable_grabber · function · L243-L243 — virtual void on_disable_grabber(unsigned int id) {}
+- on_start_dragging · function · L246-L246 — virtual void on_start_dragging() {}
+- on_stop_dragging · function · L247-L247 — virtual void on_stop_dragging() {}
+- on_dragging · function · L248-L248 — virtual void on_dragging(const UpdateData& data) {}
+- on_render · function · L250-L250 — virtual void on_render() = 0;
+- on_render_input_window · function · L251-L251 — virtual void on_render_input_window(float x, float y, float bottom_limit) {}
+- GizmoImguiBegin · function · L253-L253 — bool GizmoImguiBegin(const std::string& name, int flags);
+- GizmoImguiEnd · function · L254-L254 — void GizmoImguiEnd();
+- GizmoImguiSetNextWIndowPos · function · L255-L255 — void GizmoImguiSetNextWIndowPos(float &x, float y, int flag, float pivot_x = 0.0f, float pivot_y = 0.0f);
+- GizmoImguiSetNextWIndowPos · function · L256-L256 — void GizmoImguiSetNextWIndowPos(float &x, float y, float w, float h, int flag, float pivot_x = 0.0f, float pivot_y = 0.0f);
+- register_grabbers_for_picking · function · L258-L258 — void register_grabbers_for_picking();
+- unregister_grabbers_for_picking · function · L259-L259 — void unregister_grabbers_for_picking();
+- on_register_raycasters_for_picking · function · L260-L260 — virtual void on_register_raycasters_for_picking() {}
+- on_unregister_raycasters_for_picking · function · L261-L261 — virtual void on_unregister_raycasters_for_picking() {}
+- render_grabbers · function · L263-L263 — void render_grabbers(const BoundingBoxf3& box) const;
+- render_grabbers · function · L264-L264 — void render_grabbers(float size) const;
+- render_grabbers · function · L265-L265 — void render_grabbers(size_t first, size_t last, float size, bool force_hover) const;
+- format · function · L267-L267 — std::string format(float value, unsigned int decimals) const;
+- set_dirty · function · L270-L270 — void set_dirty();
+- use_grabbers · function · L279-L279 — bool use_grabbers(const wxMouseEvent &mouse_event);
+- do_stop_dragging · function · L281-L281 — void do_stop_dragging(bool perform_mouse_cleanup);

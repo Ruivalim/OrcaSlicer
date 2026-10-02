@@ -1,0 +1,26 @@
+# deps_src/libigl/igl/xml/XMLSerializable.h
+
+- Serialize · function · L22-L22 — virtual void Serialize(std::vector<char>& buffer) const = 0;
+- Deserialize · function · L23-L23 — virtual void Deserialize(const std::vector<char>& buffer) = 0;
+- Serialize · function · L24-L24 — virtual void Serialize(tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element) const = 0;
+- Deserialize · function · L25-L25 — virtual void Deserialize(const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element) = 0;
+- Serialize · function · L40-L42 — void Serialize(std::vector<char>& buffer) const
+- Deserialize · function · L44-L46 — void Deserialize(const std::vector<char>& buffer)
+- Serialize · function · L48-L50 — void Serialize(tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element) const
+- Deserialize · function · L52-L54 — void Deserialize(const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element)
+- InitSerialization · function · L63-L63 — IGL_INLINE virtual void InitSerialization() = 0;
+- PreSerialization · function · L67-L67 — IGL_INLINE virtual bool PreSerialization() const;
+- PostSerialization · function · L68-L68 — IGL_INLINE virtual void PostSerialization() const;
+- PreDeserialization · function · L69-L69 — IGL_INLINE virtual bool PreDeserialization();
+- PostDeserialization · function · L70-L70 — IGL_INLINE virtual void PostDeserialization();
+- Serialize · function · L73-L73 — IGL_INLINE void Serialize(std::vector<char>& buffer) const;
+- Deserialize · function · L74-L74 — IGL_INLINE void Deserialize(const std::vector<char>& buffer);
+- Serialize · function · L75-L75 — IGL_INLINE void Serialize(tinyxml2::XMLDocument* doc,tinyxml2::XMLElement* element) const;
+- Deserialize · function · L76-L76 — IGL_INLINE void Deserialize(const tinyxml2::XMLDocument* doc,const tinyxml2::XMLElement* element);
+- XMLSerializable · function · L79-L79 — IGL_INLINE XMLSerializable();
+- XMLSerializable · function · L80-L80 — IGL_INLINE XMLSerializable(const XMLSerializable& obj);
+- XMLSerializable · function · L81-L81 — IGL_INLINE ~XMLSerializable();
+- XMLSerializable · function · L181-L184 — IGL_INLINE XMLSerializable::XMLSerializable()
+- XMLSerializable · function · L186-L190 — IGL_INLINE XMLSerializable::XMLSerializable(const XMLSerializable& /*obj*/)
+- XMLSerializable · function · L192-L196 — IGL_INLINE XMLSerializable::~XMLSerializable()
+- Add · function · L213-L221 — IGL_INLINE void XMLSerializable::Add(T& obj,std::string name,bool binary)

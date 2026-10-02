@@ -1,0 +1,28 @@
+# src/libslic3r/SLA/AGGRaster.hpp
+
+- contour · function · L21-L21 — inline const Polygon& contour(const ExPolygon& p) { return p.contour; }
+- holes · function · L22-L22 — inline const Polygons& holes(const ExPolygon& p) { return p.holes; }
+- Colors · class · L26-L29 — template<class Color> struct Colors
+- AGGRaster · class · L34-L171 — template<class PixelRenderer,
+- flipy · function · L62-L65 — void flipy(agg::path_storage &path) const
+- flipx · function · L67-L70 — void flipx(agg::path_storage &path) const
+- getPx · function · L72-L72 — double getPx(const Point &p) { return p(0) * m_pxdim_scaled.w_mm; }
+- getPy · function · L73-L73 — double getPy(const Point &p) { return p(1) * m_pxdim_scaled.h_mm; }
+- to_path · function · L74-L74 — agg::path_storage to_path(const Polygon &poly) { return to_path(poly.points); }
+- _to_path · function · L76-L86 — template<class PointVec> agg::path_storage _to_path(const PointVec& v)
+- _to_path_flpxy · function · L88-L98 — template<class PointVec> agg::path_storage _to_path_flpxy(const PointVec& v)
+- to_path · function · L100-L111 — template<class PointVec> agg::path_storage to_path(const PointVec &v)
+- _draw · function · L113-L121 — template<class P> void _draw(const P &poly)
+- AGGRaster · function · L124-L153 — template<class GammaFn>
+- trafo · function · L155-L155 — Trafo trafo() const override { return m_trafo; }
+- resolution · function · L156-L156 — Resolution resolution() const { return m_resolution; }
+- pixel_dimensions · function · L157-L161 — PixelDim   pixel_dimensions() const
+- draw · function · L163-L163 — void draw(const ExPolygon &poly) override { _draw(poly); }
+- encode · function · L165-L168 — EncodedRaster encode(RasterEncoder encoder) const override
+- clear · function · L170-L170 — void clear(const TColor color) { m_raw_renderer.clear(color); }
+- RasterGrayscaleAA · class · L183-L211 — class RasterGrayscaleAA : public _RasterGrayscaleAA
+- RasterGrayscaleAA · function · L188-L199 — template<class GammaFn>
+- read_pixel · function · L201-L208 — uint8_t read_pixel(size_t col, size_t row) const
+- clear · function · L210-L210 — void clear() { Base::clear(Colors<TColor>::Black); }
+- RasterGrayscaleAAGammaPower · class · L213-L221 — class RasterGrayscaleAAGammaPower: public RasterGrayscaleAA
+- RasterGrayscaleAAGammaPower · function · L215-L220 — RasterGrayscaleAAGammaPower(const Resolution        &res,

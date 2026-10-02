@@ -1,0 +1,38 @@
+# src/slic3r/GUI/HintNotification.hpp
+
+- HintData · class · L9-L23 — struct HintData
+- HintDataNavigation · type · L25-L30 — enum class HintDataNavigation
+- HintDatabase · class · L32-L79 — class HintDatabase
+- get_instance · function · L35-L35 — static HintDatabase& get_instance()
+- HintDatabase · function · L42-L44 — HintDatabase()
+- HintDatabase · function · L47-L47 — HintDatabase(HintDatabase const&) = delete;
+- get_hint · function · L51-L51 — HintData* get_hint(HintDataNavigation nav);
+- get_index · function · L52-L52 — size_t	  get_index() { return m_hint_id; }
+- get_count · function · L53-L57 — size_t    get_count()
+- uninit · function · L60-L60 — void    uninit();
+- reinit · function · L61-L61 — void	reinit();
+- init · function · L63-L63 — void	init();
+- init_random_hint_id · function · L64-L64 — void	init_random_hint_id();
+- load_hints_from_file · function · L65-L65 — void	load_hints_from_file(const boost::filesystem::path& path);
+- is_used · function · L66-L66 — bool    is_used(const std::string& id);
+- set_used · function · L67-L67 — void    set_used(const std::string& id);
+- clear_used · function · L68-L68 — void    clear_used();
+- get_next_hint_id · function · L70-L70 — size_t  get_next_hint_id();
+- get_prev_hint_id · function · L71-L71 — size_t	get_prev_hint_id();
+- get_random_next · function · L72-L72 — size_t  get_random_next();
+- HintNotification · function · L84-L88 — HintNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler, bool new_hint)
+- init · function · L89-L89 — virtual void	init() override;
+- open_next · function · L90-L90 — void			open_next() { retrieve_data(); }
+- set_next_window_size · function · L92-L92 — virtual void	set_next_window_size(ImGuiWrapper& imgui) override;
+- count_spaces · function · L93-L93 — virtual void	count_spaces() override;
+- count_lines · function · L94-L94 — virtual void	count_lines() override;
+- on_text_click · function · L95-L95 — virtual bool	on_text_click() override;
+- render_text · function · L96-L98 — virtual void	render_text(ImGuiWrapper& imgui,
+- render_close_button · function · L99-L101 — virtual void	render_close_button(ImGuiWrapper& imgui,
+- render_minimize_button · function · L102-L103 — virtual void	render_minimize_button(ImGuiWrapper& imgui,
+- render_preferences_button · function · L105-L106 — void			render_preferences_button(ImGuiWrapper& imgui,
+- render_right_arrow_button · function · L107-L109 — void			render_right_arrow_button(ImGuiWrapper& imgui,
+- render_documentation_button · function · L110-L112 — void			render_documentation_button(ImGuiWrapper& imgui,
+- render_logo · function · L113-L115 — void			render_logo(ImGuiWrapper& imgui,
+- retrieve_data · function · L117-L117 — void			retrieve_data(bool new_hint = true);
+- open_documentation · function · L118-L118 — void			open_documentation();

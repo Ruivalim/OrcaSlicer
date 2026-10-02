@@ -1,0 +1,69 @@
+# src/libslic3r/CAD/SketchEngine.hpp
+
+- SketchSegment · class · L18-L27 — struct SketchSegment
+- Type · type · L19-L19 — enum Type { Line, Arc, Circle, Rectangle, Polygon };
+- serialize · function · L25-L26 — template<class Archive>
+- SketchEntity · class · L29-L47 — struct SketchEntity
+- Type · type · L30-L30 — enum class Type { Line, Arc, Circle, Point, Ellipse, EllipseArc, BSpline };
+- serialize · function · L42-L46 — template<class Archive>
+- SketchPlane · class · L49-L66 — struct SketchPlane
+- to_occt · function · L55-L55 — gp_Pln to_occt() const;
+- from_face · function · L56-L56 — static SketchPlane from_face(const TopoDS_Face& face);
+- XY · function · L57-L57 — static SketchPlane XY() { return {}; }
+- XZ · function · L58-L58 — static SketchPlane XZ() { return {{0,0,0}, {0,1,0}, {1,0,0}, {0,0,1}}; }
+- YZ · function · L59-L59 — static SketchPlane YZ() { return {{0,0,0}, {1,0,0}, {0,1,0}, {0,0,1}}; }
+- project · function · L61-L61 — Vec2d project(const Vec3d& ray_origin, const Vec3d& ray_dir) const;
+- to_world · function · L62-L62 — Vec3d to_world(const Vec2d& pt) const;
+- serialize · function · L64-L65 — template<class Archive>
+- SketchProfile · class · L68-L79 — struct SketchProfile
+- is_closed · function · L72-L72 — bool is_closed(double tolerance = 0.5) const;
+- try_close · function · L73-L73 — bool try_close(double tolerance = 0.5);
+- clear · function · L74-L74 — void clear() { points.clear(); closed = false; }
+- to_occt_wire · function · L75-L75 — TopoDS_Wire to_occt_wire(const SketchPlane& plane) const;
+- serialize · function · L77-L78 — template<class Archive>
+- sketch_join_tol · function · L96-L96 — double sketch_join_tol();
+- set_sketch_auto_close · function · L97-L97 — void   set_sketch_auto_close(bool on);
+- SketchConstraintType · type · L99-L115 — enum class SketchConstraintType
+- SketchConstraintDef · class · L119-L124 — struct SketchConstraintDef
+- serialize · function · L123-L123 — template<class Archive> void serialize(Archive& ar) { ar(type, a, b, c, d, value); }
+- SketchPointRole · type · L130-L130 — enum class SketchPointRole { P0, P1, Center };
+- SketchEntityConstraintDef · class · L138-L147 — struct SketchEntityConstraintDef
+- serialize · function · L146-L146 — template<class Archive> void serialize(Archive& ar) { ar(type, ea, eb, ra, rb, value, ec, rc); }
+- is_sketch_ref · function · L157-L157 — inline bool is_sketch_ref(int ei) { return ei <= kSketchRefOrigin; }
+- sketch_entity_ends · function · L163-L163 — int  sketch_entity_ends(const SketchEntity& e, std::pair<SketchPointRole, Vec2d> out[2]);
+- sketch_closest_ends · function · L164-L165 — bool sketch_closest_ends(const SketchEntity& A, const SketchEntity& B,
+- ConstraintReject · type · L169-L179 — enum class ConstraintReject
+- ConstraintPlan · class · L181-L189 — struct ConstraintPlan
+- Kind · type · L182-L182 — enum class Kind { Reject, Apply, AskValue };
+- plan_entity_constraint · function · L193-L194 — ConstraintPlan plan_entity_constraint(const std::vector<SketchEntity>& ents,
+- solve_sketch_entities · function · L200-L201 — bool solve_sketch_entities(std::vector<SketchEntity>& entities,
+- SketchParams · class · L203-L225 — struct SketchParams
+- serialize · function · L219-L224 — template<class Archive>
+- SketchEngine · class · L227-L365 — class SketchEngine
+- make_extrude · function · L230-L231 — static TopoDS_Shape make_extrude(const TopoDS_Wire& wire, const SketchPlane& plane,
+- make_extrude · function · L232-L233 — static TopoDS_Shape make_extrude(const TopoDS_Face& face, const SketchPlane& plane,
+- make_extrude_taper · function · L239-L240 — static TopoDS_Shape make_extrude_taper(const TopoDS_Wire& wire, const SketchPlane& plane,
+- make_extrude_two_sided · function · L241-L242 — static TopoDS_Shape make_extrude_two_sided(const TopoDS_Wire& wire, const SketchPlane& plane,
+- make_extrude_two_sided · function · L243-L244 — static TopoDS_Shape make_extrude_two_sided(const TopoDS_Face& face, const SketchPlane& plane,
+- make_extrude_face · function · L245-L246 — static TopoDS_Shape make_extrude_face(const TopoDS_Face& face, const SketchPlane& plane,
+- make_extrude_regions · function · L252-L254 — static TopoDS_Shape make_extrude_regions(
+- make_revolve · function · L260-L261 — static TopoDS_Shape make_revolve(const TopoDS_Wire& wire, const SketchPlane& plane,
+- make_sweep · function · L267-L267 — static TopoDS_Shape make_sweep(const TopoDS_Wire& profile, const TopoDS_Wire& path);
+- make_loft · function · L271-L271 — static TopoDS_Shape make_loft(const std::vector<TopoDS_Wire>& profiles, bool ruled);
+- make_loft_surface · function · L276-L276 — static TopoDS_Shape make_loft_surface(const std::vector<TopoDS_Wire>& profiles, bool ruled);
+- make_pocket · function · L278-L279 — static TopoDS_Shape make_pocket(const TopoDS_Wire& wire, const SketchPlane& plane,
+- tessellate · function · L281-L283 — static TriangleMesh tessellate(const TopoDS_Shape& shape,
+- tessellate · function · L285-L288 — static TriangleMesh tessellate(const TopoDS_Shape& shape,
+- entities_to_wire · function · L290-L292 — static TopoDS_Wire entities_to_wire(const std::vector<SketchEntity>& entities,
+- entities_to_wires · function · L300-L302 — static std::vector<TopoDS_Wire> entities_to_wires(const std::vector<SketchEntity>& entities,
+- wires_to_face · function · L307-L308 — static TopoDS_Face wires_to_face(const std::vector<TopoDS_Wire>& wires,
+- mirror_entities · function · L310-L311 — static std::vector<SketchEntity> mirror_entities(
+- offset_entities · function · L319-L320 — static std::vector<SketchEntity> offset_entities(
+- array_entities · function · L328-L330 — static std::vector<SketchEntity> array_entities(
+- transform_entities · function · L339-L341 — static std::vector<SketchEntity> transform_entities(
+- fillet_lines · function · L343-L344 — static bool fillet_lines(const SketchEntity& a, const SketchEntity& b, double r,
+- chamfer_lines · function · L351-L352 — static bool chamfer_lines(const SketchEntity& a, const SketchEntity& b, double d,
+- trim_entity · function · L354-L355 — static bool trim_entity(SketchEntity& e, const std::vector<SketchEntity>& others,
+- extend_entity · function · L357-L358 — static bool extend_entity(SketchEntity& e, const std::vector<SketchEntity>& others,
+- make_bridge · function · L363-L364 — static SketchEntity make_bridge(const SketchEntity& a, int a_end,
+- sketch_open_ends · function · L369-L369 — std::vector<Vec2d> sketch_open_ends(const std::vector<SketchEntity>&, const SketchPlane&);

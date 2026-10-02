@@ -1,0 +1,75 @@
+# src/libslic3r/Emboss.hpp
+
+- get_font_list · function · L30-L30 — EmbossStyles get_font_list();
+- get_font_list_by_register · function · L32-L32 — EmbossStyles get_font_list_by_register();
+- get_font_list_by_enumeration · function · L33-L33 — EmbossStyles get_font_list_by_enumeration();
+- get_font_list_by_folder · function · L34-L34 — EmbossStyles get_font_list_by_folder();
+- get_font_path · function · L42-L42 — std::optional<std::wstring> get_font_path(const std::wstring &font_face_name);
+- Glyph · class · L45-L53 — struct Glyph
+- FontFile · class · L62-L100 — struct FontFile
+- Info · class · L70-L77 — struct Info
+- FontFile · function · L81-L87 — FontFile(std::unique_ptr<std::vector<unsigned char>> data,
+- FontFileWithCache · class · L105-L121 — struct FontFileWithCache
+- FontFileWithCache · function · L115-L115 — FontFileWithCache() : font_file(nullptr), cache(nullptr) {}
+- FontFileWithCache · function · L116-L119 — explicit FontFileWithCache(std::unique_ptr<FontFile> font_file)
+- has_value · function · L120-L120 — bool has_value() const { return font_file != nullptr && cache != nullptr; }
+- create_font_file · function · L128-L128 — std::unique_ptr<FontFile> create_font_file(const char *file_path);
+- create_font_file · function · L130-L130 — std::unique_ptr<FontFile> create_font_file(std::unique_ptr<std::vector<unsigned char>> data);
+- can_load · function · L133-L133 — void * can_load(void* hfont);
+- create_font_file · function · L134-L134 — std::unique_ptr<FontFile> create_font_file(void * hfont);
+- letter2glyph · function · L145-L145 — std::optional<Glyph> letter2glyph(const FontFile &font, unsigned int font_index, int letter, float flatness);
+- text2shapes · function · L155-L155 — HealedExPolygons  text2shapes (FontFileWithCache &font, const char *text,         const FontProp &font_prop, const std::function<bool()> &was_canceled = []() {return false;});
+- text2vshapes · function · L156-L156 — ExPolygonsWithIds text2vshapes(FontFileWithCache &font, const std::wstring& text, const FontProp &font_prop, const std::function<bool()>& was_canceled = []() {return false;});
+- get_count_lines · function · L160-L160 — unsigned get_count_lines(const std::wstring &ws);
+- get_count_lines · function · L161-L161 — unsigned get_count_lines(const std::string &text);
+- get_count_lines · function · L162-L162 — unsigned get_count_lines(const ExPolygonsWithIds &shape);
+- heal_polygons · function · L171-L171 — HealedExPolygons heal_polygons(const Polygons &shape, bool is_non_zero = true, unsigned max_iteration = 10);
+- heal_expolygons · function · L185-L185 — bool heal_expolygons(ExPolygons &shape, unsigned max_iteration = 10);
+- divide_segments_for_close_point · function · L196-L196 — bool divide_segments_for_close_point(ExPolygons &expolygons, double distance);
+- apply_transformation · function · L204-L204 — void apply_transformation(const std::optional<float> &angle, const std::optional<float> &distance, Transform3d &transformation);
+- is_italic · function · L213-L213 — bool is_italic(const FontFile &font, unsigned int font_index);
+- create_range_text · function · L223-L223 — std::string create_range_text(const std::string &text, const FontFile &font, unsigned int font_index, bool* exist_unknown = nullptr);
+- get_text_shape_scale · function · L231-L231 — double get_text_shape_scale(const FontProp &fp, const FontFile &ff);
+- get_font_info · function · L239-L239 — const FontFile::Info &get_font_info(const FontFile &font, const FontProp &prop);
+- get_line_height · function · L247-L247 — int get_line_height(const FontFile &font, const FontProp &prop);
+- get_align_y_offset_in_mm · function · L255-L255 — double get_align_y_offset_in_mm(FontProp::VerticalAlign align, unsigned count_lines, const FontFile &ff, const FontProp &fp);
+- IProject3d · class · L260-L272 — class IProject3d
+- project · function · L271-L271 — virtual Vec3d project(const Vec3d &point) const = 0;
+- IProjection · class · L278-L300 — class IProjection : public IProject3d
+- create_front_back · function · L291-L291 — virtual std::pair<Vec3d, Vec3d> create_front_back(const Point &p) const = 0;
+- unproject · function · L299-L299 — virtual std::optional<Vec2d> unproject(const Vec3d &p, double * depth = nullptr) const = 0;
+- polygons2model · function · L308-L308 — indexed_triangle_set polygons2model(const ExPolygons &shape2d, const IProjection& projection);
+- suggest_up · function · L316-L316 — Vec3d suggest_up(const Vec3d normal, double up_limit = 0.9);
+- calc_up · function · L324-L324 — std::optional<float> calc_up(const Transform3d &tr, double up_limit = 0.9);
+- create_transformation_onto_surface · function · L333-L334 — Transform3d create_transformation_onto_surface(
+- ProjectZ · class · L336-L345 — class ProjectZ : public IProjection
+- ProjectZ · function · L339-L339 — explicit ProjectZ(double depth) : m_depth(depth) {}
+- create_front_back · function · L341-L341 — std::pair<Vec3d, Vec3d> create_front_back(const Point &p) const override;
+- project · function · L342-L342 — Vec3d project(const Vec3d &point) const override;
+- unproject · function · L343-L343 — std::optional<Vec2d> unproject(const Vec3d &p, double * depth = nullptr) const override;
+- ProjectScale · class · L347-L370 — class ProjectScale : public IProjection
+- ProjectScale · function · L352-L354 — ProjectScale(std::unique_ptr<IProjection> core, double scale)
+- create_front_back · function · L357-L361 — std::pair<Vec3d, Vec3d> create_front_back(const Point &p) const override
+- project · function · L362-L364 — Vec3d project(const Vec3d &point) const override
+- unproject · function · L365-L369 — std::optional<Vec2d> unproject(const Vec3d &p, double *depth = nullptr) const override
+- ProjectTransform · class · L372-L400 — class ProjectTransform : public IProjection
+- ProjectTransform · function · L379-L383 — ProjectTransform(std::unique_ptr<IProjection> core, const Transform3d &tr) : m_core(std::move(core)), m_tr(tr)
+- create_front_back · function · L386-L390 — std::pair<Vec3d, Vec3d> create_front_back(const Point &p) const override
+- project · function · L391-L393 — Vec3d project(const Vec3d &point) const override
+- unproject · function · L394-L399 — std::optional<Vec2d> unproject(const Vec3d &p, double *depth = nullptr) const override
+- OrthoProject3d · class · L402-L409 — class OrthoProject3d : public Emboss::IProject3d
+- OrthoProject3d · function · L407-L407 — OrthoProject3d(Vec3d direction) : m_direction(direction) {}
+- project · function · L408-L408 — Vec3d project(const Vec3d &point) const override{ return point + m_direction;}
+- OrthoProject · class · L411-L424 — class OrthoProject: public Emboss::IProjection
+- OrthoProject · function · L417-L419 — OrthoProject(Transform3d matrix, Vec3d direction)
+- create_front_back · function · L421-L421 — std::pair<Vec3d, Vec3d> create_front_back(const Point &p) const override;
+- project · function · L422-L422 — Vec3d project(const Vec3d &point) const override;
+- unproject · function · L423-L423 — std::optional<Vec2d> unproject(const Vec3d &p, double * depth = nullptr) const override;
+- TextLine · class · L429-L439 — struct TextLine
+- sample_slice · function · L450-L450 — PolygonPoints sample_slice(const TextLine &slice, const BoundingBoxes &bbs, double scale);
+- calculate_angle · function · L459-L459 — double calculate_angle(int32_t distance, PolygonPoint polygon_point, const Polygon &polygon);
+- calculate_angles · function · L460-L460 — std::vector<double> calculate_angles(int32_t distance, const PolygonPoints& polygon_points, const Polygon &polygon);
+- translate · function · L466-L466 — void translate(ExPolygonsWithIds &e, const Point &p);
+- get_extents · function · L467-L467 — BoundingBox get_extents(const ExPolygonsWithIds &e);
+- center · function · L468-L468 — void center(ExPolygonsWithIds &e);
+- union_with_delta · function · L471-L471 — ExPolygons union_with_delta(EmbossShape &shape, float delta, unsigned max_heal_iteration);

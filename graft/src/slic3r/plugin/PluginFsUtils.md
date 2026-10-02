@@ -1,0 +1,26 @@
+# src/slic3r/plugin/PluginFsUtils.hpp
+
+- json_to_py · function · L25-L51 — inline pybind11::object json_to_py(const nlohmann::json& j)
+- py_to_json · function · L53-L83 — inline nlohmann::json py_to_json(const pybind11::handle& o)
+- PluginPermissions · class · L85-L92 — struct PluginPermissions
+- PluginInstallState · class · L94-L104 — struct PluginInstallState
+- get_cloud_plugin_dir · function · L108-L108 — std::string get_cloud_plugin_dir(const std::string& user_id);
+- get_orca_plugins_dir · function · L110-L110 — std::string get_orca_plugins_dir();
+- resolve_plugin_root_from_descriptor · function · L112-L112 — boost::filesystem::path resolve_plugin_root_from_descriptor(const PluginDescriptor& descriptor);
+- is_plugin_root_allowed · function · L114-L115 — bool is_plugin_root_allowed(const boost::filesystem::path& candidate_root,
+- resolve_allowed_plugin_root · function · L117-L121 — bool resolve_allowed_plugin_root(const PluginDescriptor& descriptor,
+- delete_plugin_root · function · L123-L125 — bool delete_plugin_root(const boost::filesystem::path& resolved_root,
+- get_plugin_directories · function · L132-L132 — std::vector<std::string> get_plugin_directories(const std::string& cloud_user_id);
+- discover_plugin_packages · function · L141-L141 — std::vector<PluginDescriptor> discover_plugin_packages(const std::vector<std::string>& dirs, std::string& error);
+- is_ignored_plugin_directory · function · L143-L143 — bool is_ignored_plugin_directory(const boost::filesystem::path& path);
+- is_safe_relative_path · function · L144-L144 — bool is_safe_relative_path(const boost::filesystem::path& path);
+- is_valid_plugin_id · function · L145-L145 — bool is_valid_plugin_id(const std::string& id);
+- extract_zip_to_directory · function · L146-L146 — bool extract_zip_to_directory(const boost::filesystem::path& zip_path, const boost::filesystem::path& destination, std::string& error);
+- read_python_plugin_metadata · function · L151-L151 — bool read_python_plugin_metadata(const boost::filesystem::path& py_path, PluginDescriptor& descriptor, std::string& error);
+- read_wheel_plugin_metadata · function · L157-L157 — bool read_wheel_plugin_metadata(const boost::filesystem::path& whl_path, PluginDescriptor& descriptor, std::string& error);
+- find_installed_plugin_entry · function · L162-L162 — boost::filesystem::path find_installed_plugin_entry(const boost::filesystem::path& plugin_dir, std::string& error);
+- write_install_state · function · L165-L165 — bool write_install_state(const boost::filesystem::path& plugin_dir, const PluginInstallState& state);
+- write_install_state · function · L167-L168 — bool write_install_state(const boost::filesystem::path& plugin_dir, const PluginDescriptor& entry, bool enabled,
+- write_install_state · function · L170-L170 — bool write_install_state(const boost::filesystem::path& plugin_dir, const PluginDescriptor& entry);
+- read_install_state · function · L174-L174 — bool read_install_state(const boost::filesystem::path& plugin_dir, PluginDescriptor& entry);
+- read_install_state · function · L176-L176 — bool read_install_state(const boost::filesystem::path& plugin_dir, PluginInstallState& out);

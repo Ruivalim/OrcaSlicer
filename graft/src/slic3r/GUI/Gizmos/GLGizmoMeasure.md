@@ -1,0 +1,86 @@
+# src/slic3r/GUI/Gizmos/GLGizmoMeasure.hpp
+
+- ModelVolumeType · type · L14-L14 — enum class ModelVolumeType : int;
+- Measuring · class · L15-L15 — namespace Measure { class Measuring; }
+- SLAGizmoEventType · type · L18-L18 — enum class SLAGizmoEventType : unsigned char;
+- EMeasureMode · type · L19-L22 — enum class EMeasureMode : unsigned char
+- AssemblyMode · type · L23-L26 — enum class AssemblyMode : unsigned char
+- TransformHelper · class · L50-L74 — class TransformHelper
+- Cache · class · L52-L57 — struct Cache
+- model_to_world · function · L61-L61 — static Vec3d             model_to_world(const Vec3d &model, const Transform3d &world_matrix);
+- world_to_clip · function · L62-L62 — static Vec4d             world_to_clip(const Vec3d &world, const Matrix4d &projection_view_matrix);
+- clip_to_ndc · function · L63-L63 — static Vec3d             clip_to_ndc(const Vec4d &clip);
+- ndc_to_ss · function · L64-L64 — static Vec2d             ndc_to_ss(const Vec3d &ndc, const std::array<int, 4> &viewport);
+- model_to_clip · function · L65-L65 — static Vec4d             model_to_clip(const Vec3d &model, const Transform3d &world_matrix, const Matrix4d &projection_view_matrix);
+- model_to_ndc · function · L66-L66 — static Vec3d             model_to_ndc(const Vec3d &model, const Transform3d &world_matrix, const Matrix4d &projection_view_matrix);
+- model_to_ss · function · L67-L67 — static Vec2d             model_to_ss(const Vec3d &model, const Transform3d &world_matrix, const Matrix4d &projection_view_matrix, const std::array<int, 4> &viewport);
+- world_to_ss · function · L68-L68 — static Vec2d             world_to_ss(const Vec3d &world, const Matrix4d &projection_view_matrix, const std::array<int, 4> &viewport);
+- ndc_to_ss_matrix · function · L69-L69 — static const Matrix4d &  ndc_to_ss_matrix(const std::array<int, 4> &viewport);
+- ndc_to_ss_matrix_inverse · function · L70-L70 — static const Transform3d ndc_to_ss_matrix_inverse(const std::array<int, 4> &viewport);
+- update · function · L73-L73 — static void update(const std::array<int, 4> &viewport);
+- GLGizmoMeasure · class · L76-L326 — class GLGizmoMeasure : public GLGizmoBase
+- GripperType · type · L80-L92 — enum GripperType
+- EMode · type · L94-L98 — enum class EMode : unsigned char
+- SelectedFeatures · class · L100-L139 — struct SelectedFeatures
+- Item · class · L102-L121 — struct Item
+- reset · function · L116-L120 — void reset()
+- reset · function · L126-L129 — void reset()
+- CircleGLModel · class · L165-L170 — struct CircleGLModel
+- init_circle_glmodel · function · L174-L174 — void           init_circle_glmodel(GripperType gripper_type, const Measure::SurfaceFeature &feature, CircleGLModel &circle_gl_model, float inv_zoom);
+- PlaneGLModel · class · L176-L179 — struct PlaneGLModel
+- init_plane_glmodel · function · L183-L183 — void  init_plane_glmodel(GripperType gripper_type, const Measure::SurfaceFeature &feature, PlaneGLModel &plane_gl_model);
+- Dimensioning · class · L185-L190 — struct Dimensioning
+- update_if_needed · function · L225-L225 — void update_if_needed();
+- disable_scene_raycasters · function · L227-L227 — void disable_scene_raycasters();
+- restore_scene_raycasters_state · function · L228-L228 — void restore_scene_raycasters_state();
+- render_dimensioning · function · L230-L230 — void render_dimensioning();
+- render_dimensioning_if_scene_reused · function · L232-L232 — void render_dimensioning_if_scene_reused();
+- render_debug_dialog · function · L236-L236 — void render_debug_dialog();
+- GLGizmoMeasure · function · L240-L240 — GLGizmoMeasure(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- on_mouse · function · L246-L246 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- data_changed · function · L248-L248 — void data_changed(bool is_serializing) override;
+- gizmo_event · function · L250-L250 — virtual bool gizmo_event(SLAGizmoEventType action, const Vec2d& mouse_position, bool shift_down, bool alt_down, bool control_down);
+- wants_enter_leave_snapshots · function · L252-L252 — bool wants_enter_leave_snapshots() const override { return true; }
+- get_gizmo_entering_text · function · L253-L253 — std::string get_gizmo_entering_text() const override { return _u8L("Entering Measure gizmo"); }
+- get_gizmo_leaving_text · function · L254-L254 — std::string get_gizmo_leaving_text() const override { return _u8L("Leaving Measure gizmo"); }
+- on_init · function · L258-L258 — bool on_init() override;
+- on_get_name · function · L259-L259 — std::string on_get_name() const override;
+- on_is_activable · function · L260-L260 — bool on_is_activable() const override;
+- render_follows_cursor · function · L263-L263 — bool render_follows_cursor() const override;
+- on_render · function · L264-L264 — void on_render() override;
+- on_set_state · function · L265-L265 — void on_set_state() override;
+- show_selection_ui · function · L268-L268 — void         show_selection_ui();
+- show_distance_xyz_ui · function · L269-L269 — void         show_distance_xyz_ui();
+- show_face_face_assembly_common · function · L271-L271 — void         show_face_face_assembly_common();
+- show_face_face_assembly_senior · function · L272-L272 — void         show_face_face_assembly_senior();
+- init_render_input_window · function · L273-L273 — void         init_render_input_window();
+- on_render_input_window · function · L274-L274 — virtual void on_render_input_window(float x, float y, float bottom_limit) override;
+- render_input_window_warning · function · L276-L276 — virtual void render_input_window_warning(bool same_model_object);
+- remove_selected_sphere_raycaster · function · L277-L277 — void remove_selected_sphere_raycaster(int id);
+- update_measurement_result · function · L278-L278 — void update_measurement_result();
+- reset_all_pick · function · L280-L280 — void reset_all_pick();
+- reset_gripper_pick · function · L281-L281 — void reset_gripper_pick(GripperType id,bool is_all = false);
+- register_single_mesh_pick · function · L282-L282 — void register_single_mesh_pick();
+- format_double · function · L285-L285 — std::string format_double(double value);
+- format_vec3 · function · L286-L286 — std::string format_vec3(const Vec3d &v);
+- surface_feature_type_as_string · function · L287-L287 — std::string surface_feature_type_as_string(Measure::SurfaceFeatureType type);
+- point_on_feature_type_as_string · function · L288-L288 — std::string point_on_feature_type_as_string(Measure::SurfaceFeatureType type, int hover_id);
+- center_on_feature_type_as_string · function · L289-L289 — std::string center_on_feature_type_as_string(Measure::SurfaceFeatureType type);
+- is_feature_with_center · function · L290-L290 — bool is_feature_with_center(const Measure::SurfaceFeature &feature);
+- get_feature_offset · function · L291-L291 — Vec3d get_feature_offset(const Measure::SurfaceFeature &feature);
+- reset_all_feature · function · L293-L293 — void reset_all_feature();
+- reset_feature1_render · function · L294-L294 — void reset_feature1_render();
+- reset_feature2_render · function · L295-L295 — void reset_feature2_render();
+- reset_feature1 · function · L296-L296 — void reset_feature1();
+- reset_feature2 · function · L297-L297 — void reset_feature2();
+- is_two_volume_in_same_model_object · function · L298-L298 — bool is_two_volume_in_same_model_object();
+- get_measuring_of_mesh · function · L299-L299 — Measure::Measuring* get_measuring_of_mesh(GLVolume *v, Transform3d &tran);
+- update_world_plane_features · function · L300-L300 — void update_world_plane_features(Measure::Measuring *cur_measuring, Measure::SurfaceFeature &feautre);
+- update_feature_by_tran · function · L301-L301 — void update_feature_by_tran(Measure::SurfaceFeature & feature);
+- set_distance · function · L302-L302 — void set_distance(bool same_model_object, const Vec3d &displacement, bool take_shot = true);
+- set_to_parallel · function · L303-L303 — void set_to_parallel(bool same_model_object, bool take_shot = true, bool is_anti_parallel = false);
+- set_to_reverse_rotation · function · L304-L304 — void set_to_reverse_rotation(bool same_model_object,int feature_index);
+- set_to_around_center_of_faces · function · L305-L305 — void set_to_around_center_of_faces(bool same_model_object,float rotate_degree);
+- set_to_center_coincidence · function · L306-L306 — void set_to_center_coincidence(bool same_model_object);
+- set_parallel_distance · function · L307-L307 — void set_parallel_distance(bool same_model_object,float dist);
+- is_pick_meet_assembly_mode · function · L309-L309 — bool is_pick_meet_assembly_mode(const SelectedFeatures::Item& item);

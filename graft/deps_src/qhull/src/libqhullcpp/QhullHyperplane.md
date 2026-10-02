@@ -1,0 +1,35 @@
+# deps_src/qhull/src/libqhullcpp/QhullHyperplane.h
+
+- Iterator · type · L36-L36 — typedef QhullHyperplane::iterator       Iterator;
+- ConstIterator · type · L37-L37 — typedef QhullHyperplane::const_iterator ConstIterator;
+- QhullHyperplane · function · L49-L49 — explicit            QhullHyperplane(const Qhull &q);
+- hyperplane_dimension · function · L51-L51 — explicit            QhullHyperplane(QhullQh *qqh) : hyperplane_coordinates(0), qh_qh(qqh), hyperplane_offset(0.0), hyperplane_dimension(0) {}
+- qh_qh · function · L51-L56 — explicit            QhullHyperplane(QhullQh *qqh) : hyperplane_coordinates(0), qh_qh(qqh), hyperplane_offset(0.0), hyperplane_dimension(0) {}
+- QhullHyperplane · function · L51-L51 — explicit            QhullHyperplane(QhullQh *qqh) : hyperplane_coordinates(0), qh_qh(qqh), hyperplane_offset(0.0), hyperplane_dimension(0) {}
+- hyperplane_dimension · function · L52-L52 — QhullHyperplane(QhullQh *qqh, int hyperplaneDimension, coordT *c, coordT hyperplaneOffset) : hyperplane_coordinates(c), qh_qh(qqh), hyperplane_offset(hyperplaneOffset), hyperplane_dimension(hyperplaneDimension) {}
+- QhullHyperplane · function · L52-L52 — QhullHyperplane(QhullQh *qqh, int hyperplaneDimension, coordT *c, coordT hyperplaneOffset) : hyperplane_coordinates(c), qh_qh(qqh), hyperplane_offset(hyperplaneOffset), hyperplane_dimension(hyperplaneDimension) {}
+- hyperplane_dimension · function · L54-L54 — QhullHyperplane(const QhullHyperplane &other)  : hyperplane_coordinates(other.hyperplane_coordinates), qh_qh(other.qh_qh), hyperplane_offset(other.hyperplane_offset), hyperplane_dimension(other.hyperplane_dimension) {}
+- QhullHyperplane · function · L54-L54 — QhullHyperplane(const QhullHyperplane &other)  : hyperplane_coordinates(other.hyperplane_coordinates), qh_qh(other.qh_qh), hyperplane_offset(other.hyperplane_offset), hyperplane_dimension(other.hyperplane_dimension) {}
+- coordinates · function · L70-L70 — const coordT *      coordinates() const { return hyperplane_coordinates; }
+- coordinates · function · L71-L71 — coordT *            coordinates() { return hyperplane_coordinates; }
+- defineAs · function · L72-L72 — void                defineAs(int hyperplaneDimension, coordT *c, coordT hyperplaneOffset) { QHULL_ASSERT(hyperplaneDimension>=0); hyperplane_coordinates= c; hyperplane_dimension= hyperplaneDimension; hyperplane_offset= hyperplaneOffset; }
+- defineAs · function · L74-L74 — void                defineAs(QhullHyperplane &other) { hyperplane_coordinates= other.coordinates(); hyperplane_dimension= other.dimension();  hyperplane_offset= other.offset(); }
+- dimension · function · L75-L75 — int                 dimension() const { return hyperplane_dimension; }
+- isValid · function · L76-L76 — bool                isValid() const { return hyperplane_coordinates!=0 && hyperplane_dimension>0; }
+- offset · function · L77-L77 — coordT              offset() const { return hyperplane_offset; }
+- setCoordinates · function · L82-L82 — void                setCoordinates(coordT *c) { hyperplane_coordinates= c; }
+- setDimension · function · L83-L83 — void                setDimension(int hyperplaneDimension) { hyperplane_dimension= hyperplaneDimension; }
+- setOffset · function · L84-L84 — void                setOffset(coordT hyperplaneOffset) { hyperplane_offset= hyperplaneOffset; }
+- begin · function · L87-L87 — iterator            begin() { return hyperplane_coordinates; }
+- begin · function · L88-L88 — const_iterator      begin() const { return hyperplane_coordinates; }
+- constBegin · function · L89-L89 — const_iterator      constBegin() const { return hyperplane_coordinates; }
+- constEnd · function · L90-L90 — const_iterator      constEnd() const { return hyperplane_coordinates+hyperplane_dimension; }
+- count · function · L91-L91 — int                 count() { return hyperplane_dimension; }
+- end · function · L92-L92 — iterator            end() { return hyperplane_coordinates+hyperplane_dimension; }
+- end · function · L93-L93 — const_iterator      end() const { return hyperplane_coordinates+hyperplane_dimension; }
+- size · function · L94-L94 — size_t              size() { return (size_t)hyperplane_dimension; }
+- distance · function · L97-L97 — double              distance(const QhullPoint &p) const;
+- hyperplaneAngle · function · L98-L98 — double              hyperplaneAngle(const QhullHyperplane &other) const;
+- norm · function · L99-L99 — double              norm() const;
+- PrintHyperplane · class · L99-L109 — double              norm() const;
+- print · function · L109-L109 — PrintHyperplane          print(const char *message, const char *offsetMessage) const { return PrintHyperplane(message, offsetMessage, *this); }

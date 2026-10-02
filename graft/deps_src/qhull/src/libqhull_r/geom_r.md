@@ -1,0 +1,57 @@
+# deps_src/qhull/src/libqhull_r/geom_r.h
+
+- qh_backnormal · function · L105-L105 — void    qh_backnormal(qhT *qh, realT **rows, int numrow, int numcol, boolT sign, coordT *normal, boolT *nearzero);
+- qh_distplane · function · L106-L106 — void    qh_distplane(qhT *qh, pointT *point, facetT *facet, realT *dist);
+- qh_findbest · function · L107-L109 — facetT *qh_findbest(qhT *qh, pointT *point, facetT *startfacet,
+- qh_findbesthorizon · function · L110-L111 — facetT *qh_findbesthorizon(qhT *qh, boolT ischeckmax, pointT *point,
+- qh_findbestnew · function · L112-L113 — facetT *qh_findbestnew(qhT *qh, pointT *point, facetT *startfacet, realT *dist,
+- qh_gausselim · function · L114-L114 — void    qh_gausselim(qhT *qh, realT **rows, int numrow, int numcol, boolT *sign, boolT *nearzero);
+- qh_getangle · function · L115-L115 — realT   qh_getangle(qhT *qh, pointT *vect1, pointT *vect2);
+- qh_getcenter · function · L116-L116 — pointT *qh_getcenter(qhT *qh, setT *vertices);
+- qh_getcentrum · function · L117-L117 — pointT *qh_getcentrum(qhT *qh, facetT *facet);
+- qh_getdistance · function · L118-L118 — realT   qh_getdistance(qhT *qh, facetT *facet, facetT *neighbor, realT *mindist, realT *maxdist);
+- qh_normalize · function · L119-L119 — void    qh_normalize(qhT *qh, coordT *normal, int dim, boolT toporient);
+- qh_normalize2 · function · L120-L121 — void    qh_normalize2(qhT *qh, coordT *normal, int dim, boolT toporient,
+- qh_projectpoint · function · L122-L122 — pointT *qh_projectpoint(qhT *qh, pointT *point, facetT *facet, realT dist);
+- qh_setfacetplane · function · L124-L124 — void    qh_setfacetplane(qhT *qh, facetT *newfacets);
+- qh_sethyperplane_det · function · L125-L126 — void    qh_sethyperplane_det(qhT *qh, int dim, coordT **rows, coordT *point0,
+- qh_sethyperplane_gauss · function · L127-L128 — void    qh_sethyperplane_gauss(qhT *qh, int dim, coordT **rows, pointT *point0,
+- qh_sharpnewfacets · function · L129-L129 — boolT   qh_sharpnewfacets(qhT *qh);
+- qh_copypoints · function · L133-L133 — coordT *qh_copypoints(qhT *qh, coordT *points, int numpoints, int dimension);
+- qh_crossproduct · function · L134-L134 — void    qh_crossproduct(int dim, realT vecA[3], realT vecB[3], realT vecC[3]);
+- qh_determinant · function · L135-L135 — realT   qh_determinant(qhT *qh, realT **rows, int dim, boolT *nearzero);
+- qh_detjoggle · function · L136-L136 — realT   qh_detjoggle(qhT *qh, pointT *points, int numpoints, int dimension);
+- qh_detroundoff · function · L137-L137 — void    qh_detroundoff(qhT *qh);
+- qh_detsimplex · function · L138-L138 — realT   qh_detsimplex(qhT *qh, pointT *apex, setT *points, int dim, boolT *nearzero);
+- qh_distnorm · function · L139-L139 — realT   qh_distnorm(int dim, pointT *point, pointT *normal, realT *offsetp);
+- qh_distround · function · L140-L140 — realT   qh_distround(qhT *qh, int dimension, realT maxabs, realT maxsumabs);
+- qh_divzero · function · L141-L141 — realT   qh_divzero(realT numer, realT denom, realT mindenom1, boolT *zerodiv);
+- qh_facetarea · function · L142-L142 — realT   qh_facetarea(qhT *qh, facetT *facet);
+- qh_facetarea_simplex · function · L143-L144 — realT   qh_facetarea_simplex(qhT *qh, int dim, coordT *apex, setT *vertices,
+- qh_facetcenter · function · L145-L145 — pointT *qh_facetcenter(qhT *qh, setT *vertices);
+- qh_findgooddist · function · L146-L146 — facetT *qh_findgooddist(qhT *qh, pointT *point, facetT *facetA, realT *distp, facetT **facetlist);
+- qh_getarea · function · L147-L147 — void    qh_getarea(qhT *qh, facetT *facetlist);
+- qh_gram_schmidt · function · L148-L148 — boolT   qh_gram_schmidt(qhT *qh, int dim, realT **rows);
+- qh_inthresholds · function · L149-L149 — boolT   qh_inthresholds(qhT *qh, coordT *normal, realT *angle);
+- qh_joggleinput · function · L150-L150 — void    qh_joggleinput(qhT *qh);
+- qh_maxabsval · function · L151-L151 — realT  *qh_maxabsval(realT *normal, int dim);
+- qh_maxmin · function · L152-L152 — setT   *qh_maxmin(qhT *qh, pointT *points, int numpoints, int dimension);
+- qh_maxouter · function · L153-L153 — realT   qh_maxouter(qhT *qh);
+- qh_maxsimplex · function · L154-L154 — void    qh_maxsimplex(qhT *qh, int dim, setT *maxpoints, pointT *points, int numpoints, setT **simplex);
+- qh_minabsval · function · L155-L155 — realT   qh_minabsval(realT *normal, int dim);
+- qh_mindiff · function · L156-L156 — int     qh_mindiff(realT *vecA, realT *vecB, int dim);
+- qh_orientoutside · function · L157-L157 — boolT   qh_orientoutside(qhT *qh, facetT *facet);
+- qh_outerinner · function · L158-L158 — void    qh_outerinner(qhT *qh, facetT *facet, realT *outerplane, realT *innerplane);
+- qh_pointdist · function · L159-L159 — coordT  qh_pointdist(pointT *point1, pointT *point2, int dim);
+- qh_printmatrix · function · L160-L160 — void    qh_printmatrix(qhT *qh, FILE *fp, const char *string, realT **rows, int numrow, int numcol);
+- qh_printpoints · function · L161-L161 — void    qh_printpoints(qhT *qh, FILE *fp, const char *string, setT *points);
+- qh_projectinput · function · L162-L162 — void    qh_projectinput(qhT *qh);
+- qh_projectpoints · function · L163-L164 — void    qh_projectpoints(qhT *qh, signed char *project, int n, realT *points,
+- qh_rotateinput · function · L165-L165 — void    qh_rotateinput(qhT *qh, realT **rows);
+- qh_rotatepoints · function · L166-L166 — void    qh_rotatepoints(qhT *qh, realT *points, int numpoints, int dim, realT **rows);
+- qh_scaleinput · function · L167-L167 — void    qh_scaleinput(qhT *qh);
+- qh_scalelast · function · L168-L169 — void    qh_scalelast(qhT *qh, coordT *points, int numpoints, int dim, coordT low,
+- qh_scalepoints · function · L170-L171 — void    qh_scalepoints(qhT *qh, pointT *points, int numpoints, int dim,
+- qh_sethalfspace · function · L172-L173 — boolT   qh_sethalfspace(qhT *qh, int dim, coordT *coords, coordT **nextp,
+- qh_sethalfspace_all · function · L174-L174 — coordT *qh_sethalfspace_all(qhT *qh, int dim, int count, coordT *halfspaces, pointT *feasible);
+- qh_voronoi_center · function · L175-L175 — pointT *qh_voronoi_center(qhT *qh, int dim, setT *points);

@@ -1,0 +1,43 @@
+# src/libslic3r/SLA/SupportPointGenerator.hpp
+
+- SupportPointGenerator · class · L19-L225 — class SupportPointGenerator
+- Config · class · L21-L29 — struct Config
+- support_force · function · L27-L27 — inline float support_force() const { return 11.1f / density_relative; } // a force one point can support       (arbitrary force unit)
+- tear_pressure · function · L28-L28 — inline float tear_pressure() const { return 1.f; }  // pressure that the display exerts    (the force unit per mm2)
+- SupportPointGenerator · function · L31-L32 — SupportPointGenerator(const IndexedMesh& emesh, const std::vector<ExPolygons>& slices,
+- SupportPointGenerator · function · L34-L34 — SupportPointGenerator(const IndexedMesh& emesh, const Config& config, std::function<void(void)> throw_on_cancel, std::function<void(int)> statusfn);
+- output · function · L36-L36 — const std::vector<SupportPoint>& output() const { return m_output; }
+- output · function · L37-L37 — std::vector<SupportPoint>& output() { return m_output; }
+- Structure · class · L41-L126 — struct Structure
+- Structure · function · L42-L47 — Structure(MyLayer &layer, const ExPolygon& poly, const BoundingBox &bbox, const Vec2f &centroid, float area, float h) :
+- supports_force_total · function · L58-L58 — float supports_force_total() const { return this->supports_force_this_layer + this->supports_force_inherited; }
+- Link · class · L63-L67 — struct Link
+- Link · function · L64-L64 — Link(Structure *island, float overlap_area) : island(island), overlap_area(overlap_area) {}
+- overlaps · function · L86-L89 — bool overlaps(const Structure &rhs) const
+- overlap_area · function · L90-L98 — float overlap_area(const Structure &rhs) const
+- area_below · function · L99-L104 — float area_below() const
+- polygons_below · function · L105-L116 — Polygons polygons_below() const
+- expolygons_below · function · L117-L123 — ExPolygons expolygons_below() const
+- support_force_deficit · function · L125-L125 — float support_force_deficit(const float tear_pressure) const { return this->area * tear_pressure - this->supports_force_total(); }
+- MyLayer · class · L128-L133 — struct MyLayer
+- MyLayer · function · L129-L129 — MyLayer(const size_t layer_id, coordf_t print_z) : layer_id(layer_id), print_z(print_z) {}
+- RichSupportPoint · class · L135-L138 — struct RichSupportPoint
+- PointGrid3D · class · L140-L191 — struct PointGrid3D
+- GridHash · class · L141-L145 — struct GridHash
+- Grid · type · L146-L146 — typedef std::unordered_multimap<Vec3i32, RichSupportPoint, GridHash> Grid;
+- cell_id · function · L151-L155 — Vec3i32 cell_id(const Vec3f &pos)
+- insert · function · L157-L162 — void insert(const Vec2f &pos, Structure *island)
+- collides_with · function · L164-L180 — bool collides_with(const Vec2f &pos, float print_z, float radius)
+- collides_with · function · L183-L190 — bool collides_with(const Vec3f &pos, float radius, Grid::const_iterator it_begin, Grid::const_iterator it_end)
+- execute · function · L193-L194 — void execute(const std::vector<ExPolygons> &slices,
+- seed · function · L196-L196 — void seed(std::mt19937::result_type s) { m_rng.seed(s); }
+- process · function · L202-L202 — void process(const std::vector<ExPolygons>& slices, const std::vector<float>& heights);
+- IslandCoverageFlags · type · L205-L205 — enum IslandCoverageFlags : uint8_t { icfNone = 0x0, icfIsNew = 0x1, icfWithBoundary = 0x2 };
+- uniformly_cover · function · L209-L209 — void uniformly_cover(const ExPolygons& islands, Structure& structure, float deficit, PointGrid3D &grid3d, IslandCoverageFlags flags = icfNone);
+- add_support_points · function · L211-L211 — void add_support_points(Structure& structure, PointGrid3D &grid3d);
+- project_onto_mesh · function · L213-L213 — void project_onto_mesh(std::vector<SupportPoint>& points) const;
+- output_expolygons · function · L216-L216 — static void output_expolygons(const ExPolygons& expolys, const std::string &filename);
+- output_structures · function · L217-L217 — static void output_structures(const std::vector<Structure> &structures);
+- remove_bottom_points · function · L227-L227 — void remove_bottom_points(std::vector<SupportPoint> &pts, float lvl);
+- sample_expolygon · function · L229-L229 — std::vector<Vec2f> sample_expolygon(const ExPolygon &expoly, float samples_per_mm2, std::mt19937 &rng);
+- sample_expolygon_boundary · function · L230-L230 — void sample_expolygon_boundary(const ExPolygon &expoly, float samples_per_mm, std::vector<Vec2f> &out, std::mt19937 &rng);

@@ -1,0 +1,73 @@
+# src/libslic3r/SLA/bicubic.h
+
+- FloatType · type · L17-L17 — typedef T	FloatType;
+- a00 · function · L19-L19 — static T a00() { return T(0.); }
+- a01 · function · L20-L20 — static T a01() { return T(0.); }
+- a02 · function · L21-L21 — static T a02() { return T(0.); }
+- a03 · function · L22-L22 — static T a03() { return T(0.); }
+- a10 · function · L23-L23 — static T a10() { return T(1.); }
+- a11 · function · L24-L24 — static T a11() { return T(-1.); }
+- a12 · function · L25-L25 — static T a12() { return T(0.); }
+- a13 · function · L26-L26 — static T a13() { return T(0.); }
+- a20 · function · L27-L27 — static T a20() { return T(0.); }
+- a21 · function · L28-L28 — static T a21() { return T(1.); }
+- a22 · function · L29-L29 — static T a22() { return T(0.); }
+- a23 · function · L30-L30 — static T a23() { return T(0.); }
+- a30 · function · L31-L31 — static T a30() { return T(0.); }
+- a31 · function · L32-L32 — static T a31() { return T(0.); }
+- a32 · function · L33-L33 — static T a32() { return T(0.); }
+- a33 · function · L34-L34 — static T a33() { return T(0.); }
+- FloatType · type · L41-L41 — typedef T	FloatType;
+- a00 · function · L43-L43 — static T a00() { return     0;     }
+- a01 · function · L44-L44 — static T a01() { return (T)-0.5;   }
+- a02 · function · L45-L45 — static T a02() { return (T) 1.;    }
+- a03 · function · L46-L46 — static T a03() { return (T)-0.5;   }
+- a10 · function · L47-L47 — static T a10() { return (T) 1.;    }
+- a11 · function · L48-L48 — static T a11() { return     0;     }
+- a12 · function · L49-L49 — static T a12() { return (T)-5./2.; }
+- a13 · function · L50-L50 — static T a13() { return (T) 3./2.; }
+- a20 · function · L51-L51 — static T a20() { return     0;     }
+- a21 · function · L52-L52 — static T a21() { return (T) 0.5;   }
+- a22 · function · L53-L53 — static T a22() { return (T) 2.;    }
+- a23 · function · L54-L54 — static T a23() { return (T)-3./2.; }
+- a30 · function · L55-L55 — static T a30() { return     0;     }
+- a31 · function · L56-L56 — static T a31() { return     0;     }
+- a32 · function · L57-L57 — static T a32() { return (T)-0.5;   }
+- a33 · function · L58-L58 — static T a33() { return (T) 0.5;   }
+- FloatType · type · L65-L65 — typedef T	FloatType;
+- a00 · function · L67-L67 — static T a00() { return (T)  1./6.; }
+- a01 · function · L68-L68 — static T a01() { return (T) -3./6.; }
+- a02 · function · L69-L69 — static T a02() { return (T)  3./6.; }
+- a03 · function · L70-L70 — static T a03() { return (T) -1./6.; }
+- a10 · function · L71-L71 — static T a10() { return (T)  4./6.; }
+- a11 · function · L72-L72 — static T a11() { return      0;     }
+- a12 · function · L73-L73 — static T a12() { return (T) -6./6.; }
+- a13 · function · L74-L74 — static T a13() { return (T)  3./6.; }
+- a20 · function · L75-L75 — static T a20() { return (T)  1./6.; }
+- a21 · function · L76-L76 — static T a21() { return (T)  3./6.; }
+- a22 · function · L77-L77 — static T a22() { return (T)  3./6.; }
+- a23 · function · L78-L78 — static T a23() { return (T)- 3./6.; }
+- a30 · function · L79-L79 — static T a30() { return      0;     }
+- a31 · function · L80-L80 — static T a31() { return      0;     }
+- a32 · function · L81-L81 — static T a32() { return      0;     }
+- a33 · function · L82-L82 — static T a33() { return (T)  1./6.; }
+- clamp · function · L86-L90 — inline T clamp(T a, T lower, T upper)
+- KERNEL · type · L96-L96 — typedef typename KERNEL					KernelInternal;
+- FloatType · type · L97-L97 — typedef typename KERNEL::FloatType		FloatType;
+- kernel · function · L99-L114 — static FloatType kernel(FloatType x)
+- interpolate · function · L116-L124 — static FloatType interpolate(FloatType f0, FloatType f1, FloatType f2, FloatType f3, FloatType x)
+- LinearKernelf · type · L128-L128 — typedef CubicKernel<BicubicInternal::LinearKernel<float>>					LinearKernelf;
+- LinearKerneld · type · L129-L129 — typedef CubicKernel<BicubicInternal::LinearKernel<double>>					LinearKerneld;
+- CubicCatmulRomKernelf · type · L131-L131 — typedef CubicKernel<BicubicInternal::CubicCatmulRomKernel<float>>			CubicCatmulRomKernelf;
+- CubicCatmulRomKerneld · type · L132-L132 — typedef CubicKernel<BicubicInternal::CubicCatmulRomKernel<double>>			CubicCatmulRomKerneld;
+- CubicInterpolationKernelf · type · L133-L133 — typedef CubicKernel<BicubicInternal::CubicCatmulRomKernel<float>>			CubicInterpolationKernelf;
+- CubicInterpolationKerneld · type · L134-L134 — typedef CubicKernel<BicubicInternal::CubicCatmulRomKernel<double>>			CubicInterpolationKerneld;
+- CubicBSplineKernelf · type · L136-L136 — typedef CubicKernel<BicubicInternal::CubicBSplineKernel<float>>				CubicBSplineKernelf;
+- CubicBSplineKerneld · type · L137-L137 — typedef CubicKernel<BicubicInternal::CubicBSplineKernel<double>>			CubicBSplineKerneld;
+- cubic_interpolate · function · L140-L152 — static float cubic_interpolate(const Eigen::ArrayBase<Derived> &F, const typename KERNEL::FloatType pt, const typename KERNEL::FloatType dx)
+- T · type · L142-L142 — typedef typename KERNEL::FloatType T;
+- bicubic_interpolate · function · L157-L176 — static float bicubic_interpolate(const Eigen::MatrixBase<Derived> &F, const Eigen::Matrix<typename KERNEL::FloatType, 2, 1, Eigen::DontAlign> &pt, const typename KERNEL::FloatType dx)
+- T · type · L159-L159 — typedef typename KERNEL::FloatType T;
+- clamp · function · L176-L176 — auto f = [&f, w, h](int x, int y) { return F(BicubicInternal::clamp(x,0,w-1),BicubicInternal::clamp(y,0,h-1)); }
+- clamp · function · L176-L176 — auto f = [&f, w, h](int x, int y) { return F(BicubicInternal::clamp(x,0,w-1),BicubicInternal::clamp(y,0,h-1)); }
+- F · function · L176-L176 — auto f = [&f, w, h](int x, int y) { return F(BicubicInternal::clamp(x,0,w-1),BicubicInternal::clamp(y,0,h-1)); }

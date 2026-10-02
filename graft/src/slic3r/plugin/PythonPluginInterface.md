@@ -1,0 +1,40 @@
+# src/slic3r/plugin/PythonPluginInterface.hpp
+
+- PluginCapabilityType · type · L17-L17 — enum class PluginCapabilityType { PrinterConnection = 0, Pages, Analysis, Importer, Exporter, Visualization, Script, SlicingPipeline, Unknown };
+- PluginCapabilityId · class · L19-L38 — struct PluginCapabilityId
+- empty · function · L25-L25 — bool empty() const { return type == PluginCapabilityType::Unknown || name.empty() || plugin_key.empty(); }
+- plugin_capability_type_to_string · function · L40-L53 — inline std::string plugin_capability_type_to_string(PluginCapabilityType type)
+- plugin_capability_type_display_name · function · L55-L68 — inline std::string plugin_capability_type_display_name(PluginCapabilityType type)
+- plugin_capability_type_from_string · function · L70-L96 — inline PluginCapabilityType plugin_capability_type_from_string(std::string_view value)
+- PluginContext · class · L98-L99 — struct PluginContext
+- PluginResult · type · L101-L101 — enum class PluginResult { Success, Skipped, RecoverableError, FatalError };
+- ExecutionResult · class · L103-L119 — struct ExecutionResult
+- success · function · L109-L110 — static ExecutionResult success(std::string message = {}, std::string data = {})
+- skipped · function · L112-L115 — static ExecutionResult skipped(std::string message = {})
+- failure · function · L117-L118 — static ExecutionResult failure(PluginResult status, std::string message, std::string data = {})
+- PluginCapabilityInterface · class · L121-L221 — class PluginCapabilityInterface
+- RefCounter · class · L124-L136 — class RefCounter
+- RefCounter · function · L127-L127 — explicit RefCounter(const PluginCapabilityInterface& iface) : m_iface(&iface) { m_iface->increment(); }
+- RefCounter · function · L131-L131 — RefCounter(const RefCounter&)            = delete;
+- get_name · function · L151-L151 — virtual std::string get_name() const = 0;                                               // required — overridden in Python
+- get_type · function · L152-L152 — virtual PluginCapabilityType get_type() const { return PluginCapabilityType::Unknown; } // optional — typed bases override
+- has_config_ui · function · L157-L157 — virtual bool has_config_ui() const { return false; }
+- get_config_ui · function · L160-L160 — virtual std::string get_config_ui() const { return ""; }
+- get_default_config · function · L166-L166 — virtual nlohmann::json get_default_config() const { return nlohmann::json::object(); }
+- on_load · function · L168-L168 — virtual void on_load() {}
+- on_unload · function · L169-L169 — virtual void on_unload() {}
+- on_cancelled · function · L170-L170 — virtual void on_cancelled() {}
+- on_lifecycle_event · function · L172-L172 — virtual void on_lifecycle_event(LifecycleEvent event, const LifecycleEventContext& ctx) { (void) event; (void) ctx; }
+- name · function · L183-L183 — const std::string&   name() const { return m_name; }
+- type · function · L184-L184 — PluginCapabilityType type() const { return m_type; }
+- identity · function · L185-L185 — PluginCapabilityId   identity() const { return {m_type, m_name, m_audit_plugin_key}; }
+- set_resolved_identity · function · L186-L190 — void                 set_resolved_identity(std::string name, PluginCapabilityType type)
+- is_enabled · function · L195-L195 — bool is_enabled() const { return m_enabled.load(std::memory_order_acquire); }
+- set_enabled · function · L196-L196 — void set_enabled(bool enabled) { m_enabled.store(enabled, std::memory_order_release); }
+- config_ui_available · function · L201-L201 — bool config_ui_available() const { return m_config_ui_available; }
+- set_config_ui_available · function · L202-L202 — void set_config_ui_available(bool available) { m_config_ui_available = available; }
+- set_audit_plugin_key · function · L206-L206 — void set_audit_plugin_key(std::string key) { m_audit_plugin_key = std::move(key); }
+- audit_plugin_key · function · L207-L207 — const std::string& audit_plugin_key() const { return m_audit_plugin_key; }
+- increment · function · L209-L209 — void increment() const { m_refs.fetch_add(1, std::memory_order_acq_rel); }
+- decrement · function · L210-L210 — void decrement() const { m_refs.fetch_sub(1, std::memory_order_acq_rel); }
+- ref_count · function · L211-L211 — int ref_count() const { return m_refs.load(std::memory_order_acquire); }

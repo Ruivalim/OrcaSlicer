@@ -1,0 +1,60 @@
+# src/libslic3r/FilamentGroup.hpp
+
+- collect_sorted_used_filaments · function · L21-L21 — std::vector<unsigned int>collect_sorted_used_filaments(const std::vector<std::vector<unsigned int>>& layer_filaments);
+- FGStrategy · type · L23-L26 — enum FGStrategy
+- FGMode · type · L28-L31 — enum FGMode
+- FlushTimeMachine · class · L35-L52 — struct FlushTimeMachine
+- time_machine_start · function · L41-L44 — void time_machine_start()
+- time_machine_end · function · L46-L51 — int time_machine_end()
+- MemoryedGroup · class · L54-L64 — struct MemoryedGroup
+- MemoryedGroup · function · L55-L55 — MemoryedGroup() = default;
+- MemoryedGroup · function · L56-L56 — MemoryedGroup(const std::vector<int>& group_, const double cost_, const int prefer_level_) :group(group_), cost(cost_), prefer_level(prefer_level_) {}
+- update_memoryed_groups · function · L68-L68 — void update_memoryed_groups(const MemoryedGroup& item,const double gap_threshold, MemoryedGroupHeap& groups);
+- FilamentGroupContext · class · L71-L113 — struct FilamentGroupContext
+- ModelInfo · class · L73-L80 — struct ModelInfo
+- GroupInfo · class · L82-L90 — struct GroupInfo
+- MachineInfo · class · L92-L97 — struct MachineInfo
+- SpeedInfo · class · L99-L106 — struct SpeedInfo
+- NozzleInfo · class · L108-L112 — struct NozzleInfo
+- select_best_group_for_ams · function · L115-L121 — std::vector<int> select_best_group_for_ams(const std::vector<std::vector<int>> &filament_to_nozzles,
+- FlushDistanceEvaluator · class · L124-L133 — class FlushDistanceEvaluator
+- FlushDistanceEvaluator · function · L127-L127 — FlushDistanceEvaluator(const std::vector<FlushMatrix>& flush_matrix,const std::vector<unsigned int>&used_filaments,const std::vector<std::vector<unsigned int>>& layer_filaments, double p = 0.65);
+- get_distance · function · L129-L129 — double get_distance(int idx_a, int idx_b, int extruder_id) const;
+- TimeEvaluator · class · L136-L143 — class TimeEvaluator
+- TimeEvaluator · function · L139-L139 — TimeEvaluator(const FilamentGroupContext::SpeedInfo& speed_info) : m_speed_info(speed_info) {}
+- get_estimated_time · function · L140-L140 — double get_estimated_time(const std::vector<int>& filament_map) const;
+- ClusteringBudget · class · L149-L153 — struct ClusteringBudget
+- FilamentGroup · class · L155-L193 — class FilamentGroup
+- FilamentGroup · function · L160-L160 — explicit FilamentGroup(const FilamentGroupContext& ctx_) :ctx(ctx_) {}
+- set_clustering_budget · function · L162-L162 — void set_clustering_budget(const ClusteringBudget& budget) { m_clustering_budget = budget; }
+- calc_filament_group · function · L164-L164 — std::vector<int> calc_filament_group(int * cost = nullptr);
+- get_memoryed_groups · function · L165-L165 — std::vector<std::vector<int>> get_memoryed_groups()const { return m_memoryed_groups; }
+- calc_filament_group_for_match · function · L168-L168 — std::vector<int> calc_filament_group_for_match(int* cost = nullptr);
+- calc_filament_group_for_flush · function · L169-L169 — std::vector<int> calc_filament_group_for_flush(int* cost = nullptr);
+- calc_filament_group_for_tpu · function · L170-L170 — std::vector<int> calc_filament_group_for_tpu(int* cost = nullptr);
+- calc_min_flush_group · function · L172-L172 — std::vector<int> calc_min_flush_group(int* cost = nullptr);
+- calc_group_by_enum · function · L174-L175 — std::vector<int> calc_group_by_enum(int k, const std::vector<unsigned int>& used_filaments,
+- calc_group_by_kmedoids · function · L176-L177 — std::vector<int> calc_group_by_kmedoids(int k, const std::vector<unsigned int>& used_filaments,
+- rebuild_unprintables · function · L179-L179 — std::map<int, int> rebuild_unprintables(const std::vector<unsigned int>& used_filaments, const std::map<int,int>& extruder_unprintables);
+- rebuild_nozzle_unprintables · function · L180-L180 — std::unordered_map<int, std::vector<int>> rebuild_nozzle_unprintables(const std::vector<unsigned int>& used_filaments, const std::unordered_map<int, std::vector<int>>& extruder_unprintables, const std::vector<int>& filament_volume_map);
+- try_merge_filaments · function · L182-L182 — std::unordered_map<int, std::vector<int>> try_merge_filaments();
+- rebuild_context · function · L183-L183 — void rebuild_context(const std::unordered_map<int, std::vector<int>>& merged_filaments);
+- seperate_merged_filaments · function · L184-L184 — std::vector<int> seperate_merged_filaments(const std::vector<int>& filament_map, const std::unordered_map<int,std::vector<int>>& merged_filaments );
+- calc_filament_group_for_manual_multi_nozzle · function · L196-L196 — std::vector<int> calc_filament_group_for_manual_multi_nozzle(const std::vector<int>& filament_map_manual,const FilamentGroupContext& ctx);
+- calc_filament_group_for_match_multi_nozzle · function · L198-L198 — std::vector<int> calc_filament_group_for_match_multi_nozzle(const FilamentGroupContext& ctx);
+- FilamentPlanRes · class · L200-L204 — struct FilamentPlanRes
+- plan_filament_nozzle_mapping_and_order · function · L206-L206 — std::vector<FilamentPlanRes> plan_filament_nozzle_mapping_and_order(const FilamentGroupContext& ctx);
+- KMediods · class · L209-L264 — class KMediods
+- KMediods · function · L215-L221 — KMediods(const int k, const int elem_count, const std::shared_ptr<FlushDistanceEvaluator>& evaluator, int default_group_id = 0)
+- set_max_cluster_size · function · L223-L223 — void set_max_cluster_size(const std::vector<int>& group_size) { m_max_cluster_size = group_size; }
+- set_cluster_group_size · function · L225-L225 — void set_cluster_group_size(const std::vector<std::pair<std::set<int>,int>>& cluster_group_size);
+- set_placable_limits · function · L228-L228 — void set_placable_limits(const std::unordered_map<int, std::vector<int>>& placable_limits) { m_placeable_limits = placable_limits; }
+- set_unplacable_limits · function · L231-L231 — void set_unplacable_limits(const std::unordered_map<int, std::vector<int>>& unplacable_limits) { m_unplaceable_limits = unplacable_limits; }
+- set_memory_threshold · function · L233-L233 — void set_memory_threshold(double threshold) { memory_threshold = threshold; }
+- get_memoryed_groups · function · L234-L234 — MemoryedGroupHeap get_memoryed_groups()const { return memoryed_groups; }
+- do_clustering · function · L236-L236 — void do_clustering(const FilamentGroupContext& context, const ClusteringBudget& budget);
+- get_cluster_labels · function · L237-L237 — std::vector<int> get_cluster_labels()const { return m_cluster_labels; }
+- have_enough_size · function · L240-L240 — bool have_enough_size(const std::vector<int>& cluster_size, const std::vector<std::pair<std::set<int>, int>>& cluster_group_size,int elem_count);
+- calc_cost · function · L242-L242 — int calc_cost(const std::vector<int>& clusters, const std::vector<int>& cluster_centers, int cluster_id = -1);
+- init_cluster_center · function · L245-L245 — std::vector<int>init_cluster_center(const std::unordered_map<int, std::vector<int>>& placeable_limits, const std::unordered_map<int, std::vector<int>>& unplaceable_limits, const std::vector<int>& cluster_size, const std::vector<std::pair<std::set<int>, int>>& cluster_group_size, int seed);
+- assign_cluster_label · function · L247-L247 — std::vector<int> assign_cluster_label(const std::vector<int>& center, const std::unordered_map<int, std::vector<int>>& placeable_limits, const std::unordered_map<int, std::vector<int>>& unplaceable_limits, const std::vector<int>& group_size, const std::vector<std::pair<std::set<int>, int>>& cluster_group_size);

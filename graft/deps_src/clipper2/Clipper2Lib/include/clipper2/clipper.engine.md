@@ -1,0 +1,86 @@
+# deps_src/clipper2/Clipper2Lib/include/clipper2/clipper.engine.h
+
+- class · type · L33-L644 — enum class ClipType { NoClip, Intersection, Union, Difference, Xor };
+- class · type · L35-L342 — enum class PathType { Subject, Clip };
+- class · type · L36-L293 — enum class JoinWith { NoJoin, Left, Right };
+- class · type · L38-L101 — enum class VertexFlags : uint32_t
+- VertexFlags · type · L42-L42 — constexpr enum VertexFlags operator &(enum VertexFlags a, enum VertexFlags b)
+- VertexFlags · type · L42-L42 — constexpr enum VertexFlags operator &(enum VertexFlags a, enum VertexFlags b)
+- VertexFlags · type · L44-L44 — return (enum VertexFlags)(uint32_t(a) & uint32_t(b));
+- VertexFlags · type · L47-L47 — constexpr enum VertexFlags operator |(enum VertexFlags a, enum VertexFlags b)
+- VertexFlags · type · L47-L47 — constexpr enum VertexFlags operator |(enum VertexFlags a, enum VertexFlags b)
+- VertexFlags · type · L49-L49 — return (enum VertexFlags)(uint32_t(a) | uint32_t(b));
+- Vertex · class · L52-L57 — struct Vertex
+- OutPt · class · L59-L69 — struct OutPt
+- OutRecList · type · L79-L79 — typedef std::vector<OutRec*> OutRecList;
+- OutRec · class · L83-L92 — struct OutRec
+- Active · class · L108-L133 — struct Active
+- LocalMinima · class · L135-L285 — struct LocalMinima
+- IntersectNode · class · L143-L284 — struct IntersectNode
+- HorzSegment · class · L152-L283 — struct HorzSegment
+- HorzJoin · class · L160-L192 — struct HorzJoin
+- ReverseSolution · function · L286-L286 — void ReverseSolution(bool val) { reverse_solution_ = val; };
+- ReverseSolution · function · L287-L287 — bool ReverseSolution() const { return reverse_solution_; };
+- Clear · function · L288-L288 — void Clear();
+- AddReuseableData · function · L289-L289 — void AddReuseableData(const ReuseableDataContainer64& reuseable_data);
+- PolyPath · function · L307-L307 — virtual ~PolyPath() {};
+- Level · function · L312-L316 — unsigned Level() const
+- AddChild · function · L320-L320 — virtual PolyPath* AddChild(const Path64& path) = 0;
+- Clear · function · L322-L322 — virtual void Clear() = 0;
+- Count · function · L323-L323 — virtual size_t Count() const { return 0; }
+- Parent · function · L325-L325 — const PolyPath* Parent() const { return parent_; }
+- IsHole · function · L327-L341 — bool IsHole() const
+- Clipper2LibArea · function · L334-L334 — static double Clipper2LibArea(const Path<T> &poly)
+- PolyPath64List · type · L344-L344 — typedef typename std::vector<std::unique_ptr<PolyPath64>> PolyPath64List;
+- PolyPathDList · type · L345-L345 — typedef typename std::vector<std::unique_ptr<PolyPathD>>  PolyPathDList;
+- PolyPath64 · function · L352-L352 — explicit PolyPath64(PolyPath64* parent = nullptr) : PolyPath(parent) {}
+- PolyPath64 · function · L353-L353 — explicit PolyPath64(PolyPath64* parent, const Path64& path) : PolyPath(parent) { polygon_ = path; }
+- Child · function · L364-L364 — PolyPath64* Child(size_t index) const
+- begin · function · L369-L369 — PolyPath64List::const_iterator begin() const { return childs_.cbegin(); }
+- end · function · L370-L370 — PolyPath64List::const_iterator end() const { return childs_.cend(); }
+- AddChild · function · L372-L372 — PolyPath64* AddChild(const Path64& path) override
+- Clear · function · L377-L380 — void Clear() override
+- Count · function · L382-L382 — size_t Count() const override
+- Polygon · function · L387-L387 — const Path64& Polygon() const { return polygon_; };
+- Area · function · L389-L406 — double Area() const
+- cbegin · function · L391-L391 — return std::accumulate(childs_.cbegin(), childs_.cend(), Clipper2LibArea<int64_t>(polygon_),
+- cend · function · L391-L391 — return std::accumulate(childs_.cbegin(), childs_.cend(), Clipper2LibArea<int64_t>(polygon_),
+- PolyPathD · function · L403-L403 — explicit PolyPathD(PolyPathD* parent = nullptr) : PolyPath(parent)
+- PolyPathD · function · L408-L413 — explicit PolyPathD(PolyPathD* parent, const Path64& path) : PolyPath(parent)
+- PolyPathD · function · L415-L419 — explicit PolyPathD(PolyPathD* parent, const PathD& path) : PolyPath(parent)
+- Child · function · L430-L430 — PolyPathD* Child(size_t index) const
+- begin · function · L435-L435 — PolyPathDList::const_iterator begin() const { return childs_.cbegin(); }
+- end · function · L436-L436 — PolyPathDList::const_iterator end() const { return childs_.cend(); }
+- SetScale · function · L438-L438 — void SetScale(double value) { scale_ = value; }
+- Scale · function · L439-L439 — double Scale() const { return scale_; }
+- AddChild · function · L441-L441 — PolyPathD* AddChild(const Path64& path) override
+- AddChild · function · L446-L446 — PolyPathD* AddChild(const PathD& path)
+- Clear · function · L451-L454 — void Clear() override
+- Count · function · L456-L456 — size_t Count() const override
+- Polygon · function · L461-L461 — const PathD& Polygon() const { return polygon_; };
+- Area · function · L463-L529 — double Area() const
+- begin · function · L465-L465 — return std::accumulate(childs_.begin(), childs_.end(), Clipper2LibArea<double>(polygon_),
+- end · function · L465-L465 — return std::accumulate(childs_.begin(), childs_.end(), Clipper2LibArea<double>(polygon_),
+- BuildPaths64 · function · L473-L473 — void BuildPaths64(Paths64& solutionClosed, Paths64* solutionOpen);
+- BuildTree64 · function · L474-L474 — void BuildTree64(PolyPath64& polytree, Paths64& open_paths);
+- SetZCallback · function · L477-L477 — void SetZCallback(ZCallback64 cb) { zCallback_ = cb; }
+- AddSubject · function · L480-L483 — void AddSubject(const Paths64& subjects)
+- AddOpenSubject · function · L484-L487 — void AddOpenSubject(const Paths64& open_subjects)
+- AddClip · function · L488-L491 — void AddClip(const Paths64& clips)
+- Execute · function · L493-L498 — bool Execute(ClipType clip_type,
+- Execute · function · L500-L509 — bool Execute(ClipType clip_type, FillRule fill_rule,
+- Execute · function · L511-L515 — bool Execute(ClipType clip_type, FillRule fill_rule, PolyTree64& polytree)
+- Execute · function · L517-L528 — bool Execute(ClipType clip_type,
+- BuildPathsD · function · L537-L537 — void BuildPathsD(PathsD& solutionClosed, PathsD* solutionOpen);
+- BuildTreeD · function · L538-L538 — void BuildTreeD(PolyPathD& polytree, PathsD& open_paths);
+- ClipperD · function · L540-L540 — explicit ClipperD(int precision = 2) : ClipperBase()
+- SetZCallback · function · L551-L551 — void SetZCallback(ZCallbackD cb) { zCallbackD_ = cb; };
+- ZCB · function · L553-L567 — void ZCB(const Point64& e1bot, const Point64& e1top,
+- CheckCallback · function · L569-L580 — void CheckCallback()
+- AddSubject · function · L584-L587 — void AddSubject(const PathsD& subjects)
+- AddOpenSubject · function · L589-L592 — void AddOpenSubject(const PathsD& open_subjects)
+- AddClip · function · L594-L597 — void AddClip(const PathsD& clips)
+- Execute · function · L599-L603 — bool Execute(ClipType clip_type, FillRule fill_rule, PathsD& closed_paths)
+- Execute · function · L605-L617 — bool Execute(ClipType clip_type,
+- Execute · function · L619-L623 — bool Execute(ClipType clip_type, FillRule fill_rule, PolyTreeD& polytree)
+- Execute · function · L625-L640 — bool Execute(ClipType clip_type,

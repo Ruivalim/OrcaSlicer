@@ -1,0 +1,29 @@
+# tests/catch2/src/catch2/internal/catch_decomposer.hpp
+
+- capture_by_value · class · L148-L152 — template <typename T>
+- always_false · class · L163-L164 — template <typename T>
+- ITransientExpression · class · L166-L191 — class ITransientExpression
+- isBinaryExpression · function · L174-L174 — constexpr auto isBinaryExpression() const -> bool { return m_isBinaryExpression; }
+- getResult · function · L175-L175 — constexpr auto getResult() const -> bool { return m_result; }
+- streamReconstructedExpression · function · L177-L177 — virtual void streamReconstructedExpression( std::ostream& os ) const;
+- ITransientExpression · function · L179-L182 — constexpr ITransientExpression( bool isBinaryExpression, bool result )
+- ITransientExpression · function · L184-L184 — constexpr ITransientExpression( ITransientExpression const& ) = default;
+- formatReconstructedExpression · function · L193-L193 — void formatReconstructedExpression( std::ostream &os, std::string const& lhs, StringRef op, std::string const& rhs );
+- BinaryExpr · class · L195-L269 — template<typename LhsT, typename RhsT>
+- streamReconstructedExpression · function · L201-L204 — void streamReconstructedExpression( std::ostream &os ) const override
+- BinaryExpr · function · L207-L212 — constexpr BinaryExpr( bool comparisonResult, LhsT lhs, StringRef op, RhsT rhs )
+- UnaryExpr · class · L271-L284 — template<typename LhsT>
+- streamReconstructedExpression · function · L275-L277 — void streamReconstructedExpression( std::ostream &os ) const override
+- UnaryExpr · function · L280-L283 — explicit constexpr UnaryExpr( LhsT lhs )
+- ExprLhs · class · L287-L439 — template<typename LhsT>
+- ExprLhs · function · L291-L291 — explicit constexpr ExprLhs( LhsT lhs ) : m_lhs( lhs ) {}
+- op · function · L344-L354 — #undef CATCH_INTERNAL_DEFINE_EXPRESSION_EQUALITY_OPERATOR
+- CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR · function · L347-L347 — #define CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR( id, op )         \
+- CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR · function · L391-L438 — CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR( lt, < )
+- op · function · L396-L406 — #undef CATCH_INTERNAL_DEFINE_EXPRESSION_COMPARISON_OPERATOR
+- CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR · function · L399-L399 — #define CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR( op )                        \
+- op · function · L409-L413 — constexpr friend auto operator op( ExprLhs&& lhs, RhsT rhs )               \
+- CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR · function · L416-L416 — CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR(|)
+- CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR · function · L417-L417 — CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR(&)
+- CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR · function · L418-L418 — CATCH_INTERNAL_DEFINE_EXPRESSION_OPERATOR(^)
+- Decomposer · class · L441-L454 — struct Decomposer

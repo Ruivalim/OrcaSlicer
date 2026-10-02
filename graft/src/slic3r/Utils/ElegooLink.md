@@ -1,0 +1,33 @@
+# src/slic3r/Utils/ElegooLink.hpp
+
+- DynamicPrintConfig · class · L15-L15 — class DynamicPrintConfig;
+- Http · class · L16-L16 — class Http;
+- ElegooLink · class · L18-L97 — class ElegooLink : public OctoPrint
+- ElegooLink · function · L21-L21 — ElegooLink(DynamicPrintConfig *config);
+- get_print_host_webui · function · L23-L23 — static std::string get_print_host_webui(DynamicPrintConfig *config);
+- get_name · function · L24-L24 — const char* get_name() const override;
+- test · function · L25-L25 — virtual bool test(wxString &curl_msg) const override;
+- get_test_ok_msg · function · L26-L26 — wxString get_test_ok_msg() const override;
+- get_test_failed_msg · function · L27-L27 — wxString get_test_failed_msg(wxString& msg) const override;
+- upload · function · L28-L28 — bool upload(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- get_sn · function · L29-L29 — std::string get_sn() const override;
+- has_auto_discovery · function · L30-L30 — bool has_auto_discovery() const override { return false; }
+- can_test · function · L31-L31 — bool can_test() const override { return true; }
+- get_post_upload_actions · function · L32-L32 — PrintHostPostUploadActions get_post_upload_actions() const override;
+- upload_inner_with_resolved_ip · function · L35-L35 — virtual bool upload_inner_with_resolved_ip(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn, const boost::asio::ip::address& resolved_addr) const override;
+- validate_version_text · function · L37-L37 — virtual bool validate_version_text(const boost::optional<std::string> &version_text) const override;
+- upload_inner_with_host · function · L38-L38 — virtual bool upload_inner_with_host(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- test_with_resolved_ip · function · L41-L41 — virtual bool test_with_resolved_ip(wxString& curl_msg) const override;
+- elegoo_test_with_resolved_ip · function · L42-L42 — bool elegoo_test_with_resolved_ip(wxString& curl_msg) const;
+- elegoo_test · function · L45-L45 — bool elegoo_test(wxString& curl_msg) const;
+- elegoo_cc2_test · function · L46-L46 — bool elegoo_cc2_test(wxString& curl_msg) const;
+- print · function · L47-L51 — bool print(WebSocketClient&  client,
+- checkResult · function · L52-L53 — bool checkResult(WebSocketClient&  client,
+- loopUpload · function · L55-L58 — bool loopUpload(std::string url, PrintHostUpload upload_data,
+- loopUploadCC2 · function · L59-L64 — bool loopUploadCC2(std::string url,
+- uploadPart · function · L66-L76 — bool uploadPart(Http &http,
+- uploadPartCC2 · function · L77-L87 — bool uploadPartCC2(Http&                           http,
+- cc2_token · function · L89-L89 — std::string cc2_token() const;
+- make_cc2_info_url · function · L90-L90 — std::string make_cc2_info_url() const;
+- make_cc2_upload_url · function · L91-L91 — std::string make_cc2_upload_url() const;
+- elegoo_cc2_test_with_resolved_ip · function · L93-L93 — bool elegoo_cc2_test_with_resolved_ip(wxString& curl_msg) const;

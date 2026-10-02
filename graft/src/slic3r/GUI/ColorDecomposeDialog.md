@@ -1,0 +1,30 @@
+# src/slic3r/GUI/ColorDecomposeDialog.hpp
+
+- Button · class · L17-L17 — class Button;
+- CheckBox · class · L18-L18 — class CheckBox;
+- ComboBox · class · L19-L19 — class ComboBox;
+- DecomposeBaseColor · type · L26-L35 — enum class DecomposeBaseColor
+- DecomposeComponent · class · L37-L42 — struct DecomposeComponent
+- ColorDecomposeResult · class · L44-L48 — struct ColorDecomposeResult
+- ColorDecomposeDialog · class · L50-L147 — class ColorDecomposeDialog : public DPIDialog
+- ColorDecomposeDialog · function · L53-L61 — ColorDecomposeDialog(wxWindow* parent,
+- get_result · function · L63-L63 — ColorDecomposeResult get_result() const { return m_result; }
+- set_missing_physical_calculator · function · L70-L70 — void set_missing_physical_calculator(std::function<size_t(const ColorDecomposeResult&)> fn);
+- on_dpi_changed · function · L73-L73 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- build_ui · function · L76-L76 — void build_ui();
+- create_filament_selector · function · L77-L77 — wxBoxSizer* create_filament_selector();
+- create_target_color_section · function · L78-L78 — wxBoxSizer* create_target_color_section();
+- create_mode_selection_section · function · L79-L79 — wxBoxSizer* create_mode_selection_section();
+- create_mode_card · function · L80-L80 — wxPanel*    create_mode_card(wxWindow* parent, DecomposeMode mode, const wxString& title);
+- create_button_panel · function · L81-L81 — wxBoxSizer* create_button_panel();
+- select_mode · function · L83-L83 — void select_mode(DecomposeMode mode);
+- update_card_styles · function · L84-L84 — void update_card_styles();
+- update_card_visibility · function · L85-L85 — void update_card_visibility();
+- update_mode_card_content · function · L86-L86 — void update_mode_card_content(DecomposeMode mode);
+- update_mode_card_contents · function · L87-L87 — void update_mode_card_contents();
+- update_matched_color_display · function · L88-L88 — void update_matched_color_display();
+- update_ok_button_state · function · L89-L89 — void update_ok_button_state();
+- update_filament_limit_warning · function · L90-L90 — void update_filament_limit_warning();
+- compute_decomposition · function · L92-L92 — void compute_decomposition();
+- try_build_single_base_result · function · L97-L97 — bool try_build_single_base_result(DecomposeMode mode, ColorDecomposeResult& out) const;
+- ModeCardControls · class · L99-L102 — struct ModeCardControls

@@ -1,0 +1,111 @@
+# deps_src/mdns/mdns.h
+
+- mdns_record_type · type · L52-L66 — enum mdns_record_type
+- mdns_entry_type · type · L68-L73 — enum mdns_entry_type
+- mdns_class · type · L75-L75 — enum mdns_class { MDNS_CLASS_IN = 1, MDNS_CLASS_ANY = 255 };
+- mdns_record_type · type · L77-L77 — typedef enum mdns_record_type mdns_record_type_t;
+- mdns_entry_type · type · L78-L78 — typedef enum mdns_entry_type mdns_entry_type_t;
+- mdns_class · type · L79-L79 — typedef enum mdns_class mdns_class_t;
+- mdns_string_t · type · L87-L87 — typedef struct mdns_string_t mdns_string_t;
+- mdns_string_pair_t · type · L88-L88 — typedef struct mdns_string_pair_t mdns_string_pair_t;
+- mdns_string_table_item_t · type · L89-L89 — typedef struct mdns_string_table_item_t mdns_string_table_item_t;
+- mdns_string_table_t · type · L90-L90 — typedef struct mdns_string_table_t mdns_string_table_t;
+- mdns_record_t · type · L91-L91 — typedef struct mdns_record_t mdns_record_t;
+- mdns_record_srv_t · type · L92-L92 — typedef struct mdns_record_srv_t mdns_record_srv_t;
+- mdns_record_ptr_t · type · L93-L93 — typedef struct mdns_record_ptr_t mdns_record_ptr_t;
+- mdns_record_a_t · type · L94-L94 — typedef struct mdns_record_a_t mdns_record_a_t;
+- mdns_record_aaaa_t · type · L95-L95 — typedef struct mdns_record_aaaa_t mdns_record_aaaa_t;
+- mdns_record_txt_t · type · L96-L96 — typedef struct mdns_record_txt_t mdns_record_txt_t;
+- mdns_query_t · type · L97-L97 — typedef struct mdns_query_t mdns_query_t;
+- mdns_size_t · type · L100-L100 — typedef int mdns_size_t;
+- mdns_ssize_t · type · L101-L101 — typedef int mdns_ssize_t;
+- mdns_size_t · type · L103-L103 — typedef size_t mdns_size_t;
+- mdns_ssize_t · type · L104-L104 — typedef ssize_t mdns_ssize_t;
+- mdns_string_t · class · L107-L110 — struct mdns_string_t
+- mdns_ip_mac_str · class · L112-L115 — struct mdns_ip_mac_str
+- mdns_string_pair_t · class · L117-L121 — struct mdns_string_pair_t
+- mdns_string_table_t · class · L123-L127 — struct mdns_string_table_t
+- mdns_record_srv_t · class · L129-L134 — struct mdns_record_srv_t
+- mdns_record_ptr_t · class · L136-L138 — struct mdns_record_ptr_t
+- mdns_record_a_t · class · L140-L142 — struct mdns_record_a_t
+- mdns_record_aaaa_t · class · L144-L146 — struct mdns_record_aaaa_t
+- mdns_record_txt_t · class · L148-L151 — struct mdns_record_txt_t
+- mdns_record_t · class · L153-L165 — struct mdns_record_t
+- mdns_header_t · class · L167-L174 — struct mdns_header_t
+- mdns_query_t · class · L176-L180 — struct mdns_query_t
+- discoveryServiceC · function · L182-L182 — void  discoveryServiceC();
+- mdns_socket_open_ipv4 · function · L191-L192 — static inline int
+- mdns_socket_setup_ipv4 · function · L199-L200 — static inline int
+- mdns_socket_open_ipv6 · function · L207-L208 — static inline int
+- mdns_socket_setup_ipv6 · function · L215-L216 — static inline int
+- mdns_socket_close · function · L219-L220 — static inline void
+- mdns_socket_listen · function · L226-L228 — static inline size_t
+- mdns_discovery_send · function · L232-L233 — static inline int
+- mdns_discovery_recv · function · L238-L240 — static inline size_t
+- mdns_query_send · function · L249-L251 — static inline int
+- mdns_multiquery_send · function · L261-L263 — static inline int
+- mdns_query_recv · function · L270-L272 — static inline size_t
+- mdns_query_answer_unicast · function · L279-L284 — static inline int
+- mdns_query_answer_multicast · function · L290-L293 — static inline int
+- mdns_announce_multicast · function · L298-L301 — static inline int
+- mdns_goodbye_multicast · function · L305-L308 — static inline int
+- mdns_record_parse_ptr · function · L313-L315 — static inline mdns_string_t
+- mdns_record_parse_srv · function · L318-L320 — static inline mdns_record_srv_t
+- mdns_record_parse_a · function · L324-L325 — mdns_record_parse_a(const void* buffer, size_t size, size_t offset, size_t length,
+- mdns_record_parse_aaaa · function · L329-L330 — mdns_record_parse_aaaa(const void* buffer, size_t size, size_t offset, size_t length,
+- mdns_record_parse_txt · function · L334-L336 — static inline size_t
+- mdns_string_extract · function · L340-L341 — static inline mdns_string_t
+- mdns_string_skip · function · L343-L344 — static inline int
+- mdns_string_find · function · L346-L347 — static inline size_t
+- mdns_string_equal · function · L352-L354 — static inline int
+- mdns_string_make · function · L357-L358 — mdns_string_make(void* buffer, size_t capacity, void* data, const char* name, size_t length,
+- mdns_string_table_find · function · L360-L362 — static inline size_t
+- mdns_ntohs · function · L366-L371 — static inline uint16_t
+- mdns_ntohl · function · L373-L378 — static inline uint32_t
+- mdns_htons · function · L381-L381 — mdns_htons(void* data, uint16_t val)
+- mdns_htonl · function · L388-L388 — mdns_htonl(void* data, uint32_t val)
+- mdns_socket_open_ipv4 · function · L394-L404 — static inline int
+- send_dns_sd · function · L406-L407 — int
+- open_client_sockets · function · L408-L409 — int
+- ipv4_address_to_string · function · L411-L413 — mdns_string_t
+- ip_address_to_string · function · L414-L415 — mdns_string_t
+- query_callback · function · L417-L421 — int
+- mdns_socket_setup_ipv4 · function · L424-L474 — static inline int
+- mdns_socket_open_ipv6 · function · L476-L486 — static inline int
+- mdns_socket_setup_ipv6 · function · L488-L538 — static inline int
+- mdns_socket_close · function · L540-L547 — static inline void
+- mdns_is_string_ref · function · L549-L552 — static inline int
+- mdns_get_next_substring · function · L554-L586 — static inline mdns_string_pair_t
+- mdns_string_skip · function · L588-L606 — static inline int
+- mdns_string_equal · function · L608-L647 — static inline int
+- mdns_string_extract · function · L649-L685 — static inline mdns_string_t
+- mdns_string_table_find · function · L687-L729 — static inline size_t
+- mdns_string_table_add · function · L731-L743 — static inline void
+- mdns_string_find · function · L745-L754 — static inline size_t
+- mdns_string_make_ref · function · L757-L757 — mdns_string_make_ref(void* data, size_t capacity, size_t ref_offset)
+- mdns_string_make · function · L764-L765 — mdns_string_make(void* buffer, size_t capacity, void* data, const char* name, size_t length,
+- mdns_records_parse · function · L801-L833 — static inline size_t
+- mdns_unicast_send · function · L835-L842 — static inline int
+- mdns_multicast_send · function · L844-L880 — static inline int
+- mdns_discovery_send · function · L899-L902 — static inline int
+- mdns_discovery_recv · function · L905-L1007 — static inline size_t
+- mdns_socket_listen · function · L1009-L1088 — static inline size_t
+- mdns_query_send · function · L1090-L1098 — static inline int
+- mdns_multiquery_send · function · L1100-L1149 — static inline int
+- mdns_query_recv · function · L1151-L1219 — static inline size_t
+- mdns_answer_add_question_unicast · function · L1222-L1224 — mdns_answer_add_question_unicast(void* buffer, size_t capacity, void* data,
+- mdns_answer_add_record_header · function · L1239-L1240 — mdns_answer_add_record_header(void* buffer, size_t capacity, void* data, mdns_record_t record,
+- mdns_answer_add_record · function · L1256-L1257 — mdns_answer_add_record(void* buffer, size_t capacity, void* data, mdns_record_t record,
+- mdns_record_update_rclass_ttl · function · L1313-L1323 — static inline void
+- mdns_answer_add_txt_record · function · L1326-L1328 — mdns_answer_add_txt_record(void* buffer, size_t capacity, void* data, const mdns_record_t* records,
+- mdns_answer_get_record_count · function · L1375-L1387 — static inline uint16_t
+- mdns_query_answer_unicast · function · L1389-L1451 — static inline int
+- mdns_answer_multicast_rclass_ttl · function · L1453-L1500 — static inline int
+- mdns_query_answer_multicast · function · L1502-L1509 — static inline int
+- mdns_announce_multicast · function · L1511-L1518 — static inline int
+- mdns_goodbye_multicast · function · L1520-L1528 — static inline int
+- mdns_record_parse_ptr · function · L1530-L1538 — static inline mdns_string_t
+- mdns_record_parse_srv · function · L1540-L1560 — static inline mdns_record_srv_t
+- mdns_record_parse_a · function · L1563-L1564 — mdns_record_parse_a(const void* buffer, size_t size, size_t offset, size_t length,
+- mdns_record_parse_aaaa · function · L1576-L1577 — mdns_record_parse_aaaa(const void* buffer, size_t size, size_t offset, size_t length,
+- mdns_record_parse_txt · function · L1588-L1633 — static inline size_t

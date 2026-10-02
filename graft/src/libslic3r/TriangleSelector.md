@@ -1,0 +1,139 @@
+# src/libslic3r/TriangleSelector.hpp
+
+- EnforcerBlockerType · type · L13-L56 — enum class EnforcerBlockerType : int8_t
+- TriangleSelector · class · L63-L567 — class TriangleSelector
+- Triangle · class · L66-L66 — class Triangle;
+- CursorType · type · L70-L77 — enum CursorType
+- ClippingPlane · class · L79-L89 — struct ClippingPlane
+- ClippingPlane · function · L83-L83 — ClippingPlane() : normal{0.f, 0.f, 1.f}, offset{FLT_MAX} {};
+- ClippingPlane · function · L84-L84 — explicit ClippingPlane(const std::array<float, 4> &clp) : normal{clp[0], clp[1], clp[2]}, offset{clp[3]} {}
+- is_active · function · L86-L86 — bool is_active() const { return offset != FLT_MAX; }
+- is_mesh_point_clipped · function · L88-L88 — bool is_mesh_point_clipped(const Vec3f &point) const { return normal.dot(point) - offset > 0.f; }
+- Cursor · class · L91-L122 — class Cursor
+- Cursor · function · L94-L94 — Cursor()          = delete;
+- is_pointer_in_triangle · function · L97-L97 — bool is_pointer_in_triangle(const Triangle &tr, const std::vector<Vertex> &vertices) const;
+- is_mesh_point_inside · function · L99-L99 — virtual bool is_mesh_point_inside(const Vec3f &point) const = 0;
+- is_pointer_in_triangle · function · L100-L100 — virtual bool is_pointer_in_triangle(const Vec3f &p1, const Vec3f &p2, const Vec3f &p3) const = 0;
+- vertices_inside · function · L101-L101 — virtual int  vertices_inside(const Triangle &tr, const std::vector<Vertex> &vertices) const;
+- is_edge_inside_cursor · function · L102-L102 — virtual bool is_edge_inside_cursor(const Triangle &tr, const std::vector<Vertex> &vertices) const = 0;
+- is_facet_visible · function · L103-L103 — virtual bool is_facet_visible(int facet_idx, const std::vector<Vec3f> &face_normals) const = 0;
+- is_facet_visible · function · L105-L105 — static bool is_facet_visible(const Cursor &cursor, int facet_idx, const std::vector<Vec3f> &face_normals);
+- Cursor · function · L108-L108 — explicit Cursor(const Vec3f &source_, float radius_world, const Transform3d &trafo_, const ClippingPlane &clipping_plane_);
+- SinglePointCursor · class · L124-L150 — class SinglePointCursor : public Cursor
+- SinglePointCursor · function · L127-L127 — SinglePointCursor()           = delete;
+- is_pointer_in_triangle · function · L130-L130 — bool is_pointer_in_triangle(const Vec3f &p1, const Vec3f &p2, const Vec3f &p3) const override;
+- cursor_factory · function · L132-L139 — static std::unique_ptr<Cursor> cursor_factory(const Vec3f &center, const Vec3f &camera_pos, const float cursor_radius, const CursorType cursor_type, const Transform3d &trafo_matrix, const ClippingPlane &clipping_plane)
+- cursor_factory · function · L141-L144 — static std::unique_ptr<Cursor> cursor_factory(float z_world, const Vec3f& camera_pos, const float height, const Transform3d& trafo_matrix, const ClippingPlane& clipping_plane)
+- SinglePointCursor · function · L147-L147 — explicit SinglePointCursor(const Vec3f &center_, const Vec3f &source_, float radius_world, const Transform3d &trafo_, const ClippingPlane &clipping_plane_);
+- DoublePointCursor · class · L152-L174 — class DoublePointCursor : public Cursor
+- DoublePointCursor · function · L155-L155 — DoublePointCursor()           = delete;
+- is_pointer_in_triangle · function · L158-L158 — bool is_pointer_in_triangle(const Vec3f &p1, const Vec3f &p2, const Vec3f &p3) const override;
+- cursor_factory · function · L160-L167 — static std::unique_ptr<Cursor> cursor_factory(const Vec3f &first_center, const Vec3f &second_center, const Vec3f &camera_pos, const float cursor_radius, const CursorType cursor_type, const Transform3d &trafo_matrix, const ClippingPlane &clipping_plane)
+- DoublePointCursor · function · L170-L170 — explicit DoublePointCursor(const Vec3f &first_center_, const Vec3f &second_center_, const Vec3f &source_, float radius_world, const Transform3d &trafo_, const ClippingPlane &clipping_plane_);
+- Sphere · class · L176-L187 — class Sphere : public SinglePointCursor
+- Sphere · function · L179-L179 — Sphere() = delete;
+- Sphere · function · L180-L181 — explicit Sphere(const Vec3f &center_, const Vec3f &source_, float radius_world, const Transform3d &trafo_, const ClippingPlane &clipping_plane_)
+- is_mesh_point_inside · function · L184-L184 — bool is_mesh_point_inside(const Vec3f &point) const override;
+- is_edge_inside_cursor · function · L185-L185 — bool is_edge_inside_cursor(const Triangle &tr, const std::vector<Vertex> &vertices) const override;
+- is_facet_visible · function · L186-L186 — bool is_facet_visible(int facet_idx, const std::vector<Vec3f> &face_normals) const override { return true; }
+- Circle · class · L189-L203 — class Circle : public SinglePointCursor
+- Circle · function · L192-L192 — Circle() = delete;
+- Circle · function · L193-L194 — explicit Circle(const Vec3f &center_, const Vec3f &source_, float radius_world, const Transform3d &trafo_, const ClippingPlane &clipping_plane_)
+- is_mesh_point_inside · function · L197-L197 — bool is_mesh_point_inside(const Vec3f &point) const override;
+- is_edge_inside_cursor · function · L198-L198 — bool is_edge_inside_cursor(const Triangle &tr, const std::vector<Vertex> &vertices) const override;
+- is_facet_visible · function · L199-L202 — bool is_facet_visible(int facet_idx, const std::vector<Vec3f> &face_normals) const override
+- HeightRange · class · L206-L225 — class HeightRange : public SinglePointCursor
+- HeightRange · function · L209-L209 — HeightRange() = delete;
+- HeightRange · function · L211-L212 — explicit HeightRange(float z_world_, const Vec3f& source_, float height_, const Transform3d& trafo_, const ClippingPlane& clipping_plane_)
+- is_pointer_in_triangle · function · L215-L215 — bool is_pointer_in_triangle(const Vec3f& p1, const Vec3f& p2, const Vec3f& p3) const override;
+- is_mesh_point_inside · function · L216-L216 — bool is_mesh_point_inside(const Vec3f& point) const override;
+- is_edge_inside_cursor · function · L217-L217 — bool is_edge_inside_cursor(const Triangle& tr, const std::vector<Vertex>& vertices) const override;
+- is_facet_visible · function · L218-L221 — bool is_facet_visible(int facet_idx, const std::vector<Vec3f>& face_normals) const override
+- Capsule3D · class · L227-L239 — class Capsule3D : public DoublePointCursor
+- Capsule3D · function · L230-L230 — Capsule3D() = delete;
+- Capsule3D · function · L231-L233 — explicit Capsule3D(const Vec3f &first_center_, const Vec3f &second_center_, const Vec3f &source_, float radius_world, const Transform3d &trafo_, const ClippingPlane &clipping_plane_)
+- is_mesh_point_inside · function · L236-L236 — bool is_mesh_point_inside(const Vec3f &point) const override;
+- is_edge_inside_cursor · function · L237-L237 — bool is_edge_inside_cursor(const Triangle &tr, const std::vector<Vertex> &vertices) const override;
+- is_facet_visible · function · L238-L238 — bool is_facet_visible(int facet_idx, const std::vector<Vec3f> &face_normals) const override { return true; }
+- Capsule2D · class · L241-L256 — class Capsule2D : public DoublePointCursor
+- Capsule2D · function · L244-L244 — Capsule2D() = delete;
+- Capsule2D · function · L245-L247 — explicit Capsule2D(const Vec3f &first_center_, const Vec3f &second_center_, const Vec3f &source_, float radius_world, const Transform3d &trafo_, const ClippingPlane &clipping_plane_)
+- is_mesh_point_inside · function · L250-L250 — bool is_mesh_point_inside(const Vec3f &point) const override;
+- is_edge_inside_cursor · function · L251-L251 — bool is_edge_inside_cursor(const Triangle &tr, const std::vector<Vertex> &vertices) const override;
+- is_facet_visible · function · L252-L255 — bool is_facet_visible(int facet_idx, const std::vector<Vec3f> &face_normals) const override
+- TriangleBitStreamMapping · class · L258-L274 — struct TriangleBitStreamMapping
+- TriangleBitStreamMapping · function · L265-L265 — TriangleBitStreamMapping() = default;
+- TriangleBitStreamMapping · function · L266-L266 — explicit TriangleBitStreamMapping(int triangleIdx, int bitstreamStartIdx) : triangle_idx(triangleIdx), bitstream_start_idx(bitstreamStartIdx) {}
+- serialize · function · L273-L273 — template<class Archive> void serialize(Archive &ar) { ar(triangle_idx, bitstream_start_idx); }
+- TriangleSplittingData · class · L276-L306 — struct TriangleSplittingData
+- TriangleSplittingData · function · L284-L284 — TriangleSplittingData() = default;
+- reset_used_states · function · L295-L298 — void reset_used_states()
+- update_used_states · function · L301-L301 — void update_used_states(size_t bitstream_start_idx);
+- serialize · function · L305-L305 — template<class Archive> void serialize(Archive &ar) { ar(triangles_to_split, bitstream, used_states); }
+- precompute_all_neighbors · function · L308-L308 — std::pair<std::vector<Vec3i32>, std::vector<Vec3i32>> precompute_all_neighbors() const;
+- precompute_all_neighbors_recursive · function · L309-L309 — void precompute_all_neighbors_recursive(int facet_idx, const Vec3i32 &neighbors, const Vec3i32 &neighbors_propagated, std::vector<Vec3i32> &neighbors_out, std::vector<Vec3i32> &neighbors_normal_out) const;
+- set_edge_limit · function · L313-L313 — void set_edge_limit(float edge_limit);
+- TriangleSelector · function · L317-L317 — explicit TriangleSelector(const TriangleMesh& mesh, float edge_limit = 0.6f);
+- select_unsplit_triangle · function · L320-L320 — [[nodiscard]] int select_unsplit_triangle(const Vec3f &hit, int facet_idx) const;
+- select_unsplit_triangle · function · L321-L321 — [[nodiscard]] int select_unsplit_triangle(const Vec3f &hit, int facet_idx, const Vec3i32 &neighbors) const;
+- select_patch · function · L324-L330 — void select_patch(int                       facet_start,                   // facet of the original mesh (unsplit) that the hit point belongs to
+- seed_fill_select_triangles · function · L332-L338 — void seed_fill_select_triangles(const Vec3f        &hit,                          // point where to start
+- bucket_fill_select_triangles · function · L340-L345 — void bucket_fill_select_triangles(const Vec3f         &hit,                        // point where to start
+- has_facets · function · L347-L347 — bool                 has_facets(EnforcerBlockerType state) const;
+- has_facets · function · L348-L348 — static bool          has_facets(const TriangleSplittingData &data, EnforcerBlockerType test_state);
+- num_facets · function · L349-L349 — int                  num_facets(EnforcerBlockerType state) const;
+- get_facets · function · L351-L351 — indexed_triangle_set get_facets(EnforcerBlockerType state) const;
+- get_facets_strict · function · L353-L353 — indexed_triangle_set get_facets_strict(EnforcerBlockerType state) const;
+- get_seed_fill_contour · function · L355-L355 — std::vector<Vec2i32> get_seed_fill_contour() const;
+- get_facets · function · L358-L358 — void get_facets(std::vector<indexed_triangle_set>& facets_per_type) const;
+- set_facet · function · L361-L361 — void set_facet(int facet_idx, EnforcerBlockerType state);
+- reset · function · L364-L364 — void reset();
+- garbage_collect · function · L367-L367 — void garbage_collect();
+- remap_triangle_state · function · L370-L370 — void remap_triangle_state(const EnforcerBlockerStateMap& state_map);
+- serialize · function · L375-L375 — TriangleSplittingData serialize() const;
+- deserialize · function · L378-L382 — void deserialize(const TriangleSplittingData& data,
+- extract_used_facet_states · function · L385-L385 — static std::vector<EnforcerBlockerType> extract_used_facet_states(const TriangleSplittingData &data);
+- seed_fill_unselect_all_triangles · function · L388-L388 — void seed_fill_unselect_all_triangles();
+- shift_states_above · function · L391-L391 — void shift_states_above(EnforcerBlockerType threshold, int delta);
+- seed_fill_apply_on_triangles · function · L395-L395 — void seed_fill_apply_on_triangles(EnforcerBlockerType new_state);
+- SavedPainting · class · L398-L404 — struct SavedPainting
+- remap_painting · function · L409-L414 — static TriangleSplittingData remap_painting(
+- Triangle · class · L418-L480 — class Triangle
+- Triangle · function · L422-L430 — Triangle(int a, int b, int c, int source_triangle, const EnforcerBlockerType init_state)
+- set_division · function · L441-L441 — void set_division(int sides_to_split, int special_side_idx);
+- set_state · function · L444-L444 — void set_state(EnforcerBlockerType type) { assert(!is_split()); state = type; }
+- get_state · function · L445-L445 — EnforcerBlockerType get_state() const { assert(! is_split()); return state; }
+- select_by_seed_fill · function · L448-L448 — void select_by_seed_fill() { assert(! is_split()); m_selected_by_seed_fill = true; }
+- unselect_by_seed_fill · function · L449-L449 — void unselect_by_seed_fill() { assert(! is_split()); m_selected_by_seed_fill = false; }
+- is_selected_by_seed_fill · function · L451-L451 — bool is_selected_by_seed_fill() const { assert(! is_split()); return m_selected_by_seed_fill; }
+- valid · function · L454-L454 — bool valid() const noexcept { return m_valid; }
+- is_split · function · L456-L456 — bool is_split() const noexcept { return number_of_split_sides() != 0; }
+- number_of_split_sides · function · L457-L457 — int number_of_split_sides() const noexcept { return number_of_splits; }
+- special_side · function · L458-L458 — int special_side() const noexcept { assert(is_split()); return special_side_idx; }
+- Vertex · class · L482-L489 — struct Vertex
+- Vertex · function · L483-L486 — explicit Vertex(const stl_vertex& vert)
+- append_touching_subtriangles · function · L491-L491 — void append_touching_subtriangles(int itriangle, int vertexi, int vertexj, std::vector<int>& touching_subtriangles_out) const;
+- verify_triangle_neighbors · function · L492-L492 — bool verify_triangle_neighbors(const Triangle& tr, const Vec3i32& neighbors) const;
+- select_triangle · function · L521-L521 — bool select_triangle(int facet_idx, EnforcerBlockerType type, bool triangle_splitting, bool select_partially);
+- select_triangle_recursive · function · L522-L522 — bool select_triangle_recursive(int facet_idx, const Vec3i32 &neighbors, EnforcerBlockerType type, bool triangle_splitting, bool select_partially);
+- undivide_triangle · function · L523-L523 — void undivide_triangle(int facet_idx);
+- split_triangle · function · L524-L524 — void split_triangle(int facet_idx, const Vec3i32 &neighbors);
+- remove_useless_children · function · L525-L525 — void remove_useless_children(int facet_idx); // No hidden meaning. Triangles are meant.
+- is_facet_clipped · function · L526-L526 — bool is_facet_clipped(int facet_idx, const ClippingPlane &clp) const;
+- push_triangle · function · L527-L527 — int  push_triangle(int a, int b, int c, int source_triangle, EnforcerBlockerType state = EnforcerBlockerType{0});
+- perform_split · function · L528-L528 — void perform_split(int facet_idx, const Vec3i32 &neighbors, EnforcerBlockerType old_state);
+- child_neighbors · function · L529-L529 — Vec3i32 child_neighbors(const Triangle &tr, const Vec3i32 &neighbors, int child_idx) const;
+- child_neighbors_propagated · function · L530-L530 — Vec3i32 child_neighbors_propagated(const Triangle &tr, const Vec3i32 &neighbors_propagated, int child_idx, const Vec3i32 &child_neighbors) const;
+- Partition · type · L533-L536 — enum class Partition
+- neighbor_child · function · L537-L537 — int neighbor_child(const Triangle& tr, int vertexi, int vertexj, Partition partition) const;
+- neighbor_child · function · L538-L538 — int neighbor_child(int itriangle, int vertexi, int vertexj, Partition partition) const;
+- triangle_midpoint · function · L539-L539 — int triangle_midpoint(const Triangle& tr, int vertexi, int vertexj) const;
+- triangle_midpoint · function · L540-L540 — int triangle_midpoint(int itriangle, int vertexi, int vertexj) const;
+- triangle_midpoint_or_allocate · function · L541-L541 — int triangle_midpoint_or_allocate(int itriangle, int vertexi, int vertexj);
+- triangle_subtriangles · function · L543-L543 — static std::pair<int, int> triangle_subtriangles(const Triangle &tr, int vertexi, int vertexj);
+- triangle_subtriangles · function · L544-L544 — std::pair<int, int>        triangle_subtriangles(int itriangle, int vertexi, int vertexj) const;
+- append_touching_edges · function · L547-L547 — void append_touching_edges(int itriangle, int vertexi, int vertexj, std::vector<Vec2i32> &touching_edges_out) const;
+- verify_triangle_midpoints · function · L551-L551 — bool verify_triangle_midpoints(const Triangle& tr) const;
+- get_facets_strict_recursive · function · L554-L558 — void get_facets_strict_recursive(
+- get_facets_split_by_tjoints · function · L559-L559 — void get_facets_split_by_tjoints(const Vec3i32 &vertices, const Vec3i32 &neighbors, std::vector<stl_triangle_vertex_indices> &out_triangles) const;
+- get_seed_fill_contour_recursive · function · L561-L561 — void get_seed_fill_contour_recursive(int facet_idx, const Vec3i32 &neighbors, const Vec3i32 &neighbors_propagated, std::vector<Vec2i32> &edges_out) const;

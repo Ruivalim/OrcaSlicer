@@ -1,0 +1,40 @@
+# tests/catch2/src/catch2/interfaces/catch_interfaces_config.hpp
+
+- Verbosity · type · L20-L24 — enum class Verbosity
+- WarnAbout · class · L26-L32 — struct WarnAbout { enum What
+- What · type · L26-L32 — struct WarnAbout { enum What
+- ShowDurations · type · L34-L38 — enum class ShowDurations
+- TestRunOrder · type · L39-L43 — enum class TestRunOrder
+- ColourMode · type · L44-L53 — enum class ColourMode : std::uint8_t
+- WaitForKeypress · class · L54-L59 — struct WaitForKeypress { enum When
+- When · type · L54-L59 — struct WaitForKeypress { enum When
+- TestSpec · class · L61-L61 — class TestSpec;
+- IStream · class · L62-L62 — class IStream;
+- IConfig · class · L64-L96 — class IConfig : public Detail::NonCopyable
+- allowThrows · function · L68-L68 — virtual bool allowThrows() const = 0;
+- name · function · L69-L69 — virtual StringRef name() const = 0;
+- includeSuccessfulResults · function · L70-L70 — virtual bool includeSuccessfulResults() const = 0;
+- shouldDebugBreak · function · L71-L71 — virtual bool shouldDebugBreak() const = 0;
+- warnAboutMissingAssertions · function · L72-L72 — virtual bool warnAboutMissingAssertions() const = 0;
+- warnAboutUnmatchedTestSpecs · function · L73-L73 — virtual bool warnAboutUnmatchedTestSpecs() const = 0;
+- zeroTestsCountAsSuccess · function · L74-L74 — virtual bool zeroTestsCountAsSuccess() const = 0;
+- abortAfter · function · L75-L75 — virtual int abortAfter() const = 0;
+- showInvisibles · function · L76-L76 — virtual bool showInvisibles() const = 0;
+- showDurations · function · L77-L77 — virtual ShowDurations showDurations() const = 0;
+- minDuration · function · L78-L78 — virtual double minDuration() const = 0;
+- testSpec · function · L79-L79 — virtual TestSpec const& testSpec() const = 0;
+- hasTestFilters · function · L80-L80 — virtual bool hasTestFilters() const = 0;
+- getTestsOrTags · function · L81-L81 — virtual std::vector<std::string> const& getTestsOrTags() const = 0;
+- runOrder · function · L82-L82 — virtual TestRunOrder runOrder() const = 0;
+- rngSeed · function · L83-L83 — virtual uint32_t rngSeed() const = 0;
+- shardCount · function · L84-L84 — virtual unsigned int shardCount() const = 0;
+- shardIndex · function · L85-L85 — virtual unsigned int shardIndex() const = 0;
+- defaultColourMode · function · L86-L86 — virtual ColourMode defaultColourMode() const = 0;
+- getSectionsToRun · function · L87-L87 — virtual std::vector<std::string> const& getSectionsToRun() const = 0;
+- verbosity · function · L88-L88 — virtual Verbosity verbosity() const = 0;
+- skipBenchmarks · function · L90-L90 — virtual bool skipBenchmarks() const = 0;
+- benchmarkNoAnalysis · function · L91-L91 — virtual bool benchmarkNoAnalysis() const = 0;
+- benchmarkSamples · function · L92-L92 — virtual unsigned int benchmarkSamples() const = 0;
+- benchmarkConfidenceInterval · function · L93-L93 — virtual double benchmarkConfidenceInterval() const = 0;
+- benchmarkResamples · function · L94-L94 — virtual unsigned int benchmarkResamples() const = 0;
+- benchmarkWarmupTime · function · L95-L95 — virtual std::chrono::milliseconds benchmarkWarmupTime() const = 0;

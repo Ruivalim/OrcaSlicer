@@ -1,0 +1,54 @@
+# src/slic3r/GUI/Gizmos/GLGizmoSVG.hpp
+
+- ModelVolume · class · L25-L25 — class ModelVolume;
+- ModelVolumeType · type · L26-L26 — enum class ModelVolumeType : int;
+- Texture · class · L31-L35 — struct Texture
+- GLGizmoSVG · class · L37-L197 — class GLGizmoSVG : public GLGizmoBase
+- GLGizmoSVG · function · L40-L40 — explicit GLGizmoSVG(GLCanvas3D &parent);
+- create_volume · function · L48-L48 — bool create_volume(ModelVolumeType volume_type, const Vec2d &mouse_pos); // first open file dialog
+- create_volume · function · L55-L55 — bool create_volume(ModelVolumeType volume_type); // first open file dialog
+- create_volume · function · L64-L64 — bool create_volume(std::string_view svg_file, const Vec2d &mouse_pos, ModelVolumeType volume_type = ModelVolumeType::MODEL_PART);
+- create_volume · function · L65-L65 — bool create_volume(std::string_view svg_file, ModelVolumeType volume_type = ModelVolumeType::MODEL_PART);
+- is_svg_object · function · L72-L72 — static bool is_svg_object(const ModelVolume &volume);
+- is_svg · function · L79-L79 — static bool is_svg(const ModelVolume &volume);
+- on_init · function · L82-L82 — bool on_init() override;
+- on_get_name · function · L83-L83 — std::string on_get_name() const override;
+- on_render · function · L84-L84 — void on_render() override;
+- on_register_raycasters_for_picking · function · L85-L85 — void on_register_raycasters_for_picking() override;
+- on_unregister_raycasters_for_picking · function · L86-L86 — void on_unregister_raycasters_for_picking() override;
+- on_render_input_window · function · L87-L87 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_is_activable · function · L88-L88 — bool on_is_activable() const override { return true; }
+- on_is_selectable · function · L89-L89 — bool on_is_selectable() const override { return false; }
+- on_set_state · function · L90-L90 — void on_set_state() override;
+- data_changed · function · L91-L91 — void data_changed(bool is_serializing) override; // selection changed
+- on_set_hover_id · function · L92-L92 — void on_set_hover_id() override{ m_rotate_gizmo.set_hover_id(m_hover_id); }
+- on_enable_grabber · function · L93-L93 — void on_enable_grabber(unsigned int id) override { m_rotate_gizmo.enable_grabber(); }
+- on_disable_grabber · function · L94-L94 — void on_disable_grabber(unsigned int id) override { m_rotate_gizmo.disable_grabber(); }
+- on_start_dragging · function · L95-L95 — void on_start_dragging() override;
+- on_stop_dragging · function · L96-L96 — void on_stop_dragging() override;
+- on_dragging · function · L97-L97 — void on_dragging(const UpdateData &data) override;
+- on_mouse · function · L104-L104 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- wants_enter_leave_snapshots · function · L106-L106 — bool wants_enter_leave_snapshots() const override;
+- get_gizmo_entering_text · function · L107-L107 — std::string get_gizmo_entering_text() const override;
+- get_gizmo_leaving_text · function · L108-L108 — std::string get_gizmo_leaving_text() const override;
+- get_action_snapshot_name · function · L109-L109 — std::string get_action_snapshot_name() const override;
+- set_volume_by_selection · function · L111-L111 — void set_volume_by_selection();
+- reset_volume · function · L112-L112 — void reset_volume();
+- process · function · L115-L115 — bool process(bool make_snapshot = true);
+- close · function · L116-L116 — void close();
+- draw_window · function · L117-L117 — void draw_window();
+- draw_preview · function · L118-L118 — void draw_preview();
+- draw_filename · function · L119-L119 — void draw_filename();
+- draw_depth · function · L120-L120 — void draw_depth();
+- draw_size · function · L121-L121 — void draw_size();
+- draw_use_surface · function · L122-L122 — void draw_use_surface();
+- draw_distance · function · L123-L123 — void draw_distance();
+- draw_rotation · function · L124-L124 — void draw_rotation();
+- draw_mirroring · function · L125-L125 — void draw_mirroring();
+- draw_face_the_camera · function · L126-L126 — void draw_face_the_camera();
+- draw_model_type · function · L127-L127 — void draw_model_type();
+- on_mouse_for_rotation · function · L130-L130 — bool on_mouse_for_rotation(const wxMouseEvent &mouse_event);
+- on_mouse_for_translate · function · L131-L131 — bool on_mouse_for_translate(const wxMouseEvent &mouse_event);
+- volume_transformation_changed · function · L133-L133 — void volume_transformation_changed();
+- calculate_scale · function · L180-L180 — void calculate_scale();
+- get_scale_for_tolerance · function · L181-L181 — float get_scale_for_tolerance();

@@ -1,0 +1,26 @@
+# src/slic3r/GUI/DailyTips.hpp
+
+- DailyTipsLayout · type · L13-L16 — enum class DailyTipsLayout
+- DailyTipsDataRenderer · class · L18-L18 — class DailyTipsDataRenderer;
+- DailyTipsPanel · class · L19-L55 — class DailyTipsPanel
+- DailyTipsPanel · function · L22-L22 — DailyTipsPanel(bool can_expand = true, DailyTipsLayout layout = DailyTipsLayout::Vertical);
+- set_position · function · L23-L23 — void set_position(const ImVec2& pos);
+- set_size · function · L24-L24 — void set_size(const ImVec2& size);
+- set_can_expand · function · L25-L25 — void set_can_expand(bool can_expand);
+- get_size · function · L26-L26 — ImVec2 get_size();
+- render · function · L27-L27 — void render();
+- retrieve_data_from_hint_database · function · L28-L28 — void retrieve_data_from_hint_database(HintDataNavigation nav);
+- expand · function · L29-L29 — void expand(bool expand = true);
+- collapse · function · L30-L30 — void collapse();
+- is_expanded · function · L31-L31 — bool is_expanded();
+- on_change_color_mode · function · L32-L32 — void on_change_color_mode(bool is_dark);
+- set_fade_opacity · function · L33-L33 — void set_fade_opacity(float opacity);
+- render_controller_buttons · function · L36-L36 — void render_controller_buttons(const ImVec2& pos, const ImVec2& size);
+- push_styles · function · L37-L37 — void push_styles();
+- pop_styles · function · L38-L38 — void pop_styles();
+- DailyTipsWindow · class · L57-L69 — class DailyTipsWindow
+- DailyTipsWindow · function · L59-L59 — DailyTipsWindow();
+- open · function · L60-L60 — void open();
+- close · function · L61-L61 — void close();
+- render · function · L62-L62 — void render();
+- on_change_color_mode · function · L63-L63 — void on_change_color_mode(bool is_dark);

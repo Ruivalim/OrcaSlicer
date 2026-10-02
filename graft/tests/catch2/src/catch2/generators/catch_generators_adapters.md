@@ -1,0 +1,28 @@
+# tests/catch2/src/catch2/generators/catch_generators_adapters.hpp
+
+- TakeGenerator · class · L20-L49 — template <typename T>
+- TakeGenerator · function · L26-L31 — TakeGenerator(size_t target, GeneratorWrapper<T>&& generator):
+- get · function · L32-L32 — T const& get() const override
+- next · function · L35-L48 — bool next() override
+- take · function · L51-L54 — template <typename T>
+- FilterGenerator · class · L57-L90 — template <typename T, typename Predicate>
+- FilterGenerator · function · L63-L76 — template <typename P>
+- get · function · L78-L78 — T const& get() const override
+- next · function · L82-L89 — bool next() override
+- filter · function · L93-L96 — template <typename T, typename Predicate>
+- RepeatGenerator · class · L98-L147 — template <typename T>
+- RepeatGenerator · function · L109-L114 — RepeatGenerator(size_t repeats, GeneratorWrapper<T>&& generator):
+- get · function · L116-L116 — T const& get() const override
+- next · function · L124-L146 — bool next() override
+- repeat · function · L149-L152 — template <typename T>
+- MapGenerator · class · L154-L179 — template <typename T, typename U, typename Func>
+- MapGenerator · function · L162-L167 — template <typename F2 = Func>
+- get · function · L169-L169 — T const& get() const override
+- next · function · L172-L178 — bool next() override
+- map · function · L181-L186 — template <typename Func, typename U, typename T = FunctionReturnType<Func, U>>
+- map · function · L188-L193 — template <typename T, typename U, typename Func>
+- ChunkGenerator · class · L195-L229 — template <typename T>
+- ChunkGenerator · function · L202-L215 — ChunkGenerator(size_t size, GeneratorWrapper<T> generator) :
+- get · function · L216-L216 — std::vector<T> const& get() const override
+- next · function · L219-L228 — bool next() override
+- chunk · function · L231-L236 — template <typename T>

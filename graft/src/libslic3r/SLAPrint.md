@@ -1,0 +1,116 @@
+# src/libslic3r/SLAPrint.hpp
+
+- SLAPrintStep · type · L16-L20 — enum SLAPrintStep : unsigned int
+- SLAPrintObjectStep · type · L22-L31 — enum SLAPrintObjectStep : unsigned int
+- SLAPrint · class · L33-L33 — class SLAPrint;
+- GLCanvas · class · L34-L34 — class GLCanvas;
+- SliceOrigin · type · L43-L43 — enum SliceOrigin { soSupport, soModel };
+- SLAPrintObject · class · L45-L352 — class SLAPrintObject : public _SLAPrintObjectBase
+- SLAPrintObject · function · L53-L53 — SLAPrintObject(const SLAPrintObject&) = delete;
+- config · function · L56-L56 — const SLAPrintObjectConfig& config() const { return m_config; }
+- trafo · function · L57-L57 — const Transform3d&          trafo()  const { return m_trafo; }
+- is_left_handed · function · L58-L58 — bool                        is_left_handed() const { return m_left_handed; }
+- Instance · class · L60-L69 — struct Instance
+- Instance · function · L61-L61 — Instance(ObjectID inst_id, const Point &shft, float rot) : instance_id(inst_id), shift(shft), rotation(rot) {}
+- instances · function · L70-L70 — const std::vector<Instance>& instances() const { return m_instances; }
+- has_mesh · function · L72-L72 — bool                    has_mesh(SLAPrintObjectStep step) const;
+- get_mesh · function · L73-L73 — TriangleMesh            get_mesh(SLAPrintObjectStep step) const;
+- support_mesh · function · L77-L77 — const TriangleMesh&     support_mesh() const;
+- pad_mesh · function · L80-L80 — const TriangleMesh&     pad_mesh() const;
+- hollowed_interior_mesh · function · L83-L83 — const indexed_triangle_set &hollowed_interior_mesh() const;
+- get_mesh_to_print · function · L87-L87 — const TriangleMesh & get_mesh_to_print() const
+- get_mesh_to_slice · function · L91-L91 — const TriangleMesh & get_mesh_to_slice() const
+- transformed_mesh · function · L96-L96 — const TriangleMesh&     transformed_mesh() const;
+- transformed_support_points · function · L98-L98 — sla::SupportPoints      transformed_support_points() const;
+- transformed_drainhole_points · function · L99-L99 — sla::DrainHoles         transformed_drainhole_points() const;
+- get_elevation · function · L105-L105 — double get_elevation() const;
+- get_current_elevation · function · L110-L110 — double get_current_elevation() const;
+- get_support_points · function · L113-L113 — const std::vector<sla::SupportPoint>& get_support_points() const;
+- SliceRecord · class · L116-L164 — class SliceRecord
+- SliceRecord · function · L134-L135 — SliceRecord(coord_t key, float slicez, float height):
+- print_level · function · L138-L138 — coord_t print_level() const { return m_print_z; }
+- slice_level · function · L141-L141 — float slice_level() const { return m_slice_z; }
+- layer_height · function · L144-L144 — float layer_height() const { return m_height; }
+- is_valid · function · L146-L146 — bool is_valid() const { return m_po && ! std::isnan(m_slice_z); }
+- print_obj · function · L148-L148 — const SLAPrintObject* print_obj() const { return m_po; }
+- set_model_slice_idx · function · L151-L153 — void set_model_slice_idx(const SLAPrintObject &po, size_t id)
+- set_support_slice_idx · function · L155-L157 — void set_support_slice_idx(const SLAPrintObject& po, size_t id)
+- get_slice · function · L159-L159 — const ExPolygons& get_slice(SliceOrigin o) const;
+- get_slice_idx · function · L160-L163 — size_t            get_slice_idx(SliceOrigin o) const
+- level · function · L167-L172 — template<class T> inline static T level(const SliceRecord &sr)
+- create_slice_record · function · L174-L180 — template<class T> inline static SliceRecord create_slice_record(T val)
+- closest_slice_record · function · L187-L219 — template<class Container, class T>
+- get_model_slices · function · L221-L221 — const std::vector<ExPolygons>& get_model_slices() const { return m_model_slices; }
+- get_support_slices · function · L222-L222 — const std::vector<ExPolygons>& get_support_slices() const;
+- get_slice_index · function · L236-L236 — const std::vector<SliceRecord>& get_slice_index() const
+- closest_slice_to_print_level · function · L243-L245 — const SliceRecord& closest_slice_to_print_level(
+- closest_slice_to_slice_level · function · L254-L256 — const SliceRecord& closest_slice_to_slice_level(
+- SLAPrintObject · function · L266-L266 — SLAPrintObject(SLAPrint* print, ModelObject* model_object);
+- config_apply · function · L269-L269 — void                    config_apply(const ConfigBase &other, bool ignore_nonexistent = false) { m_config.apply(other, ignore_nonexistent); }
+- config_apply_only · function · L270-L271 — void                    config_apply_only(const ConfigBase &other, const t_config_option_keys &keys, bool ignore_nonexistent = false)
+- set_trafo · function · L273-L275 — void                    set_trafo(const Transform3d& trafo, bool left_handed)
+- set_instances · function · L277-L277 — template<class InstVec> inline void set_instances(InstVec&& instances) { m_instances = std::forward<InstVec>(instances); }
+- invalidate_step · function · L280-L280 — bool                    invalidate_step(SLAPrintObjectStep step);
+- invalidate_all_steps · function · L281-L281 — bool                    invalidate_all_steps();
+- invalidate_state_by_config_options · function · L283-L283 — bool                    invalidate_state_by_config_options(const std::vector<t_config_option_key> &opt_keys);
+- SupportData · class · L312-L338 — class SupportData : public sla::SupportableMesh
+- SupportData · function · L319-L321 — inline SupportData(const TriangleMesh &t)
+- create_support_tree · function · L323-L323 — sla::SupportTree::UPtr &create_support_tree(const sla::JobController &ctl)
+- create_pad · function · L330-L337 — void create_pad(const ExPolygons &blueprint, const sla::PadConfig &pcfg)
+- HollowingData · class · L342-L349 — class HollowingData
+- TriangleMesh · class · L358-L358 — class TriangleMesh;
+- SLAPrintStatistics · class · L360-L389 — struct SLAPrintStatistics
+- SLAPrintStatistics · function · L362-L362 — SLAPrintStatistics() { clear(); }
+- config · function · L373-L373 — DynamicConfig           config() const;
+- placeholders · function · L375-L375 — static DynamicConfig    placeholders();
+- finalize_output_path · function · L377-L377 — std::string             finalize_output_path(const std::string &path_in) const;
+- clear · function · L379-L388 — void clear()
+- SLAArchive · class · L391-L424 — class SLAArchive
+- create_raster · function · L395-L395 — virtual std::unique_ptr<sla::RasterBase> create_raster() const = 0;
+- get_encoder · function · L396-L396 — virtual sla::RasterEncoder get_encoder() const = 0;
+- apply · function · L401-L401 — virtual void apply(const SLAPrinterConfig &cfg) = 0;
+- draw_layers · function · L404-L423 — template<class Fn, class CancelFn, class EP = ExecutionTBB>
+- SLAPrint · class · L434-L579 — class SLAPrint : public PrintBaseWithState<SLAPrintStep, slapsCount>
+- Inherited · type · L437-L437 — typedef PrintBaseWithState<SLAPrintStep, slapsCount> Inherited;
+- Steps · class · L439-L439 — class Steps; // See SLAPrintSteps.cpp
+- SLAPrint · function · L443-L443 — SLAPrint(): m_stepmask(slapsCount, true) {}
+- technology · function · L447-L447 — PrinterTechnology	technology() const noexcept override { return ptSLA; }
+- clear · function · L449-L449 — void                clear() override;
+- empty · function · L450-L450 — bool                empty() const override { return m_objects.empty(); }
+- print_object_ids · function · L452-L452 — std::vector<ObjectID> print_object_ids() const override;
+- apply · function · L453-L453 — ApplyStatus         apply(const Model &model, DynamicPrintConfig config, bool extruder_applied = false) override;
+- set_task · function · L454-L454 — void                set_task(const TaskParams &params) override;
+- process · function · L455-L455 — void                process(long long *time_cost_with_cache = nullptr, bool use_cache = false) override;
+- finalize · function · L456-L456 — void                finalize() override;
+- is_step_done · function · L458-L458 — bool                is_step_done(SLAPrintObjectStep step) const;
+- finished · function · L460-L460 — bool                finished() const override { return this->is_step_done(slaposSliceSupports) && this->Inherited::is_step_done(slapsRasterize); }
+- objects · function · L462-L462 — const PrintObjects& objects() const { return m_objects; }
+- get_print_object_by_model_object_id · function · L465-L465 — const SLAPrintObject* get_print_object_by_model_object_id(ObjectID object_id) const
+- get_object · function · L470-L470 — const SLAPrintObject* get_object(ObjectID object_id) const
+- print_config · function · L476-L476 — const SLAPrintConfig&       print_config() const { return m_print_config; }
+- printer_config · function · L477-L477 — const SLAPrinterConfig&     printer_config() const { return m_printer_config; }
+- material_config · function · L478-L478 — const SLAMaterialConfig&    material_config() const { return m_material_config; }
+- default_object_config · function · L479-L479 — const SLAPrintObjectConfig& default_object_config() const { return m_default_object_config; }
+- relative_correction · function · L482-L482 — Vec3d                       relative_correction() const;
+- sla_trafo · function · L485-L485 — Transform3d sla_trafo(const ModelObject &model_object) const;
+- output_filename · function · L487-L487 — std::string                 output_filename(const std::string &filename_base = std::string()) const override;
+- print_statistics · function · L489-L489 — const SLAPrintStatistics&   print_statistics() const { return m_print_statistics; }
+- validate · function · L491-L493 — StringObjectException validate(std::vector<StringObjectException> *    warnings          = nullptr,
+- PrintLayer · class · L498-L531 — class PrintLayer
+- transformed_slices · function · L506-L509 — template<class Container> void transformed_slices(Container&& c)
+- PrintLayer · function · L515-L515 — explicit PrintLayer(coord_t lvl) : m_level(lvl) {}
+- add · function · L522-L522 — void add(const SliceRecord& sr) { m_slices.emplace_back(sr); }
+- level · function · L524-L524 — coord_t level() const { return m_level; }
+- slices · function · L526-L526 — auto slices() const -> const decltype (m_slices)& { return m_slices; }
+- transformed_slices · function · L528-L528 — const ExPolygons & transformed_slices() const
+- print_layers · function · L535-L535 — const std::vector<PrintLayer>& print_layers() const { return m_printer_input; }
+- set_printer · function · L537-L537 — void set_printer(SLAArchive *archiver);
+- invalidate_step · function · L542-L542 — bool invalidate_step(SLAPrintStep st);
+- invalidate_state_by_config_options · function · L545-L545 — bool invalidate_state_by_config_options(const std::vector<t_config_option_key> &opt_keys, bool &invalidate_all_model_objects);
+- StatusReporter · class · L564-L576 — class StatusReporter
+- status · function · L575-L575 — double status() const { return m_st; }
+- is_zero_elevation · function · L583-L583 — bool is_zero_elevation(const SLAPrintObjectConfig &c);
+- make_support_cfg · function · L585-L585 — sla::SupportTreeConfig make_support_cfg(const SLAPrintObjectConfig& c);
+- builtin_pad_cfg · function · L587-L587 — sla::PadConfig::EmbedObject builtin_pad_cfg(const SLAPrintObjectConfig& c);
+- make_pad_cfg · function · L589-L589 — sla::PadConfig make_pad_cfg(const SLAPrintObjectConfig& c);
+- validate_pad · function · L591-L591 — bool validate_pad(const indexed_triangle_set &pad, const sla::PadConfig &pcfg);

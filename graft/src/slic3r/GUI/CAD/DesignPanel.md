@@ -1,0 +1,229 @@
+# src/slic3r/GUI/CAD/DesignPanel.hpp
+
+- ComboBox · class · L16-L16 — class ComboBox;    // Orca dropdown (Widgets/ComboBox.hpp) — replaces wxChoice everywhere here
+- StaticBox · class · L17-L17 — class StaticBox;   // Orca rounded card frame (Widgets/StaticBox.hpp)
+- wxCheckBox · class · L18-L18 — class wxCheckBox;
+- wxCheckListBox · class · L19-L19 — class wxCheckListBox;
+- wxSpinCtrl · class · L20-L20 — class wxSpinCtrl;
+- wxSpinCtrlDouble · class · L21-L21 — class wxSpinCtrlDouble;
+- wxTreeCtrl · class · L22-L22 — class wxTreeCtrl;
+- wxImageList · class · L23-L23 — class wxImageList;
+- wxStaticText · class · L24-L24 — class wxStaticText;
+- wxStaticLine · class · L25-L25 — class wxStaticLine;
+- Button · class · L26-L26 — class Button;      // Orca-styled button (Widgets/Button.hpp)
+- CheckBox · class · L27-L27 — class CheckBox;    // Orca teal checkbox (Widgets/CheckBox.hpp)
+- wxSizer · class · L28-L28 — class wxSizer;
+- wxBoxSizer · class · L35-L35 — class wxBoxSizer;
+- wxTextCtrl · class · L36-L36 — class wxTextCtrl;
+- wxListCtrl · class · L37-L37 — class wxListCtrl;
+- wxButton · class · L38-L38 — class wxButton;
+- wxPanel · class · L39-L39 — class wxPanel;
+- ScalableButton · class · L40-L40 — class ScalableButton;
+- DesignCanvas · class · L44-L44 — class DesignCanvas;
+- DesignPanel · class · L49-L915 — class DesignPanel : public wxPanel
+- DesignPanel · function · L52-L52 — explicit DesignPanel(wxWindow* parent);
+- on_tab_shown · function · L53-L53 — void on_tab_shown();        // re-sync bed to the active printer when the Design tab is activated
+- on_tab_hidden · function · L54-L54 — void on_tab_hidden();       // another tab took over: take the viewport status line down with us
+- unbind_canvas_event_handlers · function · L55-L55 — void unbind_canvas_event_handlers();   // app close / language switch, from the plater's teardown
+- reset_canvas_volumes · function · L56-L56 — void reset_canvas_volumes();
+- clear_document · function · L57-L57 — void clear_document();      // New Project / Open Project: drop the document with the project
+- sync_recipe_to_model · function · L61-L61 — void sync_recipe_to_model();
+- recompute_guarded · function · L62-L62 — bool recompute_guarded(const wxString& message);
+- mcp_doc · function · L66-L66 — CadDocument& mcp_doc()        { return m_doc; }            // live document (read + mutate)
+- mcp_after_change · function · L67-L67 — void         mcp_after_change() { after_tree_edit(true); } // refresh tree + viewport + status
+- mcp_viewport · function · L68-L68 — DesignCanvas* mcp_viewport()  { return m_viewport; }        // live sketch + 3D view
+- mcp_set_sketch_mode · function · L75-L79 — void mcp_set_sketch_mode(bool on)
+- mcp_offer_selection_kind · function · L84-L84 — int  mcp_offer_selection_kind() const { return offer_selection_kind(); }  // OfferSel as int
+- mcp_run_action · function · L85-L85 — void mcp_run_action(const char* action) { run_offer_action(action); }     // dispatch an action string
+- mcp_run_verb · function · L88-L88 — bool mcp_run_verb(const char* verb_id);
+- Tool · type · L91-L91 — enum class Tool { None, Sketch, Extrude, Dressup, Hole, Thread, Shell, Revolve, Sweep, Pattern, Plane, Loft, Draft, Boolean, Cut, Insert, Axis, CoordSys, SurfaceExtrude, SurfaceRevolve, SurfaceLoft, SurfaceFill, SurfaceOffset, ThickenSurface, Transform, Mirror, Thicken, Rib, Project, DeleteFace, Helix, Mate };
+- fields_for_tool · function · L95-L95 — static std::vector<std::string> fields_for_tool(Tool t);
+- PlanePick · type · L98-L98 — enum class PlanePick { None, FaceA, FaceB, EdgeA, EdgeB };
+- AxisPick · type · L99-L99 — enum class AxisPick { None, Face, Edge };
+- CoordSysPick · type · L100-L100 — enum class CoordSysPick { None, Face, Edge };
+- UiMode · type · L105-L105 — enum class UiMode { Feature, Sketch, Constrain };
+- set_ui_mode · function · L106-L106 — void set_ui_mode(UiMode m);
+- apply_dof_status · function · L107-L107 — void apply_dof_status(int dof, bool ok, bool has_constraints);
+- tool_confirm · function · L109-L109 — void tool_confirm();        // ✓ : commit the active feature / sketch / constrain session
+- tool_cancel · function · L110-L110 — void tool_cancel();         // ✗ : cancel the active feature / discard / exit
+- escape_level · function · L116-L116 — CadLevel escape_level() const;
+- escape · function · L117-L117 — void     escape();
+- update_action_bar · function · L118-L118 — void update_action_bar();   // show the ✓/✗ bar iff a tool or mode is active
+- on_shape_changed · function · L120-L120 — void on_shape_changed();
+- on_add_sketch · function · L121-L121 — void on_add_sketch();
+- on_add_extrude · function · L122-L122 — void on_add_extrude();
+- on_add_dressup · function · L123-L123 — void on_add_dressup();
+- on_add_hole · function · L124-L124 — void on_add_hole();
+- on_add_thread · function · L125-L125 — void on_add_thread();
+- apply_thread_standard · function · L126-L126 — void apply_thread_standard();   // fill pitch/depth/radius from m_thread_std selection
+- infer_thread_spec · function · L127-L127 — void infer_thread_spec(double diameter);  // nearest M-standard from a picked cylinder diameter
+- on_add_revolve · function · L128-L128 — void on_add_revolve();
+- on_add_sweep · function · L129-L129 — void on_add_sweep();
+- on_add_loft · function · L130-L130 — void on_add_loft();
+- on_add_pattern · function · L131-L131 — void on_add_pattern();
+- on_add_plane · function · L132-L132 — bool on_add_plane();   // false = refused, card stays open
+- arm_plane_pick · function · L133-L133 — void arm_plane_pick(PlanePick target);   // Plane tool: next solid pick fills this reference
+- apply_plane_refs · function · L134-L134 — void apply_plane_refs(CadFeature& f) const; // copy type + face/edge refs + sizes from the card
+- refresh_plane_labels · function · L135-L135 — void refresh_plane_labels();             // update the 4 pick labels from the captured refs
+- reset_plane_refs · function · L136-L136 — void reset_plane_refs();                 // clear captured refs (fresh Plane add)
+- on_add_shell · function · L137-L137 — void on_add_shell();
+- on_add_draft · function · L138-L138 — void on_add_draft();
+- on_add_boolean · function · L139-L139 — void on_add_boolean();
+- on_add_cut · function · L140-L140 — void on_add_cut();              // commit a plane Cut (split-by-plane)
+- on_add_axis · function · L141-L141 — void on_add_axis();
+- arm_axis_pick · function · L142-L142 — void arm_axis_pick(AxisPick target);
+- apply_axis_refs · function · L143-L143 — void apply_axis_refs(CadFeature& f) const;
+- refresh_axis_labels · function · L144-L144 — void refresh_axis_labels();
+- reset_axis_refs · function · L145-L145 — void reset_axis_refs();
+- on_add_coordsys · function · L146-L146 — void on_add_coordsys();
+- arm_coordsys_pick · function · L147-L147 — void arm_coordsys_pick(CoordSysPick target);
+- apply_coordsys_refs · function · L148-L148 — void apply_coordsys_refs(CadFeature& f) const;
+- refresh_coordsys_labels · function · L149-L149 — void refresh_coordsys_labels();
+- refresh_cs_body_choice · function · L150-L150 — void refresh_cs_body_choice();   // fill the CoordSys body chooser from current document
+- reset_coordsys_refs · function · L151-L151 — void reset_coordsys_refs();
+- on_add_surface_extrude · function · L152-L152 — void on_add_surface_extrude();
+- on_add_surface_revolve · function · L153-L153 — void on_add_surface_revolve();
+- on_add_surface_loft · function · L154-L154 — void on_add_surface_loft();
+- on_add_surface_fill · function · L155-L155 — void on_add_surface_fill();
+- on_add_surface_offset · function · L156-L156 — void on_add_surface_offset();
+- on_add_thicken_surface · function · L157-L157 — void on_add_thicken_surface();
+- on_add_transform · function · L158-L158 — void on_add_transform();
+- xf_live_preview · function · L159-L159 — void xf_live_preview();    // typed Transform fields -> body display transform (live)
+- xf_clear_preview · function · L160-L160 — void xf_clear_preview();   // hand a previewed body back to its pre-card pose
+- on_add_mirror · function · L161-L161 — void on_add_mirror();
+- on_add_thicken · function · L162-L162 — void on_add_thicken();
+- on_add_rib · function · L163-L163 — void on_add_rib();
+- on_add_project · function · L164-L164 — void on_add_project();
+- on_add_delete_face · function · L165-L165 — void on_add_delete_face();
+- on_add_helix · function · L166-L166 — void on_add_helix();
+- on_add_mate · function · L167-L167 — void on_add_mate();
+- on_check_interference · function · L168-L168 — void on_check_interference();
+- on_mass_properties · function · L169-L169 — void on_mass_properties();          // read-only report on the selected solid; edits nothing
+- selected_body_default · function · L177-L177 — int  selected_body_default() const;
+- populate_body_choices · function · L178-L178 — void populate_body_choices(int as_of_feature = -1);
+- fill_body_choice · function · L182-L182 — void fill_body_choice(ComboBox* c, int as_of_feature, int want);
+- populate_sheet_body_choices · function · L183-L183 — void populate_sheet_body_choices(ComboBox* c) const;   // bodies where is_sheet_shape() is true
+- sheet_choice_body · function · L186-L186 — static int  sheet_choice_body(ComboBox* c);            // real body index of the current row, or -1
+- select_sheet_choice · function · L187-L187 — static void select_sheet_choice(ComboBox* c, int body);// select the row holding this body index
+- on_add_text · function · L191-L191 — void on_add_text();
+- on_import_svg · function · L192-L192 — void on_import_svg();
+- on_import_step · function · L193-L193 — void on_import_step();   // STEP -> editable B-rep body (keeps the OCCT solid, not a mesh)
+- on_import_mesh · function · L194-L194 — void on_import_mesh();   // STL/OBJ -> B-rep body via GeometryEngine::mesh_to_brep
+- place_on_face · function · L195-L195 — bool place_on_face();    // Prepare's Place on Face (F): lay the selected body face on the bed
+- add_imported_sketch · function · L196-L197 — void add_imported_sketch(const std::vector<std::vector<std::vector<Vec2d>>>& regions,
+- open_insert_card · function · L201-L201 — void open_insert_card(const wxString& base_name);
+- finalize_insert · function · L202-L202 — void finalize_insert();   // Confirm: keep the placed art, leave the placement gizmo
+- cancel_insert · function · L203-L203 — void cancel_insert();     // Cancel: undo the provisional insert
+- on_transform_imported · function · L206-L206 — void on_transform_imported(int feat_idx);
+- on_commit · function · L207-L207 — void on_commit();
+- on_export_step · function · L208-L208 — void on_export_step();   // write all bodies to a .step file (native B-rep)
+- load_recipe · function · L211-L211 — void load_recipe(const std::string& blob);
+- refresh_tree · function · L212-L212 — void refresh_tree();
+- set_status_ok · function · L213-L213 — void set_status_ok();
+- on_delete_feature · function · L216-L216 — void on_delete_feature();
+- on_delete_body · function · L220-L220 — void on_delete_body();
+- on_new_design · function · L221-L221 — void on_new_design();
+- on_move_feature · function · L222-L222 — void on_move_feature(int delta);   // -1 = up, +1 = down
+- on_toggle_visibility · function · L223-L223 — void on_toggle_visibility();       // show/hide the selected feature (CadFeature::enabled)
+- on_begin_constrain · function · L227-L227 — void on_begin_constrain(int sel_override = -1);
+- enter_constrain_inline · function · L231-L231 — bool enter_constrain_inline();
+- apply_constraint · function · L232-L232 — void apply_constraint(SketchConstraintType type);
+- apply_entity_constraint · function · L233-L233 — void apply_entity_constraint(SketchConstraintType type);  // Fase 4.2 entity path
+- apply_live_constraint · function · L234-L234 — void apply_live_constraint(SketchConstraintType type);    // Fase 4.2 live-sketch path (no commit needed)
+- EditOp · type · L235-L235 — enum class EditOp { Mirror, Offset, Fillet, Trim, Extend, Array, Move, Chamfer, Rotate, Scale, PolarArray }; // Fase 4.4/4.5/4.6 sketch edit ops
+- apply_edit_op · function · L236-L236 — void apply_edit_op(EditOp op);                            // mutate selected sketch entities
+- request_value · function · L240-L242 — void request_value(const wxString& label, double def, double mn, double mx,
+- confirm_value · function · L243-L243 — void confirm_value();
+- cancel_value · function · L244-L244 — void cancel_value();
+- commit_entity_constraints · function · L245-L245 — void commit_entity_constraints(const std::vector<SketchEntityConstraintDef>& defs); // multi-def (Symmetric)
+- live_constraint_scope · function · L255-L255 — bool live_constraint_scope() const;
+- rebuild_constraint_list · function · L256-L256 — void rebuild_constraint_list();                                      // refill m_constraint_rows
+- delete_constraint · function · L257-L257 — void delete_constraint(int idx);                                     // erase + re-solve + refresh
+- highlight_constraint_entities · function · L258-L258 — void highlight_constraint_entities(int idx);                         // push referenced entities to viewport
+- refresh_constrain_dof · function · L259-L259 — void refresh_constrain_dof();                                        // re-solve feature, mirror DoF readout
+- constraint_label · function · L260-L260 — wxString constraint_label(const SketchEntityConstraintDef& d) const; // human-readable row text
+- after_edit_op · function · L261-L261 — void after_edit_op();                                                // shared edit-op refresh tail
+- on_edit_feature · function · L262-L262 — void on_edit_feature();            // reopen the selected feature's dialog populated
+- after_tree_edit · function · L263-L263 — void after_tree_edit(bool ok);     // shared post-op refresh of tree/viewport/status
+- load_feature_into_dialog · function · L264-L264 — void load_feature_into_dialog(const CadFeature& f);
+- reset_edit_state · function · L265-L265 — void reset_edit_state();           // back to add-mode (m_edit_index = -1)
+- open_tool · function · L269-L269 — void       open_tool(Tool t);
+- close_tool · function · L270-L270 — void       close_tool();
+- refresh_preview · function · L271-L271 — void       refresh_preview();
+- confirm_tool · function · L272-L272 — void       confirm_tool();
+- cancel_tool · function · L273-L273 — void       cancel_tool();
+- do_undo_redo · function · L276-L276 — void       do_undo_redo(bool redo);
+- hole_plane · function · L278-L278 — SketchPlane hole_plane() const;
+- thread_plane · function · L280-L280 — SketchPlane thread_plane() const;
+- set_hole_target_label · function · L283-L283 — void        set_hole_target_label(int face);
+- set_thread_target_label · function · L284-L284 — void        set_thread_target_label(int face, int edge);
+- build_candidate · function · L285-L285 — CadFeature build_candidate(Tool t) const;
+- ghost_from_bodies · function · L289-L289 — TriangleMesh ghost_from_bodies(const std::vector<TriangleMesh>& per_body) const;
+- show_mate_ghost · function · L292-L293 — bool       show_mate_ghost(int kind, int cs_a, int cs_b,
+- resolve_extrude_sketch · function · L294-L294 — int        resolve_extrude_sketch() const;
+- populate_plane_choices · function · L297-L297 — void        populate_plane_choices(ComboBox* c) const;
+- ref_plane_name · function · L298-L298 — wxString    ref_plane_name(int row) const;   // "XY" / a datum's name, for the on-geometry hint
+- plane_from_choice · function · L299-L299 — SketchPlane plane_from_choice(int row) const;
+- sketch_plane_from_selection · function · L303-L303 — SketchPlane sketch_plane_from_selection(wxString& what) const;
+- sketch_plane_target · function · L306-L306 — bool sketch_plane_target(wxString& what) const;
+- extrude_uses_loop · function · L309-L309 — bool       extrude_uses_loop() const;
+- sync_sketch_display · function · L310-L310 — void       sync_sketch_display();   // push un-consumed committed sketches to the viewport
+- update_extrude_gizmo · function · L313-L313 — void       update_extrude_gizmo();
+- update_fillet_gizmo · function · L314-L314 — void       update_fillet_gizmo();     // edge-anchored radius arrow (Dressup card)
+- sync_dressup_target · function · L315-L315 — void       sync_dressup_target();     // Dressup card: show picked edge vs group, gate the combo
+- update_hole_gizmo · function · L316-L316 — void       update_hole_gizmo();       // footprint circle + diameter/depth arrows (Hole card)
+- BodyGate · class · L319-L319 — struct BodyGate { wxWindow* btn{nullptr}; int min_bodies{1}; wxString tip_live, tip_gated; };
+- update_body_gates · function · L321-L321 — void       update_body_gates();       // re-evaluate them against the current body count
+- update_thread_gizmo · function · L322-L322 — void       update_thread_gizmo();     // footprint circle + radius/length arrows (Thread card)
+- update_shell_gizmo · function · L323-L323 — void       update_shell_gizmo();      // inward thickness arrow on the picked face (Shell card)
+- update_revolve_gizmo · function · L324-L324 — void       update_revolve_gizmo();    // angle-arc around the axis (Revolve card)
+- update_draft_gizmo · function · L325-L325 — void       update_draft_gizmo();      // angle-arc around the face centroid (Draft card)
+- update_cut_gizmo · function · L326-L326 — void       update_cut_gizmo();        // plane-rectangle + offset arrow (Cut card)
+- update_operand_highlight · function · L327-L327 — void       update_operand_highlight(); // Boolean/Sweep/Loft operand tinting on the canvas
+- update_pattern_gizmo · function · L328-L328 — void       update_pattern_gizmo();    // linear spacing arrow / circular angle-arc (Pattern card)
+- update_datum_gizmo · function · L329-L329 — void       update_datum_gizmo();      // resize handles on the datum plane being created/edited (C3)
+- update_helix_gizmo · function · L330-L330 — void       update_helix_gizmo();      // live helix curve + radius/height/pitch handles (Helix card)
+- update_rib_gizmo · function · L331-L331 — void       update_rib_gizmo();        // in-plane slab footprint + thickness handles (Rib card)
+- refresh_datum_planes · function · L332-L332 — void       refresh_datum_planes();    // push resolved datum frames + per-plane u/v extents to viewport
+- refresh_mate_connectors · function · L333-L333 — void       refresh_mate_connectors(); // push connector frames so verse + polarity are visible
+- update_reference_planes · function · L334-L334 — void       update_reference_planes(); // persistent XY/XZ/YZ reference planes (fallback when no object)
+- update_cards_frame · function · L355-L355 — void      update_cards_frame();     // show that frame iff some card inside it is visible
+- show_move_card · function · L356-L356 — void      show_move_card(bool show);
+- apply_move_card · function · L357-L357 — void      apply_move_card();       // numeric move/rotate -> same xform the gizmo builds
+- push_polygon_params · function · L358-L358 — void      push_polygon_params();
+- update_undo_redo_buttons · function · L476-L476 — void update_undo_redo_buttons();   // enable/disable Undo/Redo from can_undo/can_redo + gate
+- set_active_tool_btn · function · L480-L480 — void set_active_tool_btn(ScalableButton* b);   // nullptr clears the highlight
+- populate_expr_fields · function · L635-L635 — void              populate_expr_fields(Tool t);   // fill m_expr_field from feature-type fields
+- on_set_expr · function · L636-L636 — void              on_set_expr();                   // checkpoint + write -> recompute -> undo on fail
+- on_clear_expr · function · L637-L637 — void              on_clear_expr();                 // remove selected binding
+- refresh_variables · function · L645-L645 — void              refresh_variables();            // rebuild m_var_list from m_doc.variables
+- on_add_variable · function · L646-L646 — void              on_add_variable();
+- on_edit_variable · function · L647-L647 — void              on_edit_variable();
+- on_remove_variable · function · L648-L648 — void              on_remove_variable();
+- set_status · function · L721-L721 — void        set_status(const wxString& text);
+- idle_hint · function · L722-L722 — wxString    idle_hint() const;   // what to say when nothing is selected
+- mate_conflict_reason · function · L725-L725 — const std::string* mate_conflict_reason(int feature) const;
+- append_offer_item · function · L727-L728 — wxMenuItem* append_offer_item(wxMenu* menu, int id, const wxString& text,
+- show_offer_menu · function · L729-L729 — void show_offer_menu(const wxPoint& screen_pos);
+- offer_anchor · function · L734-L734 — wxPoint offer_anchor() const;
+- offer_selection_kind · function · L735-L735 — int  offer_selection_kind() const;          // an OfferSel, as int to keep the header light
+- sketch_map_applies · function · L740-L740 — bool sketch_map_applies() const;
+- run_offer_action · function · L741-L741 — void run_offer_action(const char* action);
+- toggle_section_view · function · L854-L854 — void toggle_section_view();                   // Section View button / X: on <-> off
+- flip_section_view · function · L855-L855 — void flip_section_view();                     // Flip button / F: opposite half
+- update_section_flip_btn · function · L856-L856 — void update_section_flip_btn();               // enable the Flip button iff the section is on
+- sync_body_visible · function · L860-L860 — void sync_body_visible();             // grow/shrink m_body_visible to bodies.size()
+- sync_body_xform · function · L867-L867 — void sync_body_xform();               // grow m_body_xform to bodies.size() (identity)
+- rebuild_disp_meshes · function · L868-L868 — void rebuild_disp_meshes();           // recompute m_disp_* from m_doc + m_body_xform
+- feed_bodies · function · L869-L869 — void feed_bodies();                   // push m_disp_* + visibility/xform to the viewport
+- on_move_body · function · L870-L870 — void on_move_body();                  // start the move gizmo on the selected body
+- arm_transform_gizmo · function · L871-L871 — void arm_transform_gizmo();           // arm the move gizmo on the Transform card's body (add mode only)
+- on_set_body_color · function · L872-L872 — void on_set_body_color();             // Color tool: pick a per-body display colour override
+- on_boolean_tool · function · L873-L873 — void on_boolean_tool();               // Boolean (combine bodies): needs two solids, then opens the tool
+- tree_selection · function · L874-L874 — int  tree_selection() const;          // selected feature row, or wxNOT_FOUND
+- tree_body_selection · function · L875-L875 — int  tree_body_selection() const;     // selected Parts-list body index, or -1
+- refresh_parts · function · L876-L876 — void refresh_parts();                 // rebuild the Bodies list under the feature tree
+- sync_sidebar_width · function · L877-L877 — void sync_sidebar_width();            // keep the panel as wide as Prepare's sidebar
+- set_tree_selection · function · L878-L878 — void set_tree_selection(int row);
+- tree_icon_for · function · L879-L879 — static int tree_icon_for(CadFeatureType t);
+- on_sketch_step · function · L893-L893 — void              on_sketch_step(int mode, int step, int picks);

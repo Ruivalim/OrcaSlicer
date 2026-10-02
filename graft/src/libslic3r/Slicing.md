@@ -1,0 +1,32 @@
+# src/libslic3r/Slicing.hpp
+
+- PrintConfig · class · L19-L19 — class PrintConfig;
+- PrintObjectConfig · class · L20-L20 — class PrintObjectConfig;
+- ModelConfig · class · L21-L21 — class ModelConfig;
+- ModelObject · class · L22-L22 — class ModelObject;
+- DynamicPrintConfig · class · L23-L23 — class DynamicPrintConfig;
+- SlicingParameters · class · L28-L114 — struct SlicingParameters
+- SlicingParameters · function · L30-L30 — SlicingParameters() = default;
+- create_from_config · function · L33-L38 — static SlicingParameters create_from_config(
+- has_raft · function · L41-L41 — bool        has_raft() const { return raft_layers() > 0; }
+- raft_layers · function · L42-L42 — size_t      raft_layers() const { return base_raft_layers + interface_raft_layers; }
+- first_object_layer_height_fixed · function · L45-L45 — bool        first_object_layer_height_fixed()  const { return ! has_raft() || first_object_layer_bridging; }
+- object_print_z_height · function · L48-L48 — coordf_t    object_print_z_height() const { return object_print_z_max - object_print_z_min; }
+- object_print_z_uncompensated_height · function · L52-L52 — coordf_t    object_print_z_uncompensated_height() const { return object_print_z_uncompensated_max - object_print_z_min; }
+- equal_layering · function · L118-L148 — inline bool equal_layering(const SlicingParameters &sp1, const SlicingParameters &sp2)
+- t_layer_height_range · type · L150-L150 — typedef std::pair<coordf_t,coordf_t> t_layer_height_range;
+- t_layer_config_ranges · type · L151-L151 — typedef std::map<t_layer_height_range, ModelConfig> t_layer_config_ranges;
+- layer_height_profile_from_ranges · function · L153-L155 — std::vector<coordf_t> layer_height_profile_from_ranges(
+- layer_height_profile_adaptive · function · L157-L159 — std::vector<double> layer_height_profile_adaptive(
+- HeightProfileSmoothingParams · class · L161-L168 — struct HeightProfileSmoothingParams
+- HeightProfileSmoothingParams · function · L166-L166 — HeightProfileSmoothingParams() : radius(5), keep_min(false) {}
+- HeightProfileSmoothingParams · function · L167-L167 — HeightProfileSmoothingParams(unsigned int radius, bool keep_min) : radius(radius), keep_min(keep_min) {}
+- smooth_height_profile · function · L170-L172 — std::vector<double> smooth_height_profile(
+- LayerHeightEditActionType · type · L174-L179 — enum LayerHeightEditActionType : unsigned int
+- adjust_layer_height_profile · function · L181-L188 — void adjust_layer_height_profile(
+- generate_object_layers · function · L192-L195 — std::vector<coordf_t> generate_object_layers(
+- check_object_layers_fixed · function · L198-L200 — bool check_object_layers_fixed(
+- generate_layer_height_texture · function · L205-L208 — int generate_layer_height_texture(
+- min_layer_height_from_nozzle · function · L212-L212 — coordf_t min_layer_height_from_nozzle(const DynamicPrintConfig &print_config, int idx_nozzle);
+- max_layer_height_from_nozzle · function · L217-L217 — coordf_t max_layer_height_from_nozzle(const DynamicPrintConfig &print_config, int idx_nozzle);
+- serialize · function · L224-L224 — template<class Archive> void serialize(Archive& archive, Slic3r::t_layer_height_range &lhr) { archive(lhr.first, lhr.second); }

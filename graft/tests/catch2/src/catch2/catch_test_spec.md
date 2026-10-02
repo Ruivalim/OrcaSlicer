@@ -1,0 +1,28 @@
+# tests/catch2/src/catch2/catch_test_spec.hpp
+
+- IConfig · class · L25-L25 — class IConfig;
+- TestCaseHandle · class · L27-L27 — class TestCaseHandle;
+- TestSpec · class · L29-L112 — class TestSpec
+- Pattern · class · L31-L47 — class Pattern
+- Pattern · function · L33-L33 — explicit Pattern( std::string const& name );
+- matches · function · L35-L35 — virtual bool matches( TestCaseInfo const& testCase ) const = 0;
+- name · function · L36-L36 — std::string const& name() const;
+- serializeTo · function · L38-L38 — virtual void serializeTo( std::ostream& out ) const = 0;
+- NamePattern · class · L49-L57 — class NamePattern : public Pattern
+- NamePattern · function · L51-L51 — explicit NamePattern( std::string const& name, std::string const& filterString );
+- matches · function · L52-L52 — bool matches( TestCaseInfo const& testCase ) const override;
+- serializeTo · function · L54-L54 — void serializeTo( std::ostream& out ) const override;
+- TagPattern · class · L59-L67 — class TagPattern : public Pattern
+- TagPattern · function · L61-L61 — explicit TagPattern( std::string const& tag, std::string const& filterString );
+- matches · function · L62-L62 — bool matches( TestCaseInfo const& testCase ) const override;
+- serializeTo · function · L64-L64 — void serializeTo( std::ostream& out ) const override;
+- Filter · class · L69-L82 — struct Filter
+- serializeTo · function · L75-L75 — void serializeTo( std::ostream& out ) const;
+- matches · function · L81-L81 — bool matches( TestCaseInfo const& testCase ) const;
+- extractFilterName · function · L84-L84 — static std::string extractFilterName( Filter const& filter );
+- FilterMatch · class · L87-L90 — struct FilterMatch
+- hasFilters · function · L94-L94 — bool hasFilters() const;
+- matches · function · L95-L95 — bool matches( TestCaseInfo const& testCase ) const;
+- matchesByFilter · function · L96-L96 — Matches matchesByFilter( std::vector<TestCaseHandle> const& testCases, IConfig const& config ) const;
+- getInvalidSpecs · function · L97-L97 — const vectorStrings & getInvalidSpecs() const;
+- serializeTo · function · L106-L106 — void serializeTo( std::ostream& out ) const;

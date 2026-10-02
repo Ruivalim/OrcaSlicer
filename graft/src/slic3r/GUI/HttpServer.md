@@ -1,0 +1,44 @@
+# src/slic3r/GUI/HttpServer.hpp
+
+- session · class · L23-L23 — class session;
+- http_headers · class · L25-L71 — class http_headers
+- get_url · function · L35-L35 — std::string get_url() { return url; }
+- content_length · function · L37-L47 — int content_length()
+- on_read_header · function · L49-L60 — void on_read_header(std::string line)
+- ssHeader · function · L53-L53 — std::stringstream ssHeader(line);
+- on_read_request_line · function · L62-L70 — void on_read_request_line(std::string line)
+- ssRequestLine · function · L64-L64 — std::stringstream ssRequestLine(line);
+- HttpServer · class · L73-L150 — class HttpServer
+- Response · class · L78-L83 — class Response
+- write_response · function · L82-L82 — virtual void write_response(std::stringstream& ssOut) = 0;
+- ResponseNotFound · class · L85-L90 — class ResponseNotFound : public Response
+- write_response · function · L89-L89 — void write_response(std::stringstream& ssOut) override;
+- ResponseRedirect · class · L92-L100 — class ResponseRedirect : public Response
+- ResponseRedirect · function · L97-L97 — ResponseRedirect(const std::string& location) : location_str(location) {}
+- write_response · function · L99-L99 — void write_response(std::stringstream& ssOut) override;
+- ResponseHtml · class · L102-L110 — class ResponseHtml : public Response
+- ResponseHtml · function · L107-L107 — explicit ResponseHtml(std::string html) : html(std::move(html)) {}
+- write_response · function · L109-L109 — void write_response(std::stringstream& ssOut) override;
+- HttpServer · function · L112-L112 — HttpServer(boost::asio::ip::port_type port = LOCALHOST_PORT);
+- is_started · function · L118-L118 — bool is_started() { return start_http_server; }
+- start · function · L119-L119 — void start();
+- stop · function · L120-L120 — void stop();
+- set_port · function · L121-L121 — void set_port(boost::asio::ip::port_type new_port) { port = new_port; }
+- get_port · function · L122-L122 — boost::asio::ip::port_type get_port() const { return port; }
+- set_request_handler · function · L123-L123 — void set_request_handler(const std::function<std::shared_ptr<Response>(const std::string&)>& m_request_handler);
+- bbl_auth_handle_request · function · L125-L125 — static std::shared_ptr<Response> bbl_auth_handle_request(const std::string& url);
+- auth_handle_request · function · L126-L126 — static std::shared_ptr<Response> auth_handle_request(const std::string& url, const std::string& provider);
+- IOServer · class · L129-L144 — class IOServer
+- IOServer · function · L137-L137 — IOServer(HttpServer& server) : server(server), acceptor(io_service, {boost::asio::ip::tcp::v4(), server.port}) {}
+- do_accept · function · L139-L139 — void do_accept();
+- start · function · L141-L141 — void start(std::shared_ptr<session> session);
+- stop · function · L142-L142 — void stop(std::shared_ptr<session> session);
+- stop_all · function · L143-L143 — void stop_all();
+- session · class · L152-L169 — class session : public std::enable_shared_from_this<session>
+- read_first_line · function · L160-L160 — void read_first_line();
+- read_next_line · function · L161-L161 — void read_next_line();
+- read_body · function · L162-L162 — void read_body();
+- session · function · L165-L165 — session(HttpServer::IOServer& server, boost::asio::ip::tcp::socket socket) : server(server), socket(std::move(socket)) {}
+- start · function · L167-L167 — void start();
+- stop · function · L168-L168 — void stop();
+- url_get_param · function · L171-L171 — std::string url_get_param(const std::string& url, const std::string& key);

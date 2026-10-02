@@ -1,0 +1,46 @@
+# src/slic3r/GUI/SendMultiMachinePage.hpp
+
+- RadioBox · class · L43-L43 — class RadioBox;
+- AmsRadioSelector · class · L44-L51 — class AmsRadioSelector
+- SendDeviceItem · class · L55-L80 — class SendDeviceItem : public DeviceItem
+- SendDeviceItem · function · L59-L59 — SendDeviceItem(wxWindow* parent, MachineObject* obj);
+- DrawTextWithEllipsis · function · L62-L62 — void DrawTextWithEllipsis(wxDC& dc, const wxString& text, int maxWidth, int left, int top = 0);
+- OnEnterWindow · function · L63-L63 — void OnEnterWindow(wxMouseEvent& evt);
+- OnLeaveWindow · function · L64-L64 — void OnLeaveWindow(wxMouseEvent& evt);
+- OnSelectedDevice · function · L65-L65 — void OnSelectedDevice(wxCommandEvent& evt);
+- OnLeftDown · function · L66-L66 — void OnLeftDown(wxMouseEvent& evt);
+- OnMove · function · L67-L67 — void OnMove(wxMouseEvent& evt);
+- paintEvent · function · L69-L69 — void         paintEvent(wxPaintEvent& evt);
+- render · function · L70-L70 — void         render(wxDC& dc);
+- doRender · function · L71-L71 — void         doRender(wxDC& dc);
+- post_event · function · L72-L72 — void         post_event(wxCommandEvent&& event);
+- DoSetSize · function · L73-L73 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO);
+- Plater · class · L82-L82 — class Plater;
+- SendMultiMachinePage · class · L83-L203 — class SendMultiMachinePage : public DPIDialog
+- SendMultiMachinePage · function · L164-L164 — SendMultiMachinePage(Plater* plater = nullptr);
+- prepare · function · L167-L167 — void prepare(int plate_idx);
+- on_dpi_changed · function · L169-L169 — void on_dpi_changed(const wxRect& suggested_rect);
+- on_sys_color_changed · function · L170-L170 — void on_sys_color_changed();
+- refresh_user_device · function · L171-L171 — void refresh_user_device();
+- on_send · function · L172-L172 — void on_send(wxCommandEvent& event);
+- Show · function · L173-L173 — bool Show(bool show);
+- request_params · function · L175-L175 — PrintParams request_params(MachineObject* obj);
+- get_ams_mapping_result · function · L177-L177 — bool get_ams_mapping_result(std::string &mapping_array_str, std::string &mapping_array_str2, std::string &ams_mapping_info);
+- create_item_title · function · L178-L178 — wxBoxSizer* create_item_title(wxString title, wxWindow* parent, wxString tooltip);
+- create_item_checkbox · function · L179-L179 — wxBoxSizer* create_item_checkbox(wxString title, wxWindow* parent, wxString tooltip, int padding_left, std::string param);
+- create_item_input · function · L180-L180 — wxBoxSizer* create_item_input(wxString str_before, wxString str_after, wxWindow* parent, wxString tooltip, std::string param);
+- create_item_radiobox · function · L181-L181 — wxBoxSizer* create_item_radiobox(wxString title, wxWindow* parent, wxString tooltip, int groupid, std::string param);
+- create_page · function · L183-L183 — wxPanel* create_page();
+- sync_ams_list · function · L184-L184 — void sync_ams_list();
+- set_default_normal · function · L185-L185 — void set_default_normal(const ThumbnailData& data);
+- set_default · function · L186-L186 — void set_default();
+- on_rename_enter · function · L187-L187 — void on_rename_enter();
+- check_fcous_state · function · L188-L188 — void check_fcous_state(wxWindow* window);
+- check_focus · function · L189-L189 — void check_focus(wxWindow* window);
+- OnSelectRadio · function · L192-L192 — void OnSelectRadio(wxMouseEvent& event);
+- on_select_radio · function · L193-L193 — void on_select_radio(std::string param);
+- get_value_radio · function · L194-L194 — bool get_value_radio(std::string param);
+- on_set_finish_mapping · function · L195-L195 — void on_set_finish_mapping(wxCommandEvent& evt);
+- on_rename_click · function · L196-L196 — void on_rename_click(wxCommandEvent& event);
+- on_timer · function · L198-L198 — void on_timer(wxTimerEvent& event);
+- init_timer · function · L199-L199 — void init_timer();

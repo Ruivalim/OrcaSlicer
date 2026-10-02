@@ -1,0 +1,29 @@
+# src/slic3r/GUI/GUI_ObjectLayers.hpp
+
+- wxBoxSizer · class · L11-L11 — class wxBoxSizer;
+- ModelObject · class · L14-L14 — class ModelObject;
+- ConfigOptionsGroup · class · L17-L17 — class ConfigOptionsGroup;
+- coordf_t · type · L19-L19 — typedef double                          coordf_t;
+- t_layer_height_range · type · L20-L20 — typedef std::pair<coordf_t, coordf_t>   t_layer_height_range;
+- ObjectLayers · class · L22-L22 — class ObjectLayers;
+- EditorType · type · L24-L30 — enum EditorType
+- LayerRangeEditor · class · L32-L57 — class LayerRangeEditor : public wxTextCtrl
+- LayerRangeEditor · function · L42-L48 — LayerRangeEditor(   ObjectLayers* parent,
+- type · function · L51-L51 — EditorType          type() const {return m_type;}
+- set_focus_data · function · L52-L52 — void                set_focus_data() const { m_set_focus_data(m_type);}
+- msw_rescale · function · L53-L53 — void                msw_rescale();
+- get_value · function · L56-L56 — coordf_t            get_value();
+- ObjectLayers · class · L59-L102 — class ObjectLayers : public OG_Settings
+- ObjectLayers · function · L70-L70 — ObjectLayers(wxWindow* parent);
+- PlusMinusButton · class · L77-L83 — class PlusMinusButton : public ScalableButton
+- PlusMinusButton · function · L80-L80 — PlusMinusButton(wxWindow *parent, const ScalableBitmap &bitmap, std::pair<coordf_t, coordf_t> range) : ScalableButton(parent, wxID_ANY, bitmap), range(range) {}
+- select_editor · function · L85-L85 — void        select_editor(LayerRangeEditor* editor, const bool is_last_edited_range);
+- create_layer · function · L89-L89 — wxSizer*    create_layer(const t_layer_height_range& range, PlusMinusButton *delete_button, PlusMinusButton *add_button);
+- create_layers_list · function · L90-L90 — void        create_layers_list();
+- update_layers_list · function · L91-L91 — void        update_layers_list();
+- update_scene_from_editor_selection · function · L93-L93 — void        update_scene_from_editor_selection() const;
+- UpdateAndShow · function · L95-L95 — void        UpdateAndShow(const bool show) override;
+- msw_rescale · function · L96-L96 — void        msw_rescale();
+- sys_color_changed · function · L97-L97 — void        sys_color_changed();
+- reset_selection · function · L98-L98 — void        reset_selection();
+- set_selectable_range · function · L99-L99 — void        set_selectable_range(const t_layer_height_range& range) { m_selectable_range = range; }

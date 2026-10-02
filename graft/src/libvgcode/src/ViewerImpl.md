@@ -1,0 +1,123 @@
+# src/libvgcode/src/ViewerImpl.hpp
+
+- ViewerImpl · class · L30-L541 — class ViewerImpl
+- ViewerImpl · function · L33-L33 — ViewerImpl();
+- ViewerImpl · function · L35-L35 — ViewerImpl(const ViewerImpl& other) = delete;
+- ViewerImpl · function · L36-L36 — ViewerImpl(ViewerImpl&& other) = delete;
+- init · function · L43-L43 — void init(const std::string& opengl_context_version);
+- shutdown · function · L47-L47 — void shutdown();
+- reset · function · L51-L51 — void reset();
+- load · function · L56-L56 — void load(GCodeInputData&& gcode_data);
+- update_enabled_entities · function · L62-L62 — void update_enabled_entities();
+- update_colors · function · L67-L67 — void update_colors();
+- update_colors_texture · function · L68-L68 — void update_colors_texture();
+- render · function · L73-L73 — void render(const Mat4x4& view_matrix, const Mat4x4& projection_matrix);
+- render_shadow_casters · function · L80-L80 — void render_shadow_casters(const Mat4x4& view_matrix, const Mat4x4& projection_matrix, const Vec3& light_position);
+- set_shadow_map · function · L85-L85 — void set_shadow_map(int texture_unit, const Mat4x4& light_view_projection, float intensity, float texel_size);
+- set_tone · function · L91-L91 — void set_tone(float exposure, float saturation);
+- get_view_type · function · L93-L93 — EViewType get_view_type() const { return m_settings.view_type; }
+- set_view_type · function · L94-L94 — void set_view_type(EViewType type);
+- get_time_mode · function · L96-L96 — ETimeMode get_time_mode() const { return m_settings.time_mode; }
+- set_time_mode · function · L97-L97 — void set_time_mode(ETimeMode mode);
+- get_layers_view_range · function · L99-L99 — const Interval& get_layers_view_range() const { return m_layers.get_view_range(); }
+- set_layers_view_range · function · L100-L100 — void set_layers_view_range(const Interval& range) { set_layers_view_range(range[0], range[1]); }
+- set_layers_view_range · function · L101-L101 — void set_layers_view_range(Interval::value_type min, Interval::value_type max);
+- is_top_layer_only_view_range · function · L103-L103 — bool is_top_layer_only_view_range() const { return m_settings.top_layer_only_view_range; }
+- toggle_top_layer_only_view_range · function · L104-L104 — void toggle_top_layer_only_view_range();
+- is_dim_previous_layers · function · L110-L110 — bool is_dim_previous_layers() const { return m_settings.dim_previous_layers; }
+- set_dim_previous_layers · function · L111-L111 — void set_dim_previous_layers(bool value);
+- get_dim_previous_layers_brightness · function · L112-L112 — float get_dim_previous_layers_brightness() const { return m_settings.dim_previous_layers_brightness; }
+- set_dim_previous_layers_brightness · function · L113-L113 — void set_dim_previous_layers_brightness(float value);
+- is_spiral_vase_mode · function · L115-L115 — bool is_spiral_vase_mode() const { return m_settings.spiral_vase_mode; }
+- get_time_modes · function · L117-L117 — std::vector<ETimeMode> get_time_modes() const;
+- get_layers_count · function · L119-L119 — size_t get_layers_count() const { return m_layers.count(); }
+- get_layer_z · function · L120-L120 — float get_layer_z(size_t layer_id) const { return m_layers.get_layer_z(layer_id); }
+- get_layers_zs · function · L121-L121 — std::vector<float> get_layers_zs() const { return m_layers.get_zs(); }
+- get_layer_id_at · function · L123-L123 — size_t get_layer_id_at(float z) const { return m_layers.get_layer_id_at(z); }
+- get_used_extruders_count · function · L125-L125 — size_t get_used_extruders_count() const { return m_used_extruders.size(); }
+- get_used_extruders_ids · function · L126-L126 — std::vector<uint8_t> get_used_extruders_ids() const;
+- get_color_prints_count · function · L128-L128 — size_t get_color_prints_count(uint8_t extruder_id) const;
+- get_color_prints · function · L129-L129 — std::vector<ColorPrint> get_color_prints(uint8_t extruder_id) const;
+- get_bounding_box · function · L131-L134 — AABox get_bounding_box(const std::vector<EMoveType>& types =
+- get_extrusion_bounding_box · function · L135-L144 — AABox get_extrusion_bounding_box(const std::vector<EGCodeExtrusionRole>& roles =
+- is_option_visible · function · L146-L146 — bool is_option_visible(EOptionType type) const;
+- toggle_option_visibility · function · L147-L147 — void toggle_option_visibility(EOptionType type);
+- is_extrusion_role_visible · function · L149-L149 — bool is_extrusion_role_visible(EGCodeExtrusionRole role) const;
+- toggle_extrusion_role_visibility · function · L150-L150 — void toggle_extrusion_role_visibility(EGCodeExtrusionRole role);
+- get_view_full_range · function · L152-L152 — const Interval& get_view_full_range() const { return m_view_range.get_full(); }
+- get_view_enabled_range · function · L153-L153 — const Interval& get_view_enabled_range() const { return m_view_range.get_enabled(); }
+- get_view_visible_range · function · L154-L154 — const Interval& get_view_visible_range() const { return m_view_range.get_visible(); }
+- set_view_visible_range · function · L155-L155 — void set_view_visible_range(Interval::value_type min, Interval::value_type max);
+- get_vertices_count · function · L157-L157 — size_t get_vertices_count() const { return m_vertices.size(); }
+- get_current_vertex · function · L158-L158 — const PathVertex& get_current_vertex() const { return get_vertex_at(get_current_vertex_id()); }
+- get_current_vertex_id · function · L159-L159 — size_t get_current_vertex_id() const { return static_cast<size_t>(m_view_range.get_visible()[1]); }
+- get_vertex_at · function · L160-L160 — const PathVertex& get_vertex_at(size_t id) const
+- get_estimated_time · function · L163-L163 — float get_estimated_time() const { return m_total_time[static_cast<size_t>(m_settings.time_mode)]; }
+- get_estimated_time_at · function · L164-L164 — float get_estimated_time_at(size_t id) const;
+- get_vertex_color · function · L165-L165 — Color get_vertex_color(const PathVertex& vertex) const;
+- get_extrusion_roles_count · function · L167-L167 — size_t get_extrusion_roles_count() const { return m_extrusion_roles.get_roles_count(); }
+- get_extrusion_roles · function · L168-L168 — std::vector<EGCodeExtrusionRole> get_extrusion_roles() const { return m_extrusion_roles.get_roles(); }
+- get_extrusion_role_estimated_time · function · L169-L169 — float get_extrusion_role_estimated_time(EGCodeExtrusionRole role) const { return m_extrusion_roles.get_time(role, m_settings.time_mode); }
+- get_options_count · function · L171-L171 — size_t get_options_count() const { return m_options.size(); }
+- get_options · function · L172-L172 — const std::vector<EOptionType>& get_options() const { return m_options; }
+- get_travels_estimated_time · function · L174-L174 — float get_travels_estimated_time() const { return m_travels_time[static_cast<size_t>(m_settings.time_mode)]; }
+- get_layers_estimated_times · function · L175-L175 — std::vector<float> get_layers_estimated_times() const { return m_layers.get_times(m_settings.time_mode); }
+- get_tool_colors_count · function · L177-L177 — size_t get_tool_colors_count() const { return m_tool_colors.size(); }
+- get_tool_colors · function · L178-L178 — const Palette& get_tool_colors() const { return m_tool_colors; }
+- set_tool_colors · function · L179-L179 — void set_tool_colors(const Palette& colors);
+- get_color_print_colors_count · function · L181-L181 — size_t get_color_print_colors_count() const { return m_color_print_colors.size(); }
+- get_color_print_colors · function · L182-L182 — const Palette& get_color_print_colors() const { return m_color_print_colors; }
+- set_color_print_colors · function · L183-L183 — void set_color_print_colors(const Palette& colors);
+- get_extrusion_role_color · function · L185-L185 — const Color& get_extrusion_role_color(EGCodeExtrusionRole role) const;
+- set_extrusion_role_color · function · L186-L186 — void set_extrusion_role_color(EGCodeExtrusionRole role, const Color& color);
+- reset_default_extrusion_roles_colors · function · L187-L187 — void reset_default_extrusion_roles_colors();
+- get_option_color · function · L189-L189 — const Color& get_option_color(EOptionType type) const;
+- set_option_color · function · L190-L190 — void set_option_color(EOptionType type, const Color& color);
+- reset_default_options_colors · function · L191-L191 — void reset_default_options_colors();
+- get_color_range · function · L193-L193 — const ColorRange& get_color_range(EViewType type) const;
+- set_color_range_palette · function · L194-L194 — void set_color_range_palette(EViewType type, const Palette& palette);
+- get_travels_radius · function · L196-L196 — float get_travels_radius() const { return m_travels_radius; }
+- set_travels_radius · function · L197-L197 — void set_travels_radius(float radius);
+- get_wipes_radius · function · L198-L198 — float get_wipes_radius() const { return m_wipes_radius; }
+- set_wipes_radius · function · L199-L199 — void set_wipes_radius(float radius);
+- get_used_cpu_memory · function · L201-L201 — size_t get_used_cpu_memory() const;
+- get_used_gpu_memory · function · L202-L202 — size_t get_used_gpu_memory() const;
+- get_cog_marker_position · function · L205-L205 — Vec3 get_cog_marker_position() const { return m_cog_marker.get_position(); }
+- get_cog_marker_scale_factor · function · L207-L207 — float get_cog_marker_scale_factor() const { return m_cog_marker_scale_factor; }
+- set_cog_marker_scale_factor · function · L208-L208 — void set_cog_marker_scale_factor(float factor) { m_cog_marker_scale_factor = std::max(factor, 0.001f); }
+- get_tool_marker_position · function · L210-L210 — const Vec3& get_tool_marker_position() const { return m_tool_marker.get_position(); }
+- get_tool_marker_offset_z · function · L212-L212 — float get_tool_marker_offset_z() const { return m_tool_marker.get_offset_z(); }
+- set_tool_marker_offset_z · function · L213-L213 — void set_tool_marker_offset_z(float offset_z) { m_tool_marker.set_offset_z(offset_z); }
+- get_tool_marker_scale_factor · function · L215-L215 — float get_tool_marker_scale_factor() const { return m_tool_marker_scale_factor; }
+- set_tool_marker_scale_factor · function · L216-L216 — void set_tool_marker_scale_factor(float factor) { m_tool_marker_scale_factor = std::max(factor, 0.001f); }
+- get_tool_marker_color · function · L218-L218 — const Color& get_tool_marker_color() const { return m_tool_marker.get_color(); }
+- set_tool_marker_color · function · L219-L219 — void set_tool_marker_color(const Color& color) { m_tool_marker.set_color(color); }
+- get_tool_marker_alpha · function · L221-L221 — float get_tool_marker_alpha() const { return m_tool_marker.get_alpha(); }
+- set_tool_marker_alpha · function · L222-L222 — void set_tool_marker_alpha(float alpha) { m_tool_marker.set_alpha(alpha); }
+- TextureData · class · L400-L470 — class TextureData
+- init · function · L403-L403 — void init(size_t vertices_count);
+- set_positions · function · L404-L404 — void set_positions(const std::vector<Vec3>& positions);
+- set_heights_widths_angles · function · L405-L405 — void set_heights_widths_angles(const std::vector<Vec3>& heights_widths_angles);
+- set_colors · function · L406-L406 — void set_colors(const std::vector<float>& colors);
+- set_enabled_segments · function · L407-L407 — void set_enabled_segments(const std::vector<uint32_t>& enabled_segments);
+- set_enabled_options · function · L408-L408 — void set_enabled_options(const std::vector<uint32_t>& enabled_options);
+- reset · function · L409-L409 — void reset();
+- get_count · function · L410-L410 — size_t get_count() const { return m_count; }
+- get_positions_tex_id · function · L411-L411 — std::pair<unsigned int, size_t> get_positions_tex_id(size_t id) const;
+- get_heights_widths_angles_tex_id · function · L412-L412 — std::pair<unsigned int, size_t> get_heights_widths_angles_tex_id(size_t id) const;
+- get_colors_tex_id · function · L413-L413 — std::pair<unsigned int, size_t> get_colors_tex_id(size_t id) const;
+- get_enabled_segments_tex_id · function · L414-L414 — std::pair<unsigned int, size_t> get_enabled_segments_tex_id(size_t id) const;
+- get_enabled_options_tex_id · function · L415-L415 — std::pair<unsigned int, size_t> get_enabled_options_tex_id(size_t id) const;
+- get_enabled_segments_count · function · L417-L417 — size_t get_enabled_segments_count() const;
+- get_enabled_options_count · function · L418-L418 — size_t get_enabled_options_count() const;
+- max_texture_capacity · function · L420-L420 — size_t max_texture_capacity() const { return m_width * m_height; }
+- get_used_gpu_memory · function · L421-L421 — size_t get_used_gpu_memory() const;
+- TexIds · class · L445-L467 — struct TexIds
+- apply_pending_updates · function · L531-L531 — void apply_pending_updates();
+- update_view_full_range · function · L532-L532 — void update_view_full_range();
+- update_color_ranges · function · L533-L533 — void update_color_ranges();
+- update_heights_widths · function · L534-L534 — void update_heights_widths();
+- render_segments · function · L535-L535 — void render_segments(const Mat4x4& view_matrix, const Mat4x4& projection_matrix, const Vec3& camera_position);
+- render_options · function · L536-L536 — void render_options(const Mat4x4& view_matrix, const Mat4x4& projection_matrix);
+- render_cog_marker · function · L538-L538 — void render_cog_marker(const Mat4x4& view_matrix, const Mat4x4& projection_matrix);
+- render_tool_marker · function · L539-L539 — void render_tool_marker(const Mat4x4& view_matrix, const Mat4x4& projection_matrix);

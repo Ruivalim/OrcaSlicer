@@ -1,0 +1,24 @@
+# src/slic3r/Utils/RaycastManager.hpp
+
+- RaycastManager · class · L17-L145 — class RaycastManager
+- ISkip · class · L35-L45 — class ISkip
+- skip · function · L44-L44 — virtual bool skip(const size_t &model_volume_id) const { return false; }
+- SurfacePoint · class · L48-L53 — template<typename T>
+- Hit · class · L55-L59 — struct Hit : public SurfacePoint<double>
+- ClosePoint · class · L61-L66 — struct ClosePoint
+- actualize · function · L89-L89 — void actualize(const ModelObject &object, const ISkip *skip = nullptr, Meshes *meshes = nullptr);
+- actualize · function · L90-L90 — void actualize(const ModelInstance &instance, const ISkip *skip = nullptr, Meshes* meshes = nullptr);
+- SkipVolume · class · L92-L98 — class SkipVolume: public ISkip
+- SkipVolume · function · L96-L96 — SkipVolume(size_t volume_id) : volume_id(volume_id) {}
+- skip · function · L97-L97 — bool skip(const size_t &model_volume_id) const override { return model_volume_id == volume_id; }
+- AllowVolumes · class · L100-L109 — class AllowVolumes: public ISkip
+- AllowVolumes · function · L104-L104 — AllowVolumes(std::vector<size_t> allowed_id) : allowed_id(allowed_id) {}
+- skip · function · L105-L108 — bool skip(const size_t &model_volume_id) const override
+- first_hit · function · L119-L119 — std::optional<Hit> first_hit(const Vec3d &point, const Vec3d &direction, const ISkip *skip = nullptr) const;
+- closest_hit · function · L129-L129 — std::optional<Hit> closest_hit(const Vec3d &point, const Vec3d &direction, const ISkip *skip = nullptr) const;
+- closest · function · L137-L137 — std::optional<ClosePoint> closest(const Vec3d &point, const ISkip *skip = nullptr) const;
+- get_transformation · function · L144-L144 — Transform3d get_transformation(const TrKey &tr_key) const;
+- GLCanvas3D · class · L147-L147 — class GLCanvas3D;
+- create_meshes · function · L154-L154 — RaycastManager::Meshes create_meshes(GLCanvas3D &canvas, const RaycastManager::AllowVolumes &condition);
+- ray_from_camera · function · L165-L168 — std::optional<RaycastManager::Hit> ray_from_camera(const RaycastManager        &raycaster,
+- create_condition · function · L176-L176 — RaycastManager::AllowVolumes create_condition(const ModelVolumePtrs &volumes, const ObjectID &disallowed_volume_id);

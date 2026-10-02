@@ -1,0 +1,52 @@
+# src/slic3r/GUI/PlateSettingsDialog.hpp
+
+- LayerSeqInfo · class · L17-L23 — struct LayerSeqInfo
+- LayerNumberTextInput · class · L25-L54 — class LayerNumberTextInput : public ComboBox
+- Type · type · L27-L30 — enum class Type
+- ValueType · type · L31-L34 — enum class ValueType
+- LayerNumberTextInput · function · L35-L35 — LayerNumberTextInput(wxWindow* parent, int layer_number, wxSize size, Type type, ValueType value_type = ValueType::Custom);
+- link · function · L36-L39 — void link(LayerNumberTextInput* layer_input)
+- set_layer_number · function · L40-L40 — void set_layer_number(int layer_number);
+- get_layer_number · function · L41-L41 — int get_layer_number();
+- get_input_type · function · L42-L42 — Type get_input_type() { return m_type; }
+- get_value_type · function · L43-L43 — ValueType get_value_type() { return m_value_type; }
+- is_layer_number_valid · function · L44-L44 — bool is_layer_number_valid();
+- update_label · function · L47-L47 — void update_label();
+- OtherLayersSeqPanel · class · L56-L84 — class OtherLayersSeqPanel : public wxPanel
+- OtherLayersSeqPanel · function · L58-L58 — OtherLayersSeqPanel(wxWindow* parent);
+- sync_layers_print_seq · function · L60-L60 — void sync_layers_print_seq(int selection, const std::vector<LayerSeqInfo>& seq);
+- get_layers_print_seq_choice · function · L62-L62 — int get_layers_print_seq_choice() { return m_other_layer_print_seq_choice->GetSelection(); };
+- get_layers_print_seq_infos · function · L64-L64 — std::vector<LayerSeqInfo> get_layers_print_seq_infos() { return m_layer_seq_infos; }
+- enable_seq_choice · function · L67-L67 — void enable_seq_choice(bool enable) { m_other_layer_print_seq_choice->Enable(enable); }
+- append_layer · function · L70-L70 — void append_layer(const LayerSeqInfo* layer_info = nullptr);
+- popup_layer · function · L71-L71 — void popup_layer();
+- clear_all_layers · function · L72-L72 — void clear_all_layers();
+- PlateSettingsDialog · class · L86-L175 — class PlateSettingsDialog : public DPIDialog
+- ButtonStyle · type · L89-L93 — enum ButtonStyle
+- PlateSettingsDialog · function · L94-L101 — PlateSettingsDialog(
+- sync_bed_type · function · L104-L104 — void sync_bed_type(BedType type);
+- sync_print_seq · function · L105-L105 — void sync_print_seq(int print_seq = 0);
+- sync_first_layer_print_seq · function · L106-L106 — void sync_first_layer_print_seq(int selection, const std::vector<int>& seq = std::vector<int>());
+- sync_other_layers_print_seq · function · L107-L107 — void sync_other_layers_print_seq(int selection, const std::vector<LayerPrintSequence>& seq);
+- sync_spiral_mode · function · L108-L108 — void sync_spiral_mode(bool spiral_mode, bool as_global);
+- to_bed_type_name · function · L109-L109 — wxString to_bed_type_name(BedType bed_type);
+- to_print_sequence_name · function · L110-L110 — wxString to_print_sequence_name(PrintSequence print_seq);
+- on_dpi_changed · function · L111-L111 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- get_print_seq_choice · function · L113-L118 — int get_print_seq_choice()
+- get_bed_type_choice · function · L120-L120 — BedType get_bed_type_choice();
+- get_plate_name · function · L122-L122 — wxString get_plate_name() const;
+- set_plate_name · function · L123-L123 — void set_plate_name(const wxString& name);
+- get_first_layer_print_seq_choice · function · L125-L130 — int get_first_layer_print_seq_choice()
+- get_other_layers_print_seq_choice · function · L132-L136 — int get_other_layers_print_seq_choice()
+- get_first_layer_print_seq · function · L138-L138 — std::vector<int> get_first_layer_print_seq();
+- get_other_layers_print_seq_infos · function · L140-L149 — std::vector<LayerPrintSequence> get_other_layers_print_seq_infos()
+- get_spiral_mode_choice · function · L151-L156 — int get_spiral_mode_choice()
+- get_spiral_mode · function · L158-L160 — bool get_spiral_mode()
+- add_layers · function · L163-L163 — void add_layers();
+- delete_layers · function · L164-L164 — void delete_layers();
+- PlateNameEditDialog · class · L177-L196 — class PlateNameEditDialog : public DPIDialog
+- ButtonStyle · type · L180-L180 — enum ButtonStyle { ONLY_CONFIRM = 0, CONFIRM_AND_CANCEL = 1, MAX_STYLE_NUM = 2 };
+- PlateNameEditDialog · function · L181-L186 — PlateNameEditDialog(wxWindow *      parent,
+- on_dpi_changed · function · L189-L189 — void     on_dpi_changed(const wxRect &suggested_rect) override;
+- get_plate_name · function · L191-L191 — wxString get_plate_name() const;
+- set_plate_name · function · L192-L192 — void     set_plate_name(const wxString &name);

@@ -1,0 +1,36 @@
+# src/slic3r/GUI/Jobs/EmbossJob.hpp
+
+- TriangleMesh · class · L19-L19 — class TriangleMesh;
+- ModelVolume · class · L20-L20 — class ModelVolume;
+- ModelVolumeType · type · L21-L21 — enum class ModelVolumeType : int;
+- BuildVolume · class · L22-L22 — class BuildVolume;
+- RaycastManager · class · L24-L24 — class RaycastManager;
+- Plater · class · L25-L25 — class Plater;
+- GLCanvas3D · class · L26-L26 — class GLCanvas3D;
+- Worker · class · L27-L27 — class Worker;
+- Selection · class · L28-L28 — class Selection;
+- DataBase · class · L36-L82 — class DataBase
+- DataBase · function · L39-L40 — DataBase(const std::string& volume_name, std::shared_ptr<std::atomic<bool>> cancel)
+- DataBase · function · L41-L42 — DataBase(const std::string& volume_name, std::shared_ptr<std::atomic<bool>> cancel, EmbossShape&& shape)
+- DataBase · function · L43-L43 — DataBase(DataBase &&) = default;
+- create_shape · function · L51-L51 — virtual EmbossShape& create_shape() { return shape; };
+- write · function · L57-L57 — virtual void write(ModelVolume &volume) const;
+- DataCreateVolume · class · L89-L99 — struct DataCreateVolume : public DataBase
+- DataUpdate · class · L105-L115 — struct DataUpdate
+- UpdateJob · class · L121-L152 — class UpdateJob : public Job
+- UpdateJob · function · L128-L128 — explicit UpdateJob(DataUpdate &&input);
+- process · function · L134-L134 — void process(Ctl &ctl) override;
+- finalize · function · L143-L143 — void finalize(bool canceled, std::exception_ptr &eptr) override;
+- update_volume · function · L151-L151 — static void update_volume(ModelVolume *volume, TriangleMesh &&mesh, const DataBase &base);
+- SurfaceVolumeData · class · L154-L168 — struct SurfaceVolumeData
+- ModelSource · class · L159-L165 — struct ModelSource
+- UpdateSurfaceVolumeData · class · L173-L173 — struct UpdateSurfaceVolumeData : public DataUpdate, public SurfaceVolumeData{};
+- UpdateSurfaceVolumeJob · class · L178-L188 — class UpdateSurfaceVolumeJob : public Job
+- UpdateSurfaceVolumeJob · function · L185-L185 — explicit UpdateSurfaceVolumeJob(UpdateSurfaceVolumeData &&input);
+- process · function · L186-L186 — void process(Ctl &ctl) override;
+- finalize · function · L187-L187 — void finalize(bool canceled, std::exception_ptr &eptr) override;
+- create_volume_sources · function · L195-L195 — SurfaceVolumeData::ModelSources create_volume_sources(const ModelVolume &volume);
+- CreateVolumeParams · class · L200-L230 — struct CreateVolumeParams
+- start_create_volume · function · L244-L244 — bool start_create_volume(CreateVolumeParams &input, DataBasePtr data, const Vec2d &mouse_pos);
+- start_create_volume_without_position · function · L250-L250 — bool start_create_volume_without_position(CreateVolumeParams &input, DataBasePtr data);
+- start_update_volume · function · L260-L260 — bool start_update_volume(DataUpdate &&data, const ModelVolume &volume, const Selection &selection, RaycastManager &raycaster);

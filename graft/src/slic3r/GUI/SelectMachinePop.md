@@ -1,0 +1,47 @@
+# src/slic3r/GUI/SelectMachinePop.hpp
+
+- PrinterState · type · L45-L51 — enum PrinterState
+- PrinterBindState · type · L53-L57 — enum PrinterBindState
+- MachineObjectPanel · class · L78-L129 — class MachineObjectPanel : public wxPanel
+- MachineObjectPanel · function · L108-L113 — MachineObjectPanel(wxWindow *      parent,
+- show_bind_dialog · function · L117-L117 — void show_bind_dialog();
+- set_printer_state · function · L118-L118 — void set_printer_state(PrinterState state);
+- show_printer_bind · function · L119-L119 — void show_printer_bind(bool show, PrinterBindState state);
+- show_edit_printer_name · function · L120-L120 — void show_edit_printer_name(bool show);
+- update_machine_info · function · L121-L121 — void update_machine_info(MachineObject *info, bool is_my_devices = false);
+- OnPaint · function · L123-L123 — void OnPaint(wxPaintEvent &event);
+- render · function · L124-L124 — void render(wxDC &dc);
+- doRender · function · L125-L125 — void doRender(wxDC &dc);
+- on_mouse_enter · function · L126-L126 — void on_mouse_enter(wxMouseEvent &evt);
+- on_mouse_leave · function · L127-L127 — void on_mouse_leave(wxMouseEvent &evt);
+- on_mouse_left_up · function · L128-L128 — void on_mouse_left_up(wxMouseEvent &evt);
+- MachinePanel · class · L131-L136 — class MachinePanel
+- PinCodePanel · class · L138-L159 — class PinCodePanel : public wxPanel
+- PinCodePanel · function · L141-L145 — PinCodePanel(wxWindow* parent,
+- OnPaint · function · L152-L152 — void OnPaint(wxPaintEvent& event);
+- render · function · L153-L153 — void render(wxDC& dc);
+- doRender · function · L154-L154 — void doRender(wxDC& dc);
+- on_mouse_enter · function · L156-L156 — void on_mouse_enter(wxMouseEvent& evt);
+- on_mouse_leave · function · L157-L157 — void on_mouse_leave(wxMouseEvent& evt);
+- on_mouse_left_up · function · L158-L158 — void on_mouse_left_up(wxMouseEvent& evt);
+- SelectMachinePopup · class · L161-L211 — class SelectMachinePopup : public PopupWindow
+- SelectMachinePopup · function · L164-L164 — SelectMachinePopup(wxWindow *parent);
+- Popup · function · L168-L168 — virtual void Popup(wxWindow *focus = NULL) wxOVERRIDE;
+- OnDismiss · function · L169-L169 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L170-L170 — virtual bool ProcessLeftDown(wxMouseEvent &event) wxOVERRIDE;
+- Show · function · L171-L171 — virtual bool Show(bool show = true) wxOVERRIDE;
+- update_machine_list · function · L173-L173 — void update_machine_list(wxCommandEvent &event);
+- start_ssdp · function · L174-L174 — void start_ssdp(bool on_off);
+- was_dismiss · function · L175-L175 — bool was_dismiss() { return m_dismiss; }
+- OnLeftUp · function · L203-L203 — void OnLeftUp(wxMouseEvent &event);
+- on_timer · function · L204-L204 — void on_timer(wxTimerEvent &event);
+- update_other_devices · function · L206-L206 — void      update_other_devices();
+- update_user_devices · function · L207-L207 — void      update_user_devices();
+- search_for_printer · function · L208-L208 — bool      search_for_printer(MachineObject* obj);
+- on_dissmiss_win · function · L209-L209 — void      on_dissmiss_win(wxCommandEvent &event);
+- create_title_panel · function · L210-L210 — wxWindow *create_title_panel(wxString text);
+- EditDevNameDialog · class · L213-L227 — class EditDevNameDialog : public DPIDialog
+- EditDevNameDialog · function · L216-L216 — EditDevNameDialog(Plater *plater = nullptr);
+- set_machine_obj · function · L219-L219 — void set_machine_obj(MachineObject *obj);
+- on_dpi_changed · function · L220-L220 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- on_edit_name · function · L221-L221 — void on_edit_name(wxCommandEvent &e);

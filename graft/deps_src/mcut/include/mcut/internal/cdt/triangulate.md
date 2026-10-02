@@ -1,0 +1,87 @@
+# deps_src/mcut/include/mcut/internal/cdt/triangulate.h
+
+- vertex_insertion_order_t · class · L31-L40 — struct vertex_insertion_order_t
+- Enum · type · L36-L39 — enum Enum
+- super_geometry_type_t · class · L43-L52 — struct super_geometry_type_t
+- Enum · type · L48-L51 — enum Enum
+- action_on_intersecting_constraint_edges_t · class · L57-L66 — struct action_on_intersecting_constraint_edges_t
+- Enum · type · L62-L65 — enum Enum
+- layer_depth_t · type · L73-L73 — typedef unsigned short layer_depth_t;
+- boundary_overlap_count_t · type · L74-L74 — typedef layer_depth_t boundary_overlap_count_t;
+- minDistToConstraintEdge · function · L92-L92 — const float minDistToConstraintEdge(0);
+- T · type · L111-L111 — typedef typename std::vector<T, Allocator2>::const_iterator Cit;
+- insert_vertices · function · L227-L227 — void insert_vertices(const std::vector<vec2_<T>>& vertices);
+- insert_edges · function · L268-L268 — void insert_edges(const std::vector<edge_t>& edges);
+- TriIndCit · type · L288-L288 — typedef std::vector<std::uint32_t>::const_iterator TriIndCit;
+- size · function · L392-L392 — for (std::uint32_t i = std::uint32_t(0); i < std::uint32_t(triangles.size()); ++i)
+- conform_to_edges · function · L581-L581 — void conform_to_edges(const std::vector<edge_t>& edges);
+- eraseSuperTriangle · function · L587-L587 — void eraseSuperTriangle();
+- erase_outer_triangles · function · L589-L589 — void erase_outer_triangles();
+- erase_outer_triangles_and_holes · function · L596-L596 — void erase_outer_triangles_and_holes();
+- initialise_with_custom_supergeometry · function · L601-L601 — void initialise_with_custom_supergeometry();
+- is_finalized · function · L608-L608 — bool is_finalized() const;
+- Iter · type · L639-L639 — typedef std::unordered_map<std::uint32_t, layer_depth_t>::const_iterator Iter;
+- do_edgeflip · function · L668-L668 — void do_edgeflip(std::uint32_t iT, std::uint32_t iTopo);
+- remove_triangles · function · L675-L675 — void remove_triangles(const std::unordered_set<std::uint32_t>& removedTriangles);
+- add_super_triangle · function · L680-L680 — void add_super_triangle(const box2d_t<T>& box);
+- create_vertex · function · L681-L681 — void create_vertex(const vec2_<T>& pos, const std::vector<std::uint32_t>& tris);
+- insert_vertex · function · L682-L682 — void insert_vertex(std::uint32_t iVert);
+- enforce_delaunay_property_using_edge_flips · function · L683-L686 — void enforce_delaunay_property_using_edge_flips(
+- insert_edge · function · L694-L694 — void insert_edge(edge_t edge, edge_t originalEdge);
+- conform_to_edge · function · L705-L708 — void conform_to_edge(
+- check_is_edgeflip_needed · function · L711-L716 — bool check_is_edgeflip_needed(
+- check_is_edgeflip_needed · function · L718-L718 — check_is_edgeflip_needed(const vec2_<T>& v, std::uint32_t iT, std::uint32_t iTopo, std::uint32_t iVert) const;
+- change_neighbour · function · L719-L719 — void change_neighbour(std::uint32_t iT, std::uint32_t oldNeighbor, std::uint32_t newNeighbor);
+- change_neighbour · function · L720-L724 — void change_neighbour(
+- add_adjacent_triangle · function · L725-L725 — void add_adjacent_triangle(std::uint32_t iVertex, std::uint32_t iTriangle);
+- add_adjacent_triangles · function · L726-L727 — void
+- add_adjacent_triangles · function · L728-L733 — void add_adjacent_triangles(
+- remove_adjacent_triangle · function · L734-L734 — void remove_adjacent_triangle(std::uint32_t iVertex, std::uint32_t iTriangle);
+- add_triangle · function · L746-L746 — std::uint32_t add_triangle(const triangle_t& t); // note: invalidates iterators!
+- add_triangle · function · L747-L747 — std::uint32_t add_triangle(); // note: invalidates triangle iterators!
+- finalise_triangulation · function · L753-L753 — void finalise_triangulation(const std::unordered_set<std::uint32_t>& removedTriangles);
+- fixEdge · function · L756-L762 — void fixEdge(
+- fixEdge · function · L764-L769 — void fixEdge(const edge_t& edge)
+- fixEdge · function · L771-L778 — void fixEdge(
+- make_dummies · function · L785-L798 — void make_dummies(const std::uint32_t iT)
+- VCit · type · L789-L789 — typedef std::array<std::uint32_t, 3>::const_iterator VCit;
+- NCit · type · L793-L793 — typedef std::array<std::uint32_t, 3>::const_iterator NCit;
+- erase_dummies · function · L804-L834 — void erase_dummies()
+- begin · function · L808-L808 — const std::unordered_set<std::uint32_t> dummySet(m_dummyTris.begin(), m_dummyTris.end());
+- dummySet · function · L808-L808 — const std::unordered_set<std::uint32_t> dummySet(m_dummyTris.begin(), m_dummyTris.end());
+- end · function · L808-L808 — const std::unordered_set<std::uint32_t> dummySet(m_dummyTris.begin(), m_dummyTris.end());
+- iT · function · L811-L811 — for (std::uint32_t iT(0), iTnew(0); iT < std::uint32_t(triangles.size()); ++iT)
+- size · function · L811-L811 — for (std::uint32_t iT(0), iTnew(0); iT < std::uint32_t(triangles.size()); ++iT)
+- VertTrisIt · type · L821-L821 — typedef typename std::vector<std::vector<std::uint32_t>>::iterator VertTrisIt;
+- i · function · L864-L864 — for (std::uint32_t i(0); i < std::uint32_t(3); ++i)
+- opEdge · function · L865-L865 — const edge_t opEdge(t.vertices[ccw(i)], t.vertices[cw(i)]);
+- Iter · type · L957-L957 — typedef std::vector<std::uint32_t>::iterator Iter;
+- edge · function · L987-L989 — const edge_t edge(
+- e · function · L1013-L1015 — const edge_t e(
+- iT · function · L1102-L1102 — for (std::uint32_t iT(0); iT < std::uint32_t(triangles.size()); ++iT)
+- size · function · L1102-L1102 — for (std::uint32_t iT(0); iT < std::uint32_t(triangles.size()); ++iT)
+- front · function · L1114-L1114 — const std::stack<std::uint32_t> seed(std::deque<std::uint32_t>(1, vertTris[0].front()));
+- seed · function · L1114-L1114 — const std::stack<std::uint32_t> seed(std::deque<std::uint32_t>(1, vertTris[0].front()));
+- remap_no_supertriangle · function · L1136-L1139 — inline edge_t remap_no_supertriangle(const edge_t& e)
+- iT · function · L1149-L1149 — for (std::uint32_t iT(0), iTnew(0); iT < std::uint32_t(triangles.size()); ++iT)
+- size · function · L1149-L1149 — for (std::uint32_t iT(0), iTnew(0); iT < std::uint32_t(triangles.size()); ++iT)
+- It · type · L1186-L1186 — typedef std::unordered_set<edge_t>::const_iterator It;
+- edge_t · type · L1194-L1195 — typedef std::unordered_map<edge_t, boundary_overlap_count_t>::const_iterator
+- edge_t · type · L1204-L1204 — typedef std::unordered_map<edge_t, std::vector<edge_t>>::const_iterator It;
+- i · function · L1250-L1250 — for (std::uint32_t i(0); i < std::uint32_t(3); ++i)
+- opEdge · function · L1251-L1251 — const edge_t opEdge(t.vertices[ccw(i)], t.vertices[cw(i)]);
+- edgePart · function · L1368-L1368 — const edge_t edgePart(iA, iVleft);
+- splitEdge · function · L1388-L1388 — const edge_t splitEdge(iVleft, iVright);
+- half1 · function · L1389-L1389 — const edge_t half1(iVleft, iNewVert);
+- half2 · function · L1390-L1390 — const edge_t half2(iNewVert, iVright);
+- TriIndCit · type · L1441-L1441 — typedef std::vector<std::uint32_t>::const_iterator TriIndCit;
+- edgePart · function · L1454-L1454 — const edge_t edgePart(iA, iB);
+- edgePart · function · L1493-L1493 — const edge_t edgePart(iA, iVleft);
+- splitEdge · function · L1512-L1512 — const edge_t splitEdge(iVleft, iVright);
+- half1 · function · L1513-L1513 — const edge_t half1(iVleft, iNewVert);
+- half2 · function · L1514-L1514 — const edge_t half2(iNewVert, iVright);
+- flippedEdge · function · L1679-L1679 — const edge_t flippedEdge(iV1, iV3);
+- offset · function · L1852-L1852 — const std::uint32_t offset(detail::randGenerator() % 3);
+- randGenerator · function · L1852-L1852 — const std::uint32_t offset(detail::randGenerator() % 3);
+- i_ · function · L1854-L1854 — for (std::uint32_t i_(0); i_ < std::uint32_t(3); ++i_)
+- i · function · L1856-L1856 — const std::uint32_t i((i_ + offset) % 3);

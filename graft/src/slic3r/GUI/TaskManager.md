@@ -1,0 +1,41 @@
+# src/slic3r/GUI/TaskManager.hpp
+
+- TaskState · type · L13-L26 — enum TaskState
+- get_task_state_enum_str · function · L28-L28 — std::string get_task_state_enum_str(TaskState ts);
+- TaskStateInfo · class · L30-L116 — class TaskStateInfo
+- StateChangedFn · type · L34-L34 — typedef std::function<void(TaskState state, int percent)> StateChangedFn;
+- TaskStateInfo · function · L36-L36 — TaskStateInfo(const PrintParams param);
+- TaskStateInfo · function · L38-L40 — TaskStateInfo()
+- state · function · L42-L42 — TaskState state() { return m_state; }
+- set_state · function · L43-L49 — void set_state(TaskState ts)
+- get_params · function · L50-L50 — PrintParams get_params() { return m_params; }
+- params · function · L52-L52 — PrintParams& params() { return m_params; }
+- get_job_id · function · L54-L54 — std::string get_job_id(){return profile_id;}
+- update_sending_percent · function · L56-L59 — void update_sending_percent(int percent)
+- set_sent_time · function · L60-L63 — void set_sent_time(std::chrono::system_clock::time_point time)
+- set_state_changed_fn · function · L64-L67 — void set_state_changed_fn(StateChangedFn fn)
+- set_cancel_fn · function · L68-L70 — void set_cancel_fn(WasCancelledFn fn)
+- set_task_name · function · L72-L72 — void set_task_name(std::string name) { m_task_name = name; }
+- set_device_name · function · L73-L73 — void set_device_name(std::string name) { m_device_name = name; }
+- set_job_id · function · L74-L74 — void set_job_id(std::string job_id) { m_job_id = job_id; }
+- update · function · L76-L80 — void update()
+- cancel · function · L82-L82 — void cancel();
+- is_canceled · function · L83-L83 — bool is_canceled() { return m_cancel; }
+- get_device_name · function · L85-L85 — std::string get_device_name() {return m_device_name;};
+- get_task_name · function · L86-L86 — std::string get_task_name() {return m_task_name;};
+- get_sent_time · function · L87-L95 — std::string get_sent_time()
+- TaskSettings · class · L118-L123 — class TaskSettings
+- TaskGroup · class · L125-L141 — class TaskGroup
+- TaskGroup · function · L131-L134 — TaskGroup(TaskSettings s)
+- append · function · L136-L138 — void append(TaskStateInfo* task)
+- need_schedule · function · L140-L140 — bool need_schedule(std::chrono::system_clock::time_point last, TaskStateInfo* task);
+- TaskManager · class · L143-L179 — class TaskManager
+- TaskManager · function · L148-L148 — TaskManager(NetworkAgent* agent);
+- start_print · function · L150-L150 — int start_print(const std::vector<PrintParams>& params, TaskSettings* settings = nullptr);
+- set_max_send_at_same_time · function · L152-L152 — static void set_max_send_at_same_time(int count);
+- start · function · L154-L154 — void start();
+- stop · function · L155-L155 — void stop();
+- get_local_task_list · function · L157-L157 — std::map<int, TaskStateInfo*> get_local_task_list();
+- get_task_list · function · L160-L160 — std::map<std::string, TaskStateInfo> get_task_list(int curr_page, int page_count, int& total);
+- query_task_state · function · L162-L162 — TaskState query_task_state(std::string dev_id);
+- schedule · function · L165-L165 — int schedule(TaskStateInfo* task);

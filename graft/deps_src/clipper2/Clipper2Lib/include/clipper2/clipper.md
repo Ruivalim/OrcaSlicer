@@ -1,0 +1,58 @@
+# deps_src/clipper2/Clipper2Lib/include/clipper2/clipper.h
+
+- BooleanOp · function · L26-L35 — inline Paths64 BooleanOp(ClipType cliptype, FillRule fillrule,
+- BooleanOp · function · L37-L45 — inline void BooleanOp(ClipType cliptype, FillRule fillrule,
+- BooleanOp · function · L47-L48 — inline PathsD BooleanOp(ClipType cliptype, FillRule fillrule,
+- clipper · function · L54-L54 — ClipperD clipper(precision);
+- BooleanOp · function · L61-L63 — inline void BooleanOp(ClipType cliptype, FillRule fillrule,
+- clipper · function · L69-L69 — ClipperD clipper(precision);
+- Intersect · function · L75-L78 — inline Paths64 Intersect(const Paths64& subjects, const Paths64& clips, FillRule fillrule)
+- Intersect · function · L80-L80 — inline PathsD Intersect(const PathsD& subjects, const PathsD& clips, FillRule fillrule, int decimal_prec = 2)
+- Union · function · L85-L88 — inline Paths64 Union(const Paths64& subjects, const Paths64& clips, FillRule fillrule)
+- Union · function · L90-L90 — inline PathsD Union(const PathsD& subjects, const PathsD& clips, FillRule fillrule, int decimal_prec = 2)
+- Union · function · L95-L102 — inline Paths64 Union(const Paths64& subjects, FillRule fillrule)
+- Union · function · L104-L104 — inline PathsD Union(const PathsD& subjects, FillRule fillrule, int precision = 2)
+- clipper · function · L110-L110 — ClipperD clipper(precision);
+- Difference · function · L116-L119 — inline Paths64 Difference(const Paths64& subjects, const Paths64& clips, FillRule fillrule)
+- Difference · function · L121-L121 — inline PathsD Difference(const PathsD& subjects, const PathsD& clips, FillRule fillrule, int decimal_prec = 2)
+- Xor · function · L126-L129 — inline Paths64 Xor(const Paths64& subjects, const Paths64& clips, FillRule fillrule)
+- Xor · function · L131-L131 — inline PathsD Xor(const PathsD& subjects, const PathsD& clips, FillRule fillrule, int decimal_prec = 2)
+- InflatePaths · function · L136-L137 — inline Paths64 InflatePaths(const Paths64& paths, double delta,
+- InflatePaths · function · L148-L149 — inline PathsD InflatePaths(const PathsD& paths, double delta,
+- clip_offset · function · L157-L157 — ClipperOffset clip_offset(miter_limit, arc_tolerance);
+- TranslatePath · function · L175-L178 — inline Path64 TranslatePath(const Path64& path, int64_t dx, int64_t dy)
+- TranslatePath · function · L180-L183 — inline PathD TranslatePath(const PathD& path, double dx, double dy)
+- TranslatePaths · function · L195-L198 — inline Paths64 TranslatePaths(const Paths64& paths, int64_t dx, int64_t dy)
+- TranslatePaths · function · L200-L203 — inline PathsD TranslatePaths(const PathsD& paths, double dx, double dy)
+- RectClip · function · L205-L210 — inline Paths64 RectClip(const Rect64& rect, const Paths64& paths)
+- rc · function · L208-L208 — RectClip64 rc(rect);
+- RectClip · function · L212-L217 — inline Paths64 RectClip(const Rect64& rect, const Path64& path)
+- rc · function · L215-L215 — RectClip64 rc(rect);
+- RectClip · function · L219-L219 — inline PathsD RectClip(const RectD& rect, const PathsD& paths, int precision = 2)
+- rc · function · L227-L227 — RectClip64 rc(r);
+- RectClip · function · L234-L234 — inline PathsD RectClip(const RectD& rect, const PathD& path, int precision = 2)
+- RectClipLines · function · L239-L244 — inline Paths64 RectClipLines(const Rect64& rect, const Paths64& lines)
+- rcl · function · L242-L242 — RectClipLines64 rcl(rect);
+- RectClipLines · function · L246-L249 — inline Paths64 RectClipLines(const Rect64& rect, const Path64& line)
+- RectClipLines · function · L251-L251 — inline PathsD RectClipLines(const RectD& rect, const PathsD& lines, int precision = 2)
+- rcl · function · L259-L259 — RectClipLines64 rcl(r);
+- RectClipLines · function · L266-L266 — inline PathsD RectClipLines(const RectD& rect, const PathD& line, int precision = 2)
+- PolyPathToPaths64 · function · L274-L358 — inline void PolyPathToPaths64(const PolyPath64& polypath, Paths64& paths)
+- PolyPath64ContainsChildren · function · L288-L288 — inline bool PolyPath64ContainsChildren(const PolyPath64& pp)
+- OutlinePolyPath64 · function · L327-L334 — static void OutlinePolyPath64(std::ostream& os, const PolyPath64& pp,
+- OutlinePolyPathD · function · L336-L343 — static void OutlinePolyPathD(std::ostream& os, const PolyPathD& pp,
+- MakePathGeneric · function · L346-L356 — inline constexpr void MakePathGeneric(const T an_array,
+- PolyTreeToPaths64 · function · L383-L544 — inline Paths64 PolyTreeToPaths64(const PolyTree64& polytree)
+- MakePathZ · function · L468-L478 — inline Path64 MakePathZ(const T2(&list)[N])
+- result · function · L473-L473 — Path64 result(size);
+- MakePathZD · function · L481-L496 — inline PathD MakePathZD(const T2(&list)[N])
+- result · function · L486-L486 — PathD result(size);
+- TrimCollinear · function · L499-L499 — inline Path64 TrimCollinear(const Path64& p, bool is_open_path = false)
+- TrimCollinear · function · L546-L546 — inline PathD TrimCollinear(const PathD& path, int precision, bool is_open_path = false)
+- Distance · function · L559-L562 — inline double Distance(const Point<T> pt1, const Point<T> pt2)
+- Length · function · L565-L565 — inline double Length(const Path<T>& path, bool is_closed_path = false)
+- NearCollinear · function · L579-L583 — inline bool NearCollinear(const Point<T>& pt1, const Point<T>& pt2, const Point<T>& pt3, double sin_sqrd_min_angle_rads)
+- GetNext · function · L618-L627 — inline size_t GetNext(size_t current, size_t high,
+- GetPrior · function · L629-L639 — inline size_t GetPrior(size_t current, size_t high,
+- emplace_back · function · L714-L715 — for (const auto& path : paths)
+- move · function · L715-L715 — result.emplace_back(std::move(SimplifyPath(path, epsilon, isClosedPath)));

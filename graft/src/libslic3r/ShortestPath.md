@@ -1,0 +1,23 @@
+# src/libslic3r/ShortestPath.hpp
+
+- PolyNode · class · L14-L14 — class PolyNode;
+- chain_points · function · L18-L18 — std::vector<size_t> 				 chain_points(const Points &points, const Point *start_near = nullptr);
+- chain_points_with_postprocessing · function · L20-L20 — std::vector<size_t> 				 chain_points_with_postprocessing(const Points &points, const Point *start_near = nullptr);
+- chain_expolygons · function · L21-L21 — std::vector<size_t> 				 chain_expolygons(const ExPolygons &input_exploy);
+- chain_extrusion_entities · function · L23-L23 — std::vector<std::pair<size_t, bool>> chain_extrusion_entities(std::vector<ExtrusionEntity*> &entities, const Point *start_near = nullptr);
+- reorder_extrusion_entities · function · L24-L24 — void                                 reorder_extrusion_entities(std::vector<ExtrusionEntity*> &entities, const std::vector<std::pair<size_t, bool>> &chain);
+- chain_and_reorder_extrusion_entities · function · L25-L25 — void                                 chain_and_reorder_extrusion_entities(std::vector<ExtrusionEntity*> &entities, const Point &start_near);
+- chain_and_reorder_extrusion_entities · function · L26-L26 — void                                 chain_and_reorder_extrusion_entities(std::vector<ExtrusionEntity*> &entities, const Point *start_near = nullptr);
+- chain_extrusion_paths · function · L28-L28 — std::vector<std::pair<size_t, bool>> chain_extrusion_paths(std::vector<ExtrusionPath> &extrusion_paths, const Point *start_near = nullptr);
+- reorder_extrusion_paths · function · L29-L29 — void                                 reorder_extrusion_paths(std::vector<ExtrusionPath> &extrusion_paths, std::vector<std::pair<size_t, bool>> &chain);
+- chain_and_reorder_extrusion_paths · function · L30-L30 — void                                 chain_and_reorder_extrusion_paths(std::vector<ExtrusionPath> &extrusion_paths, const Point *start_near = nullptr);
+- chain_polylines · function · L32-L32 — Polylines 							 chain_polylines(Polylines &&src, const Point *start_near = nullptr);
+- chain_polylines · function · L33-L33 — inline Polylines 					 chain_polylines(const Polylines& src, const Point* start_near = nullptr) { Polylines tmp(src); return chain_polylines(std::move(tmp), start_near); }
+- tmp · function · L33-L33 — inline Polylines 					 chain_polylines(const Polylines& src, const Point* start_near = nullptr) { Polylines tmp(src); return chain_polylines(std::move(tmp), start_near); }
+- reorder_by_shortest_traverse · function · L34-L46 — template<typename T> inline void reorder_by_shortest_traverse(std::vector<T> &polylines_out)
+- chain_clipper_polynodes · function · L48-L48 — ClipperLib::PolyNodes				 chain_clipper_polynodes(const Points &points, const ClipperLib::PolyNodes &items);
+- Print · class · L52-L52 — class Print;
+- PrintObject · class · L55-L55 — class PrintObject;
+- chain_print_object_instances · function · L56-L56 — std::vector<const PrintInstance*> chain_print_object_instances(const std::vector<const PrintObject*>& print_objects, const Point* start_near);
+- chain_print_object_instances · function · L57-L57 — std::vector<const PrintInstance*> 	 chain_print_object_instances(const Print &print);
+- chain_lines · function · L60-L60 — Polylines 							 chain_lines(const std::vector<Line> &lines, const double point_distance_epsilon);

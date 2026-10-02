@@ -1,0 +1,55 @@
+# src/slic3r/GUI/CalibrationWizard.hpp
+
+- CalibrationWizardPageStep · class · L16-L31 — class CalibrationWizardPageStep
+- CalibrationWizardPageStep · function · L19-L21 — CalibrationWizardPageStep(CalibrationWizardPage* data)
+- chain · function · L26-L30 — void chain(CalibrationWizardPageStep* step)
+- ConfigIndexValue · class · L33-L37 — struct ConfigIndexValue
+- CalibrationWizard · class · L39-L109 — class CalibrationWizard : public wxPanel
+- CalibrationWizard · function · L41-L45 — CalibrationWizard(wxWindow* parent, CalibMode mode,
+- on_cali_job_finished · function · L49-L49 — void on_cali_job_finished(wxCommandEvent& event);
+- on_cali_job_finished · function · L51-L51 — virtual void on_cali_job_finished(wxString evt_data) {}
+- get_curr_step · function · L53-L53 — CalibrationWizardPageStep* get_curr_step() { return m_curr_step; }
+- show_step · function · L55-L55 — void show_step(CalibrationWizardPageStep* step);
+- update · function · L57-L57 — virtual void update(MachineObject* obj);
+- on_device_connected · function · L59-L59 — virtual void on_device_connected(MachineObject* obj);
+- set_cali_style · function · L61-L63 — virtual void set_cali_style(CalibrationStyle style)
+- set_cali_method · function · L65-L65 — virtual void set_cali_method(CalibrationMethod method);
+- get_calibration_mode · function · L67-L67 — CalibMode get_calibration_mode() { return m_mode; }
+- save_preset · function · L69-L69 — bool save_preset(const std::string &old_preset_name, const std::string &new_preset_name, const std::map<std::string, ConfigOption *> &key_values, wxString& message);
+- save_preset_with_index · function · L70-L70 — bool save_preset_with_index(const std::string &old_preset_name, const std::string &new_preset_name, const std::map<std::string, ConfigIndexValue> &key_values, wxString &message);
+- cache_preset_info · function · L72-L72 — virtual void cache_preset_info(MachineObject *obj, float nozzle_dia, BedType bed_type);
+- recover_preset_info · function · L73-L73 — virtual void recover_preset_info(MachineObject *obj);
+- back_preset_info · function · L74-L74 — virtual void back_preset_info(MachineObject *obj, bool cali_finish, bool back_cali_flag = true);
+- msw_rescale · function · L76-L76 — void msw_rescale();
+- on_sys_color_changed · function · L77-L77 — void on_sys_color_changed();
+- on_cali_go_home · function · L80-L80 — void on_cali_go_home();
+- PressureAdvanceWizard · class · L111-L136 — class PressureAdvanceWizard : public CalibrationWizard
+- PressureAdvanceWizard · function · L113-L113 — PressureAdvanceWizard(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- on_cali_job_finished · function · L116-L116 — void on_cali_job_finished(wxString evt_data) override;
+- create_pages · function · L119-L119 — void create_pages();
+- on_cali_start · function · L121-L121 — void on_cali_start();
+- on_cali_save · function · L123-L123 — void on_cali_save();
+- on_cali_action · function · L125-L125 — void on_cali_action(wxCommandEvent& evt);
+- update · function · L127-L127 — void update(MachineObject* obj) override;
+- on_device_connected · function · L129-L129 — void on_device_connected(MachineObject* obj) override;
+- can_save_cali_result · function · L131-L131 — bool can_save_cali_result(const std::vector<PACalibResult> &new_pa_cali_results);
+- FlowRateWizard · class · L138-L163 — class FlowRateWizard : public CalibrationWizard
+- FlowRateWizard · function · L140-L140 — FlowRateWizard(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- set_cali_method · function · L143-L143 — void set_cali_method(CalibrationMethod method) override;
+- on_cali_job_finished · function · L145-L145 — void on_cali_job_finished(wxString evt_data) override;
+- cache_coarse_info · function · L147-L147 — void cache_coarse_info(MachineObject *obj);
+- create_pages · function · L150-L150 — void create_pages();
+- on_cali_action · function · L152-L152 — void on_cali_action(wxCommandEvent& evt);
+- on_cali_start · function · L154-L154 — void on_cali_start(CaliPresetStage stage = CaliPresetStage::CALI_MANULA_STAGE_NONE, float cali_value = 0.0f, FlowRatioCaliSource from_page = FlowRatioCaliSource::FROM_PRESET_PAGE);
+- on_cali_save · function · L156-L156 — void on_cali_save();
+- update · function · L158-L158 — void update(MachineObject* obj) override;
+- on_device_connected · function · L160-L160 — void on_device_connected(MachineObject* obj) override;
+- generate_index_key_value · function · L162-L162 — std::map<std::string, ConfigIndexValue> generate_index_key_value(MachineObject *obj, const std::string &key, float value);
+- MaxVolumetricSpeedWizard · class · L165-L182 — class MaxVolumetricSpeedWizard : public CalibrationWizard
+- MaxVolumetricSpeedWizard · function · L167-L167 — MaxVolumetricSpeedWizard(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- on_cali_job_finished · function · L170-L170 — void on_cali_job_finished(wxString evt_data) override;
+- create_pages · function · L173-L173 — void create_pages();
+- on_cali_action · function · L175-L175 — void on_cali_action(wxCommandEvent& evt);
+- on_cali_start · function · L177-L177 — void on_cali_start();
+- on_cali_save · function · L179-L179 — void on_cali_save();
+- on_device_connected · function · L181-L181 — void on_device_connected(MachineObject *obj) override;

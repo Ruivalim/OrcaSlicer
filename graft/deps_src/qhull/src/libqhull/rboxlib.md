@@ -1,0 +1,23 @@
+# deps_src/qhull/src/libqhull/rboxlib.c
+
+- qh_roundi · function · L36-L36 — int qh_roundi( double a);
+- qh_out1 · function · L37-L37 — void qh_out1( double a);
+- qh_out2n · function · L38-L38 — void qh_out2n( double a, double b);
+- qh_out3n · function · L39-L39 — void qh_out3n( double a, double b, double c);
+- qh_outcoord · function · L40-L40 — void qh_outcoord(int iscdd, double *coord, int dim);
+- qh_outcoincident · function · L41-L41 — void qh_outcoincident(int coincidentpoints, double radius, int iscdd, double *coord, int dim);
+- qh_fprintf_rbox · function · L43-L43 — void    qh_fprintf_rbox(FILE *fp, int msgcode, const char *fmt, ... );
+- qh_free · function · L44-L44 — void    qh_free(void *mem);
+- qh_malloc · function · L45-L45 — void   *qh_malloc(size_t size);
+- qh_rand · function · L46-L46 — int     qh_rand( void);
+- qh_srand · function · L47-L47 — void    qh_srand( int seed);
+- rboxT · type · L53-L53 — typedef struct rboxT rboxT;
+- rboxT · class · L54-L61 — struct rboxT
+- qh_rboxpoints · function · L90-L786 — int qh_rboxpoints(FILE* fout, FILE* ferr, char* rbox_command)
+- qh_roundi · function · L791-L805 — int qh_roundi( double a)
+- qh_out1 · function · L807-L813 — void qh_out1(double a)
+- qh_out2n · function · L815-L821 — void qh_out2n( double a, double b)
+- qh_out3n · function · L823-L829 — void qh_out3n( double a, double b, double c)
+- qh_outcoord · function · L831-L840 — void qh_outcoord(int iscdd, double *coord, int dim)
+- qh_outcoincident · function · L842-L860 — void qh_outcoincident(int coincidentpoints, double radius, int iscdd, double *coord, int dim)
+- qh_errexit_rbox · function · L866-L869 — void qh_errexit_rbox(int exitcode)

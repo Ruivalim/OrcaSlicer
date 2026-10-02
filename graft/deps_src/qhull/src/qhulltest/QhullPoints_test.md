@@ -1,0 +1,47 @@
+# deps_src/qhull/src/qhulltest/QhullPoints_test.cpp
+
+- QhullPoints_test · class · L23-L40 — class QhullPoints_test : public RoadTest
+- cleanup · function · L29-L29 — void cleanup();
+- t_construct_q · function · L30-L30 — void t_construct_q();
+- t_construct_qh · function · L31-L31 — void t_construct_qh();
+- t_convert · function · L32-L32 — void t_convert();
+- t_getset · function · L33-L33 — void t_getset();
+- t_element · function · L34-L34 — void t_element();
+- t_iterator · function · L35-L35 — void t_iterator();
+- t_const_iterator · function · L36-L36 — void t_const_iterator();
+- t_search · function · L37-L37 — void t_search();
+- t_points_iterator · function · L38-L38 — void t_points_iterator();
+- t_io · function · L39-L39 — void t_io();
+- add_QhullPoints_test · function · L42-L46 — void
+- cleanup · method · L49-L53 — void QhullPoints_test::
+- t_construct_q · method · L55-L113 — void QhullPoints_test::
+- ps · function · L59-L59 — QhullPoints ps(q);
+- ps2 · function · L66-L66 — QhullPoints ps2(q);
+- ps5 · function · L82-L82 — QhullPoints ps5(ps4);
+- ps8 · function · L91-L91 — QhullPoints ps8(q2);
+- t_construct_qh · method · L115-L168 — void QhullPoints_test::
+- ps · function · L120-L120 — QhullPoints ps(qh);
+- ps2 · function · L127-L127 — QhullPoints ps2(qh);
+- ps5 · function · L143-L143 — QhullPoints ps5(ps4);
+- t_convert · method · L170-L193 — void QhullPoints_test::
+- t_getset · method · L195-L235 — void QhullPoints_test::
+- ps3 · function · L225-L225 — QhullPoints ps3(ps2);
+- t_element · method · L238-L276 — void QhullPoints_test::
+- p8 · function · L266-L266 — QhullPoint p8(q);
+- foreach · function · L272-L275 — foreach(QhullPoint p9, ps){  // Qt only
+- t_iterator · method · L278-L364 — void QhullPoints_test::
+- i · function · L285-L285 — QhullPoints::Iterator i(ps);
+- p · function · L294-L294 — QhullPoint p(i); // QhullPoint is the base class for QhullPoints::iterator
+- i5 · function · L301-L301 — QhullPoints::Iterator i5(i2);
+- t_const_iterator · method · L366-L431 — void QhullPoints_test::
+- i · function · L372-L372 — QhullPoints::ConstIterator i(ps);
+- p · function · L381-L381 — QhullPoint p(i);
+- i5 · function · L388-L388 — QhullPoints::ConstIterator i5(i2);
+- t_search · method · L434-L486 — void QhullPoints_test::
+- ps3 · function · L478-L478 — QhullPoints ps3(q);
+- t_points_iterator · method · L488-L535 — void QhullPoints_test::
+- i · function · L503-L503 — QhullPointsIterator i(ps);
+- p2 · function · L517-L517 — QhullPoint p2(ps[0]);
+- p3 · function · L520-L520 — QhullPoint p3(ps[1]);
+- t_io · method · L537-L557 — void QhullPoints_test::
+- ps · function · L541-L541 — QhullPoints ps(q);

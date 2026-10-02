@@ -1,0 +1,151 @@
+# src/slic3r/GUI/AmsMappingPopup.hpp
+
+- DevNozzleRack · class · L49-L49 — class DevNozzleRack;
+- wgtDeviceNozzleRackSelect · class · L52-L52 — class wgtDeviceNozzleRackSelect;
+- wgtMsgPanel · class · L53-L53 — class wgtMsgPanel;
+- TrayType · type · L63-L67 — enum TrayType
+- ShowType · type · L69-L74 — enum ShowType
+- TrayData · class · L76-L89 — struct TrayData
+- MaterialItem · class · L91-L170 — class MaterialItem: public wxPanel
+- MaterialItem · function · L101-L101 — MaterialItem(wxWindow *parent, wxColour mcolour, wxString mname, std::string filament_id = std::string());
+- allow_paint_dropdown · function · L104-L104 — void allow_paint_dropdown(bool flag);
+- set_ams_text · function · L106-L106 — void set_ams_text(const wxString& txt);
+- set_ams_info · function · L107-L109 — void set_ams_info(wxColour col, wxString txt,
+- set_material_cols · function · L111-L111 — void set_material_cols(int ctype, const std::vector<wxColour>& cols);
+- reset_ams_info · function · L113-L113 — void reset_ams_info();
+- reset_valid_info · function · L114-L114 — virtual void reset_valid_info();
+- set_nozzle_info · function · L116-L116 — void set_nozzle_info(const wxString& mapped_nozzle_str);
+- disable · function · L118-L118 — void disable();
+- enable · function · L119-L119 — void enable();
+- on_normal · function · L120-L120 — void on_normal();
+- on_selected · function · L121-L121 — void on_selected();
+- on_warning · function · L122-L122 — void on_warning();
+- is_selected · function · L124-L124 — bool is_selected() const { return m_selected;}
+- is_warning · function · L125-L125 — bool is_warning() const { return m_warning;}
+- msw_rescale · function · L127-L127 — void msw_rescale();
+- messure_size · function · L130-L130 — void messure_size();
+- paintEvent · function · L166-L166 — void paintEvent(wxPaintEvent &evt);
+- render · function · L167-L167 — virtual void render(wxDC &dc);
+- match · function · L168-L168 — void match(bool mat);
+- doRender · function · L169-L169 — virtual void doRender(wxDC &dc);
+- MaterialSyncItem · class · L172-L185 — class MaterialSyncItem : public MaterialItem
+- MaterialSyncItem · function · L176-L176 — MaterialSyncItem(wxWindow *parent, wxColour mcolour, wxString mname, std::string filament_id = std::string());
+- get_real_offset · function · L178-L178 — int  get_real_offset();
+- render · function · L179-L179 — void render(wxDC &dc) override;
+- doRender · function · L180-L180 — void doRender(wxDC &dc) override;
+- set_material_index_str · function · L181-L181 — void set_material_index_str(std::string str);
+- get_material_index_str · function · L182-L182 — const std::string &get_material_index_str() { return m_material_index; }
+- MappingItem · class · L187-L225 — class MappingItem : public wxPanel
+- MappingItem · function · L190-L190 — MappingItem(wxWindow *parent);
+- update_data · function · L206-L206 — void update_data(TrayData data);
+- send_event · function · L207-L207 — void send_event(int fliament_id);
+- set_data · function · L208-L208 — void set_data(const wxString& tag_name, wxColour colour, wxString name, bool remain_detect, TrayData data, bool unmatch = false, std::optional<wxString> tooltip_opt = std::nullopt);
+- set_checked · function · L209-L209 — void set_checked(bool checked);
+- set_tray_index · function · L210-L210 — void set_tray_index(wxString t_index) { m_tray_index = t_index; };
+- msw_rescale · function · L212-L212 — void msw_rescale();
+- paintEvent · function · L215-L215 — void paintEvent(wxPaintEvent &evt);
+- render · function · L216-L216 — void render(wxDC &dc);
+- doRender · function · L217-L217 — void doRender(wxDC &dc);
+- get_remain_area_height · function · L219-L219 — int get_remain_area_height() const;
+- MappingContainer · class · L227-L247 — class MappingContainer : public wxPanel
+- MappingContainer · function · L235-L235 — MappingContainer(wxWindow* parent, const wxString& ams_type, int slots_num = 4);
+- get_slots_num · function · L239-L239 — int   get_slots_num() const { return m_slots_num;}
+- msw_rescale · function · L241-L241 — void  msw_rescale();
+- paintEvent · function · L244-L244 — void paintEvent(wxPaintEvent& evt);
+- render · function · L245-L245 — void render(wxDC& dc);
+- doRender · function · L246-L246 — void doRender(wxDC& dc);
+- DevIconLabel · class · L249-L270 — class DevIconLabel : public wxPanel
+- DevIconLabel · function · L252-L252 — DevIconLabel(wxWindow* parent, const wxString& icon, const wxString& label);
+- SetAllBackgroundColor · function · L255-L255 — void SetAllBackgroundColor(const wxColour& color);
+- GetLabelItem · function · L257-L257 — Label* GetLabelItem() const { return m_label; }
+- SetLabel · function · L258-L258 — void SetLabel(const wxString& label);
+- SetIcon · function · L259-L259 — void SetIcon(const wxString& icon);
+- Rescale · function · L261-L261 — void Rescale();
+- CreateGui · function · L264-L264 — void CreateGui();
+- AmsMapingPopup · class · L272-L394 — class AmsMapingPopup : public PopupWindow
+- AmsMapingPopup · function · L282-L282 — AmsMapingPopup(wxWindow *parent,bool use_in_sync_dialog = false);
+- get_use_in_sync_dialog · function · L334-L334 — bool         get_use_in_sync_dialog() { return m_use_in_sync_dialog; }
+- set_sizer_title · function · L335-L335 — void         set_sizer_title(wxBoxSizer *sizer, wxString text);
+- create_split_sizer · function · L336-L336 — wxBoxSizer*  create_split_sizer(wxWindow* parent, wxString text);
+- set_send_win · function · L337-L337 — void         set_send_win(wxWindow* win) {send_win = win;};
+- update_materials_list · function · L338-L338 — void         update_materials_list(std::vector<std::string> list);
+- set_tag_texture · function · L339-L339 — void         set_tag_texture(std::string texture);
+- update · function · L340-L340 — void         update(MachineObject* obj, const std::vector<FilamentInfo>& ams_mapping_result, bool use_dynamic_switch = false, std::optional<PrintFromType> print_type = std::nullopt);
+- update_rack_select · function · L341-L341 — void         update_rack_select(MachineObject* obj, bool use_dynamic_switch, std::optional<PrintFromType> print_type);
+- update_items_check_state · function · L342-L342 — void         update_items_check_state(const std::vector<FilamentInfo>& ams_mapping_result);
+- update_ams_data_multi_machines · function · L343-L343 — void         update_ams_data_multi_machines();
+- add_ams_mapping · function · L344-L344 — void         add_ams_mapping(std::vector<TrayData> tray_data, bool remain_detect_flag, wxWindow *container, wxBoxSizer *sizer);
+- add_ext_ams_mapping · function · L345-L345 — void         add_ext_ams_mapping(TrayData tray_data, MappingItem *item);
+- set_current_filament_id · function · L346-L346 — void         set_current_filament_id(int id) { m_current_filament_id = id; };
+- get_current_filament_id · function · L347-L347 — int          get_current_filament_id(){return m_current_filament_id;};
+- is_match_material · function · L348-L348 — bool         is_match_material(std::string material) const;
+- on_left_down · function · L349-L349 — void         on_left_down(wxMouseEvent &evt);
+- OnDismiss · function · L350-L350 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L351-L351 — virtual bool ProcessLeftDown(wxMouseEvent &event) wxOVERRIDE;
+- paintEvent · function · L352-L352 — void         paintEvent(wxPaintEvent &evt);
+- set_parent_item · function · L353-L353 — void         set_parent_item(MaterialItem* item) {m_parent_item = item;};
+- set_show_type · function · L354-L354 — void         set_show_type(ShowType type) { m_show_type = type; };
+- set_only_show_ext_spool · function · L357-L357 — void         set_only_show_ext_spool(bool /*flag*/) {}
+- parse_ams_mapping · function · L359-L359 — std::vector<TrayData> parse_ams_mapping(const std::map<std::string, DevAms*, NumericStrCompare>& amsList);
+- on_mouse_move · function · L362-L362 — void on_mouse_move(wxMouseEvent &evt);
+- reset_ams_info · function · L368-L368 — void reset_ams_info();
+- set_reset_callback · function · L369-L369 — void set_reset_callback(ResetCallback callback);
+- show_reset_button · function · L370-L370 — void  show_reset_button();
+- set_material_index_str · function · L371-L371 — void  set_material_index_str(std::string str) { m_material_index = str; }
+- get_material_index_str · function · L372-L372 — const std::string &get_material_index_str() { return m_material_index; }
+- msw_rescale · function · L375-L375 — void msw_rescale();
+- EnableExtMappingFilaTypeCheck · function · L377-L377 — void EnableExtMappingFilaTypeCheck(bool to_check = true) { m_ext_mapping_filatype_check = to_check;} ;
+- update_title · function · L381-L381 — void update_title(MachineObject* obj);
+- update_ams_tips · function · L382-L382 — void update_ams_tips(MachineObject* obj);
+- update_mapping_items · function · L383-L383 — void update_mapping_items(MachineObject* obj, const std::vector<FilamentInfo>& ams_mapping_result, bool use_dynamic_switch);
+- OnNozzleMappingSelected · function · L386-L386 — void OnNozzleMappingSelected(wxCommandEvent& evt);
+- update_flush_waste · function · L387-L387 — void update_flush_waste(MachineObject* obj);
+- AmsMapingTipPopup · class · L396-L414 — class AmsMapingTipPopup : public PopupWindow
+- AmsMapingTipPopup · function · L399-L399 — AmsMapingTipPopup(wxWindow *parent);
+- paintEvent · function · L401-L401 — void paintEvent(wxPaintEvent &evt);
+- OnDismiss · function · L403-L403 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L404-L404 — virtual bool ProcessLeftDown(wxMouseEvent &event) wxOVERRIDE;
+- AmsHumidityLevelList · class · L416-L434 — class AmsHumidityLevelList : public wxPanel
+- AmsHumidityLevelList · function · L419-L419 — AmsHumidityLevelList(wxWindow* parent);
+- msw_rescale · function · L423-L423 — void msw_rescale();
+- paintEvent · function · L426-L426 — void paintEvent(wxPaintEvent& evt);
+- render · function · L427-L427 — void render(wxDC& dc);
+- doRender · function · L428-L428 — void doRender(wxDC& dc);
+- AmsHumidityTipPopup · class · L436-L465 — class AmsHumidityTipPopup : public PopupWindow
+- AmsHumidityTipPopup · function · L439-L439 — AmsHumidityTipPopup(wxWindow* parent);
+- set_humidity_level · function · L443-L443 — void set_humidity_level(int level);
+- msw_rescale · function · L444-L444 — void msw_rescale();
+- OnDismiss · function · L447-L447 — virtual void OnDismiss() wxOVERRIDE {};
+- ProcessLeftDown · function · L448-L448 — virtual bool ProcessLeftDown(wxMouseEvent& event) wxOVERRIDE { return PopupWindow::ProcessLeftDown(event);  };
+- paintEvent · function · L450-L450 — void paintEvent(wxPaintEvent& evt);
+- render · function · L451-L451 — void render(wxDC& dc);
+- doRender · function · L452-L452 — void doRender(wxDC& dc);
+- AmsTutorialPopup · class · L467-L486 — class AmsTutorialPopup : public PopupWindow
+- AmsTutorialPopup · function · L480-L480 — AmsTutorialPopup(wxWindow* parent);
+- paintEvent · function · L483-L483 — void paintEvent(wxPaintEvent& evt);
+- OnDismiss · function · L484-L484 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L485-L485 — virtual bool ProcessLeftDown(wxMouseEvent& event) wxOVERRIDE;
+- AmsIntroducePopup · class · L489-L505 — class AmsIntroducePopup : public PopupWindow
+- AmsIntroducePopup · function · L498-L498 — AmsIntroducePopup(wxWindow* parent);
+- set_mode · function · L501-L501 — void set_mode(bool enable_ams);
+- paintEvent · function · L502-L502 — void paintEvent(wxPaintEvent& evt);
+- OnDismiss · function · L503-L503 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L504-L504 — virtual bool ProcessLeftDown(wxMouseEvent& event) wxOVERRIDE;
+- AmsRMGroup · class · L508-L535 — class AmsRMGroup : public wxWindow
+- AmsRMGroup · function · L511-L511 — AmsRMGroup(wxWindow* parent, std::map<std::string, wxColour> group_info, wxString mname, wxString group_index);
+- set_index · function · L515-L515 — void set_index(std::string index) {m_selected_index = index;};
+- paintEvent · function · L516-L516 — void paintEvent(wxPaintEvent& evt);
+- render · function · L517-L517 — void render(wxDC& dc);
+- doRender · function · L518-L518 — void doRender(wxDC& dc);
+- on_mouse_move · function · L519-L519 — void on_mouse_move(wxMouseEvent& evt);
+- GetAngle · function · L521-L521 — double GetAngle(wxPoint pointA, wxPoint pointB);
+- CalculateEndpoint · function · L522-L522 — wxPoint CalculateEndpoint(const wxPoint& startPoint, int angle, int length);
+- AmsReplaceMaterialDialog · class · L537-L568 — class AmsReplaceMaterialDialog : public DPIDialog
+- AmsReplaceMaterialDialog · function · L540-L540 — AmsReplaceMaterialDialog(wxWindow* parent);
+- update_machine_obj · function · L544-L544 — void        update_machine_obj(MachineObject* obj);
+- paintEvent · function · L545-L545 — void        paintEvent(wxPaintEvent& evt);
+- on_dpi_changed · function · L546-L546 — void        on_dpi_changed(const wxRect& suggested_rect) override;
+- create · function · L562-L562 — void        create();
+- create_backup_group · function · L563-L563 — AmsRMGroup* create_backup_group(wxString gname, std::map<std::string, wxColour> group_info, wxString material);
+- on_nozzle_selected · function · L566-L566 — void  on_nozzle_selected(wxCommandEvent& event) { update_to_nozzle(event.GetInt()); };
+- update_to_nozzle · function · L567-L567 — void  update_to_nozzle(int nozzle_id);

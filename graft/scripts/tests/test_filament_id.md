@@ -1,0 +1,158 @@
+# scripts/tests/test_filament_id.py
+
+- load_json_file · function · L29-L31 — def load_json_file(path)
+- preset · function · L38-L54 — def preset(name, filament_id=None, inherits=None, instantiation=True, compatible_printers=None, filament_vendor=None, filament_type=None)
+- SyntheticTree · class · L57-L156 — class SyntheticTree
+- __init__ · method · L60-L63 — def __init__(self)
+- cleanup · method · L65-L66 — def cleanup(self)
+- preset_path · method · L68-L69 — def preset_path(self, vendor, name)
+- add_vendor · method · L71-L83 — def add_vendor(self, vendor, presets)
+- add_to_index · method · L85-L92 — def add_to_index(self, vendor, name)
+- write_preset · method · L94-L99 — def write_preset(self, vendor, data, register=True)
+- set_sub_path · method · L101-L110 — def set_sub_path(self, vendor, name, sub_path)
+- bytes_map · method · L112-L123 — def bytes_map(self)
+- check · method · L127-L132 — def check(self, map_path=None)
+- assign · method · L138-L142 — def assign(self, vendors=None, dry_run=False)
+- remint · method · L144-L148 — def remint(self, vendors, dry_run=False)
+- cli · method · L150-L156 — def cli(self, *argv)
+- make_clean_tree · function · L159-L183 — def make_clean_tree(apla_id="AX01", generic_id="OGFL99")
+- SyntheticTreeCase · class · L186-L189 — class SyntheticTreeCase(unittest.TestCase)
+- setUp · method · L187-L189 — def setUp(self)
+- OfCleanTreeCase · class · L192-L203 — class OfCleanTreeCase(unittest.TestCase)
+- setUp · method · L199-L203 — def setUp(self)
+- TestMint · class · L210-L239 — class TestMint(unittest.TestCase)
+- test_namespace_literal · method · L211-L214 — def test_namespace_literal(self): # Frozen: derived from the setting_id namespace; baked into every shipped id.
+- test_known_vector · method · L216-L222 — def test_known_vector(self): # Hardcoded, independently computed vectors: freeze prefix, input string # layout ("filament_product/<vendor>/<type>/<name>") and base62 tail.
+- test_determinism_and_format · method · L224-L233 — def test_determinism_and_format(self)
+- test_every_triple_component_changes_the_id · method · L235-L239 — def test_every_triple_component_changes_the_id(self)
+- TestBaseName · class · L242-L253 — class TestBaseName(unittest.TestCase)
+- test_filament_name_derivation · method · L243-L253 — def test_filament_name_derivation(self)
+- TestVendorDiscovery · class · L260-L274 — class TestVendorDiscovery(unittest.TestCase)
+- test_a_bundle_is_a_subdir_with_a_matching_index · method · L261-L274 — def test_a_bundle_is_a_subdir_with_a_matching_index(self): # Neither half alone makes a bundle: resources/profiles tracks a "user" # directory with no user.json, and an index without its directory is a # leftover. Both are skipped, tree-wide.
+- TestResolver · class · L281-L340 — class TestResolver(unittest.TestCase)
+- rec · method · L283-L284 — def rec(name, filament_id=None, inherits=None)
+- resolve · method · L286-L289 — def resolve(self, name, vendor_recs, ofl_recs, **kw)
+- test_own_id · method · L291-L293 — def test_own_id(self)
+- test_inherited_within_vendor · method · L295-L299 — def test_inherited_within_vendor(self)
+- test_ofl_fallback · method · L301-L308 — def test_ofl_fallback(self): # Vendor preset inherits a name that only exists in the OFL map.
+- test_ofl_stays_in_ofl · method · L310-L318 — def test_ofl_stays_in_ofl(self): # Once a chain enters OFL it stays there: a vendor file sharing an # OFL-internal hop's name must not shadow it.
+- test_dead_end_retries_parent_in_ofl · method · L320-L327 — def test_dead_end_retries_parent_in_ofl(self): # The vendor chain dead-ends id-less on a parent that also exists in # OFL: the loader re-consults the OFL map for that direct parent.
+- test_cycle · method · L329-L332 — def test_cycle(self)
+- test_dangling_parent · method · L334-L336 — def test_dangling_parent(self)
+- test_missing_id · method · L338-L340 — def test_missing_id(self)
+- TestTripleResolution · class · L343-L420 — class TestTripleResolution(unittest.TestCase)
+- rec · method · L345-L347 — def rec(name, inherits=None, filament_vendor=None, filament_type=None)
+- field · method · L349-L352 — def field(self, name, vendor_recs, ofl_recs, field="filament_vendor")
+- test_own_value_first_element_of_list · method · L354-L356 — def test_own_value_first_element_of_list(self)
+- test_plain_string_value_tolerated · method · L358-L360 — def test_plain_string_value_tolerated(self)
+- test_inherited_within_vendor · method · L362-L366 — def test_inherited_within_vendor(self)
+- test_empty_list_keeps_walking · method · L368-L372 — def test_empty_list_keeps_walking(self)
+- test_ofl_fallback · method · L374-L379 — def test_ofl_fallback(self)
+- test_ofl_stays_in_ofl · method · L381-L388 — def test_ofl_stays_in_ofl(self)
+- test_dead_end_retries_parent_in_ofl · method · L390-L394 — def test_dead_end_retries_parent_in_ofl(self)
+- test_missing_is_empty · method · L396-L398 — def test_missing_is_empty(self)
+- test_resolve_triple · method · L400-L406 — def test_resolve_triple(self)
+- test_split_vendor_and_type_bases_resolve · method · L408-L420 — def test_split_vendor_and_type_bases_resolve(self): # A partial base is normal, not an error: vendor and type may live on # different ancestors, with an intermediate supplying neither (the # Snapmaker shape). The pair is complete at the instantiated preset.
+- TestChecks · class · L427-L642 — class TestChecks(OfCleanTreeCase)
+- test_clean_tree_is_silent · method · L428-L432 — def test_clean_tree_is_silent(self)
+- test_instantiated_preset_over_partial_bases_is_silent · method · L434-L450 — def test_instantiated_preset_over_partial_bases_is_silent(self): # Vendor and type split across two non-instantiated bases, an # intermediate base with neither: base profiles are allowed to be # partial. Only the instantiated preset must resolve both.
+- test_check1_unknown_non_of_id · method · L452-L461 — def test_check1_unknown_non_of_id(self)
+- test_check2_triple_change_needs_a_remint · method · L463-L480 — def test_check2_triple_change_needs_a_remint(self): # Correcting a triple changes the product's identity: the old id is no # longer its mint, reported on the root and again under the variant # inheriting it, until generate-id re-mints it.
+- test_check2_of_id_must_match_triple_mint · method · L482-L491 — def test_check2_of_id_must_match_triple_mint(self)
+- test_check2_inherited_id_must_be_the_mint_of_own_triple · method · L493-L504 — def test_check2_inherited_id_must_be_the_mint_of_own_triple(self): # A preset of another filament inheriting APLA's root takes APLA's id, # which is not the mint of ITS triple (AVendor/PLA/Tuned PLA).
+- test_check2_lists_every_preset_inheriting_a_wrong_id · method · L506-L524 — def test_check2_lists_every_preset_inheriting_a_wrong_id(self): # A wrong declaration is reported under every preset inheriting it, its # own product's variant and another product alike: each one's effective # id is not the mint of its own triple, and each is listed. Nothing is # folded into the declarer's error.
+- test_check2_reports_an_inherited_mismatch_even_when_its_own_product_misdeclares_the_id · method · L526-L545 — def test_check2_reports_an_inherited_mismatch_even_when_its_own_product_misdeclares_the_id(self): # "Tuned PLA @P1" inherits APLA's root, so it carries APLA's id: wrong # for its own product however the declarations around it are fixed. # That "Tuned PLA @base" — its own product — misdeclares that same id # is a second error, not a reason to leave the first unreported.
+- test_check2_reports_a_collision_between_two_products · method · L547-L574 — def test_check2_reports_a_collision_between_two_products(self): # Two products whose triples mint one id is a base62 collision. There # is no salted or hand-picked second id to fall back on: the check # names both products, and the remedy is a rename so the triples differ.
+- colliding · function · L554-L555 — def colliding(vendor, ftype, name)
+- test_check2_renamed_tuned_generic_is_an_identity_error · method · L576-L584 — def test_check2_renamed_tuned_generic_is_an_identity_error(self): # Riding the OFL generic under another base name: same rule, same error.
+- test_check2_own_key_on_an_instantiated_preset_is_fine · method · L586-L594 — def test_check2_own_key_on_an_instantiated_preset_is_fine(self): # Where the id comes from is irrelevant: a variant may carry the key.
+- test_check2_inheriting_a_real_filament_of_another_product_is_fine · method · L596-L616 — def test_check2_inheriting_a_real_filament_of_another_product_is_fine(self): # A branded product may inherit the OFL generic (an instantiated # preset) for its settings; it declares its own triple's id.
+- test_check1_an_id_another_system_composed_is_not_a_mint · method · L618-L635 — def test_check1_an_id_another_system_composed_is_not_a_mint(self): # Nothing is reserved because nothing is exempt: an id some other system # composes for its own purposes - Bambu's catalog, a Qidi box, the dialog # that creates a user filament - is simply not the mint of a triple, and # check 1 rejects it for that and nothing else.
+- test_check2c_unresolvable_instantiated_filament · method · L637-L642 — def test_check2c_unresolvable_instantiated_filament(self)
+- TestCheck3 · class · L645-L687 — class TestCheck3(OfCleanTreeCase)
+- test_3a_empty_vendor_is_hard_error · method · L646-L656 — def test_3a_empty_vendor_is_hard_error(self)
+- test_3b_divergent_filament_triples · method · L658-L673 — def test_3b_divergent_filament_triples(self)
+- test_3_cross_bundle_divergence_is_warning_only · method · L675-L687 — def test_3_cross_bundle_divergence_is_warning_only(self)
+- TestCheck4 · class · L690-L789 — class TestCheck4(OfCleanTreeCase)
+- _write_map · method · L691-L694 — def _write_map(self, rows)
+- _write_raw_map · method · L696-L701 — def _write_raw_map(self, payload)
+- test_row_triple_must_match_tree · method · L703-L714 — def test_row_triple_must_match_tree(self)
+- test_non_of_map_key_is_an_error · method · L716-L724 — def test_non_of_map_key_is_an_error(self): # The map is keyed by OUR ids; a Bambu id in the key column means the # map was generated or hand-edited the wrong way round.
+- test_duplicate_bambu_id_is_an_error · method · L726-L733 — def test_duplicate_bambu_id_is_an_error(self)
+- test_row_for_unshipped_product_is_fine · method · L735-L741 — def test_row_for_unshipped_product_is_fine(self)
+- test_non_object_top_level_is_a_clean_error · method · L743-L750 — def test_non_object_top_level_is_a_clean_error(self): # A hand-edited map that is a list (or any non-object) must report the map, # not raise AttributeError out of the check.
+- test_empty_filaments_section_is_an_error · method · L752-L758 — def test_empty_filaments_section_is_an_error(self): # What a regeneration against the wrong --bambustudio-dir writes: a well-formed # header with zero rows. At runtime every translation silently becomes identity.
+- test_absent_filaments_section_is_an_error · method · L760-L768 — def test_absent_filaments_section_is_an_error(self)
+- test_row_without_bambu_id_is_an_error · method · L770-L780 — def test_row_without_bambu_id_is_an_error(self): # Two such rows used to collide on None and be reported as a duplicate id.
+- test_empty_bambu_id_is_an_error · method · L782-L789 — def test_empty_bambu_id_is_an_error(self): # "" would land in the runtime map and translate an empty tray id into a filament.
+- TestAssign · class · L796-L1110 — class TestAssign(OfCleanTreeCase)
+- test_noop_on_fully_idded_tree · method · L797-L801 — def test_noop_on_fully_idded_tree(self)
+- test_mints_into_filament_root_and_rootless_member · method · L803-L829 — def test_mints_into_filament_root_and_rootless_member(self)
+- test_refuses_filament_with_incomplete_triple · method · L831-L839 — def test_refuses_filament_with_incomplete_triple(self)
+- test_refuses_to_re_mint_a_declaration_with_an_incomplete_triple · method · L841-L854 — def test_refuses_to_re_mint_a_declaration_with_an_incomplete_triple(self): # The rewrite half of the same guard: a declared id that is not its # triple's mint still cannot be re-derived without a filament_vendor.
+- test_refuses_filament_with_divergent_root_fields · method · L856-L870 — def test_refuses_filament_with_divergent_root_fields(self)
+- test_parent_of_another_filament_never_receives_the_key · method · L872-L894 — def test_parent_of_another_filament_never_receives_the_key(self): # Members whose id-less parent belongs to another filament (here one # parent shared by two filaments) carry the key themselves: the # parent's own triple would mint a different id (check 2).
+- test_non_of_declaration_is_re_minted · method · L896-L919 — def test_non_of_declaration_is_re_minted(self): # A declaration that isn't OF-format (e.g. a vendor bundle synced from # an upstream catalog, like BBL's GF ids) is not the mint of its own # triple, so the same pass rewrites it in place.
+- test_non_of_multi_root_filament_converges_on_one_id · method · L921-L945 — def test_non_of_multi_root_filament_converges_on_one_id(self): # Two per-printer roots of one product (same triple), both carrying # the SAME non-OF id — the shape a synced vendor bundle ships (e.g. # BambuStudio's own per-printer @base files). They must converge on # one freshly minted id, not split into two.
+- test_converges_on_an_existing_tree_id_for_the_same_triple · method · L947-L966 — def test_converges_on_an_existing_tree_id_for_the_same_triple(self): # An id-less filament whose product is already shipped (with its # conforming id) in another bundle converges on that id. One product, # one id, in every bundle.
+- test_a_squatted_id_is_still_minted_for_its_own_product · method · L968-L995 — def test_a_squatted_id_is_still_minted_for_its_own_product(self): # VendorB's "Other" declares the id that belongs to VendorA's "DPLA" — # a copy-paste, not a claim. The id is the mint of DPLA's triple and # nothing else, so DPLA gets it whatever VendorB carries.
+- test_generate_refuses_to_write_into_a_collision · method · L997-L1024 — def test_generate_refuses_to_write_into_a_collision(self): # "X" ships on the id its triple mints; a new product "Y" whose triple # mints the very same id is a base62 collision. The run does not salt # past it: it reports both products, writes nothing for "Y", and leaves # the remedy — a rename, so the triples differ — to the author.
+- colliding · function · L1005-L1006 — def colliding(vendor, ftype, name)
+- test_mismatching_of_declaration_is_re_derived · method · L1026-L1041 — def test_mismatching_of_declaration_is_re_derived(self): # One rule: an id that is not the mint of its own triple is rewritten.
+- test_vendor_filter_limits_rewrites_and_inserts_alike · method · L1043-L1073 — def test_vendor_filter_limits_rewrites_and_inserts_alike(self): # A mismatching declarer in VendorA and an id-less filament in VendorB; # only VendorA is written, and VendorB's bytes are untouched.
+- test_unknown_vendor_reports_and_writes_nothing · method · L1075-L1093 — def test_unknown_vendor_reports_and_writes_nothing(self): # A real insert is pending, so "wrote nothing" means the unknown vendor # aborted the run before any write — not that the tree was already done.
+- test_dry_run_reports_the_real_run_and_writes_nothing · method · L1095-L1110 — def test_dry_run_reports_the_real_run_and_writes_nothing(self)
+- TestInsertEditing · class · L1117-L1247 — class TestInsertEditing(unittest.TestCase)
+- test_insert_before_instantiation_preserves_bytes · method · L1142-L1150 — def test_insert_before_instantiation_preserves_bytes(self)
+- test_insert_after_name_when_no_instantiation_line · method · L1152-L1158 — def test_insert_after_name_when_no_instantiation_line(self)
+- test_insert_no_anchor_fails · method · L1160-L1162 — def test_insert_no_anchor_fails(self)
+- test_write_filament_id_keeps_crlf_on_disk · method · L1164-L1178 — def test_write_filament_id_keeps_crlf_on_disk(self)
+- test_replace_value_preserves_every_other_byte · method · L1180-L1185 — def test_replace_value_preserves_every_other_byte(self)
+- test_replace_value_requires_exact_old_value · method · L1187-L1190 — def test_replace_value_requires_exact_old_value(self)
+- test_rewrite_filament_id_on_disk · method · L1192-L1206 — def test_rewrite_filament_id_on_disk(self)
+- test_delete_line_with_trailing_comma · method · L1208-L1213 — def test_delete_line_with_trailing_comma(self)
+- test_delete_last_property_line · method · L1215-L1225 — def test_delete_last_property_line(self)
+- test_dry_run_edits_verify_but_write_nothing · method · L1227-L1247 — def test_dry_run_edits_verify_but_write_nothing(self)
+- TestRemint · class · L1254-L1360 — class TestRemint(SyntheticTreeCase)
+- test_rewrites_mismatching_declaration · method · L1257-L1270 — def test_rewrites_mismatching_declaration(self)
+- test_second_id_of_one_product_is_converged_by_remint · method · L1272-L1284 — def test_second_id_of_one_product_is_converged_by_remint(self): # A second preset of one product kept on an id of its own is not a # sanctioned split: the triple determines the id, so --generate pulls it # back. An AMS ambiguity this exposes is fixed in the profiles instead.
+- test_same_triple_converges_within_run · method · L1286-L1300 — def test_same_triple_converges_within_run(self)
+- test_same_triple_converges_with_existing_tree_id · method · L1302-L1313 — def test_same_triple_converges_with_existing_tree_id(self): # Another bundle already carries the conforming id for the same triple: # reuse is required, not blocked.
+- test_not_blocked_by_a_non_conformant_occurrence · method · L1315-L1333 — def test_not_blocked_by_a_non_conformant_occurrence(self): # VendorB carries APLA's id under a PETG triple of its own: that # declaration is wrong, and it costs VendorA's APLA nothing — the id is # the mint of APLA's triple, whoever else is squatting on it.
+- test_bbl_is_reminted_like_any_vendor · method · L1335-L1347 — def test_bbl_is_reminted_like_any_vendor(self)
+- test_dry_run_leaves_every_file_untouched · method · L1349-L1360 — def test_dry_run_leaves_every_file_untouched(self)
+- TestCli · class · L1367-L1531 — class TestCli(unittest.TestCase)
+- setUp · method · L1372-L1374 — def setUp(self)
+- test_bare_invocation_prints_help · method · L1376-L1387 — def test_bare_invocation_prints_help(self): # Naming no command is not an error: it is how you find out what the # commands are, and it must never be mistaken for a run that did work.
+- test_filament_id_and_setting_id_together_are_rejected · method · L1389-L1396 — def test_filament_id_and_setting_id_together_are_rejected(self): # Each flag's help promises it skips the other kind, so the pair cannot # quietly mean "both".
+- test_a_run_with_errors_does_not_report_success · method · L1398-L1406 — def test_a_run_with_errors_does_not_report_success(self): # An unreadable profile must not be buried under a green summary line.
+- test_dry_run_previews_generate_id · method · L1408-L1414 — def test_dry_run_previews_generate_id(self)
+- test_the_reported_count_is_files_not_edits · method · L1416-L1435 — def test_the_reported_count_is_files_not_edits(self): # A file both passes touch is still one file. "SoloPLA @P1" needs a # filament_id rewrite AND a setting_id insert, so an edit-counting # summary would over-report the tree.
+- test_dryrun_is_the_same_flag · method · L1437-L1443 — def test_dryrun_is_the_same_flag(self)
+- test_generate_vendor_writes_only_in_that_bundle · method · L1445-L1460 — def test_generate_vendor_writes_only_in_that_bundle(self)
+- test_generate_unknown_vendor_returns_1 · method · L1462-L1467 — def test_generate_unknown_vendor_returns_1(self)
+- test_setting_id_only_leaves_filament_ids_alone · method · L1469-L1478 — def test_setting_id_only_leaves_filament_ids_alone(self)
+- test_filament_id_only_inserts_no_setting_id · method · L1480-L1488 — def test_filament_id_only_inserts_no_setting_id(self)
+- test_check_returns_1_on_errors · method · L1490-L1497 — def test_check_returns_1_on_errors(self): # What CI keys off: check exits nonzero when the tree breaks a rule, here # the baseline's ids that are not minted.
+- test_check_vendor_narrows_the_per_vendor_pass · method · L1499-L1504 — def test_check_vendor_narrows_the_per_vendor_pass(self): # check_profile.sh passes --vendor to this command, so it has to be # accepted -- and it must narrow only the per-vendor half.
+- test_an_empty_vendor_means_every_vendor · method · L1506-L1511 — def test_an_empty_vendor_means_every_vendor(self): # check_profile.sh cannot expand an empty array under set -u, so it # passes --vendor "" to mean "all of them".
+- test_removed_and_conflicting_flags_are_rejected · method · L1513-L1531 — def test_removed_and_conflicting_flags_are_rejected(self)
+- TestRealTree · class · L1539-L1569 — class TestRealTree(unittest.TestCase)
+- test_shipped_filament_ids_pass · method · L1540-L1544 — def test_shipped_filament_ids_pass(self)
+- test_check_cli_returns_0 · method · L1546-L1551 — def test_check_cli_returns_0(self): # The exact CI invocation, return code included.
+- test_every_instantiated_filament_resolves_an_id · method · L1553-L1556 — def test_every_instantiated_filament_resolves_an_id(self)
+- test_every_instantiated_filament_resolves_vendor_and_type · method · L1558-L1569 — def test_every_instantiated_filament_resolves_vendor_and_type(self): # The property the web guide resolves at load: a partial base is fine as # long as the instantiated preset ends up with both fields. Guards the # split-base bundles (Snapmaker, Anker, SeeMeCNC).
+- TestReviewFixes · class · L1575-L1640 — class TestReviewFixes(OfCleanTreeCase)
+- test_one_file_reached_by_two_spellings_counts_once · method · L1576-L1603 — def test_one_file_reached_by_two_spellings_counts_once(self): # The filament pass reaches a file through its index sub_path, the # setting_id pass through os.walk. Those two spellings differ whenever # the sub_path is not already normalized - always, on Windows, where # every sub_path keeps the "/" the index stores. One file is one file. # One preset per write path: SoloPLA has no id (inserted), WrongPLA # declares one that is not its own mint (rewritten). Both are # instantiated, so the setting_id pass reaches them too.
+- test_a_broken_edit_names_the_file · method · L1605-L1613 — def test_a_broken_edit_names_the_file(self): # An edit that produces invalid JSON is refused, and the message has to # say which of ~12,000 files it was: a bare JSONDecodeError does not.
+- test_check2_accepts_an_of_id_inherited_from_another_vendor · method · L1615-L1631 — def test_check2_accepts_an_of_id_inherited_from_another_vendor(self): # An OFL filament carries its own minted OF id and a vendor tunes it # correctly (same base name, non-empty printers): the id it inherits is # the mint of its own triple.
+- test_check2c_prints_expected_mint · method · L1633-L1640 — def test_check2c_prints_expected_mint(self)
+- TestBambuMap · class · L1647-L1678 — class TestBambuMap(unittest.TestCase)
+- _bs_tree · method · L1648-L1663 — def _bs_tree(self, filaments): # filaments: list of (name, bambu_id, vendor, type); builds a minimal BBL # bundle with an @base per filament carrying the id and one instantiated child.
+- test_one_row_per_filament · method · L1665-L1668 — def test_one_row_per_filament(self)
+- test_shared_bambu_id_is_an_error · method · L1670-L1672 — def test_shared_bambu_id_is_an_error(self)
+- test_local_clone_yields_the_catalog · method · L1675-L1678 — def test_local_clone_yields_the_catalog(self)
+- TestWriteMap · class · L1681-L1705 — class TestWriteMap(unittest.TestCase)
+- test_format · method · L1682-L1705 — def test_format(self)
+- TestDriftReport · class · L1708-L1735 — class TestDriftReport(unittest.TestCase)
+- test_reports_both_directions · method · L1709-L1735 — def test_reports_both_directions(self)

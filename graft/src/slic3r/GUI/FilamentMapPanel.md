@@ -1,0 +1,38 @@
+# src/slic3r/GUI/FilamentMapPanel.hpp
+
+- FilamentMapManualPanel · class · L16-L66 — class FilamentMapManualPanel : public wxPanel
+- FilamentMapManualPanel · function · L19-L24 — FilamentMapManualPanel(wxWindow                       *parent,
+- GetFilamentMaps · function · L27-L27 — std::vector<int> GetFilamentMaps() const;
+- GetFilamentVolumeMaps · function · L28-L28 — std::vector<int> GetFilamentVolumeMaps() const;
+- GetLeftFilaments · function · L29-L29 — std::vector<int> GetLeftFilaments() const { return m_left_panel->GetAllFilaments(); }
+- GetRightFilaments · function · L30-L30 — std::vector<int> GetRightFilaments() const { return m_right_panel->GetAllFilaments(); }
+- GetRightHighFlowFilaments · function · L32-L32 — std::vector<int> GetRightHighFlowFilaments() const { return m_right_panel->GetHighFlowFilaments(); }
+- GetRightStandardFilaments · function · L33-L33 — std::vector<int> GetRightStandardFilaments() const { return m_right_panel->GetStandardFilaments(); }
+- GetRightTPUHighFlowFilaments · function · L34-L34 — std::vector<int> GetRightTPUHighFlowFilaments() const { return m_right_panel->GetTPUHighFlowFilaments(); }
+- UpdateNozzleVolumeType · function · L35-L35 — void UpdateNozzleVolumeType();
+- UpdateNozzleCountDisplay · function · L36-L36 — void UpdateNozzleCountDisplay();
+- Show · function · L38-L38 — bool Show(bool show = true) override;
+- OnTimer · function · L41-L41 — void OnTimer(wxTimerEvent &evt);
+- OnSwitchFilament · function · L42-L42 — void OnSwitchFilament(wxCommandEvent &);
+- SyncPanelHeights · function · L43-L43 — void SyncPanelHeights();
+- OnDragDropCompleted · function · L44-L44 — void OnDragDropCompleted(wxCommandEvent &evt);
+- OnSuggestionClicked · function · L45-L45 — void OnSuggestionClicked(wxCommandEvent &event);
+- FilamentMapBtnPanel · class · L68-L95 — class FilamentMapBtnPanel : public wxPanel
+- FilamentMapBtnPanel · function · L71-L71 — FilamentMapBtnPanel(wxWindow *parent, const wxString &label, const wxString &detail, const std::string &icon_path);
+- Show · function · L72-L72 — bool Show(bool show = true) override;
+- Select · function · L73-L73 — void Select(bool selected);
+- Enable · function · L74-L74 — bool Enable(bool enable) override;
+- IsEnabled · function · L75-L75 — bool IsEnabled() const { return m_enabled; }
+- OnPaint · function · L77-L77 — void OnPaint(wxPaintEvent &event);
+- OnEnterWindow · function · L79-L79 — void OnEnterWindow(wxMouseEvent &event);
+- OnLeaveWindow · function · L80-L80 — void OnLeaveWindow(wxMouseEvent &evnet);
+- UpdateStatus · function · L82-L82 — void UpdateStatus();
+- FilamentMapAutoPanel · class · L97-L111 — class FilamentMapAutoPanel : public wxPanel
+- FilamentMapAutoPanel · function · L100-L100 — FilamentMapAutoPanel(wxWindow *parent, FilamentMapMode mode, bool machine_synced);
+- Show · function · L101-L101 — bool Show(bool show = true) override;
+- GetMode · function · L102-L102 — FilamentMapMode GetMode() const { return m_mode; }
+- OnModeSwitch · function · L105-L105 — void OnModeSwitch(FilamentMapMode mode);
+- UpdateStatus · function · L106-L106 — void UpdateStatus();
+- FilamentMapDefaultPanel · class · L113-L121 — class FilamentMapDefaultPanel : public wxPanel
+- FilamentMapDefaultPanel · function · L116-L116 — FilamentMapDefaultPanel(wxWindow *parent);
+- Show · function · L117-L117 — bool Show(bool show = true) override;

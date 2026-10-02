@@ -1,0 +1,55 @@
+# src/slic3r/GUI/PublishSettingsDialog.hpp
+
+- TextInput · class · L19-L19 — class TextInput;
+- StaticLine · class · L20-L20 — class StaticLine;
+- CheckBox · class · L21-L21 — class CheckBox;
+- PublishMaterialIdentity · class · L25-L30 — struct PublishMaterialIdentity
+- MixedDependencyIssue · class · L35-L41 — struct MixedDependencyIssue
+- Reason · type · L37-L37 — enum class Reason { Disabled, MaterialNotPublished };
+- PublishSettingsDialog · class · L47-L288 — class PublishSettingsDialog : public DPIDialog
+- PublishSettingsDialog · function · L55-L57 — PublishSettingsDialog(wxWindow* parent = nullptr,
+- GetPublishedKeys · function · L62-L62 — std::vector<std::string> GetPublishedKeys() const;
+- GetPublishedMaterialKeys · function · L65-L65 — std::vector<Slic3r::PublishedMaterialEntry> GetPublishedMaterialKeys() const;
+- on_dpi_changed · function · L68-L68 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_sys_color_changed · function · L69-L69 — void on_sys_color_changed() override;
+- fit_to_content · function · L72-L72 — void fit_to_content();
+- refresh_mixed_tab_bitmaps · function · L73-L73 — void refresh_mixed_tab_bitmaps();
+- Section · type · L76-L76 — enum class Section { Print, Printer, Material };
+- RowKind · type · L81-L85 — enum class RowKind
+- Row · class · L86-L107 — struct Row
+- Subcategory · class · L110-L116 — struct Subcategory
+- Category · class · L119-L154 — struct Category
+- MixedVisualSpec · class · L160-L169 — struct MixedVisualSpec
+- SectionGroup · class · L172-L190 — struct SectionGroup
+- build_option_model · function · L192-L192 — void build_option_model();
+- apply_selection · function · L197-L198 — void apply_selection(const std::vector<std::string>& published_keys,
+- make_mixed_visual_spec · function · L203-L203 — static MixedVisualSpec make_mixed_visual_spec(const Slic3r::DynamicPrintConfig& full, size_t slot);
+- apply_filter · function · L204-L204 — void apply_filter(const wxString& filter_text);
+- apply_pseudo_filter · function · L207-L207 — void apply_pseudo_filter(bool selected_only);
+- refresh_filter · function · L210-L210 — void refresh_filter(const wxString& filter);
+- select_all · function · L211-L211 — void select_all(bool value);
+- select_visible · function · L212-L212 — void select_visible(bool value);
+- show_menu · function · L213-L213 — void show_menu(wxMouseEvent& evt);
+- set_row_bold · function · L214-L214 — void set_row_bold(Row& row, bool bold);
+- on_full_toggle · function · L216-L216 — void on_full_toggle(size_t category_index);
+- on_enable_toggle · function · L219-L219 — void on_enable_toggle(size_t category_index);
+- category_has_selection · function · L222-L222 — bool category_has_selection(const Category& cat) const;
+- refresh_tab_indicators · function · L224-L224 — void refresh_tab_indicators();
+- unpublished_mixed_components · function · L229-L229 — std::vector<MixedDependencyIssue> unpublished_mixed_components() const;
+- add_mixed_visual · function · L233-L233 — void add_mixed_visual(size_t category_index, const MixedVisualSpec& spec);
+- section_group_for · function · L235-L235 — size_t section_group_for(Section kind);
+- category_index_for · function · L236-L241 — size_t category_index_for(const wxString& title,
+- subcategory_index_for · function · L242-L242 — size_t subcategory_index_for(size_t category_index, const wxString& title, const wxString& icon);
+- add_row_ui · function · L243-L249 — void add_row_ui(const std::string& key,
+- full_keys_for_slot · function · L251-L251 — std::vector<std::string> full_keys_for_slot() const;
+- save_scroll_position · function · L252-L252 — void save_scroll_position(Category& category);
+- show_outer_page · function · L253-L253 — void show_outer_page(size_t section_index);
+- show_inner_page · function · L254-L254 — void show_inner_page(size_t section_index, int inner_index);
+- show_mixed_page · function · L255-L255 — void show_mixed_page(size_t section_index, int mixed_index);
+- on_outer_tab_changed · function · L256-L256 — void on_outer_tab_changed(wxCommandEvent& event);
+- on_inner_tab_changed · function · L257-L257 — void on_inner_tab_changed(size_t section_index, wxCommandEvent& event);
+- on_mixed_tab_changed · function · L258-L258 — void on_mixed_tab_changed(size_t section_index, wxCommandEvent& event);
+- row_is_visible · function · L259-L259 — bool row_is_visible(const Row& row) const;
+- apply_visibility · function · L260-L260 — void apply_visibility();
+- bind_tab_events · function · L261-L261 — void bind_tab_events();
+- FilterMode · type · L269-L269 — enum class FilterMode { Text, SelectedOnly, UnselectedOnly };

@@ -1,0 +1,30 @@
+# src/slic3r/GUI/GradientCurveEditor.hpp
+
+- GradientCurveEditor · class · L30-L114 — class GradientCurveEditor : public wxPanel
+- GradientCurveEditor · function · L35-L37 — GradientCurveEditor(wxWindow* parent,
+- set_points · function · L44-L44 — void set_points(const PointList& pts);
+- get_points · function · L45-L45 — const PointList& get_points() const { return m_points; }
+- set_colors · function · L47-L47 — void set_colors(const wxColour& color_low, const wxColour& color_high);
+- set_selected_curve · function · L52-L52 — void set_selected_curve(int curve_idx);
+- get_selected_curve · function · L53-L53 — int  get_selected_curve() const { return m_selected_curve; }
+- reset_to_linear · function · L57-L57 — void reset_to_linear(double y0, double y1);
+- reverse · function · L59-L59 — void reverse();
+- DragMode · type · L62-L65 — enum class DragMode
+- normalize_points · function · L67-L67 — void normalize_points();
+- emit_changed · function · L68-L68 — void emit_changed();
+- on_paint · function · L70-L70 — void on_paint(wxPaintEvent& evt);
+- on_left_down · function · L71-L71 — void on_left_down(wxMouseEvent& evt);
+- on_left_up · function · L72-L72 — void on_left_up(wxMouseEvent& evt);
+- on_right_down · function · L73-L73 — void on_right_down(wxMouseEvent& evt);
+- on_motion · function · L74-L74 — void on_motion(wxMouseEvent& evt);
+- on_leave · function · L75-L75 — void on_leave(wxMouseEvent& evt);
+- on_size · function · L76-L76 — void on_size(wxSizeEvent& evt);
+- plot_rect · function · L79-L79 — wxRect plot_rect() const;
+- data_to_px_f · function · L83-L83 — wxPoint2DDouble data_to_px_f(double x, double y) const;
+- data_to_px · function · L84-L84 — wxPoint data_to_px(double x, double y) const;
+- px_to_data · function · L85-L85 — void    px_to_data(int px, int py, double& x, double& y) const;
+- hit_test · function · L87-L87 — int     hit_test(int px, int py) const; // returns point index or -1
+- hit_test_curve · function · L92-L92 — int     hit_test_curve(int px, int py, int* seg_out = nullptr) const;
+- sample_curve_y · function · L95-L95 — double sample_curve_y(double x) const;
+- to_stored_y · function · L99-L101 — static double to_stored_y(int curve_idx, double visual_y)
+- to_visual_y · function · L102-L104 — static double to_visual_y(int curve_idx, double stored_y)

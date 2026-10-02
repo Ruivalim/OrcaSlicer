@@ -1,0 +1,39 @@
+# deps_src/clipper2/Clipper2Lib/include/clipper2/clipper.offset.h
+
+- class · type · L23-L23 — enum class JoinType { Square, Bevel, Round, Miter };
+- class · type · L27-L128 — enum class EndType {Polygon, Joined, Butt, Square, Round};
+- DeltaCallback64 · type · L34-L34 — typedef std::function<double(const Path64& path, const PathD& path_normals, size_t curr_idx, size_t prev_idx)> DeltaCallback64;
+- ZCB · function · L71-L72 — void ZCB(const Point64& bot1, const Point64& top1,
+- CalcSolutionCapacity · function · L75-L75 — size_t CalcSolutionCapacity();
+- CheckReverseOrientation · function · L76-L76 — bool CheckReverseOrientation();
+- DoBevel · function · L77-L77 — void DoBevel(const Path64& path, size_t j, size_t k);
+- DoSquare · function · L78-L78 — void DoSquare(const Path64& path, size_t j, size_t k);
+- DoMiter · function · L79-L79 — void DoMiter(const Path64& path, size_t j, size_t k, double cos_a);
+- DoRound · function · L80-L80 — void DoRound(const Path64& path, size_t j, size_t k, double angle);
+- BuildNormals · function · L81-L81 — void BuildNormals(const Path64& path);
+- OffsetPolygon · function · L82-L82 — void OffsetPolygon(Group& group, const Path64& path);
+- OffsetOpenJoined · function · L83-L83 — void OffsetOpenJoined(Group& group, const Path64& path);
+- OffsetOpenPath · function · L84-L84 — void OffsetOpenPath(Group& group, const Path64& path);
+- OffsetPoint · function · L85-L85 — void OffsetPoint(Group& group, const Path64& path, size_t j, size_t k);
+- DoGroupOffset · function · L86-L86 — void DoGroupOffset(Group &group);
+- ExecuteInternal · function · L87-L87 — void ExecuteInternal(double delta);
+- arc_tolerance_ · function · L89-L95 — explicit ClipperOffset(double miter_limit = 2.0,
+- ClipperOffset · function · L89-L89 — explicit ClipperOffset(double miter_limit = 2.0,
+- reverse_solution_ · function · L95-L95 — reverse_solution_(reverse_solution) { };
+- ErrorCode · function · L99-L99 — int ErrorCode() const { return error_code_; };
+- AddPath · function · L100-L100 — void AddPath(const Path64& path, JoinType jt_, EndType et_);
+- AddPaths · function · L101-L101 — void AddPaths(const Paths64& paths, JoinType jt_, EndType et_);
+- Clear · function · L102-L102 — void Clear() { groups_.clear(); norms.clear(); };
+- Execute · function · L104-L104 — void Execute(double delta, Paths64& sols_64);
+- Execute · function · L105-L105 — void Execute(double delta, PolyTree64& polytree);
+- Execute · function · L106-L106 — void Execute(DeltaCallback64 delta_cb, Paths64& paths);
+- MiterLimit · function · L108-L108 — double MiterLimit() const { return miter_limit_; }
+- MiterLimit · function · L109-L109 — void MiterLimit(double miter_limit) { miter_limit_ = miter_limit; }
+- ArcTolerance · function · L112-L112 — double ArcTolerance() const { return arc_tolerance_; }
+- ArcTolerance · function · L113-L113 — void ArcTolerance(double arc_tolerance) { arc_tolerance_ = arc_tolerance; }
+- PreserveCollinear · function · L115-L115 — bool PreserveCollinear() const { return preserve_collinear_; }
+- PreserveCollinear · function · L116-L116 — void PreserveCollinear(bool preserve_collinear){preserve_collinear_ = preserve_collinear;}
+- ReverseSolution · function · L118-L118 — bool ReverseSolution() const { return reverse_solution_; }
+- ReverseSolution · function · L119-L119 — void ReverseSolution(bool reverse_solution) {reverse_solution_ = reverse_solution;}
+- SetZCallback · function · L122-L122 — void SetZCallback(ZCallback64 cb) { zCallback64_ = cb; }
+- SetDeltaCallback · function · L124-L124 — void SetDeltaCallback(DeltaCallback64 cb) { deltaCallback64_ = cb; }

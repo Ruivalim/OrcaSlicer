@@ -1,0 +1,40 @@
+# src/slic3r/GUI/TroubleshootDialog.hpp
+
+- TroubleshootDialog · class · L22-L87 — class TroubleshootDialog : public DPIDialog
+- TroubleshootDialog · function · L28-L28 — TroubleshootDialog();
+- create_item_loaded_profiles · function · L44-L44 — wxFlexGridSizer* create_item_loaded_profiles();
+- create_item_log_level_combo · function · L45-L45 — ComboBox*        create_item_log_level_combo();
+- GetTimestamp · function · L47-L47 — wxString GetTimestamp();
+- GetSysInfoAll · function · L49-L49 — wxString GetSysInfoAll();
+- GetProfilesOverview · function · L51-L51 — wxString GetProfilesOverview();
+- GetOStype · function · L52-L52 — wxString GetOStype();
+- GetOSinfo · function · L53-L53 — wxString GetOSinfo();
+- GetWinVersion · function · L55-L55 — wxString GetWinVersion();
+- GetWinDisplayVersion · function · L56-L56 — wxString GetWinDisplayVersion();
+- GetLinuxDistroName · function · L58-L58 — wxString GetLinuxDistroName();
+- GetLinuxDisplayServer · function · L59-L59 — wxString GetLinuxDisplayServer();
+- GetPackageType · function · L61-L61 — wxString GetPackageType();
+- GetCPUinfo · function · L62-L62 — wxString GetCPUinfo();
+- GetGPUinfo · function · L63-L63 — wxString GetGPUinfo();
+- GetRAMinfo · function · L64-L64 — wxString GetRAMinfo();
+- GetMONinfo · function · L65-L65 — wxString GetMONinfo();
+- PackAll · function · L67-L67 — void     PackAll();
+- RebuildSystemProfiles · function · L68-L68 — void     RebuildSystemProfiles();
+- RestartApplication · function · L69-L69 — bool     RestartApplication();
+- ClearLogs · function · L70-L70 — void     ClearLogs();
+- UpdateLogsStorage · function · L71-L71 — void     UpdateLogsStorage();
+- BrowseFolder · function · L73-L73 — void     BrowseFolder(std::string path);
+- get_cpu_info_from_registry · function · L76-L76 — static wxString get_cpu_info_from_registry();
+- parse_lscpu_etc · function · L78-L78 — static std::map<std::string, std::string> parse_lscpu_etc(const std::string& name, char delimiter);
+- ExportAsJson · function · L81-L81 — bool     ExportAsJson(const wxString& json_data, const wxString& export_name = wxEmptyString);
+- ExportAsZip · function · L82-L82 — bool     ExportAsZip(const std::vector<wxString>& sources, const wxString& export_name);
+- AddToZip · function · L83-L83 — bool     AddToZip(wxZipOutputStream& zip, const wxString& fullPathOrTextData, const wxString& rootDir);
+- SaveAsZip · function · L84-L84 — bool     SaveAsZip(const std::vector<wxString>& sourcePaths, const wxString& zipFullPath);
+- on_dpi_changed · function · L86-L86 — void     on_dpi_changed(const wxRect &suggested_rect) override;
+- CenteredMultiLinePanel · class · L89-L199 — class CenteredMultiLinePanel : public wxPanel
+- CenteredMultiLinePanel · function · L96-L105 — CenteredMultiLinePanel(wxWindow* parent, const std::vector<wxString>& lines = {})
+- SetText · function · L107-L114 — void SetText(const std::vector<wxString>& lines)
+- Wrap · function · L116-L136 — std::vector<wxString> Wrap(wxDC& dc, const wxString& text, int maxW)
+- OnPaint · function · L138-L161 — void OnPaint(wxPaintEvent&)
+- UpdateMinSize · function · L163-L191 — void UpdateMinSize()
+- OnSize · function · L193-L198 — void OnSize(wxSizeEvent& e)

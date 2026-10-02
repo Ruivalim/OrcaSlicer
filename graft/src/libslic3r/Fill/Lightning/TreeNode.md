@@ -1,0 +1,43 @@
+# src/libslic3r/Fill/Lightning/TreeNode.hpp
+
+- locator_cell_size · function · L22-L22 — inline coord_t locator_cell_size() { return scaled<coord_t>(4.); }
+- Node · class · L24-L24 — class Node;
+- Node · class · L42-L283 — class Node : public std::enable_shared_from_this<Node>
+- create · function · L46-L53 — template<typename ...Arg> NodeSPtr static create(Arg&&...arg)
+- EnableMakeShared · class · L48-L51 — struct EnableMakeShared : public Node
+- EnableMakeShared · function · L50-L50 — explicit EnableMakeShared(Arg&&...arg) : Node(std::forward<Arg>(arg)...) {}
+- getLocation · function · L60-L60 — const Point& getLocation() const { return m_p; }
+- setLocation · function · L66-L66 — void setLocation(const Point& p) { m_p = p; }
+- addChild · function · L74-L74 — NodeSPtr addChild(const Point& p);
+- addChild · function · L81-L81 — NodeSPtr addChild(NodeSPtr& new_child);
+- propagateToNextLayer · function · L101-L109 — void propagateToNextLayer
+- visitBranches · function · L122-L122 — void visitBranches(const std::function<void(const Point&, const Point&)>& visitor) const;
+- visitNodes · function · L134-L134 — void visitNodes(const std::function<void(NodeSPtr)>& visitor);
+- getWeightedDistance · function · L146-L146 — coord_t getWeightedDistance(const Point& unsupported_location, const coord_t& supporting_radius) const;
+- isRoot · function · L154-L154 — bool isRoot() const { return m_is_root; }
+- reroot · function · L163-L163 — void reroot(const NodeSPtr &new_parent = nullptr);
+- closestNode · function · L170-L170 — NodeSPtr closestNode(const Point& loc);
+- hasOffspring · function · L181-L181 — bool hasOffspring(const NodeSPtr& to_be_checked) const;
+- Node · function · L183-L183 — Node() = delete; // Don't allow empty contruction
+- Node · function · L192-L192 — explicit Node(const Point& p, const std::optional<Point>& last_grounding_location = std::nullopt);
+- deepCopy · function · L199-L199 — NodeSPtr deepCopy() const;
+- realign · function · L204-L204 — bool realign(const Polygons& outlines, const EdgeGrid::Grid& outline_locator, std::vector<NodeSPtr>& rerooted_parts);
+- RectilinearJunction · class · L206-L210 — struct RectilinearJunction
+- straighten · function · L218-L218 — void straighten(coord_t magnitude, coord_t max_remove_colinear_dist);
+- straighten · function · L226-L226 — RectilinearJunction straighten(coord_t magnitude, const Point& junction_above, coord_t accumulated_dist, int64_t max_remove_colinear_dist2);
+- prune · function · L231-L231 — coord_t prune(const coord_t& distance);
+- convertToPolylines · function · L243-L243 — void convertToPolylines(Polylines &output, coord_t line_overlap) const;
+- getLastGroundingLocation · function · L249-L249 — const std::optional<Point>& getLastGroundingLocation() const { return m_last_grounding_location; }
+- draw_tree · function · L251-L251 — void draw_tree(SVG& svg) { for (auto& child : m_children) { svg.draw(Line(m_p, child->getLocation()), "yellow"); child->draw_tree(svg); } }
+- convertToPolylines · function · L265-L265 — void convertToPolylines(size_t long_line_idx, Polylines &output, std::mt19937_64 &rng) const;
+- removeJunctionOverlap · function · L267-L267 — void removeJunctionOverlap(Polylines &polylines, coord_t line_overlap) const;
+- get_extents · function · L276-L276 — friend BoundingBox get_extents(const NodeSPtr &root_node);
+- get_extents · function · L277-L277 — friend BoundingBox get_extents(const std::vector<NodeSPtr> &tree_roots);
+- export_to_svg · function · L280-L280 — friend void export_to_svg(const NodeSPtr &root_node, Slic3r::SVG &svg);
+- export_to_svg · function · L281-L281 — friend void export_to_svg(const std::string &path, const Polygons &contour, const std::vector<NodeSPtr> &root_nodes);
+- inside · function · L285-L285 — bool inside(const Polygons &polygons, const Point &p);
+- lineSegmentPolygonsIntersection · function · L286-L286 — bool lineSegmentPolygonsIntersection(const Point& a, const Point& b, const EdgeGrid::Grid& outline_locator, Point& result, coord_t within_max_dist);
+- get_extents · function · L288-L295 — inline BoundingBox get_extents(const NodeSPtr &root_node)
+- get_extents · function · L297-L303 — inline BoundingBox get_extents(const std::vector<NodeSPtr> &tree_roots)
+- export_to_svg · function · L306-L306 — void export_to_svg(const NodeSPtr &root_node, SVG &svg);
+- export_to_svg · function · L307-L307 — void export_to_svg(const std::string &path, const Polygons &contour, const std::vector<NodeSPtr> &root_nodes);

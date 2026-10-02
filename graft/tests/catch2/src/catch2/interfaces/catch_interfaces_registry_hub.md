@@ -1,0 +1,31 @@
+# tests/catch2/src/catch2/interfaces/catch_interfaces_registry_hub.hpp
+
+- TestCaseHandle · class · L17-L17 — class TestCaseHandle;
+- ITestCaseRegistry · class · L19-L19 — class ITestCaseRegistry;
+- IExceptionTranslatorRegistry · class · L20-L20 — class IExceptionTranslatorRegistry;
+- IExceptionTranslator · class · L21-L21 — class IExceptionTranslator;
+- ReporterRegistry · class · L22-L22 — class ReporterRegistry;
+- IReporterFactory · class · L23-L23 — class IReporterFactory;
+- ITagAliasRegistry · class · L24-L24 — class ITagAliasRegistry;
+- ITestInvoker · class · L25-L25 — class ITestInvoker;
+- IMutableEnumValuesRegistry · class · L26-L26 — class IMutableEnumValuesRegistry;
+- StartupExceptionRegistry · class · L29-L29 — class StartupExceptionRegistry;
+- EventListenerFactory · class · L30-L30 — class EventListenerFactory;
+- IRegistryHub · class · L34-L45 — class IRegistryHub
+- getReporterRegistry · function · L38-L38 — virtual ReporterRegistry const& getReporterRegistry() const = 0;
+- getTestCaseRegistry · function · L39-L39 — virtual ITestCaseRegistry const& getTestCaseRegistry() const = 0;
+- getTagAliasRegistry · function · L40-L40 — virtual ITagAliasRegistry const& getTagAliasRegistry() const = 0;
+- getExceptionTranslatorRegistry · function · L41-L41 — virtual IExceptionTranslatorRegistry const& getExceptionTranslatorRegistry() const = 0;
+- getStartupExceptionRegistry · function · L44-L44 — virtual StartupExceptionRegistry const& getStartupExceptionRegistry() const = 0;
+- IMutableRegistryHub · class · L47-L57 — class IMutableRegistryHub
+- registerReporter · function · L50-L50 — virtual void registerReporter( std::string const& name, IReporterFactoryPtr factory ) = 0;
+- registerListener · function · L51-L51 — virtual void registerListener( Detail::unique_ptr<EventListenerFactory> factory ) = 0;
+- registerTest · function · L52-L52 — virtual void registerTest(Detail::unique_ptr<TestCaseInfo>&& testInfo, Detail::unique_ptr<ITestInvoker>&& invoker) = 0;
+- registerTranslator · function · L53-L53 — virtual void registerTranslator( Detail::unique_ptr<IExceptionTranslator>&& translator ) = 0;
+- registerTagAlias · function · L54-L54 — virtual void registerTagAlias( std::string const& alias, std::string const& tag, SourceLineInfo const& lineInfo ) = 0;
+- registerStartupException · function · L55-L55 — virtual void registerStartupException() noexcept = 0;
+- getMutableEnumValuesRegistry · function · L56-L56 — virtual IMutableEnumValuesRegistry& getMutableEnumValuesRegistry() = 0;
+- getRegistryHub · function · L59-L59 — IRegistryHub const& getRegistryHub();
+- getMutableRegistryHub · function · L60-L60 — IMutableRegistryHub& getMutableRegistryHub();
+- cleanUp · function · L61-L61 — void cleanUp();
+- translateActiveException · function · L62-L62 — std::string translateActiveException();

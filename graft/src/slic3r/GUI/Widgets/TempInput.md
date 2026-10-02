@@ -1,0 +1,54 @@
+# src/slic3r/GUI/Widgets/TempInput.hpp
+
+- TempInputType · type · L13-L17 — enum TempInputType
+- TempInput · class · L19-L155 — class TempInput : public wxNavigationEnabled<StaticBox>
+- WarningType · type · L47-L51 — enum WarningType
+- TempInput · function · L53-L53 — TempInput();
+- TempInput · function · L55-L64 — TempInput(wxWindow *     parent,
+- Create · function · L67-L74 — void Create(wxWindow *     parent,
+- erasePending · function · L83-L83 — wxString erasePending(wxString &str);
+- SetTagTemp · function · L85-L85 — void SetTagTemp(int temp);
+- SetTagTemp · function · L86-L86 — void SetTagTemp(wxString temp);
+- SetCurrTemp · function · L88-L88 — void SetCurrTemp(int temp);
+- SetCurrTemp · function · L89-L89 — void SetCurrTemp(wxString temp);
+- SetCurrType · function · L90-L90 — void SetCurrType(TempInputType type);
+- GetCurrType · function · L91-L91 — TempInputType GetCurrType(){return m_input_type;};
+- AllisNum · function · L93-L93 — bool AllisNum(std::string str);
+- SetFinish · function · L94-L94 — void SetFinish();
+- Warning · function · L95-L95 — void Warning(bool warn, WarningType type = WARNING_UNKNOWN);
+- SetIconActive · function · L96-L96 — void SetIconActive();
+- SetIconNormal · function · L97-L97 — void SetIconNormal();
+- SetReadOnly · function · L99-L99 — void SetReadOnly(bool ro) { m_read_only = ro; }
+- SetMaxTemp · function · L101-L101 — void SetMaxTemp(int temp);
+- SetMinTemp · function · L102-L102 — void SetMinTemp(int temp);
+- AddTemp · function · L103-L103 — void AddTemp(int temp) { additional_temps.insert(temp); };
+- GetType · function · L105-L105 — int GetType() { return temp_type; }
+- GetTagTemp · function · L107-L107 — wxString GetTagTemp() { return text_ctrl->GetValue(); }
+- GetCurrTemp · function · L108-L108 — wxString GetCurrTemp() { return GetLabel(); }
+- get_max_temp · function · L109-L109 — int get_max_temp() { return max_temp; }
+- SetLabel · function · L110-L110 — void SetLabel(const wxString &label) override;
+- SetTextColor · function · L112-L112 — void SetTextColor(StateColor const &color);
+- SetLabelColor · function · L114-L114 — void SetLabelColor(StateColor const &color);
+- Rescale · function · L116-L116 — virtual void Rescale();
+- Enable · function · L118-L118 — virtual bool Enable(bool enable = true) override;
+- SetMinSize · function · L120-L120 — virtual void SetMinSize(const wxSize &size) override;
+- GetTextCtrl · function · L122-L122 — wxTextCtrl *GetTextCtrl() { return text_ctrl; }
+- GetTextCtrl · function · L124-L124 — wxTextCtrl const *GetTextCtrl() const { return text_ctrl; }
+- IsOnChanging · function · L126-L126 — bool  IsOnChanging() const { return m_on_changing; }
+- SetOnChanging · function · L127-L127 — void  SetOnChanging() { m_on_changing = true; }
+- ReSetOnChanging · function · L128-L128 — void  ReSetOnChanging() { m_on_changing = false; }
+- DoSetSize · function · L131-L131 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO) override;
+- DoSetToolTipText · function · L133-L133 — void DoSetToolTipText(wxString const &tip) override;
+- ResetWaringDlg · function · L136-L136 — void ResetWaringDlg();
+- CheckIsValidVal · function · L137-L137 — bool CheckIsValidVal(bool show_warning);
+- paintEvent · function · L139-L139 — void paintEvent(wxPaintEvent &evt);
+- render · function · L141-L141 — void render(wxDC &dc);
+- messureMiniSize · function · L143-L143 — void messureMiniSize();
+- messureSize · function · L144-L144 — void messureSize();
+- mouseMoved · function · L147-L147 — void mouseMoved(wxMouseEvent &event);
+- mouseWheelMoved · function · L148-L148 — void mouseWheelMoved(wxMouseEvent &event);
+- mouseEnterWindow · function · L149-L149 — void mouseEnterWindow(wxMouseEvent &event);
+- mouseLeaveWindow · function · L150-L150 — void mouseLeaveWindow(wxMouseEvent &event);
+- keyPressed · function · L151-L151 — void keyPressed(wxKeyEvent &event);
+- keyReleased · function · L152-L152 — void keyReleased(wxKeyEvent &event);
+- DECLARE_EVENT_TABLE · function · L154-L154 — DECLARE_EVENT_TABLE()

@@ -1,0 +1,37 @@
+# src/slic3r/GUI/Gizmos/GLGizmoText.hpp
+
+- ModelVolumeType · type · L12-L12 — enum class ModelVolumeType : int;
+- ModelVolume · class · L13-L13 — class ModelVolume;
+- SLAGizmoEventType · type · L17-L17 — enum class SLAGizmoEventType : unsigned char;
+- GLGizmoText · class · L18-L121 — class GLGizmoText : public GLGizmoBase
+- TextureInfo · class · L44-L52 — class TextureInfo
+- GLGizmoText · function · L79-L79 — GLGizmoText(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- update_font_texture · function · L82-L82 — void update_font_texture();
+- gizmo_event · function · L84-L84 — bool gizmo_event(SLAGizmoEventType action, const Vec2d &mouse_position, bool shift_down, bool alt_down, bool control_down);
+- on_mouse · function · L86-L86 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- is_mesh_point_clipped · function · L88-L88 — bool is_mesh_point_clipped(const Vec3d &point, const Transform3d &trafo) const;
+- bounding_box · function · L89-L89 — BoundingBoxf3 bounding_box() const;
+- on_init · function · L92-L92 — virtual bool on_init() override;
+- on_get_name · function · L93-L93 — virtual std::string on_get_name() const override;
+- on_is_activable · function · L94-L94 — virtual bool on_is_activable() const override;
+- on_render · function · L95-L95 — virtual void on_render() override;
+- on_dragging · function · L96-L96 — virtual void on_dragging(const UpdateData &data) override;
+- push_combo_style · function · L97-L97 — void push_combo_style(const float scale);
+- pop_combo_style · function · L98-L98 — void pop_combo_style();
+- push_button_style · function · L99-L99 — void push_button_style(bool pressed);
+- pop_button_style · function · L100-L100 — void pop_button_style();
+- on_set_state · function · L101-L101 — virtual void on_set_state() override;
+- on_get_requirements · function · L102-L102 — virtual CommonGizmosDataID on_get_requirements() const override;
+- on_render_input_window · function · L103-L103 — virtual void on_render_input_window(float x, float y, float bottom_limit);
+- on_register_raycasters_for_picking · function · L104-L104 — virtual void on_register_raycasters_for_picking() override;
+- on_unregister_raycasters_for_picking · function · L105-L105 — virtual void on_unregister_raycasters_for_picking() override;
+- show_tooltip_information · function · L107-L107 — void show_tooltip_information(float x, float y);
+- get_selected_single_volume · function · L110-L110 — ModelVolume *get_selected_single_volume(int& out_object_idx, int& out_volume_idx) const;
+- reset_text_info · function · L111-L111 — void reset_text_info();
+- update_text_positions · function · L112-L112 — bool update_text_positions(const std::vector<std::string>& texts);
+- get_text_mesh · function · L113-L113 — TriangleMesh get_text_mesh(const char* text_str, const Vec3d &position, const Vec3d &normal, const Vec3d &text_up_dir);
+- update_raycast_cache · function · L115-L115 — bool update_raycast_cache(const Vec2d &mouse_position, const Camera &camera, const std::vector<Transform3d> &trafo_matrices);
+- generate_text_volume · function · L116-L116 — void generate_text_volume(bool is_temp = true);
+- delete_temp_preview_text_volume · function · L117-L117 — void delete_temp_preview_text_volume();
+- get_text_info · function · L119-L119 — TextInfo get_text_info();
+- load_from_text_info · function · L120-L120 — void     load_from_text_info(const TextInfo &text_info);

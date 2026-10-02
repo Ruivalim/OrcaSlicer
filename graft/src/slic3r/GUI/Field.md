@@ -1,0 +1,247 @@
+# src/slic3r/GUI/Field.hpp
+
+- Button · class · L37-L37 — class Button;
+- Field · class · L41-L41 — class Field;
+- double_to_string · function · L47-L47 — wxString double_to_string(double const value, const int max_precision = 4);
+- get_thumbnail_string · function · L48-L48 — wxString get_thumbnail_string(const Vec2d& value);
+- get_thumbnails_string · function · L49-L49 — wxString get_thumbnails_string(const std::vector<Vec2d>& values);
+- get_formatted_tooltip_text · function · L50-L50 — wxString get_formatted_tooltip_text(const ConfigOptionDef& opt, const t_config_option_key& id);
+- UndoValueUIManager · class · L52-L163 — class UndoValueUIManager
+- UndoValueUI · class · L54-L104 — struct UndoValueUI
+- set_undo_bitmap · function · L66-L72 — bool 	set_undo_bitmap(const ScalableBitmap* bmp)
+- set_undo_to_sys_bitmap · function · L74-L80 — bool 	set_undo_to_sys_bitmap(const ScalableBitmap* bmp)
+- set_label_colour · function · L82-L87 — bool	set_label_colour(const wxColour* clr)
+- set_undo_tooltip · function · L89-L95 — bool 	set_undo_tooltip(const wxString* tip)
+- set_undo_to_sys_tooltip · function · L97-L103 — bool 	set_undo_to_sys_tooltip(const wxString* tip)
+- EditValueUI · class · L108-L128 — struct EditValueUI
+- set_bitmap · function · L113-L119 — bool 	set_bitmap(const ScalableBitmap* bmp)
+- set_tooltip · function · L121-L127 — bool 	set_tooltip(const wxString& tip)
+- UndoValueUIManager · function · L133-L133 — UndoValueUIManager() {}
+- set_undo_bitmap · function · L136-L136 — bool 	set_undo_bitmap(const ScalableBitmap* bmp)			{ return m_undo_ui.set_undo_bitmap(bmp); }
+- set_undo_to_sys_bitmap · function · L137-L137 — bool 	set_undo_to_sys_bitmap(const ScalableBitmap* bmp)	{ return m_undo_ui.set_undo_to_sys_bitmap(bmp); }
+- set_label_colour · function · L138-L138 — bool	set_label_colour(const wxColour* clr)				{ return m_undo_ui.set_label_colour(clr); }
+- set_undo_tooltip · function · L139-L139 — bool 	set_undo_tooltip(const wxString* tip)				{ return m_undo_ui.set_undo_tooltip(tip); }
+- set_undo_to_sys_tooltip · function · L140-L140 — bool 	set_undo_to_sys_tooltip(const wxString* tip)		{ return m_undo_ui.set_undo_to_sys_tooltip(tip); }
+- set_edit_bitmap · function · L142-L142 — bool 	set_edit_bitmap(const ScalableBitmap* bmp)			{ return m_edit_ui.set_bitmap(bmp); }
+- set_edit_tooltip · function · L143-L143 — bool 	set_edit_tooltip(const wxString& tip)				{ return m_edit_ui.set_tooltip(tip); }
+- has_undo_ui · function · L146-L146 — bool					has_undo_ui()			const { return m_undo_ui.undo_bitmap != nullptr; }
+- undo_bitmap · function · L147-L147 — const ScalableBitmap*	undo_bitmap()			const { return m_undo_ui.undo_bitmap; }
+- undo_tooltip · function · L148-L148 — const wxString*			undo_tooltip()			const { return m_undo_ui.undo_tooltip; }
+- undo_to_sys_bitmap · function · L149-L149 — const ScalableBitmap*	undo_to_sys_bitmap()	const { return m_undo_ui.undo_to_sys_bitmap; }
+- undo_to_sys_tooltip · function · L150-L150 — const wxString*			undo_to_sys_tooltip()	const { return m_undo_ui.undo_to_sys_tooltip; }
+- label_color · function · L151-L151 — const wxColour*			label_color()			const { return m_undo_ui.label_color; }
+- blink · function · L156-L156 — const bool				blink()					const { return m_undo_ui.blink; }
+- get_blink_ptr · function · L157-L157 — bool*					get_blink_ptr()				  { return &m_undo_ui.blink; }
+- has_edit_ui · function · L160-L160 — bool					has_edit_ui()			const { return !m_edit_ui.tooltip.IsEmpty(); }
+- edit_bitmap · function · L161-L161 — const wxBitmap*	        edit_bitmap()			const { return &m_edit_ui.bitmap->bmp(); }
+- edit_tooltip · function · L162-L162 — const wxString*			edit_tooltip()			const { return &m_edit_ui.tooltip; }
+- Field · class · L165-L298 — class Field : public UndoValueUIManager
+- PostInitialize · function · L168-L168 — virtual void	PostInitialize();
+- BUILD · function · L171-L171 — virtual void	BUILD() = 0;
+- on_kill_focus · function · L176-L176 — void			on_kill_focus();
+- on_change_field · function · L178-L178 — void			on_change_field();
+- EnterPressed · class · L180-L187 — class EnterPressed
+- EnterPressed · function · L182-L183 — EnterPressed(Field* field) :
+- on_back_to_initial_value · function · L191-L191 — void			on_back_to_initial_value();
+- on_back_to_sys_value · function · L193-L193 — void			on_back_to_sys_value();
+- on_edit_value · function · L195-L195 — void			on_edit_value();
+- propagate_value · function · L197-L197 — virtual void propagate_value(){}
+- set_value · function · L231-L231 — virtual void		set_value(const boost::any& value, bool change_event) = 0;
+- set_last_meaningful_value · function · L232-L232 — virtual void        set_last_meaningful_value() {}
+- set_na_value · function · L233-L233 — virtual void        set_na_value() {}
+- update_na_value · function · L235-L235 — virtual void        update_na_value(const boost::any& value) {}
+- get_value · function · L239-L239 — virtual boost::any&	get_value() = 0;
+- enable · function · L241-L241 — virtual void		enable() = 0;
+- disable · function · L242-L242 — virtual void		disable() = 0;
+- toggle · function · L245-L245 — void			toggle(bool en);
+- get_tooltip_text · function · L247-L247 — virtual wxString	get_tooltip_text(const wxString& default_string);
+- field_changed · function · L249-L249 — void				field_changed() { on_change_field(); }
+- Field · function · L251-L251 — Field(const ConfigOptionDef& opt, const t_config_option_key& id) : m_opt(opt), m_opt_id(id) {}
+- Field · function · L252-L252 — Field(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : m_parent(parent), m_opt(opt), m_opt_id(id) {}
+- getSizer · function · L256-L256 — virtual wxSizer*	getSizer()  { return nullptr; }
+- getWindow · function · L257-L257 — virtual wxWindow*	getWindow() { return nullptr; }
+- is_matched · function · L259-L259 — bool				is_matched(const std::string& string, const std::string& pattern);
+- get_value_by_opt_type · function · L260-L260 — void				get_value_by_opt_type(wxString& str, const bool check_value = true);
+- Create · function · L263-L269 — template<class T>
+- msw_rescale · function · L271-L271 — virtual void msw_rescale();
+- sys_color_changed · function · L272-L272 — virtual void sys_color_changed();
+- get_enter_pressed · function · L274-L274 — bool get_enter_pressed() const { return bEnterPressed; }
+- set_enter_pressed · function · L275-L275 — void set_enter_pressed(bool pressed) { bEnterPressed = pressed; }
+- def_width · function · L278-L278 — static int def_width()			;
+- def_width_wider · function · L279-L279 — static int def_width_wider()	;
+- def_width_thinner · function · L280-L280 — static int def_width_thinner()	;
+- combine_side_text · function · L282-L282 — const bool				combine_side_text()		{ return m_combine_side_text; } // BBS: new param style
+- is_bad_field · function · L302-L302 — inline bool is_bad_field(const t_field& obj) { return obj->getSizer() == nullptr && obj->getWindow() == nullptr; }
+- is_window_field · function · L305-L305 — inline bool is_window_field(const t_field& obj) { return !is_bad_field(obj) && obj->getWindow() != nullptr && obj->getSizer() == nullptr; }
+- is_sizer_field · function · L308-L308 — inline bool is_sizer_field(const t_field& obj) { return !is_bad_field(obj) && obj->getSizer() != nullptr; }
+- TextCtrl · class · L310-L347 — class TextCtrl : public Field
+- change_field_value · function · L314-L314 — void    change_field_value(wxEvent& event);
+- TextCtrl · function · L318-L318 — TextCtrl(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt,  id) {}
+- TextCtrl · function · L319-L319 — TextCtrl(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- BUILD · function · L322-L322 — void BUILD() override;
+- value_was_changed · function · L323-L323 — bool value_was_changed();
+- propagate_value · function · L325-L325 — virtual void propagate_value() override;
+- set_value · function · L328-L332 — void	set_value(const std::string& value, bool change_event = false)
+- set_value · function · L333-L333 — void	set_value(const boost::any& value, bool change_event = false) override;
+- set_last_meaningful_value · function · L334-L334 — void    set_last_meaningful_value() override;
+- set_na_value · function · L335-L335 — void	set_na_value() override;
+- update_na_value · function · L337-L337 — void update_na_value(const boost::any& value) override;
+- get_value · function · L339-L339 — boost::any&		get_value() override;
+- msw_rescale · function · L341-L341 — void            msw_rescale() override;
+- enable · function · L343-L343 — void			enable() override;
+- disable · function · L344-L344 — void			disable() override;
+- getWindow · function · L345-L345 — wxWindow* 		getWindow() override { return window; }
+- text_ctrl · function · L346-L346 — wxTextCtrl *    text_ctrl();
+- CheckBox · class · L349-L371 — class CheckBox : public Field
+- CheckBox · function · L353-L353 — CheckBox(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id) {}
+- CheckBox · function · L354-L354 — CheckBox(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- BUILD · function · L358-L358 — void			BUILD() override;
+- set_value · function · L360-L360 — void			set_value(const bool value, bool change_event = false);
+- set_value · function · L361-L361 — void			set_value(const boost::any& value, bool change_event = false) override;
+- set_last_meaningful_value · function · L362-L362 — void            set_last_meaningful_value() override;
+- set_na_value · function · L363-L363 — void            set_na_value() override;
+- get_value · function · L364-L364 — boost::any&		get_value() override;
+- msw_rescale · function · L366-L366 — void            msw_rescale() override;
+- enable · function · L368-L368 — void			enable() override { window->Enable(); }
+- disable · function · L369-L369 — void			disable() override { window->Disable(); }
+- getWindow · function · L370-L370 — wxWindow*		getWindow() override { return window; }
+- SpinCtrl · class · L373-L408 — class SpinCtrl : public Field
+- SpinCtrl · function · L380-L380 — SpinCtrl(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id), tmp_value(UNDEF_VALUE) {}
+- SpinCtrl · function · L381-L381 — SpinCtrl(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id), tmp_value(UNDEF_VALUE) {}
+- BUILD · function · L387-L387 — void			BUILD() override;
+- propagate_value · function · L389-L389 — void	        propagate_value() override;
+- set_value · function · L391-L395 — void			set_value(const std::string& value, bool change_event = false)
+- set_value · function · L396-L396 — void			set_value(const boost::any& value, bool change_event = false) override;
+- get_value · function · L398-L398 — boost::any&		get_value() override
+- msw_rescale · function · L403-L403 — void            msw_rescale() override;
+- enable · function · L405-L405 — void			enable() override { dynamic_cast<SpinInput*>(window)->Enable(); }
+- disable · function · L406-L406 — void			disable() override { dynamic_cast<SpinInput*>(window)->Disable(); }
+- getWindow · function · L407-L407 — wxWindow*		getWindow() override { return window; }
+- Choice · class · L410-L410 — class Choice;
+- DynamicList · class · L412-L429 — class DynamicList
+- apply_on · function · L416-L416 — virtual void apply_on(Choice * choice) = 0;
+- get_value · function · L417-L417 — virtual wxString get_value(int index) = 0;
+- index_of · function · L418-L418 — virtual int      index_of(wxString value) = 0;
+- update · function · L421-L421 — void update();
+- add_choice · function · L427-L427 — void                  add_choice(Choice *choice);
+- remove_choice · function · L428-L428 — void                  remove_choice(Choice *choice);
+- Choice · class · L431-L471 — class Choice : public Field
+- Choice · function · L435-L435 — Choice(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id) {}
+- Choice · function · L436-L436 — Choice(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- register_dynamic_list · function · L439-L439 — static void register_dynamic_list(std::string const &optname, DynamicList *list);
+- BUILD · function · L442-L442 — void			BUILD() override;
+- propagate_value · function · L444-L444 — void			propagate_value() override;
+- set_selection · function · L454-L454 — void			set_selection();
+- set_value · function · L455-L455 — void			set_value(const std::string& value, bool change_event = false);
+- set_value · function · L456-L456 — void			set_value(const boost::any& value, bool change_event = false) override;
+- set_values · function · L457-L457 — void			set_values(const std::vector<std::string> &values);
+- set_values · function · L458-L458 — void			set_values(const wxArrayString &values);
+- get_value · function · L459-L459 — boost::any&		get_value() override;
+- set_last_meaningful_value · function · L461-L461 — void set_last_meaningful_value() override;
+- set_na_value · function · L462-L462 — void set_na_value() override;
+- msw_rescale · function · L464-L464 — void            msw_rescale() override;
+- enable · function · L466-L466 — void			enable() override ;//{ dynamic_cast<wxBitmapComboBox*>(window)->Enable(); };
+- disable · function · L467-L467 — void			disable() override;//{ dynamic_cast<wxBitmapComboBox*>(window)->Disable(); };
+- getWindow · function · L468-L468 — wxWindow*		getWindow() override { return window; }
+- suppress_scroll · function · L470-L470 — void            suppress_scroll();
+- PrinterAgentChoice · class · L476-L509 — class PrinterAgentChoice : public Field
+- PrinterAgentChoice · function · L481-L483 — PrinterAgentChoice(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id)
+- PrinterAgentChoice · function · L485-L488 — PrinterAgentChoice(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(
+- BUILD · function · L496-L496 — void BUILD() override;
+- reload_rows · function · L499-L499 — void reload_rows();
+- set_value · function · L501-L501 — void set_value(const std::string& value, bool change_event = false);
+- set_value · function · L502-L502 — void set_value(const boost::any& value, bool change_event = false) override;
+- get_value · function · L503-L503 — boost::any& get_value() override;
+- enable · function · L505-L505 — void enable() override;
+- disable · function · L506-L506 — void disable() override;
+- msw_rescale · function · L507-L507 — void msw_rescale() override;
+- getWindow · function · L508-L508 — wxWindow* getWindow() override { return window; }
+- PluginField · class · L511-L557 — class PluginField : public Field
+- PluginField · function · L514-L514 — PluginField(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id) {}
+- PluginField · function · L515-L515 — PluginField(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- BUILD · function · L518-L518 — void BUILD() override;
+- set_selector · function · L520-L520 — void set_selector(std::function<std::string()> selector);
+- set_value · function · L522-L522 — void set_value(const boost::any& value, bool change_event = false) override;
+- get_value · function · L523-L523 — boost::any& get_value() override;
+- enable · function · L525-L525 — void enable() override;
+- disable · function · L526-L526 — void disable() override;
+- getWindow · function · L530-L530 — wxWindow* getWindow() override { return window; }
+- msw_rescale · function · L532-L532 — void msw_rescale() override;
+- PluginRow · class · L535-L539 — struct PluginRow
+- rebuild_ui · function · L541-L541 — void rebuild_ui();
+- add_empty_state_row · function · L542-L542 — void add_empty_state_row();
+- add_plugin_row · function · L543-L543 — void add_plugin_row(const wxString& value = wxEmptyString, bool is_last = false);
+- display_name_for_value · function · L544-L544 — wxString display_name_for_value(const std::string& value) const;
+- on_select_clicked · function · L545-L545 — void on_select_clicked(size_t index);
+- on_add_clicked · function · L546-L546 — void on_add_clicked();
+- on_remove_clicked · function · L547-L547 — void on_remove_clicked(size_t index);
+- get_row_value · function · L548-L548 — wxString get_row_value(size_t index) const;
+- set_row_value · function · L549-L549 — void set_row_value(size_t index, const wxString& value);
+- PluginConfigField · class · L563-L596 — class PluginConfigField : public Field
+- PluginConfigField · function · L566-L566 — PluginConfigField(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id) {}
+- PluginConfigField · function · L567-L567 — PluginConfigField(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- BUILD · function · L570-L570 — void BUILD() override;
+- set_preset_type · function · L574-L574 — void set_preset_type(int type) { m_preset_type = type; }
+- set_value · function · L576-L576 — void set_value(const boost::any& value, bool change_event = false) override;
+- get_value · function · L577-L577 — boost::any& get_value() override;
+- enable · function · L579-L579 — void enable() override;
+- disable · function · L580-L580 — void disable() override;
+- getWindow · function · L584-L584 — wxWindow* getWindow() override { return window; }
+- msw_rescale · function · L586-L586 — void msw_rescale() override;
+- open_dialog · function · L589-L589 — void open_dialog();
+- update_button_label · function · L590-L590 — void update_button_label();
+- ColourPicker · class · L598-L634 — class ColourPicker : public Field
+- set_undef_value · function · L601-L601 — void            set_undef_value(wxColourPickerCtrl* field);
+- draw_bmp_btn · function · L602-L602 — void            draw_bmp_btn(wxColourPickerCtrl* field, wxColour color);
+- ColourPicker · function · L604-L604 — ColourPicker(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id) {}
+- ColourPicker · function · L605-L605 — ColourPicker(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- BUILD · function · L609-L609 — void			BUILD()  override;
+- set_value · function · L611-L615 — void			set_value(const std::string& value, bool change_event = false)
+- set_value · function · L616-L616 — void			set_value(const boost::any& value, bool change_event = false) override;
+- get_value · function · L617-L617 — boost::any&		get_value() override;
+- msw_rescale · function · L618-L618 — void            msw_rescale() override;
+- sys_color_changed · function · L619-L619 — void            sys_color_changed() override;
+- enable · function · L621-L621 — void			enable() override { dynamic_cast<wxColourPickerCtrl*>(window)->Enable(); }
+- disable · function · L622-L622 — void			disable() override{ dynamic_cast<wxColourPickerCtrl*>(window)->Disable(); }
+- getWindow · function · L623-L623 — wxWindow*		getWindow() override { return window; }
+- convert_to_picker_widget · function · L626-L626 — void convert_to_picker_widget(wxColourPickerCtrl *widget);
+- on_button_click · function · L627-L627 — void on_button_click(wxCommandEvent &WXUNUSED(ev));
+- WXUNUSED · function · L627-L627 — void on_button_click(wxCommandEvent &WXUNUSED(ev));
+- save_colors_to_config · function · L628-L628 — void save_colors_to_config();
+- PointCtrl · class · L636-L669 — class PointCtrl : public Field
+- PointCtrl · function · L639-L639 — PointCtrl(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id) {}
+- PointCtrl · function · L640-L640 — PointCtrl(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- BUILD · function · L650-L650 — void			BUILD()  override;
+- value_was_changed · function · L651-L651 — bool			value_was_changed(wxTextCtrl* win);
+- propagate_input_value · function · L653-L653 — void			propagate_input_value(wxTextCtrl* win);
+- set_value · function · L654-L654 — void			set_value(const Vec2d& value, bool change_event = false);
+- set_value · function · L655-L655 — void			set_value(const boost::any& value, bool change_event = false) override;
+- get_value · function · L656-L656 — boost::any&		get_value() override;
+- msw_rescale · function · L658-L658 — void            msw_rescale() override;
+- sys_color_changed · function · L659-L659 — void            sys_color_changed() override;
+- enable · function · L661-L663 — void			enable() override
+- disable · function · L664-L666 — void			disable() override
+- getSizer · function · L667-L667 — wxSizer*		getSizer() override { return sizer; }
+- getWindow · function · L668-L668 — wxWindow*		getWindow() override { return window; }
+- StaticText · class · L671-L699 — class StaticText : public Field
+- StaticText · function · L674-L674 — StaticText(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id) {}
+- StaticText · function · L675-L675 — StaticText(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- BUILD · function · L679-L679 — void			BUILD()  override;
+- set_value · function · L681-L685 — void			set_value(const std::string& value, bool change_event = false)
+- set_value · function · L686-L690 — void			set_value(const boost::any& value, bool change_event = false) override
+- get_value · function · L692-L692 — boost::any&		get_value()override { return m_value; }
+- msw_rescale · function · L694-L694 — void            msw_rescale() override;
+- enable · function · L696-L696 — void			enable() override { dynamic_cast<wxStaticText*>(window)->Enable(); }
+- disable · function · L697-L697 — void			disable() override{ dynamic_cast<wxStaticText*>(window)->Disable(); }
+- getWindow · function · L698-L698 — wxWindow*		getWindow() override { return window; }
+- SliderCtrl · class · L701-L732 — class SliderCtrl : public Field
+- SliderCtrl · function · L704-L704 — SliderCtrl(const ConfigOptionDef& opt, const t_config_option_key& id) : Field(opt, id) {}
+- SliderCtrl · function · L705-L705 — SliderCtrl(wxWindow* parent, const ConfigOptionDef& opt, const t_config_option_key& id) : Field(parent, opt, id) {}
+- BUILD · function · L714-L714 — void			BUILD()  override;
+- set_value · function · L716-L716 — void			set_value(const int value, bool change_event = false);
+- set_value · function · L717-L717 — void			set_value(const boost::any& value, bool change_event = false) override;
+- get_value · function · L718-L718 — boost::any&		get_value() override;
+- enable · function · L720-L724 — void			enable() override
+- disable · function · L725-L729 — void			disable() override
+- getSizer · function · L730-L730 — wxSizer*		getSizer() override { return m_sizer; }
+- getWindow · function · L731-L731 — wxWindow*		getWindow() override { return dynamic_cast<wxWindow*>(m_slider); }

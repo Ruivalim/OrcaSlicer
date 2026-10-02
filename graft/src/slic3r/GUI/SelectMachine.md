@@ -1,0 +1,192 @@
+# src/slic3r/GUI/SelectMachine.hpp
+
+- DevExtder · class · L62-L62 — class DevExtder;
+- get_nozzle_volume_type_cloud_string · function · L67-L67 — std::string get_nozzle_volume_type_cloud_string(NozzleVolumeType nozzle_volume_type);
+- print_ams_mapping_result · function · L68-L68 — void        print_ams_mapping_result(std::vector<FilamentInfo> &result);
+- PrintPageMode · type · L72-L76 — enum PrintPageMode
+- Material · class · L79-L84 — class Material
+- CloudTaskNozzleId · type · L87-L91 — enum class CloudTaskNozzleId : int
+- FilamentMapNozzleId · type · L93-L97 — enum class FilamentMapNozzleId : int
+- ConfigNozzleIdx · type · L99-L103 — enum class ConfigNozzleIdx : int
+- get_brightness_value · function · L117-L143 — static int get_brightness_value(wxImage image)
+- POItem · class · L145-L152 — struct POItem
+- PrintOptionItem · class · L155-L205 — class PrintOptionItem : public wxPanel
+- PrintOptionItem · function · L158-L158 — PrintOptionItem(wxWindow* parent, std::vector<POItem> ops, std::string param = "");
+- setValue · function · L162-L162 — void        setValue(std::string value);
+- getValue · function · L163-L163 — std::string getValue() const { return selected_key; }
+- update_options · function · L164-L176 — void        update_options(std::vector<POItem> ops)
+- is_enabled · function · L178-L178 — bool is_enabled() const { return m_enable; }
+- enable · function · L179-L185 — void enable(bool able)
+- msw_rescale · function · L187-L187 — void msw_rescale() { m_selected_bk.msw_rescale(); Refresh(); };
+- OnPaint · function · L190-L190 — void OnPaint(wxPaintEvent& event);
+- render · function · L191-L191 — void render(wxDC& dc);
+- on_left_down · function · L192-L192 — void on_left_down(wxMouseEvent& evt);
+- doRender · function · L193-L193 — void doRender(wxDC& dc);
+- PrintOption · class · L207-L245 — class PrintOption : public wxPanel
+- PrintOption · function · L218-L218 — PrintOption(wxWindow *parent, wxString title, wxString tips, std::vector<POItem> ops, std::string param = "");
+- enable · function · L222-L222 — void        enable(bool en);
+- setValue · function · L224-L224 — void        setValue(std::string value);
+- getValue · function · L225-L225 — std::string getValue();
+- getValueInt · function · L226-L226 — int         getValueInt();
+- getParam · function · L228-L228 — std::string getParam() const { return m_param; }
+- contain_opt · function · L230-L230 — bool        contain_opt(const std::string& opt_str) const;
+- update_options · function · L231-L231 — void        update_options(std::vector<POItem> ops, const wxString &tips);
+- update_tooltip · function · L232-L232 — void        update_tooltip(const wxString &tips);
+- update_title_display · function · L233-L233 — void        update_title_display();
+- insert_extra_widget · function · L234-L234 — void        insert_extra_widget(wxWindow* widget);
+- msw_rescale · function · L236-L236 — void  msw_rescale();
+- CanBeFocused · function · L239-L239 — bool  CanBeFocused() const override { return false; }
+- OnPaint · function · L242-L242 — void OnPaint(wxPaintEvent &event);
+- render · function · L243-L243 — void render(wxDC &dc);
+- doRender · function · L244-L244 — void doRender(wxDC &dc);
+- ThumbnailPanel · class · L247-L266 — class ThumbnailPanel : public wxPanel
+- ThumbnailPanel · function · L253-L253 — ThumbnailPanel(wxWindow *parent, wxWindowID winid = wxID_ANY, const wxPoint &pos = wxDefaultPosition, const wxSize &size = wxDefaultSize);
+- OnPaint · function · L256-L256 — void OnPaint(wxPaintEvent &event);
+- PaintBackground · function · L257-L257 — void PaintBackground(wxDC &dc);
+- OnEraseBackground · function · L258-L258 — void OnEraseBackground(wxEraseEvent &event);
+- set_thumbnail · function · L259-L259 — void set_thumbnail(wxImage &img);
+- render · function · L260-L260 — void render(wxDC &dc);
+- SendModeSwitchButton · class · L269-L292 — class SendModeSwitchButton : public wxPanel
+- SendModeSwitchButton · function · L272-L272 — SendModeSwitchButton(wxWindow *parent, wxString mode, bool sel);
+- msw_rescale · function · L276-L276 — void msw_rescale();
+- setSelected · function · L277-L277 — void setSelected(bool selected);
+- isSelected · function · L278-L278 — bool isSelected(){return is_selected;};
+- OnPaint · function · L281-L281 — void OnPaint(wxPaintEvent& event);
+- render · function · L282-L282 — void render(wxDC& dc);
+- on_left_down · function · L283-L283 — void on_left_down(wxMouseEvent& evt);
+- doRender · function · L284-L284 — void doRender(wxDC& dc);
+- PrinterInfoBox · class · L294-L294 — class PrinterInfoBox;
+- SelectMachineDialog · class · L295-L631 — class SelectMachineDialog : public DPIDialog
+- init_machine_bed_types · function · L453-L453 — static void                  init_machine_bed_types();
+- SelectMachineDialog · function · L457-L457 — SelectMachineDialog(Plater *plater = nullptr);
+- init_bind · function · L460-L460 — void init_bind();
+- init_timer · function · L461-L461 — void init_timer();
+- show_print_failed_info · function · L462-L462 — void show_print_failed_info(bool show, int code = 0, wxString description = wxEmptyString, wxString extra = wxEmptyString);
+- check_fcous_state · function · L463-L463 — void check_fcous_state(wxWindow* window);
+- popup_filament_backup · function · L464-L464 — void popup_filament_backup();
+- update_select_layout · function · L465-L465 — void update_select_layout(MachineObject *obj);
+- prepare_mode · function · L466-L466 — void prepare_mode(bool refresh_button = true);
+- sending_mode · function · L467-L467 — void sending_mode();
+- finish_mode · function · L468-L468 — void finish_mode();
+- sync_ams_mapping_result · function · L469-L469 — void sync_ams_mapping_result(std::vector<FilamentInfo>& result);
+- prepare · function · L470-L470 — void prepare(int print_plate_idx);
+- show_status · function · L471-L471 — void show_status(PrintDialogStatus status, std::vector<wxString> params = std::vector<wxString>(), wxString wiki_url = wxEmptyString);
+- sys_color_changed · function · L472-L472 — void sys_color_changed();
+- reset_timeout · function · L473-L473 — void reset_timeout();
+- update_user_printer · function · L474-L474 — void update_user_printer();
+- reset_ams_material · function · L475-L475 — void reset_ams_material();
+- update_show_status · function · L476-L476 — void update_show_status(MachineObject* obj_ = nullptr);
+- UpdateStatusCheckWarning_ExtensionTool · function · L478-L478 — void UpdateStatusCheckWarning_ExtensionTool(MachineObject* obj_);
+- update_ams_check · function · L480-L480 — void update_ams_check(MachineObject* obj);
+- update_filament_change_count · function · L481-L481 — void update_filament_change_count();
+- on_rename_click · function · L482-L482 — void on_rename_click(wxMouseEvent &event);
+- on_rename_enter · function · L483-L483 — void on_rename_enter();
+- update_printer_combobox · function · L484-L484 — void update_printer_combobox(wxCommandEvent& event);
+- on_cancel · function · L485-L485 — void on_cancel(wxCloseEvent& event);
+- show_errors · function · L486-L486 — void show_errors(wxString& info);
+- on_ok_btn · function · L487-L487 — void on_ok_btn(wxCommandEvent& event);
+- Enable_Auto_Refill · function · L488-L488 — void Enable_Auto_Refill(bool enable);
+- on_send_print · function · L489-L489 — void on_send_print();
+- clear_ip_address_config · function · L490-L490 — void clear_ip_address_config(wxCommandEvent& e);
+- on_refresh · function · L491-L491 — void on_refresh(wxCommandEvent& event);
+- on_set_finish_mapping · function · L492-L492 — void on_set_finish_mapping(wxCommandEvent& evt);
+- on_print_job_cancel · function · L493-L493 — void on_print_job_cancel(wxCommandEvent& evt);
+- set_default · function · L494-L494 — void set_default();
+- change_materialitem_tip · function · L495-L495 — void change_materialitem_tip(bool no_ams_only_ext);
+- reset_and_sync_ams_list · function · L496-L496 — void reset_and_sync_ams_list();
+- clone_thumbnail_data · function · L497-L497 — void clone_thumbnail_data();
+- record_edge_pixels_data · function · L498-L498 — void record_edge_pixels_data();
+- adjust_color_for_render · function · L499-L499 — wxColour adjust_color_for_render(const wxColour& color);
+- final_deal_edge_pixels_data · function · L500-L500 — void final_deal_edge_pixels_data(ThumbnailData& data);
+- updata_thumbnail_data_after_connected_printer · function · L501-L501 — void updata_thumbnail_data_after_connected_printer();
+- unify_deal_thumbnail_data · function · L502-L502 — void unify_deal_thumbnail_data(ThumbnailData &input_data, ThumbnailData &no_light_data);
+- change_default_normal · function · L503-L503 — void change_default_normal(int old_filament_id, wxColour temp_ams_color);
+- set_default_normal · function · L504-L504 — void set_default_normal(const ThumbnailData&);
+- set_default_from_sdcard · function · L505-L505 — void set_default_from_sdcard();
+- update_page_turn_state · function · L506-L506 — void update_page_turn_state(bool show);
+- on_timer · function · L507-L507 — void on_timer(wxTimerEvent& event);
+- on_selection_changed · function · L508-L508 — void on_selection_changed(wxCommandEvent &event);
+- Enable_Refresh_Button · function · L509-L509 — void Enable_Refresh_Button(bool en);
+- Enable_Send_Button · function · L510-L510 — void Enable_Send_Button(bool en);
+- on_dpi_changed · function · L511-L511 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- update_user_machine_list · function · L512-L512 — void update_user_machine_list();
+- update_print_status_msg · function · L513-L513 — void update_print_status_msg();
+- update_print_error_info · function · L514-L514 — void update_print_error_info(int code, std::string msg, std::string extra);
+- has_timelapse_warning · function · L515-L515 — bool has_timelapse_warning(wxString& msg);
+- has_timelapse_warning · function · L516-L516 — bool has_timelapse_warning() { wxString msg; return has_timelapse_warning(msg);};
+- can_support_pa_auto_cali · function · L517-L517 — bool can_support_pa_auto_cali();
+- is_same_printer_model · function · L518-L518 — bool is_same_printer_model();
+- is_blocking_printing · function · L519-L519 — bool is_blocking_printing(MachineObject* obj_);
+- is_nozzle_hrc_matched · function · L520-L520 — bool is_nozzle_hrc_matched(const DevExtder* extruder, std::string& filament_type) const;
+- check_sdcard_for_timelpase · function · L521-L521 — bool check_sdcard_for_timelpase(MachineObject* obj);
+- is_timeout · function · L522-L522 — bool is_timeout();
+- update_print_required_data · function · L523-L523 — int  update_print_required_data(Slic3r::DynamicPrintConfig config, Slic3r::Model model, Slic3r::PlateDataPtrs plate_data_list, std::string file_name, std::string file_path);
+- set_print_type · function · L524-L524 — void set_print_type(PrintFromType type) {m_print_type = type;};
+- Show · function · L525-L525 — bool Show(bool show) override;
+- show_init · function · L526-L526 — void show_init();
+- do_ams_mapping · function · L527-L527 — bool do_ams_mapping(MachineObject *obj_,bool use_ams);
+- get_ams_mapping_result · function · L528-L528 — bool get_ams_mapping_result(std::string& mapping_array_str, std::string& mapping_array_str2, std::string& ams_mapping_info) const;
+- build_nozzles_info · function · L529-L529 — bool build_nozzles_info(std::string& nozzles_info);
+- can_hybrid_mapping · function · L530-L530 — bool can_hybrid_mapping(MachineObject* obj_) const;
+- get_filament_mapping_show_type · function · L531-L531 — ShowType get_filament_mapping_show_type(MachineObject* obj_, int fila_logic_id) const;
+- update_material_item_pos · function · L532-L532 — void update_material_item_pos(MachineObject* obj_);
+- auto_supply_with_ext · function · L533-L533 — void auto_supply_with_ext(std::vector<DevAmsTray> slots);
+- convert_filament_map_nozzle_id_to_task_nozzle_id · function · L534-L534 — int  convert_filament_map_nozzle_id_to_task_nozzle_id(int nozzle_id) const;
+- get_mapped_nozzles · function · L538-L538 — std::map<int, DevNozzle> get_mapped_nozzles(int fila_id) const;
+- get_mapped_nozzle_str · function · L543-L543 — wxString get_mapped_nozzle_str(int fila_id) const;
+- CheckErrorRackStatus · function · L546-L546 — bool CheckErrorRackStatus(MachineObject* obj_);
+- CheckWarningRackStatus · function · L549-L549 — void CheckWarningRackStatus(MachineObject* obj_);
+- CheckErrorExtruderNozzleWithSlicing · function · L552-L552 — bool CheckErrorExtruderNozzleWithSlicing(MachineObject* obj_);//return true if no errors
+- CheckWarningFilamentCrossExtruder · function · L562-L562 — bool CheckWarningFilamentCrossExtruder(MachineObject* obj_);
+- CheckWarningSmartNozzleBlobAuto · function · L565-L565 — bool CheckWarningSmartNozzleBlobAuto(MachineObject* obj_);
+- on_reselect_dialog_btn_clicked · function · L568-L568 — void on_reselect_dialog_btn_clicked(wxMouseEvent&);
+- update_best_pos_dialog · function · L569-L569 — void update_best_pos_dialog(wxCommandEvent& evt);
+- refresh_save_time · function · L570-L570 — void refresh_save_time(MachineObject* obj);
+- get_filament_change_gap_time · function · L571-L571 — std::optional<float> get_filament_change_gap_time(MachineObject* obj_) const;
+- get_filament_suggest_pos · function · L572-L572 — std::map<int, DevFilaSwitch::SwitchPos> get_filament_suggest_pos(MachineObject* obj_) const;
+- get_filament_suggest_pos · function · L573-L573 — std::optional<DevFilaSwitch::SwitchPos> get_filament_suggest_pos(MachineObject* obj_, int fila_logic_id) const;
+- is_at_suggested_pos · function · L574-L574 — bool is_at_suggested_pos(MachineObject* obj_, int fila_logic_id) const;
+- FormatTime · function · L575-L575 — wxString FormatTime(float totalSeconds);
+- get_mapped_filament_info · function · L576-L576 — std::optional<FilamentInfo> get_mapped_filament_info(int fila_logic_id) const;
+- is_used_filament · function · L577-L577 — bool is_used_filament(int fila_logic_id) const;
+- CheckErrorSyncNozzleMappingResultV1 · function · L581-L581 — bool CheckErrorSyncNozzleMappingResultV1(MachineObject* obj_);
+- CheckErrorSyncNozzleMappingResultV0 · function · L582-L582 — bool CheckErrorSyncNozzleMappingResultV0(MachineObject* obj_);
+- clear_nozzle_mapping · function · L583-L583 — void clear_nozzle_mapping();
+- use_dynamic_nozzle_map · function · L584-L584 — bool use_dynamic_nozzle_map() const;
+- slicing_with_fila_switch · function · L589-L589 — bool slicing_with_fila_switch() const;
+- CheckErrorDynamicSwitchNozzle · function · L590-L590 — bool CheckErrorDynamicSwitchNozzle(MachineObject* obj_);
+- on_flow_cali_option_changed · function · L591-L591 — void on_flow_cali_option_changed();
+- on_pa_value_option_changed · function · L594-L594 — void on_pa_value_option_changed();
+- update_pa_value_option · function · L595-L595 — void update_pa_value_option(MachineObject *obj);
+- is_ams_drying · function · L597-L597 — bool is_ams_drying(MachineObject* obj);
+- is_selected_ams_drying · function · L598-L598 — bool is_selected_ams_drying(MachineObject* obj);
+- get_print_type · function · L600-L600 — PrintFromType get_print_type() {return m_print_type;};
+- format_steel_name · function · L601-L601 — wxString    format_steel_name(NozzleType type);
+- get_status · function · L602-L602 — PrintDialogStatus  get_status() { return m_print_status; }
+- EnableEditing · function · L605-L605 — void EnableEditing(bool enable);
+- update_scroll_area_size · function · L608-L608 — void update_scroll_area_size();
+- update_option_opts · function · L611-L611 — void update_option_opts(MachineObject *obj);
+- update_options_layout · function · L612-L612 — void update_options_layout();
+- update_timelapse_folder_btn_icon · function · L615-L615 — void update_timelapse_folder_btn_icon();
+- show_timelapse_folder_popup · function · L616-L616 — void show_timelapse_folder_popup();
+- check_timelapse_storage_warning · function · L617-L617 — void check_timelapse_storage_warning(MachineObject* obj);
+- start_timelapse_storage_check · function · L618-L618 — void start_timelapse_storage_check(MachineObject* obj);
+- on_timelapse_storage_check_timer · function · L619-L619 — void on_timelapse_storage_check_timer(wxTimerEvent& event);
+- on_timelapse_storage_check_result · function · L620-L620 — void on_timelapse_storage_check_result();
+- show_timelapse_storage_dialog · function · L621-L621 — void show_timelapse_storage_dialog(MachineObject* obj);
+- navigate_to_timelapse_page · function · L622-L622 — void navigate_to_timelapse_page();
+- load_option_vals · function · L625-L625 — void load_option_vals(MachineObject* obj);
+- save_option_vals · function · L626-L626 — void save_option_vals();
+- save_option_vals · function · L627-L627 — void save_option_vals(MachineObject *obj);
+- is_enable_external_change_assist · function · L630-L630 — bool is_enable_external_change_assist(std::vector<FilamentInfo>& ams_mapping_result);
+- PrinterInfoBox · class · L633-L665 — class PrinterInfoBox : public StaticBox
+- PrinterInfoBox · function · L636-L636 — PrinterInfoBox(wxWindow* parent, SelectMachineDialog* select_dialog);
+- UpdatePlate · function · L639-L639 — void  UpdatePlate(const std::string& plate_name);
+- GetPrinterComboBox · function · L641-L641 — ComboBox* GetPrinterComboBox() const { return m_comboBox_printer; }
+- SetPrinterName · function · L642-L642 — void      SetPrinterName(const wxString& printer_name) { m_comboBox_printer->SetValue(printer_name); };
+- SetPrinters · function · L643-L643 — void      SetPrinters(const std::vector<MachineObject*>& sorted_printers);
+- EnableEditing · function · L645-L645 — void  EnableEditing(bool enable);
+- EnableRefreshButton · function · L646-L646 — void  EnableRefreshButton(bool enable);
+- SetDefault · function · L648-L648 — void  SetDefault(bool from_sd);
+- Create · function · L651-L651 — void  Create();
+- OnBtnQuestionClicked · function · L653-L653 — void  OnBtnQuestionClicked(wxCommandEvent& event);

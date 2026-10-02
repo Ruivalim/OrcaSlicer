@@ -1,0 +1,35 @@
+# src/slic3r/GUI/FilamentPickerDialog.hpp
+
+- FilamentPickerDialog · class · L21-L112 — class FilamentPickerDialog : public DPIDialog
+- FilamentPickerDialog · function · L24-L24 — FilamentPickerDialog(wxWindow *parent, const wxString &fila_id, const FilamentColor &fila_color, const std::string &fila_type);
+- IsDataLoaded · function · L28-L28 — bool IsDataLoaded() const { return m_is_data_loaded; }
+- GetSelectedColour · function · L29-L29 — wxColour GetSelectedColour() const;
+- GetSelectedFilamentColor · function · L30-L30 — const FilamentColor& GetSelectedFilamentColor() const { return m_cur_filament_color; }
+- on_dpi_changed · function · L33-L33 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- OnWindowCreate · function · L37-L37 — void OnWindowCreate(wxWindowCreateEvent& event);
+- OnMouseLeftDown · function · L39-L39 — void OnMouseLeftDown(wxMouseEvent& event);
+- OnMouseMove · function · L40-L40 — void OnMouseMove(wxMouseEvent& event);
+- OnMouseLeftUp · function · L41-L41 — void OnMouseLeftUp(wxMouseEvent& event);
+- OnButtonPaint · function · L42-L42 — void OnButtonPaint(wxPaintEvent& event);
+- OnTimerCheck · function · L43-L43 — void OnTimerCheck(wxTimerEvent& event);
+- OnFlashTimer · function · L44-L44 — void OnFlashTimer(wxTimerEvent& event);
+- IsClickOnTopMostWindow · function · L47-L47 — bool IsClickOnTopMostWindow(const wxPoint& mouse_pos);
+- StartClickDetection · function · L48-L48 — void StartClickDetection();
+- StopClickDetection · function · L49-L49 — void StopClickDetection();
+- CleanupTimers · function · L50-L50 — void CleanupTimers();
+- CreatePreviewPanel · function · L54-L54 — wxBoxSizer* CreatePreviewPanel(const FilamentColor& fila_color, const std::string& fila_type);
+- CreateColorGrid · function · L55-L55 — wxScrolledWindow* CreateColorGrid();
+- CreateSeparatorLine · function · L56-L56 — wxBoxSizer* CreateSeparatorLine();
+- CreateMoreInfoButton · function · L57-L57 — void CreateMoreInfoButton();
+- BindEvents · function · L58-L58 — void BindEvents();
+- CreateColorBitmap · function · L61-L61 — void CreateColorBitmap(const FilamentColor& fila_color);
+- CreateInfoSection · function · L62-L62 — wxBoxSizer* CreateInfoSection();
+- SetupLabelsContent · function · L63-L63 — void SetupLabelsContent(const FilamentColor& fila_color, const std::string& fila_type);
+- UpdatePreview · function · L66-L66 — void UpdatePreview(const FilamentColorCode& filament);
+- UpdateCustomColorPreview · function · L67-L67 — void UpdateCustomColorPreview(const wxColour& custom_color);
+- UpdateButtonStates · function · L68-L68 — void UpdateButtonStates(wxBitmapButton* selected_btn);
+- SetWindowShape · function · L71-L71 — void SetWindowShape();
+- CreateShapedBitmap · function · L72-L72 — void CreateShapedBitmap();
+- LoadFilamentData · function · L75-L75 — bool LoadFilamentData(const wxString& fila_id);
+- GetSingleColorData · function · L76-L76 — wxColourData GetSingleColorData();
+- StartFlashing · function · L79-L79 — void StartFlashing();

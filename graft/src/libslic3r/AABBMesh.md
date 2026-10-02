@@ -1,0 +1,37 @@
+# src/libslic3r/AABBMesh.hpp
+
+- TriangleMesh · class · L23-L23 — class TriangleMesh;
+- AABBMesh · class · L27-L137 — class AABBMesh
+- AABBImpl · class · L28-L28 — class AABBImpl;
+- init · function · L42-L42 — template<class M> void init(const M &mesh, bool calculate_epsilon);
+- AABBMesh · function · L48-L48 — explicit AABBMesh(const indexed_triangle_set &tmesh, bool calculate_epsilon = false);
+- AABBMesh · function · L49-L49 — explicit AABBMesh(const TriangleMesh &mesh, bool calculate_epsilon = false);
+- AABBMesh · function · L51-L51 — AABBMesh(const AABBMesh& other);
+- AABBMesh · function · L54-L54 — AABBMesh(AABBMesh &&other);
+- vertices · function · L59-L59 — const std::vector<Vec3f>& vertices() const;
+- indices · function · L60-L60 — const std::vector<Vec3i32>& indices()  const;
+- vertices · function · L61-L61 — const Vec3f& vertices(size_t idx) const;
+- indices · function · L62-L62 — const Vec3i32& indices(size_t idx) const;
+- hit_result · class · L65-L100 — class hit_result
+- hit_result · function · L77-L77 — explicit inline hit_result(const AABBMesh& em): m_mesh(&em) {}
+- infty · function · L80-L80 — static inline constexpr double infty() { return std::numeric_limits<double>::infinity(); }
+- hit_result · function · L82-L82 — explicit inline hit_result(double val = infty()) : m_t(val) {}
+- distance · function · L84-L84 — inline double distance() const { return m_t; }
+- direction · function · L85-L85 — inline const Vec3d& direction() const { return m_dir; }
+- source · function · L86-L86 — inline const Vec3d& source() const { return m_source; }
+- position · function · L87-L87 — inline Vec3d position() const { return m_source + m_dir * m_t; }
+- face · function · L88-L88 — inline int face() const { return m_face_id; }
+- is_valid · function · L89-L89 — inline bool is_valid() const { return m_mesh != nullptr; }
+- is_hit · function · L90-L90 — inline bool is_hit() const { return m_face_id >= 0 && !std::isinf(m_t); }
+- normal · function · L92-L92 — inline const Vec3d& normal() const
+- is_inside · function · L97-L99 — inline bool is_inside() const
+- load_holes · function · L105-L107 — void load_holes(const std::vector<sla::DrainHole>& holes)
+- filter_hits · function · L114-L114 — hit_result filter_hits(const std::vector<AABBMesh::hit_result>& obj_hits) const;
+- query_ray_hit · function · L118-L118 — hit_result query_ray_hit(const Vec3d &s, const Vec3d &dir) const;
+- query_ray_hits · function · L121-L121 — std::vector<hit_result> query_ray_hits(const Vec3d &s, const Vec3d &dir) const;
+- squared_distance · function · L123-L123 — double squared_distance(const Vec3d& p, int& i, Vec3d& c) const;
+- squared_distance · function · L124-L129 — inline double squared_distance(const Vec3d &p) const
+- normal_by_face_id · function · L131-L131 — Vec3d normal_by_face_id(int face_id) const;
+- get_triangle_mesh · function · L133-L133 — const indexed_triangle_set * get_triangle_mesh() const { return m_tm; }
+- vertex_face_index · function · L135-L135 — const VertexFaceIndex &vertex_face_index() const { return m_vfidx; }
+- face_neighbor_index · function · L136-L136 — const std::vector<Vec3i32> &face_neighbor_index() const { return m_fnidx; }

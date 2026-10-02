@@ -1,0 +1,36 @@
+# src/slic3r/GUI/Widgets/SpinInput.hpp
+
+- Button · class · L10-L10 — class Button;
+- SpinInput · class · L16-L111 — class SpinInput : public wxNavigationEnabled<StaticBox>
+- SpinInput · function · L36-L36 — SpinInput();
+- SpinInput · function · L38-L44 — SpinInput(wxWindow *     parent,
+- Create · function · L46-L55 — void Create(wxWindow *     parent,
+- SetCornerRadius · function · L57-L57 — void SetCornerRadius(double radius);
+- SetLabel · function · L59-L59 — void SetLabel(const wxString &label) wxOVERRIDE;
+- SetLabelColor · function · L61-L61 — void SetLabelColor(StateColor const &color);
+- SetTextColor · function · L63-L63 — void SetTextColor(StateColor const &color);
+- SetSize · function · L65-L65 — void SetSize(wxSize const &size);
+- Rescale · function · L67-L67 — void Rescale();
+- Enable · function · L69-L69 — virtual bool Enable(bool enable = true) wxOVERRIDE;
+- GetTextCtrl · function · L71-L71 — wxTextCtrl * GetTextCtrl() { return text_ctrl; }
+- SetValue · function · L73-L73 — void SetValue(const wxString &text);
+- SetValue · function · L75-L75 — void SetValue (int value);
+- GetValue · function · L77-L77 — int GetValue () const;
+- SetStep · function · L79-L79 — void SetStep(int value) { step = value; };
+- GetStep · function · L81-L81 — int  GetStep() { return step; };
+- SetRange · function · L83-L83 — void SetRange(int min, int max);
+- GetMin · function · L85-L85 — int GetMin() const { return this->min; }
+- GetMax · function · L86-L86 — int GetMax() const { return this->max; }
+- DoSetToolTipText · function · L89-L89 — void DoSetToolTipText(wxString const &tip) override;
+- paintEvent · function · L92-L92 — void paintEvent(wxPaintEvent& evt);
+- render · function · L94-L94 — void render(wxDC& dc);
+- messureSize · function · L96-L96 — void messureSize();
+- createButton · function · L98-L98 — Button *createButton(bool inc);
+- mouseWheelMoved · function · L101-L101 — void mouseWheelMoved(wxMouseEvent& event);
+- keyPressed · function · L102-L102 — void keyPressed(wxKeyEvent& event);
+- onTimer · function · L103-L103 — void onTimer(wxTimerEvent &evnet);
+- onTextLostFocus · function · L104-L104 — void onTextLostFocus(wxEvent &event);
+- onTextChanged · function · L105-L105 — void onTextChanged(wxCommandEvent &event);
+- onTextEnter · function · L106-L106 — void onTextEnter(wxCommandEvent &event);
+- sendSpinEvent · function · L108-L108 — void sendSpinEvent();
+- DECLARE_EVENT_TABLE · function · L110-L110 — DECLARE_EVENT_TABLE()

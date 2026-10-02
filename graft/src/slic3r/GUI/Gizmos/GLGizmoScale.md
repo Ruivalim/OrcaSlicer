@@ -1,0 +1,33 @@
+# src/slic3r/GUI/Gizmos/GLGizmoScale.hpp
+
+- GLGizmoScale3D · class · L14-L105 — class GLGizmoScale3D : public GLGizmoBase
+- StartingData · class · L18-L33 — struct StartingData
+- StartingData · function · L32-L32 — StartingData() : scale(Vec3d::Ones()), drag_position(Vec3d::Zero()), ctrl_down(false) { for (int i = 0; i < 5; ++i) { pivots[i] = Vec3d::Zero(); } }
+- GrabberConnection · class · L44-L50 — struct GrabberConnection
+- GLGizmoScale3D · function · L59-L59 — GLGizmoScale3D(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id, GizmoObjectManipulation* obj_manipulation);
+- get_snap_step · function · L61-L61 — double get_snap_step(double step) const { return m_snap_step; }
+- set_snap_step · function · L62-L62 — void set_snap_step(double step) { m_snap_step = step; }
+- get_scale · function · L64-L64 — const Vec3d &get_scale();
+- set_scale · function · L65-L65 — void set_scale(const Vec3d& scale) { m_starting.scale = scale; m_scale = scale; }
+- get_offset · function · L67-L67 — const Vec3d& get_offset() const { return m_offset; }
+- get_tooltip · function · L69-L69 — std::string get_tooltip() const override;
+- on_mouse · function · L76-L76 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- data_changed · function · L78-L78 — void data_changed(bool is_serializing) override;
+- enable_ununiversal_scale · function · L79-L79 — void enable_ununiversal_scale(bool enable);
+- on_init · function · L81-L81 — virtual bool on_init() override;
+- on_get_name · function · L82-L82 — virtual std::string on_get_name() const override;
+- on_is_activable · function · L83-L83 — virtual bool on_is_activable() const override;
+- on_set_state · function · L84-L84 — virtual void on_set_state() override;
+- on_start_dragging · function · L85-L85 — virtual void on_start_dragging() override;
+- on_stop_dragging · function · L86-L86 — virtual void on_stop_dragging() override;
+- on_dragging · function · L87-L87 — virtual void on_dragging(const UpdateData& data) override;
+- on_render · function · L88-L88 — virtual void on_render() override;
+- on_register_raycasters_for_picking · function · L89-L89 — virtual void on_register_raycasters_for_picking() override;
+- on_unregister_raycasters_for_picking · function · L90-L90 — virtual void on_unregister_raycasters_for_picking() override;
+- on_render_input_window · function · L92-L92 — virtual void on_render_input_window(float x, float y, float bottom_limit) override;
+- render_grabbers_connection · function · L95-L95 — void render_grabbers_connection(unsigned int id_1, unsigned int id_2, const ColorRGBA& color);
+- do_scale_along_axis · function · L97-L97 — void do_scale_along_axis(Axis axis, const UpdateData& data);
+- do_scale_uniform · function · L98-L98 — void do_scale_uniform(const UpdateData& data);
+- calc_ratio · function · L100-L100 — double calc_ratio(const UpdateData& data) const;
+- update_grabbers_data · function · L101-L101 — void   update_grabbers_data();
+- change_cs_by_selection · function · L102-L102 — void   change_cs_by_selection(); // cs mean Coordinate System

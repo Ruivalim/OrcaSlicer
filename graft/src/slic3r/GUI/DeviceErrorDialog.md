@@ -1,0 +1,23 @@
+# src/slic3r/GUI/DeviceErrorDialog.hpp
+
+- Label · class · L14-L14 — class Label;
+- Button · class · L15-L15 — class Button;
+- MachineObject · class · L19-L19 — class MachineObject;//Previous definitions
+- DeviceErrorDialog · class · L23-L126 — class DeviceErrorDialog : public DPIDialog
+- ActionButton · type · L26-L66 — enum ActionButton : int
+- DeviceErrorDialog · function · L71-L77 — DeviceErrorDialog(MachineObject* obj,
+- show_error_code · function · L81-L81 — wxString show_error_code(int error_code);
+- set_action_json · function · L82-L82 — void     set_action_json(const nlohmann::json &action_json) { m_action_json = action_json; }
+- init_button_list · function · L85-L85 — void init_button_list();
+- init_button · function · L86-L86 — void init_button(ActionButton style, wxString buton_text);
+- parse_error_level · function · L88-L88 — wxString parse_error_level(int error_code);
+- convert_to_pseudo_buttons · function · L89-L89 — std::vector<int> convert_to_pseudo_buttons(std::string error_str);
+- update_contents · function · L91-L91 — void update_contents(const wxString& title, const wxString& text, const wxString& error_code,const wxString& image_url, const std::vector<int>& btns);
+- on_button_click · function · L93-L93 — void on_button_click(ActionButton btn_id);
+- on_webrequest_state · function · L94-L94 — void on_webrequest_state(wxWebRequestEvent& evt);
+- on_request_timeout · function · L95-L95 — void on_request_timeout(wxTimerEvent& event);
+- clear_request_timer · function · L96-L96 — void clear_request_timer();
+- make_placeholder_image · function · L97-L97 — wxBitmap make_placeholder_image(const wxString& text);
+- get_fail_snapshot_from_cloud · function · L98-L98 — bool get_fail_snapshot_from_cloud();
+- get_fail_snapshot_from_local · function · L99-L99 — bool get_fail_snapshot_from_local(const wxString& image_url);
+- on_dpi_changed · function · L100-L100 — void on_dpi_changed(const wxRect& suggested_rect);

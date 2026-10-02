@@ -1,0 +1,36 @@
+# src/slic3r/GUI/AuxiliaryDataViewModel.hpp
+
+- AuxiliaryModelNode · class · L13-L13 — class AuxiliaryModelNode;
+- WX_DEFINE_ARRAY_PTR · function · L14-L14 — WX_DEFINE_ARRAY_PTR(AuxiliaryModelNode*, AuxiliaryModelNodePtrArray);
+- AuxiliaryModelNode · class · L18-L98 — class AuxiliaryModelNode
+- AuxiliaryModelNode · function · L21-L27 — AuxiliaryModelNode()
+- AuxiliaryModelNode · function · L29-L39 — AuxiliaryModelNode(AuxiliaryModelNode* parent, const wxString& abs_path, bool is_container)
+- IsContainer · function · L52-L55 — bool IsContainer() const
+- GetParent · function · L57-L57 — AuxiliaryModelNode* GetParent()
+- SetParent · function · L62-L65 — void SetParent(AuxiliaryModelNode* parent)
+- GetChildren · function · L67-L67 — AuxiliaryModelNodePtrArray& GetChildren()
+- GetNthChild · function · L71-L71 — AuxiliaryModelNode* GetNthChild(unsigned int n)
+- Insert · function · L75-L78 — void Insert(AuxiliaryModelNode* child, unsigned int n)
+- Append · function · L79-L82 — void Append(AuxiliaryModelNode* child)
+- GetChildCount · function · L83-L86 — unsigned int GetChildCount() const
+- AuxiliaryModel · class · L100-L152 — class AuxiliaryModel : public wxDataViewModel
+- AuxiliaryModel · function · L103-L103 — AuxiliaryModel();
+- CreateFolder · function · L107-L107 — wxDataViewItem CreateFolder(wxString name = wxEmptyString);
+- ImportFile · function · L108-L108 — wxDataViewItemArray ImportFile(AuxiliaryModelNode* sel, wxArrayString file_paths);
+- Delete · function · L109-L109 — void Delete(const wxDataViewItem& item);
+- MoveItem · function · L110-L110 — void MoveItem(const wxDataViewItem& dropped_item, const wxDataViewItem& dragged_item);
+- IsOrphan · function · L111-L111 — bool IsOrphan(const wxDataViewItem& item);
+- Rename · function · L112-L112 — bool Rename(const wxDataViewItem& item, const wxString& name);
+- GetParent · function · L113-L113 — AuxiliaryModelNode* GetParent(AuxiliaryModelNode* node) const;
+- Reparent · function · L114-L114 — void Reparent(AuxiliaryModelNode* node, AuxiliaryModelNode* new_parent);
+- Init · function · L116-L116 — void Init(wxString aux_path);
+- Reload · function · L117-L117 — void Reload(wxString aux_path);
+- Compare · function · L121-L122 — int Compare(const wxDataViewItem& item1, const wxDataViewItem& item2,
+- GetColumnCount · function · L126-L129 — virtual unsigned int GetColumnCount() const wxOVERRIDE
+- GetColumnType · function · L131-L134 — virtual wxString GetColumnType(unsigned int col) const wxOVERRIDE
+- GetValue · function · L136-L137 — virtual void GetValue(wxVariant& variant,
+- SetValue · function · L138-L139 — virtual bool SetValue(const wxVariant& variant,
+- IsEnabled · function · L141-L142 — virtual bool IsEnabled(const wxDataViewItem& item,
+- GetParent · function · L144-L144 — virtual wxDataViewItem GetParent(const wxDataViewItem& item) const wxOVERRIDE;
+- IsContainer · function · L145-L145 — virtual bool IsContainer(const wxDataViewItem& item) const wxOVERRIDE;
+- GetChildren · function · L146-L147 — virtual unsigned int GetChildren(const wxDataViewItem& parent,

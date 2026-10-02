@@ -1,0 +1,69 @@
+# src/libslic3r/EdgeGrid.hpp
+
+- Contour · class · L15-L89 — class Contour
+- Contour · function · L17-L17 — Contour() = default;
+- Contour · function · L18-L18 — Contour(const Slic3r::Point *begin, const Slic3r::Point *end, bool open) : m_begin(begin), m_end(end), m_open(open) {}
+- Contour · function · L19-L19 — Contour(const Slic3r::Point *data, size_t size, bool open) : Contour(data, data + size, open) {}
+- Contour · function · L20-L20 — Contour(const Points &pts, bool open) : Contour(pts.data(), pts.size(), open) {}
+- begin · function · L22-L22 — const Slic3r::Point *begin()  const { return m_begin; }
+- end · function · L23-L23 — const Slic3r::Point *end()    const { return m_end; }
+- open · function · L24-L24 — bool                 open()   const { return m_open; }
+- closed · function · L25-L25 — bool                 closed() const { return !m_open; }
+- front · function · L27-L27 — const Slic3r::Point &front()  const { return *m_begin; }
+- back · function · L28-L28 — const Slic3r::Point &back()   const { return *(m_end - 1); }
+- segment_start · function · L31-L31 — const Slic3r::Point& segment_start(size_t idx) const
+- segment_end · function · L37-L37 — const Slic3r::Point& segment_end(size_t idx) const
+- segment_prev · function · L44-L44 — const Slic3r::Point& segment_prev(size_t idx) const
+- segment_idx_prev · function · L51-L55 — const size_t 		 segment_idx_prev(size_t idx) const
+- segment_idx_next · function · L58-L62 — const size_t 		 segment_idx_next(size_t idx) const
+- num_segments · function · L64-L64 — size_t               num_segments() const { return this->size() - (m_open ? 1 : 0); }
+- get_segment · function · L66-L70 — Line                 get_segment(size_t idx) const
+- get_segments · function · L72-L81 — Lines                get_segments() const
+- size · function · L84-L84 — size_t  			 size() const { return m_end - m_begin; }
+- Grid · class · L91-L411 — class Grid
+- Grid · function · L94-L94 — Grid() = default;
+- Grid · function · L95-L95 — Grid(const BoundingBox &bbox) : m_bbox(bbox) {}
+- set_bbox · function · L97-L97 — void set_bbox(const BoundingBox &bbox) { m_bbox = bbox; }
+- create · function · L105-L105 — void create(const std::vector<Points> &polylines_or_polygons, coord_t resolution, bool open);
+- create · function · L106-L106 — void create(const Polygons &polygons, const Polylines &polylines, coord_t resolution);
+- create · function · L109-L109 — void create(const Polygons &polygons, coord_t resolution);
+- create · function · L110-L110 — void create(const std::vector<const Polygon*> &polygons, coord_t resolution);
+- create · function · L111-L111 — void create(const std::vector<Points> &polygons, coord_t resolution) { this->create(polygons, resolution, false); }
+- create · function · L112-L112 — void create(const ExPolygon &expoly, coord_t resolution);
+- create · function · L113-L113 — void create(const ExPolygons &expolygons, coord_t resolution);
+- contours · function · L115-L115 — const std::vector<Contour>& contours() const { return m_contours; }
+- intersect · function · L119-L119 — bool intersect(const MultiPoint &polyline, bool closed);
+- intersect · function · L120-L120 — bool intersect(const Polygon &polygon) { return intersect(static_cast<const MultiPoint&>(polygon), true); }
+- intersect · function · L121-L121 — bool intersect(const Polygons &polygons) { for (size_t i = 0; i < polygons.size(); ++ i) if (intersect(polygons[i])) return true; return false; }
+- intersect · function · L122-L122 — bool intersect(const ExPolygon &expoly) { if (intersect(expoly.contour)) return true; for (size_t i = 0; i < expoly.holes.size(); ++ i) if (intersect(expoly.holes[i])) return true; return false; }
+- intersect · function · L123-L123 — bool intersect(const ExPolygons &expolygons) { for (size_t i = 0; i < expolygons.size(); ++ i) if (intersect(expolygons[i])) return true; return false; }
+- inside · function · L126-L126 — bool inside(const Point &pt);
+- calculate_sdf · function · L132-L132 — void calculate_sdf();
+- signed_distance_bilinear · function · L135-L135 — float signed_distance_bilinear(const Point &pt) const;
+- ClosestPointResult · class · L139-L148 — struct ClosestPointResult
+- valid · function · L147-L147 — bool valid() const { return contour_idx != size_t(-1); }
+- closest_point_signed_distance · function · L149-L149 — ClosestPointResult closest_point_signed_distance(const Point &pt, coord_t search_radius) const;
+- signed_distance_edges · function · L152-L152 — bool signed_distance_edges(const Point &pt, coord_t search_radius, coordf_t &result_min_dist, bool *pon_segment = nullptr) const;
+- signed_distance · function · L157-L157 — bool signed_distance(const Point &pt, coord_t search_radius, coordf_t &result_min_dist) const;
+- bbox · function · L159-L159 — const BoundingBox& 	bbox() const { return m_bbox; }
+- resolution · function · L160-L160 — const coord_t 		resolution() const { return m_resolution; }
+- rows · function · L161-L161 — const size_t		rows() const { return m_rows; }
+- cols · function · L162-L162 — const size_t		cols() const { return m_cols; }
+- contours_simplified · function · L165-L165 — Polygons 			contours_simplified(coord_t offset, bool fill_holes) const;
+- ContourPoint · type · L167-L167 — typedef std::pair<const Contour*, size_t> ContourPoint;
+- ContourEdge · type · L168-L168 — typedef std::pair<const Contour*, size_t> ContourEdge;
+- intersecting_edges · function · L169-L169 — std::vector<std::pair<ContourEdge, ContourEdge>> intersecting_edges() const;
+- has_intersecting_edges · function · L170-L170 — bool 											 has_intersecting_edges() const;
+- visit_cells_intersecting_line · function · L172-L323 — template<typename VISITOR> void visit_cells_intersecting_line(Slic3r::Point p1, Slic3r::Point p2, VISITOR &visitor) const
+- visit_cells_intersecting_box · function · L325-L342 — template<typename VISITOR> void visit_cells_intersecting_box(BoundingBox bbox, VISITOR &visitor) const
+- cell_data_range · function · L344-L350 — std::pair<std::vector<std::pair<size_t, size_t>>::const_iterator, std::vector<std::pair<size_t, size_t>>::const_iterator> cell_data_range(coord_t row, coord_t col) const
+- segment · function · L352-L357 — std::pair<const Slic3r::Point&, const Slic3r::Point&> segment(const std::pair<size_t, size_t> &contour_and_segment_idx) const
+- line · function · L359-L364 — Line line(const std::pair<size_t, size_t> &contour_and_segment_idx) const
+- Cell · class · L367-L371 — struct Cell
+- Cell · function · L368-L368 — Cell() : begin(0), end(0) {}
+- create_from_m_contours · function · L373-L373 — void create_from_m_contours(coord_t resolution);
+- line_cell_intersect · function · L375-L375 — bool line_cell_intersect(const Point &p1, const Point &p2, const Cell &cell);
+- cell_inside_or_crossing · function · L377-L388 — bool cell_inside_or_crossing(int r, int c) const
+- save_png · function · L414-L414 — extern void save_png(const Grid &grid, const BoundingBox &bbox, coord_t resolution, const char *path, size_t scale = 1);
+- intersecting_edges · function · L419-L419 — extern std::vector<std::pair<EdgeGrid::Grid::ContourEdge, EdgeGrid::Grid::ContourEdge>> intersecting_edges(const Polygons &polygons);
+- export_intersections_to_svg · function · L422-L422 — extern void export_intersections_to_svg(const std::string &filename, const Polygons &polygons);

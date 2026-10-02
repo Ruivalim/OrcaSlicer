@@ -1,0 +1,24 @@
+# deps_src/libigl/igl/opengl/ViewerCore.h
+
+- ViewerCore · function · L30-L30 — IGL_INLINE ViewerCore();
+- init · function · L33-L33 — IGL_INLINE void init();
+- shut · function · L36-L36 — IGL_INLINE void shut();
+- InitSerialization · function · L39-L39 — IGL_INLINE void InitSerialization();
+- align_camera_center · function · L44-L46 — IGL_INLINE void align_camera_center(
+- align_camera_center · function · L48-L49 — IGL_INLINE void align_camera_center(
+- get_scale_and_shift_to_fit_mesh · function · L57-L61 — IGL_INLINE void get_scale_and_shift_to_fit_mesh(
+- get_scale_and_shift_to_fit_mesh · function · L63-L66 — IGL_INLINE void get_scale_and_shift_to_fit_mesh(
+- clear_framebuffers · function · L69-L69 — IGL_INLINE void clear_framebuffers();
+- initialize_shadow_pass · function · L80-L80 — IGL_INLINE void initialize_shadow_pass();
+- deinitialize_shadow_pass · function · L82-L82 — IGL_INLINE void deinitialize_shadow_pass();
+- RotationType · type · L116-L126 — enum RotationType
+- set_rotation_type · function · L129-L129 — IGL_INLINE void set_rotation_type(const RotationType & value);
+- set · function · L134-L134 — IGL_INLINE void set(unsigned int &property_mask, bool value = true) const;
+- unset · function · L138-L138 — IGL_INLINE void unset(unsigned int &property_mask) const;
+- toggle · function · L142-L142 — IGL_INLINE void toggle(unsigned int &property_mask) const;
+- is_set · function · L147-L147 — IGL_INLINE bool is_set(unsigned int property_mask) const;
+- delete_shadow_buffers · function · L150-L150 — IGL_INLINE void delete_shadow_buffers();
+- generate_shadow_buffers · function · L152-L152 — IGL_INLINE void generate_shadow_buffers();
+- serialization · function · L244-L277 — inline void serialization(bool s, igl::opengl::ViewerCore& obj, std::vector<char>& buffer)
+- serialize · function · L280-L283 — inline void serialize(const igl::opengl::ViewerCore& obj, std::vector<char>& buffer)
+- deserialize · function · L286-L289 — inline void deserialize(igl::opengl::ViewerCore& obj, const std::vector<char>& buffer)

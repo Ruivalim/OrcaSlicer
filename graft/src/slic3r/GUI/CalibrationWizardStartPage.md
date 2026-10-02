@@ -1,0 +1,25 @@
+# src/slic3r/GUI/CalibrationWizardStartPage.hpp
+
+- CalibrationStartPage · class · L10-L38 — class CalibrationStartPage : public CalibrationWizardPage
+- CalibrationStartPage · function · L13-L17 — CalibrationStartPage(wxWindow* parent,
+- create_when · function · L33-L33 — void create_when(wxWindow* parent, wxString title, wxString content);
+- create_about · function · L34-L34 — void create_about(wxWindow* parent, wxString title, wxString content);
+- create_bitmap · function · L35-L35 — void create_bitmap(wxWindow* parent, const wxBitmap& before_img, const wxBitmap& after_img);
+- create_bitmap · function · L36-L36 — void create_bitmap(wxWindow* parent, std::string before_img, std::string after_img);
+- create_bitmap · function · L37-L37 — void create_bitmap(wxWindow* parent, std::string img);
+- CalibrationPAStartPage · class · L40-L54 — class CalibrationPAStartPage : public CalibrationStartPage
+- CalibrationPAStartPage · function · L43-L47 — CalibrationPAStartPage(wxWindow* parent,
+- create_page · function · L49-L49 — void create_page(wxWindow* parent);
+- on_reset_page · function · L51-L51 — void on_reset_page() override;
+- on_device_connected · function · L52-L52 — void on_device_connected(MachineObject* obj) override;
+- msw_rescale · function · L53-L53 — void msw_rescale() override;
+- CalibrationFlowRateStartPage · class · L56-L69 — class CalibrationFlowRateStartPage : public CalibrationStartPage
+- CalibrationFlowRateStartPage · function · L59-L63 — CalibrationFlowRateStartPage(wxWindow* parent,
+- create_page · function · L65-L65 — void create_page(wxWindow* parent);
+- on_reset_page · function · L66-L66 — void on_reset_page() override;
+- on_device_connected · function · L67-L67 — void on_device_connected(MachineObject* obj) override;
+- msw_rescale · function · L68-L68 — void msw_rescale() override;
+- CalibrationMaxVolumetricSpeedStartPage · class · L71-L82 — class CalibrationMaxVolumetricSpeedStartPage : public CalibrationStartPage
+- CalibrationMaxVolumetricSpeedStartPage · function · L74-L78 — CalibrationMaxVolumetricSpeedStartPage(wxWindow* parent,
+- create_page · function · L80-L80 — void create_page(wxWindow* parent);
+- msw_rescale · function · L81-L81 — void msw_rescale() override;

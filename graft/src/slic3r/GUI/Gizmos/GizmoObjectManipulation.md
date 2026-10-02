@@ -1,0 +1,51 @@
+# src/slic3r/GUI/Gizmos/GizmoObjectManipulation.hpp
+
+- Selection · class · L17-L17 — class Selection;
+- GLCanvas3D · class · L18-L18 — class GLCanvas3D;
+- GizmoObjectManipulation · class · L20-L181 — class GizmoObjectManipulation
+- Cache · class · L28-L57 — struct Cache
+- Cache · function · L45-L45 — Cache() { reset(); }
+- reset · function · L46-L55 — void reset()
+- is_valid · function · L56-L56 — bool is_valid() const { return position != Vec3d(DBL_MAX, DBL_MAX, DBL_MAX); }
+- RotateType · type · L100-L101 — enum class RotateType { None, Relative, Absolute
+- GizmoObjectManipulation · function · L110-L110 — GizmoObjectManipulation(GLCanvas3D& glcanvas);
+- IsShown · function · L113-L113 — bool        IsShown();
+- UpdateAndShow · function · L114-L114 — void        UpdateAndShow(const bool show);
+- update_ui_from_settings · function · L115-L115 — void update_ui_from_settings();
+- set_dirty · function · L117-L117 — void        set_dirty() { m_dirty = true; }
+- update_if_dirty · function · L119-L119 — void		update_if_dirty();
+- set_uniform_scaling · function · L121-L121 — void        set_uniform_scaling(const bool uniform_scale);
+- get_uniform_scaling · function · L122-L122 — bool        get_uniform_scaling() const { return m_uniform_scale; }
+- set_use_object_cs · function · L123-L123 — void        set_use_object_cs(bool flag){ if (m_use_object_cs != flag) m_use_object_cs = flag; }
+- get_use_object_cs · function · L124-L124 — bool        get_use_object_cs() { return m_use_object_cs; }
+- set_coordinates_type · function · L126-L126 — void        set_coordinates_type(ECoordinatesType type);
+- get_coordinates_type · function · L127-L127 — ECoordinatesType get_coordinates_type() const { return m_coordinates_type; }
+- is_world_coordinates · function · L128-L128 — bool        is_world_coordinates() const { return m_coordinates_type == ECoordinatesType::World; }
+- is_instance_coordinates · function · L129-L129 — bool        is_instance_coordinates() const { return m_coordinates_type == ECoordinatesType::Instance; }
+- is_local_coordinates · function · L130-L130 — bool        is_local_coordinates() const { return m_coordinates_type == ECoordinatesType::Local; }
+- get_cache · function · L132-L132 — const Cache& get_cache() {return m_cache; }
+- reset_cache · function · L133-L133 — void reset_cache() { m_cache.reset(); }
+- limit_scaling_ratio · function · L135-L135 — void limit_scaling_ratio(Vec3d &scaling_factor) const;
+- on_change · function · L136-L136 — void on_change(const std::string& opt_key, int axis, double new_value);
+- render_combo · function · L137-L137 — bool render_combo(ImGuiWrapper *imgui_wrapper, const std::string &label, const std::vector<std::string> &lines, size_t &selection_idx, float label_width, float item_width);
+- do_render_move_window · function · L138-L138 — void do_render_move_window(ImGuiWrapper *imgui_wrapper, std::string window_name, float x, float y, float bottom_limit);
+- do_render_rotate_window · function · L139-L139 — void do_render_rotate_window(ImGuiWrapper *imgui_wrapper, std::string window_name, float x, float y, float bottom_limit);
+- do_render_scale_input_window · function · L140-L140 — void do_render_scale_input_window(ImGuiWrapper* imgui_wrapper, std::string window_name, float x, float y, float bottom_limit);
+- max_unit_size · function · L141-L141 — float max_unit_size(int number, Vec3d &vec1, Vec3d &vec2,std::string str);
+- reset_button · function · L142-L142 — bool reset_button(ImGuiWrapper *imgui_wrapper, bool enabled);
+- reset_zero_button · function · L143-L143 — bool reset_zero_button(ImGuiWrapper *imgui_wrapper, bool enabled);
+- bbl_checkbox · function · L144-L144 — bool bbl_checkbox(const wxString &label, bool &value);
+- set_init_rotation · function · L146-L146 — void set_init_rotation(const Geometry::Transformation &value);
+- reset_settings_value · function · L149-L149 — void reset_settings_value();
+- update_settings_value · function · L150-L150 — void update_settings_value(const Selection& selection);
+- update_buffered_value · function · L151-L151 — void update_buffered_value();
+- update_reset_buttons_visibility · function · L154-L154 — void update_reset_buttons_visibility();
+- change_position_value · function · L159-L159 — void change_position_value(int axis, double value);
+- change_rotation_value · function · L160-L160 — void change_rotation_value(int axis, double value);
+- change_absolute_rotation_value · function · L161-L161 — void change_absolute_rotation_value(int axis, double value);
+- change_scale_value · function · L162-L162 — void change_scale_value(int axis, double value);
+- change_size_value · function · L163-L163 — void change_size_value(int axis, double value);
+- do_scale · function · L164-L164 — void do_scale(int axis, const Vec3d &scale) const;
+- reset_position_value · function · L165-L165 — void reset_position_value();
+- reset_rotation_value · function · L166-L166 — void reset_rotation_value(bool reset_relative);
+- reset_scale_value · function · L167-L167 — void reset_scale_value();

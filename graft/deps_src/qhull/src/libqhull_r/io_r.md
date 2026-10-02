@@ -1,0 +1,75 @@
+# deps_src/qhull/src/libqhull_r/io_r.h
+
+- qh_RIDGE · type · L61-L65 — typedef enum
+- qh_dfacet · function · L84-L84 — void    qh_dfacet(qhT *qh, unsigned id);
+- qh_dvertex · function · L85-L85 — void    qh_dvertex(qhT *qh, unsigned id);
+- qh_compare_facetarea · function · L86-L86 — int     qh_compare_facetarea(const void *p1, const void *p2);
+- qh_compare_facetmerge · function · L87-L87 — int     qh_compare_facetmerge(const void *p1, const void *p2);
+- qh_compare_facetvisit · function · L88-L88 — int     qh_compare_facetvisit(const void *p1, const void *p2);
+- qh_copyfilename · function · L90-L90 — void    qh_copyfilename(qhT *qh, char *filename, int size, const char* source, int length);
+- qh_countfacets · function · L91-L93 — void    qh_countfacets(qhT *qh, facetT *facetlist, setT *facets, boolT printall,
+- qh_detvnorm · function · L94-L94 — pointT *qh_detvnorm(qhT *qh, vertexT *vertex, vertexT *vertexA, setT *centers, realT *offsetp);
+- qh_detvridge · function · L95-L95 — setT   *qh_detvridge(qhT *qh, vertexT *vertex);
+- qh_detvridge3 · function · L96-L96 — setT   *qh_detvridge3(qhT *qh, vertexT *atvertex, vertexT *vertex);
+- qh_eachvoronoi · function · L97-L97 — int     qh_eachvoronoi(qhT *qh, FILE *fp, printvridgeT printvridge, vertexT *atvertex, boolT visitall, qh_RIDGE innerouter, boolT inorder);
+- qh_eachvoronoi_all · function · L98-L98 — int     qh_eachvoronoi_all(qhT *qh, FILE *fp, printvridgeT printvridge, boolT isUpper, qh_RIDGE innerouter, boolT inorder);
+- qh_facet2point · function · L99-L99 — void    qh_facet2point(qhT *qh, facetT *facet, pointT **point0, pointT **point1, realT *mindist);
+- qh_facetvertices · function · L100-L100 — setT   *qh_facetvertices(qhT *qh, facetT *facetlist, setT *facets, boolT allfacets);
+- qh_geomplanes · function · L101-L101 — void    qh_geomplanes(qhT *qh, facetT *facet, realT *outerplane, realT *innerplane);
+- qh_markkeep · function · L102-L102 — void    qh_markkeep(qhT *qh, facetT *facetlist);
+- qh_markvoronoi · function · L103-L103 — setT   *qh_markvoronoi(qhT *qh, facetT *facetlist, setT *facets, boolT printall, boolT *isLowerp, int *numcentersp);
+- qh_order_vertexneighbors · function · L104-L104 — void    qh_order_vertexneighbors(qhT *qh, vertexT *vertex);
+- qh_prepare_output · function · L105-L105 — void    qh_prepare_output(qhT *qh);
+- qh_printafacet · function · L106-L106 — void    qh_printafacet(qhT *qh, FILE *fp, qh_PRINT format, facetT *facet, boolT printall);
+- qh_printbegin · function · L107-L107 — void    qh_printbegin(qhT *qh, FILE *fp, qh_PRINT format, facetT *facetlist, setT *facets, boolT printall);
+- qh_printcenter · function · L108-L108 — void    qh_printcenter(qhT *qh, FILE *fp, qh_PRINT format, const char *string, facetT *facet);
+- qh_printcentrum · function · L109-L109 — void    qh_printcentrum(qhT *qh, FILE *fp, facetT *facet, realT radius);
+- qh_printend · function · L110-L110 — void    qh_printend(qhT *qh, FILE *fp, qh_PRINT format, facetT *facetlist, setT *facets, boolT printall);
+- qh_printend4geom · function · L111-L111 — void    qh_printend4geom(qhT *qh, FILE *fp, facetT *facet, int *num, boolT printall);
+- qh_printextremes · function · L112-L112 — void    qh_printextremes(qhT *qh, FILE *fp, facetT *facetlist, setT *facets, boolT printall);
+- qh_printextremes_2d · function · L113-L113 — void    qh_printextremes_2d(qhT *qh, FILE *fp, facetT *facetlist, setT *facets, boolT printall);
+- qh_printextremes_d · function · L114-L114 — void    qh_printextremes_d(qhT *qh, FILE *fp, facetT *facetlist, setT *facets, boolT printall);
+- qh_printfacet · function · L115-L115 — void    qh_printfacet(qhT *qh, FILE *fp, facetT *facet);
+- qh_printfacet2math · function · L116-L116 — void    qh_printfacet2math(qhT *qh, FILE *fp, facetT *facet, qh_PRINT format, int notfirst);
+- qh_printfacet2geom · function · L117-L117 — void    qh_printfacet2geom(qhT *qh, FILE *fp, facetT *facet, realT color[3]);
+- qh_printfacet2geom_points · function · L118-L119 — void    qh_printfacet2geom_points(qhT *qh, FILE *fp, pointT *point1, pointT *point2,
+- qh_printfacet3math · function · L120-L120 — void    qh_printfacet3math(qhT *qh, FILE *fp, facetT *facet, qh_PRINT format, int notfirst);
+- qh_printfacet3geom_nonsimplicial · function · L121-L121 — void    qh_printfacet3geom_nonsimplicial(qhT *qh, FILE *fp, facetT *facet, realT color[3]);
+- qh_printfacet3geom_points · function · L122-L122 — void    qh_printfacet3geom_points(qhT *qh, FILE *fp, setT *points, facetT *facet, realT offset, realT color[3]);
+- qh_printfacet3geom_simplicial · function · L123-L123 — void    qh_printfacet3geom_simplicial(qhT *qh, FILE *fp, facetT *facet, realT color[3]);
+- qh_printfacet3vertex · function · L124-L124 — void    qh_printfacet3vertex(qhT *qh, FILE *fp, facetT *facet, qh_PRINT format);
+- qh_printfacet4geom_nonsimplicial · function · L125-L125 — void    qh_printfacet4geom_nonsimplicial(qhT *qh, FILE *fp, facetT *facet, realT color[3]);
+- qh_printfacet4geom_simplicial · function · L126-L126 — void    qh_printfacet4geom_simplicial(qhT *qh, FILE *fp, facetT *facet, realT color[3]);
+- qh_printfacetNvertex_nonsimplicial · function · L127-L127 — void    qh_printfacetNvertex_nonsimplicial(qhT *qh, FILE *fp, facetT *facet, int id, qh_PRINT format);
+- qh_printfacetNvertex_simplicial · function · L128-L128 — void    qh_printfacetNvertex_simplicial(qhT *qh, FILE *fp, facetT *facet, qh_PRINT format);
+- qh_printfacetheader · function · L129-L129 — void    qh_printfacetheader(qhT *qh, FILE *fp, facetT *facet);
+- qh_printfacetridges · function · L130-L130 — void    qh_printfacetridges(qhT *qh, FILE *fp, facetT *facet);
+- qh_printfacets · function · L131-L131 — void    qh_printfacets(qhT *qh, FILE *fp, qh_PRINT format, facetT *facetlist, setT *facets, boolT printall);
+- qh_printhyperplaneintersection · function · L132-L133 — void    qh_printhyperplaneintersection(qhT *qh, FILE *fp, facetT *facet1, facetT *facet2,
+- qh_printneighborhood · function · L134-L134 — void    qh_printneighborhood(qhT *qh, FILE *fp, qh_PRINT format, facetT *facetA, facetT *facetB, boolT printall);
+- qh_printline3geom · function · L135-L135 — void    qh_printline3geom(qhT *qh, FILE *fp, pointT *pointA, pointT *pointB, realT color[3]);
+- qh_printpoint · function · L136-L136 — void    qh_printpoint(qhT *qh, FILE *fp, const char *string, pointT *point);
+- qh_printpointid · function · L137-L137 — void    qh_printpointid(qhT *qh, FILE *fp, const char *string, int dim, pointT *point, int id);
+- qh_printpoint3 · function · L138-L138 — void    qh_printpoint3(qhT *qh, FILE *fp, pointT *point);
+- qh_printpoints_out · function · L139-L139 — void    qh_printpoints_out(qhT *qh, FILE *fp, facetT *facetlist, setT *facets, boolT printall);
+- qh_printpointvect · function · L140-L140 — void    qh_printpointvect(qhT *qh, FILE *fp, pointT *point, coordT *normal, pointT *center, realT radius, realT color[3]);
+- qh_printpointvect2 · function · L141-L141 — void    qh_printpointvect2(qhT *qh, FILE *fp, pointT *point, coordT *normal, pointT *center, realT radius);
+- qh_printridge · function · L142-L142 — void    qh_printridge(qhT *qh, FILE *fp, ridgeT *ridge);
+- qh_printspheres · function · L143-L143 — void    qh_printspheres(qhT *qh, FILE *fp, setT *vertices, realT radius);
+- qh_printvdiagram · function · L144-L144 — void    qh_printvdiagram(qhT *qh, FILE *fp, qh_PRINT format, facetT *facetlist, setT *facets, boolT printall);
+- qh_printvdiagram2 · function · L145-L145 — int     qh_printvdiagram2(qhT *qh, FILE *fp, printvridgeT printvridge, setT *vertices, qh_RIDGE innerouter, boolT inorder);
+- qh_printvertex · function · L146-L146 — void    qh_printvertex(qhT *qh, FILE *fp, vertexT *vertex);
+- qh_printvertexlist · function · L147-L148 — void    qh_printvertexlist(qhT *qh, FILE *fp, const char* string, facetT *facetlist,
+- qh_printvertices · function · L149-L149 — void    qh_printvertices(qhT *qh, FILE *fp, const char* string, setT *vertices);
+- qh_printvneighbors · function · L150-L150 — void    qh_printvneighbors(qhT *qh, FILE *fp, facetT* facetlist, setT *facets, boolT printall);
+- qh_printvoronoi · function · L151-L151 — void    qh_printvoronoi(qhT *qh, FILE *fp, qh_PRINT format, facetT *facetlist, setT *facets, boolT printall);
+- qh_printvnorm · function · L152-L152 — void    qh_printvnorm(qhT *qh, FILE *fp, vertexT *vertex, vertexT *vertexA, setT *centers, boolT unbounded);
+- qh_printvridge · function · L153-L153 — void    qh_printvridge(qhT *qh, FILE *fp, vertexT *vertex, vertexT *vertexA, setT *centers, boolT unbounded);
+- qh_produce_output · function · L154-L154 — void    qh_produce_output(qhT *qh);
+- qh_produce_output2 · function · L155-L155 — void    qh_produce_output2(qhT *qh);
+- qh_projectdim3 · function · L156-L156 — void    qh_projectdim3(qhT *qh, pointT *source, pointT *destination);
+- qh_readfeasible · function · L157-L157 — int     qh_readfeasible(qhT *qh, int dim, const char *curline);
+- qh_readpoints · function · L158-L158 — coordT *qh_readpoints(qhT *qh, int *numpoints, int *dimension, boolT *ismalloc);
+- qh_setfeasible · function · L159-L159 — void    qh_setfeasible(qhT *qh, int dim);
+- qh_skipfacet · function · L160-L160 — boolT   qh_skipfacet(qhT *qh, facetT *facet);
+- qh_skipfilename · function · L161-L161 — char   *qh_skipfilename(qhT *qh, char *filename);

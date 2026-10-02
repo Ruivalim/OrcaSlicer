@@ -1,0 +1,31 @@
+# src/libslic3r/PlaceholderParser.hpp
+
+- PlaceholderParser · class · L14-L81 — class PlaceholderParser
+- ContextData · class · L22-L27 — struct ContextData
+- PlaceholderParser · function · L29-L29 — PlaceholderParser(const DynamicConfig *external_config = nullptr);
+- clear_config · function · L31-L31 — void clear_config() { m_config.clear(); }
+- config_diff · function · L34-L34 — std::vector<std::string> config_diff(const DynamicPrintConfig &rhs);
+- apply_config · function · L36-L36 — bool apply_config(const DynamicPrintConfig &config);
+- apply_config · function · L37-L37 — void apply_config(DynamicPrintConfig &&config);
+- apply_only · function · L40-L40 — void apply_only(const DynamicPrintConfig &config, const std::vector<std::string> &keys);
+- apply_env_variables · function · L41-L41 — void apply_env_variables();
+- set · function · L44-L44 — void set(const std::string &key, const std::string &value)  { this->set(key, new ConfigOptionString(value)); }
+- set · function · L45-L45 — void set(const std::string &key, std::string_view value)    { this->set(key, new ConfigOptionString(std::string(value))); }
+- set · function · L46-L46 — void set(const std::string &key, const char *value)         { this->set(key, new ConfigOptionString(value)); }
+- set · function · L47-L47 — void set(const std::string &key, int value)                 { this->set(key, new ConfigOptionInt(value)); }
+- set · function · L48-L48 — void set(const std::string &key, unsigned int value)        { this->set(key, int(value)); }
+- set · function · L49-L49 — void set(const std::string &key, bool value)                { this->set(key, new ConfigOptionBool(value)); }
+- set · function · L50-L50 — void set(const std::string &key, double value)              { this->set(key, new ConfigOptionFloat(value)); }
+- set · function · L51-L51 — void set(const std::string &key, const std::vector<std::string> &values) { this->set(key, new ConfigOptionStrings(values)); }
+- set · function · L52-L52 — void set(const std::string &key, ConfigOption *opt)         { m_config.set_key_value(key, opt); }
+- config_writable · function · L53-L53 — DynamicConfig&			config_writable()					{ return m_config; }
+- config · function · L54-L54 — const DynamicConfig&    config() const                      { return m_config; }
+- option · function · L55-L55 — const ConfigOption*     option(const std::string &key) const { return m_config.option(key); }
+- external_config · function · L57-L57 — const DynamicConfig*	external_config() const  			{ return m_external_config; }
+- process · function · L61-L61 — std::string process(const std::string &templ, unsigned int current_extruder_id, const DynamicConfig *config_override, DynamicConfig *config_outputs, ContextData *context) const;
+- process · function · L62-L63 — std::string process(const std::string &templ, unsigned int current_extruder_id = 0, const DynamicConfig *config_override = nullptr, ContextData *context = nullptr) const
+- evaluate_boolean_expression · function · L67-L67 — static bool evaluate_boolean_expression(const std::string &templ, const DynamicConfig &config, const DynamicConfig *config_override = nullptr);
+- update_timestamp · function · L70-L70 — static void update_timestamp(DynamicConfig &config);
+- update_timestamp · function · L72-L72 — void update_timestamp() { update_timestamp(m_config); }
+- update_user_name · function · L74-L74 — static void update_user_name(DynamicConfig &config);
+- update_user_name · function · L75-L75 — void update_user_name() { update_user_name(m_config); }

@@ -1,0 +1,82 @@
+# src/slic3r/Utils/MoonrakerPrinterAgent.hpp
+
+- MoonrakerPrinterAgent · class · L17-L223 — class MoonrakerPrinterAgent : public IPrinterAgent
+- MoonrakerPrinterAgent · function · L20-L20 — explicit MoonrakerPrinterAgent(std::string log_dir);
+- get_agent_info_static · function · L23-L23 — static AgentInfo get_agent_info_static();
+- get_agent_info · function · L24-L24 — AgentInfo        get_agent_info() override { return get_agent_info_static(); }
+- set_cloud_agent · function · L27-L27 — void set_cloud_agent(std::shared_ptr<ICloudServiceAgent> cloud) override;
+- send_message · function · L30-L30 — int send_message(std::string dev_id, std::string json_str, int qos, int flag) override;
+- connect_printer · function · L31-L31 — int connect_printer(std::string dev_id, std::string dev_ip, std::string username, std::string password, bool use_ssl) override;
+- disconnect_printer · function · L32-L32 — int disconnect_printer() override;
+- send_message_to_printer · function · L33-L33 — int send_message_to_printer(std::string dev_id, std::string json_str, int qos, int flag) override;
+- check_cert · function · L36-L36 — int check_cert() override;
+- install_device_cert · function · L37-L37 — void install_device_cert(std::string dev_id, bool lan_only) override;
+- start_discovery · function · L40-L40 — bool start_discovery(bool start, bool sending) override;
+- ping_bind · function · L43-L43 — int ping_bind(std::string ping_code) override;
+- bind_detect · function · L44-L44 — int bind_detect(std::string dev_ip, std::string sec_link, detectResult& detect) override;
+- bind · function · L45-L45 — int bind(std::string dev_ip, std::string dev_id, std::string dev_model, std::string sec_link, std::string timezone, bool improved, OnUpdateStatusFn update_fn) override;
+- unbind · function · L46-L46 — int unbind(std::string dev_id) override;
+- request_bind_ticket · function · L47-L47 — int request_bind_ticket(std::string* ticket) override;
+- get_hms_snapshot · function · L48-L48 — int get_hms_snapshot(std::string dev_id, std::string file_name, std::function<void(std::string, int)> callback) override;
+- set_server_callback · function · L49-L49 — int set_server_callback(OnServerErrFn fn) override;
+- get_user_selected_machine · function · L52-L52 — std::string get_user_selected_machine() override;
+- set_user_selected_machine · function · L53-L53 — int set_user_selected_machine(std::string dev_id) override;
+- start_print · function · L56-L56 — int start_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override;
+- start_local_print_with_record · function · L57-L57 — int start_local_print_with_record(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override;
+- start_send_gcode_to_sdcard · function · L58-L58 — int start_send_gcode_to_sdcard(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override;
+- start_local_print · function · L59-L59 — int start_local_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) override;
+- start_sdcard_print · function · L60-L60 — int start_sdcard_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) override;
+- set_on_ssdp_msg_fn · function · L63-L63 — int set_on_ssdp_msg_fn(OnMsgArrivedFn fn) override;
+- set_on_printer_connected_fn · function · L64-L64 — int set_on_printer_connected_fn(OnPrinterConnectedFn fn) override;
+- set_on_subscribe_failure_fn · function · L65-L65 — int set_on_subscribe_failure_fn(GetSubscribeFailureFn fn) override;
+- set_on_message_fn · function · L66-L66 — int set_on_message_fn(OnMessageFn fn) override;
+- set_on_user_message_fn · function · L67-L67 — int set_on_user_message_fn(OnMessageFn fn) override;
+- set_on_local_connect_fn · function · L68-L68 — int set_on_local_connect_fn(OnLocalConnectedFn fn) override;
+- set_on_local_message_fn · function · L69-L69 — int set_on_local_message_fn(OnMessageFn fn) override;
+- set_queue_on_main_fn · function · L70-L70 — int set_queue_on_main_fn(QueueOnMainFn fn) override;
+- get_filament_sync_mode · function · L73-L73 — FilamentSyncMode get_filament_sync_mode() const override { return FilamentSyncMode::pull; }
+- fetch_filament_info · function · L74-L74 — bool fetch_filament_info(std::string dev_id) override;
+- CrealityCfsSlot · class · L78-L82 — struct CrealityCfsSlot
+- parse_creality_cfs_response · function · L83-L83 — static bool parse_creality_cfs_response(const std::string& response, std::vector<CrealityCfsSlot>& slots);
+- MoonrakerDeviceInfo · class · L86-L98 — struct MoonrakerDeviceInfo
+- AmsTrayData · class · L101-L109 — struct AmsTrayData
+- build_ams_payload · function · L112-L112 — void build_ams_payload(int ams_count, int max_lane_index, const std::vector<AmsTrayData>& trays);
+- init_device_info · function · L115-L115 — virtual bool init_device_info(std::string dev_id, std::string dev_ip, std::string username, std::string password, bool use_ssl);
+- fetch_device_info · function · L116-L116 — virtual bool fetch_device_info(const std::string& base_url, const std::string& api_key, MoonrakerDeviceInfo& info, std::string& error) const;
+- is_numeric · function · L122-L122 — bool        is_numeric(const std::string& value);
+- normalize_base_url · function · L123-L123 — std::string normalize_base_url(std::string host, const std::string& port);
+- sanitize_filename · function · L124-L124 — std::string sanitize_filename(const std::string& filename);
+- join_url · function · L125-L125 — std::string join_url(const std::string& base_url, const std::string& path) const;
+- trim_and_upper · function · L128-L128 — static std::string trim_and_upper(const std::string& input);
+- map_filament_type_to_generic_id · function · L131-L131 — static std::string map_filament_type_to_generic_id(const std::string& filament_type);
+- map_creality_material_id · function · L133-L133 — static std::string map_creality_material_id(const std::string& material_id);
+- handle_request · function · L136-L136 — int handle_request(const std::string& dev_id, const std::string& json_str);
+- send_version_info · function · L137-L137 — int send_version_info(const std::string& dev_id);
+- send_access_code · function · L138-L138 — int send_access_code(const std::string& dev_id);
+- fetch_object_list · function · L140-L140 — bool fetch_object_list(const std::string& base_url, const std::string& api_key, std::set<std::string>& objects, std::string& error) const;
+- query_printer_status · function · L141-L141 — bool query_printer_status(const std::string& base_url, const std::string& api_key, nlohmann::json& status, std::string& error) const;
+- send_gcode · function · L142-L142 — bool send_gcode(const std::string& dev_id, const std::string& gcode) const;
+- announce_printhost_device · function · L144-L144 — void announce_printhost_device();
+- dispatch_local_connect · function · L145-L145 — void dispatch_local_connect(int state, const std::string& dev_id, const std::string& msg);
+- dispatch_printer_connected · function · L146-L146 — void dispatch_printer_connected(const std::string& dev_id);
+- dispatch_message · function · L147-L147 — void dispatch_message(const std::string& dev_id, const std::string& payload);
+- start_status_stream · function · L148-L148 — void start_status_stream(const std::string& dev_id, const std::string& base_url, const std::string& api_key);
+- stop_status_stream · function · L149-L149 — void stop_status_stream();
+- run_status_stream · function · L150-L150 — void run_status_stream(std::string dev_id, std::string base_url, std::string api_key);
+- handle_ws_message · function · L151-L151 — void handle_ws_message(const std::string& dev_id, const std::string& payload);
+- update_status_cache · function · L152-L152 — void update_status_cache(const nlohmann::json& updates);
+- build_print_payload_locked · function · L153-L153 — nlohmann::json build_print_payload_locked() const;
+- pause_print · function · L156-L156 — int pause_print(const std::string& dev_id);
+- resume_print · function · L157-L157 — int resume_print(const std::string& dev_id);
+- cancel_print · function · L158-L158 — int cancel_print(const std::string& dev_id);
+- upload_gcode · function · L161-L163 — bool upload_gcode(const std::string& local_path, const std::string& filename,
+- send_jsonrpc_command · function · L166-L167 — bool send_jsonrpc_command(const std::string& base_url, const std::string& api_key,
+- perform_connection_async · function · L170-L173 — void perform_connection_async(const std::string& dev_id,
+- fetch_hh_filament_info · function · L176-L176 — bool fetch_hh_filament_info(std::vector<AmsTrayData>& trays, int& max_lane_index);
+- fetch_moonraker_filament_data · function · L177-L177 — bool fetch_moonraker_filament_data(std::vector<AmsTrayData>& trays, int& max_lane_index);
+- fetch_creality_cfs_data · function · L178-L178 — bool fetch_creality_cfs_data(std::vector<AmsTrayData>& trays, int& max_lane_index);
+- safe_json_string · function · L181-L181 — static std::string safe_json_string(const nlohmann::json& obj, const char* key);
+- safe_json_int · function · L182-L182 — static int safe_json_int(const nlohmann::json& obj, const char* key);
+- safe_array_string · function · L183-L183 — static std::string safe_array_string(const nlohmann::json& arr, int idx);
+- safe_array_int · function · L184-L184 — static int safe_array_int(const nlohmann::json& arr, int idx);
+- normalize_color_value · function · L185-L185 — static std::string normalize_color_value(const std::string& color);

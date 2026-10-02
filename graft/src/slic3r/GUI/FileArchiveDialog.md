@@ -1,0 +1,48 @@
+# src/slic3r/GUI/FileArchiveDialog.hpp
+
+- ArchiveViewCtrl · class · L16-L16 — class ArchiveViewCtrl;
+- ArchiveViewNode · class · L18-L50 — class ArchiveViewNode
+- ArchiveViewNode · function · L21-L21 — ArchiveViewNode(const wxString& name) : m_name(name) {}
+- get_children · function · L23-L23 — std::vector<std::shared_ptr<ArchiveViewNode>>&  get_children()                                      { return m_children; }
+- set_parent · function · L24-L24 — void                                            set_parent(std::shared_ptr<ArchiveViewNode> parent) { m_parent = parent; }
+- get_parent · function · L26-L26 — std::shared_ptr<ArchiveViewNode>                get_parent() const                                  { return m_parent; }
+- is_container · function · L27-L27 — bool                                            is_container() const                                { return m_container; }
+- set_container · function · L28-L28 — void                                            set_container(bool is_container)                    { m_container = is_container; }
+- get_name · function · L29-L29 — wxString                                        get_name() const                                    { return m_name; }
+- set_name · function · L30-L30 — void                                            set_name(const wxString& name)                      { m_name = name; }
+- get_toggle · function · L31-L31 — bool                                            get_toggle() const                                  { return  m_toggle; }
+- set_toggle · function · L32-L32 — void                                            set_toggle(bool toggle)                             { m_toggle = toggle; }
+- get_is_folder · function · L33-L33 — bool                                            get_is_folder() const                               { return m_folder; }
+- set_is_folder · function · L34-L34 — void                                            set_is_folder(bool is_folder)                       { m_folder = is_folder; }
+- set_fullpath · function · L35-L35 — void                                            set_fullpath(boost::filesystem::path path)          { m_fullpath = path; }
+- get_fullpath · function · L36-L36 — boost::filesystem::path                         get_fullpath() const                                { return m_fullpath; }
+- set_size · function · L37-L37 — void                                            set_size(size_t size)                               { m_size = size; }
+- get_size · function · L38-L38 — size_t                                          get_size() const                                    { return m_size; }
+- ArchiveViewModel · class · L52-L90 — class ArchiveViewModel : public wxDataViewModel
+- ArchiveViewModel · function · L55-L55 — ArchiveViewModel(wxWindow* parent);
+- AddFile · function · L61-L61 — std::shared_ptr<ArchiveViewNode>  AddFile(std::shared_ptr<ArchiveViewNode> parent,const wxString& name, bool container);
+- GetColumnType · function · L63-L63 — wxString        GetColumnType(unsigned int col) const override;
+- GetColumnCount · function · L64-L64 — unsigned int    GetColumnCount() const override { return 2; }
+- Rescale · function · L66-L66 — void            Rescale();
+- Delete · function · L67-L67 — void            Delete(const wxDataViewItem& item);
+- Clear · function · L68-L68 — void            Clear();
+- GetParent · function · L70-L70 — wxDataViewItem  GetParent(const wxDataViewItem& item) const override;
+- GetChildren · function · L71-L71 — unsigned int    GetChildren(const wxDataViewItem& parent, wxDataViewItemArray& array) const override;
+- SetAssociatedControl · function · L73-L73 — void            SetAssociatedControl(ArchiveViewCtrl* ctrl) { m_ctrl = ctrl; }
+- GetValue · function · L75-L75 — void GetValue(wxVariant& variant, const wxDataViewItem& item, unsigned int col) const override;
+- SetValue · function · L76-L76 — bool SetValue(const wxVariant& variant, const wxDataViewItem& item, unsigned int col) override;
+- untoggle_folders · function · L78-L78 — void untoggle_folders(const wxDataViewItem& item);
+- IsEnabled · function · L80-L80 — bool IsEnabled(const wxDataViewItem& item, unsigned int col) const override;
+- IsContainer · function · L81-L81 — bool IsContainer(const wxDataViewItem& item) const override;
+- HasContainerColumns · function · L84-L84 — bool HasContainerColumns(const wxDataViewItem& WXUNUSED(item)) const override { return true; }
+- WXUNUSED · function · L84-L84 — bool HasContainerColumns(const wxDataViewItem& WXUNUSED(item)) const override { return true; }
+- ArchiveViewCtrl · class · L92-L101 — class ArchiveViewCtrl : public wxDataViewCtrl
+- ArchiveViewCtrl · function · L95-L95 — ArchiveViewCtrl(wxWindow* parent, wxSize size);
+- get_model · function · L98-L98 — ArchiveViewModel* get_model() const {return m_model; }
+- FileArchiveDialog · class · L104-L123 — class FileArchiveDialog : public DPIDialog
+- FileArchiveDialog · function · L107-L107 — FileArchiveDialog(wxWindow* parent_window, mz_zip_archive* archive, std::vector<std::pair<boost::filesystem::path, size_t>>& selected_paths_w_size);
+- on_dpi_changed · function · L110-L110 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_open_button · function · L112-L112 — void on_open_button();
+- on_all_button · function · L113-L113 — void on_all_button();
+- on_none_button · function · L114-L114 — void on_none_button();
+- create_btn_sizer · function · L116-L116 — wxBoxSizer* create_btn_sizer();

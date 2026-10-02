@@ -1,0 +1,34 @@
+# src/slic3r/GUI/MultiMachinePage.hpp
+
+- MultiMachinePage · class · L22-L47 — class MultiMachinePage : public wxPanel
+- MultiMachinePage · function · L33-L33 — MultiMachinePage(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- jump_to_send_page · function · L36-L36 — void jump_to_send_page();
+- on_sys_color_changed · function · L38-L38 — void on_sys_color_changed();
+- msw_rescale · function · L39-L39 — void msw_rescale();
+- Show · function · L40-L40 — bool Show(bool show);
+- init_tabpanel · function · L42-L42 — void init_tabpanel();
+- init_timer · function · L43-L43 — void init_timer();
+- on_timer · function · L44-L44 — void on_timer(wxTimerEvent& event);
+- clear_page · function · L46-L46 — void clear_page();
+- DevicePickItem · class · L50-L75 — class DevicePickItem : public DeviceItem
+- DevicePickItem · function · L54-L54 — DevicePickItem(wxWindow* parent, MachineObject* obj);
+- DrawTextWithEllipsis · function · L57-L57 — void DrawTextWithEllipsis(wxDC& dc, const wxString& text, int maxWidth, int left, int top = 0);
+- OnEnterWindow · function · L58-L58 — void OnEnterWindow(wxMouseEvent& evt);
+- OnLeaveWindow · function · L59-L59 — void OnLeaveWindow(wxMouseEvent& evt);
+- OnSelectedDevice · function · L60-L60 — void OnSelectedDevice(wxCommandEvent& evt);
+- OnLeftDown · function · L61-L61 — void OnLeftDown(wxMouseEvent& evt);
+- OnMove · function · L62-L62 — void OnMove(wxMouseEvent& evt);
+- paintEvent · function · L64-L64 — void         paintEvent(wxPaintEvent& evt);
+- render · function · L65-L65 — void         render(wxDC& dc);
+- doRender · function · L66-L66 — void         doRender(wxDC& dc);
+- post_event · function · L67-L67 — void         post_event(wxCommandEvent&& event);
+- DoSetSize · function · L68-L68 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO);
+- MultiMachinePickPage · class · L78-L98 — class MultiMachinePickPage : public DPIDialog
+- MultiMachinePickPage · function · L88-L88 — MultiMachinePickPage(Plater* plater = nullptr);
+- get_selected_count · function · L91-L91 — int get_selected_count();
+- update_selected_count · function · L92-L92 — void update_selected_count();
+- on_dpi_changed · function · L93-L93 — void on_dpi_changed(const wxRect& suggested_rect);
+- on_sys_color_changed · function · L94-L94 — void on_sys_color_changed();
+- refresh_user_device · function · L95-L95 — void refresh_user_device();
+- on_confirm · function · L96-L96 — void on_confirm(wxCommandEvent& event);
+- Show · function · L97-L97 — bool Show(bool show);

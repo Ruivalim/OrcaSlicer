@@ -1,0 +1,27 @@
+# tests/catch2/src/catch2/matchers/catch_matchers_floating_point.hpp
+
+- FloatingPointKind · type · L17-L17 — enum class FloatingPointKind : uint8_t;
+- WithinAbsMatcher · class · L20-L28 — class  WithinAbsMatcher final : public MatcherBase<double>
+- WithinAbsMatcher · function · L22-L22 — WithinAbsMatcher(double target, double margin);
+- match · function · L23-L23 — bool match(double const& matchee) const override;
+- describe · function · L24-L24 — std::string describe() const override;
+- WithinAbs · function · L31-L31 — WithinAbsMatcher WithinAbs( double target, double margin );
+- WithinUlpsMatcher · class · L35-L46 — class WithinUlpsMatcher final : public MatcherBase<double>
+- WithinUlpsMatcher · function · L37-L39 — WithinUlpsMatcher( double target,
+- match · function · L40-L40 — bool match(double const& matchee) const override;
+- describe · function · L41-L41 — std::string describe() const override;
+- WithinULP · function · L49-L49 — WithinUlpsMatcher WithinULP(double target, uint64_t maxUlpDiff);
+- WithinULP · function · L51-L51 — WithinUlpsMatcher WithinULP(float target, uint64_t maxUlpDiff);
+- WithinRelMatcher · class · L61-L69 — class WithinRelMatcher final : public MatcherBase<double>
+- WithinRelMatcher · function · L63-L63 — WithinRelMatcher( double target, double epsilon );
+- match · function · L64-L64 — bool match(double const& matchee) const override;
+- describe · function · L65-L65 — std::string describe() const override;
+- WithinRel · function · L72-L72 — WithinRelMatcher WithinRel(double target, double eps);
+- WithinRel · function · L74-L74 — WithinRelMatcher WithinRel(double target);
+- WithinRel · function · L76-L76 — WithinRelMatcher WithinRel(float target, float eps);
+- WithinRel · function · L78-L78 — WithinRelMatcher WithinRel(float target);
+- IsNaNMatcher · class · L82-L87 — class IsNaNMatcher final : public MatcherBase<double>
+- IsNaNMatcher · function · L84-L84 — IsNaNMatcher() = default;
+- match · function · L85-L85 — bool match( double const& matchee ) const override;
+- describe · function · L86-L86 — std::string describe() const override;
+- IsNaN · function · L89-L89 — IsNaNMatcher IsNaN();

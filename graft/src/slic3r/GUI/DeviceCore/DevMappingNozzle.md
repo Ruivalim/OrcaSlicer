@@ -1,0 +1,21 @@
+# src/slic3r/GUI/DeviceCore/DevMappingNozzle.h
+
+- class · type · L28-L31 — enum class NozzleMappingVersion : int
+- class · type · L33-L50 — enum class ErrNoV1 : int
+- SetPlater · function · L50-L50 — void SetPlater(Slic3r::GUI::Plater* plater) { m_plater = plater; }
+- Clear · function · L51-L51 — void Clear();
+- HasResult · function · L53-L53 — bool HasResult() const { return !m_result.empty(); }
+- GetResultStr · function · L54-L54 — std::string GetResultStr() const { return m_result; }
+- GetMqttReason · function · L57-L57 — std::string GetMqttReason() const { return m_mqtt_reason; }
+- GetErrno · function · L60-L60 — int GetErrno() const { return m_errno; }
+- GetErrnoV1 · function · L61-L61 — ErrNoV1 GetErrnoV1() const { return static_cast<ErrNoV1>(m_errno); }
+- GetDetailMsg · function · L62-L62 — std::string GetDetailMsg() const { return m_detail_msg; }
+- GetNozzleMappingJson · function · L66-L66 — nlohmann::json GetNozzleMappingJson() const { return m_nozzle_mapping_json; }
+- SetManualNozzleMappingByFila · function · L67-L67 — void SetManualNozzleMappingByFila(int fila_id, int nozzle_pos_id);
+- GetMappedNozzlePosStrByFilaId · function · L70-L70 — wxString GetMappedNozzlePosStrByFilaId(int fila_id, const wxString& default_str = "?") const;
+- GetFlushWeightBase · function · L73-L73 — float  GetFlushWeightBase() const { return m_flush_weight_base; }
+- GetFlushWeightCurrent · function · L74-L74 — float  GetFlushWeightCurrent() const { return m_flush_weight_current; }
+- ParseAutoNozzleMapping · function · L77-L77 — void ParseAutoNozzleMapping(const nlohmann::json& print_jj);
+- CtrlGetAutoNozzleMappingV0 · function · L78-L78 — int CtrlGetAutoNozzleMappingV0(Slic3r::GUI::Plater* plater, const std::vector<FilamentInfo>& ams_mapping, int flow_cali_opt, int pa_value);
+- CtrlGetAutoNozzleMappingV1 · function · L79-L79 — int CtrlGetAutoNozzleMappingV1(Slic3r::GUI::Plater* plater);
+- GetFlushWeight · function · L82-L82 — float  GetFlushWeight(Slic3r::MachineObject* obj) const;

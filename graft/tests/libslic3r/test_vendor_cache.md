@@ -1,0 +1,51 @@
+# tests/libslic3r/test_vendor_cache.cpp
+
+- TempDir · class · L24-L31 — struct TempDir
+- TempDir · function · L26-L29 — TempDir()
+- write_vendor_json · function · L33-L40 — std::string write_vendor_json(const fs::path& dir, const std::string& vendor_id,
+- write_vendor_tree · function · L44-L53 — void write_vendor_tree(const fs::path& dir, const std::string& vendor, const std::string& version)
+- write_full_vendor_tree · function · L59-L92 — void write_full_vendor_tree(const fs::path& dir, const std::string& vendor, const std::string& version)
+- write_lib_tree · function · L96-L106 — void write_lib_tree(const fs::path& dir, const std::string& version, const std::string& cost)
+- lib · function · L98-L98 — const std::string lib(PresetBundle::ORCA_FILAMENT_LIBRARY);
+- write_vendor_with_lib_filament · function · L110-L119 — void write_vendor_with_lib_filament(const fs::path& dir, const std::string& vendor, const std::string& version)
+- write_versionless_vendor_json · function · L121-L127 — std::string write_versionless_vendor_json(const fs::path& dir, const std::string& vendor_id)
+- slurp · function · L130-L135 — std::string slurp(const fs::path& p)
+- corrupt_blob_byte · function · L140-L148 — void corrupt_blob_byte(const std::string& path, std::streamoff at = 30)
+- patch_payload_bytes · function · L153-L167 — void patch_payload_bytes(const std::string& path, size_t payload_off, const void* bytes, size_t n)
+- in · function · L156-L156 — std::ifstream in(path, std::ios::binary);
+- patch_cache_version · function · L171-L174 — void patch_cache_version(const std::string& path, uint32_t wrong_version)
+- truncate_payload_and_fix_header · function · L182-L198 — void truncate_payload_and_fix_header(const std::string& path, size_t truncate_by)
+- in · function · L185-L185 — std::ifstream in(path, std::ios::binary);
+- one_vendor · function · L202-L215 — VendorMap one_vendor(const std::string& vendor_id, const std::string& name = "",
+- vp · function · L206-L206 — VendorProfile vp(vendor_id);
+- filament_entry · function · L219-L229 — CachedPreset filament_entry(const std::string& name, const std::string& filament_id = "GFA00",
+- printer_entry · function · L231-L240 — CachedPreset printer_entry(const std::string& name)
+- save_one_vendor · function · L242-L254 — static bool save_one_vendor(const std::string& path, const VendorMap& vendors,
+- ScopedDirs · class · L258-L266 — struct ScopedDirs
+- ScopedDirs · function · L260-L264 — ScopedDirs(const fs::path& data, const fs::path& rsrc)
+- InstallDirs · class · L271-L282 — struct InstallDirs
+- InstallDirs · function · L277-L281 — InstallDirs()
+- presets_for · function · L285-L292 — std::vector<const Preset*> presets_for(const PresetCollection& coll, const std::string& vendor_id)
+- vendor_deep_equal · function · L312-L318 — static bool vendor_deep_equal(const VendorProfile& a, const VendorProfile& b)
+- preset_deep_equal · function · L320-L333 — static bool preset_deep_equal(const Preset& a, const Preset& b)
+- vp · function · L411-L411 — VendorProfile vp(vid);
+- lib · function · L749-L749 — const std::string lib(PresetBundle::ORCA_FILAMENT_LIBRARY);
+- lib · function · L806-L806 — const std::string lib(PresetBundle::ORCA_FILAMENT_LIBRARY);
+- dirs · function · L924-L924 — ScopedDirs dirs(data, rsrc);
+- lib · function · L961-L961 — const std::string lib(PresetBundle::ORCA_FILAMENT_LIBRARY);
+- lib · function · L1134-L1134 — const std::string lib(PresetBundle::ORCA_FILAMENT_LIBRARY);
+- roundtrip_config · function · L1406-L1427 — DynamicPrintConfig roundtrip_config(const DynamicPrintConfig& in,
+- os · function · L1411-L1411 — std::ostringstream os(std::ios::binary);
+- ar · function · L1413-L1413 — cereal::BinaryOutputArchive ar(os);
+- is · function · L1420-L1420 — std::istringstream is(blob, std::ios::binary);
+- ar · function · L1421-L1421 — cereal::BinaryInputArchive ar(is);
+- os · function · L1523-L1523 — std::ostringstream os(std::ios::binary);
+- ar · function · L1525-L1525 — cereal::BinaryOutputArchive ar(os);
+- ar · function · L1536-L1536 — cereal::BinaryInputArchive ar(is);
+- os · function · L1553-L1553 — std::ostringstream os(std::ios::binary);
+- ar · function · L1555-L1555 — cereal::BinaryOutputArchive ar(os);
+- ar · function · L1562-L1562 — cereal::BinaryInputArchive ar(is);
+- os · function · L1578-L1578 — std::ostringstream os(std::ios::binary);
+- ar · function · L1580-L1580 — cereal::BinaryOutputArchive ar(os);
+- is · function · L1590-L1590 — std::istringstream is(blob, std::ios::binary);
+- ar · function · L1591-L1591 — cereal::BinaryInputArchive ar(is);

@@ -1,0 +1,74 @@
+# deps_src/libnest2d/include/libnest2d/placers/nfpplacer.hpp
+
+- NfpPConfig · class · L29-L135 — template<class RawShape>
+- Alignment · type · L34-L43 — enum class Alignment
+- NfpPConfig · function · L133-L134 — NfpPConfig(): rotations({0.0, Pi/2.0, Pi, 3*Pi/2}),
+- EdgeCache · class · L148-L332 — template<class RawShape> class EdgeCache
+- ContourCache · class · L153-L158 — struct ContourCache
+- length · function · L164-L167 — static double length(const Edge &e)
+- createCache · function · L169-L200 — void createCache(const RawShape& sh)
+- stride · function · L202-L209 — size_t stride(const size_t N) const
+- fetchCorners · function · L211-L225 — void fetchCorners() const
+- fetchHoleCorners · function · L227-L240 — void fetchHoleCorners(unsigned hidx) const
+- coords · function · L242-L268 — inline Vertex coords(const ContourCache& cache, double distance) const
+- EdgeCache · function · L275-L275 — inline EdgeCache() = default;
+- EdgeCache · function · L277-L280 — inline EdgeCache(const _Item<RawShape>& item)
+- EdgeCache · function · L282-L285 — inline EdgeCache(const RawShape& sh)
+- accuracy · function · L288-L288 — void accuracy(double a /* within <0.0, 1.0>*/) { accuracy_ = a; }
+- coords · function · L299-L301 — inline Vertex coords(double distance) const
+- coords · function · L303-L306 — inline Vertex coords(unsigned hidx, double distance) const
+- circumference · function · L308-L310 — inline double circumference() const BP2D_NOEXCEPT
+- circumference · function · L312-L314 — inline double circumference(unsigned hidx) const BP2D_NOEXCEPT
+- corners · function · L317-L317 — inline const std::vector<double>& corners() const BP2D_NOEXCEPT
+- corners · function · L324-L324 — corners(unsigned holeidx) const BP2D_NOEXCEPT
+- holeCount · function · L330-L330 — inline size_t holeCount() const BP2D_NOEXCEPT { return holes_.size(); }
+- Lvl · class · L334-L335 — template<nfp::NfpLevel lvl>
+- correctNfpPosition · function · L337-L359 — template<class RawShape>
+- correctNfpPosition · function · L361-L372 — template<class RawShape>
+- minimizeCircle · function · L374-L425 — template<class RawShape, class Circle = _Circle<TPoint<RawShape>> >
+- solver · function · L390-L390 — opt::TOptimizer<opt::Method::L_SUBPLEX> solver(stopcr);
+- centr · function · L399-L399 — Point centr(xt, yt);
+- cc · function · L421-L421 — Point cc(xt, yt);
+- boundingCircle · function · L427-L430 — template<class RawShape>
+- _NofitPolyPlacer · class · L432-L1212 — template<class RawShape, class TBin = _Box<TPoint<RawShape>>>
+- _NofitPolyPlacer · function · L459-L466 — inline explicit _NofitPolyPlacer(const BinType& bin):
+- _NofitPolyPlacer · function · L468-L468 — _NofitPolyPlacer(const _NofitPolyPlacer&) = default;
+- _NofitPolyPlacer · function · L472-L472 — _NofitPolyPlacer(_NofitPolyPlacer&&) = default;
+- score · function · L476-L476 — double score() const { return score_; }
+- plateID · function · L479-L479 — void plateID(int id) { plate_id = id; }
+- plateID · function · L480-L480 — int plateID() { return plate_id; }
+- overfit · function · L482-L488 — static inline double overfit(const Box& bb, const RawShape& bin)
+- overfit · function · L490-L497 — static inline double overfit(const RawShape& chull, const RawShape& bin)
+- overfit · function · L499-L503 — static inline double overfit(const RawShape& chull, const Box& bin)
+- overfit · function · L505-L514 — static inline double overfit(const Box& bb, const Box& bin)
+- overfit · function · L516-L521 — static inline double overfit(const Box& bb, const _Circle<Vertex>& bin)
+- overfit · function · L523-L529 — static inline double overfit(const RawShape& chull,
+- trypack · function · L531-L540 — template<class Range = ConstItemRange<typename Base::DefaultIter>>
+- accept · function · L542-L550 — void accept(PackResult& r)
+- clearItems · function · L556-L559 — inline void clearItems()
+- clearItems · function · L562-L566 — inline void clearItems(const std::function<bool(const Item &itm)> &clearFunc)
+- preload · function · L568-L572 — void preload(const ItemGroup& packeditems)
+- calcnfp · function · L578-L613 — Shapes calcnfp(const Item &trsh, const Box& bed ,Lvl<nfp::NfpLevel::CONVEX_ONLY>)
+- calcnfp · function · L615-L630 — Shapes calcnfp(const RawShape &sliding, const Shapes &stationarys, const Box &bed, Lvl<nfp::NfpLevel::CONVEX_ONLY>)
+- slidingItem · function · L620-L620 — Item   slidingItem(sliding);
+- calcnfp · function · L632-L638 — template<class Level>
+- Optimum · class · L640-L648 — struct Optimum
+- Optimum · function · L644-L645 — Optimum(double pos, unsigned nidx):
+- Optimum · function · L646-L647 — Optimum(double pos, unsigned nidx, int holeidx):
+- Optimizer · class · L650-L658 — class Optimizer: public opt::TOptimizer<opt::Method::L_SUBPLEX>
+- Optimizer · function · L652-L657 — Optimizer(float accuracy = 1.f)
+- _trypack · function · L662-L1002 — template<class Range = ConstItemRange<typename Base::DefaultIter>>
+- solver · function · L861-L861 — Optimizer solver(accuracy);
+- op · function · L867-L867 — Optimum op(relpos, ch);
+- solver · function · L911-L911 — Optimizer solver(accuracy);
+- opt · function · L918-L918 — Optimum opt(pos, ch, hidx);
+- box2RawShape · function · L1004-L1016 — RawShape box2RawShape(Box& bbin)
+- inscribedBox · function · L1018-L1038 — Box inscribedBox(ClipperLib::Polygon bin_)
+- inscribedBox · function · L1039-L1043 — Box inscribedBox(Box bin_)
+- inscribedBox · function · L1044-L1048 — Box inscribedBox(_Circle<TPoint<RawShape>> bin_)
+- finalAlign · function · L1050-L1053 — inline void finalAlign(const RawShape& pbin)
+- finalAlign · function · L1055-L1067 — inline void finalAlign(_Circle<TPoint<RawShape>> cbin)
+- finalAlign · function · L1069-L1156 — inline void finalAlign(Box bbin)
+- objs_convex_hull_item · function · L1142-L1142 — Item   objs_convex_hull_item(objs_convex_hull);
+- setInitialPosition · function · L1158-L1198 — void setInitialPosition(Item& item)
+- placeOutsideOfBin · function · L1200-L1210 — void placeOutsideOfBin(Item& item)

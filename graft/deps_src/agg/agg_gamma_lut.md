@@ -1,0 +1,26 @@
+# deps_src/agg/agg_gamma_lut.h
+
+- gamma_scale_e · type · L33-L38 — enum gamma_scale_e
+- hi_res_scale_e · type · L40-L45 — enum hi_res_scale_e
+- m_gamma · function · L70-L75 — gamma_lut(double g) :
+- allocate · function · L72-L72 — m_dir_gamma(pod_allocator<HiResT>::allocate(gamma_size)),
+- allocate · function · L73-L73 — m_inv_gamma(pod_allocator<LoResT>::allocate(hi_res_size))
+- m_inv_gamma · function · L73-L73 — m_inv_gamma(pod_allocator<LoResT>::allocate(hi_res_size))
+- gamma · function · L78-L95 — void gamma(double g)
+- gamma · function · L97-L97 — double gamma() const
+- dir · function · L102-L105 — HiResT dir(LoResT v) const
+- inv · function · L107-L110 — LoResT inv(HiResT v) const
+- dir · function · L147-L150 — float dir(int8u v) const
+- inv · function · L152-L155 — int8u inv(float v) const
+- dir · function · L179-L182 — int16u dir(int8u v) const
+- inv · function · L184-L187 — int8u inv(int16u v) const
+- dir · function · L208-L211 — int8u dir(int8u v) const
+- inv · function · L213-L216 — int8u inv(int8u v) const
+- rgb_from_sRGB · function · L229-L229 — static T rgb_from_sRGB(int8u x)
+- rgb_to_sRGB · function · L234-L237 — static int8u rgb_to_sRGB(T x)
+- alpha_from_sRGB · function · L257-L257 — static float alpha_from_sRGB(int8u x)
+- alpha_to_sRGB · function · L263-L266 — static int8u alpha_to_sRGB(float x)
+- alpha_from_sRGB · function · L273-L273 — static int16u alpha_from_sRGB(int8u x)
+- alpha_to_sRGB · function · L278-L281 — static int8u alpha_to_sRGB(int16u x)
+- alpha_from_sRGB · function · L288-L288 — static int8u alpha_from_sRGB(int8u x)
+- alpha_to_sRGB · function · L293-L296 — static int8u alpha_to_sRGB(int8u x)

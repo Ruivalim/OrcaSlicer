@@ -1,0 +1,21 @@
+# tests/catch2/src/catch2/catch_assertion_result.hpp
+
+- AssertionResultData · class · L21-L33 — struct AssertionResultData
+- AssertionResultData · function · L23-L23 — AssertionResultData() = delete;
+- AssertionResultData · function · L25-L25 — AssertionResultData( ResultWas::OfType _resultType, LazyExpression const& _lazyExpression );
+- reconstructExpression · function · L32-L32 — std::string reconstructExpression() const;
+- AssertionResult · class · L35-L56 — class AssertionResult
+- AssertionResult · function · L37-L37 — AssertionResult() = delete;
+- AssertionResult · function · L38-L38 — AssertionResult( AssertionInfo const& info, AssertionResultData&& data );
+- isOk · function · L40-L40 — bool isOk() const;
+- succeeded · function · L41-L41 — bool succeeded() const;
+- getResultType · function · L42-L42 — ResultWas::OfType getResultType() const;
+- hasExpression · function · L43-L43 — bool hasExpression() const;
+- hasMessage · function · L44-L44 — bool hasMessage() const;
+- getExpression · function · L45-L45 — std::string getExpression() const;
+- getExpressionInMacro · function · L46-L46 — std::string getExpressionInMacro() const;
+- hasExpandedExpression · function · L47-L47 — bool hasExpandedExpression() const;
+- getExpandedExpression · function · L48-L48 — std::string getExpandedExpression() const;
+- getMessage · function · L49-L49 — StringRef getMessage() const;
+- getSourceInfo · function · L50-L50 — SourceLineInfo getSourceInfo() const;
+- getTestMacroName · function · L51-L51 — StringRef getTestMacroName() const;

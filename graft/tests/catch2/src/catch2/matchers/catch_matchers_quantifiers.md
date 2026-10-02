@@ -1,0 +1,29 @@
+# tests/catch2/src/catch2/matchers/catch_matchers_quantifiers.hpp
+
+- AllMatchMatcher · class · L17-L38 — template <typename Matcher>
+- AllMatchMatcher · function · L21-L23 — AllMatchMatcher(Matcher matcher):
+- describe · function · L25-L27 — std::string describe() const override
+- match · function · L29-L37 — template <typename RangeLike>
+- NoneMatchMatcher · class · L41-L62 — template <typename Matcher>
+- NoneMatchMatcher · function · L45-L47 — NoneMatchMatcher(Matcher matcher):
+- describe · function · L49-L51 — std::string describe() const override
+- match · function · L53-L61 — template <typename RangeLike>
+- AnyMatchMatcher · class · L65-L86 — template <typename Matcher>
+- AnyMatchMatcher · function · L69-L71 — AnyMatchMatcher(Matcher matcher):
+- describe · function · L73-L75 — std::string describe() const override
+- match · function · L77-L85 — template <typename RangeLike>
+- AllTrueMatcher · class · L89-L102 — class AllTrueMatcher final : public MatcherGenericBase
+- describe · function · L91-L91 — std::string describe() const override;
+- match · function · L93-L101 — template <typename RangeLike>
+- NoneTrueMatcher · class · L105-L118 — class NoneTrueMatcher final : public MatcherGenericBase
+- describe · function · L107-L107 — std::string describe() const override;
+- match · function · L109-L117 — template <typename RangeLike>
+- AnyTrueMatcher · class · L121-L134 — class AnyTrueMatcher final : public MatcherGenericBase
+- describe · function · L123-L123 — std::string describe() const override;
+- match · function · L125-L133 — template <typename RangeLike>
+- AllMatch · function · L137-L140 — template <typename Matcher>
+- NoneMatch · function · L143-L146 — template <typename Matcher>
+- AnyMatch · function · L149-L152 — template <typename Matcher>
+- AllTrue · function · L155-L155 — AllTrueMatcher AllTrue();
+- NoneTrue · function · L158-L158 — NoneTrueMatcher NoneTrue();
+- AnyTrue · function · L161-L161 — AnyTrueMatcher AnyTrue();

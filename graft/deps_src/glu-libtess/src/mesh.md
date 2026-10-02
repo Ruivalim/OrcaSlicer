@@ -1,0 +1,22 @@
+# deps_src/glu-libtess/src/mesh.h
+
+- GLUmesh · type · L40-L40 — typedef struct GLUmesh GLUmesh;
+- GLUvertex · type · L42-L42 — typedef struct GLUvertex GLUvertex;
+- GLUface · type · L43-L43 — typedef struct GLUface GLUface;
+- GLUhalfEdge · type · L44-L44 — typedef struct GLUhalfEdge GLUhalfEdge;
+- ActiveRegion · type · L46-L46 — typedef struct ActiveRegion ActiveRegion;	/* Internal data */
+- GLUvertex · class · L114-L124 — struct GLUvertex
+- GLUface · class · L126-L136 — struct GLUface
+- GLUhalfEdge · class · L138-L150 — struct GLUhalfEdge
+- GLUmesh · class · L163-L168 — struct GLUmesh
+- __gl_meshMakeEdge · function · L247-L247 — GLUhalfEdge	*__gl_meshMakeEdge( GLUmesh *mesh );
+- __gl_meshSplice · function · L248-L248 — int		__gl_meshSplice( GLUhalfEdge *eOrg, GLUhalfEdge *eDst );
+- __gl_meshDelete · function · L249-L249 — int		__gl_meshDelete( GLUhalfEdge *eDel );
+- __gl_meshAddEdgeVertex · function · L251-L251 — GLUhalfEdge	*__gl_meshAddEdgeVertex( GLUhalfEdge *eOrg );
+- __gl_meshSplitEdge · function · L252-L252 — GLUhalfEdge	*__gl_meshSplitEdge( GLUhalfEdge *eOrg );
+- __gl_meshConnect · function · L253-L253 — GLUhalfEdge	*__gl_meshConnect( GLUhalfEdge *eOrg, GLUhalfEdge *eDst );
+- __gl_meshNewMesh · function · L255-L255 — GLUmesh		*__gl_meshNewMesh( void );
+- __gl_meshUnion · function · L256-L256 — GLUmesh		*__gl_meshUnion( GLUmesh *mesh1, GLUmesh *mesh2 );
+- __gl_meshDeleteMesh · function · L257-L257 — void		__gl_meshDeleteMesh( GLUmesh *mesh );
+- __gl_meshZapFace · function · L258-L258 — void		__gl_meshZapFace( GLUface *fZap );
+- __gl_meshCheckMesh · function · L263-L263 — void		__gl_meshCheckMesh( GLUmesh *mesh );

@@ -1,0 +1,22 @@
+# src/slic3r/GUI/Widgets/ProgressBar.hpp
+
+- ProgressBar · class · L7-L64 — class ProgressBar : public wxWindow
+- ProgressBar · function · L10-L10 — ProgressBar();
+- ProgressBar · function · L11-L16 — ProgressBar(wxWindow *         parent,
+- create · function · L19-L19 — void create(wxWindow *parent, wxWindowID id,  const wxPoint &pos, wxSize &size);
+- ShowNumber · function · L39-L39 — void         ShowNumber(bool shown);
+- Disable · function · L40-L40 — void         Disable(wxString text);
+- SetValue · function · L41-L41 — void         SetValue(int  step);
+- Reset · function · L42-L42 — void         Reset();
+- SetProgress · function · L43-L43 — void         SetProgress(int step);
+- SetRadius · function · L44-L44 — void         SetRadius(double radius);
+- SetProgressForedColour · function · L45-L45 — void         SetProgressForedColour(wxColour colour);
+- SetProgressBackgroundColour · function · L46-L46 — void         SetProgressBackgroundColour(wxColour colour);
+- Rescale · function · L47-L47 — void         Rescale();
+- SetHeight · function · L48-L52 — void         SetHeight(int height)
+- SetMinSize · function · L53-L53 — virtual void SetMinSize(const wxSize &size) override;
+- paintEvent · function · L56-L56 — void         paintEvent(wxPaintEvent &evt);
+- render · function · L57-L57 — void         render(wxDC &dc);
+- doRender · function · L58-L58 — void         doRender(wxDC &dc);
+- DoSetSize · function · L59-L59 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO) override;
+- DECLARE_EVENT_TABLE · function · L63-L63 — DECLARE_EVENT_TABLE()

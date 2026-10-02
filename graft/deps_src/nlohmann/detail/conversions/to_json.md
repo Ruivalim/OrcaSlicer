@@ -1,0 +1,40 @@
+# deps_src/nlohmann/detail/conversions/to_json.hpp
+
+- construct · function · L42-L49 — template<typename BasicJsonType>
+- construct · function · L55-L62 — template<typename BasicJsonType>
+- construct · function · L64-L71 — template<typename BasicJsonType>
+- construct · function · L73-L82 — template < typename BasicJsonType, typename CompatibleStringType,
+- construct · function · L88-L95 — template<typename BasicJsonType>
+- construct · function · L97-L104 — template<typename BasicJsonType>
+- construct · function · L110-L117 — template<typename BasicJsonType>
+- construct · function · L123-L130 — template<typename BasicJsonType>
+- construct · function · L136-L143 — template<typename BasicJsonType>
+- construct · function · L149-L157 — template<typename BasicJsonType>
+- construct · function · L159-L167 — template<typename BasicJsonType>
+- construct · function · L169-L182 — template < typename BasicJsonType, typename CompatibleArrayType,
+- construct · function · L184-L197 — template<typename BasicJsonType>
+- construct · function · L199-L213 — template<typename BasicJsonType, typename T,
+- construct · function · L219-L227 — template<typename BasicJsonType>
+- construct · function · L229-L237 — template<typename BasicJsonType>
+- construct · function · L239-L251 — template < typename BasicJsonType, typename CompatibleObjectType,
+- to_json · function · L258-L263 — template<typename BasicJsonType, typename T,
+- to_json · function · L265-L270 — template<typename BasicJsonType, typename CompatibleString,
+- to_json · function · L272-L276 — template<typename BasicJsonType>
+- to_json · function · L278-L283 — template<typename BasicJsonType, typename FloatType,
+- to_json · function · L285-L290 — template<typename BasicJsonType, typename CompatibleNumberUnsignedType,
+- to_json · function · L292-L297 — template<typename BasicJsonType, typename CompatibleNumberIntegerType,
+- to_json · function · L299-L305 — template<typename BasicJsonType, typename EnumType,
+- to_json · function · L307-L311 — template<typename BasicJsonType>
+- to_json · function · L313-L324 — template < typename BasicJsonType, typename CompatibleArrayType,
+- to_json · function · L326-L330 — template<typename BasicJsonType>
+- to_json · function · L332-L337 — template<typename BasicJsonType, typename T,
+- to_json · function · L339-L343 — template<typename BasicJsonType>
+- to_json · function · L345-L350 — template < typename BasicJsonType, typename CompatibleObjectType,
+- to_json · function · L352-L356 — template<typename BasicJsonType>
+- to_json · function · L358-L366 — template <
+- to_json · function · L368-L372 — template < typename BasicJsonType, typename T1, typename T2, enable_if_t < std::is_constructible<BasicJsonType, T1>::value&& std::is_constructible<BasicJsonType, T2>::value, int > = 0 >
+- to_json · function · L375-L380 — template<typename BasicJsonType, typename T,
+- to_json_tuple_impl · function · L382-L386 — template<typename BasicJsonType, typename Tuple, std::size_t... Idx>
+- to_json · function · L388-L392 — template<typename BasicJsonType, typename T, enable_if_t<is_constructible_tuple<BasicJsonType, T>::value, int > = 0>
+- to_json · function · L395-L399 — template<typename BasicJsonType>
+- to_json_fn · class · L402-L410 — struct to_json_fn

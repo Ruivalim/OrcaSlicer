@@ -1,0 +1,21 @@
+# src/slic3r/GUI/AboutDialog.hpp
+
+- AboutDialogLogo · class · L14-L22 — class AboutDialogLogo : public wxPanel
+- AboutDialogLogo · function · L17-L17 — AboutDialogLogo(wxWindow* parent);
+- onRepaint · function · L21-L21 — void onRepaint(wxEvent &event);
+- CopyrightsDialog · class · L26-L53 — class CopyrightsDialog : public DPIDialog
+- CopyrightsDialog · function · L29-L29 — CopyrightsDialog();
+- Entry · class · L32-L39 — struct Entry
+- Entry · function · L33-L34 — Entry(const std::string &lib_name, const std::string &copyright, const std::string &link) :
+- on_dpi_changed · function · L42-L42 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- onLinkClicked · function · L48-L48 — void onLinkClicked(wxHtmlLinkEvent &event);
+- onCloseDialog · function · L49-L49 — void onCloseDialog(wxEvent &);
+- fill_entries · function · L51-L51 — void fill_entries();
+- get_html_text · function · L52-L52 — wxString get_html_text();
+- AboutDialog · class · L57-L74 — class AboutDialog : public DPIDialog
+- AboutDialog · function · L64-L64 — AboutDialog();
+- on_dpi_changed · function · L67-L67 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- onLinkClicked · function · L70-L70 — void onLinkClicked(wxHtmlLinkEvent &event);
+- onCloseDialog · function · L71-L71 — void onCloseDialog(wxEvent &);
+- onCopyrightBtn · function · L72-L72 — void onCopyrightBtn(wxEvent &);
+- onCopyToClipboard · function · L73-L73 — void onCopyToClipboard(wxEvent&);

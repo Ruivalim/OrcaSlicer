@@ -1,0 +1,22 @@
+# src/slic3r/GUI/Event.hpp
+
+- SimpleEvent · class · L14-L26 — struct SimpleEvent : public wxEvent
+- SimpleEvent · function · L16-L20 — SimpleEvent(wxEventType type, wxObject* origin = nullptr) : wxEvent(0, type)
+- Clone · function · L22-L22 — virtual wxEvent* Clone() const
+- IntEvent · class · L28-L47 — struct IntEvent : public wxEvent
+- IntEvent · function · L31-L36 — IntEvent(wxEventType type, int data, wxObject* origin = nullptr) : wxEvent(0, type)
+- Clone · function · L38-L38 — virtual wxEvent* Clone() const
+- get_data · function · L42-L42 — int get_data() { return m_data; }
+- ArrayEvent · class · L49-L64 — template<class T, size_t N> struct ArrayEvent : public wxEvent
+- ArrayEvent · function · L53-L58 — ArrayEvent(wxEventType type, std::array<T, N> data, wxObject* origin = nullptr)
+- Clone · function · L60-L60 — virtual wxEvent* Clone() const
+- Event · class · L66-L88 — template<class T> struct Event : public wxEvent
+- Event · function · L70-L75 — Event(wxEventType type, const T &data, wxObject* origin = nullptr)
+- Event · function · L77-L82 — Event(wxEventType type, T&& data, wxObject* origin = nullptr)
+- Clone · function · L84-L84 — virtual wxEvent* Clone() const
+- LoadPrinterViewEvent · class · L91-L110 — class LoadPrinterViewEvent  : public wxCommandEvent
+- LoadPrinterViewEvent · function · L94-L96 — LoadPrinterViewEvent(wxEventType commandType = wxEVT_NULL, int winid = 0)
+- LoadPrinterViewEvent · function · L98-L100 — LoadPrinterViewEvent(const LoadPrinterViewEvent& event)
+- GetAPIkey · function · L102-L102 — const wxString& GetAPIkey() const { return m_APIkey; }
+- SetAPIkey · function · L103-L103 — void SetAPIkey(const wxString& apikey) { m_APIkey = apikey; }
+- Clone · function · L105-L105 — virtual wxEvent *Clone() const wxOVERRIDE { return new LoadPrinterViewEvent(*this); }

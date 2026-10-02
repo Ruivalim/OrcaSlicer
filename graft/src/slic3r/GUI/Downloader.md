@@ -1,0 +1,31 @@
+# src/slic3r/GUI/Downloader.hpp
+
+- NotificationManager · class · L11-L11 — class NotificationManager;
+- DownloadState · type · L13-L22 — enum DownloadState
+- DownloaderUserAction · type · L24-L30 — enum DownloaderUserAction
+- Download · class · L32-L53 — class Download
+- Download · function · L34-L34 — Download(int ID, std::string url, wxEvtHandler* evt_handler, const boost::filesystem::path& dest_folder);
+- start · function · L35-L35 — void start();
+- cancel · function · L36-L36 — void cancel();
+- pause · function · L37-L37 — void pause();
+- resume · function · L38-L38 — void resume();
+- get_id · function · L40-L40 — int get_id() const { return m_id; }
+- get_final_path · function · L41-L41 — boost::filesystem::path get_final_path() const { return m_final_path; }
+- get_filename · function · L42-L42 — std::string get_filename() const { return m_filename; }
+- get_state · function · L43-L43 — DownloadState get_state() const { return m_state; }
+- set_state · function · L44-L44 — void set_state(DownloadState state) { m_state = state; }
+- get_dest_folder · function · L45-L45 — std::string get_dest_folder() { return m_dest_folder.string(); }
+- Downloader · class · L55-L95 — class Downloader : public wxEvtHandler
+- Downloader · function · L57-L57 — Downloader();
+- get_initialized · function · L59-L59 — bool get_initialized() { return m_initialized; }
+- init · function · L60-L64 — void init(const boost::filesystem::path& dest_folder)
+- start_download · function · L65-L65 — void start_download(const std::string& full_url);
+- user_action_callback · function · L67-L67 — bool user_action_callback(DownloaderUserAction action, int id);
+- get_next_id · function · L75-L75 — size_t get_next_id() { return ++m_next_id; }
+- on_progress · function · L77-L77 — void on_progress(wxCommandEvent& event);
+- on_error · function · L78-L78 — void on_error(wxCommandEvent& event);
+- on_complete · function · L79-L79 — void on_complete(wxCommandEvent& event);
+- on_name_change · function · L80-L80 — void on_name_change(wxCommandEvent& event);
+- on_paused · function · L81-L81 — void on_paused(wxCommandEvent& event);
+- on_canceled · function · L82-L82 — void on_canceled(wxCommandEvent& event);
+- set_download_state · function · L84-L84 — void set_download_state(int id, DownloadState state);

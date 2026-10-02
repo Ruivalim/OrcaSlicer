@@ -1,0 +1,21 @@
+# deps_src/nlohmann/detail/conversions/to_chars.hpp
+
+- reinterpret_bits · function · L39-L47 — template<typename Target, typename Source>
+- diyfp · class · L49-L165 — struct diyfp // f * 2^e
+- diyfp · function · L56-L56 — constexpr diyfp(std::uint64_t f_, int e_) noexcept : f(f_), e(e_) {}
+- sub · function · L62-L68 — static diyfp sub(const diyfp& x, const diyfp& y) noexcept
+- mul · function · L74-L133 — static diyfp mul(const diyfp& x, const diyfp& y) noexcept
+- normalize · function · L139-L150 — static diyfp normalize(diyfp x) noexcept
+- normalize_to · function · L156-L164 — static diyfp normalize_to(const diyfp& x, const int target_exponent) noexcept
+- boundaries · class · L167-L172 — struct boundaries
+- compute_boundaries · function · L180-L246 — template<typename FloatType>
+- cached_power · class · L306-L311 — struct cached_power // c = f * 2^e ~= 10^k
+- get_cached_power_for_binary_exponent · function · L320-L478 — inline cached_power get_cached_power_for_binary_exponent(int e)
+- find_largest_pow10 · function · L484-L536 — inline int find_largest_pow10(const std::uint32_t n, std::uint32_t& pow10)
+- grisu2_round · function · L538-L573 — inline void grisu2_round(char* buf, int len, std::uint64_t dist, std::uint64_t delta,
+- grisu2_digit_gen · function · L579-L812 — inline void grisu2_digit_gen(char* buffer, int& length, int& decimal_exponent,
+- grisu2 · function · L820-L871 — inline void grisu2(char* buf, int& len, int& decimal_exponent,
+- grisu2 · function · L880-L880 — void grisu2(char* buf, int& len, int& decimal_exponent, FloatType value)
+- append_exponent · function · L920-L920 — inline char* append_exponent(char* buf, int e)
+- format_buffer · function · L972-L973 — inline char* format_buffer(char* buf, int len, int decimal_exponent,
+- to_chars · function · L1057-L1057 — char* to_chars(char* first, const char* last, FloatType value)

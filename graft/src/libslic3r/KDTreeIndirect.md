@@ -1,0 +1,30 @@
+# src/libslic3r/KDTreeIndirect.hpp
+
+- VisitorReturnMask · type · L14-L18 — enum class VisitorReturnMask : unsigned int
+- KDTreeIndirect · class · L21-L190 — template<size_t ANumDimensions, typename ACoordType, typename ACoordinateFn>
+-  · type · L29-L31 — enum : size_t
+- KDTreeIndirect · function · L33-L33 — KDTreeIndirect(CoordinateFn coordinate) : coordinate(coordinate) {}
+- KDTreeIndirect · function · L34-L34 — KDTreeIndirect(CoordinateFn coordinate, std::vector<size_t> indices) : coordinate(coordinate) { this->build(indices); }
+- KDTreeIndirect · function · L35-L35 — KDTreeIndirect(CoordinateFn coordinate, size_t num_indices) : coordinate(coordinate) { this->build(num_indices); }
+- KDTreeIndirect · function · L36-L36 — KDTreeIndirect(KDTreeIndirect &&rhs) : m_nodes(std::move(rhs.m_nodes)), coordinate(std::move(rhs.coordinate)) {}
+- clear · function · L38-L38 — void clear() { m_nodes.clear(); }
+- build · function · L40-L47 — void build(size_t num_indices)
+- build · function · L49-L59 — void build(std::vector<size_t> &indices)
+- descent_mask · function · L61-L70 — template<typename CoordType>
+- visit · function · L73-L77 — template<typename Visitor>
+- build_recursive · function · L83-L108 — void build_recursive(std::vector<size_t> &input, size_t node, const size_t dimension, const size_t left, const size_t right)
+- partition_input · function · L114-L167 — void partition_input(std::vector<size_t> &input, const size_t dimension, size_t left, size_t right, const size_t k) const
+- visit_recursive · function · L169-L187 — template<typename Visitor>
+- find_closest_points · function · L194-L252 — template<size_t K,
+- Visitor · class · L207-L245 — struct Visitor
+- Visitor · function · L215-L220 — Visitor(const Tree &kdtree, const PointType &point, FilterFn filter)
+- find_closest_points · function · L254-L259 — template<size_t K, typename PointType, size_t D, typename CoordT, typename CoordFn>
+- find_closest_point · function · L261-L271 — template<typename PointType,
+- find_closest_point · function · L273-L277 — template<typename KDTreeIndirectType, typename PointType>
+- find_nearby_points · function · L280-L314 — template<typename KDTreeIndirectType, typename PointType, typename FilterFn>
+- Visitor · class · L286-L310 — struct Visitor
+- Visitor · function · L293-L296 — Visitor(const KDTreeIndirectType &kdtree, const PointType& center, const CoordType &max_distance,
+- find_nearby_points · function · L316-L323 — template<typename KDTreeIndirectType, typename PointType>
+- find_nearby_points · function · L326-L370 — template<typename KDTreeIndirectType, typename PointType, typename FilterFn>
+- Visitor · class · L332-L366 — struct Visitor
+- Visitor · function · L338-L341 — Visitor(const KDTreeIndirectType &kdtree, const PointType& bbmin, const PointType& bbmax,

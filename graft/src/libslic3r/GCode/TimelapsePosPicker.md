@@ -1,0 +1,26 @@
+# src/libslic3r/GCode/TimelapsePosPicker.hpp
+
+- Layer · class · L15-L15 — class Layer;
+- Print · class · L16-L16 — class Print;
+- PosPickCtx · class · L18-L28 — struct PosPickCtx
+- TimelapsePosPicker · class · L31-L84 — class TimelapsePosPicker
+- TimelapsePosPicker · function · L34-L34 — TimelapsePosPicker() = default;
+- pick_pos · function · L37-L37 — Point pick_pos(const PosPickCtx& ctx);
+- get_is_clear_to_x0 · function · L40-L40 — bool  get_is_clear_to_x0(const PosPickCtx& ctx);
+- init · function · L41-L41 — void init(const Print* print, const Point& plate_offset);
+- reset · function · L42-L42 — void reset();
+- construct_printable_area_by_printer · function · L44-L44 — void construct_printable_area_by_printer();
+- pick_pos_for_curr_layer · function · L46-L46 — Point pick_pos_for_curr_layer(const PosPickCtx& ctx);
+- pick_pos_for_all_layer · function · L47-L47 — Point pick_pos_for_all_layer(const PosPickCtx& ctx);
+- collect_object_slices_data · function · L49-L49 — ExPolygons collect_object_slices_data(const Layer* curr_layer, float height_range, const std::vector<const PrintObject*>& object_list,bool by_object);
+- collect_limit_areas_for_camera · function · L50-L50 — Polygons collect_limit_areas_for_camera(const std::vector<const PrintObject*>& object_list);
+- collect_limit_areas_for_rod · function · L52-L52 — Polygons collect_limit_areas_for_rod(const std::vector<const PrintObject*>& object_list, const PosPickCtx& ctx);
+- expand_object_projection · function · L54-L54 — Polygon       expand_object_projection(const Polygon &poly, bool by_object, bool higher_than_curr = true);
+- expand_object_bbox · function · L55-L55 — BoundingBoxf3 expand_object_bbox(const BoundingBoxf3& bbox, bool by_object);
+- pick_nearest_object_center · function · L57-L57 — Point pick_nearest_object_center(const Point& curr_pos, const std::vector<const PrintObject*>& object_list);
+- get_objects_center · function · L58-L58 — Point get_objects_center(const std::vector<const PrintObject*>& object_list);
+- get_limit_area_for_camera · function · L60-L60 — Polygon get_limit_area_for_camera(const PrintObject* obj);
+- get_object_list · function · L61-L61 — std::vector<const PrintObject*> get_object_list(const std::optional<std::vector<const PrintObject*>>& printed_objects);
+- get_raft_height · function · L63-L63 — double get_raft_height(const PrintObject* obj);
+- get_real_instance_bbox · function · L64-L64 — BoundingBoxf3 get_real_instance_bbox(const PrintInstance& instance);
+- get_object_center · function · L65-L65 — Point get_object_center(const PrintObject* obj);

@@ -1,0 +1,99 @@
+# src/libslic3r/Line.hpp
+
+- BoundingBox · class · L11-L11 — class BoundingBox;
+- Line · class · L12-L12 — class Line;
+- Line3 · class · L13-L13 — class Line3;
+- Linef3 · class · L14-L14 — class Linef3;
+- Polyline · class · L15-L15 — class Polyline;
+- ThickLine · class · L16-L16 — class ThickLine;
+- Lines · type · L17-L17 — typedef std::vector<Line> Lines;
+- Lines3 · type · L18-L18 — typedef std::vector<Line3> Lines3;
+- ThickLines · type · L19-L19 — typedef std::vector<ThickLine> ThickLines;
+- transform · function · L21-L21 — Linef3 transform(const Linef3& line, const Transform3d& t);
+- Traits · class · L25-L33 — template<class L, class En = void> struct Traits
+- get_a · function · L29-L29 — static Vec<Dim, Scalar>& get_a(L &l) { return l.a; }
+- get_b · function · L30-L30 — static Vec<Dim, Scalar>& get_b(L &l) { return l.b; }
+- get_a · function · L31-L31 — static const Vec<Dim, Scalar>& get_a(const L &l) { return l.a; }
+- get_b · function · L32-L32 — static const Vec<Dim, Scalar>& get_b(const L &l) { return l.b; }
+- get_a · function · L38-L38 — template<class L> auto get_a(L &&l) { return Traits<remove_cvref_t<L>>::get_a(l); }
+- get_b · function · L39-L39 — template<class L> auto get_b(L &&l) { return Traits<remove_cvref_t<L>>::get_b(l); }
+- distance_to_squared · function · L42-L69 — template<class L>
+- distance_to_squared · function · L72-L77 — template<class L>
+- distance_to · function · L79-L83 — template<class L>
+- distance_to_infinite_squared · function · L87-L104 — template<class L>
+- distance_to_infinite_squared · function · L108-L113 — template<class L>
+- distance_to_infinite · function · L117-L121 — template<class L>
+- intersection · function · L123-L148 — template<class L> bool intersection(const L &l1, const L &l2, Vec<Dim<L>, Scalar<L>> *intersection_pt)
+- Line · class · L152-L200 — class Line
+- Line · function · L155-L155 — Line() {}
+- Line · function · L156-L156 — Line(const Point& _a, const Point& _b) : a(_a), b(_b) {}
+- scale · function · L158-L158 — void   scale(double factor) { this->a *= factor; this->b *= factor; }
+- translate · function · L159-L159 — void   translate(const Point &v) { this->a += v; this->b += v; }
+- translate · function · L160-L160 — void   translate(double x, double y) { this->translate(Point(x, y)); }
+- rotate · function · L161-L161 — void   rotate(double angle, const Point &center) { this->a.rotate(angle, center); this->b.rotate(angle, center); }
+- reverse · function · L162-L162 — void   reverse() { std::swap(this->a, this->b); }
+- length · function · L163-L163 — double length() const { return (b - a).cast<double>().norm(); }
+- midpoint · function · L164-L164 — Point  midpoint() const { return (this->a + this->b) / 2; }
+- intersection_infinite · function · L165-L165 — bool   intersection_infinite(const Line &other, Point* point) const;
+- distance_to_squared · function · L167-L167 — double distance_to_squared(const Point &point) const { return distance_to_squared(point, this->a, this->b); }
+- distance_to_squared · function · L168-L168 — double distance_to_squared(const Point &point, Point *closest_point) const { return line_alg::distance_to_squared(*this, point, closest_point); }
+- distance_to · function · L169-L169 — double distance_to(const Point &point) const { return distance_to(point, this->a, this->b); }
+- distance_to_infinite_squared · function · L170-L170 — double distance_to_infinite_squared(const Point &point, Point *closest_point) const { return line_alg::distance_to_infinite_squared(*this, point, closest_point); }
+- perp_distance_to · function · L171-L171 — double perp_distance_to(const Point &point) const;
+- parallel_to · function · L172-L172 — bool   parallel_to(double angle) const;
+- parallel_to · function · L173-L173 — bool   parallel_to(const Line& line) const;
+- perpendicular_to · function · L174-L174 — bool   perpendicular_to(double angle) const;
+- perpendicular_to · function · L175-L175 — bool   perpendicular_to(const Line& line) const;
+- atan2_ · function · L176-L176 — double atan2_() const { return atan2(this->b(1) - this->a(1), this->b(0) - this->a(0)); }
+- orientation · function · L177-L177 — double orientation() const;
+- direction · function · L178-L178 — double direction() const;
+- vector · function · L179-L179 — Vector vector() const { return this->b - this->a; }
+- normal · function · L180-L180 — Vector normal() const { return Vector((this->b(1) - this->a(1)), -(this->b(0) - this->a(0))); }
+- intersection · function · L181-L181 — bool   intersection(const Line& line, Point* intersection) const;
+- clip_with_bbox · function · L183-L183 — bool   clip_with_bbox(const BoundingBox &bbox);
+- extend · function · L185-L185 — void   extend(double offset);
+- overlap · function · L186-L186 — bool   overlap(const Line &line, double &overlap_length) const;
+- distance_to_squared · function · L187-L187 — static inline double distance_to_squared(const Point &point, const Point &a, const Point &b) { return line_alg::distance_to_squared(Line{a, b}, Vec<2, coord_t>{point}); }
+- distance_to · function · L188-L188 — static double distance_to(const Point &point, const Point &a, const Point &b) { return sqrt(distance_to_squared(point, a, b)); }
+- distance_to_infinite_squared · function · L192-L192 — static inline double distance_to_infinite_squared(const Point &point, const Point &a, const Point &b) { return line_alg::distance_to_infinite_squared(Line{a, b}, Vec<2, coord_t>{point}); }
+- distance_to_infinite · function · L193-L193 — static double distance_to_infinite(const Point &point, const Point &a, const Point &b) { return sqrt(distance_to_infinite_squared(point, a, b)); }
+- ThickLine · class · L202-L210 — class ThickLine : public Line
+- ThickLine · function · L205-L205 — ThickLine() : a_width(0), b_width(0) {}
+- ThickLine · function · L206-L206 — ThickLine(const Point& a, const Point& b) : Line(a, b), a_width(0), b_width(0) {}
+- ThickLine · function · L207-L207 — ThickLine(const Point& a, const Point& b, double wa, double wb) : Line(a, b), a_width(wa), b_width(wb) {}
+- CurledLine · class · L212-L220 — class CurledLine : public Line
+- CurledLine · function · L215-L215 — CurledLine() : curled_height(0.0f) {}
+- CurledLine · function · L216-L216 — CurledLine(const Point& a, const Point& b) : Line(a, b), curled_height(0.0f) {}
+- CurledLine · function · L217-L217 — CurledLine(const Point& a, const Point& b, float curled_height) : Line(a, b), curled_height(curled_height) {}
+- Line3 · class · L224-L249 — class Line3
+- Line3 · function · L227-L227 — Line3() : a(Point3()), b(Point3()) {}
+- Line3 · function · L228-L228 — Line3(const Point3& _a, const Point3& _b) : a(_a), b(_b) {}
+- Line3 · function · L230-L230 — Line3(const Vec3crd& _a, const Vec3crd& _b) : a(Point3(_a)), b(Point3(_b)) {}
+- length · function · L232-L232 — double  length() const { return (this->a - this->b).cast<double>().norm(); }
+- vector · function · L233-L233 — Point3 vector() const { Vec3crd v = this->b - this->a; return Point3(v.x(), v.y(), v.z()); }
+- midpoint · function · L234-L234 — Point3 midpoint() const { return Point3((this->a.x() + this->b.x()) / 2, (this->a.y() + this->b.y()) / 2, (this->a.z() + this->b.z()) / 2); }
+- to_line · function · L237-L237 — Line to_line() const { return Line(this->a.to_point(), this->b.to_point()); }
+- distance_to_squared · function · L239-L242 — static inline double distance_to_squared(const Point3& point, const Point3& a, const Point3& b)
+- Linef · class · L251-L266 — class Linef
+- Linef · function · L254-L254 — Linef() : a(Vec2d::Zero()), b(Vec2d::Zero()) {}
+- Linef · function · L255-L255 — Linef(const Vec2d& _a, const Vec2d& _b) : a(_a), b(_b) {}
+- vector · function · L257-L257 — Vec2d   vector() const { return this->b - this->a; }
+- unit_vector · function · L258-L258 — Vec2d   unit_vector() const { return (length() == 0.0) ? Vec2d::Zero() : vector().normalized(); }
+- length · function · L259-L259 — double  length() const { return vector().norm(); }
+- Linef3 · class · L269-L313 — class Linef3
+- Linef3 · function · L272-L272 — Linef3() : a(Vec3d::Zero()), b(Vec3d::Zero()) {}
+- Linef3 · function · L273-L273 — Linef3(const Vec3d& _a, const Vec3d& _b) : a(_a), b(_b) {}
+- Linef3 · function · L274-L274 — Linef3(const Vec2d& _a, const Vec2d& _b, double z) : a(Vec3d(_a.x(), _a.y(), z)), b(Vec3d(_b.x(), _b.y(), z)) {}
+- intersect_plane · function · L276-L276 — Vec3d   intersect_plane(double z) const;
+- scale · function · L277-L277 — void    scale(double factor) { this->a *= factor; this->b *= factor; }
+- vector · function · L278-L278 — Vec3d   vector() const { return this->b - this->a; }
+- unit_vector · function · L279-L279 — Vec3d   unit_vector() const { return (length() == 0.0) ? Vec3d::Zero() : vector().normalized(); }
+- length · function · L280-L280 — double  length() const { return vector().norm(); }
+- distance_to_infinite_squared · function · L282-L296 — double distance_to_infinite_squared(const Vec3d &point, Vec3d *closest_point) const
+- distance_to_infinite_squared · function · L298-L301 — double distance_to_infinite_squared(const Vec3d &point) const
+- distance_to_infinite_squared · function · L303-L306 — static inline double distance_to_infinite_squared(const Vec3d &point, const Vec3d &a, const Vec3d &b)
+- get_extents · function · L317-L317 — BoundingBox get_extents(const Lines &lines);
+- type · type · L325-L325 — struct geometry_concept<Slic3r::Line> { typedef segment_concept type; };
+- coordinate_type · type · L329-L329 — typedef coord_t coordinate_type;
+- point_type · type · L330-L330 — typedef Slic3r::Point point_type;
+- get · function · L332-L334 — static inline point_type get(const Slic3r::Line& line, direction_1d dir)

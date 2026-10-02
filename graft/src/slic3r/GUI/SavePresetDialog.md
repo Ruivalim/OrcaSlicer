@@ -1,0 +1,39 @@
+# src/slic3r/GUI/SavePresetDialog.hpp
+
+- wxString · class · L15-L15 — class wxString;
+- wxStaticText · class · L16-L16 — class wxStaticText;
+- wxComboBox · class · L17-L17 — class wxComboBox;
+- wxStaticBitmap · class · L18-L18 — class wxStaticBitmap;
+- SavePresetDialog · class · L27-L123 — class SavePresetDialog : public DPIDialog
+- ActionType · type · L29-L35 — enum ActionType
+- Item · class · L37-L80 — class Item : public wxWindow
+- ValidationType · type · L40-L45 — enum ValidationType
+- Item · function · L47-L47 — Item(Preset::Type type, const std::string& suffix, wxBoxSizer* sizer, SavePresetDialog* parent);
+- update_valid_bmp · function · L49-L49 — void            update_valid_bmp();
+- accept · function · L50-L50 — void accept();
+- DoSetSize · function · L51-L51 — virtual void DoSetSize(int x, int y, int width, int height, int sizeFlags = wxSIZE_AUTO);
+- is_valid · function · L53-L53 — bool            is_valid()      const { return m_valid_type != NoValid; }
+- type · function · L54-L54 — Preset::Type    type()          const { return m_type; }
+- preset_name · function · L55-L55 — std::string     preset_name()   const { return m_preset_name; }
+- save_to_project · function · L57-L57 — bool save_to_project() const { return m_save_to_project; }
+- is_detached · function · L60-L60 — bool is_detached() const { return m_detach; }
+- update · function · L79-L79 — void update();
+- SavePresetDialog · function · L94-L94 — SavePresetDialog(wxWindow* parent, Preset::Type type, int mode = 0, std::string suffix = "");
+- SavePresetDialog · function · L95-L95 — SavePresetDialog(wxWindow* parent, std::vector<Preset::Type> types, int mode = 0, std::string suffix = "");
+- AddItem · function · L98-L98 — void AddItem(Preset::Type type, const std::string& suffix);
+- get_name · function · L100-L100 — std::string get_name();
+- get_name · function · L101-L101 — std::string get_name(Preset::Type type);
+- input_name_from_other · function · L102-L102 — void input_name_from_other(std::string new_preset_name);
+- confirm_from_other · function · L103-L103 — void confirm_from_other();
+- enable_ok_btn · function · L105-L105 — bool enable_ok_btn() const;
+- add_info_for_edit_ph_printer · function · L106-L106 — void add_info_for_edit_ph_printer(wxBoxSizer *sizer);
+- update_info_for_edit_ph_printer · function · L107-L107 — void update_info_for_edit_ph_printer(const std::string &preset_name);
+- layout · function · L108-L108 — void layout();
+- get_save_to_project_selection · function · L110-L110 — bool get_save_to_project_selection(Preset::Type type);
+- get_detach_value · function · L112-L112 — bool get_detach_value(Preset::Type type);
+- on_dpi_changed · function · L115-L115 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_sys_color_changed · function · L116-L116 — void on_sys_color_changed() override {}
+- build · function · L119-L119 — void build(std::vector<Preset::Type> types, std::string suffix = "");
+- on_select_cancel · function · L120-L120 — void on_select_cancel(wxCommandEvent &event);
+- update_physical_printers · function · L121-L121 — void update_physical_printers(const std::string &preset_name);
+- accept · function · L122-L122 — void accept(wxCommandEvent &event);

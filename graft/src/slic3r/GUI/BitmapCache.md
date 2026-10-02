@@ -1,0 +1,26 @@
+# src/slic3r/GUI/BitmapCache.hpp
+
+- BitmapCache · class · L18-L65 — class BitmapCache
+- BitmapCache · function · L21-L21 — BitmapCache();
+- clear · function · L23-L23 — void 			clear();
+- scale · function · L24-L24 — double			scale() { return m_scale; }
+- find · function · L26-L26 — wxBitmap* 		find(const std::string &name) 		{ auto it = m_map.find(name); return (it == m_map.end()) ? nullptr : it->second; }
+- find · function · L27-L27 — const wxBitmap* find(const std::string &name) const { return const_cast<BitmapCache*>(this)->find(name); }
+- insert · function · L29-L29 — wxBitmap*       insert(const std::string &name, size_t width, size_t height);
+- insert · function · L30-L30 — wxBitmap* 		insert(const std::string &name, const wxBitmap &bmp);
+- insert · function · L31-L31 — wxBitmap* 		insert(const std::string &name, const wxBitmap &bmp, const wxBitmap &bmp2);
+- insert · function · L32-L32 — wxBitmap* 		insert(const std::string &name, const wxBitmap &bmp, const wxBitmap &bmp2, const wxBitmap &bmp3);
+- insert · function · L33-L33 — wxBitmap* 		insert(const std::string &name, const std::vector<wxBitmap> &bmps) { return this->insert(name, &bmps.front(), &bmps.front() + bmps.size()); }
+- insert · function · L34-L34 — wxBitmap* 		insert(const std::string &name, const wxBitmap *begin, const wxBitmap *end);
+- insert_raw_rgba · function · L35-L35 — wxBitmap* 		insert_raw_rgba(const std::string &bitmap_key, unsigned width, unsigned height, const unsigned char *raw_data, const bool grayscale = false);
+- load_png · function · L39-L39 — wxBitmap* 		load_png(const std::string &bitmap_key, unsigned width = 0, unsigned height = 0, const bool grayscale = false, const float scale_in_center = 0.f);
+- nsvgParseFromFileWithReplace · function · L44-L44 — static NSVGimage* nsvgParseFromFileWithReplace(const char* filename, const char* units, float dpi, const std::map<std::string, std::string>& replaces);
+- load_svg · function · L46-L46 — wxBitmap* 		load_svg(const std::string &bitmap_key, unsigned width = 0, unsigned height = 0, const bool grayscale = false, const bool dark_mode = false, const std::string& new_color = "", const float scale_in_center = 0.f);
+- load_svg2 · function · L48-L48 — wxBitmap* 		load_svg2(const std::string &bitmap_key, unsigned width = 0, unsigned height = 0, const bool grayscale = false, const bool dark_mode = false, const std::vector<std::string>& array_new_color = std::vector<std::string>(), const float scale_in_center = 0.0f);
+- mksolid · function · L50-L50 — wxBitmap 		mksolid(size_t width, size_t height, unsigned char r, unsigned char g, unsigned char b, unsigned char transparency, bool suppress_scaling = false, size_t border_width = 0, bool dark_mode = false);
+- mksolid · function · L51-L51 — wxBitmap 		mksolid(size_t width, size_t height, const unsigned char rgb[3], bool suppress_scaling = false, size_t border_width = 0, bool dark_mode = false) { return mksolid(width, height, rgb[0], rgb[1], rgb[2], wxALPHA_OPAQUE, suppress_scaling, border_width, dark_mode); }
+- mksolid · function · L52-L52 — wxBitmap 		mksolid(size_t width, size_t height, const ColorRGB& rgb, bool suppress_scaling = false, size_t border_width = 0, bool dark_mode = false) { return mksolid(width, height, rgb.r_uchar(), rgb.g_uchar(), rgb.b_uchar(), wxALPHA_OPAQUE, suppress_scaling, border_width, dark_mode); }
+- mkclear · function · L53-L53 — wxBitmap 		mkclear(size_t width, size_t height) { return mksolid(width, height, 0, 0, 0, wxALPHA_TRANSPARENT); }
+- parse_color · function · L55-L55 — static bool     parse_color(const std::string& scolor, unsigned char* rgb_out);
+- parse_color4 · function · L56-L56 — static bool     parse_color4(const std::string& scolor, unsigned char* rgba_out);
+- load_from_svg_file_change_color · function · L58-L58 — static bool load_from_svg_file_change_color(const std::string &filename, unsigned width, unsigned height, ImTextureID &texture_id, const char *hexColor);

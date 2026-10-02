@@ -1,0 +1,24 @@
+# src/slic3r/GUI/Gizmos/GLGizmoMove.hpp
+
+- GizmoObjectManipulation · class · L13-L13 — class GizmoObjectManipulation;
+- GLGizmoMove3D · class · L14-L77 — class GLGizmoMove3D : public GLGizmoBase
+- GrabberConnection · class · L26-L30 — struct GrabberConnection
+- GLGizmoMove3D · function · L39-L39 — GLGizmoMove3D(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id, GizmoObjectManipulation* obj_manipulation);
+- get_snap_step · function · L42-L42 — double get_snap_step(double step) const { return m_snap_step; }
+- set_snap_step · function · L43-L43 — void set_snap_step(double step) { m_snap_step = step; }
+- get_tooltip · function · L45-L45 — std::string get_tooltip() const override;
+- on_mouse · function · L52-L52 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- data_changed · function · L57-L57 — void data_changed(bool is_serializing) override;
+- on_init · function · L59-L59 — bool on_init() override;
+- on_get_name · function · L60-L60 — std::string on_get_name() const override;
+- on_is_activable · function · L61-L61 — bool on_is_activable() const override;
+- on_set_state · function · L62-L62 — virtual void on_set_state() override;
+- on_start_dragging · function · L63-L63 — void on_start_dragging() override;
+- on_stop_dragging · function · L64-L64 — void on_stop_dragging() override;
+- on_dragging · function · L65-L65 — void on_dragging(const UpdateData& data) override;
+- on_render · function · L66-L66 — void on_render() override;
+- on_register_raycasters_for_picking · function · L67-L67 — void on_register_raycasters_for_picking() override;
+- on_unregister_raycasters_for_picking · function · L68-L68 — void on_unregister_raycasters_for_picking() override;
+- on_render_input_window · function · L70-L70 — virtual void on_render_input_window(float x, float y, float bottom_limit) override;
+- calc_projection · function · L73-L73 — double calc_projection(const UpdateData& data) const;
+- change_cs_by_selection · function · L74-L74 — void   change_cs_by_selection(); //cs mean Coordinate System

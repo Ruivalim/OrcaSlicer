@@ -1,0 +1,24 @@
+# deps_src/md4c/src/md4c.h
+
+- MD_CHAR · type · L39-L39 — typedef WCHAR       MD_CHAR;
+- MD_CHAR · type · L44-L44 — typedef char            MD_CHAR;
+- MD_SIZE · type · L47-L47 — typedef unsigned MD_SIZE;
+- MD_OFFSET · type · L48-L48 — typedef unsigned MD_OFFSET;
+- MD_BLOCKTYPE · type · L54-L103 — typedef enum MD_BLOCKTYPE
+- MD_SPANTYPE · type · L108-L149 — typedef enum MD_SPANTYPE
+- MD_TEXTTYPE · type · L152-L192 — typedef enum MD_TEXTTYPE
+- MD_ALIGN · type · L196-L201 — typedef enum MD_ALIGN
+- MD_ATTRIBUTE · class · L231-L236 — typedef struct MD_ATTRIBUTE
+- MD_BLOCK_UL_DETAIL · class · L240-L243 — typedef struct MD_BLOCK_UL_DETAIL
+- MD_BLOCK_OL_DETAIL · class · L246-L250 — typedef struct MD_BLOCK_OL_DETAIL
+- MD_BLOCK_LI_DETAIL · class · L253-L257 — typedef struct MD_BLOCK_LI_DETAIL
+- MD_BLOCK_H_DETAIL · class · L260-L262 — typedef struct MD_BLOCK_H_DETAIL
+- MD_BLOCK_CODE_DETAIL · class · L265-L269 — typedef struct MD_BLOCK_CODE_DETAIL
+- MD_BLOCK_TABLE_DETAIL · class · L272-L276 — typedef struct MD_BLOCK_TABLE_DETAIL
+- MD_BLOCK_TD_DETAIL · class · L279-L281 — typedef struct MD_BLOCK_TD_DETAIL
+- MD_SPAN_A_DETAIL · class · L284-L288 — typedef struct MD_SPAN_A_DETAIL
+- MD_SPAN_IMG_DETAIL · class · L291-L294 — typedef struct MD_SPAN_IMG_DETAIL
+- MD_SPAN_WIKILINK · class · L297-L299 — typedef struct MD_SPAN_WIKILINK
+- MD_PARSER · class · L339-L383 — typedef struct MD_PARSER
+- MD_RENDERER · type · L388-L388 — typedef MD_PARSER MD_RENDERER;
+- md_parse · function · L400-L400 — int md_parse(const MD_CHAR* text, MD_SIZE size, const MD_PARSER* parser, void* userdata);

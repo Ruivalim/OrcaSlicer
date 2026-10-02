@@ -1,0 +1,23 @@
+# src/slic3r/GUI/Jobs/PrintJob.hpp
+
+- Plater · class · L15-L15 — class Plater;
+- PrintPrepareData · class · L19-L30 — class PrintPrepareData
+- PrintPrepareData · function · L27-L29 — PrintPrepareData()
+- PlateListData · class · L32-L39 — class PlateListData
+- PrintJob · class · L41-L144 — class PrintJob : public Job
+- prepare · function · L59-L59 — void prepare();
+- PrintJob · function · L60-L60 — PrintJob(std::string dev_id = "");
+- set_print_config · function · L101-L120 — void set_print_config(std::string bed_type, bool bed_leveling, bool flow_cali, bool vabration_cali, bool record_timelapse, bool layer_inspect, bool ext_change_assist,
+- status_range · function · L122-L125 — int  status_range() const
+- is_finished · function · L127-L127 — bool is_finished() { return m_job_finished;  }
+- set_print_job_finished_event · function · L128-L131 — void set_print_job_finished_event(int event_id, wxString evt_data = wxEmptyString)
+- on_success · function · L132-L132 — void on_success(std::function<void()> success);
+- process · function · L133-L133 — void process(Ctl &ctl) override;
+- finalize · function · L134-L134 — void finalize(bool canceled, std::exception_ptr &e) override;
+- set_project_name · function · L135-L135 — void set_project_name(std::string name);
+- set_dst_name · function · L136-L136 — void set_dst_name(std::string path);
+- on_check_ip_address_fail · function · L137-L137 — void on_check_ip_address_fail(std::function<void()> func);
+- on_check_ip_address_success · function · L138-L138 — void on_check_ip_address_success(std::function<void()> func);
+- get_http_error_msg · function · L140-L140 — wxString get_http_error_msg(unsigned int status, std::string body);
+- truncate_string · function · L141-L141 — std::string truncate_string(const std::string& str, size_t maxLength);
+- set_calibration_task · function · L142-L142 — void set_calibration_task(bool is_calibration);

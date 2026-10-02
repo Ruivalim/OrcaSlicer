@@ -1,0 +1,28 @@
+# src/libslic3r/libslic3r.h
+
+- unscale · function · L133-L133 — inline T unscale(Q v) { return T(v) * T(SCALING_FACTOR); }
+- Axis · type · L135-L149 — enum Axis
+- append · function · L152-L158 — inline void append(std::vector<T, Alloc> &dest, const std::vector<T, Alloc2> &src)
+- append · function · L161-L171 — inline void append(std::vector<T, Alloc> &dest, std::vector<T, Alloc> &&src)
+- append_reversed · function · L184-L190 — inline void append_reversed(std::vector<T>& dest, const std::vector<T>& src)
+- append_reversed · function · L194-L204 — inline void append_reversed(std::vector<T>& dest, std::vector<T>&& src)
+- emplace_back · function · L212-L213 — for (const T_FROM &a : src)
+- sort_remove_duplicates · function · L226-L230 — inline void sort_remove_duplicates(std::vector<T> &vec)
+- lower_bound · function · L263-L269 — ForwardIt binary_find(ForwardIt first, ForwardIt last, const T& value, Compare comp={})
+- contains · function · L285-L286 — template<typename ContainerType, typename ValueType> inline bool contains(const ContainerType &c, const ValueType &v)
+- contains · function · L287-L288 — template<typename T> inline bool contains(const std::initializer_list<T> &il, const T &v)
+- one_of · function · L290-L291 — template<typename ContainerType, typename ValueType> inline bool one_of(const ValueType &v, const ContainerType &c)
+- one_of · function · L292-L293 — template<typename T> inline bool one_of(const T& v, const std::initializer_list<T>& il)
+- sqr · function · L296-L299 — constexpr inline T sqr(T x)
+- is_zero · function · L302-L305 — inline bool is_zero(Number value)
+- lerp · function · L308-L312 — constexpr inline T lerp(const T& a, const T& b, Number t)
+- is_approx · function · L315-L318 — constexpr inline bool is_approx(Number value, Number test_value, Number precision = EPSILON)
+- is_approx · function · L321-L326 — constexpr inline bool is_approx(const std::optional<Number> &value,
+- begin · function · L385-L385 — It begin() const { return from; }
+- end · function · L386-L386 — It end() const { return to; }
+- from · function · L393-L393 — Range(It b, It e) : from(std::move(b)), to(std::move(e)) {}
+- move · function · L393-L393 — Range(It b, It e) : from(std::move(b)), to(std::move(e)) {}
+- move · function · L393-L393 — Range(It b, It e) : from(std::move(b)), to(std::move(e)) {}
+- to · function · L393-L393 — Range(It b, It e) : from(std::move(b)), to(std::move(e)) {}
+- size · function · L396-L397 — inline size_t size() const { return std::distance(from, to); }
+- empty · function · L397-L397 — inline bool   empty() const { return from == to; }

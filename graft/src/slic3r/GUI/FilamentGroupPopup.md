@@ -1,0 +1,30 @@
+# src/slic3r/GUI/FilamentGroupPopup.hpp
+
+- PartPlate · class · L16-L16 — class PartPlate;
+- Plater · class · L17-L17 — class Plater;
+- play_dual_extruder_slice_video · function · L20-L20 — bool play_dual_extruder_slice_video();
+- play_dual_extruder_print_tpu_video · function · L21-L21 — bool play_dual_extruder_print_tpu_video();
+- open_filament_group_wiki · function · L22-L22 — bool open_filament_group_wiki();
+- FilamentGroupPopup · class · L24-L91 — class FilamentGroupPopup : public PopupWindow
+- FilamentGroupPopup · function · L27-L27 — FilamentGroupPopup(wxWindow *parent);
+- tryPopup · function · L28-L28 — void tryPopup(Plater* plater,PartPlate* plate, bool slice_all);
+- tryClose · function · L29-L29 — void tryClose();
+- GetSelectedMode · function · L31-L31 — FilamentMapMode GetSelectedMode() const { return m_mode; }
+- OnPaint · function · L33-L33 — void OnPaint(wxPaintEvent&event);
+- StartTimer · function · L34-L34 — void StartTimer();
+- ResetTimer · function · L35-L35 — void ResetTimer();
+- OnRadioBtn · function · L37-L37 — void OnRadioBtn(int idx);
+- OnLeaveWindow · function · L38-L38 — void OnLeaveWindow(wxMouseEvent &);
+- OnEnterWindow · function · L39-L39 — void OnEnterWindow(wxMouseEvent &);
+- OnTimer · function · L40-L40 — void OnTimer(wxTimerEvent &event);
+- Dismiss · function · L41-L41 — void Dismiss();
+- CreateBmps · function · L43-L43 — void CreateBmps();
+- Init · function · L45-L45 — void Init();
+- UpdateButtonStatus · function · L46-L46 — void UpdateButtonStatus(int hover_idx = -1);
+- DrawRoundedCorner · function · L47-L47 — void DrawRoundedCorner(int radius);
+- MakeSmartFilamentSection · function · L49-L49 — void MakeSmartFilamentSection(wxSizer *top_sizer, int horizontal_margin, int vertical_padding);
+- UpdateSmartFilamentSection · function · L50-L50 — void UpdateSmartFilamentSection();
+- OnSmartFilamentToggle · function · L51-L51 — void OnSmartFilamentToggle(wxCommandEvent &event);
+- GetFilamentMapMode · function · L53-L53 — FilamentMapMode GetFilamentMapMode() const;
+- SetFilamentMapMode · function · L54-L54 — void SetFilamentMapMode(const FilamentMapMode mode);
+- ButtonType · type · L57-L57 — enum ButtonType { btForFlush, btForMatch, btManual, btCount };

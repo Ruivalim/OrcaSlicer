@@ -1,0 +1,146 @@
+# deps_src/agg/agg_pixfmt_rgb.h
+
+- m_gamma · function · L40-L40 — apply_gamma_dir_rgb(const GammaLut& gamma) : m_gamma(gamma) {}
+- operator · function · L42-L42 — AGG_INLINE void operator () (value_type* p)
+- m_gamma · function · L61-L61 — apply_gamma_inv_rgb(const GammaLut& gamma) : m_gamma(gamma) {}
+- operator · function · L63-L63 — AGG_INLINE void operator () (value_type* p)
+- color_type · type · L79-L79 — typedef ColorT color_type;
+- order_type · type · L80-L80 — typedef Order order_type;
+- value_type · type · L81-L81 — typedef typename color_type::value_type value_type;
+- color_type · type · L82-L82 — typedef typename color_type::calc_type calc_type;
+- color_type · type · L83-L83 — typedef typename color_type::long_type long_type;
+- blend_pix · function · L90-L94 — static AGG_INLINE void blend_pix(value_type* p,
+- blend_pix · function · L97-L103 — static AGG_INLINE void blend_pix(value_type* p,
+- color_type · type · L110-L110 — typedef ColorT color_type;
+- order_type · type · L111-L111 — typedef Order order_type;
+- value_type · type · L112-L112 — typedef typename color_type::value_type value_type;
+- color_type · type · L113-L113 — typedef typename color_type::calc_type calc_type;
+- color_type · type · L114-L114 — typedef typename color_type::long_type long_type;
+- blend_pix · function · L120-L128 — static AGG_INLINE void blend_pix(value_type* p,
+- blend_pix · function · L131-L137 — static AGG_INLINE void blend_pix(value_type* p,
+- order_type · type · L146-L146 — typedef Order order_type;
+- gamma_type · type · L147-L147 — typedef Gamma gamma_type;
+- value_type · type · L148-L148 — typedef typename color_type::value_type value_type;
+- color_type · type · L149-L149 — typedef typename color_type::calc_type calc_type;
+- color_type · type · L150-L150 — typedef typename color_type::long_type long_type;
+- gamma · function · L154-L154 — void gamma(const gamma_type& g) { m_gamma = &g; }
+- blend_pix · function · L157-L161 — AGG_INLINE void blend_pix(value_type* p,
+- blend_pix · function · L164-L173 — AGG_INLINE void blend_pix(value_type* p,
+- rbuf_type · type · L186-L186 — typedef RenBuf   rbuf_type;
+- blender_type · type · L187-L187 — typedef Blender  blender_type;
+- rbuf_type · type · L188-L188 — typedef typename rbuf_type::row_data row_data;
+- blender_type · type · L189-L189 — typedef typename blender_type::color_type color_type;
+- blender_type · type · L190-L190 — typedef typename blender_type::order_type order_type;
+- value_type · type · L191-L191 — typedef typename color_type::value_type value_type;
+- color_type · type · L192-L192 — typedef typename color_type::calc_type calc_type;
+- pixel_type · class · L200-L214 — struct pixel_type
+- get · function · L216-L221 — void get(value_type& r, value_type& g, value_type& b) const
+- get · function · L223-L239 — color_type get() const
+- next · function · L231-L231 — pixel_type* next()
+- next · function · L236-L236 — const pixel_type* next() const
+- advance · function · L241-L241 — pixel_type* advance(int n)
+- advance · function · L246-L246 — const pixel_type* advance(int n) const
+- blend_pix · function · L254-L256 — AGG_INLINE void blend_pix(pixel_type* p,
+- blend_pix · function · L262-L266 — AGG_INLINE void blend_pix(pixel_type* p,
+- blend_pix · function · L269-L272 — AGG_INLINE void blend_pix(pixel_type* p, const color_type& c, unsigned cover)
+- blend_pix · function · L275-L278 — AGG_INLINE void blend_pix(pixel_type* p, const color_type& c)
+- copy_or_blend_pix · function · L281-L294 — AGG_INLINE void copy_or_blend_pix(pixel_type* p, const color_type& c, unsigned cover)
+- copy_or_blend_pix · function · L297-L310 — AGG_INLINE void copy_or_blend_pix(pixel_type* p, const color_type& c)
+- pixfmt_alpha_blend_rgb · function · L314-L315 — explicit pixfmt_alpha_blend_rgb(rbuf_type& rb) :
+- attach · function · L317-L317 — void attach(rbuf_type& rb) { m_rbuf = &rb; }
+- r · function · L323-L323 — rect_i r(x1, y1, x2, y2);
+- width · function · L340-L340 — AGG_INLINE unsigned width()  const { return m_rbuf->width();  }
+- height · function · L341-L341 — AGG_INLINE unsigned height() const { return m_rbuf->height(); }
+- stride · function · L342-L342 — AGG_INLINE int      stride() const { return m_rbuf->stride(); }
+- row_ptr · function · L345-L345 — AGG_INLINE       int8u* row_ptr(int y)       { return m_rbuf->row_ptr(y); }
+- row_ptr · function · L346-L346 — AGG_INLINE const int8u* row_ptr(int y) const { return m_rbuf->row_ptr(y); }
+- row · function · L347-L347 — AGG_INLINE row_data     row(int y)     const { return m_rbuf->row(y); }
+- pix_ptr · function · L350-L350 — AGG_INLINE int8u* pix_ptr(int x, int y)
+- pix_ptr · function · L355-L355 — AGG_INLINE const int8u* pix_ptr(int x, int y) const
+- pix_value_ptr · function · L361-L361 — AGG_INLINE pixel_type* pix_value_ptr(int x, int y, unsigned len)
+- pix_value_ptr · function · L367-L367 — AGG_INLINE const pixel_type* pix_value_ptr(int x, int y) const
+- pix_value_ptr · function · L374-L374 — AGG_INLINE static pixel_type* pix_value_ptr(void* p)
+- pix_value_ptr · function · L380-L380 — AGG_INLINE static const pixel_type* pix_value_ptr(const void* p)
+- write_plain_color · function · L386-L391 — AGG_INLINE static void write_plain_color(void* p, color_type c)
+- read_plain_color · function · L394-L397 — AGG_INLINE static color_type read_plain_color(const void* p)
+- make_pix · function · L400-L403 — AGG_INLINE static void make_pix(int8u* p, const color_type& c)
+- pixel · function · L406-L413 — AGG_INLINE color_type pixel(int x, int y) const
+- copy_pixel · function · L416-L419 — AGG_INLINE void copy_pixel(int x, int y, const color_type& c)
+- blend_pixel · function · L422-L425 — AGG_INLINE void blend_pixel(int x, int y, const color_type& c, int8u cover)
+- copy_hline · function · L428-L439 — AGG_INLINE void copy_hline(int x, int y,
+- copy_vline · function · L443-L452 — AGG_INLINE void copy_vline(int x, int y,
+- blend_hline · function · L455-L483 — void blend_hline(int x, int y,
+- blend_vline · function · L487-L511 — void blend_vline(int x, int y,
+- blend_solid_hspan · function · L514-L538 — void blend_solid_hspan(int x, int y,
+- blend_solid_vspan · function · L542-L565 — void blend_solid_vspan(int x, int y,
+- copy_color_hspan · function · L568-L580 — void copy_color_hspan(int x, int y,
+- copy_color_vspan · function · L584-L593 — void copy_color_vspan(int x, int y,
+- blend_color_hspan · function · L596-L634 — void blend_color_hspan(int x, int y,
+- blend_color_vspan · function · L637-L670 — void blend_color_vspan(int x, int y,
+- SrcPixelFormatRenderer · type · L728-L728 — typedef typename SrcPixelFormatRenderer::pixel_type src_pixel_type;
+- SrcPixelFormatRenderer · type · L729-L729 — typedef typename SrcPixelFormatRenderer::order_type src_order;
+- SrcPixelFormatRenderer · type · L786-L786 — typedef typename SrcPixelFormatRenderer::color_type src_color_type;
+- rgba8 · type · L849-L849 — typedef blender_rgb<rgba8, order_rgb> blender_rgb24;
+- rgba8 · type · L850-L850 — typedef blender_rgb<rgba8, order_bgr> blender_bgr24;
+- srgba8 · type · L851-L851 — typedef blender_rgb<srgba8, order_rgb> blender_srgb24;
+- srgba8 · type · L852-L852 — typedef blender_rgb<srgba8, order_bgr> blender_sbgr24;
+- rgba16 · type · L853-L853 — typedef blender_rgb<rgba16, order_rgb> blender_rgb48;
+- rgba16 · type · L854-L854 — typedef blender_rgb<rgba16, order_bgr> blender_bgr48;
+- rgba32 · type · L855-L855 — typedef blender_rgb<rgba32, order_rgb> blender_rgb96;
+- rgba32 · type · L856-L856 — typedef blender_rgb<rgba32, order_bgr> blender_bgr96;
+- rgba8 · type · L858-L858 — typedef blender_rgb_pre<rgba8, order_rgb> blender_rgb24_pre;
+- rgba8 · type · L859-L859 — typedef blender_rgb_pre<rgba8, order_bgr> blender_bgr24_pre;
+- srgba8 · type · L860-L860 — typedef blender_rgb_pre<srgba8, order_rgb> blender_srgb24_pre;
+- srgba8 · type · L861-L861 — typedef blender_rgb_pre<srgba8, order_bgr> blender_sbgr24_pre;
+- rgba16 · type · L862-L862 — typedef blender_rgb_pre<rgba16, order_rgb> blender_rgb48_pre;
+- rgba16 · type · L863-L863 — typedef blender_rgb_pre<rgba16, order_bgr> blender_bgr48_pre;
+- rgba32 · type · L864-L864 — typedef blender_rgb_pre<rgba32, order_rgb> blender_rgb96_pre;
+- rgba32 · type · L865-L865 — typedef blender_rgb_pre<rgba32, order_bgr> blender_bgr96_pre;
+- blender_rgb24 · type · L867-L867 — typedef pixfmt_alpha_blend_rgb<blender_rgb24, rendering_buffer, 3> pixfmt_rgb24;
+- blender_bgr24 · type · L868-L868 — typedef pixfmt_alpha_blend_rgb<blender_bgr24, rendering_buffer, 3> pixfmt_bgr24;
+- blender_srgb24 · type · L869-L869 — typedef pixfmt_alpha_blend_rgb<blender_srgb24, rendering_buffer, 3> pixfmt_srgb24;
+- blender_sbgr24 · type · L870-L870 — typedef pixfmt_alpha_blend_rgb<blender_sbgr24, rendering_buffer, 3> pixfmt_sbgr24;
+- blender_rgb48 · type · L871-L871 — typedef pixfmt_alpha_blend_rgb<blender_rgb48, rendering_buffer, 3> pixfmt_rgb48;
+- blender_bgr48 · type · L872-L872 — typedef pixfmt_alpha_blend_rgb<blender_bgr48, rendering_buffer, 3> pixfmt_bgr48;
+- blender_rgb96 · type · L873-L873 — typedef pixfmt_alpha_blend_rgb<blender_rgb96, rendering_buffer, 3> pixfmt_rgb96;
+- blender_bgr96 · type · L874-L874 — typedef pixfmt_alpha_blend_rgb<blender_bgr96, rendering_buffer, 3> pixfmt_bgr96;
+- blender_rgb24_pre · type · L876-L876 — typedef pixfmt_alpha_blend_rgb<blender_rgb24_pre, rendering_buffer, 3> pixfmt_rgb24_pre;
+- blender_bgr24_pre · type · L877-L877 — typedef pixfmt_alpha_blend_rgb<blender_bgr24_pre, rendering_buffer, 3> pixfmt_bgr24_pre;
+- blender_srgb24_pre · type · L878-L878 — typedef pixfmt_alpha_blend_rgb<blender_srgb24_pre, rendering_buffer, 3> pixfmt_srgb24_pre;
+- blender_sbgr24_pre · type · L879-L879 — typedef pixfmt_alpha_blend_rgb<blender_sbgr24_pre, rendering_buffer, 3> pixfmt_sbgr24_pre;
+- blender_rgb48_pre · type · L880-L880 — typedef pixfmt_alpha_blend_rgb<blender_rgb48_pre, rendering_buffer, 3> pixfmt_rgb48_pre;
+- blender_bgr48_pre · type · L881-L881 — typedef pixfmt_alpha_blend_rgb<blender_bgr48_pre, rendering_buffer, 3> pixfmt_bgr48_pre;
+- blender_rgb96_pre · type · L882-L882 — typedef pixfmt_alpha_blend_rgb<blender_rgb96_pre, rendering_buffer, 3> pixfmt_rgb96_pre;
+- blender_bgr96_pre · type · L883-L883 — typedef pixfmt_alpha_blend_rgb<blender_bgr96_pre, rendering_buffer, 3> pixfmt_bgr96_pre;
+- blender_rgb24 · type · L885-L885 — typedef pixfmt_alpha_blend_rgb<blender_rgb24, rendering_buffer, 4, 0> pixfmt_rgbx32;
+- blender_rgb24 · type · L886-L886 — typedef pixfmt_alpha_blend_rgb<blender_rgb24, rendering_buffer, 4, 1> pixfmt_xrgb32;
+- blender_bgr24 · type · L887-L887 — typedef pixfmt_alpha_blend_rgb<blender_bgr24, rendering_buffer, 4, 1> pixfmt_xbgr32;
+- blender_bgr24 · type · L888-L888 — typedef pixfmt_alpha_blend_rgb<blender_bgr24, rendering_buffer, 4, 0> pixfmt_bgrx32;
+- blender_srgb24 · type · L889-L889 — typedef pixfmt_alpha_blend_rgb<blender_srgb24, rendering_buffer, 4, 0> pixfmt_srgbx32;
+- blender_srgb24 · type · L890-L890 — typedef pixfmt_alpha_blend_rgb<blender_srgb24, rendering_buffer, 4, 1> pixfmt_sxrgb32;
+- blender_sbgr24 · type · L891-L891 — typedef pixfmt_alpha_blend_rgb<blender_sbgr24, rendering_buffer, 4, 1> pixfmt_sxbgr32;
+- blender_sbgr24 · type · L892-L892 — typedef pixfmt_alpha_blend_rgb<blender_sbgr24, rendering_buffer, 4, 0> pixfmt_sbgrx32;
+- blender_rgb48 · type · L893-L893 — typedef pixfmt_alpha_blend_rgb<blender_rgb48, rendering_buffer, 4, 0> pixfmt_rgbx64;
+- blender_rgb48 · type · L894-L894 — typedef pixfmt_alpha_blend_rgb<blender_rgb48, rendering_buffer, 4, 1> pixfmt_xrgb64;
+- blender_bgr48 · type · L895-L895 — typedef pixfmt_alpha_blend_rgb<blender_bgr48, rendering_buffer, 4, 1> pixfmt_xbgr64;
+- blender_bgr48 · type · L896-L896 — typedef pixfmt_alpha_blend_rgb<blender_bgr48, rendering_buffer, 4, 0> pixfmt_bgrx64;
+- blender_rgb96 · type · L897-L897 — typedef pixfmt_alpha_blend_rgb<blender_rgb96, rendering_buffer, 4, 0> pixfmt_rgbx128;
+- blender_rgb96 · type · L898-L898 — typedef pixfmt_alpha_blend_rgb<blender_rgb96, rendering_buffer, 4, 1> pixfmt_xrgb128;
+- blender_bgr96 · type · L899-L899 — typedef pixfmt_alpha_blend_rgb<blender_bgr96, rendering_buffer, 4, 1> pixfmt_xbgr128;
+- blender_bgr96 · type · L900-L900 — typedef pixfmt_alpha_blend_rgb<blender_bgr96, rendering_buffer, 4, 0> pixfmt_bgrx128;
+- blender_rgb24_pre · type · L902-L902 — typedef pixfmt_alpha_blend_rgb<blender_rgb24_pre, rendering_buffer, 4, 0> pixfmt_rgbx32_pre;
+- blender_rgb24_pre · type · L903-L903 — typedef pixfmt_alpha_blend_rgb<blender_rgb24_pre, rendering_buffer, 4, 1> pixfmt_xrgb32_pre;
+- blender_bgr24_pre · type · L904-L904 — typedef pixfmt_alpha_blend_rgb<blender_bgr24_pre, rendering_buffer, 4, 1> pixfmt_xbgr32_pre;
+- blender_bgr24_pre · type · L905-L905 — typedef pixfmt_alpha_blend_rgb<blender_bgr24_pre, rendering_buffer, 4, 0> pixfmt_bgrx32_pre;
+- blender_srgb24_pre · type · L906-L906 — typedef pixfmt_alpha_blend_rgb<blender_srgb24_pre, rendering_buffer, 4, 0> pixfmt_srgbx32_pre;
+- blender_srgb24_pre · type · L907-L907 — typedef pixfmt_alpha_blend_rgb<blender_srgb24_pre, rendering_buffer, 4, 1> pixfmt_sxrgb32_pre;
+- blender_sbgr24_pre · type · L908-L908 — typedef pixfmt_alpha_blend_rgb<blender_sbgr24_pre, rendering_buffer, 4, 1> pixfmt_sxbgr32_pre;
+- blender_sbgr24_pre · type · L909-L909 — typedef pixfmt_alpha_blend_rgb<blender_sbgr24_pre, rendering_buffer, 4, 0> pixfmt_sbgrx32_pre;
+- blender_rgb48_pre · type · L910-L910 — typedef pixfmt_alpha_blend_rgb<blender_rgb48_pre, rendering_buffer, 4, 0> pixfmt_rgbx64_pre;
+- blender_rgb48_pre · type · L911-L911 — typedef pixfmt_alpha_blend_rgb<blender_rgb48_pre, rendering_buffer, 4, 1> pixfmt_xrgb64_pre;
+- blender_bgr48_pre · type · L912-L912 — typedef pixfmt_alpha_blend_rgb<blender_bgr48_pre, rendering_buffer, 4, 1> pixfmt_xbgr64_pre;
+- blender_bgr48_pre · type · L913-L913 — typedef pixfmt_alpha_blend_rgb<blender_bgr48_pre, rendering_buffer, 4, 0> pixfmt_bgrx64_pre;
+- blender_rgb96_pre · type · L914-L914 — typedef pixfmt_alpha_blend_rgb<blender_rgb96_pre, rendering_buffer, 4, 0> pixfmt_rgbx128_pre;
+- blender_rgb96_pre · type · L915-L915 — typedef pixfmt_alpha_blend_rgb<blender_rgb96_pre, rendering_buffer, 4, 1> pixfmt_xrgb128_pre;
+- blender_bgr96_pre · type · L916-L916 — typedef pixfmt_alpha_blend_rgb<blender_bgr96_pre, rendering_buffer, 4, 1> pixfmt_xbgr128_pre;
+- blender_bgr96_pre · type · L917-L917 — typedef pixfmt_alpha_blend_rgb<blender_bgr96_pre, rendering_buffer, 4, 0> pixfmt_bgrx128_pre;

@@ -1,0 +1,30 @@
+# src/slic3r/GUI/Gizmos/GLGizmoFdmSupports.hpp
+
+- GLGizmoFdmSupports · class · L15-L99 — class GLGizmoFdmSupports : public GLGizmoPainterBase
+- GLGizmoFdmSupports · function · L18-L18 — GLGizmoFdmSupports(GLCanvas3D& parent, const std::string& icon_filename, unsigned int sprite_id);
+- render_painter_gizmo · function · L20-L20 — void render_painter_gizmo() override;
+- EditState · type · L23-L27 — enum EditState
+- on_tool_shortcut · function · L29-L29 — bool on_tool_shortcut(Shortcut shortcut) override;
+- on_render_input_window · function · L32-L32 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_get_name · function · L33-L33 — std::string on_get_name() const override;
+- on_set_state · function · L35-L35 — void on_set_state() override;
+- render_tooltip_button · function · L36-L36 — void render_tooltip_button(float x, float y);
+- handle_snapshot_action_name · function · L37-L37 — wxString handle_snapshot_action_name(bool shift_down, Button button_down) const override;
+- get_gizmo_entering_text · function · L39-L39 — std::string get_gizmo_entering_text() const override { return _u8L("Entering Paint-on supports"); }
+- get_gizmo_leaving_text · function · L40-L40 — std::string get_gizmo_leaving_text() const override { return _u8L("Leaving Paint-on supports"); }
+- get_action_snapshot_name · function · L41-L41 — std::string get_action_snapshot_name() const override { return _u8L("Paint-on supports editing"); }
+- on_init · function · L47-L47 — bool on_init() override;
+- update_model_object · function · L50-L50 — void update_model_object() override;
+- update_from_model_object · function · L52-L52 — void update_from_model_object(bool first_update) override;
+- tool_changed · function · L53-L53 — void tool_changed(wchar_t old_tool, wchar_t new_tool);
+- on_opening · function · L55-L55 — void on_opening() override;
+- on_shutdown · function · L56-L56 — void on_shutdown() override;
+- get_painter_type · function · L57-L57 — PainterGizmoType get_painter_type() const override;
+- select_facets_by_angle · function · L59-L59 — void select_facets_by_angle(float threshold, bool block);
+- get_selection_support_threshold_angle · function · L61-L61 — int get_selection_support_threshold_angle();
+- init_print_instance · function · L66-L66 — void init_print_instance();
+- update_support_volumes · function · L67-L67 — void update_support_volumes();
+- invalid_support_volumes · function · L68-L68 — void invalid_support_volumes(bool invalid_step = false);
+- need_regenerate_support_volumes · function · L69-L69 — bool need_regenerate_support_volumes();
+- generate_support_volume · function · L70-L70 — void generate_support_volume();
+- run_thread · function · L71-L71 — void run_thread();

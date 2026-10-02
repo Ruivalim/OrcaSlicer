@@ -1,0 +1,48 @@
+# src/slic3r/GUI/BBLStatusBarPrint.hpp
+
+- wxTimer · class · L17-L17 — class wxTimer;
+- wxGauge · class · L18-L18 — class wxGauge;
+- wxButton · class · L19-L19 — class wxButton;
+- wxTimerEvent · class · L20-L20 — class wxTimerEvent;
+- wxStatusBar · class · L21-L21 — class wxStatusBar;
+- wxWindow · class · L22-L22 — class wxWindow;
+- wxFrame · class · L23-L23 — class wxFrame;
+- wxString · class · L24-L24 — class wxString;
+- wxFont · class · L25-L25 — class wxFont;
+- BBLStatusBarPrint · class · L29-L96 — class BBLStatusBarPrint : public ProgressIndicator
+- BBLStatusBarPrint · function · L48-L48 — BBLStatusBarPrint(wxWindow *parent = nullptr, int id = -1);
+- get_progress · function · L51-L51 — int get_progress() const;
+- set_prog_block · function · L54-L54 — void        set_prog_block();
+- set_progress · function · L55-L55 — void        set_progress(int) override;
+- get_range · function · L56-L56 — int         get_range() const override;
+- set_range · function · L57-L57 — void        set_range(int = 100) override;
+- clear_percent · function · L58-L58 — void        clear_percent() override;
+- show_error_info · function · L59-L59 — void        show_error_info(wxString msg, int code, wxString description, wxString extra) override;
+- show_progress · function · L60-L60 — void        show_progress(bool);
+- start_busy · function · L61-L61 — void        start_busy(int = 100);
+- stop_busy · function · L62-L62 — void        stop_busy();
+- set_cancel_callback_fina · function · L63-L63 — void        set_cancel_callback_fina(BBLStatusBarPrint::CancelFn ccb);
+- is_busy · function · L64-L64 — inline bool is_busy() const { return m_busy; }
+- set_cancel_callback · function · L65-L65 — void        set_cancel_callback(CancelFn = CancelFn()) override;
+- reset_cancel_callback · function · L66-L66 — inline void reset_cancel_callback() { set_cancel_callback(); }
+- get_panel · function · L67-L67 — wxPanel *   get_panel();
+- is_english_text · function · L68-L68 — bool        is_english_text(wxString str);
+- format_text · function · L69-L69 — bool        format_text(wxStaticText* dc, int width, const wxString& text, wxString& multiline_text);
+- set_status_text · function · L70-L70 — void        set_status_text(const wxString& txt);
+- set_percent_text · function · L71-L71 — void        set_percent_text(const wxString &txt);
+- msw_rescale · function · L72-L72 — void        msw_rescale();
+- set_status_text · function · L73-L73 — void        set_status_text(const std::string &txt);
+- set_status_text · function · L74-L74 — void        set_status_text(const char *txt) override;
+- get_status_text · function · L75-L75 — wxString    get_status_text() const;
+- set_font · function · L76-L76 — void        set_font(const wxFont &font);
+- set_object_info · function · L77-L77 — void        set_object_info(const wxString &txt);
+- set_slice_info · function · L78-L78 — void        set_slice_info(const wxString &txt);
+- show_slice_info · function · L79-L79 — void        show_slice_info(bool show);
+- is_slice_info_shown · function · L80-L80 — bool        is_slice_info_shown();
+- update_status · function · L81-L81 — bool        update_status(wxString &msg, bool &was_cancel, int percent = -1, bool yield = true);
+- reset · function · L82-L82 — void        reset();
+- show_cancel_button · function · L84-L84 — void show_cancel_button();
+- hide_cancel_button · function · L85-L85 — void hide_cancel_button();
+- change_button_label · function · L86-L86 — void change_button_label(wxString name);
+- disable_cancel_button · function · L88-L88 — void disable_cancel_button();
+- enable_cancel_button · function · L89-L89 — void enable_cancel_button();

@@ -1,0 +1,56 @@
+# src/slic3r/GUI/SendToPrinter.hpp
+
+- FileTransferTunnel · class · L46-L46 — class FileTransferTunnel;
+- FileTransferJob · class · L47-L47 — class FileTransferJob;
+- SendToPrinterDialog · class · L51-L224 — class SendToPrinterDialog : public DPIDialog
+- init_bind · function · L54-L54 — void init_bind();
+- init_timer · function · L55-L55 — void init_timer();
+- ConnectionStatus · type · L162-L162 — enum ConnectionStatus { NOT_START, CONNECTING, CONNECTED, CONNECTION_FAILED, DISCONNECTED };
+- SendToPrinterDialog · function · L171-L171 — SendToPrinterDialog(Plater *plater = nullptr);
+- Show · function · L174-L174 — bool Show(bool show) override;
+- is_timeout · function · L175-L175 — bool is_timeout();
+- on_rename_click · function · L176-L176 — void on_rename_click(wxCommandEvent& event);
+- on_rename_enter · function · L177-L177 — void on_rename_enter();
+- stripWhiteSpace · function · L178-L178 — void stripWhiteSpace(std::string& str);
+- prepare_mode · function · L179-L179 — void prepare_mode();
+- sending_mode · function · L180-L180 — void sending_mode();
+- reset_timeout · function · L181-L181 — void reset_timeout();
+- update_user_printer · function · L182-L182 — void update_user_printer();
+- update_show_status · function · L183-L183 — void update_show_status();
+- is_blocking_printing · function · L184-L184 — bool is_blocking_printing(MachineObject* obj_);
+- prepare · function · L185-L185 — void prepare(int print_plate_idx);
+- check_focus · function · L186-L186 — void check_focus(wxWindow* window);
+- check_fcous_state · function · L187-L187 — void check_fcous_state(wxWindow* window);
+- update_priner_status_msg · function · L188-L188 — void update_priner_status_msg(wxString msg, bool is_warning = false);
+- update_print_status_msg · function · L189-L189 — void update_print_status_msg(wxString msg, bool is_warning = false, bool is_printer = true);
+- update_printer_combobox · function · L190-L190 — void update_printer_combobox(wxCommandEvent& event);
+- on_cancel · function · L191-L191 — void on_cancel(wxCloseEvent& event);
+- on_ok · function · L192-L192 — void on_ok(wxCommandEvent& event);
+- clear_ip_address_config · function · L193-L193 — void clear_ip_address_config(wxCommandEvent& e);
+- on_refresh · function · L194-L194 — void on_refresh(wxCommandEvent& event);
+- on_print_job_cancel · function · L195-L195 — void on_print_job_cancel(wxCommandEvent& evt);
+- set_default · function · L196-L196 — void set_default();
+- on_timer · function · L197-L197 — void on_timer(wxTimerEvent& event);
+- on_selection_changed · function · L198-L198 — void on_selection_changed(wxCommandEvent& event);
+- Enable_Refresh_Button · function · L199-L199 — void Enable_Refresh_Button(bool en);
+- show_status · function · L200-L200 — void show_status(PrintDialogStatus status, std::vector<wxString> params = std::vector<wxString>());
+- Enable_Send_Button · function · L201-L201 — void Enable_Send_Button(bool en);
+- on_dpi_changed · function · L202-L202 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- update_user_machine_list · function · L203-L203 — void update_user_machine_list();
+- show_print_failed_info · function · L204-L204 — void show_print_failed_info(bool show, int code = 0, wxString description = wxEmptyString, wxString extra = wxEmptyString);
+- update_print_error_info · function · L205-L205 — void update_print_error_info(int code, std::string msg, std::string extra);
+- on_change_color_mode · function · L206-L206 — void on_change_color_mode() { wxGetApp().UpdateDlgDarkUI(this); }
+- update_storage_list · function · L207-L207 — void update_storage_list(const std::vector<std::string>& storages);
+- get_storage_selected · function · L208-L208 — std::string get_storage_selected();
+- format_text · function · L210-L210 — wxString format_text(wxString& m_msg);
+- sort_string · function · L211-L211 — std::vector<std::string> sort_string(std::vector<std::string> strArray);
+- GetConnection · function · L212-L212 — void GetConnection();
+- ResetConnectMethod · function · L215-L215 — void ResetConnectMethod();
+- ResetTunnelAndJob · function · L216-L216 — void ResetTunnelAndJob();
+- OnConnection · function · L217-L217 — void OnConnection(bool is_success, int error_code, std::string error_msg);
+- CreateMediaAbilityJob · function · L218-L218 — void CreateMediaAbilityJob();
+- CreateUploadFileJob · function · L219-L219 — void CreateUploadFileJob(const std::string &path, const std::string &name);
+- ChangeConnectMethod · function · L220-L220 — void ChangeConnectMethod();
+- UploadFileProgressCallback · function · L221-L221 — void UploadFileProgressCallback(int progress);
+- UploadFileRessultCallback · function · L222-L222 — void UploadFileRessultCallback(int res, int resp_ec, std::string json_res, std::vector<std::byte> bin_res);
+- Reset · function · L223-L223 — void Reset();

@@ -1,0 +1,24 @@
+# src/libslic3r/Geometry/VoronoiUtils.hpp
+
+- SegmentCellRange · class · L19-L32 — template<typename PT> struct SegmentCellRange
+- SegmentCellRange · function · L26-L26 — SegmentCellRange() = delete;
+- SegmentCellRange · function · L27-L29 — explicit SegmentCellRange(const PT &source_segment_start_point, const PT &source_segment_end_point)
+- is_valid · function · L31-L31 — bool is_valid() const { return edge_begin && edge_end && edge_begin != edge_end; }
+- PointCellRange · class · L35-L45 — template<typename PT> struct PointCellRange
+- PointCellRange · function · L41-L41 — PointCellRange() = delete;
+- PointCellRange · function · L42-L42 — explicit PointCellRange(const PT &source_point) : source_point(source_point) {}
+- is_valid · function · L44-L44 — bool is_valid() const { return edge_begin && edge_end && edge_begin != edge_end; }
+- VoronoiUtils · class · L47-L163 — class VoronoiUtils
+- to_point · function · L50-L50 — static Vec2i64 to_point(const VD::vertex_type *vertex);
+- to_point · function · L52-L52 — static Vec2i64 to_point(const VD::vertex_type &vertex);
+- is_finite · function · L54-L54 — static bool is_finite(const VD::vertex_type &vertex);
+- make_rotated_vertex · function · L56-L56 — static VD::vertex_type make_rotated_vertex(VD::vertex_type &vertex, double angle);
+- get_source_segment · function · L58-L63 — template<typename SegmentIterator>
+- get_source_point · function · L65-L70 — template<typename SegmentIterator>
+- get_source_point_index · function · L72-L77 — template<typename SegmentIterator>
+- discretize_parabola · function · L86-L90 — template<typename Segment>
+- compute_segment_cell_range · function · L111-L117 — template<typename SegmentIterator>
+- compute_point_cell_range · function · L138-L144 — template<typename SegmentIterator>
+- is_in_range · function · L146-L149 — template<typename T> static bool is_in_range(double value)
+- is_in_range · function · L151-L154 — template<typename T> static bool is_in_range(const VD::vertex_type &vertex)
+- is_in_range · function · L156-L162 — template<typename T> static bool is_in_range(const VD::edge_type &edge)

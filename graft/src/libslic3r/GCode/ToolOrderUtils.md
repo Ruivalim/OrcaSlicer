@@ -1,0 +1,33 @@
+# src/libslic3r/GCode/ToolOrderUtils.hpp
+
+- Edge · class · L27-L31 — struct Edge
+- Edge · function · L30-L30 — Edge(int u, int v, int cap, int cst = 0) : from(u), to(v), capacity(cap), cost(cst), flow(0) {}
+- MaxFlowSolver · class · L33-L55 — class MaxFlowSolver
+- MaxFlowSolver · function · L36-L42 — MaxFlowSolver(const std::vector<int>& u_nodes, const std::vector<int>& v_nodes,
+- solve · function · L43-L43 — std::vector<int> solve();
+- add_edge · function · L46-L46 — void add_edge(int from, int to, int capacity);
+- GeneralMinCostSolver · class · L61-L72 — class GeneralMinCostSolver
+- GeneralMinCostSolver · function · L64-L66 — GeneralMinCostSolver(const std::vector<std::vector<float>>& matrix_,
+- solve · function · L68-L68 — std::vector<int> solve();
+- GeneralMinCostLowerBoundsSolver · class · L74-L123 — class GeneralMinCostLowerBoundsSolver
+- GeneralMinCostLowerBoundsSolver · function · L77-L83 — GeneralMinCostLowerBoundsSolver(
+- solve · function · L85-L85 — std::vector<int> solve();
+- build_feasible_graph · function · L89-L89 — void build_feasible_graph(const std::unordered_set<int>& no_lower_groups);
+- build_graph_with_feasible_result · function · L91-L91 — void build_graph_with_feasible_result();
+- add_edge_with_lower_bound · function · L93-L93 — void add_edge_with_lower_bound(int from, int to, int lower, int upper, int cost);
+- get_distance · function · L95-L95 — int get_distance(const int idx_in_left,const int idx_in_right);
+- LowerBoundEdge · class · L110-L113 — struct LowerBoundEdge
+- GroupMinCostFlowSolver · class · L125-L151 — class GroupMinCostFlowSolver
+- GroupMinCostFlowSolver · function · L128-L134 — GroupMinCostFlowSolver(
+- solve · function · L136-L136 — std::vector<int> solve();
+- build_graph · function · L140-L140 — void build_graph();
+- get_flush_cost · function · L141-L141 — int get_flush_cost(int l_idx, int r_idx);
+- MinFlushFlowSolver · class · L153-L169 — class MinFlushFlowSolver
+- MinFlushFlowSolver · function · L156-L164 — MinFlushFlowSolver(const std::vector<std::vector<float>>& matrix_,
+- solve · function · L165-L165 — std::vector<int> solve();
+- MatchModeGroupSolver · class · L172-L185 — class MatchModeGroupSolver
+- MatchModeGroupSolver · function · L175-L179 — MatchModeGroupSolver(const std::vector<std::vector<float>>& matrix_,
+- solve · function · L181-L181 — std::vector<int> solve();
+- get_extruders_order · function · L188-L193 — std::vector<unsigned int> get_extruders_order(const std::vector<std::vector<float>> &wipe_volumes,
+- reorder_filaments_for_minimum_flush_volume · function · L195-L201 — int reorder_filaments_for_minimum_flush_volume(const std::vector<unsigned int> &filament_lists,
+- reorder_filaments_for_multi_nozzle_extruder · function · L206-L212 — int reorder_filaments_for_multi_nozzle_extruder(const std::vector<unsigned int>& filament_lists,

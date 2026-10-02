@@ -1,0 +1,24 @@
+# deps_src/libigl/igl/matlab/MatlabWorkspace.h
+
+- clear · function · L46-L46 — inline void clear();
+- write · function · L51-L51 — inline bool write(const std::string & path) const;
+- read · function · L56-L56 — inline bool read(const std::string & path);
+- save · function · L97-L99 — inline MatlabWorkspace& save(
+- find · function · L128-L130 — inline bool find(
+- find · function · L134-L136 — inline bool find(
+- find · function · L138-L140 — inline bool find(
+- find · function · L142-L144 — inline bool find(
+- find_index · function · L150-L152 — inline bool find_index(
+- MatlabWorkspace · function · L173-L220 — inline igl::matlab::MatlabWorkspace::MatlabWorkspace():
+- begin · function · L187-L187 — for_each(data.begin(),data.end(),&mxDestroyArray);
+- end · function · L187-L187 — for_each(data.begin(),data.end(),&mxDestroyArray);
+- write · function · L192-L192 — inline bool igl::matlab::MatlabWorkspace::write(const std::string & path) const
+- read · function · L222-L288 — inline bool igl::matlab::MatlabWorkspace::read(const std::string & path)
+- it · function · L336-L336 — for(typename Eigen::SparseMatrix<MT>::InnerIterator it (M,j); it; ++it)
+- save · function · L381-L388 — inline igl::matlab::MatlabWorkspace& igl::matlab::MatlabWorkspace::save(
+- v · function · L385-L385 — Eigen::VectorXd v(1);
+- find · function · L422-L454 — inline bool igl::matlab::MatlabWorkspace::find(
+- find · function · L457-L508 — inline bool igl::matlab::MatlabWorkspace::find(
+- find · function · L510-L531 — inline bool igl::matlab::MatlabWorkspace::find(
+- find · function · L533-L554 — inline bool igl::matlab::MatlabWorkspace::find(
+- find_index · function · L557-L567 — inline bool igl::matlab::MatlabWorkspace::find_index(

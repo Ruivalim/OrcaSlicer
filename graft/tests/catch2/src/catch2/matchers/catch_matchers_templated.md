@@ -1,0 +1,35 @@
+# tests/catch2/src/catch2/matchers/catch_matchers_templated.hpp
+
+- MatcherGenericBase · class · L24-L34 — class MatcherGenericBase : public MatcherUntypedBase
+- MatcherGenericBase · function · L26-L26 — MatcherGenericBase() = default;
+- MatcherGenericBase · function · L29-L29 — MatcherGenericBase(MatcherGenericBase const&) = default;
+- MatcherGenericBase · function · L30-L30 — MatcherGenericBase(MatcherGenericBase&&) = default;
+- array_cat · function · L38-L44 — template<std::size_t N, std::size_t M>
+- array_cat · function · L46-L52 — template<std::size_t N>
+- array_cat · function · L54-L59 — template<std::size_t N>
+- match_all_of · function · L77-L80 — template<std::size_t N, typename Arg>
+- match_all_of · function · L82-L85 — template<typename T, typename... MatcherTs, std::size_t N, typename Arg, std::size_t Idx, std::size_t... Indices>
+- match_any_of · function · L88-L91 — template<std::size_t N, typename Arg>
+- match_any_of · function · L93-L96 — template<typename T, typename... MatcherTs, std::size_t N, typename Arg, std::size_t Idx, std::size_t... Indices>
+- describe_multi_matcher · function · L98-L98 — std::string describe_multi_matcher(StringRef combine, std::string const* descriptions_begin, std::string const* descriptions_end);
+- describe_multi_matcher · function · L100-L107 — template<typename... MatcherTs, std::size_t... Idx>
+- MatchAllOfGeneric · class · L110-L151 — template<typename... MatcherTs>
+- MatchAllOfGeneric · function · L113-L113 — MatchAllOfGeneric(MatchAllOfGeneric const&) = delete;
+- MatchAllOfGeneric · function · L115-L115 — MatchAllOfGeneric(MatchAllOfGeneric&&) = default;
+- MatchAllOfGeneric · function · L118-L119 — MatchAllOfGeneric(MatcherTs const&... matchers CATCH_ATTR_LIFETIMEBOUND)
+- MatchAllOfGeneric · function · L120-L120 — explicit MatchAllOfGeneric(std::array<void const*, sizeof...(MatcherTs)> matchers) : m_matchers{matchers} {}
+- match · function · L122-L125 — template<typename Arg>
+- describe · function · L127-L129 — std::string describe() const override
+- MatchAnyOfGeneric · class · L166-L206 — template<typename... MatcherTs>
+- MatchAnyOfGeneric · function · L169-L169 — MatchAnyOfGeneric(MatchAnyOfGeneric const&) = delete;
+- MatchAnyOfGeneric · function · L171-L171 — MatchAnyOfGeneric(MatchAnyOfGeneric&&) = default;
+- MatchAnyOfGeneric · function · L174-L175 — MatchAnyOfGeneric(MatcherTs const&... matchers CATCH_ATTR_LIFETIMEBOUND)
+- MatchAnyOfGeneric · function · L176-L176 — explicit MatchAnyOfGeneric(std::array<void const*, sizeof...(MatcherTs)> matchers) : m_matchers{matchers} {}
+- match · function · L178-L181 — template<typename Arg>
+- describe · function · L183-L185 — std::string describe() const override
+- MatchNotOfGeneric · class · L221-L249 — template<typename MatcherT>
+- MatchNotOfGeneric · function · L226-L226 — MatchNotOfGeneric(MatchNotOfGeneric const&) = delete;
+- MatchNotOfGeneric · function · L228-L228 — MatchNotOfGeneric(MatchNotOfGeneric&&) = default;
+- MatchNotOfGeneric · function · L231-L232 — explicit MatchNotOfGeneric(MatcherT const& matcher CATCH_ATTR_LIFETIMEBOUND)
+- match · function · L234-L237 — template<typename Arg>
+- describe · function · L239-L241 — std::string describe() const override

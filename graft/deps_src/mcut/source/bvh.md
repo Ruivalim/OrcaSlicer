@@ -1,0 +1,35 @@
+# deps_src/mcut/source/bvh.cpp
+
+- clz_ · function · L35-L45 — unsigned int __inline clz_(unsigned int value)
+- clz · function · L55-L62 — unsigned int clz(unsigned int x) // stub
+- next_power_of_two · function · L65-L75 — int next_power_of_two(int x)
+- is_power_of_two · function · L78-L81 — bool is_power_of_two(int x)
+- ilog2 · function · L84-L87 — int ilog2(unsigned int x)
+- get_leaf_level_from_real_leaf_count · function · L90-L95 — int get_leaf_level_from_real_leaf_count(const int t)
+- get_level_from_implicit_idx · function · L98-L101 — int get_level_from_implicit_idx(const int bvhNodeImplicitIndex)
+- flp2 · function · L104-L112 — unsigned int flp2(unsigned int x) // prev pow2
+- get_ostensibly_implicit_bvh_size · function · L115-L118 — int get_ostensibly_implicit_bvh_size(const int t)
+- get_level_leftmost_node · function · L121-L124 — int get_level_leftmost_node(const int node_level)
+- get_rightmost_real_leaf · function · L127-L130 — int get_rightmost_real_leaf(const int bvhLeafLevelIndex, const int num_real_leaf_nodes_in_bvh)
+- is_real_implicit_tree_node_id · function · L133-L144 — bool is_real_implicit_tree_node_id(const int bvhNodeImplicitIndex, const int num_real_leaf_nodes_in_bvh)
+- get_level_rightmost_real_node · function · L147-L156 — int get_level_rightmost_real_node(
+- get_node_ancestor · function · L159-L167 — int get_node_ancestor(
+- get_node_mem_index · function · L170-L177 — int get_node_mem_index(
+- expandBits · function · L180-L187 — unsigned int expandBits(unsigned int v)
+- morton3D · function · L190-L201 — unsigned int morton3D(float x, float y, float z)
+- face_bbox_centers · function · L222-L222 — std::vector<vec3> face_bbox_centers(meshFaceCount, vec3());
+- lock · function · L292-L292 — std::lock_guard<std::mutex> lock(bbox_expansion_mtx);
+- bvhLeafNodeDescriptors · function · L313-L313 — std::vector<std::pair<fd_t, uint32_t>> bvhLeafNodeDescriptors(meshFaceCount, std::pair<fd_t, uint32_t>());
+- level_nodes_placeholder · function · L433-L433 — std::vector<uint8_t> level_nodes_placeholder(number_of_real_nodes_on_level);
+- intersectOIBVHs · function · L564-L709 — void intersectOIBVHs(
+- BoundingVolumeHierarchy · method · L711-L713 — BoundingVolumeHierarchy::BoundingVolumeHierarchy()
+- buildTree · method · L718-L797 — void BoundingVolumeHierarchy::buildTree(const hmesh_t& mesh_,
+- GetPrimitiveBBox · method · L799-L799 — const BBox& BoundingVolumeHierarchy::GetPrimitiveBBox(int primitiveIndex) const
+- flattenBVHTree · method · L805-L825 — uint32_t BoundingVolumeHierarchy::flattenBVHTree(std::shared_ptr<BVHBuildNode> node, uint32_t* offset)
+- recursiveBuild · method · L827-L988 — std::shared_ptr<BVHBuildNode> BoundingVolumeHierarchy::recursiveBuild(
+- GetNodeCount · method · L990-L993 — int BoundingVolumeHierarchy::GetNodeCount() const
+- GetNode · method · L995-L995 — const std::shared_ptr<LinearBVHNode>& BoundingVolumeHierarchy::GetNode(int idx) const
+- GetPrimitive · method · L1000-L1000 — const fd_t& BoundingVolumeHierarchy::GetPrimitive(int index) const
+- InputStorageIteratorType · type · L1103-L1103 — typedef std::vector<std::pair<int, int>>::const_iterator InputStorageIteratorType;
+- OutputStorageType · type · L1104-L1104 — typedef std::map<fd_t, std::vector<fd_t>> OutputStorageType; // symmetric_intersecting_pairs (local)
+- todo_local · function · L1109-L1109 — std::vector<std::pair<int, int>> todo_local(block_start_, block_end_);

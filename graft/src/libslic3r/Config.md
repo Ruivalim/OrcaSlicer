@@ -1,0 +1,566 @@
+# src/libslic3r/Config.hpp
+
+- FloatOrPercent · class · L36-L49 — struct FloatOrPercent
+- FloatOrPercent · function · L41-L41 — FloatOrPercent() {}
+- FloatOrPercent · function · L42-L42 — FloatOrPercent(double value_, bool percent_) : value(value_), percent(percent_) { }
+- get_abs_value · function · L44-L44 — double get_abs_value(double ratio_over) const { return this->percent ? (ratio_over * this->value / 100) : this->value; }
+- serialize · function · L48-L48 — template<class Archive> void serialize(Archive& ar) { ar(this->value); ar(this->percent); }
+- t_config_option_key · type · L85-L85 — typedef std::string                 t_config_option_key;
+- t_config_option_keys · type · L86-L86 — typedef std::vector<std::string>    t_config_option_keys;
+- escape_string_cstyle · function · L88-L88 — extern std::string  escape_string_cstyle(const std::string &str);
+- escape_strings_cstyle · function · L89-L89 — extern std::string  escape_strings_cstyle(const std::vector<std::string> &strs);
+- unescape_string_cstyle · function · L90-L90 — extern bool         unescape_string_cstyle(const std::string &str, std::string &out);
+- unescape_strings_cstyle · function · L91-L91 — extern bool         unescape_strings_cstyle(const std::string &str, std::vector<std::string> &out);
+- escape_ampersand · function · L93-L93 — extern std::string  escape_ampersand(const std::string& str);
+- looks_like_enum_value · function · L96-L105 — inline bool looks_like_enum_value(std::string value)
+- enum_looks_like_true_value · function · L107-L110 — inline bool enum_looks_like_true_value(std::string value)
+- DeserializationSubstitution · type · L112-L116 — enum class DeserializationSubstitution
+- DeserializationResult · type · L118-L122 — enum class DeserializationResult
+- ConfigurationError · class · L126-L129 — class ConfigurationError : public Slic3r::RuntimeError
+- UnknownOptionException · class · L132-L138 — class UnknownOptionException : public ConfigurationError
+- UnknownOptionException · function · L134-L135 — UnknownOptionException() :
+- UnknownOptionException · function · L136-L137 — UnknownOptionException(const std::string &opt_key) :
+- NoDefinitionException · class · L141-L148 — class NoDefinitionException : public ConfigurationError
+- NoDefinitionException · function · L144-L145 — NoDefinitionException() :
+- NoDefinitionException · function · L146-L147 — NoDefinitionException(const std::string &opt_key) :
+- BadOptionTypeException · class · L151-L157 — class BadOptionTypeException : public ConfigurationError
+- BadOptionTypeException · function · L154-L154 — BadOptionTypeException() : ConfigurationError("Bad option type exception") {}
+- BadOptionTypeException · function · L155-L155 — BadOptionTypeException(const std::string &message) : ConfigurationError(message) {}
+- BadOptionTypeException · function · L156-L156 — BadOptionTypeException(const char* message) : ConfigurationError(message) {}
+- BadOptionValueException · class · L160-L166 — class BadOptionValueException : public ConfigurationError
+- BadOptionValueException · function · L163-L163 — BadOptionValueException() : ConfigurationError("Bad option value exception") {}
+- BadOptionValueException · function · L164-L164 — BadOptionValueException(const std::string &message) : ConfigurationError(message) {}
+- BadOptionValueException · function · L165-L165 — BadOptionValueException(const char* message) : ConfigurationError(message) {}
+- ConfigOptionType · type · L169-L208 — enum ConfigOptionType
+- ConfigOptionMode · type · L210-L215 — enum ConfigOptionMode
+- PrinterTechnology · type · L217-L227 — enum PrinterTechnology : unsigned char
+- ForwardCompatibilitySubstitutionRule · type · L229-L241 — enum ForwardCompatibilitySubstitutionRule
+- ConfigOption · class · L243-L243 — class  ConfigOption;
+- ConfigOptionDef · class · L244-L244 — class  ConfigOptionDef;
+- ConfigOptionDeleter · class · L246-L246 — struct ConfigOptionDeleter { void operator()(ConfigOption* p); };
+- ConfigSubstitution · class · L252-L256 — struct ConfigSubstitution
+- ConfigSubstitutionContext · class · L262-L270 — struct ConfigSubstitutionContext
+- ConfigSubstitutionContext · function · L264-L264 — ConfigSubstitutionContext(ForwardCompatibilitySubstitutionRule rl) : rule(rl) {}
+- empty · function · L265-L265 — bool empty() const throw() { return substitutions.empty(); }
+- ConfigOption · class · L273-L309 — class ConfigOption
+- type · function · L277-L277 — virtual ConfigOptionType    type() const = 0;
+- serialize · function · L278-L278 — virtual std::string         serialize() const = 0;
+- deserialize · function · L279-L279 — virtual bool                deserialize(const std::string &str, bool append = false) = 0;
+- clone · function · L280-L280 — virtual ConfigOption*       clone() const = 0;
+- set · function · L282-L282 — virtual void                set(const ConfigOption *option) = 0;
+- getInt · function · L283-L283 — virtual int                 getInt()        const { throw BadOptionTypeException("Calling ConfigOption::getInt on a non-int ConfigOption"); }
+- getFloat · function · L284-L284 — virtual double              getFloat()      const { throw BadOptionTypeException("Calling ConfigOption::getFloat on a non-float ConfigOption"); }
+- getBool · function · L285-L285 — virtual bool                getBool()       const { throw BadOptionTypeException("Calling ConfigOption::getBool on a non-boolean ConfigOption");  }
+- setInt · function · L286-L286 — virtual void                setInt(int /* val */) { throw BadOptionTypeException("Calling ConfigOption::setInt on a non-int ConfigOption"); }
+- hash · function · L289-L289 — virtual size_t              hash()          const throw() = 0;
+- is_scalar · function · L290-L290 — bool                        is_scalar()     const { return (int(this->type()) & int(coVectorType)) == 0; }
+- is_vector · function · L291-L291 — bool                        is_vector()     const { return ! this->is_scalar(); }
+- nullable · function · L293-L293 — virtual bool 				nullable()		const { return false; }
+- is_nil · function · L295-L295 — virtual bool 				is_nil() 		const { return false; }
+- overriden_by · function · L298-L301 — virtual bool 				overriden_by(const ConfigOption *rhs) const
+- apply_override · function · L303-L308 — virtual bool 				apply_override(const ConfigOption *rhs, std::vector<int>& default_index)
+- ConfigOptionSingle · class · L315-L349 — template <class T>
+- ConfigOptionSingle · function · L319-L319 — explicit ConfigOptionSingle(T value) : value(std::move(value)) {}
+- set · function · L322-L328 — void set(const ConfigOption *rhs) override
+- hash · function · L342-L342 — size_t hash() const throw() override { return std::hash<T>{}(this->value); }
+- serialize · function · L348-L348 — template<class Archive> void serialize(Archive & ar) { ar(this->value); }
+- ConfigOptionVectorBase · class · L352-L394 — class ConfigOptionVectorBase : public ConfigOption
+- vserialize · function · L355-L355 — virtual std::vector<std::string> vserialize() const = 0;
+- set · function · L360-L360 — virtual void set(const std::vector<const ConfigOption*> &rhs) = 0;
+- set_at · function · L363-L363 — virtual void set_at(const ConfigOption* rhs, size_t i, size_t j) = 0;
+- set_at_to_nil · function · L365-L365 — virtual void set_at_to_nil(size_t i)                                                                                    = 0;
+- append · function · L366-L366 — virtual void append(const ConfigOption* rhs)                                                                            = 0;
+- set · function · L367-L367 — virtual void set(const ConfigOption* rhs, size_t start, size_t len)                                                     = 0;
+- set_with_restore · function · L368-L368 — virtual void set_with_restore(const ConfigOptionVectorBase* rhs, std::vector<int>& restore_index, int stride)           = 0;
+- set_with_restore_2 · function · L369-L369 — virtual void set_with_restore_2(const ConfigOptionVectorBase* rhs, std::vector<int>& restore_index, int start, int len, bool skip_error = false) = 0;
+- set_only_diff · function · L370-L370 — virtual void set_only_diff(const ConfigOptionVectorBase* rhs, std::vector<int>& diff_index, int stride)                 = 0;
+- set_to_index · function · L371-L371 — virtual void set_to_index(const ConfigOptionVectorBase* rhs, std::vector<int>& dest_index, int stride) = 0;
+- set_with_nil · function · L372-L372 — virtual void set_with_nil(const ConfigOptionVectorBase* rhs, const ConfigOptionVectorBase* inherits, int stride)        = 0;
+- resize · function · L374-L374 — virtual void resize(size_t n, const ConfigOption *opt_default = nullptr) = 0;
+- clear · function · L376-L376 — virtual void clear() = 0;
+- size · function · L379-L379 — virtual size_t size()  const = 0;
+- empty · function · L381-L381 — virtual bool   empty() const = 0;
+- is_nil · function · L383-L383 — virtual bool   is_nil(size_t idx) const = 0;
+- scalar_type · function · L393-L393 — ConfigOptionType scalar_type() const { return static_cast<ConfigOptionType>(this->type() - coVectorType); }
+- ConfigOptionVector · class · L397-L805 — template <class T>
+- ConfigOptionVector · function · L401-L401 — ConfigOptionVector() {}
+- ConfigOptionVector · function · L402-L402 — explicit ConfigOptionVector(size_t n, const T &value) : values(n, value) {}
+- ConfigOptionVector · function · L403-L403 — explicit ConfigOptionVector(std::initializer_list<T> il) : values(std::move(il)) {}
+- ConfigOptionVector · function · L404-L404 — explicit ConfigOptionVector(const std::vector<T> &values) : values(values) {}
+- ConfigOptionVector · function · L405-L405 — explicit ConfigOptionVector(std::vector<T> &&values) : values(std::move(values)) {}
+- set · function · L408-L414 — void set(const ConfigOption *rhs) override
+- set · function · L420-L435 — void set(const std::vector<const ConfigOption*> &rhs) override
+- set_at · function · L439-L458 — void set_at(const ConfigOption *rhs, size_t i, size_t j) override
+- set_at_to_nil · function · L461-L461 — virtual void set_at_to_nil(size_t i) override {}
+- append · function · L463-L475 — void append(const ConfigOption *rhs) override
+- set · function · L479-L495 — void set(const ConfigOption* rhs, size_t start, size_t len) override
+- set_with_restore · function · L500-L521 — virtual void set_with_restore(const ConfigOptionVectorBase* rhs, std::vector<int>& restore_index, int stride) override
+- set_with_restore_2 · function · L528-L568 — virtual void set_with_restore_2(const ConfigOptionVectorBase* rhs, std::vector<int>& restore_index, int start, int len, bool skip_error = false) override
+- set_only_diff · function · L573-L593 — virtual void set_only_diff(const ConfigOptionVectorBase* rhs, std::vector<int>& diff_index, int stride) override
+- set_to_index · function · L598-L619 — virtual void set_to_index(const ConfigOptionVectorBase* rhs, std::vector<int>& dest_index, int stride) override
+- set_with_nil · function · L625-L660 — virtual void set_with_nil(const ConfigOptionVectorBase* rhs, const ConfigOptionVectorBase* inherits, int stride) override
+- get_at · function · L662-L662 — const T& get_at(size_t i) const
+- get_at · function · L668-L668 — T& get_at(size_t i) { return const_cast<T&>(std::as_const(*this).get_at(i)); }
+- resize · function · L673-L703 — void resize(size_t n, const ConfigOption *opt_default = nullptr) override
+- clear · function · L706-L706 — void   clear() override { this->values.clear(); }
+- size · function · L707-L707 — size_t size()  const override { return this->values.size(); }
+- empty · function · L708-L708 — bool   empty() const override { return this->values.empty(); }
+- hash · function · L721-L727 — size_t hash() const throw() override
+- overriden_by · function · L731-L749 — bool overriden_by(const ConfigOption *rhs) const override
+- apply_override · function · L752-L798 — bool apply_override(const ConfigOption *rhs, std::vector<int>& default_index) override
+- serialize · function · L804-L804 — template<class Archive> void serialize(Archive & ar) { ar(this->values); }
+- ConfigOptionFloat · class · L807-L852 — class ConfigOptionFloat : public ConfigOptionSingle<double>
+- ConfigOptionFloat · function · L810-L810 — ConfigOptionFloat() : ConfigOptionSingle<double>(0) {}
+- ConfigOptionFloat · function · L811-L811 — explicit ConfigOptionFloat(double _value) : ConfigOptionSingle<double>(_value) {}
+- static_type · function · L813-L813 — static ConfigOptionType static_type() { return coFloat; }
+- type · function · L814-L814 — ConfigOptionType        type()      const override { return static_type(); }
+- getFloat · function · L815-L815 — double                  getFloat()  const override { return this->value; }
+- clone · function · L816-L816 — ConfigOption*           clone()     const override { return new ConfigOptionFloat(*this); }
+- serialize · function · L820-L825 — std::string serialize() const override
+- deserialize · function · L827-L833 — bool deserialize(const std::string &str, bool append = false) override
+- iss · function · L830-L830 — std::istringstream iss(str);
+- serialize · function · L851-L851 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionSingle<double>>(this)); }
+- ConfigOptionFloatsTempl · class · L854-L992 — template<bool NULLABLE>
+- ConfigOptionFloatsTempl · function · L858-L858 — ConfigOptionFloatsTempl() : ConfigOptionVector<double>() {}
+- ConfigOptionFloatsTempl · function · L859-L859 — explicit ConfigOptionFloatsTempl(size_t n, double value) : ConfigOptionVector<double>(n, value) {}
+- ConfigOptionFloatsTempl · function · L860-L860 — explicit ConfigOptionFloatsTempl(std::initializer_list<double> il) : ConfigOptionVector<double>(std::move(il)) {}
+- ConfigOptionFloatsTempl · function · L861-L861 — explicit ConfigOptionFloatsTempl(const std::vector<double> &vec) : ConfigOptionVector<double>(vec) {}
+- ConfigOptionFloatsTempl · function · L862-L862 — explicit ConfigOptionFloatsTempl(std::vector<double> &&vec) : ConfigOptionVector<double>(std::move(vec)) {}
+- static_type · function · L864-L864 — static ConfigOptionType static_type() { return coFloats; }
+- type · function · L865-L865 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L866-L866 — ConfigOption*           clone() const override { return new ConfigOptionFloatsTempl(*this); }
+- nullable · function · L876-L876 — bool 					nullable() const override { return NULLABLE; }
+- nil_value · function · L878-L878 — static double 			nil_value() { return std::numeric_limits<double>::quiet_NaN(); }
+- is_nil · function · L880-L880 — bool 					is_nil() const override { for (auto v : this->values) if (! std::isnan(v)) return false; return true; }
+- is_nil · function · L881-L881 — bool 					is_nil(size_t idx) const override { return std::isnan(this->values[idx]); }
+- set_at_to_nil · function · L882-L886 — virtual void set_at_to_nil(size_t i) override
+- serialize · function · L888-L897 — std::string serialize() const override
+- vserialize · function · L899-L909 — std::vector<std::string> vserialize() const override
+- deserialize · function · L911-L937 — bool deserialize(const std::string &str, bool append = false) override
+- is · function · L920-L920 — std::istringstream is(str);
+- iss · function · L930-L930 — std::istringstream iss(item_str);
+- validate_string · function · L938-L944 — static bool validate_string(const std::string &str)
+- serialize_single_value · function · L953-L963 — void serialize_single_value(std::ostringstream &ss, const double v) const
+- vectors_equal · function · L964-L975 — static bool vectors_equal(const std::vector<double> &v1, const std::vector<double> &v2)
+- vectors_lower · function · L976-L987 — static bool vectors_lower(const std::vector<double> &v1, const std::vector<double> &v2)
+- serialize · function · L991-L991 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionVector<double>>(this)); }
+- ConfigOptionInt · class · L997-L1036 — class ConfigOptionInt : public ConfigOptionSingle<int>
+- ConfigOptionInt · function · L1000-L1000 — ConfigOptionInt() : ConfigOptionSingle<int>(0) {}
+- ConfigOptionInt · function · L1001-L1001 — explicit ConfigOptionInt(int value) : ConfigOptionSingle<int>(value) {}
+- ConfigOptionInt · function · L1002-L1002 — explicit ConfigOptionInt(double _value) : ConfigOptionSingle<int>(int(floor(_value + 0.5))) {}
+- static_type · function · L1004-L1004 — static ConfigOptionType static_type() { return coInt; }
+- type · function · L1005-L1005 — ConfigOptionType        type()   const override { return static_type(); }
+- getInt · function · L1006-L1006 — int                     getInt() const override { return this->value; }
+- setInt · function · L1007-L1007 — void                    setInt(int val) override { this->value = val; }
+- clone · function · L1008-L1008 — ConfigOption*           clone()  const override { return new ConfigOptionInt(*this); }
+- serialize · function · L1012-L1017 — std::string serialize() const override
+- deserialize · function · L1019-L1025 — bool deserialize(const std::string &str, bool append = false) override
+- iss · function · L1022-L1022 — std::istringstream iss(str);
+- serialize · function · L1035-L1035 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionSingle<int>>(this)); }
+- ConfigOptionIntsTempl · class · L1038-L1127 — template<bool NULLABLE>
+- ConfigOptionIntsTempl · function · L1042-L1042 — ConfigOptionIntsTempl() : ConfigOptionVector<int>() {}
+- ConfigOptionIntsTempl · function · L1043-L1043 — explicit ConfigOptionIntsTempl(size_t n, int value) : ConfigOptionVector<int>(n, value) {}
+- ConfigOptionIntsTempl · function · L1044-L1044 — explicit ConfigOptionIntsTempl(std::initializer_list<int> il) : ConfigOptionVector<int>(std::move(il)) {}
+- ConfigOptionIntsTempl · function · L1045-L1045 — explicit ConfigOptionIntsTempl(const std::vector<int> &vec) : ConfigOptionVector<int>(vec) {}
+- ConfigOptionIntsTempl · function · L1046-L1046 — explicit ConfigOptionIntsTempl(std::vector<int> &&vec) : ConfigOptionVector<int>(std::move(vec)) {}
+- static_type · function · L1048-L1048 — static ConfigOptionType static_type() { return coInts; }
+- type · function · L1049-L1049 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1050-L1050 — ConfigOption*           clone() const override { return new ConfigOptionIntsTempl(*this); }
+- nullable · function · L1056-L1056 — bool 					nullable() const override { return NULLABLE; }
+- nil_value · function · L1058-L1058 — static int	 			nil_value() { return std::numeric_limits<int>::max(); }
+- is_nil · function · L1060-L1060 — bool 					is_nil() const override { for (auto v : this->values) if (v != nil_value()) return false; return true; }
+- is_nil · function · L1061-L1061 — bool 					is_nil(size_t idx) const override { return this->values[idx] == nil_value(); }
+- set_at_to_nil · function · L1062-L1066 — virtual void set_at_to_nil(size_t i) override
+- serialize · function · L1068-L1077 — std::string serialize() const override
+- vserialize · function · L1079-L1089 — std::vector<std::string> vserialize() const override
+- deserialize · function · L1091-L1112 — bool deserialize(const std::string &str, bool append = false) override
+- is · function · L1095-L1095 — std::istringstream is(str);
+- iss · function · L1105-L1105 — std::istringstream iss(item_str);
+- serialize_single_value · function · L1115-L1123 — void serialize_single_value(std::ostringstream &ss, const int v) const
+- serialize · function · L1126-L1126 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionVector<int>>(this)); }
+- ConfigOptionString · class · L1132-L1161 — class ConfigOptionString : public ConfigOptionSingle<std::string>
+- ConfigOptionString · function · L1135-L1135 — ConfigOptionString() : ConfigOptionSingle<std::string>(std::string{}) {}
+- ConfigOptionString · function · L1136-L1136 — explicit ConfigOptionString(std::string value) : ConfigOptionSingle<std::string>(std::move(value)) {}
+- static_type · function · L1138-L1138 — static ConfigOptionType static_type() { return coString; }
+- type · function · L1139-L1139 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1140-L1140 — ConfigOption*           clone() const override { return new ConfigOptionString(*this); }
+- empty · function · L1145-L1145 — bool 					empty() const { return this->value.empty(); }
+- serialize · function · L1147-L1150 — std::string serialize() const override
+- deserialize · function · L1152-L1156 — bool deserialize(const std::string &str, bool append = false) override
+- serialize · function · L1160-L1160 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionSingle<std::string>>(this)); }
+- ConfigOptionStrings · class · L1164-L1210 — class ConfigOptionStrings : public ConfigOptionVector<std::string>
+- ConfigOptionStrings · function · L1167-L1167 — ConfigOptionStrings() : ConfigOptionVector<std::string>() {}
+- ConfigOptionStrings · function · L1168-L1168 — explicit ConfigOptionStrings(size_t n, const std::string &value) : ConfigOptionVector<std::string>(n, value) {}
+- ConfigOptionStrings · function · L1169-L1169 — explicit ConfigOptionStrings(const std::vector<std::string> &values) : ConfigOptionVector<std::string>(values) {}
+- ConfigOptionStrings · function · L1170-L1170 — explicit ConfigOptionStrings(std::vector<std::string> &&values) : ConfigOptionVector<std::string>(std::move(values)) {}
+- ConfigOptionStrings · function · L1171-L1171 — explicit ConfigOptionStrings(std::initializer_list<std::string> il) : ConfigOptionVector<std::string>(std::move(il)) {}
+- static_type · function · L1173-L1173 — static ConfigOptionType static_type() { return coStrings; }
+- type · function · L1174-L1174 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1175-L1175 — ConfigOption*           clone() const override { return new ConfigOptionStrings(*this); }
+- is_nil · function · L1180-L1180 — bool					is_nil(size_t) const override { return false; }
+- serialize · function · L1182-L1185 — std::string serialize() const override
+- vserialize · function · L1187-L1198 — std::vector<std::string> vserialize() const override
+- deserialize · function · L1200-L1205 — bool deserialize(const std::string &str, bool append = false) override
+- serialize · function · L1209-L1209 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionVector<std::string>>(this)); }
+- ConfigOptionPercent · class · L1212-L1249 — class ConfigOptionPercent : public ConfigOptionFloat
+- ConfigOptionPercent · function · L1215-L1215 — ConfigOptionPercent() : ConfigOptionFloat(0) {}
+- ConfigOptionPercent · function · L1216-L1216 — explicit ConfigOptionPercent(double _value) : ConfigOptionFloat(_value) {}
+- static_type · function · L1218-L1218 — static ConfigOptionType static_type() { return coPercent; }
+- type · function · L1219-L1219 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1220-L1220 — ConfigOption*           clone() const override { return new ConfigOptionPercent(*this); }
+- get_abs_value · function · L1226-L1226 — double                  get_abs_value(double ratio_over) const { return ratio_over * this->value / 100; }
+- serialize · function · L1228-L1235 — std::string serialize() const override
+- deserialize · function · L1237-L1244 — bool deserialize(const std::string &str, bool append = false) override
+- iss · function · L1241-L1241 — std::istringstream iss(str);
+- serialize · function · L1248-L1248 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionFloat>(this)); }
+- ConfigOptionPercentsTempl · class · L1251-L1303 — template<bool NULLABLE>
+- ConfigOptionPercentsTempl · function · L1255-L1255 — ConfigOptionPercentsTempl() : ConfigOptionFloatsTempl<NULLABLE>() {}
+- ConfigOptionPercentsTempl · function · L1256-L1256 — explicit ConfigOptionPercentsTempl(size_t n, double value) : ConfigOptionFloatsTempl<NULLABLE>(n, value) {}
+- ConfigOptionPercentsTempl · function · L1257-L1257 — explicit ConfigOptionPercentsTempl(std::initializer_list<double> il) : ConfigOptionFloatsTempl<NULLABLE>(std::move(il)) {}
+- ConfigOptionPercentsTempl · function · L1258-L1258 — explicit ConfigOptionPercentsTempl(const std::vector<double>& vec) : ConfigOptionFloatsTempl<NULLABLE>(vec) {}
+- ConfigOptionPercentsTempl · function · L1259-L1259 — explicit ConfigOptionPercentsTempl(std::vector<double>&& vec) : ConfigOptionFloatsTempl<NULLABLE>(std::move(vec)) {}
+- static_type · function · L1261-L1261 — static ConfigOptionType static_type() { return coPercents; }
+- type · function · L1262-L1262 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1263-L1263 — ConfigOption*           clone() const override { return new ConfigOptionPercentsTempl(*this); }
+- serialize · function · L1269-L1281 — std::string serialize() const override
+- vserialize · function · L1283-L1295 — std::vector<std::string> vserialize() const override
+- serialize · function · L1302-L1302 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionFloatsTempl<NULLABLE>>(this)); }
+- ConfigOptionFloatOrPercent · class · L1308-L1364 — class ConfigOptionFloatOrPercent : public ConfigOptionPercent
+- ConfigOptionFloatOrPercent · function · L1312-L1312 — ConfigOptionFloatOrPercent() : ConfigOptionPercent(0), percent(false) {}
+- ConfigOptionFloatOrPercent · function · L1313-L1313 — explicit ConfigOptionFloatOrPercent(double _value, bool _percent) : ConfigOptionPercent(_value), percent(_percent) {}
+- static_type · function · L1315-L1315 — static ConfigOptionType     static_type() { return coFloatOrPercent; }
+- type · function · L1316-L1316 — ConfigOptionType            type()  const override { return static_type(); }
+- clone · function · L1317-L1317 — ConfigOption*               clone() const override { return new ConfigOptionFloatOrPercent(*this); }
+- hash · function · L1328-L1329 — size_t                      hash() const throw() override
+- get_abs_value · function · L1333-L1334 — double                      get_abs_value(double ratio_over) const
+- set · function · L1336-L1341 — void set(const ConfigOption *rhs) override
+- serialize · function · L1343-L1350 — std::string serialize() const override
+- deserialize · function · L1352-L1359 — bool deserialize(const std::string &str, bool append = false) override
+- iss · function · L1356-L1356 — std::istringstream iss(str);
+- serialize · function · L1363-L1363 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionPercent>(this), percent); }
+- ConfigOptionFloatsOrPercentsTempl · class · L1366-L1496 — template<bool NULLABLE>
+- ConfigOptionFloatsOrPercentsTempl · function · L1370-L1370 — ConfigOptionFloatsOrPercentsTempl() : ConfigOptionVector<FloatOrPercent>() {}
+- ConfigOptionFloatsOrPercentsTempl · function · L1371-L1371 — explicit ConfigOptionFloatsOrPercentsTempl(size_t n, FloatOrPercent value) : ConfigOptionVector<FloatOrPercent>(n, value) {}
+- ConfigOptionFloatsOrPercentsTempl · function · L1372-L1372 — explicit ConfigOptionFloatsOrPercentsTempl(std::initializer_list<FloatOrPercent> il) : ConfigOptionVector<FloatOrPercent>(std::move(il)) {}
+- ConfigOptionFloatsOrPercentsTempl · function · L1373-L1373 — explicit ConfigOptionFloatsOrPercentsTempl(const std::vector<FloatOrPercent> &vec) : ConfigOptionVector<FloatOrPercent>(vec) {}
+- ConfigOptionFloatsOrPercentsTempl · function · L1374-L1374 — explicit ConfigOptionFloatsOrPercentsTempl(std::vector<FloatOrPercent> &&vec) : ConfigOptionVector<FloatOrPercent>(std::move(vec)) {}
+- static_type · function · L1376-L1376 — static ConfigOptionType static_type() { return coFloatsOrPercents; }
+- type · function · L1377-L1377 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1378-L1378 — ConfigOption*           clone() const override { return new ConfigOptionFloatsOrPercentsTempl(*this); }
+- nullable · function · L1389-L1389 — bool                    nullable() const override { return NULLABLE; }
+- nil_value · function · L1391-L1391 — static FloatOrPercent   nil_value() { return { std::numeric_limits<double>::quiet_NaN(), false }; }
+- is_nil · function · L1393-L1393 — bool                    is_nil() const override { for (auto v : this->values) if (! std::isnan(v.value)) return false; return true; }
+- is_nil · function · L1394-L1394 — bool                    is_nil(size_t idx) const override { return std::isnan(this->values[idx].value); }
+- set_at_to_nil · function · L1395-L1399 — virtual void set_at_to_nil(size_t i) override
+- serialize · function · L1401-L1410 — std::string serialize() const override
+- vserialize · function · L1412-L1422 — std::vector<std::string> vserialize() const override
+- deserialize · function · L1424-L1446 — bool deserialize(const std::string &str, bool append = false) override
+- is · function · L1428-L1428 — std::istringstream is(str);
+- iss · function · L1439-L1439 — std::istringstream iss(item_str);
+- serialize_single_value · function · L1455-L1467 — void serialize_single_value(std::ostringstream &ss, const FloatOrPercent &v) const
+- vectors_equal · function · L1468-L1479 — static bool vectors_equal(const std::vector<FloatOrPercent> &v1, const std::vector<FloatOrPercent> &v2)
+- vectors_lower · function · L1480-L1491 — static bool vectors_lower(const std::vector<FloatOrPercent> &v1, const std::vector<FloatOrPercent> &v2)
+- serialize · function · L1495-L1495 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionVector<FloatOrPercent>>(this)); }
+- ConfigOptionPoint · class · L1501-L1535 — class ConfigOptionPoint : public ConfigOptionSingle<Vec2d>
+- ConfigOptionPoint · function · L1504-L1504 — ConfigOptionPoint() : ConfigOptionSingle<Vec2d>(Vec2d(0,0)) {}
+- ConfigOptionPoint · function · L1505-L1505 — explicit ConfigOptionPoint(const Vec2d &value) : ConfigOptionSingle<Vec2d>(value) {}
+- static_type · function · L1507-L1507 — static ConfigOptionType static_type() { return coPoint; }
+- type · function · L1508-L1508 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1509-L1509 — ConfigOption*           clone() const override { return new ConfigOptionPoint(*this); }
+- serialize · function · L1515-L1522 — std::string serialize() const override
+- deserialize · function · L1524-L1530 — bool deserialize(const std::string &str, bool append = false) override
+- serialize · function · L1534-L1534 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionSingle<Vec2d>>(this)); }
+- ConfigOptionPoints · class · L1537-L1616 — class ConfigOptionPoints : public ConfigOptionVector<Vec2d>
+- ConfigOptionPoints · function · L1540-L1540 — ConfigOptionPoints() : ConfigOptionVector<Vec2d>() {}
+- ConfigOptionPoints · function · L1541-L1541 — explicit ConfigOptionPoints(size_t n, const Vec2d &value) : ConfigOptionVector<Vec2d>(n, value) {}
+- ConfigOptionPoints · function · L1542-L1542 — explicit ConfigOptionPoints(std::initializer_list<Vec2d> il) : ConfigOptionVector<Vec2d>(std::move(il)) {}
+- ConfigOptionPoints · function · L1543-L1543 — explicit ConfigOptionPoints(const std::vector<Vec2d> &values) : ConfigOptionVector<Vec2d>(values) {}
+- static_type · function · L1545-L1545 — static ConfigOptionType static_type() { return coPoints; }
+- type · function · L1546-L1546 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1547-L1547 — ConfigOption*           clone() const override { return new ConfigOptionPoints(*this); }
+- is_nil · function · L1553-L1553 — bool					is_nil(size_t) const override { return false; }
+- serialize · function · L1555-L1565 — std::string serialize() const override
+- vserialize · function · L1567-L1580 — std::vector<std::string> vserialize() const override
+- deserialize · function · L1582-L1601 — bool deserialize(const std::string &str, bool append = false) override
+- is · function · L1586-L1586 — std::istringstream is(str);
+- point · function · L1589-L1589 — Vec2d point(Vec2d::Zero());
+- iss · function · L1590-L1590 — std::istringstream iss(point_str);
+- save · function · L1605-L1609 — template<class Archive> void save(Archive& archive) const
+- load · function · L1610-L1615 — template<class Archive> void load(Archive& archive)
+- ConfigOptionPoint3 · class · L1618-L1655 — class ConfigOptionPoint3 : public ConfigOptionSingle<Vec3d>
+- ConfigOptionPoint3 · function · L1621-L1621 — ConfigOptionPoint3() : ConfigOptionSingle<Vec3d>(Vec3d(0,0,0)) {}
+- ConfigOptionPoint3 · function · L1622-L1622 — explicit ConfigOptionPoint3(const Vec3d &value) : ConfigOptionSingle<Vec3d>(value) {}
+- static_type · function · L1624-L1624 — static ConfigOptionType static_type() { return coPoint3; }
+- type · function · L1625-L1625 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1626-L1626 — ConfigOption*           clone() const override { return new ConfigOptionPoint3(*this); }
+- serialize · function · L1633-L1642 — std::string serialize() const override
+- deserialize · function · L1644-L1650 — bool deserialize(const std::string &str, bool append = false) override
+- serialize · function · L1654-L1654 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionSingle<Vec3d>>(this)); }
+- ConfigOptionPointsGroups · class · L1657-L1754 — class ConfigOptionPointsGroups :public ConfigOptionVector<Vec2ds>
+- ConfigOptionPointsGroups · function · L1660-L1660 — ConfigOptionPointsGroups() :ConfigOptionVector<Vec2ds>() {}
+- ConfigOptionPointsGroups · function · L1661-L1661 — explicit ConfigOptionPointsGroups(std::initializer_list<Vec2ds> il) :ConfigOptionVector<Vec2ds>(std::move(il)) {}
+- ConfigOptionPointsGroups · function · L1662-L1662 — explicit ConfigOptionPointsGroups(const std::vector<Vec2ds>& values) :ConfigOptionVector<Vec2ds>(values) {}
+- static_type · function · L1664-L1664 — static ConfigOptionType static_type() { return coPointsGroups; }
+- type · function · L1665-L1665 — ConfigOptionType type()const override { return static_type(); }
+- clone · function · L1666-L1666 — ConfigOption* clone()const override { return new ConfigOptionPointsGroups(*this); }
+- nullable · function · L1676-L1676 — bool nullable() const override { return false; }
+- is_nil · function · L1677-L1677 — bool is_nil(size_t) const override { return false; }
+- serialize · function · L1679-L1689 — std::string serialize()const override
+- vserialize · function · L1691-L1700 — std::vector<std::string> vserialize()const override
+- deserialize · function · L1702-L1727 — bool deserialize(const std::string& str, bool append = false) override
+- is · function · L1706-L1706 — std::istringstream is(str);
+- iss · function · L1710-L1710 — std::istringstream iss(group_str);
+- point · function · L1713-L1713 — Vec2d point(Vec2d::Zero());
+- iss · function · L1714-L1714 — std::istringstream iss(point_str);
+- vserialize_single · function · L1728-L1740 — std::vector<std::string> vserialize_single(int idx) const
+- serialize_single_value · function · L1742-L1750 — void serialize_single_value(std::ostringstream& ss, const Vec2ds& v) const
+- serialize · function · L1753-L1753 — template<class Archive> void serialize(Archive& ar) { ar(cereal::base_class<ConfigOptionVector>(this)); }
+- ConfigOptionIntsGroups · class · L1756-L1858 — class ConfigOptionIntsGroups : public ConfigOptionVector<std::vector<int>>
+- ConfigOptionIntsGroups · function · L1759-L1759 — ConfigOptionIntsGroups() : ConfigOptionVector<std::vector<int>>() {}
+- ConfigOptionIntsGroups · function · L1760-L1760 — explicit ConfigOptionIntsGroups(std::initializer_list<std::vector<int>> il) : ConfigOptionVector<std::vector<int>>(std::move(il)) {}
+- ConfigOptionIntsGroups · function · L1761-L1761 — explicit ConfigOptionIntsGroups(const std::vector<std::vector<int>> &values) : ConfigOptionVector<std::vector<int>>(values) {}
+- static_type · function · L1763-L1763 — static ConfigOptionType   static_type() { return coIntsGroups; }
+- type · function · L1764-L1764 — ConfigOptionType          type() const override { return static_type(); }
+- clone · function · L1765-L1765 — ConfigOption             *clone() const override { return new ConfigOptionIntsGroups(*this); }
+- nullable · function · L1789-L1789 — bool nullable() const override { return false; }
+- is_nil · function · L1790-L1790 — bool is_nil(size_t) const override { return false; }
+- serialize · function · L1792-L1802 — std::string serialize() const override
+- vserialize · function · L1804-L1813 — std::vector<std::string> vserialize() const override
+- deserialize · function · L1815-L1832 — bool deserialize(const std::string &str, bool append = false) override
+- is · function · L1818-L1818 — std::istringstream is(str);
+- iss · function · L1822-L1822 — std::istringstream iss(group_str);
+- vserialize_single · function · L1833-L1843 — std::vector<std::string> vserialize_single(int idx) const
+- serialize_single_value · function · L1846-L1853 — void serialize_single_value(std::ostringstream &ss, const std::vector<int> &v) const
+- serialize · function · L1857-L1857 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionVector>(this)); }
+- ConfigOptionBool · class · L1861-L1907 — class ConfigOptionBool : public ConfigOptionSingle<bool>
+- ConfigOptionBool · function · L1864-L1864 — ConfigOptionBool() : ConfigOptionSingle<bool>(false) {}
+- ConfigOptionBool · function · L1865-L1865 — explicit ConfigOptionBool(bool _value) : ConfigOptionSingle<bool>(_value) {}
+- static_type · function · L1867-L1867 — static ConfigOptionType static_type() { return coBool; }
+- type · function · L1868-L1868 — ConfigOptionType        type()      const override { return static_type(); }
+- getBool · function · L1869-L1869 — bool                    getBool()   const override { return this->value; }
+- clone · function · L1870-L1870 — ConfigOption*           clone()     const override { return new ConfigOptionBool(*this); }
+- serialize · function · L1876-L1879 — std::string serialize() const override
+- deserialize · function · L1881-L1902 — bool deserialize(const std::string &str, bool append = false) override
+- is · function · L1886-L1886 — std::istringstream is(str);
+- serialize · function · L1906-L1906 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionSingle<bool>>(this)); }
+- ConfigOptionBoolsTempl · class · L1909-L2018 — template<bool NULLABLE>
+- ConfigOptionBoolsTempl · function · L1913-L1913 — ConfigOptionBoolsTempl() : ConfigOptionVector<unsigned char>() {}
+- ConfigOptionBoolsTempl · function · L1914-L1914 — explicit ConfigOptionBoolsTempl(size_t n, bool value) : ConfigOptionVector<unsigned char>(n, (unsigned char)value) {}
+- ConfigOptionBoolsTempl · function · L1915-L1915 — explicit ConfigOptionBoolsTempl(std::initializer_list<bool> il) { values.reserve(il.size()); for (bool b : il) values.emplace_back((unsigned char)b); }
+- ConfigOptionBoolsTempl · function · L1916-L1916 — explicit ConfigOptionBoolsTempl(std::initializer_list<unsigned char> il) { values.reserve(il.size()); for (unsigned char b : il) values.emplace_back(b); }
+- ConfigOptionBoolsTempl · function · L1917-L1917 — explicit ConfigOptionBoolsTempl(const std::vector<unsigned char>& vec) : ConfigOptionVector<unsigned char>(vec) {}
+- ConfigOptionBoolsTempl · function · L1918-L1918 — explicit ConfigOptionBoolsTempl(std::vector<unsigned char>&& vec) : ConfigOptionVector<unsigned char>(std::move(vec)) {}
+- static_type · function · L1920-L1920 — static ConfigOptionType static_type() { return coBools; }
+- type · function · L1921-L1921 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L1922-L1922 — ConfigOption*           clone() const override { return new ConfigOptionBoolsTempl(*this); }
+- nullable · function · L1928-L1928 — bool 					nullable() const override { return NULLABLE; }
+- nil_value · function · L1930-L1930 — static unsigned char	nil_value() { return std::numeric_limits<unsigned char>::max(); }
+- is_nil · function · L1932-L1932 — bool 					is_nil() const override { for (auto v : this->values) if (v != nil_value()) return false; return true; }
+- is_nil · function · L1933-L1933 — bool 					is_nil(size_t idx) const override { return this->values[idx] == nil_value(); }
+- set_at_to_nil · function · L1934-L1938 — virtual void set_at_to_nil(size_t i) override
+- get_at · function · L1940-L1940 — bool& get_at(size_t i)
+- get_at · function · L1946-L1946 — bool get_at(size_t i) const { return ((i < this->values.size()) ? this->values[i] : this->values.front()) != 0; }
+- serialize · function · L1948-L1957 — std::string serialize() const override
+- vserialize · function · L1959-L1968 — std::vector<std::string> vserialize() const override
+- deserialize_with_substitutions · function · L1970-L1997 — ConfigHelpers::DeserializationResult deserialize_with_substitutions(const std::string &str, bool append, ConfigHelpers::DeserializationSubstitution substitution)
+- is · function · L1974-L1974 — std::istringstream is(str);
+- deserialize · function · L1999-L2002 — bool deserialize(const std::string &str, bool append = false) override
+- serialize_single_value · function · L2005-L2013 — void serialize_single_value(std::ostringstream &ss, const unsigned char v) const
+- serialize · function · L2017-L2017 — template<class Archive> void serialize(Archive &ar) { ar(cereal::base_class<ConfigOptionVector<unsigned char>>(this)); }
+- t_config_enum_names · type · L2024-L2024 — typedef std::vector<std::string>  t_config_enum_names;
+- t_config_enum_values · type · L2026-L2026 — typedef std::map<std::string,int> t_config_enum_values;
+- ConfigOptionEnum · class · L2028-L2095 — template <class T>
+- ConfigOptionEnum · function · L2033-L2033 — ConfigOptionEnum() : ConfigOptionSingle<T>(static_cast<T>(0)) {}
+- ConfigOptionEnum · function · L2034-L2034 — explicit ConfigOptionEnum(T _value) : ConfigOptionSingle<T>(_value) {}
+- static_type · function · L2036-L2036 — static ConfigOptionType static_type() { return coEnum; }
+- type · function · L2037-L2037 — ConfigOptionType        type()  const override { return static_type(); }
+- clone · function · L2038-L2038 — ConfigOption*           clone() const override { return new ConfigOptionEnum<T>(*this); }
+- getInt · function · L2042-L2042 — int                     getInt() const override { return (int)this->value; }
+- setInt · function · L2043-L2043 — void                    setInt(int val) override { this->value = T(val); }
+- set · function · L2053-L2058 — void set(const ConfigOption *rhs) override
+- serialize · function · L2060-L2065 — std::string serialize() const override
+- deserialize · function · L2067-L2071 — bool deserialize(const std::string &str, bool append = false) override
+- has · function · L2073-L2079 — static bool has(T value)
+- get_enum_names · function · L2082-L2082 — static const t_config_enum_names& get_enum_names();
+- get_enum_values · function · L2084-L2084 — static const t_config_enum_values& get_enum_values();
+- from_string · function · L2086-L2094 — static bool from_string(const std::string &str, T &value)
+- ConfigOptionEnumGeneric · class · L2100-L2156 — class ConfigOptionEnumGeneric : public ConfigOptionInt
+- ConfigOptionEnumGeneric · function · L2103-L2103 — ConfigOptionEnumGeneric(const t_config_enum_values* keys_map = nullptr) : keys_map(keys_map) {}
+- ConfigOptionEnumGeneric · function · L2104-L2104 — explicit ConfigOptionEnumGeneric(const t_config_enum_values* keys_map, int value) : ConfigOptionInt(value), keys_map(keys_map) {}
+- static_type · function · L2108-L2108 — static ConfigOptionType     static_type() { return coEnum; }
+- type · function · L2109-L2109 — ConfigOptionType            type()  const override { return static_type(); }
+- clone · function · L2110-L2110 — ConfigOption*               clone() const override { return new ConfigOptionEnumGeneric(*this); }
+- set · function · L2123-L2133 — void set(const ConfigOption *rhs) override
+- serialize · function · L2135-L2141 — std::string serialize() const override
+- deserialize · function · L2143-L2151 — bool deserialize(const std::string &str, bool append = false) override
+- serialize · function · L2155-L2155 — template<class Archive> void serialize(Archive& ar) { ar(cereal::base_class<ConfigOptionInt>(this)); }
+- ConfigOptionEnumsGenericTempl · class · L2159-L2263 — template <bool NULLABLE>
+- ConfigOptionEnumsGenericTempl · function · L2163-L2163 — ConfigOptionEnumsGenericTempl(const t_config_enum_values *keys_map = nullptr) : keys_map(keys_map) {}
+- ConfigOptionEnumsGenericTempl · function · L2164-L2164 — explicit ConfigOptionEnumsGenericTempl(const t_config_enum_values *keys_map, size_t size, int value) : ConfigOptionInts(size, value), keys_map(keys_map) {}
+- ConfigOptionEnumsGenericTempl · function · L2165-L2165 — explicit ConfigOptionEnumsGenericTempl(std::initializer_list<int> il) : ConfigOptionInts(std::move(il)) {}
+- ConfigOptionEnumsGenericTempl · function · L2166-L2166 — explicit ConfigOptionEnumsGenericTempl(const std::vector<int> &vec) : ConfigOptionInts(vec) {}
+- ConfigOptionEnumsGenericTempl · function · L2167-L2167 — explicit ConfigOptionEnumsGenericTempl(std::vector<int> &&vec) : ConfigOptionInts(std::move(vec)) {}
+- static_type · function · L2171-L2171 — static ConfigOptionType     static_type() { return coEnums; }
+- type · function · L2172-L2172 — ConfigOptionType            type()  const override { return static_type(); }
+- clone · function · L2173-L2173 — ConfigOption* clone() const override { return new ConfigOptionEnumsGenericTempl(*this); }
+- nullable · function · L2184-L2184 — bool nullable() const override { return NULLABLE; }
+- set · function · L2186-L2196 — void set(const ConfigOption* rhs) override
+- serialize · function · L2198-L2207 — std::string serialize() const override
+- vserialize · function · L2209-L2219 — std::vector<std::string> vserialize() const override
+- deserialize · function · L2221-L2243 — bool deserialize(const std::string& str, bool append = false) override
+- is · function · L2225-L2225 — std::istringstream is(str);
+- serialize_single_value · function · L2246-L2259 — void serialize_single_value(std::ostringstream& ss, const int v) const
+- serialize · function · L2262-L2262 — template<class Archive> void serialize(Archive& ar) { ar(cereal::base_class<ConfigOptionVector<int>>(this)); }
+- ConfigOptionDef · class · L2269-L2591 — class ConfigOptionDef
+- GUIType · type · L2272-L2293 — enum class GUIType
+- set_default_value · function · L2303-L2303 — void 								set_default_value(const ConfigOption* ptr) { this->default_value = Slic3r::clonable_ptr<const ConfigOption>(ptr); }
+- get_default_value · function · L2304-L2304 — template<typename T> const T* 		get_default_value() const { return static_cast<const T*>(this->default_value.get()); }
+- create_empty_option · function · L2307-L2307 — ConfigOption*						create_empty_option() const;
+- create_default_option · function · L2309-L2309 — ConfigOption*						create_default_option() const;
+- is_scalar · function · L2311-L2311 — bool                                is_scalar()     const { return (int(this->type) & int(coVectorType)) == 0; }
+- load_option_from_archive · function · L2313-L2313 — template<class Archive> ConfigOption* load_option_from_archive(Archive& archive) const
+- save_option_to_archive · function · L2456-L2456 — template<class Archive> ConfigOption* save_option_to_archive(Archive &archive, const ConfigOption *opt) const
+- is_plugin_backed · function · L2515-L2515 — bool is_plugin_backed() const { return !plugin_type.empty(); }
+- is_value_valid · function · L2557-L2557 — bool                                is_value_valid(const double value, const int max_precision = 4) const;
+- has_enum_value · function · L2575-L2580 — bool has_enum_value(const std::string &value) const
+- cli_args · function · L2587-L2587 — std::vector<std::string> cli_args(const std::string &key) const;
+- t_optiondef_map · type · L2604-L2604 — typedef std::map<t_config_option_key, ConfigOptionDef> t_optiondef_map;
+- ConfigDef · class · L2609-L2637 — class ConfigDef
+- has · function · L2615-L2615 — bool                    has(const t_config_option_key &opt_key) const { return this->options.count(opt_key) > 0; }
+- get · function · L2616-L2616 — const ConfigOptionDef*  get(const t_config_option_key &opt_key) const
+- keys · function · L2620-L2626 — std::vector<std::string> keys() const
+- empty · function · L2627-L2627 — bool                    empty() { return options.empty(); }
+- print_cli_help · function · L2630-L2632 — std::ostream&           print_cli_help(
+- add · function · L2635-L2635 — ConfigOptionDef*        add(const t_config_option_key &opt_key, ConfigOptionType type);
+- add_nullable · function · L2636-L2636 — ConfigOptionDef*        add_nullable(const t_config_option_key &opt_key, ConfigOptionType type);
+- ConfigOptionResolver · class · L2642-L2678 — class ConfigOptionResolver
+- ConfigOptionResolver · function · L2645-L2645 — ConfigOptionResolver() {}
+- optptr · function · L2649-L2649 — virtual const ConfigOption* optptr(const t_config_option_key &opt_key) const = 0;
+- has · function · L2651-L2651 — bool 						has(const t_config_option_key &opt_key) const { return this->optptr(opt_key) != nullptr; }
+- option · function · L2653-L2653 — const ConfigOption* 		option(const t_config_option_key &opt_key) const { return this->optptr(opt_key); }
+- option · function · L2656-L2656 — const TYPE* 				option(const t_config_option_key& opt_key) const
+- option_throw · function · L2662-L2662 — const ConfigOption* 		option_throw(const t_config_option_key& opt_key) const
+- option_throw · function · L2671-L2671 — const TYPE* 				option_throw(const t_config_option_key& opt_key) const
+- ConfigBase · class · L2683-L2855 — class ConfigBase : public ConfigOptionResolver
+- ConfigBase · function · L2690-L2690 — ConfigBase() = default;
+- def · function · L2696-L2696 — virtual const ConfigDef*        def() const = 0;
+- optptr · function · L2699-L2699 — virtual ConfigOption*           optptr(const t_config_option_key &opt_key, bool create = false) = 0;
+- keys · function · L2701-L2701 — virtual t_config_option_keys    keys() const = 0;
+- handle_legacy · function · L2708-L2708 — virtual void                    handle_legacy(t_config_option_key &/*opt_key*/, std::string &/*value*/) const {}
+- handle_legacy_composite · function · L2712-L2712 — virtual void                    handle_legacy_composite() {}
+- option · function · L2719-L2719 — ConfigOption* option(const t_config_option_key &opt_key, bool create = false)
+- option · function · L2723-L2723 — TYPE* option(const t_config_option_key &opt_key, bool create = false)
+- option_throw · function · L2733-L2733 — ConfigOption* option_throw(const t_config_option_key &opt_key, bool create = false)
+- option_throw · function · L2742-L2742 — TYPE* option_throw(const t_config_option_key &opt_key, bool create = false)
+- apply · function · L2753-L2753 — void apply(const ConfigBase &other, bool ignore_nonexistent = false) { this->apply_only(other, other.keys(), ignore_nonexistent); }
+- apply_only · function · L2757-L2757 — void apply_only(const ConfigBase &other, const t_config_option_keys &keys, bool ignore_nonexistent = false);
+- equals · function · L2761-L2761 — bool equals(const ConfigBase &other, const std::set<std::string>* skipped_keys = nullptr) const;
+- diff · function · L2763-L2763 — t_config_option_keys diff(const ConfigBase &other) const;
+- equal · function · L2765-L2765 — t_config_option_keys equal(const ConfigBase &other) const;
+- opt_serialize · function · L2766-L2766 — std::string opt_serialize(const t_config_option_key &opt_key) const;
+- set · function · L2772-L2773 — void set(const std::string &opt_key, bool  				value, bool create = false)
+- set · function · L2774-L2774 — void set(const std::string &opt_key, int   				value, bool create = false);
+- set · function · L2775-L2775 — void set(const std::string &opt_key, double				value, bool create = false);
+- set · function · L2776-L2777 — void set(const std::string &opt_key, const char		   *value, bool create = false)
+- set · function · L2778-L2779 — void set(const std::string &opt_key, const std::string &value, bool create = false)
+- set_deserialize_nothrow · function · L2783-L2783 — bool set_deserialize_nothrow(const t_config_option_key &opt_key_src, const std::string &value_src, ConfigSubstitutionContext& substitutions, bool append = false);
+- set_deserialize · function · L2785-L2785 — void set_deserialize(const t_config_option_key &opt_key, const std::string &str, ConfigSubstitutionContext& config_substitutions, bool append = false);
+- set_deserialize_strict · function · L2786-L2787 — void set_deserialize_strict(const t_config_option_key &opt_key, const std::string &str, bool append = false)
+- SetDeserializeItem · class · L2788-L2800 — struct SetDeserializeItem
+- SetDeserializeItem · function · L2789-L2789 — SetDeserializeItem(const char *opt_key, const char *opt_value, bool append = false) : opt_key(opt_key), opt_value(opt_value), append(append) {}
+- SetDeserializeItem · function · L2790-L2790 — SetDeserializeItem(const std::string &opt_key, const std::string &opt_value, bool append = false) : opt_key(opt_key), opt_value(opt_value), append(append) {}
+- SetDeserializeItem · function · L2791-L2791 — SetDeserializeItem(const char *opt_key, const bool value, bool append = false) : opt_key(opt_key), opt_value(value ? "1" : "0"), append(append) {}
+- SetDeserializeItem · function · L2792-L2792 — SetDeserializeItem(const std::string &opt_key, const bool value, bool append = false) : opt_key(opt_key), opt_value(value ? "1" : "0"), append(append) {}
+- SetDeserializeItem · function · L2793-L2793 — SetDeserializeItem(const char *opt_key, const int value, bool append = false) : opt_key(opt_key), opt_value(std::to_string(value)), append(append) {}
+- SetDeserializeItem · function · L2794-L2794 — SetDeserializeItem(const std::string &opt_key, const int value, bool append = false) : opt_key(opt_key), opt_value(std::to_string(value)), append(append) {}
+- SetDeserializeItem · function · L2795-L2795 — SetDeserializeItem(const char *opt_key, const float value, bool append = false) : opt_key(opt_key), opt_value(float_to_string_decimal_point(value)), append(append) {}
+- SetDeserializeItem · function · L2796-L2796 — SetDeserializeItem(const std::string &opt_key, const float value, bool append = false) : opt_key(opt_key), opt_value(float_to_string_decimal_point(value)), append(append) {}
+- SetDeserializeItem · function · L2797-L2797 — SetDeserializeItem(const char *opt_key, const double value, bool append = false) : opt_key(opt_key), opt_value(float_to_string_decimal_point(value)), append(append) {}
+- SetDeserializeItem · function · L2798-L2798 — SetDeserializeItem(const std::string &opt_key, const double value, bool append = false) : opt_key(opt_key), opt_value(float_to_string_decimal_point(value)), append(append) {}
+- set_deserialize · function · L2802-L2802 — void set_deserialize(std::initializer_list<SetDeserializeItem> items, ConfigSubstitutionContext& substitutions);
+- set_deserialize_strict · function · L2803-L2804 — void set_deserialize_strict(std::initializer_list<SetDeserializeItem> items)
+- get_abs_value_at · function · L2806-L2806 — double get_abs_value_at(const t_config_option_key &opt_key, size_t index) const;
+- get_abs_value · function · L2807-L2807 — double get_abs_value(const t_config_option_key &opt_key) const;
+- get_abs_value · function · L2808-L2808 — double get_abs_value(const t_config_option_key &opt_key, double ratio_over) const;
+- setenv_ · function · L2809-L2809 — void setenv_() const;
+- load · function · L2810-L2810 — ConfigSubstitutions load(const std::string &file, ForwardCompatibilitySubstitutionRule compatibility_rule);
+- load_string_map · function · L2812-L2812 — ConfigSubstitutions load_string_map(std::map<std::string, std::string> &key_values, ForwardCompatibilitySubstitutionRule compatibility_rule);
+- load_from_json · function · L2814-L2814 — int load_from_json(const std::string &file, ConfigSubstitutionContext& substitutions, bool load_inherits_in_config, std::map<std::string, std::string>& key_values, std::string& reason);
+- load_from_json · function · L2815-L2815 — ConfigSubstitutions load_from_json(const std::string &file, ForwardCompatibilitySubstitutionRule compatibility_rule, std::map<std::string, std::string>& key_values, std::string& reason);
+- load_from_ini · function · L2817-L2817 — ConfigSubstitutions load_from_ini(const std::string &file, ForwardCompatibilitySubstitutionRule compatibility_rule);
+- load_from_ini_string · function · L2818-L2818 — ConfigSubstitutions load_from_ini_string(const std::string &data, ForwardCompatibilitySubstitutionRule compatibility_rule);
+- load_from_ini_string_commented · function · L2821-L2821 — ConfigSubstitutions load_from_ini_string_commented(std::string &&data, ForwardCompatibilitySubstitutionRule compatibility_rule);
+- load_from_gcode_file · function · L2822-L2822 — ConfigSubstitutions load_from_gcode_file(const std::string &file, ForwardCompatibilitySubstitutionRule compatibility_rule);
+- load · function · L2823-L2823 — ConfigSubstitutions load(const boost::property_tree::ptree &tree, ForwardCompatibilitySubstitutionRule compatibility_rule);
+- save · function · L2824-L2824 — void save(const std::string &file) const;
+- save_to_json · function · L2827-L2827 — void save_to_json(const std::string &file, const std::string &name, const std::string &from, const std::string &version) const;
+- save_to_json · function · L2830-L2830 — void save_to_json(std::ostream &os, const std::string &name, const std::string &from, const std::string &version, bool replace_invalid_utf8 = false) const;
+- update_plugin_manifest · function · L2837-L2837 — void update_plugin_manifest();
+- null_nullables · function · L2840-L2840 — void null_nullables();
+- load_from_gcode_string_legacy · function · L2842-L2842 — static size_t load_from_gcode_string_legacy(ConfigBase& config, const char* str, ConfigSubstitutionContext& substitutions);
+- set_resolve_capability_fn · function · L2843-L2843 — static void set_resolve_capability_fn(std::function<std::string(std::string, std::string)> fn) { resolve_capability_fn = fn; }
+- set_deserialize_raw · function · L2846-L2846 — bool set_deserialize_raw(const t_config_option_key& opt_key_src, const std::string& value, ConfigSubstitutionContext& substitutions, bool append);
+- save_plugin_collection · function · L2847-L2847 — void save_plugin_collection(const std::string& opt_key, const ConfigOption* opt, std::vector<std::string>& plugin_refs) const;
+- collect_plugin_manifest · function · L2852-L2852 — std::vector<std::string> collect_plugin_manifest() const;
+- DynamicConfig · class · L2859-L3073 — class DynamicConfig : public virtual ConfigBase
+- DynamicConfig · function · L2862-L2862 — DynamicConfig() = default;
+- DynamicConfig · function · L2863-L2863 — DynamicConfig(const DynamicConfig &rhs) { *this = rhs; }
+- DynamicConfig · function · L2864-L2864 — DynamicConfig(DynamicConfig &&rhs) noexcept : options(std::move(rhs.options)) { rhs.options.clear(); }
+- DynamicConfig · function · L2865-L2865 — explicit DynamicConfig(const ConfigBase &rhs, const t_config_option_keys &keys);
+- DynamicConfig · function · L2866-L2866 — explicit DynamicConfig(const ConfigBase& rhs) : DynamicConfig(rhs, rhs.keys()) {}
+- swap · function · L2932-L2935 — void swap(DynamicConfig &other)
+- clear · function · L2937-L2940 — void clear()
+- erase · function · L2942-L2949 — bool erase(const t_config_option_key &opt_key)
+- remove_nil_options · function · L2952-L2952 — size_t remove_nil_options();
+- def · function · L2956-L2956 — const ConfigDef*        def() const override { return nullptr; }
+- opt · function · L2957-L2957 — template<class T> T*    opt(const t_config_option_key &opt_key, bool create = false)
+- opt · function · L2959-L2959 — template<class T> const T* opt(const t_config_option_key &opt_key) const
+- optptr · function · L2962-L2962 — const ConfigOption*     optptr(const t_config_option_key &opt_key) const override;
+- optptr · function · L2964-L2964 — ConfigOption*           optptr(const t_config_option_key &opt_key, bool create = false) override;
+- keys · function · L2966-L2966 — t_config_option_keys    keys() const override;
+- empty · function · L2967-L2967 — bool                    empty() const { return options.empty(); }
+- set_key_value · function · L2972-L2982 — bool                    set_key_value(const std::string &opt_key, ConfigOption *opt)
+- equals · function · L2986-L2986 — bool equals(const DynamicConfig &other, const std::set<std::string>* skipped_keys = nullptr) const;
+- diff · function · L2988-L2988 — t_config_option_keys diff(const DynamicConfig &other) const;
+- equal · function · L2990-L2990 — t_config_option_keys equal(const DynamicConfig &other) const;
+- opt_string · function · L2992-L2992 — std::string&        opt_string(const t_config_option_key &opt_key, bool create = false)     { return this->option<ConfigOptionString>(opt_key, create)->value; }
+- opt_string · function · L2993-L2993 — const std::string&  opt_string(const t_config_option_key &opt_key) const                    { return const_cast<DynamicConfig*>(this)->opt_string(opt_key); }
+- opt_string · function · L2994-L2994 — std::string&        opt_string(const t_config_option_key &opt_key, unsigned int idx)        { return this->option<ConfigOptionStrings>(opt_key)->get_at(idx); }
+- opt_string · function · L2995-L2995 — const std::string&  opt_string(const t_config_option_key &opt_key, unsigned int idx) const  { return const_cast<DynamicConfig*>(this)->opt_string(opt_key, idx); }
+- opt_float · function · L2997-L2997 — double&             opt_float(const t_config_option_key &opt_key)                           { return this->option<ConfigOptionFloat>(opt_key)->value; }
+- opt_float · function · L2998-L2998 — const double&       opt_float(const t_config_option_key &opt_key) const                     { return dynamic_cast<const ConfigOptionFloat*>(this->option(opt_key))->value; }
+- opt_float · function · L2999-L2999 — double &            opt_float(const t_config_option_key &opt_key, unsigned int idx);
+- opt_float · function · L3000-L3000 — const double &      opt_float(const t_config_option_key &opt_key, unsigned int idx) const;
+- opt_float_nullable · function · L3001-L3001 — double &            opt_float_nullable(const t_config_option_key &opt_key, unsigned int idx) { return this->option<ConfigOptionFloatsNullable>(opt_key)->get_at(idx); }
+- opt_float_nullable · function · L3002-L3002 — const double &      opt_float_nullable(const t_config_option_key &opt_key, unsigned int idx) const { return dynamic_cast<const ConfigOptionFloatsNullable *>(this->option(opt_key))->get_at(idx); }
+- opt_float_or_percent_nullable · function · L3003-L3003 — FloatOrPercent &    opt_float_or_percent_nullable(const t_config_option_key &opt_key, unsigned int idx) { return this->option<ConfigOptionFloatsOrPercentsNullable>(opt_key)->get_at(idx); }
+- opt_float_or_percent_nullable · function · L3004-L3004 — const FloatOrPercent & opt_float_or_percent_nullable(const t_config_option_key &opt_key, unsigned int idx) const { return dynamic_cast<const ConfigOptionFloatsOrPercentsNullable *>(this->option(opt_key))->get_at(idx); }
+- opt_int · function · L3006-L3006 — int&                opt_int(const t_config_option_key &opt_key)                             { return this->option<ConfigOptionInt>(opt_key)->value; }
+- opt_int · function · L3007-L3007 — int                 opt_int(const t_config_option_key &opt_key) const                       { return dynamic_cast<const ConfigOptionInt*>(this->option(opt_key))->value; }
+- opt_int · function · L3008-L3008 — int&                opt_int(const t_config_option_key &opt_key, unsigned int idx)           { return this->option<ConfigOptionInts>(opt_key)->get_at(idx); }
+- opt_int · function · L3009-L3009 — int                 opt_int(const t_config_option_key &opt_key, unsigned int idx) const     { return dynamic_cast<const ConfigOptionInts*>(this->option(opt_key))->get_at(idx); }
+- opt_int_nullable · function · L3010-L3010 — int&                opt_int_nullable(const t_config_option_key &opt_key, unsigned int idx)  { return this->option<ConfigOptionIntsNullable>(opt_key)->get_at(idx);}
+- opt_int_nullable · function · L3011-L3011 — const int &         opt_int_nullable(const t_config_option_key &opt_key, unsigned int idx) const { return dynamic_cast<const ConfigOptionIntsNullable*>(this->option(opt_key))->get_at(idx);}
+- opt_enum · function · L3015-L3016 — template<typename ENUM>
+- opt_enum · function · L3018-L3018 — int                 opt_enum(const t_config_option_key &opt_key, unsigned int idx) const    { return dynamic_cast<const ConfigOptionEnumsGeneric*>(this->option(opt_key))->get_at(idx); }
+- opt_enum_nullable · function · L3019-L3019 — int                 opt_enum_nullable(const t_config_option_key &opt_key, unsigned int idx) const { return dynamic_cast<const ConfigOptionEnumsGenericNullable*>(this->option(opt_key))->get_at(idx); }
+- opt_bool · function · L3022-L3022 — bool                opt_bool(const t_config_option_key &opt_key) const                      { return this->option<ConfigOptionBool>(opt_key)->value != 0; }
+- opt_bool · function · L3023-L3023 — bool                opt_bool(const t_config_option_key &opt_key, unsigned int idx) const;
+- opt_bool_nullable · function · L3024-L3024 — bool                opt_bool_nullable(const t_config_option_key &opt_key, unsigned int idx) const { return dynamic_cast<const ConfigOptionBoolsNullable*>(this->option(opt_key))->get_at(idx);}
+- read_cli · function · L3028-L3028 — bool                read_cli(int argc, const char* const argv[], t_config_option_keys* extra, t_config_option_keys* keys = nullptr);
+- cbegin · function · L3030-L3030 — std::map<t_config_option_key, std::unique_ptr<ConfigOption>>::const_iterator cbegin() const { return options.cbegin(); }
+- cend · function · L3031-L3031 — std::map<t_config_option_key, std::unique_ptr<ConfigOption>>::const_iterator cend()   const { return options.cend(); }
+- size · function · L3032-L3032 — size_t                        												 size()   const { return options.size(); }
+- KeyDifference · class · L3037-L3047 — struct KeyDifference
+- is_missing_key · function · L3041-L3043 — bool is_missing_key() const
+- is_different_value · function · L3044-L3046 — bool is_different_value() const
+- DynamicConfigDifference · class · L3052-L3058 — struct DynamicConfigDifference
+- is_different · function · L3055-L3057 — bool is_different() const
+- diff_report · function · L3066-L3066 — DynamicConfigDifference diff_report(const DynamicConfig& rhs) const;
+- serialize · function · L3072-L3072 — template<class Archive> void serialize(Archive &ar) { ar(options); }
+- StaticConfig · class · L3080-L3091 — class StaticConfig : public virtual ConfigBase
+- StaticConfig · function · L3083-L3083 — StaticConfig() {}
+- keys · function · L3086-L3086 — t_config_option_keys keys() const;
+- set_defaults · function · L3090-L3090 — void set_defaults();
+- PluginCapabilityRef · class · L3093-L3098 — struct PluginCapabilityRef
+- parse_capability_ref · function · L3100-L3100 — std::optional<PluginCapabilityRef> parse_capability_ref(const std::string& value);

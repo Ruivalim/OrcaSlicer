@@ -1,0 +1,52 @@
+# src/slic3r/GUI/SkipPartCanvas.hpp
+
+- ObjectInfo · class · L24-L28 — struct ObjectInfo
+- SkipPartCanvas · class · L30-L118 — class SkipPartCanvas : public wxGLCanvas
+- SkipIdHelper · function · L46-L46 — SkipIdHelper() = default;
+- SkipIdHelper · function · L48-L49 — SkipIdHelper(uint8_t red, uint8_t green, uint8_t blue)
+- SkipIdHelper · function · L51-L51 — SkipIdHelper(uint32_t val): value(val){}
+- reverse · function · L52-L56 — void reverse()
+- SkipPartCanvas · function · L59-L59 — SkipPartCanvas(wxWindow *parent, const wxGLAttributes& dispAttrs);
+- SetParentBackground · function · L62-L64 — void SetParentBackground(const ColorRGB& color)
+- LoadPickImage · function · L66-L66 — void LoadPickImage(const std::string& path);
+- ZoomIn · function · L67-L67 — void ZoomIn(const int zoom_percent);
+- ZoomOut · function · L68-L68 — void ZoomOut(const int zoom_percent);
+- SwitchDrag · function · L69-L69 — void SwitchDrag(const bool drag_on);
+- UpdatePartsInfo · function · L70-L70 — void UpdatePartsInfo(const PartsInfo& parts);
+- SetZoomPercent · function · L71-L71 — void SetZoomPercent(const int value);
+- SetOffset · function · L72-L72 — void SetOffset(const wxPoint &value);
+- OnPaint · function · L76-L76 — void OnPaint(wxPaintEvent& event);
+- OnSize · function · L77-L77 — void OnSize(wxSizeEvent& event);
+- OnMouseLeftDown · function · L78-L78 — void OnMouseLeftDown(wxMouseEvent& event);
+- OnMouseLeftUp · function · L79-L79 — void OnMouseLeftUp(wxMouseEvent& event);
+- OnMouseRightDown · function · L80-L80 — void OnMouseRightDown(wxMouseEvent& event);
+- OnMouseRightUp · function · L81-L81 — void OnMouseRightUp(wxMouseEvent& event);
+- OnMouseMotion · function · L82-L82 — void OnMouseMotion(wxMouseEvent& event);
+- OnMouseWheel · function · L83-L83 — void OnMouseWheel(wxMouseEvent& event);
+- SendSelectEvent · function · L101-L101 — void SendSelectEvent(int id, PartState state);
+- SendZoomEvent · function · L102-L102 — void SendZoomEvent(int zoom_percent);
+- Zoom · function · L104-L104 — inline double Zoom() const;
+- ViewPtToImagePt · function · L105-L105 — inline wxPoint ViewPtToImagePt(const wxPoint& view_pt) const;
+- GetIdAtImagePt · function · L106-L106 — uint32_t GetIdAtImagePt(const wxPoint& image_pt) const;
+- GetIdAtViewPt · function · L107-L107 — inline uint32_t GetIdAtViewPt(const wxPoint& view_pt) const;
+- ProcessHover · function · L109-L109 — void ProcessHover(const wxPoint& mouse_pt);
+- AutoSetCursor · function · L110-L110 — void AutoSetCursor();
+- StartDrag · function · L111-L111 — void StartDrag(const wxPoint& mouse_pt);
+- ProcessDrag · function · L112-L112 — void ProcessDrag(const wxPoint& mouse_pt);
+- EndDrag · function · L113-L113 — void EndDrag();
+- Render · function · L115-L115 — void Render();
+- DebugLogLine · function · L117-L117 — void DebugLogLine(std::string str);
+- _BBS_3MF_Base · class · L120-L131 — class _BBS_3MF_Base
+- add_error · function · L126-L126 — void add_error(const std::string& error) const;
+- clear_errors · function · L127-L127 — void clear_errors();
+- log_errors · function · L130-L130 — void log_errors();
+- PlateInfo · class · L133-L138 — struct PlateInfo
+- ModelSettingHelper · class · L140-L164 — class ModelSettingHelper : public _BBS_3MF_Base
+- ParseContext · class · L142-L148 — struct ParseContext
+- ModelSettingHelper · function · L151-L151 — ModelSettingHelper(const std::string &path);
+- Parse · function · L153-L153 — bool                    Parse();
+- GetPlateObjects · function · L154-L154 — std::vector<ObjectInfo> GetPlateObjects(int plate_idx);
+- GetLabelObjectEnabled · function · L155-L155 — bool                    GetLabelObjectEnabled(int plate_idx);
+- StartElementHandler · function · L161-L161 — static void XMLCALL StartElementHandler(void *userData, const XML_Char *name, const XML_Char **atts);
+- EndElementHandler · function · L162-L162 — static void XMLCALL EndElementHandler(void *userData, const XML_Char *name);
+- DataHandler · function · L163-L163 — void                DataHandler(const XML_Char *s, int len);

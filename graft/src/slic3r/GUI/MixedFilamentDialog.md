@@ -1,0 +1,59 @@
+# src/slic3r/GUI/MixedFilamentDialog.hpp
+
+- Button · class · L16-L16 — class Button;
+- CheckBox · class · L17-L17 — class CheckBox;
+- ComboBox · class · L18-L18 — class ComboBox;
+- wxMouseEvent · class · L19-L19 — class wxMouseEvent;
+- wxScrolledWindow · class · L20-L20 — class wxScrolledWindow;
+- wxTextCtrl · class · L21-L21 — class wxTextCtrl;
+- wxWrapSizer · class · L22-L22 — class wxWrapSizer;
+- GradientCurveEditor · class · L27-L27 — class GradientCurveEditor;
+- RatioLabelPanel · class · L28-L28 — class RatioLabelPanel;
+- MixedFilamentResult · class · L30-L40 — struct MixedFilamentResult
+- MixedFilamentDialog · class · L42-L173 — class MixedFilamentDialog : public DPIDialog
+- MixedFilamentDialog · function · L45-L48 — MixedFilamentDialog(wxWindow* parent,
+- MixedFilamentDialog · function · L50-L54 — MixedFilamentDialog(wxWindow* parent,
+- get_result · function · L58-L58 — MixedFilamentResult get_result() const { return m_result; }
+- on_dpi_changed · function · L61-L61 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- build_ui · function · L64-L64 — void build_ui();
+- create_preview_panel · function · L65-L65 — wxBoxSizer* create_preview_panel();
+- create_material_selection · function · L66-L66 — wxBoxSizer* create_material_selection();
+- create_ratio_slider · function · L67-L67 — wxBoxSizer* create_ratio_slider();
+- create_triangle_picker · function · L68-L68 — wxBoxSizer* create_triangle_picker();
+- create_gradient_section · function · L69-L69 — wxBoxSizer* create_gradient_section();
+- create_recommendation_grid · function · L70-L70 — wxBoxSizer* create_recommendation_grid();
+- create_button_panel · function · L71-L71 — wxBoxSizer* create_button_panel();
+- on_filament_changed · function · L73-L73 — void on_filament_changed();
+- on_ratio_changed · function · L74-L74 — void on_ratio_changed(int new_ratio_a);
+- on_gradient_toggled · function · L75-L75 — void on_gradient_toggled();
+- on_gradient_direction_changed · function · L76-L76 — void on_gradient_direction_changed();
+- on_gradient_curve_changed · function · L77-L77 — void on_gradient_curve_changed();
+- on_per_part_gradient_toggled · function · L78-L78 — void on_per_part_gradient_toggled();
+- on_add_material · function · L79-L79 — void on_add_material();
+- on_remove_material · function · L80-L80 — void on_remove_material();
+- on_recommendation_clicked · function · L81-L81 — void on_recommendation_clicked(unsigned int comp_a, unsigned int comp_b);
+- on_recommendation_clicked_triple · function · L82-L82 — void on_recommendation_clicked_triple(unsigned int a, unsigned int b, unsigned int c);
+- apply_manual_ratio · function · L83-L83 — void apply_manual_ratio(size_t idx, int value);
+- apply_dragged_triangle_ratio · function · L84-L84 — void apply_dragged_triangle_ratio(int r0, int r1, int r2);
+- reset_manual_ratio_state · function · L85-L85 — void reset_manual_ratio_state();
+- refresh_ratio_labels · function · L86-L86 — void refresh_ratio_labels();
+- sync_triangle_weights_from_ratios · function · L87-L87 — void sync_triangle_weights_from_ratios();
+- start_ratio_editor · function · L88-L88 — void start_ratio_editor(size_t idx, wxWindow* anchor, const wxRect& anchor_rect);
+- commit_ratio_editor · function · L89-L89 — void commit_ratio_editor(bool apply);
+- commit_ratio_editor_from_background · function · L90-L90 — void commit_ratio_editor_from_background(wxMouseEvent& e);
+- update_preview · function · L91-L91 — void update_preview();
+- update_ok_button_state · function · L92-L92 — void update_ok_button_state();
+- update_gradient_direction_items · function · L93-L93 — void update_gradient_direction_items();
+- update_component_count_ui · function · L94-L94 — void update_component_count_ui();
+- compute_dialog_size · function · L97-L97 — wxSize compute_dialog_size() const;
+- rebuild_all_combos · function · L98-L98 — void rebuild_all_combos();
+- rebuild_recommendation_items · function · L99-L99 — void rebuild_recommendation_items();
+- refresh_curve_editor_colors · function · L100-L100 — void refresh_curve_editor_colors();
+- paint_warning_panel · function · L101-L101 — void paint_warning_panel(wxPaintEvent& evt);
+- make_swatch_bitmap · function · L103-L103 — wxBitmap make_swatch_bitmap(size_t idx);
+- apply_uniform_label_width · function · L106-L106 — static void apply_uniform_label_width(wxStaticText* lbl);
+- append_material_row · function · L109-L109 — void append_material_row();
+- num_components · function · L112-L112 — size_t          num_components() const { return m_result.components.size(); }
+- comp · function · L113-L113 — unsigned int    comp(size_t i) const { return (i < m_result.components.size()) ? m_result.components[i] : 1; }
+- ratio · function · L114-L114 — int             ratio(size_t i) const { return (i < m_result.ratios.size()) ? m_result.ratios[i] : 0; }
+- comp_colour · function · L115-L115 — wxColour        comp_colour(size_t i) const;

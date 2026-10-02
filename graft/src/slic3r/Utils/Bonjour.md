@@ -1,0 +1,65 @@
+# src/slic3r/Utils/Bonjour.hpp
+
+- BonjourReply · class · L21-L44 — struct BonjourReply
+- TxtData · type · L23-L23 — typedef std::unordered_map<std::string, std::string> TxtData;
+- BonjourReply · function · L33-L33 — BonjourReply() = delete;
+- BonjourReply · function · L34-L38 — BonjourReply(boost::asio::ip::address ip,
+- path · function · L40-L40 — std::string path() const;
+- Bonjour · class · L49-L91 — class Bonjour : public std::enable_shared_from_this<Bonjour>
+- Ptr · type · L53-L53 — typedef std::shared_ptr<Bonjour> Ptr;
+- ReplyFn · type · L54-L54 — typedef std::function<void(BonjourReply &&)> ReplyFn;
+- CompleteFn · type · L55-L55 — typedef std::function<void()> CompleteFn;
+- ResolveFn · type · L56-L56 — typedef std::function<void(const std::vector<BonjourReply>&)> ResolveFn;
+- TxtKeys · type · L57-L57 — typedef std::set<std::string> TxtKeys;
+- Bonjour · function · L59-L59 — Bonjour(std::string service);
+- Bonjour · function · L60-L60 — Bonjour(Bonjour &&other);
+- set_protocol · function · L64-L64 — Bonjour& set_protocol(std::string protocol);
+- set_txt_keys · function · L67-L67 — Bonjour& set_txt_keys(TxtKeys txt_keys);
+- set_timeout · function · L68-L68 — Bonjour& set_timeout(unsigned timeout);
+- set_retries · function · L69-L69 — Bonjour& set_retries(unsigned retries);
+- set_hostname · function · L75-L75 — Bonjour& set_hostname(const std::string& hostname);
+- on_reply · function · L77-L77 — Bonjour& on_reply(ReplyFn fn);
+- on_complete · function · L78-L78 — Bonjour& on_complete(CompleteFn fn);
+- on_resolve · function · L80-L80 — Bonjour& on_resolve(ResolveFn fn);
+- lookup · function · L83-L83 — Ptr lookup();
+- resolve · function · L86-L86 — Ptr resolve();
+- resolve_sync · function · L88-L88 — void resolve_sync();
+- BonjourRequest · class · L93-L106 — struct BonjourRequest
+- make_PTR · function · L101-L101 — static boost::optional<BonjourRequest> make_PTR(const std::string& service, const std::string& protocol);
+- make_A · function · L102-L102 — static boost::optional<BonjourRequest> make_A(const std::string& hostname);
+- make_AAAA · function · L103-L103 — static boost::optional<BonjourRequest> make_AAAA(const std::string& hostname);
+- BonjourRequest · function · L105-L105 — BonjourRequest(std::vector<char>&& data) : m_data(std::move(data)) {}
+- LookupSocket · class · L109-L109 — class LookupSocket;
+- ResolveSocket · class · L110-L110 — class ResolveSocket;
+- UdpSession · class · L114-L124 — class UdpSession
+- UdpSession · function · L117-L117 — UdpSession(Bonjour::ReplyFn rfn);
+- handle_receive · function · L119-L119 — virtual void handle_receive(const boost::system::error_code& error, size_t bytes) = 0;
+- SharedSession · type · L125-L125 — typedef std::shared_ptr<UdpSession> SharedSession;
+- LookupSession · class · L127-L135 — class LookupSession : public UdpSession
+- LookupSession · function · L130-L130 — LookupSession(const LookupSocket* sckt, Bonjour::ReplyFn rfn) : UdpSession(rfn), socket(sckt) {}
+- handle_receive · function · L131-L131 — void handle_receive(const  boost::system::error_code& error, size_t bytes) override;
+- ResolveSession · class · L137-L145 — class ResolveSession : public UdpSession
+- ResolveSession · function · L140-L140 — ResolveSession(const ResolveSocket* sckt, Bonjour::ReplyFn rfn) : UdpSession(rfn), socket(sckt) {}
+- handle_receive · function · L141-L141 — void handle_receive(const  boost::system::error_code& error, size_t bytes) override;
+- UdpSocket · class · L148-L174 — class UdpSocket
+- UdpSocket · function · L152-L155 — UdpSocket(Bonjour::ReplyFn replyfn
+- UdpSocket · function · L157-L159 — UdpSocket(Bonjour::ReplyFn replyfn
+- send · function · L161-L161 — void send();
+- async_receive · function · L162-L162 — void async_receive();
+- cancel · function · L163-L163 — void cancel() { socket.cancel(); }
+- receive_handler · function · L165-L165 — void receive_handler(SharedSession session, const boost::system::error_code& error, size_t bytes);
+- create_session · function · L166-L166 — virtual SharedSession create_session() const = 0;
+- LookupSocket · class · L176-L232 — class LookupSocket : public UdpSocket
+- LookupSocket · function · L179-L195 — LookupSocket(Bonjour::TxtKeys txt_keys
+- LookupSocket · function · L197-L212 — LookupSocket(Bonjour::TxtKeys txt_keys
+- get_txt_keys · function · L214-L214 — const Bonjour::TxtKeys		get_txt_keys()   const { return txt_keys; }
+- get_service · function · L215-L215 — const std::string			get_service()    const { return service; }
+- get_service_dn · function · L216-L216 — const std::string			get_service_dn() const { return service_dn; }
+- create_session · function · L219-L219 — SharedSession create_session() const override;
+- create_request · function · L220-L226 — void		  create_request()
+- ResolveSocket · class · L234-L284 — class ResolveSocket : public UdpSocket
+- ResolveSocket · function · L237-L248 — ResolveSocket(const std::string& hostname
+- ResolveSocket · function · L250-L260 — ResolveSocket(const std::string& hostname
+- get_hostname · function · L262-L262 — std::string get_hostname() const { return hostname; }
+- create_session · function · L264-L264 — SharedSession create_session() const override;
+- create_requests · function · L265-L281 — void		  create_requests()

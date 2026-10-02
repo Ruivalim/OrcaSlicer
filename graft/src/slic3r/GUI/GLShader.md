@@ -1,0 +1,64 @@
+# src/slic3r/GUI/GLShader.hpp
+
+- ColorRGB · class · L12-L12 — class ColorRGB;
+- ColorRGBA · class · L13-L13 — class ColorRGBA;
+- GLShaderProgram · class · L15-L104 — class GLShaderProgram
+- EShaderType · type · L18-L27 — enum class EShaderType
+- ShaderFilenames · type · L29-L29 — typedef std::array<std::string, static_cast<size_t>(EShaderType::Count)> ShaderFilenames;
+- ShaderSources · type · L30-L30 — typedef std::array<std::string, static_cast<size_t>(EShaderType::Count)> ShaderSources;
+- init_from_files · function · L41-L41 — bool init_from_files(const std::string& name, const ShaderFilenames& filenames, const std::initializer_list<std::string_view> &defines = {});
+- init_from_texts · function · L42-L42 — bool init_from_texts(const std::string& name, const ShaderSources& sources);
+- get_name · function · L44-L44 — const std::string& get_name() const { return m_name; }
+- get_id · function · L45-L45 — unsigned int get_id() const { return m_id; }
+- start_using · function · L47-L47 — void start_using() const;
+- stop_using · function · L48-L48 — void stop_using() const;
+- set_uniform · function · L50-L50 — void set_uniform(const char* name, int value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L51-L51 — void set_uniform(const char* name, bool value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L52-L52 — void set_uniform(const char* name, float value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L53-L53 — void set_uniform(const char* name, double value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L54-L54 — void set_uniform(const char* name, const std::array<int, 2>& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L55-L55 — void set_uniform(const char* name, const std::array<int, 3>& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L56-L56 — void set_uniform(const char* name, const std::array<int, 4>& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L57-L57 — void set_uniform(const char* name, const std::array<float, 2>& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L58-L58 — void set_uniform(const char* name, const std::array<float, 3>& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L59-L59 — void set_uniform(const char* name, const std::array<float, 4>& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L60-L60 — void set_uniform(const char* name, const std::array<double, 4>& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L61-L61 — void set_uniform(const char* name, const float* value, size_t size) const { set_uniform(get_uniform_location(name), value, size); }
+- set_uniform · function · L62-L62 — void set_uniform(const char* name, const Transform3f& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L63-L63 — void set_uniform(const char* name, const Transform3d& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L64-L64 — void set_uniform(const char* name, const Matrix3f& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L65-L65 — void set_uniform(const char* name, const Matrix3d& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L66-L66 — void set_uniform(const char* name, const Matrix4f& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L67-L67 — void set_uniform(const char* name, const Matrix4d& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L68-L68 — void set_uniform(const char* name, const Vec2f& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L69-L69 — void set_uniform(const char* name, const Vec2d& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L70-L70 — void set_uniform(const char* name, const Vec3f& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L71-L71 — void set_uniform(const char* name, const Vec3d& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L72-L72 — void set_uniform(const char* name, const ColorRGB& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L73-L73 — void set_uniform(const char* name, const ColorRGBA& value) const { set_uniform(get_uniform_location(name), value); }
+- set_uniform · function · L75-L75 — void set_uniform(int id, int value) const;
+- set_uniform · function · L76-L76 — void set_uniform(int id, bool value) const;
+- set_uniform · function · L77-L77 — void set_uniform(int id, float value) const;
+- set_uniform · function · L78-L78 — void set_uniform(int id, double value) const;
+- set_uniform · function · L79-L79 — void set_uniform(int id, const std::array<int, 2>& value) const;
+- set_uniform · function · L80-L80 — void set_uniform(int id, const std::array<int, 3>& value) const;
+- set_uniform · function · L81-L81 — void set_uniform(int id, const std::array<int, 4>& value) const;
+- set_uniform · function · L82-L82 — void set_uniform(int id, const std::array<float, 2>& value) const;
+- set_uniform · function · L83-L83 — void set_uniform(int id, const std::array<float, 3>& value) const;
+- set_uniform · function · L84-L84 — void set_uniform(int id, const std::array<float, 4>& value) const;
+- set_uniform · function · L85-L85 — void set_uniform(int id, const std::array<double, 4>& value) const;
+- set_uniform · function · L86-L86 — void set_uniform(int id, const float* value, size_t size) const;
+- set_uniform · function · L87-L87 — void set_uniform(int id, const Transform3f& value) const;
+- set_uniform · function · L88-L88 — void set_uniform(int id, const Transform3d& value) const;
+- set_uniform · function · L89-L89 — void set_uniform(int id, const Matrix3f& value) const;
+- set_uniform · function · L90-L90 — void set_uniform(int id, const Matrix3d& value) const;
+- set_uniform · function · L91-L91 — void set_uniform(int id, const Matrix4f& value) const;
+- set_uniform · function · L92-L92 — void set_uniform(int id, const Matrix4d& value) const;
+- set_uniform · function · L93-L93 — void set_uniform(int id, const Vec2f& value) const;
+- set_uniform · function · L94-L94 — void set_uniform(int id, const Vec2d& value) const;
+- set_uniform · function · L95-L95 — void set_uniform(int id, const Vec3f& value) const;
+- set_uniform · function · L96-L96 — void set_uniform(int id, const Vec3d& value) const;
+- set_uniform · function · L97-L97 — void set_uniform(int id, const ColorRGB& value) const;
+- set_uniform · function · L98-L98 — void set_uniform(int id, const ColorRGBA& value) const;
+- get_attrib_location · function · L101-L101 — int get_attrib_location(const char* name) const;
+- get_uniform_location · function · L103-L103 — int get_uniform_location(const char* name) const;

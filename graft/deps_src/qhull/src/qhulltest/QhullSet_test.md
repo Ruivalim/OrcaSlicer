@@ -1,0 +1,33 @@
+# deps_src/qhull/src/qhulltest/QhullSet_test.cpp
+
+- QhullSet_test · class · L25-L40 — class QhullSet_test : public RoadTest
+- cleanup · function · L31-L31 — void cleanup();
+- t_qhullsetbase · function · L32-L32 — void t_qhullsetbase();
+- t_convert · function · L33-L33 — void t_convert();
+- t_element · function · L34-L34 — void t_element();
+- t_search · function · L35-L35 — void t_search();
+- t_iterator · function · L36-L36 — void t_iterator();
+- t_const_iterator · function · L37-L37 — void t_const_iterator();
+- t_qhullset_iterator · function · L38-L38 — void t_qhullset_iterator();
+- t_io · function · L39-L39 — void t_io();
+- add_QhullSet_test · function · L42-L46 — void
+- cleanup · method · L49-L53 — void QhullSet_test::
+- t_qhullsetbase · method · L58-L102 — void QhullSet_test::
+- fs3 · function · L96-L96 — QhullFacetSet fs3(fs2);
+- t_convert · method · L106-L142 — void QhullSet_test::
+- foreach · function · L121-L124 — foreach(QhullRidge r, rv2){  // Qt only
+- t_element · method · L147-L183 — void QhullSet_test::
+- f4 · function · L169-L169 — QhullFacet f4(q, d[4]);
+- t_search · method · L185-L210 — void QhullSet_test::
+- t_iterator · method · L212-L290 — void QhullSet_test::
+- i3 · function · L234-L234 — QhullFacetSet::Iterator i3(i2);
+- t_const_iterator · method · L292-L349 — void QhullSet_test::
+- i3 · function · L314-L314 — QhullFacetSet::ConstIterator i3(i2);
+- t_qhullset_iterator · method · L351-L410 — void QhullSet_test::
+- i · function · L360-L360 — QhullFacetSetIterator i(fs);
+- i2 · function · L370-L370 — QhullFacetSetIterator i2(fs2);
+- f3 · function · L386-L386 — QhullFacet f3(fs2[0]);
+- f5 · function · L390-L390 — QhullFacet f5(fs3[1]);
+- f6 · function · L392-L392 — QhullFacet f6(fs3[2]);
+- f7 · function · L393-L393 — QhullFacet f7(fs3[3]);
+- t_io · method · L412-L430 — void QhullSet_test::

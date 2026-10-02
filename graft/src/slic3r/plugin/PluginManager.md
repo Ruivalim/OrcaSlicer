@@ -1,0 +1,98 @@
+# src/slic3r/plugin/PluginManager.hpp
+
+- OrcaCloudServiceAgent · class · L30-L30 — class OrcaCloudServiceAgent;
+- Plugin · class · L44-L95 — struct Plugin
+- Plugin · function · L55-L55 — Plugin()                         = default;
+- Plugin · function · L56-L56 — Plugin(const Plugin&)            = delete;
+- Plugin · function · L61-L70 — Plugin(Plugin&& other) noexcept
+- is_loaded · function · L89-L89 — bool is_loaded() const { return module != nullptr; }
+- release_module · function · L94-L94 — void release_module();
+- PluginManager · class · L97-L306 — class PluginManager
+- instance · function · L103-L103 — static PluginManager& instance();
+- initialize · function · L108-L108 — bool initialize();
+- shutdown · function · L111-L111 — void shutdown();
+- set_shutting_down · function · L114-L114 — void set_shutting_down();
+- discover_plugins · function · L116-L116 — void discover_plugins(bool async = false, bool clear = false);
+- rescan_plugins · function · L118-L118 — void rescan_plugins();
+- get_config · function · L120-L120 — PluginConfig& get_config() { return m_config; }
+- get_config · function · L121-L121 — const PluginConfig& get_config() const { return m_config; }
+- is_discovery_complete · function · L123-L123 — bool is_discovery_complete() const;
+- is_discovery_in_progress · function · L124-L124 — bool is_discovery_in_progress() const;
+- get_discovery_error · function · L125-L125 — std::string get_discovery_error() const;
+- wait_for_discovery · function · L126-L126 — bool wait_for_discovery(std::chrono::milliseconds timeout, std::string& error) const;
+- get_plugin_descriptors · function · L129-L129 — std::vector<PluginDescriptor> get_plugin_descriptors(bool include_invalid = false) const;
+- try_get_plugin_descriptor · function · L132-L132 — bool try_get_plugin_descriptor(const std::string& plugin_key, PluginDescriptor& out) const;
+- try_get_valid_plugin_descriptor · function · L134-L134 — bool try_get_valid_plugin_descriptor(const std::string& plugin_key, PluginDescriptor& out) const;
+- get_missing_plugin_descriptors · function · L138-L138 — std::vector<PluginDescriptor> get_missing_plugin_descriptors() const;
+- remove_missing_plugins · function · L139-L139 — void remove_missing_plugins(const std::vector<std::string>& plugin_keys);
+- get_enabled_plugin_keys · function · L141-L141 — std::vector<std::string> get_enabled_plugin_keys() const;
+- try_get_plugin_descriptor_for_capability · function · L143-L145 — bool try_get_plugin_descriptor_for_capability(const std::string& capability_name,
+- get_storage_dir · function · L149-L149 — std::string get_storage_dir(const std::string& plugin_key) const;
+- get_plugin_capabilities · function · L151-L154 — std::vector<std::shared_ptr<PluginCapabilityInterface>> get_plugin_capabilities(
+- get_plugin_capability · function · L155-L155 — std::shared_ptr<PluginCapabilityInterface> get_plugin_capability(const PluginCapabilityId& id, bool only_enabled = true) const;
+- get_plugin_capability · function · L158-L160 — std::shared_ptr<PluginCapabilityInterface> get_plugin_capability(const std::string& capability_name,
+- get_install_state · function · L162-L162 — bool get_install_state(const std::string& plugin_key, PluginInstallState& install_state);
+- load_plugin · function · L164-L164 — void load_plugin(const std::string& plugin_key, bool skip_deps = false, std::vector<std::string> capabilities_to_enable = {});
+- unload_plugin · function · L165-L165 — bool unload_plugin(const std::string& plugin_key);
+- unload_all_plugins · function · L166-L166 — void unload_all_plugins();
+- unload_cloud_plugins · function · L167-L167 — void unload_cloud_plugins();
+- is_plugin_loaded · function · L168-L168 — bool is_plugin_loaded(const std::string& plugin_key) const;
+- is_plugin_load_in_progress · function · L169-L169 — bool is_plugin_load_in_progress(const std::string& plugin_key) const;
+- wait_for_all_plugin_loads · function · L170-L170 — void wait_for_all_plugin_loads() const;
+- wait_for_all_plugin_loads · function · L171-L171 — bool wait_for_all_plugin_loads(std::chrono::milliseconds timeout) const; // false on timeout
+- wait_for_plugin_load · function · L172-L172 — bool wait_for_plugin_load(const std::string& plugin_key, std::chrono::milliseconds timeout, std::string& error) const;
+- cancel_plugin_load · function · L173-L173 — bool cancel_plugin_load(const std::string& plugin_key);
+- get_plugin_load_error · function · L174-L174 — std::string get_plugin_load_error(const std::string& plugin_key) const;
+- set_capability_enabled · function · L176-L176 — void set_capability_enabled(const PluginCapabilityId& id, bool enabled);
+- set_cloud_user · function · L179-L179 — void set_cloud_user(const std::string& user_id);
+- subscribe_on_load_callback · function · L181-L181 — void subscribe_on_load_callback(PluginLifecycleCompleteFn fn);
+- subscribe_on_unload_callback · function · L182-L182 — void subscribe_on_unload_callback(PluginLifecycleCompleteFn fn);
+- subscribe_on_capability_load_callback · function · L183-L183 — void subscribe_on_capability_load_callback(CapabilityLifecycleFn fn);
+- subscribe_on_capability_unload_callback · function · L184-L184 — void subscribe_on_capability_unload_callback(CapabilityLifecycleFn fn);
+- set_cloud_agent · function · L186-L186 — void set_cloud_agent(std::shared_ptr<OrcaCloudServiceAgent> agent) { m_cloud_service.set_cloud_agent(std::move(agent)); }
+- install_plugin · function · L188-L188 — bool install_plugin(const boost::filesystem::path& filepath, std::string& error);
+- install_plugin · function · L189-L189 — bool install_plugin(const boost::filesystem::path& filepath, PluginDescriptor& plugin_descriptor, std::string& error);
+- inspect_local_plugin_package · function · L190-L193 — bool inspect_local_plugin_package(const boost::filesystem::path& filepath,
+- set_plugin_error · function · L195-L195 — bool set_plugin_error(const std::string& plugin_key, std::string error);
+- clear_plugin_error · function · L196-L196 — bool clear_plugin_error(const std::string& plugin_key);
+- fetch_plugins_from_cloud · function · L198-L198 — void fetch_plugins_from_cloud(std::vector<std::string>* out_not_found = nullptr, std::vector<std::string>* out_unauthorized = nullptr);
+- update_cloud_metadata · function · L199-L199 — void update_cloud_metadata(const std::vector<PluginDescriptor>& cloud_list);
+- clear_cloud_plugin_metadata · function · L200-L200 — void clear_cloud_plugin_metadata();
+- download_and_install_cloud_plugin · function · L202-L202 — bool download_and_install_cloud_plugin(const std::string& plugin_key, const std::string& version, std::string& error);
+- subscribe_and_install_cloud_plugin · function · L203-L203 — bool subscribe_and_install_cloud_plugin(const std::string& plugin_key, std::string& error);
+- update_cloud_plugin · function · L205-L205 — bool update_cloud_plugin(const std::string& plugin_key, std::string& error, std::string version = "");
+- delete_plugin · function · L207-L207 — bool delete_plugin(const std::string& plugin_key, std::string& error);
+- unsubscribe_cloud_plugin · function · L208-L208 — bool unsubscribe_cloud_plugin(const std::string& plugin_key, std::string& error);
+- delete_and_unsubscribe_cloud_plugin · function · L209-L209 — bool delete_and_unsubscribe_cloud_plugin(const std::string& plugin_key, std::string& error);
+- run_script_capability · function · L211-L211 — ExecutionResult run_script_capability(const std::string& plugin_key, const std::string& capability_name, std::string& error);
+- dispatch_lifecycle_event · function · L213-L213 — void dispatch_lifecycle_event(LifecycleEvent evt, const LifecycleEventContext& ctx);
+- PluginManager · function · L216-L216 — PluginManager()                                = default;
+- PluginManager · function · L217-L217 — PluginManager(const PluginManager&)            = delete;
+- CallbackType · type · L220-L220 — enum class CallbackType { Load, Unload };
+- find_plugin_locked · function · L224-L224 — Plugin* find_plugin_locked(const std::string& plugin_key);
+- find_plugin_locked · function · L225-L225 — const Plugin* find_plugin_locked(const std::string& plugin_key) const;
+- load_plugin_impl · function · L227-L227 — void load_plugin_impl(const std::string& plugin_key, bool skip_deps, const std::vector<std::string>& capabilities_to_enable);
+- check_registry_locked · function · L229-L229 — std::string check_registry_locked(const std::string& plugin_key, const Plugin& candidate) const;
+- run_discovery · function · L231-L231 — void run_discovery(bool async, bool clear);
+- run_discovery_task · function · L232-L232 — void run_discovery_task(bool clear);
+- merge_discovered_plugins · function · L233-L233 — void merge_discovered_plugins(std::vector<PluginDescriptor> discovered, bool clear);
+- unload_and_erase_if · function · L241-L242 — void unload_and_erase_if(const std::function<bool(const Plugin&)>& should_remove,
+- cancel_plugin_load_locked · function · L244-L244 — bool cancel_plugin_load_locked(const std::string& plugin_key);
+- is_plugin_load_cancelled_locked · function · L245-L245 — bool is_plugin_load_cancelled_locked(const std::string& plugin_key) const;
+- notify_plugin_load_state_changed · function · L246-L246 — void notify_plugin_load_state_changed(bool changed);
+- release_load_slot · function · L247-L247 — void release_load_slot(const std::string& plugin_key);
+- cancel_and_wait_for_capabilities · function · L248-L249 — void cancel_and_wait_for_capabilities(
+- copy_callbacks · function · L252-L252 — std::vector<PluginLifecycleCompleteFn> copy_callbacks(CallbackType type) const;
+- copy_capability_callbacks · function · L253-L253 — std::vector<CapabilityLifecycleFn> copy_capability_callbacks(CallbackType type) const;
+- run_on_load_callbacks · function · L254-L254 — void run_on_load_callbacks(const std::string& plugin_key);
+- run_on_unload_callbacks · function · L255-L255 — void run_on_unload_callbacks(const std::string& plugin_key);
+- run_on_capability_load_callbacks · function · L256-L256 — void run_on_capability_load_callbacks(const PluginCapabilityId& id);
+- run_on_capability_unload_callbacks · function · L257-L257 — void run_on_capability_unload_callbacks(const PluginCapabilityId& id);
+- clear_callbacks · function · L258-L258 — void clear_callbacks();
+- write_loaded_plugin_install_state · function · L261-L261 — void write_loaded_plugin_install_state(const std::string& plugin_key);
+- mark_plugin_install_state_disabled · function · L262-L262 — void mark_plugin_install_state_disabled(const std::string& plugin_key);
+- revoke_plugin_permissions · function · L264-L264 — void revoke_plugin_permissions(const std::string& plugin_key);
+- finalize_cloud_plugin_removal · function · L266-L266 — bool finalize_cloud_plugin_removal(const PluginDescriptor& plugin, bool keep_local, std::string& error);
+- delete_installed_plugin_package · function · L267-L267 — bool delete_installed_plugin_package(const PluginDescriptor& plugin, std::string& error);
+- keep_installed_plugin_as_local · function · L268-L268 — bool keep_installed_plugin_as_local(const PluginDescriptor& plugin_descriptor, std::string& error);
+- execute_capabilities_from_refs · function · L309-L373 — template<typename T>

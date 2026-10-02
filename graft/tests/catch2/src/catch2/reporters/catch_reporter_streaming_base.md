@@ -1,0 +1,22 @@
+# tests/catch2/src/catch2/reporters/catch_reporter_streaming_base.hpp
+
+- StreamingReporterBase · class · L18-L69 — class StreamingReporterBase : public ReporterBase
+- StreamingReporterBase · function · L22-L24 — StreamingReporterBase(ReporterConfig&& _config):
+- benchmarkPreparing · function · L27-L27 — void benchmarkPreparing( StringRef ) override {}
+- benchmarkStarting · function · L28-L28 — void benchmarkStarting( BenchmarkInfo const& ) override {}
+- benchmarkEnded · function · L29-L29 — void benchmarkEnded( BenchmarkStats<> const& ) override {}
+- benchmarkFailed · function · L30-L30 — void benchmarkFailed( StringRef ) override {}
+- fatalErrorEncountered · function · L32-L32 — void fatalErrorEncountered( StringRef /*error*/ ) override {}
+- noMatchingTestCases · function · L33-L33 — void noMatchingTestCases( StringRef /*unmatchedSpec*/ ) override {}
+- reportInvalidTestSpec · function · L34-L34 — void reportInvalidTestSpec( StringRef /*invalidArgument*/ ) override {}
+- testRunStarting · function · L36-L36 — void testRunStarting( TestRunInfo const& _testRunInfo ) override;
+- testCaseStarting · function · L38-L40 — void testCaseStarting(TestCaseInfo const& _testInfo) override
+- testCasePartialStarting · function · L41-L41 — void testCasePartialStarting( TestCaseInfo const&, uint64_t ) override {}
+- sectionStarting · function · L42-L44 — void sectionStarting(SectionInfo const& _sectionInfo) override
+- assertionStarting · function · L46-L46 — void assertionStarting( AssertionInfo const& ) override {}
+- assertionEnded · function · L47-L47 — void assertionEnded( AssertionStats const& ) override {}
+- sectionEnded · function · L49-L51 — void sectionEnded(SectionStats const& /* _sectionStats */) override
+- testCasePartialEnded · function · L52-L52 — void testCasePartialEnded( TestCaseStats const&, uint64_t ) override {}
+- testCaseEnded · function · L53-L55 — void testCaseEnded(TestCaseStats const& /* _testCaseStats */) override
+- testRunEnded · function · L56-L56 — void testRunEnded( TestRunStats const& /* _testRunStats */ ) override;
+- skipTest · function · L58-L61 — void skipTest(TestCaseInfo const&) override

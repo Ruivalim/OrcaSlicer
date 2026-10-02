@@ -1,0 +1,21 @@
+# src/slic3r/GUI/Jobs/ArrangeJob.hpp
+
+- ModelInstance · class · L12-L12 — class ModelInstance;
+- Plater · class · L16-L16 — class Plater;
+- ArrangeJob · class · L18-L71 — class ArrangeJob : public Job
+- clear_input · function · L38-L38 — void clear_input();
+- prepare_selected · function · L42-L42 — void prepare_selected();
+- prepare_all · function · L44-L44 — void prepare_all();
+- prepare_partplate · function · L47-L47 — void prepare_partplate();
+- prepare_wipe_tower · function · L48-L48 — void prepare_wipe_tower();
+- prepare_arrange_polygon · function · L50-L50 — ArrangePolygon prepare_arrange_polygon(void* instance);
+- check_unprintable · function · L54-L54 — void check_unprintable();
+- prepare · function · L58-L58 — void prepare();
+- process · function · L60-L60 — void process(Ctl &ctl) override;
+- ArrangeJob · function · L62-L62 — ArrangeJob();
+- status_range · function · L64-L68 — int status_range() const
+- finalize · function · L70-L70 — void finalize(bool canceled, std::exception_ptr &e) override;
+- get_wipe_tower_arrangepoly · function · L73-L73 — std::optional<arrangement::ArrangePolygon> get_wipe_tower_arrangepoly(const Plater &);
+- bed_stride_x · function · L81-L81 — double bed_stride_x(const Plater* plater);
+- bed_stride_y · function · L82-L82 — double bed_stride_y(const Plater* plater);
+- init_arrange_params · function · L84-L84 — arrangement::ArrangeParams init_arrange_params(Plater *p);

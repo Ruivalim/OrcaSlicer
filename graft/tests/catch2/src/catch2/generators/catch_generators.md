@@ -1,0 +1,41 @@
+# tests/catch2/src/catch2/generators/catch_generators.hpp
+
+- throw_generator_exception · function · L28-L29 — [[noreturn]]
+- IGenerator · class · L33-L46 — template<typename T>
+- stringifyImpl · function · L35-L37 — std::string stringifyImpl() const override
+- get · function · L44-L44 — virtual T const& get() const = 0;
+- GeneratorWrapper · class · L51-L67 — template <typename T>
+- GeneratorWrapper · function · L56-L57 — GeneratorWrapper(IGenerator<T>* generator):
+- GeneratorWrapper · function · L58-L59 — GeneratorWrapper(GeneratorPtr<T> generator):
+- get · function · L61-L61 — T const& get() const
+- next · function · L64-L66 — bool next()
+- SingleValueGenerator · class · L70-L87 — template<typename T>
+- SingleValueGenerator · function · L74-L76 — SingleValueGenerator(T const& value) :
+- SingleValueGenerator · function · L77-L79 — SingleValueGenerator(T&& value):
+- get · function · L81-L81 — T const& get() const override
+- next · function · L84-L86 — bool next() override
+- FixedValuesGenerator · class · L89-L106 — template<typename T>
+- FixedValuesGenerator · function · L97-L97 — FixedValuesGenerator( std::initializer_list<T> values ) : m_values( values ) {}
+- get · function · L99-L99 — T const& get() const override
+- next · function · L102-L105 — bool next() override
+- value · function · L108-L113 — template <typename T, typename DecayedT = std::decay_t<T>>
+- values · function · L114-L117 — template <typename T>
+- Generators · class · L119-L170 — template<typename T>
+- add_generator · function · L124-L126 — void add_generator( GeneratorWrapper<T>&& generator )
+- add_generator · function · L127-L129 — void add_generator( T const& val )
+- add_generator · function · L130-L132 — void add_generator( T&& val )
+- add_generator · function · L133-L137 — template <typename U>
+- add_generators · function · L139-L141 — template <typename U> void add_generators( U&& valueOrGenerator )
+- add_generators · function · L143-L147 — template <typename U, typename... Gs>
+- Generators · function · L150-L154 — template <typename... Gs>
+- get · function · L156-L156 — T const& get() const override
+- next · function · L160-L169 — bool next() override
+- table · function · L173-L177 — template <typename... Ts>
+- as · class · L180-L181 — template <typename T>
+- makeGenerators · function · L183-L186 — template<typename T, typename... Gs>
+- makeGenerators · function · L187-L190 — template<typename T>
+- makeGenerators · function · L191-L194 — template<typename T, typename... Gs>
+- makeGenerators · function · L195-L198 — template<typename T, typename U, typename... Gs>
+- acquireGeneratorTracker · function · L200-L201 — IGeneratorTracker* acquireGeneratorTracker( StringRef generatorName,
+- createGeneratorTracker · function · L202-L204 — IGeneratorTracker* createGeneratorTracker( StringRef generatorName,
+- generate · function · L206-L223 — template<typename L>

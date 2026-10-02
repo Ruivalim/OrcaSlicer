@@ -1,0 +1,220 @@
+# deps_src/imgui/imstb_truetype.h
+
+- my_stbtt_initfont · function · L290-L300 — void my_stbtt_initfont(void)
+- my_stbtt_print · function · L302-L320 — void my_stbtt_print(float x, float y, char *text)
+- main · function · L335-L352 — int main(int argc, char **argv)
+- main · function · L376-L413 — int main(int arg, char **argv)
+- stbtt_uint8 · type · L429-L429 — typedef unsigned char   stbtt_uint8;
+- stbtt_int8 · type · L430-L430 — typedef signed   char   stbtt_int8;
+- stbtt_uint16 · type · L431-L431 — typedef unsigned short  stbtt_uint16;
+- stbtt_int16 · type · L432-L432 — typedef signed   short  stbtt_int16;
+- stbtt_uint32 · type · L433-L433 — typedef unsigned int    stbtt_uint32;
+- stbtt_int32 · type · L434-L434 — typedef signed   int    stbtt_int32;
+- stbtt__buf · type · L514-L519 — typedef struct
+- stbtt_bakedchar · type · L528-L532 — typedef struct
+- stbtt_BakeFontBitmap · function · L534-L538 — STBTT_DEF int stbtt_BakeFontBitmap(const unsigned char *data, int offset,  // font location (use offset=0 for plain .ttf)
+- stbtt_aligned_quad · type · L544-L548 — typedef struct
+- stbtt_GetBakedQuad · function · L550-L554 — STBTT_DEF void stbtt_GetBakedQuad(const stbtt_bakedchar *chardata, int pw, int ph,  // same data as above
+- stbtt_GetScaledFontVMetrics · function · L565-L565 — STBTT_DEF void stbtt_GetScaledFontVMetrics(const unsigned char *fontdata, int index, float size, float *ascent, float *descent, float *lineGap);
+- stbtt_packedchar · type · L576-L581 — typedef struct
+- stbtt_pack_context · type · L583-L583 — typedef struct stbtt_pack_context stbtt_pack_context;
+- stbtt_fontinfo · type · L584-L584 — typedef struct stbtt_fontinfo stbtt_fontinfo;
+- stbrp_rect · type · L586-L586 — typedef struct stbrp_rect stbrp_rect;
+- stbtt_PackBegin · function · L589-L589 — STBTT_DEF int  stbtt_PackBegin(stbtt_pack_context *spc, unsigned char *pixels, int width, int height, int stride_in_bytes, int padding, void *alloc_context);
+- stbtt_PackEnd · function · L600-L600 — STBTT_DEF void stbtt_PackEnd  (stbtt_pack_context *spc);
+- stbtt_PackFontRange · function · L605-L606 — STBTT_DEF int  stbtt_PackFontRange(stbtt_pack_context *spc, const unsigned char *fontdata, int font_index, float font_size,
+- stbtt_pack_range · type · L620-L628 — typedef struct
+- stbtt_PackFontRanges · function · L630-L630 — STBTT_DEF int  stbtt_PackFontRanges(stbtt_pack_context *spc, const unsigned char *fontdata, int font_index, stbtt_pack_range *ranges, int num_ranges);
+- stbtt_PackSetOversampling · function · L636-L636 — STBTT_DEF void stbtt_PackSetOversampling(stbtt_pack_context *spc, unsigned int h_oversample, unsigned int v_oversample);
+- stbtt_PackSetSkipMissingCodepoints · function · L652-L652 — STBTT_DEF void stbtt_PackSetSkipMissingCodepoints(stbtt_pack_context *spc, int skip);
+- stbtt_GetPackedQuad · function · L658-L662 — STBTT_DEF void stbtt_GetPackedQuad(const stbtt_packedchar *chardata, int pw, int ph,  // same data as above
+- stbtt_PackFontRangesGatherRects · function · L664-L664 — STBTT_DEF int  stbtt_PackFontRangesGatherRects(stbtt_pack_context *spc, const stbtt_fontinfo *info, stbtt_pack_range *ranges, int num_ranges, stbrp_rect *rects);
+- stbtt_PackFontRangesPackRects · function · L665-L665 — STBTT_DEF void stbtt_PackFontRangesPackRects(stbtt_pack_context *spc, stbrp_rect *rects, int num_rects);
+- stbtt_PackFontRangesRenderIntoRects · function · L666-L666 — STBTT_DEF int  stbtt_PackFontRangesRenderIntoRects(stbtt_pack_context *spc, const stbtt_fontinfo *info, stbtt_pack_range *ranges, int num_ranges, stbrp_rect *rects);
+- stbtt_pack_context · class · L679-L690 — struct stbtt_pack_context
+- stbtt_GetNumberOfFonts · function · L698-L698 — STBTT_DEF int stbtt_GetNumberOfFonts(const unsigned char *data);
+- stbtt_GetFontOffsetForIndex · function · L705-L705 — STBTT_DEF int stbtt_GetFontOffsetForIndex(const unsigned char *data, int index);
+- stbtt_fontinfo · class · L714-L732 — struct stbtt_fontinfo
+- stbtt_InitFont · function · L734-L734 — STBTT_DEF int stbtt_InitFont(stbtt_fontinfo *info, const unsigned char *data, int offset);
+- stbtt_FindGlyphIndex · function · L746-L746 — STBTT_DEF int stbtt_FindGlyphIndex(const stbtt_fontinfo *info, int unicode_codepoint);
+- stbtt_ScaleForPixelHeight · function · L759-L759 — STBTT_DEF float stbtt_ScaleForPixelHeight(const stbtt_fontinfo *info, float pixels);
+- stbtt_ScaleForMappingEmToPixels · function · L767-L767 — STBTT_DEF float stbtt_ScaleForMappingEmToPixels(const stbtt_fontinfo *info, float pixels);
+- stbtt_GetFontVMetrics · function · L772-L772 — STBTT_DEF void stbtt_GetFontVMetrics(const stbtt_fontinfo *info, int *ascent, int *descent, int *lineGap);
+- stbtt_GetFontVMetricsOS2 · function · L780-L780 — STBTT_DEF int  stbtt_GetFontVMetricsOS2(const stbtt_fontinfo *info, int *typoAscent, int *typoDescent, int *typoLineGap);
+- stbtt_GetFontBoundingBox · function · L786-L786 — STBTT_DEF void stbtt_GetFontBoundingBox(const stbtt_fontinfo *info, int *x0, int *y0, int *x1, int *y1);
+- stbtt_GetCodepointHMetrics · function · L789-L789 — STBTT_DEF void stbtt_GetCodepointHMetrics(const stbtt_fontinfo *info, int codepoint, int *advanceWidth, int *leftSideBearing);
+- stbtt_GetCodepointKernAdvance · function · L794-L794 — STBTT_DEF int  stbtt_GetCodepointKernAdvance(const stbtt_fontinfo *info, int ch1, int ch2);
+- stbtt_GetCodepointBox · function · L797-L797 — STBTT_DEF int stbtt_GetCodepointBox(const stbtt_fontinfo *info, int codepoint, int *x0, int *y0, int *x1, int *y1);
+- stbtt_GetGlyphHMetrics · function · L800-L800 — STBTT_DEF void stbtt_GetGlyphHMetrics(const stbtt_fontinfo *info, int glyph_index, int *advanceWidth, int *leftSideBearing);
+- stbtt_GetGlyphKernAdvance · function · L801-L801 — STBTT_DEF int  stbtt_GetGlyphKernAdvance(const stbtt_fontinfo *info, int glyph1, int glyph2);
+- stbtt_GetGlyphBox · function · L802-L802 — STBTT_DEF int  stbtt_GetGlyphBox(const stbtt_fontinfo *info, int glyph_index, int *x0, int *y0, int *x1, int *y1);
+- stbtt_vertex · type · L824-L828 — typedef struct
+- stbtt_IsGlyphEmpty · function · L831-L831 — STBTT_DEF int stbtt_IsGlyphEmpty(const stbtt_fontinfo *info, int glyph_index);
+- stbtt_GetCodepointShape · function · L834-L834 — STBTT_DEF int stbtt_GetCodepointShape(const stbtt_fontinfo *info, int unicode_codepoint, stbtt_vertex **vertices);
+- stbtt_GetGlyphShape · function · L835-L835 — STBTT_DEF int stbtt_GetGlyphShape(const stbtt_fontinfo *info, int glyph_index, stbtt_vertex **vertices);
+- stbtt_FreeShape · function · L846-L846 — STBTT_DEF void stbtt_FreeShape(const stbtt_fontinfo *info, stbtt_vertex *vertices);
+- stbtt_FreeBitmap · function · L854-L854 — STBTT_DEF void stbtt_FreeBitmap(unsigned char *bitmap, void *userdata);
+- stbtt_GetCodepointBitmap · function · L857-L857 — STBTT_DEF unsigned char *stbtt_GetCodepointBitmap(const stbtt_fontinfo *info, float scale_x, float scale_y, int codepoint, int *width, int *height, int *xoff, int *yoff);
+- stbtt_GetCodepointBitmapSubpixel · function · L866-L866 — STBTT_DEF unsigned char *stbtt_GetCodepointBitmapSubpixel(const stbtt_fontinfo *info, float scale_x, float scale_y, float shift_x, float shift_y, int codepoint, int *width, int *height, int *xoff, int *yoff);
+- stbtt_MakeCodepointBitmap · function · L870-L870 — STBTT_DEF void stbtt_MakeCodepointBitmap(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, int codepoint);
+- stbtt_MakeCodepointBitmapSubpixel · function · L876-L876 — STBTT_DEF void stbtt_MakeCodepointBitmapSubpixel(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, float shift_x, float shift_y, int codepoint);
+- stbtt_MakeCodepointBitmapSubpixelPrefilter · function · L880-L880 — STBTT_DEF void stbtt_MakeCodepointBitmapSubpixelPrefilter(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, float shift_x, float shift_y, int oversample_x, int oversample_y, float *sub_x, float *sub_y, int codepoint);
+- stbtt_GetCodepointBitmapBox · function · L884-L884 — STBTT_DEF void stbtt_GetCodepointBitmapBox(const stbtt_fontinfo *font, int codepoint, float scale_x, float scale_y, int *ix0, int *iy0, int *ix1, int *iy1);
+- stbtt_GetCodepointBitmapBoxSubpixel · function · L891-L891 — STBTT_DEF void stbtt_GetCodepointBitmapBoxSubpixel(const stbtt_fontinfo *font, int codepoint, float scale_x, float scale_y, float shift_x, float shift_y, int *ix0, int *iy0, int *ix1, int *iy1);
+- stbtt_GetGlyphBitmap · function · L897-L897 — STBTT_DEF unsigned char *stbtt_GetGlyphBitmap(const stbtt_fontinfo *info, float scale_x, float scale_y, int glyph, int *width, int *height, int *xoff, int *yoff);
+- stbtt_GetGlyphBitmapSubpixel · function · L898-L898 — STBTT_DEF unsigned char *stbtt_GetGlyphBitmapSubpixel(const stbtt_fontinfo *info, float scale_x, float scale_y, float shift_x, float shift_y, int glyph, int *width, int *height, int *xoff, int *yoff);
+- stbtt_MakeGlyphBitmap · function · L899-L899 — STBTT_DEF void stbtt_MakeGlyphBitmap(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, int glyph);
+- stbtt_MakeGlyphBitmapSubpixel · function · L900-L900 — STBTT_DEF void stbtt_MakeGlyphBitmapSubpixel(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, float shift_x, float shift_y, int glyph);
+- stbtt_MakeGlyphBitmapSubpixelPrefilter · function · L901-L901 — STBTT_DEF void stbtt_MakeGlyphBitmapSubpixelPrefilter(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, float shift_x, float shift_y, int oversample_x, int oversample_y, float *sub_x, float *sub_y, int glyph);
+- stbtt_GetGlyphBitmapBox · function · L902-L902 — STBTT_DEF void stbtt_GetGlyphBitmapBox(const stbtt_fontinfo *font, int glyph, float scale_x, float scale_y, int *ix0, int *iy0, int *ix1, int *iy1);
+- stbtt_GetGlyphBitmapBoxSubpixel · function · L903-L903 — STBTT_DEF void stbtt_GetGlyphBitmapBoxSubpixel(const stbtt_fontinfo *font, int glyph, float scale_x, float scale_y,float shift_x, float shift_y, int *ix0, int *iy0, int *ix1, int *iy1);
+- stbtt__bitmap · type · L907-L911 — typedef struct
+- stbtt_Rasterize · function · L914-L922 — STBTT_DEF void stbtt_Rasterize(stbtt__bitmap *result,        // 1-channel bitmap to draw into
+- stbtt_FreeSDF · function · L928-L928 — STBTT_DEF void stbtt_FreeSDF(unsigned char *bitmap, void *userdata);
+- stbtt_GetGlyphSDF · function · L931-L931 — STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo *info, float scale, int glyph, int padding, unsigned char onedge_value, float pixel_dist_scale, int *width, int *height, int *xoff, int *yoff);
+- stbtt_GetCodepointSDF · function · L932-L932 — STBTT_DEF unsigned char * stbtt_GetCodepointSDF(const stbtt_fontinfo *info, float scale, int codepoint, int padding, unsigned char onedge_value, float pixel_dist_scale, int *width, int *height, int *xoff, int *yoff);
+- stbtt_FindMatchingFont · function · L1004-L1004 — STBTT_DEF int stbtt_FindMatchingFont(const unsigned char *fontdata, const char *name, int flags);
+- stbtt_CompareUTF8toUTF16_bigendian · function · L1015-L1015 — STBTT_DEF int stbtt_CompareUTF8toUTF16_bigendian(const char *s1, int len1, const char *s2, int len2);
+- stbtt_GetFontNameString · function · L1019-L1019 — STBTT_DEF const char *stbtt_GetFontNameString(const stbtt_fontinfo *font, int *length, int platformID, int encodingID, int languageID, int nameID);
+- stbtt__buf_get8 · function · L1116-L1121 — static stbtt_uint8 stbtt__buf_get8(stbtt__buf *b)
+- stbtt__buf_peek8 · function · L1123-L1128 — static stbtt_uint8 stbtt__buf_peek8(stbtt__buf *b)
+- stbtt__buf_seek · function · L1130-L1134 — static void stbtt__buf_seek(stbtt__buf *b, int o)
+- stbtt__buf_skip · function · L1136-L1139 — static void stbtt__buf_skip(stbtt__buf *b, int o)
+- stbtt__buf_get · function · L1141-L1149 — static stbtt_uint32 stbtt__buf_get(stbtt__buf *b, int n)
+- stbtt__new_buf · function · L1151-L1159 — static stbtt__buf stbtt__new_buf(const void *p, size_t size)
+- stbtt__buf_range · function · L1164-L1171 — static stbtt__buf stbtt__buf_range(const stbtt__buf *b, int o, int s)
+- stbtt__cff_get_index · function · L1173-L1185 — static stbtt__buf stbtt__cff_get_index(stbtt__buf *b)
+- stbtt__cff_int · function · L1187-L1197 — static stbtt_uint32 stbtt__cff_int(stbtt__buf *b)
+- stbtt__cff_skip_operand · function · L1199-L1212 — static void stbtt__cff_skip_operand(stbtt__buf *b)
+- stbtt__dict_get · function · L1214-L1227 — static stbtt__buf stbtt__dict_get(stbtt__buf *b, int key)
+- stbtt__dict_get_ints · function · L1229-L1235 — static void stbtt__dict_get_ints(stbtt__buf *b, int key, int outcount, stbtt_uint32 *out)
+- stbtt__cff_index_count · function · L1237-L1241 — static int stbtt__cff_index_count(stbtt__buf *b)
+- stbtt__cff_index_get · function · L1243-L1255 — static stbtt__buf stbtt__cff_index_get(stbtt__buf b, int i)
+- ttUSHORT · function · L1269-L1269 — static stbtt_uint16 ttUSHORT(stbtt_uint8 *p) { return p[0]*256 + p[1]; }
+- ttSHORT · function · L1270-L1270 — static stbtt_int16 ttSHORT(stbtt_uint8 *p)   { return p[0]*256 + p[1]; }
+- ttULONG · function · L1271-L1271 — static stbtt_uint32 ttULONG(stbtt_uint8 *p)  { return (p[0]<<24) + (p[1]<<16) + (p[2]<<8) + p[3]; }
+- ttLONG · function · L1272-L1272 — static stbtt_int32 ttLONG(stbtt_uint8 *p)    { return (p[0]<<24) + (p[1]<<16) + (p[2]<<8) + p[3]; }
+- stbtt__isfont · function · L1277-L1286 — static int stbtt__isfont(stbtt_uint8 *font)
+- stbtt__find_table · function · L1289-L1300 — static stbtt_uint32 stbtt__find_table(stbtt_uint8 *data, stbtt_uint32 fontstart, const char *tag)
+- stbtt_GetFontOffsetForIndex_internal · function · L1302-L1319 — static int stbtt_GetFontOffsetForIndex_internal(unsigned char *font_collection, int index)
+- stbtt_GetNumberOfFonts_internal · function · L1321-L1335 — static int stbtt_GetNumberOfFonts_internal(unsigned char *font_collection)
+- stbtt__get_subrs · function · L1337-L1348 — static stbtt__buf stbtt__get_subrs(stbtt__buf cff, stbtt__buf fontdict)
+- stbtt_InitFont_internal · function · L1350-L1468 — static int stbtt_InitFont_internal(stbtt_fontinfo *info, unsigned char *data, int fontstart)
+- stbtt_FindGlyphIndex · function · L1470-L1561 — STBTT_DEF int stbtt_FindGlyphIndex(const stbtt_fontinfo *info, int unicode_codepoint)
+- stbtt_GetCodepointShape · function · L1563-L1566 — STBTT_DEF int stbtt_GetCodepointShape(const stbtt_fontinfo *info, int unicode_codepoint, stbtt_vertex **vertices)
+- stbtt_setvertex · function · L1568-L1575 — static void stbtt_setvertex(stbtt_vertex *v, stbtt_uint8 type, stbtt_int32 x, stbtt_int32 y, stbtt_int32 cx, stbtt_int32 cy)
+- stbtt__GetGlyfOffset · function · L1577-L1595 — static int stbtt__GetGlyfOffset(const stbtt_fontinfo *info, int glyph_index)
+- stbtt__GetGlyphInfoT2 · function · L1597-L1597 — static int stbtt__GetGlyphInfoT2(const stbtt_fontinfo *info, int glyph_index, int *x0, int *y0, int *x1, int *y1);
+- stbtt_GetGlyphBox · function · L1599-L1613 — STBTT_DEF int stbtt_GetGlyphBox(const stbtt_fontinfo *info, int glyph_index, int *x0, int *y0, int *x1, int *y1)
+- stbtt_GetCodepointBox · function · L1615-L1618 — STBTT_DEF int stbtt_GetCodepointBox(const stbtt_fontinfo *info, int codepoint, int *x0, int *y0, int *x1, int *y1)
+- stbtt_IsGlyphEmpty · function · L1620-L1630 — STBTT_DEF int stbtt_IsGlyphEmpty(const stbtt_fontinfo *info, int glyph_index)
+- stbtt__close_shape · function · L1632-L1646 — static int stbtt__close_shape(stbtt_vertex *vertices, int num_vertices, int was_off, int start_off,
+- stbtt__GetGlyphShapeTT · function · L1648-L1872 — static int stbtt__GetGlyphShapeTT(const stbtt_fontinfo *info, int glyph_index, stbtt_vertex **pvertices)
+- stbtt__csctx · type · L1874-L1884 — typedef struct
+- stbtt__track_vertex · function · L1888-L1895 — static void stbtt__track_vertex(stbtt__csctx *c, stbtt_int32 x, stbtt_int32 y)
+- stbtt__csctx_v · function · L1897-L1911 — static void stbtt__csctx_v(stbtt__csctx *c, stbtt_uint8 type, stbtt_int32 x, stbtt_int32 y, stbtt_int32 cx, stbtt_int32 cy, stbtt_int32 cx1, stbtt_int32 cy1)
+- stbtt__csctx_close_shape · function · L1913-L1917 — static void stbtt__csctx_close_shape(stbtt__csctx *ctx)
+- stbtt__csctx_rmove_to · function · L1919-L1925 — static void stbtt__csctx_rmove_to(stbtt__csctx *ctx, float dx, float dy)
+- stbtt__csctx_rline_to · function · L1927-L1932 — static void stbtt__csctx_rline_to(stbtt__csctx *ctx, float dx, float dy)
+- stbtt__csctx_rccurve_to · function · L1934-L1943 — static void stbtt__csctx_rccurve_to(stbtt__csctx *ctx, float dx1, float dy1, float dx2, float dy2, float dx3, float dy3)
+- stbtt__get_subr · function · L1945-L1957 — static stbtt__buf stbtt__get_subr(stbtt__buf idx, int n)
+- stbtt__cid_get_glyph_subrs · function · L1959-L1985 — static stbtt__buf stbtt__cid_get_glyph_subrs(const stbtt_fontinfo *info, int glyph_index)
+- stbtt__run_charstring · function · L1987-L2244 — static int stbtt__run_charstring(const stbtt_fontinfo *info, int glyph_index, stbtt__csctx *c)
+- stbtt__GetGlyphShapeT2 · function · L2246-L2261 — static int stbtt__GetGlyphShapeT2(const stbtt_fontinfo *info, int glyph_index, stbtt_vertex **pvertices)
+- stbtt__GetGlyphInfoT2 · function · L2263-L2272 — static int stbtt__GetGlyphInfoT2(const stbtt_fontinfo *info, int glyph_index, int *x0, int *y0, int *x1, int *y1)
+- stbtt_GetGlyphShape · function · L2274-L2280 — STBTT_DEF int stbtt_GetGlyphShape(const stbtt_fontinfo *info, int glyph_index, stbtt_vertex **pvertices)
+- stbtt_GetGlyphHMetrics · function · L2282-L2292 — STBTT_DEF void stbtt_GetGlyphHMetrics(const stbtt_fontinfo *info, int glyph_index, int *advanceWidth, int *leftSideBearing)
+- stbtt__GetGlyphKernInfoAdvance · function · L2294-L2322 — static int  stbtt__GetGlyphKernInfoAdvance(const stbtt_fontinfo *info, int glyph1, int glyph2)
+- stbtt__GetCoverageIndex · function · L2324-L2381 — static stbtt_int32  stbtt__GetCoverageIndex(stbtt_uint8 *coverageTable, int glyph)
+- stbtt__GetGlyphClass · function · L2383-L2432 — static stbtt_int32  stbtt__GetGlyphClass(stbtt_uint8 *classDefTable, int glyph)
+- stbtt__GetGlyphGPOSInfoAdvance · function · L2437-L2563 — static stbtt_int32  stbtt__GetGlyphGPOSInfoAdvance(const stbtt_fontinfo *info, int glyph1, int glyph2)
+- stbtt_GetGlyphKernAdvance · function · L2565-L2576 — STBTT_DEF int  stbtt_GetGlyphKernAdvance(const stbtt_fontinfo *info, int g1, int g2)
+- stbtt_GetCodepointKernAdvance · function · L2578-L2583 — STBTT_DEF int  stbtt_GetCodepointKernAdvance(const stbtt_fontinfo *info, int ch1, int ch2)
+- stbtt_GetCodepointHMetrics · function · L2585-L2588 — STBTT_DEF void stbtt_GetCodepointHMetrics(const stbtt_fontinfo *info, int codepoint, int *advanceWidth, int *leftSideBearing)
+- stbtt_GetFontVMetrics · function · L2590-L2595 — STBTT_DEF void stbtt_GetFontVMetrics(const stbtt_fontinfo *info, int *ascent, int *descent, int *lineGap)
+- stbtt_GetFontVMetricsOS2 · function · L2597-L2606 — STBTT_DEF int  stbtt_GetFontVMetricsOS2(const stbtt_fontinfo *info, int *typoAscent, int *typoDescent, int *typoLineGap)
+- stbtt_GetFontBoundingBox · function · L2608-L2614 — STBTT_DEF void stbtt_GetFontBoundingBox(const stbtt_fontinfo *info, int *x0, int *y0, int *x1, int *y1)
+- stbtt_ScaleForPixelHeight · function · L2616-L2620 — STBTT_DEF float stbtt_ScaleForPixelHeight(const stbtt_fontinfo *info, float height)
+- stbtt_ScaleForMappingEmToPixels · function · L2622-L2626 — STBTT_DEF float stbtt_ScaleForMappingEmToPixels(const stbtt_fontinfo *info, float pixels)
+- stbtt_FreeShape · function · L2628-L2631 — STBTT_DEF void stbtt_FreeShape(const stbtt_fontinfo *info, stbtt_vertex *v)
+- stbtt_GetGlyphBitmapBoxSubpixel · function · L2638-L2654 — STBTT_DEF void stbtt_GetGlyphBitmapBoxSubpixel(const stbtt_fontinfo *font, int glyph, float scale_x, float scale_y,float shift_x, float shift_y, int *ix0, int *iy0, int *ix1, int *iy1)
+- stbtt_GetGlyphBitmapBox · function · L2656-L2659 — STBTT_DEF void stbtt_GetGlyphBitmapBox(const stbtt_fontinfo *font, int glyph, float scale_x, float scale_y, int *ix0, int *iy0, int *ix1, int *iy1)
+- stbtt_GetCodepointBitmapBoxSubpixel · function · L2661-L2664 — STBTT_DEF void stbtt_GetCodepointBitmapBoxSubpixel(const stbtt_fontinfo *font, int codepoint, float scale_x, float scale_y, float shift_x, float shift_y, int *ix0, int *iy0, int *ix1, int *iy1)
+- stbtt_GetCodepointBitmapBox · function · L2666-L2669 — STBTT_DEF void stbtt_GetCodepointBitmapBox(const stbtt_fontinfo *font, int codepoint, float scale_x, float scale_y, int *ix0, int *iy0, int *ix1, int *iy1)
+- stbtt__hheap_chunk · class · L2675-L2678 — typedef struct stbtt__hheap_chunk
+- stbtt__hheap · class · L2680-L2685 — typedef struct stbtt__hheap
+- stbtt__hheap_alloc · function · L2687-L2687 — static void *stbtt__hheap_alloc(stbtt__hheap *hh, size_t size, void *userdata)
+- stbtt__hheap_free · function · L2708-L2712 — static void stbtt__hheap_free(stbtt__hheap *hh, void *p)
+- stbtt__hheap_cleanup · function · L2714-L2722 — static void stbtt__hheap_cleanup(stbtt__hheap *hh, void *userdata)
+- stbtt__edge · class · L2724-L2727 — typedef struct stbtt__edge
+- stbtt__active_edge · class · L2730-L2745 — typedef struct stbtt__active_edge
+- stbtt__new_active · function · L2752-L2752 — static stbtt__active_edge *stbtt__new_active(stbtt__hheap *hh, stbtt__edge *e, int off_x, float start_point, void *userdata)
+- stbtt__new_active · function · L2774-L2774 — static stbtt__active_edge *stbtt__new_active(stbtt__hheap *hh, stbtt__edge *e, int off_x, float start_point, void *userdata)
+- stbtt__fill_active_edges · function · L2799-L2839 — static void stbtt__fill_active_edges(unsigned char *scanline, int len, stbtt__active_edge *e, int max_weight)
+- stbtt__rasterize_sorted_edges · function · L2841-L2939 — static void stbtt__rasterize_sorted_edges(stbtt__bitmap *result, stbtt__edge *e, int n, int vsubsample, int off_x, int off_y, void *userdata)
+- stbtt__handle_clipped_edge · function · L2945-L2980 — static void stbtt__handle_clipped_edge(float *scanline, int x, stbtt__active_edge *e, float x0, float y0, float x1, float y1)
+- stbtt__fill_active_edges_new · function · L2982-L3143 — static void stbtt__fill_active_edges_new(float *scanline, float *scanline_fill, int len, stbtt__active_edge *e, float y_top)
+- stbtt__rasterize_sorted_edges · function · L3146-L3241 — static void stbtt__rasterize_sorted_edges(stbtt__bitmap *result, stbtt__edge *e, int n, int vsubsample, int off_x, int off_y, void *userdata)
+- stbtt__sort_edges_ins_sort · function · L3248-L3264 — static void stbtt__sort_edges_ins_sort(stbtt__edge *p, int n)
+- stbtt__sort_edges_quicksort · function · L3266-L3326 — static void stbtt__sort_edges_quicksort(stbtt__edge *p, int n)
+- stbtt__sort_edges · function · L3328-L3332 — static void stbtt__sort_edges(stbtt__edge *p, int n)
+- stbtt__point · type · L3334-L3337 — typedef struct
+- stbtt__rasterize · function · L3339-L3394 — static void stbtt__rasterize(stbtt__bitmap *result, stbtt__point *pts, int *wcount, int windings, float scale_x, float scale_y, float shift_x, float shift_y, int off_x, int off_y, int invert, void *userdata)
+- stbtt__add_point · function · L3396-L3401 — static void stbtt__add_point(stbtt__point *points, int n, float x, float y)
+- stbtt__tesselate_curve · function · L3404-L3422 — static int stbtt__tesselate_curve(stbtt__point *points, int *num_points, float x0, float y0, float x1, float y1, float x2, float y2, float objspace_flatness_squared, int n)
+- stbtt__tesselate_cubic · function · L3424-L3464 — static void stbtt__tesselate_cubic(stbtt__point *points, int *num_points, float x0, float y0, float x1, float y1, float x2, float y2, float x3, float y3, float objspace_flatness_squared, int n)
+- stbtt_FlattenCurves · function · L3467-L3467 — static stbtt__point *stbtt_FlattenCurves(stbtt_vertex *vertices, int num_verts, float objspace_flatness, int **contour_lengths, int *num_contours, void *userdata)
+- stbtt_Rasterize · function · L3544-L3555 — STBTT_DEF void stbtt_Rasterize(stbtt__bitmap *result, float flatness_in_pixels, stbtt_vertex *vertices, int num_verts, float scale_x, float scale_y, float shift_x, float shift_y, int x_off, int y_off, int invert, void *userdata)
+- stbtt_FreeBitmap · function · L3557-L3560 — STBTT_DEF void stbtt_FreeBitmap(unsigned char *bitmap, void *userdata)
+- stbtt_GetGlyphBitmapSubpixel · function · L3562-L3562 — STBTT_DEF unsigned char *stbtt_GetGlyphBitmapSubpixel(const stbtt_fontinfo *info, float scale_x, float scale_y, float shift_x, float shift_y, int glyph, int *width, int *height, int *xoff, int *yoff)
+- stbtt_GetGlyphBitmap · function · L3602-L3602 — STBTT_DEF unsigned char *stbtt_GetGlyphBitmap(const stbtt_fontinfo *info, float scale_x, float scale_y, int glyph, int *width, int *height, int *xoff, int *yoff)
+- stbtt_MakeGlyphBitmapSubpixel · function · L3607-L3624 — STBTT_DEF void stbtt_MakeGlyphBitmapSubpixel(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, float shift_x, float shift_y, int glyph)
+- stbtt_MakeGlyphBitmap · function · L3626-L3629 — STBTT_DEF void stbtt_MakeGlyphBitmap(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, int glyph)
+- stbtt_GetCodepointBitmapSubpixel · function · L3631-L3631 — STBTT_DEF unsigned char *stbtt_GetCodepointBitmapSubpixel(const stbtt_fontinfo *info, float scale_x, float scale_y, float shift_x, float shift_y, int codepoint, int *width, int *height, int *xoff, int *yoff)
+- stbtt_MakeCodepointBitmapSubpixelPrefilter · function · L3636-L3639 — STBTT_DEF void stbtt_MakeCodepointBitmapSubpixelPrefilter(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, float shift_x, float shift_y, int oversample_x, int oversample_y, float *sub_x, float *sub_y, int codepoint)
+- stbtt_MakeCodepointBitmapSubpixel · function · L3641-L3644 — STBTT_DEF void stbtt_MakeCodepointBitmapSubpixel(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, float shift_x, float shift_y, int codepoint)
+- stbtt_GetCodepointBitmap · function · L3646-L3646 — STBTT_DEF unsigned char *stbtt_GetCodepointBitmap(const stbtt_fontinfo *info, float scale_x, float scale_y, int codepoint, int *width, int *height, int *xoff, int *yoff)
+- stbtt_MakeCodepointBitmap · function · L3651-L3654 — STBTT_DEF void stbtt_MakeCodepointBitmap(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, int codepoint)
+- stbtt_BakeFontBitmap_internal · function · L3662-L3706 — static int stbtt_BakeFontBitmap_internal(unsigned char *data, int offset,  // font location (use offset=0 for plain .ttf)
+- stbtt_GetBakedQuad · function · L3708-L3727 — STBTT_DEF void stbtt_GetBakedQuad(const stbtt_bakedchar *chardata, int pw, int ph, int char_index, float *xpos, float *ypos, stbtt_aligned_quad *q, int opengl_fillrule)
+- stbrp_coord · type · L3736-L3736 — typedef int stbrp_coord;
+- stbrp_context · type · L3749-L3753 — typedef struct
+- stbrp_node · type · L3755-L3758 — typedef struct
+- stbrp_rect · class · L3760-L3764 — struct stbrp_rect
+- stbrp_init_target · function · L3766-L3775 — static void stbrp_init_target(stbrp_context *con, int pw, int ph, stbrp_node *nodes, int num_nodes)
+- stbrp_pack_rects · function · L3777-L3796 — static void stbrp_pack_rects(stbrp_context *con, stbrp_rect *rects, int num_rects)
+- stbtt_PackBegin · function · L3806-L3836 — STBTT_DEF int stbtt_PackBegin(stbtt_pack_context *spc, unsigned char *pixels, int pw, int ph, int stride_in_bytes, int padding, void *alloc_context)
+- stbtt_PackEnd · function · L3838-L3842 — STBTT_DEF void stbtt_PackEnd  (stbtt_pack_context *spc)
+- stbtt_PackSetOversampling · function · L3844-L3852 — STBTT_DEF void stbtt_PackSetOversampling(stbtt_pack_context *spc, unsigned int h_oversample, unsigned int v_oversample)
+- stbtt_PackSetSkipMissingCodepoints · function · L3854-L3857 — STBTT_DEF void stbtt_PackSetSkipMissingCodepoints(stbtt_pack_context *spc, int skip)
+- stbtt__h_prefilter · function · L3861-L3921 — static void stbtt__h_prefilter(unsigned char *pixels, int w, int h, int stride_in_bytes, unsigned int kernel_width)
+- stbtt__v_prefilter · function · L3923-L3983 — static void stbtt__v_prefilter(unsigned char *pixels, int w, int h, int stride_in_bytes, unsigned int kernel_width)
+- stbtt__oversample_shift · function · L3985-L3995 — static float stbtt__oversample_shift(int oversample)
+- stbtt_PackFontRangesGatherRects · function · L3998-L4028 — STBTT_DEF int stbtt_PackFontRangesGatherRects(stbtt_pack_context *spc, const stbtt_fontinfo *info, stbtt_pack_range *ranges, int num_ranges, stbrp_rect *rects)
+- stbtt_MakeGlyphBitmapSubpixelPrefilter · function · L4030-L4051 — STBTT_DEF void stbtt_MakeGlyphBitmapSubpixelPrefilter(const stbtt_fontinfo *info, unsigned char *output, int out_w, int out_h, int out_stride, float scale_x, float scale_y, float shift_x, float shift_y, int prefilter_x, int prefilter_y, float *sub_x, float *sub_y, int glyph)
+- stbtt_PackFontRangesRenderIntoRects · function · L4054-L4134 — STBTT_DEF int stbtt_PackFontRangesRenderIntoRects(stbtt_pack_context *spc, const stbtt_fontinfo *info, stbtt_pack_range *ranges, int num_ranges, stbrp_rect *rects)
+- stbtt_PackFontRangesPackRects · function · L4136-L4139 — STBTT_DEF void stbtt_PackFontRangesPackRects(stbtt_pack_context *spc, stbrp_rect *rects, int num_rects)
+- stbtt_PackFontRanges · function · L4141-L4175 — STBTT_DEF int stbtt_PackFontRanges(stbtt_pack_context *spc, const unsigned char *fontdata, int font_index, stbtt_pack_range *ranges, int num_ranges)
+- stbtt_PackFontRange · function · L4177-L4187 — STBTT_DEF int stbtt_PackFontRange(stbtt_pack_context *spc, const unsigned char *fontdata, int font_index, float font_size,
+- stbtt_GetScaledFontVMetrics · function · L4189-L4200 — STBTT_DEF void stbtt_GetScaledFontVMetrics(const unsigned char *fontdata, int index, float size, float *ascent, float *descent, float *lineGap)
+- stbtt_GetPackedQuad · function · L4202-L4227 — STBTT_DEF void stbtt_GetPackedQuad(const stbtt_packedchar *chardata, int pw, int ph, int char_index, float *xpos, float *ypos, stbtt_aligned_quad *q, int align_to_integer)
+- stbtt__ray_intersect_bezier · function · L4237-L4299 — static int stbtt__ray_intersect_bezier(float orig[2], float ray[2], float q0[2], float q1[2], float q2[2], float hits[2][2])
+- equal · function · L4301-L4304 — static int equal(float *a, float *b)
+- stbtt__compute_crossings_x · function · L4306-L4373 — static int stbtt__compute_crossings_x(float x, float y, int nverts, stbtt_vertex *verts)
+- stbtt__cuberoot · function · L4375-L4381 — static float stbtt__cuberoot( float x )
+- stbtt__solve_cubic · function · L4384-L4413 — static int stbtt__solve_cubic(float a, float b, float c, float* r)
+- stbtt_GetGlyphSDF · function · L4415-L4415 — STBTT_DEF unsigned char * stbtt_GetGlyphSDF(const stbtt_fontinfo *info, float scale, int glyph, int padding, unsigned char onedge_value, float pixel_dist_scale, int *width, int *height, int *xoff, int *yoff)
+- stbtt_GetCodepointSDF · function · L4601-L4601 — STBTT_DEF unsigned char * stbtt_GetCodepointSDF(const stbtt_fontinfo *info, float scale, int codepoint, int padding, unsigned char onedge_value, float pixel_dist_scale, int *width, int *height, int *xoff, int *yoff)
+- stbtt_FreeSDF · function · L4606-L4609 — STBTT_DEF void stbtt_FreeSDF(unsigned char *bitmap, void *userdata)
+- stbtt__CompareUTF8toUTF16_bigendian_prefix · function · L4617-L4654 — static stbtt_int32 stbtt__CompareUTF8toUTF16_bigendian_prefix(stbtt_uint8 *s1, stbtt_int32 len1, stbtt_uint8 *s2, stbtt_int32 len2)
+- stbtt_CompareUTF8toUTF16_bigendian_internal · function · L4656-L4659 — static int stbtt_CompareUTF8toUTF16_bigendian_internal(char *s1, int len1, char *s2, int len2)
+- stbtt_GetFontNameString · function · L4663-L4663 — STBTT_DEF const char *stbtt_GetFontNameString(const stbtt_fontinfo *font, int *length, int platformID, int encodingID, int languageID, int nameID)
+- stbtt__matchpair · function · L4684-L4729 — static int stbtt__matchpair(stbtt_uint8 *fc, stbtt_uint32 nm, stbtt_uint8 *name, stbtt_int32 nlen, stbtt_int32 target_id, stbtt_int32 next_id)
+- stbtt__matches · function · L4731-L4758 — static int stbtt__matches(stbtt_uint8 *fc, stbtt_uint32 offset, stbtt_uint8 *name, stbtt_int32 flags)
+- stbtt_FindMatchingFont_internal · function · L4760-L4769 — static int stbtt_FindMatchingFont_internal(unsigned char *font_collection, char *name_utf8, stbtt_int32 flags)
+- stbtt_BakeFontBitmap · function · L4776-L4781 — STBTT_DEF int stbtt_BakeFontBitmap(const unsigned char *data, int offset,
+- stbtt_GetFontOffsetForIndex · function · L4783-L4786 — STBTT_DEF int stbtt_GetFontOffsetForIndex(const unsigned char *data, int index)
+- stbtt_GetNumberOfFonts · function · L4788-L4791 — STBTT_DEF int stbtt_GetNumberOfFonts(const unsigned char *data)
+- stbtt_InitFont · function · L4793-L4796 — STBTT_DEF int stbtt_InitFont(stbtt_fontinfo *info, const unsigned char *data, int offset)
+- stbtt_FindMatchingFont · function · L4798-L4801 — STBTT_DEF int stbtt_FindMatchingFont(const unsigned char *fontdata, const char *name, int flags)
+- stbtt_CompareUTF8toUTF16_bigendian · function · L4803-L4806 — STBTT_DEF int stbtt_CompareUTF8toUTF16_bigendian(const char *s1, int len1, const char *s2, int len2)

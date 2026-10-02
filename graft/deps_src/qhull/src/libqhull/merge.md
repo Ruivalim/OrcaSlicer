@@ -1,0 +1,62 @@
+# deps_src/qhull/src/libqhull/merge.h
+
+- mergeType · type · L56-L70 — typedef enum {  /* in sort order for facet_mergeset */
+- mergeT · type · L89-L89 — typedef struct mergeT mergeT;
+- mergeT · class · L90-L95 — struct mergeT {         /* initialize in qh_appendmergeset */
+- qh_premerge · function · L116-L116 — void    qh_premerge(vertexT *apex, realT maxcentrum, realT maxangle);
+- qh_postmerge · function · L117-L118 — void    qh_postmerge(const char *reason, realT maxcentrum, realT maxangle,
+- qh_all_merges · function · L119-L119 — void    qh_all_merges(boolT othermerge, boolT vneighbors);
+- qh_appendmergeset · function · L120-L120 — void    qh_appendmergeset(facetT *facet, facetT *neighbor, mergeType mergetype, realT *angle);
+- qh_basevertices · function · L121-L121 — setT   *qh_basevertices( facetT *samecycle);
+- qh_checkconnect · function · L122-L122 — void    qh_checkconnect(void /* qh.new_facets */);
+- qh_checkzero · function · L123-L123 — boolT   qh_checkzero(boolT testall);
+- qh_compareangle · function · L124-L124 — int     qh_compareangle(const void *p1, const void *p2);
+- qh_comparemerge · function · L125-L125 — int     qh_comparemerge(const void *p1, const void *p2);
+- qh_comparevisit · function · L126-L126 — int     qh_comparevisit(const void *p1, const void *p2);
+- qh_copynonconvex · function · L127-L127 — void    qh_copynonconvex(ridgeT *atridge);
+- qh_degen_redundant_facet · function · L128-L128 — void    qh_degen_redundant_facet(facetT *facet);
+- qh_degen_redundant_neighbors · function · L129-L129 — void    qh_degen_redundant_neighbors(facetT *facet, facetT *delfacet);
+- qh_find_newvertex · function · L130-L130 — vertexT *qh_find_newvertex(vertexT *oldvertex, setT *vertices, setT *ridges);
+- qh_findbest_test · function · L131-L132 — void    qh_findbest_test(boolT testcentrum, facetT *facet, facetT *neighbor,
+- qh_findbestneighbor · function · L133-L133 — facetT *qh_findbestneighbor(facetT *facet, realT *distp, realT *mindistp, realT *maxdistp);
+- qh_flippedmerges · function · L134-L134 — void    qh_flippedmerges(facetT *facetlist, boolT *wasmerge);
+- qh_forcedmerges · function · L135-L135 — void    qh_forcedmerges( boolT *wasmerge);
+- qh_getmergeset · function · L136-L136 — void    qh_getmergeset(facetT *facetlist);
+- qh_getmergeset_initial · function · L137-L137 — void    qh_getmergeset_initial(facetT *facetlist);
+- qh_hashridge · function · L138-L138 — void    qh_hashridge(setT *hashtable, int hashsize, ridgeT *ridge, vertexT *oldvertex);
+- qh_hashridge_find · function · L139-L140 — ridgeT *qh_hashridge_find(setT *hashtable, int hashsize, ridgeT *ridge,
+- qh_makeridges · function · L141-L141 — void    qh_makeridges(facetT *facet);
+- qh_mark_dupridges · function · L142-L142 — void    qh_mark_dupridges(facetT *facetlist);
+- qh_maydropneighbor · function · L143-L143 — void    qh_maydropneighbor(facetT *facet);
+- qh_merge_degenredundant · function · L144-L144 — int     qh_merge_degenredundant(void);
+- qh_merge_nonconvex · function · L145-L145 — void    qh_merge_nonconvex( facetT *facet1, facetT *facet2, mergeType mergetype);
+- qh_mergecycle · function · L146-L146 — void    qh_mergecycle(facetT *samecycle, facetT *newfacet);
+- qh_mergecycle_all · function · L147-L147 — void    qh_mergecycle_all(facetT *facetlist, boolT *wasmerge);
+- qh_mergecycle_facets · function · L148-L148 — void    qh_mergecycle_facets( facetT *samecycle, facetT *newfacet);
+- qh_mergecycle_neighbors · function · L149-L149 — void    qh_mergecycle_neighbors(facetT *samecycle, facetT *newfacet);
+- qh_mergecycle_ridges · function · L150-L150 — void    qh_mergecycle_ridges(facetT *samecycle, facetT *newfacet);
+- qh_mergecycle_vneighbors · function · L151-L151 — void    qh_mergecycle_vneighbors( facetT *samecycle, facetT *newfacet);
+- qh_mergefacet · function · L152-L152 — void    qh_mergefacet(facetT *facet1, facetT *facet2, realT *mindist, realT *maxdist, boolT mergeapex);
+- qh_mergefacet2d · function · L153-L153 — void    qh_mergefacet2d(facetT *facet1, facetT *facet2);
+- qh_mergeneighbors · function · L154-L154 — void    qh_mergeneighbors(facetT *facet1, facetT *facet2);
+- qh_mergeridges · function · L155-L155 — void    qh_mergeridges(facetT *facet1, facetT *facet2);
+- qh_mergesimplex · function · L156-L156 — void    qh_mergesimplex(facetT *facet1, facetT *facet2, boolT mergeapex);
+- qh_mergevertex_del · function · L157-L157 — void    qh_mergevertex_del(vertexT *vertex, facetT *facet1, facetT *facet2);
+- qh_mergevertex_neighbors · function · L158-L158 — void    qh_mergevertex_neighbors(facetT *facet1, facetT *facet2);
+- qh_mergevertices · function · L159-L159 — void    qh_mergevertices(setT *vertices1, setT **vertices);
+- qh_neighbor_intersections · function · L160-L160 — setT   *qh_neighbor_intersections(vertexT *vertex);
+- qh_newvertices · function · L161-L161 — void    qh_newvertices(setT *vertices);
+- qh_reducevertices · function · L162-L162 — boolT   qh_reducevertices(void);
+- qh_redundant_vertex · function · L163-L163 — vertexT *qh_redundant_vertex(vertexT *vertex);
+- qh_remove_extravertices · function · L164-L164 — boolT   qh_remove_extravertices(facetT *facet);
+- qh_rename_sharedvertex · function · L165-L165 — vertexT *qh_rename_sharedvertex(vertexT *vertex, facetT *facet);
+- qh_renameridgevertex · function · L166-L166 — void    qh_renameridgevertex(ridgeT *ridge, vertexT *oldvertex, vertexT *newvertex);
+- qh_renamevertex · function · L167-L168 — void    qh_renamevertex(vertexT *oldvertex, vertexT *newvertex, setT *ridges,
+- qh_test_appendmerge · function · L169-L169 — boolT   qh_test_appendmerge(facetT *facet, facetT *neighbor);
+- qh_test_vneighbors · function · L170-L170 — boolT   qh_test_vneighbors(void /* qh.newfacet_list */);
+- qh_tracemerge · function · L171-L171 — void    qh_tracemerge(facetT *facet1, facetT *facet2);
+- qh_tracemerging · function · L172-L172 — void    qh_tracemerging(void);
+- qh_updatetested · function · L173-L173 — void    qh_updatetested( facetT *facet1, facetT *facet2);
+- qh_vertexridges · function · L174-L174 — setT   *qh_vertexridges(vertexT *vertex);
+- qh_vertexridges_facet · function · L175-L175 — void    qh_vertexridges_facet(vertexT *vertex, facetT *facet, setT **ridges);
+- qh_willdelete · function · L176-L176 — void    qh_willdelete(facetT *facet, facetT *replace);

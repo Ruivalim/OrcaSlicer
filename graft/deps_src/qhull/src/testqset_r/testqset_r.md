@@ -1,0 +1,35 @@
+# deps_src/qhull/src/testqset_r/testqset_r.c
+
+- i2T · type · L84-L84 — typedef int i2T;
+- qh_exit · function · L119-L119 — void    qh_exit(int exitcode);
+- qh_fprintf_stderr · function · L120-L120 — void    qh_fprintf_stderr(int msgcode, const char *fmt, ... );
+- qh_free · function · L121-L121 — void    qh_free(void *mem);
+- qh_malloc · function · L122-L122 — void   *qh_malloc(size_t size);
+- qh_errexit · function · L126-L132 — void    qh_errexit(qhT *qh, int exitcode, facetT *f, ridgeT *r)
+- qh_fprintf · function · L136-L167 — void    qh_fprintf(qhT *qh, FILE *fp, int msgcode, const char *fmt, ... )
+- main · function · L170-L170 — int main(int argc, char **argv);
+- readOptions · function · L171-L171 — void readOptions(qhT *qh, int argc, char **argv, const char *promptstr, int *numInts, int *checkEvery, int *traceLevel);
+- setupMemory · function · L172-L172 — void setupMemory(qhT *qh, int tracelevel, int numInts, int **intarray);
+- testSetappendSettruncate · function · L174-L174 — void testSetappendSettruncate(qhT *qh, int numInts, int *intarray, int checkEvery);
+- testSetdelSetadd · function · L175-L175 — void testSetdelSetadd(qhT *qh, int numInts, int *intarray, int checkEvery);
+- testSetappendSet · function · L176-L176 — void testSetappendSet(qhT *qh, int numInts, int *intarray, int checkEvery);
+- testSetcompactCopy · function · L177-L177 — void testSetcompactCopy(qhT *qh, int numInts, int *intarray, int checkEvery);
+- testSetequalInEtc · function · L178-L178 — void testSetequalInEtc(qhT *qh, int numInts, int *intarray, int checkEvery);
+- testSettemp · function · L179-L179 — void testSettemp(qhT *qh, int numInts, int *intarray, int checkEvery);
+- testSetlastEtc · function · L180-L180 — void testSetlastEtc(qhT *qh, int numInts, int *intarray, int checkEvery);
+- testSetdelsortedEtc · function · L181-L181 — void testSetdelsortedEtc(qhT *qh, int numInts, int *intarray, int checkEvery);
+- log_i · function · L183-L183 — int log_i(qhT *qh, setT *set, const char *s, int i, int numInts, int checkEvery);
+- checkSetContents · function · L184-L184 — void checkSetContents(qhT *qh, const char *name, setT *set, int count, int rangeA, int rangeB, int rangeC);
+- main · function · L186-L227 — int main(int argc, char **argv)
+- readOptions · function · L229-L276 — void readOptions(qhT *qh, int argc, char **argv, const char *promptstr, int *numInts, int *checkEvery, int *traceLevel)
+- setupMemory · function · L278-L303 — void setupMemory(qhT *qh, int tracelevel, int numInts, int **intarray)
+- testSetappendSettruncate · function · L305-L351 — void testSetappendSettruncate(qhT *qh, int numInts, int *intarray, int checkEvery)
+- testSetdelSetadd · function · L353-L378 — void testSetdelSetadd(qhT *qh, int numInts, int *intarray, int checkEvery)
+- testSetappendSet · function · L380-L416 — void testSetappendSet(qhT *qh, int numInts, int *intarray, int checkEvery)
+- testSetcompactCopy · function · L418-L445 — void testSetcompactCopy(qhT *qh, int numInts, int *intarray, int checkEvery)
+- testSetdelsortedEtc · function · L447-L500 — void testSetdelsortedEtc(qhT *qh, int numInts, int *intarray, int checkEvery)
+- testSetequalInEtc · function · L502-L609 — void testSetequalInEtc(qhT *qh, int numInts, int *intarray, int checkEvery)
+- testSetlastEtc · function · L612-L680 — void testSetlastEtc(qhT *qh, int numInts, int *intarray, int checkEvery)
+- testSettemp · function · L682-L717 — void testSettemp(qhT *qh, int numInts, int *intarray, int checkEvery)
+- log_i · function · L724-L761 — int log_i(qhT *qh, setT *set, const char *s, int i, int numInts, int checkEvery)
+- checkSetContents · function · L767-L889 — void checkSetContents(qhT *qh, const char *name, setT *set, int count, int rangeA, int rangeB, int rangeC)

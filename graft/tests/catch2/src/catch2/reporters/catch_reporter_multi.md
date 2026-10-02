@@ -1,0 +1,29 @@
+# tests/catch2/src/catch2/reporters/catch_reporter_multi.hpp
+
+- MultiReporter · class · L15-L73 — class MultiReporter final : public IEventListener
+- updatePreferences · function · L29-L29 — void updatePreferences(IEventListener const& reporterish);
+- MultiReporter · function · L32-L35 — MultiReporter( IConfig const* config ):
+- addListener · function · L39-L39 — void addListener( IEventListenerPtr&& listener );
+- addReporter · function · L40-L40 — void addReporter( IEventListenerPtr&& reporter );
+- noMatchingTestCases · function · L44-L44 — void noMatchingTestCases( StringRef unmatchedSpec ) override;
+- fatalErrorEncountered · function · L45-L45 — void fatalErrorEncountered( StringRef error ) override;
+- reportInvalidTestSpec · function · L46-L46 — void reportInvalidTestSpec( StringRef arg ) override;
+- benchmarkPreparing · function · L48-L48 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L49-L49 — void benchmarkStarting( BenchmarkInfo const& benchmarkInfo ) override;
+- benchmarkEnded · function · L50-L50 — void benchmarkEnded( BenchmarkStats<> const& benchmarkStats ) override;
+- benchmarkFailed · function · L51-L51 — void benchmarkFailed( StringRef error ) override;
+- testRunStarting · function · L53-L53 — void testRunStarting( TestRunInfo const& testRunInfo ) override;
+- testCaseStarting · function · L54-L54 — void testCaseStarting( TestCaseInfo const& testInfo ) override;
+- testCasePartialStarting · function · L55-L55 — void testCasePartialStarting(TestCaseInfo const& testInfo, uint64_t partNumber) override;
+- sectionStarting · function · L56-L56 — void sectionStarting( SectionInfo const& sectionInfo ) override;
+- assertionStarting · function · L57-L57 — void assertionStarting( AssertionInfo const& assertionInfo ) override;
+- assertionEnded · function · L59-L59 — void assertionEnded( AssertionStats const& assertionStats ) override;
+- sectionEnded · function · L60-L60 — void sectionEnded( SectionStats const& sectionStats ) override;
+- testCasePartialEnded · function · L61-L61 — void testCasePartialEnded(TestCaseStats const& testStats, uint64_t partNumber) override;
+- testCaseEnded · function · L62-L62 — void testCaseEnded( TestCaseStats const& testCaseStats ) override;
+- testRunEnded · function · L63-L63 — void testRunEnded( TestRunStats const& testRunStats ) override;
+- skipTest · function · L65-L65 — void skipTest( TestCaseInfo const& testInfo ) override;
+- listReporters · function · L67-L67 — void listReporters(std::vector<ReporterDescription> const& descriptions) override;
+- listListeners · function · L68-L68 — void listListeners(std::vector<ListenerDescription> const& descriptions) override;
+- listTests · function · L69-L69 — void listTests(std::vector<TestCaseHandle> const& tests) override;
+- listTags · function · L70-L70 — void listTags(std::vector<TagInfo> const& tags) override;

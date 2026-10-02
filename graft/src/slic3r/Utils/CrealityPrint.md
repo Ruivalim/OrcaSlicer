@@ -1,0 +1,25 @@
+# src/slic3r/Utils/CrealityPrint.hpp
+
+- DynamicPrintConfig · class · L15-L15 — class DynamicPrintConfig;
+- Http · class · L16-L16 — class Http;
+- CrealityPrint · class · L17-L58 — class CrealityPrint : public PrintHost
+- CrealityPrint · function · L20-L20 — CrealityPrint(DynamicPrintConfig* config);
+- get_name · function · L23-L23 — const char* get_name() const override;
+- can_test · function · L24-L24 — virtual bool can_test() const override { return true; };
+- get_host · function · L25-L25 — std::string  get_host() const override;
+- has_auto_discovery · function · L26-L26 — bool has_auto_discovery() const override { return true; }
+- get_test_ok_msg · function · L28-L28 — wxString                           get_test_ok_msg() const override;
+- get_test_failed_msg · function · L29-L29 — wxString                           get_test_failed_msg(wxString& msg) const override;
+- test · function · L30-L30 — virtual bool                       test(wxString& curl_msg) const override;
+- get_post_upload_actions · function · L31-L31 — PrintHostPostUploadActions         get_post_upload_actions() const override;
+- upload · function · L32-L32 — bool upload(PrintHostUpload upload_data, ProgressFn prorgess_fn, ErrorFn error_fn, InfoFn info_fn) const override;
+- supports_multi_color_print · function · L33-L33 — bool supports_multi_color_print() const;
+- model_supports_multi_color · function · L38-L38 — static bool model_supports_multi_color(const std::string& model);
+- model_display_name · function · L39-L39 — static std::string model_display_name(const std::string& model);
+- query_boxes_info · function · L40-L40 — std::string query_boxes_info() const;
+- model_name · function · L41-L41 — std::string model_name() const;
+- set_auth · function · L44-L44 — virtual void set_auth(Http& http) const;
+- make_url · function · L54-L54 — std::string make_url(const std::string& path) const;
+- start_print · function · L55-L55 — bool start_print(wxString& msg, const std::string& filename, const std::map<std::string, std::string>& extended_info) const;
+- safe_filename · function · L56-L56 — std::string safe_filename(const std::string& filename) const;
+- query_model · function · L57-L57 — void query_model() const;

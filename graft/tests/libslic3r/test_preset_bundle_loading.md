@@ -1,0 +1,29 @@
+# tests/libslic3r/test_preset_bundle_loading.cpp
+
+- contains_key · function · L27-L30 — bool contains_key(const std::vector<std::string> &keys, const std::string &key)
+- check_double_vector · function · L32-L38 — void check_double_vector(const std::vector<double> &actual, std::initializer_list<double> expected)
+- write_print_preset · function · L40-L48 — void write_print_preset(const DynamicPrintConfig &default_config, const fs::path &file, const std::string &name, const std::string &inherits = {})
+- config · function · L42-L42 — DynamicPrintConfig config(default_config);
+- write_preset_with_inherits · function · L52-L60 — void write_preset_with_inherits(const DynamicPrintConfig &default_config, const fs::path &file,
+- config · function · L55-L55 — DynamicPrintConfig config(default_config);
+- add_inmemory_preset · function · L63-L63 — Preset &add_inmemory_preset(PresetCollection &coll, const std::string &name, const std::string &inherits = {})
+- set_renamed_from · function · L71-L76 — void set_renamed_from(PresetCollection &coll, const std::string &preset_name, std::vector<std::string> old_names)
+- published_pla_file_config · function · L80-L92 — DynamicPrintConfig published_pla_file_config()
+- RenameTestCollection · class · L98-L105 — struct RenameTestCollection : public PresetCollection
+- RenameTestCollection · function · L100-L103 — RenameTestCollection()
+- compatible_list · function · L395-L395 — std::vector<std::string> &compatible_list(PresetCollection &coll, const std::string &preset_name, const char *field_key)
+- LibraryFilamentTestCollection · class · L685-L692 — struct LibraryFilamentTestCollection : public PresetCollection
+- LibraryFilamentTestCollection · function · L687-L690 — LibraryFilamentTestCollection()
+- printers · function · L1284-L1285 — PresetCollection              printers(Preset::TYPE_PRINTER, Preset::printer_options(),
+- library · function · L1287-L1287 — VendorProfile                 library(PresetBundle::ORCA_FILAMENT_LIBRARY);
+- MachineFilaments · class · L1335-L1381 — struct MachineFilaments
+- MachineFilaments · function · L1341-L1362 — MachineFilaments()
+- add_filament · function · L1364-L1372 — void add_filament(const VendorProfile &owner, const std::string &name, const std::string &alias,
+- offers · function · L1374-L1380 — bool offers(const std::string &preset_name, bool include_user_presets = false)
+- ScopedDataDir · class · L5440-L5445 — struct ScopedDataDir
+- ScopedDataDir · function · L5443-L5443 — explicit ScopedDataDir(const fs::path &dir) { set_data_dir(dir.string()); }
+- read_file · function · L5447-L5451 — std::string read_file(const fs::path &file)
+- write_zip · function · L5453-L5462 — void write_zip(const fs::path &zip_file, const std::vector<std::pair<std::string, std::string>> &entries)
+- any_filename_contains · function · L5464-L5470 — bool any_filename_contains(const fs::path &root, const std::string &needle)
+- it · function · L5466-L5466 — for (fs::recursive_directory_iterator it(root), end; it != end; ++it)
+- scoped_data_dir · function · L5480-L5480 — ScopedDataDir scoped_data_dir(data_root);

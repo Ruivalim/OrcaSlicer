@@ -1,0 +1,49 @@
+# src/slic3r/GUI/DeviceCore/DevConfigUtil.h
+
+- class · type · L29-L206 — enum class ToolHeadComponent
+- class · type · L36-L169 — enum class ToolHeadNameCase
+- InitFilePath · function · L57-L57 — static void  InitFilePath(const std::string& res_file_path) { m_resource_file_path = res_file_path; };
+- get_all_model_id_with_name · function · L61-L61 — static std::map<std::string, std::string> get_all_model_id_with_name();
+- get_printer_type · function · L62-L62 — static std::string get_printer_type(const std::string& type_str) { return get_value_from_config<std::string>(type_str, "printer_type"); }
+- get_printer_display_name · function · L63-L63 — static std::string get_printer_display_name(const std::string& type_str) { return get_value_from_config<std::string>(type_str, "display_name"); }
+- get_printer_series_str · function · L64-L64 — static std::string get_printer_series_str(std::string type_str) { return get_value_from_config<std::string>(type_str, "printer_series"); }
+- get_printer_arch · function · L65-L65 — static PrinterArch get_printer_arch(std::string type_str);
+- get_printer_thumbnail_img · function · L68-L68 — static std::string get_printer_thumbnail_img(const std::string& type_str) { return get_value_from_config<std::string>(type_str, "printer_thumbnail_image"); }
+- get_printer_connect_help_img · function · L69-L69 — static std::string get_printer_connect_help_img(const std::string& type_str) { return get_value_from_config<std::string>(type_str, "printer_connect_help_image"); }
+- get_printer_auto_pa_cali_image · function · L70-L70 — static std::string get_printer_auto_pa_cali_image(const std::string& type_str) { return get_value_from_config<std::string>(type_str, "auto_pa_cali_thumbnail_image"); }
+- get_ftp_folder · function · L73-L73 — static std::string get_ftp_folder(std::string type_str) { return get_value_from_config<std::string>(type_str, "ftp_folder"); }
+- get_resolution_supported · function · L74-L74 — static std::vector<std::string> get_resolution_supported(std::string type_str) { return get_value_from_config<std::vector<std::string>>(type_str, "camera_resolution"); }
+- get_compatible_machine · function · L75-L75 — static std::vector<std::string> get_compatible_machine(std::string type_str) { return get_value_from_config<std::vector<std::string>>(type_str, "compatible_machine"); }
+- get_all_subseries · function · L76-L76 — static std::map<std::string, std::vector<std::string>> get_all_subseries(std::string type_str = "");
+- get_printer_use_ams_type · function · L79-L79 — static std::string get_printer_use_ams_type(std::string type_str) { return get_value_from_config<std::string>(type_str, "use_ams_type"); }
+- get_printer_ams_img · function · L80-L80 — static std::string get_printer_ams_img(const std::string& type_str) { return get_value_from_config<std::string>(type_str, "printer_use_ams_image"); }
+- get_printer_ext_img · function · L81-L81 — static std::string get_printer_ext_img(const std::string& type_str, int pos);//printer_ext_image
+- support_ams_fila_change_abort · function · L82-L82 — static bool        support_ams_fila_change_abort(std::string type_str) { return get_value_from_config<bool>(type_str, "print", "support_ams_filament_change_abort"); }
+- get_filament_load_img · function · L83-L83 — static std::string get_filament_load_img(const std::string &type_str, int ext_id, bool has_nozzle_rack = false);
+- get_fan_text · function · L86-L86 — static std::string              get_fan_text(const std::string& type_str, const std::string& key);
+- get_fan_text_params · function · L87-L87 — static std::vector<std::string> get_fan_text_params(const std::string& type_str, const std::string& key);
+- get_fan_text · function · L88-L88 — static std::string get_fan_text(const std::string& type_str, int airduct_mode, int airduct_func, int submode);
+- get_fan_mode_text · function · L89-L89 — static std::string get_fan_mode_text(const std::string& type_str, int airduct_mode, const std::string& key);
+- get_printer_can_set_nozzle · function · L92-L92 — static bool get_printer_can_set_nozzle(std::string type_str) { return get_value_from_config<bool>(type_str, "enable_set_nozzle_info"); }// can set nozzle from studio
+- get_toolhead_display_name · function · L95-L99 — static std::string get_toolhead_display_name(
+- support_print_check_firmware_for_tpu_left · function · L103-L103 — static bool support_print_check_firmware_for_tpu_left(std::string type_str){ return get_value_from_config<bool>(type_str, "print", "support_print_check_firmware_for_tpu_left"); }
+- support_user_first_setup_tpu_check · function · L104-L104 — static bool support_user_first_setup_tpu_check(std::string type_str){ return get_value_from_config<bool>(type_str, "print", "support_user_first_setup_tpu_check"); }
+- support_user_first_setup_tpu_check_url · function · L105-L105 — static std::string support_user_first_setup_tpu_check_url(std::string type_str){ return get_value_from_config<std::string>(type_str, "print", "support_user_first_setup_tpu_check_url"); }
+- support_ams_ext_mix_print · function · L106-L106 — static bool support_ams_ext_mix_print(std::string type_str) { return get_value_from_config<bool>(type_str, "print", "support_ams_ext_mix_print"); }
+- support_print_time_estimate_warning · function · L107-L107 — static bool support_print_time_estimate_warning(std::string type_str) { return get_value_from_config<bool>(type_str, "print", "support_print_time_estimate_warning"); }
+- get_unsupport_auto_cali_filaments · function · L110-L110 — static std::vector<std::string> get_unsupport_auto_cali_filaments(std::string type_str) { return get_value_from_config<std::vector<std::string>>(type_str, "auto_cali_not_support_filaments"); }
+- support_disable_cali_flow_type · function · L111-L111 — static bool support_disable_cali_flow_type(std::string type_str) { return get_value_from_config<bool>(type_str,"support_disable_cali_flow_type"); }
+- support_wrapping_detection · function · L114-L114 — static bool support_wrapping_detection(const std::string& type_str) { return get_value_from_config<bool>(type_str, "support_wrapping_detection"); }
+- support_safety_options · function · L117-L117 — static bool support_safety_options(const std::string &type_str) { return get_value_from_config<bool>(type_str, "support_safety_options"); }
+- support_print_check_extension_fan_f000_mounted · function · L120-L120 — static bool support_print_check_extension_fan_f000_mounted(const std::string& type_str) { return get_value_from_config<bool>(type_str, "print", "support_print_check_extension_fan_f000_mounted"); }
+- air_print_detection_position · function · L121-L121 — static std::string air_print_detection_position(const std::string &type_str) { return get_value_from_config<std::string>(type_str, "air_print_detection_position"); }
+- get_bed_temperature_limit · function · L124-L124 — static int get_bed_temperature_limit(const std::string &type_str) { return get_value_from_config<int>(type_str, "print", "bed_temperature_limit"); }
+- get_value_from_config · function · L128-L150 — static T get_value_from_config(const std::string& type_str, const std::string& item)
+- c_str · function · L131-L131 — boost::nowide::ifstream json_file(config_file.c_str());
+- json_file · function · L131-L131 — boost::nowide::ifstream json_file(config_file.c_str());
+- get_value_from_config · function · L153-L162 — static T get_value_from_config(const std::string& type_str, const std::string& item1, const std::string& item2)
+- get_json_from_config · function · L171-L202 — static nlohmann::json get_json_from_config(const std::string& type_str, const std::string& key1, const std::string& key2 = std::string())
+- string · function · L171-L171 — static nlohmann::json get_json_from_config(const std::string& type_str, const std::string& key1, const std::string& key2 = std::string())
+- c_str · function · L174-L174 — boost::nowide::ifstream json_file(config_file.c_str());
+- json_file · function · L174-L174 — boost::nowide::ifstream json_file(config_file.c_str());
+- _parse_printer_type · function · L209-L228 — static std::string _parse_printer_type(const std::string &type_str)

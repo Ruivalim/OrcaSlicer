@@ -1,0 +1,35 @@
+# src/slic3r/GUI/DeviceTab/wgtDeviceNozzleRack.h
+
+- Rescale · function · L58-L58 — void Rescale();
+- CreateGui · function · L61-L61 — void CreateGui();
+- UpdateToolHeadInfo · function · L78-L78 — void UpdateToolHeadInfo(const DevNozzle& extruder_nozzle);
+- Rescale · function · L79-L79 — void Rescale();
+- CreateGui · function · L82-L82 — void CreateGui();
+- Rescale · function · L105-L105 — void Rescale();
+- CreateGui · function · L108-L108 — void CreateGui();
+- CreateNozzleBox · function · L109-L109 — StaticBox* CreateNozzleBox(const std::vector<int> nozzle_idxes);
+- CreateRefreshBook · function · L110-L110 — wxSizer* CreateRefreshBook(wxPanel* parent);
+- UpdateNozzleItems · function · L113-L114 — void UpdateNozzleItems(const std::unordered_map<int, wgtDeviceNozzleRackNozzleItem*>& nozzle_items,
+- OnBtnHotendsInfos · function · L117-L117 — void OnBtnHotendsInfos(wxCommandEvent& evt);
+- OnBtnReadAll · function · L118-L118 — void OnBtnReadAll(wxCommandEvent& evt);
+- CreateGui · function · L151-L151 — explicit wgtDeviceNozzleRackPos(wxWindow* parent) : wxPanel(parent) { CreateGui();}
+- wgtDeviceNozzleRackPos · function · L151-L151 — explicit wgtDeviceNozzleRackPos(wxWindow* parent) : wxPanel(parent) { CreateGui();}
+- Rescale · function · L155-L155 — void Rescale();
+- CreateGui · function · L158-L158 — void CreateGui();
+- UpdateRackPos · function · L160-L162 — void UpdateRackPos(DevNozzleRack::RackPos new_pos,
+- OnMoveRackUp · function · L165-L165 — void OnMoveRackUp(wxCommandEvent& evt);
+- OnMoveRackDown · function · L166-L166 — void OnMoveRackDown(wxCommandEvent& evt);
+- OnBtnHomingRack · function · L167-L167 — void OnBtnHomingRack(wxCommandEvent& evt);
+- NOZZLE_STATUS · type · L191-L197 — enum NOZZLE_STATUS
+- GetNozzleId · function · L205-L205 — int  GetNozzleId() const { return m_nozzle_id; }
+- SetDisplayIdText · function · L206-L206 — void SetDisplayIdText(const wxString& text) { m_nozzle_label_id->SetLabel(text);};
+- EnableSelect · function · L208-L208 — void EnableSelect();;
+- SetSelected · function · L209-L209 — void SetSelected(bool selected);
+- IsSelected · function · L210-L210 — bool IsSelected() const { return m_is_selected; }
+- IsDisabled · function · L212-L212 — bool IsDisabled() const { return m_is_disabled; }
+- SetDisable · function · L213-L213 — void SetDisable(bool disabled);
+- Rescale · function · L215-L215 — void Rescale();
+- CreateGui · function · L218-L218 — void CreateGui();
+- SetNozzleStatus · function · L220-L220 — void SetNozzleStatus(NOZZLE_STATUS status, const wxString& str1, const wxString& str2, const std::string& color);
+- OnBtnNozzleStatus · function · L222-L222 — void OnBtnNozzleStatus(wxMouseEvent& evt);
+- OnItemSelected · function · L223-L223 — void OnItemSelected(wxMouseEvent& evt);

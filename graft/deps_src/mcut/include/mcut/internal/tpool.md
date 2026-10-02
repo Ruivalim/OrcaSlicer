@@ -1,0 +1,37 @@
+# deps_src/mcut/include/mcut/internal/tpool.h
+
+- impl_base · class · L43-L61 — struct impl_base
+- move · function · L54-L54 — : f(std::move(f_))
+- operator · function · L67-L67 — void operator()() { impl->call(); }
+- node · class · L91-L94 — struct node
+- get_tail · function · L112-L112 — node* get_tail()
+- set_done_ptr · function · L162-L165 — void set_done_ptr(std::atomic<bool>* done)
+- disrupt_wait_for_data · function · L167-L176 — void disrupt_wait_for_data()
+- notify_one · function · L178-L181 — void notify_one()
+- push · function · L183-L195 — void push(T new_value)
+- wait_and_pop · function · L197-L200 — void wait_and_pop(T& value)
+- try_pop · function · L202-L206 — bool try_pop(T& value)
+- empty · function · L208-L212 — bool empty()
+- join_threads · function · L219-L220 — explicit join_threads(std::vector<std::thread>& threads_)
+- worker_thread · function · L239-L259 — void worker_thread(int thread_id)
+- m_done · function · L264-L270 — thread_pool(uint32_t nthreads, uint32_t used_cores)
+- machine_thread_count · function · L268-L268 — , machine_thread_count(0)
+- wakeup_and_shutdown · function · L302-L307 — void wakeup_and_shutdown()
+- result_type · type · L319-L319 — typedef typename std::result_of<FunctionType()>::type result_type;
+- get_num_threads · function · L329-L329 — size_t get_num_threads() const
+- get_num_hardware_threads · function · L334-L337 — uint32_t get_num_hardware_threads()
+- get_scheduling_parameters · function · L340-L353 — static void get_scheduling_parameters(
+- barrier_t · function · L386-L387 — explicit barrier_t(unsigned count_)
+- wait · function · L392-L402 — void wait()
+- value_type · type · L540-L540 — typedef typename Iterator::value_type value_type;
+- process_chunk · class · L541-L558 — struct process_chunk
+- if · function · L559-L561 — } else if (end_value)
+- value_type · type · L590-L590 — typedef typename Iterator::value_type value_type;
+- barrier · function · L750-L750 — barrier_t barrier(num_threads);
+- barrier · function · L831-L831 — barrier_t barrier(num_threads);
+- node · class · L863-L886 — struct node
+- push_front · function · L892-L898 — void push_front(T /*const&*/ value)
+- what · function · L961-L961 — const char* what() const throw()
+- push · function · L982-L986 — void push(T new_value)
+- pop · function · L996-L1002 — void pop(T& value)
+- empty · function · L1003-L1003 — bool empty() const

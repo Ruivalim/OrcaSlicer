@@ -1,0 +1,43 @@
+# src/slic3r/GUI/PartSkipDialog.hpp
+
+- SkipPartCanvas · class · L30-L30 — class SkipPartCanvas;
+- URL_STATE · type · L32-L35 — enum URL_STATE
+- PartSkipConfirmDialog · class · L37-L54 — class PartSkipConfirmDialog : public DPIDialog
+- PartSkipConfirmDialog · function · L46-L46 — PartSkipConfirmDialog(wxWindow *parent);
+- on_dpi_changed · function · L49-L49 — void    on_dpi_changed(const wxRect &suggested_rect);
+- GetConfirmButton · function · L50-L50 — Button *GetConfirmButton();
+- SetMsgLabel · function · L51-L51 — void    SetMsgLabel(wxString msg);
+- SetTipLabel · function · L52-L52 — void    SetTipLabel(wxString msg);
+- Show · function · L53-L53 — bool    Show(bool show);
+- PartSkipDialog · class · L56-L160 — class PartSkipDialog : public DPIDialog
+- PartSkipDialog · function · L59-L59 — PartSkipDialog(wxWindow *parent);
+- on_dpi_changed · function · L61-L61 — void on_dpi_changed(const wxRect &suggested_rect);
+- Show · function · L62-L62 — bool Show(bool show);
+- UpdatePartsStateFromPrinter · function · L64-L64 — void UpdatePartsStateFromPrinter(MachineObject *obj_);
+- SetSimplebookPage · function · L65-L65 — void SetSimplebookPage(int page);
+- InitSchedule · function · L66-L66 — void InitSchedule(MachineObject *obj_);
+- InitDialogUI · function · L67-L67 — void InitDialogUI();
+- GetAllSkippedPartsNum · function · L68-L68 — int  GetAllSkippedPartsNum();
+- URL_STATE · type · L125-L125 — enum URL_STATE m_url_state = URL_STATE::URL_TCP;
+- GetPartsInfo · function · L127-L127 — PartsInfo GetPartsInfo();
+- is_drag_mode · function · L128-L128 — bool      is_drag_mode();
+- create_tmp_path · function · L135-L135 — std::string                          create_tmp_path();
+- is_local_file_existed · function · L137-L137 — bool is_local_file_existed(const std::vector<string> &local_paths);
+- DownloadPartsFile · function · L139-L139 — void DownloadPartsFile();
+- OnFileSystemEvent · function · L140-L140 — void OnFileSystemEvent(wxCommandEvent &event);
+- OnFileSystemResult · function · L141-L141 — void OnFileSystemResult(wxCommandEvent &event);
+- fetchUrl · function · L142-L142 — void fetchUrl(boost::weak_ptr<PrinterFileSystem> wfs);
+- OnZoomIn · function · L144-L144 — void OnZoomIn(wxCommandEvent &event);
+- OnZoomOut · function · L145-L145 — void OnZoomOut(wxCommandEvent &event);
+- OnSwitchDrag · function · L146-L146 — void OnSwitchDrag(wxCommandEvent &event);
+- OnZoomPercent · function · L147-L147 — void OnZoomPercent(wxCommandEvent &event);
+- UpdatePartsStateFromCanvas · function · L148-L148 — void UpdatePartsStateFromCanvas(wxCommandEvent &event);
+- UpdateZoomPercent · function · L150-L150 — void UpdateZoomPercent();
+- UpdateCountLabel · function · L151-L151 — void UpdateCountLabel();
+- UpdateDialogUI · function · L152-L152 — void UpdateDialogUI();
+- UpdateApplyButtonStatus · function · L153-L153 — void UpdateApplyButtonStatus();
+- IsAllChecked · function · L154-L154 — bool IsAllChecked();
+- IsAllCanceled · function · L155-L155 — bool IsAllCanceled();
+- OnRetryButton · function · L157-L157 — void OnRetryButton(wxCommandEvent &event);
+- OnAllCheckbox · function · L158-L158 — void OnAllCheckbox(wxCommandEvent &event);
+- OnApplyDialog · function · L159-L159 — void OnApplyDialog(wxCommandEvent &event);

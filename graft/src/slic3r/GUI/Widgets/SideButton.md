@@ -1,0 +1,28 @@
+# src/slic3r/GUI/Widgets/SideButton.hpp
+
+- SideButton · class · L11-L92 — class SideButton : public wxWindow
+- EHorizontalOrientation · type · L15-L21 — enum EHorizontalOrientation : unsigned char
+- SideButton · function · L23-L23 — SideButton(wxWindow* parent, wxString text, wxString icon = "", long style = 0, int iconSize = 0);
+- SetCornerRadius · function · L25-L25 — void SetCornerRadius(double radius);
+- SetCornerEnable · function · L28-L28 — void SetCornerEnable(const std::vector<bool>& enable);
+- SetTextLayout · function · L30-L30 — void SetTextLayout(EHorizontalOrientation orient, int margin = 15);
+- SetLayoutStyle · function · L32-L32 — void SetLayoutStyle(int style);
+- SetLabel · function · L34-L34 — void SetLabel(const wxString& label) override;
+- SetForegroundColour · function · L36-L36 — bool SetForegroundColour(wxColour const & colour) override;
+- SetBackgroundColour · function · L38-L38 — bool SetBackgroundColour(wxColour const & color) override;
+- SetBottomColour · function · L40-L40 — bool SetBottomColour(wxColour const &color);
+- SetMinSize · function · L42-L42 — void SetMinSize(const wxSize& size) override;
+- SetBorderColor · function · L44-L44 — void SetBorderColor(StateColor const & color);
+- SetForegroundColor · function · L46-L46 — void SetForegroundColor(StateColor const &color);
+- SetBackgroundColor · function · L48-L48 — void SetBackgroundColor(StateColor const &color);
+- Enable · function · L50-L50 — bool Enable(bool enable = true) override;
+- Rescale · function · L52-L52 — void Rescale();
+- SetExtraSize · function · L54-L54 — void SetExtraSize(const wxSize& size);
+- SetIconOffset · function · L56-L56 — void SetIconOffset(const int offset);
+- paintEvent · function · L80-L80 — void paintEvent(wxPaintEvent& evt);
+- dorender · function · L82-L82 — void dorender(wxDC& dc, wxDC& text_dc);
+- messureSize · function · L84-L84 — void messureSize();
+- mouseDown · function · L86-L86 — void mouseDown(wxMouseEvent& event);
+- mouseReleased · function · L87-L87 — void mouseReleased(wxMouseEvent& event);
+- sendButtonEvent · function · L89-L89 — void sendButtonEvent();
+- DECLARE_EVENT_TABLE · function · L91-L91 — DECLARE_EVENT_TABLE()

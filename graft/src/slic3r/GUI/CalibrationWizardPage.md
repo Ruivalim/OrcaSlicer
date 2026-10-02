@@ -1,0 +1,90 @@
+# src/slic3r/GUI/CalibrationWizardPage.hpp
+
+- CalibrationWizard · class · L30-L30 — class CalibrationWizard;
+- CalibrationStyle · type · L32-L37 — enum class CalibrationStyle : int
+- get_cali_style · function · L39-L39 — CalibrationStyle get_cali_style(MachineObject* obj);
+- get_cali_mode_caption_string · function · L41-L41 — wxString get_cali_mode_caption_string(CalibMode mode);
+- CalibrationFilamentMode · type · L43-L48 — enum CalibrationFilamentMode
+- CalibrationMethod · type · L50-L55 — enum CalibrationMethod
+- get_calibration_wiki_page · function · L57-L57 — wxString get_calibration_wiki_page(CalibMode cali_mode);
+- get_cali_filament_mode · function · L59-L59 — CalibrationFilamentMode get_cali_filament_mode(MachineObject* obj, CalibMode mode);
+- get_obj_calibration_mode · function · L61-L61 — CalibMode get_obj_calibration_mode(const MachineObject* obj);
+- get_obj_calibration_mode · function · L63-L63 — CalibMode get_obj_calibration_mode(const MachineObject* obj, int& cali_stage);
+- get_obj_calibration_mode · function · L65-L65 — CalibMode get_obj_calibration_mode(const MachineObject* obj, CalibrationMethod& method, int& cali_stage);
+- CaliPageType · type · L68-L78 — enum class CaliPageType
+- FilamentComboBox · class · L80-L117 — class FilamentComboBox : public wxPanel
+- FilamentComboBox · function · L83-L83 — FilamentComboBox(wxWindow* parent, int index, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize);
+- set_select_mode · function · L86-L86 — void set_select_mode(CalibrationFilamentMode mode);
+- get_select_mode · function · L87-L87 — CalibrationFilamentMode get_select_mode() { return m_mode; }
+- load_tray_from_ams · function · L88-L88 — void load_tray_from_ams(int id, DynamicPrintConfig& tray);
+- update_from_preset · function · L89-L89 — void update_from_preset();
+- get_index · function · L90-L90 — int get_index() { return m_index; }
+- get_tray_id · function · L91-L91 — int get_tray_id() { return m_tray_id; }
+- is_bbl_filament · function · L92-L92 — bool is_bbl_filament() { return m_is_bbl_filamnet; }
+- get_tray_name · function · L93-L93 — std::string get_tray_name() { return m_tray_name; }
+- GetComboBox · function · L94-L94 — CalibrateFilamentComboBox* GetComboBox() { return m_comboBox; }
+- GetCheckBox · function · L95-L95 — CheckBox* GetCheckBox() { return m_checkBox; }
+- SetCheckBox · function · L96-L96 — void SetCheckBox(CheckBox* cb) { m_checkBox = cb; }
+- GetRadioBox · function · L97-L97 — wxRadioButton* GetRadioBox() { return m_radioBox; }
+- SetRadioBox · function · L98-L98 — void SetRadioBox(wxRadioButton* btn) { m_radioBox = btn; }
+- Show · function · L99-L99 — virtual bool Show(bool show = true);
+- Enable · function · L100-L100 — virtual bool Enable(bool enable);
+- SetValue · function · L101-L101 — virtual void SetValue(bool value, bool send_event = true);
+- msw_rescale · function · L102-L102 — void msw_rescale();
+- ShowPanel · function · L104-L104 — void ShowPanel();
+- HidePanel · function · L105-L105 — void HidePanel();
+- FilamentComboBoxList · type · L119-L119 — typedef std::vector<FilamentComboBox*> FilamentComboBoxList;
+- CaliPageCaption · class · L121-L150 — class CaliPageCaption : public wxPanel
+- CaliPageCaption · function · L124-L129 — CaliPageCaption(wxWindow* parent,
+- show_prev_btn · function · L131-L131 — void show_prev_btn(bool show = true);
+- show_help_icon · function · L132-L132 — void show_help_icon(bool show = true);
+- on_sys_color_changed · function · L133-L133 — void on_sys_color_changed();
+- msw_rescale · function · L134-L134 — void msw_rescale();
+- init_bitmaps · function · L141-L141 — void init_bitmaps();
+- create_wiki · function · L142-L142 — void create_wiki(wxWindow* parent);
+- CaliPageStepGuide · class · L152-L168 — class CaliPageStepGuide : public wxPanel
+- CaliPageStepGuide · function · L155-L160 — CaliPageStepGuide(wxWindow* parent,
+- set_steps · function · L162-L162 — void set_steps(int index);
+- set_steps_string · function · L163-L163 — void set_steps_string(wxArrayString steps);
+- CaliPagePicture · class · L170-L186 — class CaliPagePicture : public wxPanel
+- CaliPagePicture · function · L173-L177 — CaliPagePicture(wxWindow* parent,
+- set_bmp · function · L179-L179 — void set_bmp(const ScalableBitmap& bmp);
+- paint_on_img · function · L180-L180 — void paint_on_img();
+- msw_rescale · function · L181-L181 — void msw_rescale();
+- PAPageHelpPanel · class · L188-L206 — class PAPageHelpPanel : public wxPanel
+- PAPageHelpPanel · function · L191-L196 — PAPageHelpPanel(wxWindow* parent,
+- msw_rescale · function · L197-L197 — void msw_rescale();
+- create_pop_window · function · L200-L200 — void create_pop_window();
+- CaliPageActionType · type · L208-L227 — enum class CaliPageActionType : int
+- CaliPageButton · class · L229-L240 — class CaliPageButton : public Button
+- CaliPageButton · function · L232-L232 — CaliPageButton(wxWindow* parent, CaliPageActionType type, wxString text = wxEmptyString);
+- get_action_type · function · L234-L234 — CaliPageActionType get_action_type() { return m_action_type; }
+- msw_rescale · function · L236-L236 — void msw_rescale();
+- CaliPageSendingPanel · class · L242-L265 — class CaliPageSendingPanel : public wxPanel
+- CaliPageSendingPanel · function · L245-L249 — CaliPageSendingPanel(wxWindow* parent,
+- create · function · L250-L250 — void create(wxWindow* parent);
+- update_print_error_info · function · L251-L251 — void update_print_error_info(int code, const std::string& msg, const std::string& extra);
+- show_send_failed_info · function · L252-L252 — void show_send_failed_info(bool show, int code = 0, wxString description = wxEmptyString, wxString extra = wxEmptyString);
+- get_sending_progress_bar · function · L253-L253 — std::shared_ptr<BBLStatusBarSend> get_sending_progress_bar();
+- reset · function · L254-L254 — void reset();
+- CaliPageActionPanel · class · L267-L285 — class CaliPageActionPanel : public wxPanel
+- CaliPageActionPanel · function · L270-L276 — CaliPageActionPanel(wxWindow* parent,
+- bind_button · function · L278-L278 — void bind_button(CaliPageActionType action_type, bool is_block);
+- show_button · function · L279-L279 — void show_button(CaliPageActionType action_type, bool show = true);
+- enable_button · function · L280-L280 — void enable_button(CaliPageActionType action_type, bool enable = true);
+- msw_rescale · function · L281-L281 — void msw_rescale();
+- CalibrationWizardPage · class · L287-L338 — class CalibrationWizardPage : public wxPanel
+- CalibrationWizardPage · function · L290-L290 — CalibrationWizardPage(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- get_page_type · function · L293-L293 — CaliPageType get_page_type() { return m_page_type; }
+- get_prev_page · function · L295-L295 — CalibrationWizardPage* get_prev_page() { return m_prev_page; }
+- get_next_page · function · L296-L296 — CalibrationWizardPage* get_next_page() { return m_next_page; }
+- set_prev_page · function · L297-L297 — void set_prev_page(CalibrationWizardPage* prev) { m_prev_page = prev; }
+- set_next_page · function · L298-L298 — void set_next_page(CalibrationWizardPage* next) { m_next_page = next; }
+- chain · function · L299-L299 — CalibrationWizardPage* chain(CalibrationWizardPage* next)
+- update · function · L306-L306 — virtual void update(MachineObject* obj) { curr_obj = obj; }
+- on_device_connected · function · L308-L308 — virtual void on_device_connected(MachineObject* obj) { curr_obj = obj; }
+- on_reset_page · function · L310-L310 — virtual void on_reset_page() {}
+- set_cali_filament_mode · function · L312-L314 — virtual void set_cali_filament_mode(CalibrationFilamentMode mode)
+- set_cali_method · function · L316-L318 — virtual void set_cali_method(CalibrationMethod method)
+- msw_rescale · function · L320-L320 — virtual void msw_rescale();
+- on_sys_color_changed · function · L321-L321 — virtual void on_sys_color_changed();

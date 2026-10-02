@@ -1,0 +1,22 @@
+# tests/catch2/src/catch2/reporters/catch_reporter_xml.hpp
+
+- XmlReporter · class · L18-L60 — class XmlReporter : public StreamingReporterBase
+- XmlReporter · function · L20-L20 — XmlReporter(ReporterConfig&& _config);
+- getDescription · function · L24-L24 — static std::string getDescription();
+- getStylesheetRef · function · L26-L26 — virtual std::string getStylesheetRef() const;
+- writeSourceInfo · function · L28-L28 — void writeSourceInfo(SourceLineInfo const& sourceInfo);
+- testRunStarting · function · L32-L32 — void testRunStarting(TestRunInfo const& testInfo) override;
+- testCaseStarting · function · L34-L34 — void testCaseStarting(TestCaseInfo const& testInfo) override;
+- sectionStarting · function · L36-L36 — void sectionStarting(SectionInfo const& sectionInfo) override;
+- assertionEnded · function · L38-L38 — void assertionEnded(AssertionStats const& assertionStats) override;
+- sectionEnded · function · L40-L40 — void sectionEnded(SectionStats const& sectionStats) override;
+- testCaseEnded · function · L42-L42 — void testCaseEnded(TestCaseStats const& testCaseStats) override;
+- testRunEnded · function · L44-L44 — void testRunEnded(TestRunStats const& testRunStats) override;
+- benchmarkPreparing · function · L46-L46 — void benchmarkPreparing( StringRef name ) override;
+- benchmarkStarting · function · L47-L47 — void benchmarkStarting(BenchmarkInfo const&) override;
+- benchmarkEnded · function · L48-L48 — void benchmarkEnded(BenchmarkStats<> const&) override;
+- benchmarkFailed · function · L49-L49 — void benchmarkFailed( StringRef error ) override;
+- listReporters · function · L51-L51 — void listReporters(std::vector<ReporterDescription> const& descriptions) override;
+- listListeners · function · L52-L52 — void listListeners(std::vector<ListenerDescription> const& descriptions) override;
+- listTests · function · L53-L53 — void listTests(std::vector<TestCaseHandle> const& tests) override;
+- listTags · function · L54-L54 — void listTags(std::vector<TagInfo> const& tags) override;

@@ -1,0 +1,30 @@
+# deps_src/agg/agg_scanline_p.h
+
+- cover_type · type · L46-L46 — typedef int8u       cover_type;
+- coord_type · type · L47-L47 — typedef int16       coord_type;
+- span · class · L50-L55 — struct span
+- reset · function · L70-L82 — void reset(int min_x, int max_x)
+- add_cell · function · L85-L101 — void add_cell(int x, unsigned cover)
+- add_cells · function · L104-L120 — void add_cells(int x, unsigned len, const cover_type* covers)
+- add_span · function · L123-L140 — void add_span(int x, unsigned len, unsigned cover)
+- finalize · function · L143-L146 — void finalize(int y)
+- reset_spans · function · L149-L155 — void reset_spans()
+- y · function · L158-L158 — int            y()         const { return m_y; }
+- num_spans · function · L159-L159 — unsigned       num_spans() const { return unsigned(m_cur_span - &m_spans[0]); }
+- begin · function · L160-L160 — const_iterator begin()     const { return &m_spans[1]; }
+- cover_type · type · L186-L186 — typedef int8u         cover_type;
+- coord_type · type · L187-L187 — typedef int32         coord_type;
+- span · class · L189-L198 — struct span
+- span · type · L199-L199 — typedef pod_bvector<span, 4> span_array_type;
+- m_spans · function · L206-L211 — const_iterator(const span_array_type& spans) :
+- m_span_idx · function · L208-L208 — m_span_idx(0)
+- operator · function · L214-L214 — void operator ++ () { ++m_span_idx; }
+- reset · function · L231-L241 — void reset(int min_x, int max_x)
+- add_cell · function · L244-L257 — void add_cell(int x, unsigned cover)
+- add_cells · function · L260-L273 — void add_cells(int x, unsigned len, const cover_type* covers)
+- add_span · function · L276-L291 — void add_span(int x, unsigned len, unsigned cover)
+- finalize · function · L294-L297 — void finalize(int y)
+- reset_spans · function · L300-L305 — void reset_spans()
+- y · function · L308-L308 — int            y()         const { return m_y; }
+- num_spans · function · L309-L309 — unsigned       num_spans() const { return m_spans.size(); }
+- begin · function · L310-L310 — const_iterator begin()     const { return const_iterator(m_spans); }

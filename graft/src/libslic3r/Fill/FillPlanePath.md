@@ -1,0 +1,30 @@
+# src/libslic3r/Fill/FillPlanePath.hpp
+
+- InfillPolylineOutput · class · L16-L34 — class InfillPolylineOutput
+- InfillPolylineOutput · function · L18-L18 — InfillPolylineOutput(const double scale_out) : m_scale_out(scale_out) {}
+- reserve · function · L20-L20 — void            reserve(size_t n) { m_out.reserve(n); }
+- add_point · function · L21-L21 — void            add_point(const Vec2d& pt) { m_out.emplace_back(this->scaled(pt)); }
+- result · function · L22-L22 — Points&& result() { return std::move(m_out); }
+- clips · function · L23-L23 — virtual bool    clips() const { return false; }
+- scaled · function · L25-L25 — const Point     scaled(const Vec2d& fpt) const { return { coord_t(floor(fpt.x() * m_scale_out + 0.5)), coord_t(floor(fpt.y() * m_scale_out + 0.5)) }; }
+- FillPlanePath · class · L36-L61 — class FillPlanePath : public Fill
+- is_self_crossing · function · L40-L40 — bool is_self_crossing() override { return false; }
+- _fill_surface_single · function · L43-L48 — void _fill_surface_single(
+- _layer_angle · function · L50-L50 — float _layer_angle(size_t idx) const override { return 0.f; }
+- centered · function · L51-L51 — virtual bool centered() const = 0;
+- generate · function · L55-L55 — virtual void generate(coord_t min_x, coord_t min_y, coord_t max_x, coord_t max_y, const double resolution, InfillPolylineOutput &output) = 0;
+- generate · function · L56-L60 — virtual void generate(coord_t min_x, coord_t min_y, coord_t max_x, coord_t max_y, const double resolution,
+- FillArchimedeanChords · class · L63-L72 — class FillArchimedeanChords : public FillPlanePath
+- clone · function · L66-L66 — Fill* clone() const override { return new FillArchimedeanChords(*this); };
+- centered · function · L70-L70 — bool centered() const override { return true; }
+- generate · function · L71-L71 — void generate(coord_t min_x, coord_t min_y, coord_t max_x, coord_t max_y, const double resolution, InfillPolylineOutput &output) override;
+- FillHilbertCurve · class · L74-L85 — class FillHilbertCurve : public FillPlanePath
+- clone · function · L77-L77 — Fill* clone() const override { return new FillHilbertCurve(*this); };
+- centered · function · L81-L81 — bool centered() const override { return false; }
+- generate · function · L82-L82 — void generate(coord_t min_x, coord_t min_y, coord_t max_x, coord_t max_y, const double resolution, InfillPolylineOutput &output) override;
+- generate · function · L83-L84 — void generate(coord_t min_x, coord_t min_y, coord_t max_x, coord_t max_y, const double resolution,
+- FillOctagramSpiral · class · L87-L98 — class FillOctagramSpiral : public FillPlanePath
+- clone · function · L90-L90 — Fill* clone() const override { return new FillOctagramSpiral(*this); };
+- centered · function · L94-L94 — bool centered() const override { return true; }
+- generate · function · L95-L95 — void generate(coord_t min_x, coord_t min_y, coord_t max_x, coord_t max_y, const double resolution, InfillPolylineOutput &output) override;
+- generate · function · L96-L97 — void generate(coord_t min_x, coord_t min_y, coord_t max_x, coord_t max_y, const double resolution,

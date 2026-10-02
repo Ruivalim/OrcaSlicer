@@ -1,0 +1,22 @@
+# src/slic3r/plugin/PluginResolver.hpp
+
+- MissingPlugin · class · L17-L24 — struct MissingPlugin
+- refresh_missing_plugins · function · L29-L29 — void refresh_missing_plugins(Preset::Type type, const ConfigOptionStrings* manifest, const Preset* preset = nullptr);
+- refresh_missing_plugins · function · L30-L30 — void refresh_missing_plugins(const PresetBundle& preset_bundle);
+- get_missing_cloud_plugins · function · L34-L34 — std::vector<MissingPlugin> get_missing_cloud_plugins();
+- get_missing_local_plugins · function · L35-L35 — std::vector<MissingPlugin> get_missing_local_plugins();
+- has_missing_plugins · function · L36-L36 — bool                     has_missing_plugins();
+- get_inactive_plugins · function · L40-L40 — std::vector<MissingPlugin> get_inactive_plugins();
+- has_inactive_plugins · function · L41-L41 — bool                     has_inactive_plugins();
+- get_broken_plugins · function · L45-L45 — std::vector<MissingPlugin> get_broken_plugins();
+- has_broken_plugins · function · L46-L46 — bool                     has_broken_plugins();
+- PluginInstallProgress · class · L50-L58 — struct PluginInstallProgress
+- resolve_missing_plugins · function · L62-L63 — void resolve_missing_plugins(const std::vector<std::string>& refs,
+- resolve_inactive_plugins · function · L68-L68 — void resolve_inactive_plugins(const std::vector<std::string>& refs);
+- open_missing_plugins_on_cloud · function · L71-L71 — void open_missing_plugins_on_cloud(const std::vector<std::string>& local_refs);
+- create_full_ref · function · L73-L73 — std::string create_full_ref(const PluginCapabilityRef& ref);
+- resolve_recovery_url · function · L74-L74 — std::string resolve_recovery_url(const PluginCapabilityRef& ref);
+- referenced_capabilities · function · L79-L79 — std::vector<PluginCapabilityRef> referenced_capabilities(Preset::Type type, const Preset& preset);
+- capabilities_in_use · function · L80-L80 — std::vector<PluginCapabilityId> capabilities_in_use(Preset::Type type, const Preset& preset);
+- capabilities_in_use · function · L86-L86 — std::vector<PluginCapabilityId> capabilities_in_use(const PresetBundle& preset_bundle, Preset::Type type);
+- check_capability_in_use · function · L88-L88 — bool check_capability_in_use(const std::string& capability_refs);

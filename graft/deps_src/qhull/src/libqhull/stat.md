@@ -1,0 +1,29 @@
+# deps_src/qhull/src/libqhull/stat.h
+
+- qh_statistics · type · L50-L278 — enum qh_statistics {     /* alphabetical after Z/W */
+- qh_statistics · type · L289-L335 — enum qh_statistics {     /* for zzdef etc. macros */
+- ztypes · type · L347-L347 — enum ztypes {zdoc,zinc,zadd,zmax,zmin,ZTYPEreal,wadd,wmax,wmin,ZTYPEend};
+- intrealT · type · L461-L461 — typedef union intrealT intrealT;    /* union of int and realT */
+- qhstatT · type · L487-L487 — typedef struct qhstatT qhstatT;
+- qhstatT · class · L503-L517 — struct qhstatT
+- qh_allstatA · function · L521-L521 — void    qh_allstatA(void);
+- qh_allstatB · function · L522-L522 — void    qh_allstatB(void);
+- qh_allstatC · function · L523-L523 — void    qh_allstatC(void);
+- qh_allstatD · function · L524-L524 — void    qh_allstatD(void);
+- qh_allstatE · function · L525-L525 — void    qh_allstatE(void);
+- qh_allstatE2 · function · L526-L526 — void    qh_allstatE2(void);
+- qh_allstatF · function · L527-L527 — void    qh_allstatF(void);
+- qh_allstatG · function · L528-L528 — void    qh_allstatG(void);
+- qh_allstatH · function · L529-L529 — void    qh_allstatH(void);
+- qh_allstatI · function · L530-L530 — void    qh_allstatI(void);
+- qh_allstatistics · function · L531-L531 — void    qh_allstatistics(void);
+- qh_collectstatistics · function · L532-L532 — void    qh_collectstatistics(void);
+- qh_freestatistics · function · L533-L533 — void    qh_freestatistics(void);
+- qh_initstatistics · function · L534-L534 — void    qh_initstatistics(void);
+- qh_newstats · function · L535-L535 — boolT   qh_newstats(int idx, int *nextindex);
+- qh_nostatistic · function · L536-L536 — boolT   qh_nostatistic(int i);
+- qh_printallstatistics · function · L537-L537 — void    qh_printallstatistics(FILE *fp, const char *string);
+- qh_printstatistics · function · L538-L538 — void    qh_printstatistics(FILE *fp, const char *string);
+- qh_printstatlevel · function · L539-L539 — void    qh_printstatlevel(FILE *fp, int id);
+- qh_printstats · function · L540-L540 — void    qh_printstats(FILE *fp, int idx, int *nextindex);
+- qh_stddev · function · L541-L541 — realT   qh_stddev(int num, realT tot, realT tot2, realT *ave);

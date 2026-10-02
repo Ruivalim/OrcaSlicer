@@ -1,0 +1,164 @@
+# src/slic3r/GUI/ImGuiWrapper.hpp
+
+- wxString · class · L25-L25 — class wxString;
+- wxMouseEvent · class · L26-L26 — class wxMouseEvent;
+- wxKeyEvent · class · L27-L27 — class wxKeyEvent;
+- get_data_from_svg · function · L35-L35 — bool get_data_from_svg(const std::string &filename, unsigned int max_size_px, ThumbnailData &thumbnail_data);
+- slider_behavior · function · L37-L37 — bool slider_behavior(ImGuiID id, const ImRect& region, const ImS32 v_min, const ImS32 v_max, ImS32* out_value, ImRect* out_handle, ImGuiSliderFlags flags = 0, const int fixed_value = -1, const ImVec4& fixed_rect = ImVec4());
+- button_with_pos · function · L38-L46 — bool button_with_pos(ImTextureID   user_texture_id,
+- begin_menu · function · L47-L47 — bool begin_menu(const char *label, bool enabled = true);
+- end_menu · function · L48-L48 — void end_menu();
+- menu_item_with_icon · function · L49-L49 — bool menu_item_with_icon(const char *label, const char *shortcut, ImVec2 icon_size = ImVec2(0, 0), ImU32 icon_color = 0, bool selected = false, bool enabled = true, bool* hovered = nullptr);
+- ImGuiWrapper · class · L52-L417 — class ImGuiWrapper
+- LastSliderStatus · class · L73-L83 — struct LastSliderStatus
+- invalidate_snapshot · function · L82-L82 — void invalidate_snapshot() { can_take_snapshot = false; }
+- ImGuiWrapper · function · L85-L85 — ImGuiWrapper();
+- read_glsl_version · function · L88-L88 — void read_glsl_version();
+- set_language · function · L90-L90 — void set_language(const std::string &language);
+- set_display_size · function · L91-L91 — void set_display_size(float w, float h);
+- set_scaling · function · L92-L92 — void set_scaling(float font_size, float scale_style, float scale_both);
+- update_mouse_data · function · L93-L93 — bool update_mouse_data(wxMouseEvent &evt);
+- update_key_data · function · L94-L94 — bool update_key_data(wxKeyEvent &evt);
+- get_font_size · function · L96-L96 — float get_font_size() const { return m_font_size; }
+- get_style_scaling · function · L97-L97 — float get_style_scaling() const { return m_style_scaling; }
+- get_glyph_ranges · function · L98-L98 — const ImWchar *get_glyph_ranges() const { return m_glyph_ranges; } // language specific
+- new_frame · function · L100-L100 — void new_frame();
+- end_frame · function · L102-L102 — ImDrawData* end_frame();
+- render · function · L103-L103 — void render(ImDrawData* draw_data);
+- draw_data_signature · function · L105-L105 — static ImGuiID draw_data_signature(const ImDrawData* draw_data);
+- scaled · function · L107-L107 — float scaled(float x) const { return x * m_font_size; }
+- scaled · function · L108-L108 — ImVec2 scaled(float x, float y) const { return ImVec2(x * m_font_size, y * m_font_size); }
+- calc_text_size · function · L112-L112 — static ImVec2 calc_text_size(std::string_view text, bool  hide_text_after_double_hash = false, float wrap_width = -1.0f);
+- calc_text_size · function · L113-L113 — static ImVec2 calc_text_size(const std::string& text, bool  hide_text_after_double_hash = false, float wrap_width = -1.0f);
+- calc_text_size · function · L114-L114 — static ImVec2 calc_text_size(const wxString &text, bool  hide_text_after_double_hash = false, float wrap_width = -1.0f);
+- calc_button_size · function · L115-L115 — ImVec2 calc_button_size(const wxString &text, const ImVec2 &button_size = ImVec2(0, 0)) const;
+- find_widest_text · function · L116-L116 — float find_widest_text(std::vector<wxString> &text_list);
+- get_item_spacing · function · L117-L117 — ImVec2 get_item_spacing() const;
+- get_slider_float_height · function · L118-L118 — float  get_slider_float_height() const;
+- get_last_slider_status · function · L119-L119 — const LastSliderStatus& get_last_slider_status() const { return m_last_slider_status; }
+- get_last_slider_status · function · L120-L120 — LastSliderStatus& get_last_slider_status() { return m_last_slider_status; }
+- set_next_window_pos · function · L122-L122 — void set_next_window_pos(float x, float y, int flag, float pivot_x = 0.0f, float pivot_y = 0.0f);
+- set_next_window_bg_alpha · function · L123-L123 — void set_next_window_bg_alpha(float alpha);
+- set_next_window_size · function · L124-L124 — void set_next_window_size(float x, float y, ImGuiCond cond);
+- bbl_combo_with_filter · function · L127-L127 — bool bbl_combo_with_filter(const char* label, const std::string& preview_value, const std::vector<std::string>& all_items, std::vector<int>* filtered_items_idx, bool* is_filtered, float item_height = 0.0f);
+- bbl_input_double · function · L128-L128 — bool bbl_input_double(const wxString &label, const double &value, const std::string &format = "%0.2f");
+- bbl_slider_float · function · L129-L129 — bool bbl_slider_float(const std::string &label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true, const wxString& tooltip = {});
+- bbl_slider_float_style · function · L130-L130 — bool bbl_slider_float_style(const std::string &label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true, const wxString& tooltip = {});
+- begin · function · L132-L132 — bool begin(const std::string &name, int flags = 0);
+- begin · function · L133-L133 — bool begin(const wxString &name, int flags = 0);
+- begin · function · L134-L134 — bool begin(const std::string& name, bool* close, int flags = 0);
+- begin · function · L135-L135 — bool begin(const wxString& name, bool* close, int flags = 0);
+- end · function · L136-L136 — void end();
+- button · function · L138-L138 — bool button(const wxString &label, const wxString& tooltip = {});
+- bbl_button · function · L139-L139 — bool bbl_button(const wxString &label, const wxString& tooltip = {});
+- button · function · L140-L140 — bool button(const wxString& label, float width, float height);
+- button · function · L141-L141 — bool button(const wxString& label, const ImVec2 &size, bool enable); // default size = ImVec2(0.f, 0.f)
+- glyph_button · function · L142-L142 — bool glyph_button(wchar_t icon_char, ImVec2 icon_size); // ORCA
+- radio_button · function · L143-L143 — bool radio_button(const wxString &label, bool active);
+- to_ImVec4 · function · L144-L144 — static ImVec4          to_ImVec4(const ColorRGB &color);
+- input_double · function · L145-L145 — bool input_double(const std::string &label, const double &value, const std::string &format = "%.3f");
+- input_double · function · L146-L146 — bool input_double(const wxString &label, const double &value, const std::string &format = "%.3f");
+- input_vec3 · function · L147-L147 — bool input_vec3(const std::string &label, const Vec3d &value, float width, const std::string &format = "%.3f");
+- checkbox · function · L148-L148 — bool checkbox(const wxString &label, bool &value);
+- bbl_checkbox · function · L149-L149 — bool bbl_checkbox(const wxString &label, bool &value);
+- bbl_radio_button · function · L150-L150 — bool bbl_radio_button(const char *label, bool active);
+- bbl_sliderin · function · L151-L151 — bool bbl_sliderin(const char *label, int *v, int v_min, int v_max, const char *format = "%d", ImGuiSliderFlags flags = 0);
+- text · function · L152-L152 — static void text(const char *label);
+- text · function · L153-L153 — static void text(const std::string &label);
+- text · function · L154-L154 — static void text(const wxString &label);
+- warning_text · function · L155-L155 — void warning_text(const char *all_text);
+- warning_text · function · L156-L156 — void warning_text(const wxString &all_text);
+- text_colored · function · L157-L157 — static void text_colored(const ImVec4& color, const char* label);
+- text_colored · function · L158-L158 — static void text_colored(const ImVec4& color, const std::string& label);
+- text_colored · function · L159-L159 — static void text_colored(const ImVec4& color, const wxString& label);
+- text_wrapped · function · L160-L160 — void text_wrapped(const char *label, float wrap_width);
+- text_wrapped · function · L161-L161 — void text_wrapped(const std::string &label, float wrap_width);
+- text_wrapped · function · L162-L162 — void text_wrapped(const wxString &label, float wrap_width);
+- tooltip · function · L163-L163 — void tooltip(const char *label, float wrap_width);
+- tooltip · function · L164-L164 — void tooltip(const std::string &label, float wrap_width);
+- tooltip · function · L165-L165 — void tooltip(const wxString &label, float wrap_width);
+- filament_group · function · L166-L166 — void filament_group(const std::string &filament_type, const char *hex_color, unsigned char filament_id, float align_width);
+- calculate_filament_group_text_size · function · L169-L169 — std::tuple<ImVec2,bool> calculate_filament_group_text_size(const std::string& filament_type);
+- sub_title · function · L170-L170 — void sub_title(const std::string &label);
+- get_slider_icon_size · function · L175-L175 — ImVec2 get_slider_icon_size() const;
+- slider_float · function · L176-L176 — bool slider_float(const char* label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true, const wxString& tooltip = {}, bool show_edit_btn = true);
+- slider_float · function · L177-L177 — bool slider_float(const std::string& label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true, const wxString& tooltip = {}, bool show_edit_btn = true);
+- slider_float · function · L178-L178 — bool slider_float(const wxString& label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true, const wxString& tooltip = {}, bool show_edit_btn = true);
+- slider_float · function · L180-L180 — bool slider_float(const char* label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true);
+- slider_float · function · L181-L181 — bool slider_float(const std::string& label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true);
+- slider_float · function · L182-L182 — bool slider_float(const wxString& label, float* v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f,  bool clamp = true);
+- image_button · function · L185-L185 — bool image_button(ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0 = ImVec2(0.0, 0.0), const ImVec2& uv1 = ImVec2(1.0, 1.0), int frame_padding = -1, const ImVec4& bg_col = ImVec4(0.0, 0.0, 0.0, 0.0), const ImVec4& tint_col = ImVec4(1.0, 1.0, 1.0, 1.0), ImGuiButtonFlags flags = 0);
+- image_button · function · L186-L186 — bool image_button(const wchar_t icon, const wxString& tooltip = L"");
+- combo · function · L189-L189 — bool combo(const std::string& label, const std::vector<std::string>& options, int& selection, ImGuiComboFlags flags = 0, float label_width = 0.0f, float item_width = 0.0f);
+- combo · function · L190-L190 — bool combo(const wxString& label, const std::vector<std::string>& options, int& selection, ImGuiComboFlags flags = 0, float label_width = 0.0f, float item_width = 0.0f);
+- undo_redo_list · function · L191-L191 — bool undo_redo_list(const ImVec2& size, const bool is_undo, bool (*items_getter)(const bool, int, const char**), int& hovered, int& selected, int& mouse_wheel);
+- search_list · function · L192-L197 — void search_list(const ImVec2& size, bool (*items_getter)(int, const char** label, const char** tooltip), char* search_str,
+- bold_text · function · L198-L198 — void bold_text(const std::string &str);
+- title · function · L199-L199 — void title(const std::string& str);
+- title · function · L200-L200 — void title(const std::string &str, bool suppress_seperator);
+- get_fonts_names · function · L203-L203 — const std::vector<std::string> get_fonts_names() const { return m_fonts_names; }
+- push_bold_font · function · L204-L204 — bool push_bold_font();
+- pop_bold_font · function · L205-L205 — bool pop_bold_font();
+- push_font_by_name · function · L206-L206 — bool push_font_by_name(std::string font_name);
+- pop_font_by_name · function · L207-L207 — bool pop_font_by_name(std::string font_name);
+- load_fonts_texture · function · L208-L208 — void load_fonts_texture();
+- destroy_fonts_texture · function · L209-L209 — void destroy_fonts_texture();
+- disabled_begin · function · L211-L211 — void disabled_begin(bool disabled);
+- disabled_end · function · L212-L212 — void disabled_end();
+- want_mouse · function · L214-L214 — bool want_mouse() const;
+- want_keyboard · function · L215-L215 — bool want_keyboard() const;
+- want_text_input · function · L216-L216 — bool want_text_input() const;
+- want_any_input · function · L217-L217 — bool want_any_input() const;
+- input_optional_int · function · L222-L222 — static bool input_optional_int(const char *label, std::optional<int>& v, int step=1, int step_fast=100, ImGuiInputTextFlags flags=0, int def_val = 0);
+- input_optional_float · function · L224-L224 — static bool input_optional_float(const char* label, std::optional<float> &v, float step = 0.0f, float step_fast = 0.0f, const char* format = "%.3f", ImGuiInputTextFlags flags = 0, float def_val = .0f);
+- drag_optional_float · function · L226-L226 — static bool drag_optional_float(const char* label, std::optional<float> &v, float v_speed, float v_min, float v_max, const char* format, float power, float def_val = .0f);
+- slider_optional_float · function · L228-L228 — bool slider_optional_float(const char* label, std::optional<float> &v, float v_min, float v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true, const wxString& tooltip = {}, bool show_edit_btn = true, float def_val = .0f);
+- slider_optional_int · function · L230-L230 — bool slider_optional_int(const char* label, std::optional<int> &v, int v_min, int v_max, const char* format = "%.3f", float power = 1.0f, bool clamp = true, const wxString& tooltip = {}, bool show_edit_btn = true, int def_val = 0);
+- change_window_position · function · L239-L239 — static std::optional<ImVec2> change_window_position(const char *window_name, bool try_to_fix);
+- left_inputs · function · L245-L245 — static void left_inputs();
+- trunc · function · L256-L258 — static std::string trunc(const std::string &text,
+- escape_double_hash · function · L265-L265 — static void escape_double_hash(std::string &text);
+- suggest_location · function · L278-L280 — static ImVec2 suggest_location(const ImVec2          &dialog_size,
+- draw · function · L289-L292 — static void draw(const Polygon &polygon,
+- draw_cross_hair · function · L302-L306 — static void draw_cross_hair(const ImVec2 &position,
+- draw_gradient_ramp · function · L317-L320 — static void draw_gradient_ramp(ImDrawList *          draw_list,
+- contain_all_glyphs · function · L329-L329 — static bool contain_all_glyphs(const ImFont *font, const std::string &text);
+- is_chars_in_ranges · function · L330-L330 — static bool is_chars_in_ranges(const ImWchar *ranges, const char *chars_ptr);
+- is_char_in_ranges · function · L331-L331 — static bool is_char_in_ranges(const ImWchar *ranges, unsigned int letter);
+- requires_extra_frame · function · L333-L333 — bool requires_extra_frame() const { return m_requires_extra_frame; }
+- set_requires_extra_frame · function · L334-L334 — void set_requires_extra_frame() { m_requires_extra_frame = true; }
+- reset_requires_extra_frame · function · L335-L335 — void reset_requires_extra_frame() { m_requires_extra_frame = false; }
+- disable_background_fadeout_animation · function · L337-L337 — void disable_background_fadeout_animation();
+- to_ImU32 · function · L339-L339 — static ImU32 to_ImU32(const ColorRGBA& color);
+- to_ImVec4 · function · L340-L340 — static ImVec4 to_ImVec4(const ColorRGBA& color);
+- from_ImU32 · function · L341-L341 — static ColorRGBA from_ImU32(const ImU32& color);
+- from_ImVec4 · function · L342-L342 — static ColorRGBA from_ImVec4(const ImVec4& color);
+- GetTextureCustomRect · function · L344-L344 — ImFontAtlasCustomRect* GetTextureCustomRect(const wchar_t& tex_id);
+- on_change_color_mode · function · L378-L378 — static void on_change_color_mode(bool is_dark);
+- push_toolbar_style · function · L379-L379 — static void push_toolbar_style(const float scale);
+- pop_toolbar_style · function · L380-L380 — static void pop_toolbar_style();
+- push_menu_style · function · L381-L381 — static void push_menu_style(const float scale);
+- pop_menu_style · function · L382-L382 — static void pop_menu_style();
+- push_common_window_style · function · L383-L383 — static void push_common_window_style(const float scale);
+- pop_common_window_style · function · L384-L384 — static void pop_common_window_style();
+- push_confirm_button_style · function · L385-L385 — static void push_confirm_button_style();
+- pop_confirm_button_style · function · L386-L386 — static void pop_confirm_button_style();
+- push_cancel_button_style · function · L387-L387 — static void push_cancel_button_style();
+- pop_cancel_button_style · function · L388-L388 — static void pop_cancel_button_style();
+- push_button_disable_style · function · L389-L389 — static void push_button_disable_style();
+- pop_button_disable_style · function · L390-L390 — static void pop_button_disable_style();
+- push_combo_style · function · L391-L391 — static void push_combo_style(const float scale);
+- pop_combo_style · function · L392-L392 — static void pop_combo_style();
+- push_radio_style · function · L393-L393 — static void push_radio_style(const float scale);
+- pop_radio_style · function · L394-L394 — static void pop_radio_style();
+- display_initialized · function · L399-L399 — bool display_initialized() const;
+- init_font · function · L402-L402 — void init_font(bool compress);
+- init_input · function · L403-L403 — void init_input();
+- init_style · function · L404-L404 — void init_style();
+- render_draw_data · function · L405-L405 — void render_draw_data(ImDrawData *draw_data);
+- destroy_font · function · L406-L406 — void destroy_font();
+- load_svg · function · L407-L407 — std::vector<unsigned char> load_svg(const std::string& bitmap_name, unsigned target_width, unsigned target_height, unsigned *outwidth, unsigned *outheight);
+- clipboard_get · function · L409-L409 — static const char* clipboard_get(void* user_data);
+- clipboard_set · function · L410-L410 — static void clipboard_set(void* user_data, const char* text);
+- IMTexture · class · L419-L424 — class IMTexture
+- load_from_svg_file · function · L423-L423 — static bool load_from_svg_file(const std::string& filename, unsigned width, unsigned height, ImTextureID &texture_id);

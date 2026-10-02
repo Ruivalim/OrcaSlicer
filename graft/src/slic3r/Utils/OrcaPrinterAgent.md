@@ -1,0 +1,36 @@
+# src/slic3r/Utils/OrcaPrinterAgent.hpp
+
+- OrcaPrinterAgent · class · L18-L97 — class OrcaPrinterAgent : public IPrinterAgent
+- OrcaPrinterAgent · function · L20-L20 — explicit OrcaPrinterAgent(std::string log_dir);
+- set_cloud_agent · function · L27-L27 — void set_cloud_agent(std::shared_ptr<ICloudServiceAgent> cloud) override;
+- send_message · function · L30-L30 — int send_message(std::string dev_id, std::string json_str, int qos, int flag) override;
+- connect_printer · function · L31-L31 — int connect_printer(std::string dev_id, std::string dev_ip, std::string username, std::string password, bool use_ssl) override;
+- disconnect_printer · function · L32-L32 — int disconnect_printer() override;
+- send_message_to_printer · function · L33-L33 — int send_message_to_printer(std::string dev_id, std::string json_str, int qos, int flag) override;
+- check_cert · function · L36-L36 — int check_cert() override;
+- install_device_cert · function · L37-L37 — void install_device_cert(std::string dev_id, bool lan_only) override;
+- start_discovery · function · L40-L40 — bool start_discovery(bool start, bool sending) override;
+- ping_bind · function · L43-L43 — int ping_bind(std::string ping_code) override;
+- bind_detect · function · L44-L44 — int bind_detect(std::string dev_ip, std::string sec_link, detectResult& detect) override;
+- bind · function · L45-L45 — int bind(std::string dev_ip, std::string dev_id, std::string dev_model, std::string sec_link, std::string timezone, bool improved, OnUpdateStatusFn update_fn) override;
+- unbind · function · L46-L46 — int unbind(std::string dev_id) override;
+- request_bind_ticket · function · L47-L47 — int request_bind_ticket(std::string* ticket) override;
+- get_hms_snapshot · function · L48-L48 — int get_hms_snapshot(std::string dev_id, std::string file_name, std::function<void(std::string, int)> callback) override;
+- set_server_callback · function · L49-L49 — int set_server_callback(OnServerErrFn fn) override;
+- get_user_selected_machine · function · L52-L52 — std::string get_user_selected_machine() override;
+- set_user_selected_machine · function · L53-L53 — int set_user_selected_machine(std::string dev_id) override;
+- get_agent_info_static · function · L60-L60 — static AgentInfo get_agent_info_static();
+- get_agent_info · function · L61-L61 — AgentInfo get_agent_info() override { return get_agent_info_static(); }
+- start_print · function · L64-L64 — int start_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override;
+- start_local_print_with_record · function · L65-L65 — int start_local_print_with_record(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override;
+- start_send_gcode_to_sdcard · function · L66-L66 — int start_send_gcode_to_sdcard(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn, OnWaitFn wait_fn) override;
+- start_local_print · function · L67-L67 — int start_local_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) override;
+- start_sdcard_print · function · L68-L68 — int start_sdcard_print(PrintParams params, OnUpdateStatusFn update_fn, WasCancelledFn cancel_fn) override;
+- set_on_ssdp_msg_fn · function · L71-L71 — int set_on_ssdp_msg_fn(OnMsgArrivedFn fn) override;
+- set_on_printer_connected_fn · function · L72-L72 — int set_on_printer_connected_fn(OnPrinterConnectedFn fn) override;
+- set_on_subscribe_failure_fn · function · L73-L73 — int set_on_subscribe_failure_fn(GetSubscribeFailureFn fn) override;
+- set_on_message_fn · function · L74-L74 — int set_on_message_fn(OnMessageFn fn) override;
+- set_on_user_message_fn · function · L75-L75 — int set_on_user_message_fn(OnMessageFn fn) override;
+- set_on_local_connect_fn · function · L76-L76 — int set_on_local_connect_fn(OnLocalConnectedFn fn) override;
+- set_on_local_message_fn · function · L77-L77 — int set_on_local_message_fn(OnMessageFn fn) override;
+- set_queue_on_main_fn · function · L78-L78 — int set_queue_on_main_fn(QueueOnMainFn fn) override;

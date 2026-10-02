@@ -1,0 +1,23 @@
+# src/libslic3r/TextureToColor/ColorUtils.hpp
+
+- Color · type · L11-L11 — typedef std::array<std::size_t, 3> Color;  // RGB: [R, G, B] 0~255
+- ColorList · type · L12-L12 — typedef std::vector<Color> ColorList;
+- ColorDouble · type · L13-L13 — typedef std::array<double, 3> ColorDouble;
+- RGB · type · L14-L14 — typedef std::array<std::size_t, 3> RGB;
+- ColorDifferenceMethod · type · L20-L23 — enum struct ColorDifferenceMethod : std::size_t
+- ClusterParameters · class · L25-L37 — struct ClusterParameters
+- SmoothParameters · class · L39-L41 — struct SmoothParameters
+- calc_rgb_color_difference_by_squared_rgb · function · L50-L50 — double calc_rgb_color_difference_by_squared_rgb(const RGB& rgb1, const RGB& rgb2);
+- calc_rgb_color_difference_by_squared_rgb_double · function · L59-L59 — double calc_rgb_color_difference_by_squared_rgb_double(const ColorDouble& c1, const ColorDouble& c2);
+- calc_rgb_color_difference_by_ciede2000 · function · L73-L73 — double calc_rgb_color_difference_by_ciede2000(const RGB& rgb1, const RGB& rgb2);
+- calc_rgb_color_difference_by_ciede2000_srgb01 · function · L85-L85 — double calc_rgb_color_difference_by_ciede2000_srgb01(const ColorDouble& rgb1, const ColorDouble& rgb2);
+- cluster_k_means · function · L96-L96 — std::vector<Color> cluster_k_means(const std::vector<Color>& colors, const ClusterParameters& cluster_parameters);
+- cluster_adaptive · function · L107-L107 — std::vector<Color> cluster_adaptive(const std::vector<Color>& colors, const ClusterParameters& cluster_parameters);
+- cluster_to_specified_colors · function · L118-L118 — std::vector<Color> cluster_to_specified_colors(const std::vector<Color>& colors, const std::vector<Color>& specified_colors);
+- remesh_mesh · function · L131-L131 — bool remesh_mesh(TriMesh& mesh, std::vector<std::size_t>& face_labels, double target_edge_length_ratio);
+- is_closed · function · L141-L141 — bool is_closed(const TriMesh& tri_mesh);
+- smooth_region · function · L153-L153 — bool smooth_region(TriMesh& tri_mesh, std::vector<std::array<std::size_t, 3>>& face_labels, const SmoothParameters& smooth_parameters = SmoothParameters());
+- smooth_region · function · L165-L165 — bool smooth_region(TriMesh& tri_mesh, std::vector<std::size_t>& face_labels, const SmoothParameters& smooth_parameters = SmoothParameters());
+- get_components · function · L179-L180 — bool get_components(const TriMesh& mesh, const std::vector<Vec2f>& vertex_uvs, std::vector<TriMesh>& component_meshes,
+- calc_nearest_color_id · function · L190-L190 — bool calc_nearest_color_id(const std::vector<RGB>& colors, const RGB& color, std::size_t& nearest_color_id);
+- mesh_cluster · function · L201-L202 — bool mesh_cluster(const TriMesh& mesh, const std::vector<RGB>& cluster_centers, std::vector<RGB>& map_face_to_rgb,

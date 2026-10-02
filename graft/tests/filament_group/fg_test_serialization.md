@@ -1,0 +1,46 @@
+# tests/filament_group/fg_test_serialization.hpp
+
+- to_json · function · L25-L29 — inline void to_json(json& j, const Color& c)
+- from_json · function · L31-L39 — inline void from_json(const json& j, Color& c)
+- to_json · function · L41-L48 — inline void to_json(json& j, const FilamentInfo& fi)
+- from_json · function · L50-L55 — inline void from_json(const json& j, FilamentInfo& fi)
+- to_json · function · L57-L66 — inline void to_json(json& j, const MachineFilamentInfo& mfi)
+- from_json · function · L68-L75 — inline void from_json(const json& j, MachineFilamentInfo& mfi)
+- to_json · function · L81-L88 — inline void to_json(json& j, const NozzleInfo& ni)
+- from_json · function · L90-L95 — inline void from_json(const json& j, NozzleInfo& ni)
+- to_json · function · L97-L104 — inline void to_json(json& j, const FilamentChangeTimeParams& p)
+- from_json · function · L106-L111 — inline void from_json(const json& j, FilamentChangeTimeParams& p)
+- set_to_json · function · L117-L119 — inline json set_to_json(const std::set<int>& s)
+- json_to_set · function · L121-L124 — inline std::set<int> json_to_set(const json& j)
+- nvt_set_to_json · function · L126-L130 — inline json nvt_set_to_json(const std::set<NozzleVolumeType>& s)
+- json_to_nvt_set · function · L132-L136 — inline std::set<NozzleVolumeType> json_to_nvt_set(const json& j)
+- to_json · function · L140-L159 — inline void to_json(json& j, const FilamentGroupContext::ModelInfo& mi)
+- from_json · function · L161-L181 — inline void from_json(const json& j, FilamentGroupContext::ModelInfo& mi)
+- to_json · function · L184-L194 — inline void to_json(json& j, const FilamentGroupContext::GroupInfo& gi)
+- from_json · function · L196-L204 — inline void from_json(const json& j, FilamentGroupContext::GroupInfo& gi)
+- to_json · function · L207-L219 — inline void to_json(json& j, const FilamentGroupContext::MachineInfo& mi)
+- from_json · function · L221-L234 — inline void from_json(const json& j, FilamentGroupContext::MachineInfo& mi)
+- to_json · function · L237-L251 — inline void to_json(json& j, const FilamentGroupContext::SpeedInfo& si)
+- from_json · function · L253-L267 — inline void from_json(const json& j, FilamentGroupContext::SpeedInfo& si)
+- to_json · function · L270-L284 — inline void to_json(json& j, const FilamentGroupContext::NozzleInfo& ni)
+- from_json · function · L286-L300 — inline void from_json(const json& j, FilamentGroupContext::NozzleInfo& ni)
+- to_json · function · L303-L315 — inline void to_json(json& j, const FilamentGroupContext& ctx)
+- from_json · function · L317-L323 — inline void from_json(const json& j, FilamentGroupContext& ctx)
+- TestMetadata · class · L331-L335 — struct TestMetadata
+- to_json · function · L337-L339 — inline void to_json(json& j, const TestMetadata& m)
+- from_json · function · L341-L345 — inline void from_json(const json& j, TestMetadata& m)
+- TestResult · class · L347-L353 — struct TestResult
+- to_json · function · L355-L363 — inline void to_json(json& j, const TestResult& r)
+- from_json · function · L365-L372 — inline void from_json(const json& j, TestResult& r)
+- BaseResult · class · L375-L379 — struct BaseResult
+- to_json · function · L381-L387 — inline void to_json(json& j, const BaseResult& g)
+- from_json · function · L389-L393 — inline void from_json(const json& j, BaseResult& g)
+- TestCase · class · L396-L400 — struct TestCase
+- load_test_case · function · L402-L411 — inline TestCase load_test_case(const std::string& path)
+- f · function · L403-L403 — std::ifstream f(path);
+- save_test_case · function · L413-L423 — inline void save_test_case(const std::string& path, const TestCase& tc)
+- f · function · L421-L421 — std::ofstream f(path);
+- save_result · function · L425-L436 — inline void save_result(const std::string& case_path, const TestResult& result)
+- f · function · L434-L434 — std::ofstream f(result_path);
+- load_result · function · L438-L442 — inline TestResult load_result(const std::string& result_path)
+- f · function · L439-L439 — std::ifstream f(result_path);

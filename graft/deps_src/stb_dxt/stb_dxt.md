@@ -1,0 +1,31 @@
+# deps_src/stb_dxt/stb_dxt.h
+
+- rygCompress · function · L71-L71 — void rygCompress(unsigned char *dst, unsigned char *src, int w, int h, int isDxt5, int& compressed_size);
+- rygCompressYCoCg · function · L74-L74 — void rygCompressYCoCg( unsigned char *dst, unsigned char *src, int w, int h );
+- linearize · function · L75-L75 — void linearize( unsigned char * dst, const unsigned char * src, int n );
+- stb_compress_dxt_block · function · L77-L77 — void stb_compress_dxt_block(unsigned char *dest, const unsigned char *src, int alpha, int mode);
+- stb__Mul8Bit · function · L112-L116 — static int stb__Mul8Bit(int a, int b)
+- stb__From16Bit · function · L118-L128 — static void stb__From16Bit(unsigned char *out, unsigned short v)
+- stb__As16Bit · function · L130-L133 — static unsigned short stb__As16Bit(int r, int g, int b)
+- stb__Lerp13 · function · L136-L146 — static int stb__Lerp13(int a, int b)
+- stb__Lerp13RGB · function · L149-L154 — static void stb__Lerp13RGB(unsigned char *out, unsigned char *p1, unsigned char *p2)
+- stb__PrepareOptTable · function · L159-L185 — static void stb__PrepareOptTable(unsigned char *Table,const unsigned char *expand,int size)
+- stb__EvalColors · function · L187-L193 — static void stb__EvalColors(unsigned char *color,unsigned short c0,unsigned short c1)
+- stb__DitherBlock · function · L197-L221 — static void stb__DitherBlock(unsigned char *dest, unsigned char *block)
+- stb__MatchColorsBlock · function · L224-L338 — static unsigned int stb__MatchColorsBlock(unsigned char *block, unsigned char *color,int dither)
+- stb__OptimizeColorsBlock · function · L341-L496 — static void stb__OptimizeColorsBlock(unsigned char *block, unsigned short *pmax16, unsigned short *pmin16)
+- stb__sclamp · function · L498-L510 — inline static int stb__sclamp(float y, int p0, int p1)
+- stb__RefineBlock · function · L515-L592 — static int stb__RefineBlock(unsigned char *block, unsigned short *pmax16, unsigned short *pmin16, unsigned int mask)
+- stb__CompressColorBlock · function · L595-L672 — static void stb__CompressColorBlock(unsigned char *dest, unsigned char *block, int mode)
+- stb__CompressAlphaBlock · function · L675-L739 — static void stb__CompressAlphaBlock(unsigned char *dest,unsigned char *src,int mode)
+- stb__InitDXT · function · L742-L760 — static void stb__InitDXT()
+- stb_compress_dxt_block · function · L763-L779 — void stb_compress_dxt_block(unsigned char *dest, const unsigned char *src, int alpha, int mode)
+- imin · function · L781-L781 — int imin(int x, int y) { return (x < y) ? x : y; }
+- extractBlock · function · L787-L838 — static void extractBlock(const unsigned char *src, int x, int y,
+- clamp255 · function · L841-L846 — inline static unsigned char clamp255( int n )
+- rgbToYCoCgBlock · function · L849-L939 — void rgbToYCoCgBlock( unsigned char * dst, const unsigned char * src )
+- rygCompress · function · L942-L961 — void rygCompress(unsigned char *dst, unsigned char *src, int w, int h, int isDxt5, int& compressed_size)
+- rygCompressYCoCg · function · L963-L980 — void rygCompressYCoCg( unsigned char *dst, unsigned char *src, int w, int h )
+- stbgl__compress · function · L982-L1023 — static void stbgl__compress(unsigned char *p, unsigned char *rgba, int w, int h, int isDxt5)
+- linearize · function · L1025-L1036 — static inline unsigned char linearize(unsigned char inByte)
+- linearize · function · L1038-L1043 — void linearize( unsigned char * dst, const unsigned char * src, int n )

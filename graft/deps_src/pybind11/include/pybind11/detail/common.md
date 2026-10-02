@@ -1,0 +1,35 @@
+# deps_src/pybind11/include/pybind11/detail/common.h
+
+- PYBIND11_NAMESPACE_BEGIN · function · L517-L519 — PYBIND11_NAMESPACE_BEGIN(PYBIND11_NAMESPACE)
+- class · type · L529-L584 — enum class return_value_policy : uint8_t
+- log2 · function · L582-L582 — inline static constexpr int log2(size_t n, int k = 0)
+- size_in_ptrs · function · L587-L589 — inline static constexpr size_t size_in_ptrs(size_t s)
+- instance_simple_holder_in_ptrs · function · L597-L601 — constexpr size_t instance_simple_holder_in_ptrs()
+- nonsimple_values_and_holders · class · L607-L610 — struct nonsimple_values_and_holders
+- instance · class · L613-L619 — struct instance
+- allocate_layout · function · L659-L659 — void allocate_layout();
+- deallocate_layout · function · L662-L662 — void deallocate_layout();
+- get_value_and_holder · function · L667-L667 — value_and_holder get_value_and_holder(const type_info *find_type = nullptr,
+- next_power_of_2 · function · L765-L765 — constexpr size_t next_power_of_2(size_t N) { return N == 0 ? 1 : next_power_of_2(N >> 1) << 1; }
+- void_type · class · L890-L890 — struct void_type {};
+- constexpr_sum · function · L899-L901 — constexpr size_t constexpr_sum(Ts... ns)
+- constexpr_sum · function · L903-L903 — constexpr size_t constexpr_sum() { return 0; }
+- constexpr_sum · function · L905-L907 — constexpr size_t constexpr_sum(T n, Ts... ns)
+- first · function · L910-L912 — PYBIND11_NAMESPACE_BEGIN(constexpr_impl)
+- last · function · L918-L918 — constexpr int last(int /*i*/, int result) { return result; }
+- constexpr_first · function · L928-L930 — constexpr int constexpr_first()
+- set_error · function · L1077-L1077 — virtual void set_error() const = 0;
+- pybind11_fail · function · L1101-L1104 — [[noreturn]] PYBIND11_NOINLINE void pybind11_fail(const char *reason)
+- runtime_error · function · L1103-L1103 — throw std::runtime_error(reason);
+- pybind11_fail · function · L1105-L1108 — [[noreturn]] PYBIND11_NOINLINE void pybind11_fail(const std::string &reason)
+- runtime_error · function · L1107-L1107 — throw std::runtime_error(reason);
+- format · function · L1119-L1119 — static std::string format() { return std::string(1, c); }
+- value · function · L1135-L1144 — static constexpr int index
+- log2 · function · L1139-L1144 — + (std::is_integral<T>::value
+- format · function · L1152-L1152 — static std::string format() { return std::string(1, c); }
+- error_scope · class · L1164-L1167 — struct error_scope
+- error_scope · function · L1167-L1167 — error_scope(const error_scope &) = delete;
+- nodelete · class · L1173-L1195 — struct nodelete
+- overload_cast_impl · class · L1180-L1189 — struct overload_cast_impl
+- operator · function · L1193-L1193 — constexpr auto operator()(Return (Class::*pmf)(Args...) const, std::true_type) const noexcept
+- PYBIND11_NAMESPACE_END · function · L1348-L1348 — PYBIND11_NAMESPACE_END(PYBIND11_NAMESPACE)

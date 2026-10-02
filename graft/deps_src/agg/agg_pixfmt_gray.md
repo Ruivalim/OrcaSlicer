@@ -1,0 +1,86 @@
+# deps_src/agg/agg_pixfmt_gray.h
+
+- color_type · type · L37-L37 — typedef ColorT color_type;
+- value_type · type · L38-L38 — typedef typename color_type::value_type value_type;
+- color_type · type · L39-L39 — typedef typename color_type::calc_type calc_type;
+- color_type · type · L40-L40 — typedef typename color_type::long_type long_type;
+- blend_pix · function · L46-L50 — static AGG_INLINE void blend_pix(value_type* p,
+- blend_pix · function · L52-L56 — static AGG_INLINE void blend_pix(value_type* p,
+- color_type · type · L63-L63 — typedef ColorT color_type;
+- value_type · type · L64-L64 — typedef typename color_type::value_type value_type;
+- color_type · type · L65-L65 — typedef typename color_type::calc_type calc_type;
+- color_type · type · L66-L66 — typedef typename color_type::long_type long_type;
+- blend_pix · function · L71-L75 — static AGG_INLINE void blend_pix(value_type* p,
+- blend_pix · function · L77-L81 — static AGG_INLINE void blend_pix(value_type* p,
+- m_gamma · function · L92-L92 — apply_gamma_dir_gray(const GammaLut& gamma) : m_gamma(gamma) {}
+- operator · function · L94-L94 — AGG_INLINE void operator () (value_type* p)
+- m_gamma · function · L111-L111 — apply_gamma_inv_gray(const GammaLut& gamma) : m_gamma(gamma) {}
+- operator · function · L113-L113 — AGG_INLINE void operator () (value_type* p)
+- rbuf_type · type · L130-L130 — typedef RenBuf   rbuf_type;
+- rbuf_type · type · L131-L131 — typedef typename rbuf_type::row_data row_data;
+- blender_type · type · L132-L132 — typedef Blender  blender_type;
+- blender_type · type · L133-L133 — typedef typename blender_type::color_type color_type;
+- order_type · type · L134-L134 — typedef int                               order_type; // A fake one
+- value_type · type · L135-L135 — typedef typename color_type::value_type   value_type;
+- calc_type · type · L136-L136 — typedef typename color_type::calc_type    calc_type;
+- pixel_type · class · L144-L156 — struct pixel_type
+- get · function · L158-L161 — void get(value_type& v) const
+- get · function · L163-L163 — color_type get() const
+- next · function · L168-L168 — pixel_type* next()
+- next · function · L173-L173 — const pixel_type* next() const
+- advance · function · L178-L178 — pixel_type* advance(int n)
+- advance · function · L183-L183 — const pixel_type* advance(int n) const
+- blend_pix · function · L191-L193 — AGG_INLINE void blend_pix(pixel_type* p,
+- blend_pix · function · L199-L202 — AGG_INLINE void blend_pix(pixel_type* p, value_type v, value_type a)
+- blend_pix · function · L205-L208 — AGG_INLINE void blend_pix(pixel_type* p, const color_type& c, unsigned cover)
+- blend_pix · function · L211-L214 — AGG_INLINE void blend_pix(pixel_type* p, const color_type& c)
+- copy_or_blend_pix · function · L217-L230 — AGG_INLINE void copy_or_blend_pix(pixel_type* p, const color_type& c, unsigned cover)
+- copy_or_blend_pix · function · L233-L246 — AGG_INLINE void copy_or_blend_pix(pixel_type* p, const color_type& c)
+- pixfmt_alpha_blend_gray · function · L250-L251 — explicit pixfmt_alpha_blend_gray(rbuf_type& rb) :
+- attach · function · L253-L253 — void attach(rbuf_type& rb) { m_rbuf = &rb; }
+- r · function · L259-L259 — rect_i r(x1, y1, x2, y2);
+- width · function · L273-L273 — AGG_INLINE unsigned width()  const { return m_rbuf->width();  }
+- height · function · L274-L274 — AGG_INLINE unsigned height() const { return m_rbuf->height(); }
+- stride · function · L275-L275 — AGG_INLINE int      stride() const { return m_rbuf->stride(); }
+- row_ptr · function · L278-L278 — int8u* row_ptr(int y)       { return m_rbuf->row_ptr(y); }
+- row_ptr · function · L279-L279 — const int8u* row_ptr(int y) const { return m_rbuf->row_ptr(y); }
+- row · function · L280-L280 — row_data     row(int y)     const { return m_rbuf->row(y); }
+- pix_ptr · function · L283-L283 — AGG_INLINE int8u* pix_ptr(int x, int y)
+- pix_ptr · function · L288-L288 — AGG_INLINE const int8u* pix_ptr(int x, int y) const
+- pix_value_ptr · function · L294-L294 — AGG_INLINE pixel_type* pix_value_ptr(int x, int y, unsigned len)
+- pix_value_ptr · function · L300-L300 — AGG_INLINE const pixel_type* pix_value_ptr(int x, int y) const
+- pix_value_ptr · function · L307-L307 — AGG_INLINE static pixel_type* pix_value_ptr(void* p)
+- pix_value_ptr · function · L313-L313 — AGG_INLINE static const pixel_type* pix_value_ptr(const void* p)
+- write_plain_color · function · L319-L324 — AGG_INLINE static void write_plain_color(void* p, color_type c)
+- read_plain_color · function · L327-L330 — AGG_INLINE static color_type read_plain_color(const void* p)
+- make_pix · function · L333-L336 — AGG_INLINE static void make_pix(int8u* p, const color_type& c)
+- pixel · function · L339-L346 — AGG_INLINE color_type pixel(int x, int y) const
+- copy_pixel · function · L349-L352 — AGG_INLINE void copy_pixel(int x, int y, const color_type& c)
+- blend_pixel · function · L355-L358 — AGG_INLINE void blend_pixel(int x, int y, const color_type& c, int8u cover)
+- copy_hline · function · L361-L372 — AGG_INLINE void copy_hline(int x, int y,
+- copy_vline · function · L376-L385 — AGG_INLINE void copy_vline(int x, int y,
+- blend_hline · function · L389-L417 — void blend_hline(int x, int y,
+- blend_vline · function · L421-L445 — void blend_vline(int x, int y,
+- blend_solid_hspan · function · L449-L473 — void blend_solid_hspan(int x, int y,
+- blend_solid_vspan · function · L477-L500 — void blend_solid_vspan(int x, int y,
+- copy_color_hspan · function · L504-L516 — void copy_color_hspan(int x, int y,
+- copy_color_vspan · function · L520-L529 — void copy_color_vspan(int x, int y,
+- blend_color_hspan · function · L533-L571 — void blend_color_hspan(int x, int y,
+- blend_color_vspan · function · L575-L608 — void blend_color_vspan(int x, int y,
+- SrcPixelFormatRenderer · type · L669-L669 — typedef typename SrcPixelFormatRenderer::color_type src_color_type;
+- blender_gray8 · type · L716-L716 — typedef blender_gray<gray8> blender_gray8;
+- blender_sgray8 · type · L717-L717 — typedef blender_gray<sgray8> blender_sgray8;
+- blender_gray16 · type · L718-L718 — typedef blender_gray<gray16> blender_gray16;
+- blender_gray32 · type · L719-L719 — typedef blender_gray<gray32> blender_gray32;
+- blender_gray8_pre · type · L721-L721 — typedef blender_gray_pre<gray8> blender_gray8_pre;
+- blender_sgray8_pre · type · L722-L722 — typedef blender_gray_pre<sgray8> blender_sgray8_pre;
+- blender_gray16_pre · type · L723-L723 — typedef blender_gray_pre<gray16> blender_gray16_pre;
+- blender_gray32_pre · type · L724-L724 — typedef blender_gray_pre<gray32> blender_gray32_pre;
+- blender_gray8 · type · L726-L726 — typedef pixfmt_alpha_blend_gray<blender_gray8, rendering_buffer> pixfmt_gray8;
+- blender_sgray8 · type · L727-L727 — typedef pixfmt_alpha_blend_gray<blender_sgray8, rendering_buffer> pixfmt_sgray8;
+- blender_gray16 · type · L728-L728 — typedef pixfmt_alpha_blend_gray<blender_gray16, rendering_buffer> pixfmt_gray16;
+- blender_gray32 · type · L729-L729 — typedef pixfmt_alpha_blend_gray<blender_gray32, rendering_buffer> pixfmt_gray32;
+- blender_gray8_pre · type · L731-L731 — typedef pixfmt_alpha_blend_gray<blender_gray8_pre, rendering_buffer> pixfmt_gray8_pre;
+- blender_sgray8_pre · type · L732-L732 — typedef pixfmt_alpha_blend_gray<blender_sgray8_pre, rendering_buffer> pixfmt_sgray8_pre;
+- blender_gray16_pre · type · L733-L733 — typedef pixfmt_alpha_blend_gray<blender_gray16_pre, rendering_buffer> pixfmt_gray16_pre;
+- blender_gray32_pre · type · L734-L734 — typedef pixfmt_alpha_blend_gray<blender_gray32_pre, rendering_buffer> pixfmt_gray32_pre;

@@ -1,0 +1,37 @@
+# deps_src/libigl/igl/opengl/ViewerData.h
+
+- clear · function · L44-L44 — IGL_INLINE void clear();
+- set_face_based · function · L50-L50 — IGL_INLINE void set_face_based(bool newvalue);
+- set_mesh · function · L57-L57 — IGL_INLINE void set_mesh(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F);
+- set_vertices · function · L62-L62 — IGL_INLINE void set_vertices(const Eigen::MatrixXd& V);
+- set_normals · function · L68-L68 — IGL_INLINE void set_normals(const Eigen::MatrixXd& N);
+- set_visible · function · L72-L72 — IGL_INLINE void set_visible(bool value, unsigned int core_id = 1);
+- set_colors · function · L78-L78 — IGL_INLINE void set_colors(const Eigen::MatrixXd &C);
+- set_uv · function · L83-L83 — IGL_INLINE void set_uv(const Eigen::MatrixXd& UV);
+- set_uv · function · L89-L89 — IGL_INLINE void set_uv(const Eigen::MatrixXd& UV_V, const Eigen::MatrixXi& UV_F);
+- set_texture · function · L98-L102 — IGL_INLINE void set_texture(
+- set_texture · function · L104-L107 — IGL_INLINE void set_texture(
+- set_data · function · L116-L120 — IGL_INLINE void set_data(
+- set_data · function · L125-L126 — IGL_INLINE void set_data(const Eigen::VectorXd & D,
+- set_colormap · function · L133-L133 — IGL_INLINE void set_colormap(const Eigen::MatrixXd & CM);
+- set_points · function · L140-L142 — IGL_INLINE void set_points(
+- add_points · function · L148-L148 — IGL_INLINE void add_points(const Eigen::MatrixXd& P,  const Eigen::MatrixXd& C);
+- clear_points · function · L151-L151 — IGL_INLINE void clear_points();
+- set_edges · function · L159-L159 — IGL_INLINE void set_edges (const Eigen::MatrixXd& P, const Eigen::MatrixXi& E, const Eigen::MatrixXd& C);
+- add_edges · function · L167-L167 — IGL_INLINE void add_edges (const Eigen::MatrixXd& P1, const Eigen::MatrixXd& P2, const Eigen::MatrixXd& C);
+- set_edges_from_vector_field · function · L173-L176 — IGL_INLINE void set_edges_from_vector_field(
+- clear_edges · function · L179-L179 — IGL_INLINE void clear_edges();
+- set_labels · function · L185-L185 — IGL_INLINE void set_labels (const Eigen::MatrixXd& P,  const std::vector<std::string>& str);
+- add_label · function · L189-L189 — IGL_INLINE void add_label (const Eigen::VectorXd& P,  const std::string& str);
+- clear_labels · function · L192-L192 — IGL_INLINE void clear_labels ();
+- compute_normals · function · L195-L195 — IGL_INLINE void compute_normals();
+- uniform_colors · function · L201-L204 — IGL_INLINE void uniform_colors(
+- uniform_colors · function · L206-L209 — IGL_INLINE void uniform_colors(
+- normal_matcap · function · L212-L212 — IGL_INLINE void normal_matcap();
+- grid_texture · function · L215-L215 — IGL_INLINE void grid_texture();
+- copy_options · function · L220-L220 — IGL_INLINE void copy_options(const ViewerCore &from, const ViewerCore &to);
+- update_labels · function · L345-L349 — IGL_INLINE void update_labels(
+- updateGL · function · L354-L357 — IGL_INLINE void updateGL(
+- serialization · function · L370-L409 — inline void serialization(bool s, igl::opengl::ViewerData& obj, std::vector<char>& buffer)
+- serialize · function · L411-L414 — inline void serialize(const igl::opengl::ViewerData& obj, std::vector<char>& buffer)
+- deserialize · function · L416-L420 — inline void deserialize(igl::opengl::ViewerData& obj, const std::vector<char>& buffer)

@@ -1,0 +1,23 @@
+# src/slic3r/GUI/WipeTowerDialog.hpp
+
+- RammingPanel · class · L12-L28 — class RammingPanel : public wxPanel
+- RammingPanel · function · L14-L14 — RammingPanel(wxWindow* parent);
+- RammingPanel · function · L15-L15 — RammingPanel(wxWindow* parent,const std::string& data);
+- get_parameters · function · L16-L16 — std::string get_parameters();
+- line_parameters_changed · function · L27-L27 — void line_parameters_changed();
+- RammingDialog · class · L31-L38 — class RammingDialog : public wxDialog
+- RammingDialog · function · L33-L33 — RammingDialog(wxWindow* parent,const std::string& parameters);
+- get_parameters · function · L34-L34 — std::string get_parameters() { return m_output_data; }
+- is_flush_config_modified · function · L42-L42 — bool is_flush_config_modified();
+- open_flushing_dialog · function · L43-L43 — void open_flushing_dialog(wxEvtHandler *parent, const wxEvent &event);
+- WipingDialog · class · L45-L72 — class WipingDialog : public wxDialog
+- WipingDialog · function · L50-L50 — WipingDialog(wxWindow* parent, const int max_flush_volume = Slic3r::g_max_flush_volume);
+- CalcFlushingVolumes · function · L51-L51 — static VolumeMatrix CalcFlushingVolumes(int extruder_id);
+- GetFlattenMatrix · function · L52-L52 — std::vector<double> GetFlattenMatrix()const;
+- GetMultipliers · function · L53-L53 — std::vector<double> GetMultipliers()const;
+- GetSubmitFlag · function · L54-L54 — bool GetSubmitFlag() const { return m_submit_flag; }
+- CalcFlushingVolume · function · L57-L57 — static int CalcFlushingVolume(const wxColour& from_, const wxColour& to_, int min_flush_volume, int nozzle_flush_dataset);
+- BuildTableObjStr · function · L58-L58 — wxString BuildTableObjStr();
+- BuildTextObjStr · function · L59-L59 — wxString BuildTextObjStr(bool multi_language = true);
+- StoreFlushData · function · L60-L60 — void StoreFlushData(int extruder_num, const std::vector<std::vector<double>>& flush_volume_vecs, const std::vector<double>& flush_multipliers);
+- ExpandToFullMatrix · function · L62-L62 — std::vector<double> ExpandToFullMatrix(const std::vector<double>& sub_matrix, int nozzle_idx) const;

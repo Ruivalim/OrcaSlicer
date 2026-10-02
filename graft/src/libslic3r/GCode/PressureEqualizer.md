@@ -1,0 +1,37 @@
+# src/libslic3r/GCode/PressureEqualizer.hpp
+
+- GCodeG1Formatter · class · L13-L13 — class GCodeG1Formatter;
+- PressureEqualizer · class · L20-L207 — class PressureEqualizer
+- PressureEqualizer · function · L23-L23 — PressureEqualizer() = delete;
+- PressureEqualizer · function · L24-L24 — explicit PressureEqualizer(const Slic3r::GCodeConfig &config);
+- process_layer · function · L30-L30 — LayerResult process_layer(LayerResult &&input);
+- process_layer · function · L33-L33 — void process_layer(const std::string &gcode);
+- Statistics · class · L36-L56 — struct Statistics
+- reset · function · L38-L44 — void reset()
+- update · function · L45-L51 — void update(float volumetric_extrusion_rate, float length)
+- ExtrusionRateSlope · class · L63-L66 — struct ExtrusionRateSlope
+- GCodeLineType · type · L94-L103 — enum GCodeLineType
+- GCodeLine · class · L105-L176 — struct GCodeLine
+- GCodeLine · function · L107-L115 — GCodeLine() :
+- moving_xy · function · L117-L117 — bool        moving_xy()     const { return fabs(pos_end[0] - pos_start[0]) > 0.f || fabs(pos_end[1] - pos_start[1]) > 0.f; }
+- moving_z · function · L118-L118 — bool        moving_z ()     const { return fabs(pos_end[2] - pos_start[2]) > 0.f; }
+- extruding · function · L119-L119 — bool        extruding()     const { return moving_xy() && pos_end[3] > pos_start[3]; }
+- retracting · function · L120-L120 — bool        retracting()    const { return pos_end[3] < pos_start[3]; }
+- deretracting · function · L121-L121 — bool        deretracting()  const { return ! moving_xy() && pos_end[3] > pos_start[3]; }
+- dist_xy2 · function · L123-L123 — float       dist_xy2()      const { return (pos_end[0] - pos_start[0]) * (pos_end[0] - pos_start[0]) + (pos_end[1] - pos_start[1]) * (pos_end[1] - pos_start[1]); }
+- dist_xyz2 · function · L124-L124 — float       dist_xyz2()     const { return (pos_end[0] - pos_start[0]) * (pos_end[0] - pos_start[0]) + (pos_end[1] - pos_start[1]) * (pos_end[1] - pos_start[1]) + (pos_end[2] - pos_start[2]) * (pos_end[2] - pos_start[2]); }
+- dist_xy · function · L125-L125 — float       dist_xy()       const { return sqrt(dist_xy2()); }
+- dist_xyz · function · L126-L126 — float       dist_xyz()      const { return sqrt(dist_xyz2()); }
+- dist_e · function · L127-L127 — float       dist_e()        const { return fabs(pos_end[3] - pos_start[3]); }
+- feedrate · function · L129-L129 — float       feedrate()      const { return pos_end[4]; }
+- time · function · L130-L130 — float       time()          const { return dist_xyz() / feedrate(); }
+- time_inv · function · L131-L131 — float       time_inv()      const { return feedrate() / dist_xyz(); }
+- volumetric_correction_avg · function · L132-L138 — float       volumetric_correction_avg() const
+- process_line · function · L188-L188 — bool process_line(const char *line, const char *line_end, GCodeLine &buf);
+- advance_segment_beyond_small_gap · function · L189-L189 — long advance_segment_beyond_small_gap(long idx_cur_pos);
+- output_gcode_line · function · L190-L190 — void output_gcode_line(size_t line_idx);
+- adjust_volumetric_rate · function · L194-L194 — void adjust_volumetric_rate(size_t first_line_idx, size_t last_line_idx);
+- push_to_output · function · L197-L197 — inline void push_to_output(GCodeG1Formatter &formatter);
+- push_to_output · function · L198-L198 — inline void push_to_output(const std::string &text, bool add_eol);
+- push_to_output · function · L199-L199 — inline void push_to_output(const char *text, size_t len, bool add_eol = true);
+- push_line_to_output · function · L201-L201 — void push_line_to_output(size_t line_idx, float new_feedrate, const char *comment);

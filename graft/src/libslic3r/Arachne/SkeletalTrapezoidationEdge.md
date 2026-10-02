@@ -1,0 +1,23 @@
+# src/libslic3r/Arachne/SkeletalTrapezoidationEdge.hpp
+
+- SkeletalTrapezoidationEdge · class · L16-L119 — class SkeletalTrapezoidationEdge
+- Central · type · L19-L19 — enum class Central { UNKNOWN = -1, NO, YES };
+- TransitionMiddle · class · L25-L34 — struct TransitionMiddle
+- TransitionMiddle · function · L30-L33 — TransitionMiddle(coord_t pos, int lower_bead_count, coord_t feature_radius)
+- TransitionEnd · class · L39-L47 — struct TransitionEnd
+- TransitionEnd · function · L44-L46 — TransitionEnd(coord_t pos, int lower_bead_count, bool is_lower_end)
+- EdgeType · type · L49-L54 — enum class EdgeType
+- SkeletalTrapezoidationEdge · function · L57-L57 — SkeletalTrapezoidationEdge() : SkeletalTrapezoidationEdge(EdgeType::NORMAL) {}
+- SkeletalTrapezoidationEdge · function · L58-L58 — SkeletalTrapezoidationEdge(const EdgeType &type) : type(type), is_central(Central::UNKNOWN) {}
+- isCentral · function · L60-L64 — bool isCentral() const
+- setIsCentral · function · L65-L68 — void setIsCentral(bool b)
+- centralIsSet · function · L69-L72 — bool centralIsSet() const
+- hasTransitions · function · L74-L77 — bool hasTransitions(bool ignore_empty = false) const
+- setTransitions · function · L78-L81 — void setTransitions(std::shared_ptr<std::list<TransitionMiddle>> storage)
+- getTransitions · function · L82-L85 — std::shared_ptr<std::list<TransitionMiddle>> getTransitions()
+- hasTransitionEnds · function · L87-L90 — bool hasTransitionEnds(bool ignore_empty = false) const
+- setTransitionEnds · function · L91-L94 — void setTransitionEnds(std::shared_ptr<std::list<TransitionEnd>> storage)
+- getTransitionEnds · function · L95-L98 — std::shared_ptr<std::list<TransitionEnd>> getTransitionEnds()
+- hasExtrusionJunctions · function · L100-L103 — bool hasExtrusionJunctions(bool ignore_empty = false) const
+- setExtrusionJunctions · function · L104-L107 — void setExtrusionJunctions(std::shared_ptr<LineJunctions> storage)
+- getExtrusionJunctions · function · L108-L111 — std::shared_ptr<LineJunctions> getExtrusionJunctions()

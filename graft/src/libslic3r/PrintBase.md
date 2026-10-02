@@ -1,0 +1,136 @@
+# src/libslic3r/PrintBase.hpp
+
+- StringExceptionType · type · L19-L27 — enum StringExceptionType
+- StringObjectException · class · L30-L38 — struct StringObjectException
+- CanceledException · class · L40-L44 — class CanceledException : public std::exception
+- what · function · L43-L43 — const char* what() const throw() { return "Background processing has been canceled"; }
+- PrintStateBase · class · L46-L105 — class PrintStateBase
+- State · type · L48-L52 — enum State
+- WarningLevel · type · L54-L57 — enum class WarningLevel
+- SlicingNotificationType · type · L59-L66 — enum SlicingNotificationType
+- TimeStamp · type · L68-L68 — typedef size_t TimeStamp;
+- StateWithTimeStamp · class · L71-L76 — struct StateWithTimeStamp
+- StateWithTimeStamp · function · L73-L73 — StateWithTimeStamp() : state(INVALID), timestamp(0) {}
+- Warning · class · L78-L92 — struct Warning
+- StateWithWarnings · class · L94-L98 — struct StateWithWarnings : public StateWithTimeStamp
+- mark_warnings_non_current · function · L96-L96 — void 	mark_warnings_non_current() { for (auto &w : warnings) w.current = false; }
+- PrintState · class · L108-L330 — template <class StepType, size_t COUNT>
+- PrintState · function · L112-L112 — PrintState() {}
+- state_with_timestamp · function · L114-L118 — StateWithTimeStamp state_with_timestamp(StepType step, std::mutex &mtx) const
+- lock · function · L115-L115 — std::scoped_lock<std::mutex> lock(mtx);
+- state_with_warnings · function · L120-L124 — StateWithWarnings state_with_warnings(StepType step, std::mutex &mtx) const
+- lock · function · L121-L121 — std::scoped_lock<std::mutex> lock(mtx);
+- is_started · function · L126-L128 — bool is_started(StepType step, std::mutex &mtx) const
+- is_done · function · L130-L132 — bool is_done(StepType step, std::mutex &mtx) const
+- state_with_timestamp_unguarded · function · L134-L136 — StateWithTimeStamp state_with_timestamp_unguarded(StepType step) const
+- is_started_unguarded · function · L138-L140 — bool is_started_unguarded(StepType step) const
+- is_done_unguarded · function · L142-L144 — bool is_done_unguarded(StepType step) const
+- set_started · function · L150-L176 — template<typename ThrowIfCanceled>
+- lock · function · L152-L152 — std::scoped_lock<std::mutex> lock(mtx);
+- set_done · function · L183-L202 — template<typename ThrowIfCanceled>
+- lock · function · L185-L185 — std::scoped_lock<std::mutex> lock(mtx);
+- invalidate · function · L208-L231 — template<typename CancelationCallback>
+- invalidate_multiple · function · L233-L262 — template<typename CancelationCallback, typename StepTypeIterator>
+- invalidate_all · function · L268-L288 — template<typename CancelationCallback>
+- active_step_add_warning · function · L296-L322 — std::pair<StepType, bool> active_step_add_warning(PrintStateBase::WarningLevel warning_level, const std::string &message, int message_id, std::mutex &mtx)
+- lock · function · L298-L298 — std::scoped_lock<std::mutex> lock(mtx);
+- retval · function · L302-L302 — std::pair<StepType, bool> retval(static_cast<StepType>(m_step_active), true);
+- PrintBase · class · L332-L332 — class PrintBase;
+- PrintObjectBase · class · L334-L354 — class PrintObjectBase : public ObjectBase
+- model_object · function · L337-L337 — const ModelObject*      model_object() const    { return m_model_object; }
+- model_object · function · L338-L338 — ModelObject*            model_object()          { return m_model_object; }
+- PrintObjectBase · function · L341-L341 — PrintObjectBase(ModelObject *model_object) : m_model_object(model_object) {}
+- state_mutex · function · L344-L344 — static std::mutex&                  state_mutex(PrintBase *print);
+- cancel_callback · function · L345-L345 — static std::function<void()>        cancel_callback(PrintBase *print);
+- status_update_warnings · function · L349-L350 — void status_update_warnings(PrintBase *print, int step, PrintStateBase::WarningLevel warning_level,
+- emptylayer_update_msg · function · L351-L351 — void emptylayer_update_msg(PrintBase* print, int type, const std::string& message, bool overwrite);
+- PrintTryCancel · class · L358-L368 — class PrintTryCancel
+- PrintTryCancel · function · L365-L365 — PrintTryCancel() = delete;
+- PrintTryCancel · function · L366-L366 — PrintTryCancel(const PrintBase *print) : m_print(print) {}
+- PrintBase · class · L381-L579 — class PrintBase : public ObjectBase
+- PrintBase · function · L384-L384 — PrintBase() : m_placeholder_parser(&m_full_print_config) { this->restart(); }
+- technology · function · L387-L387 — virtual PrinterTechnology technology() const noexcept = 0;
+- clear · function · L390-L390 — virtual void            clear() = 0;
+- empty · function · L393-L393 — virtual bool            empty() const = 0;
+- print_object_ids · function · L395-L395 — virtual std::vector<ObjectID> print_object_ids() const = 0;
+- validate · function · L399-L399 — virtual StringObjectException validate(std::vector<StringObjectException> *warnings = nullptr, Polygons* collison_polygons = nullptr, std::vector<std::pair<Polygon, float>>* height_polygons = nullptr) const { return {}; }
+- ApplyStatus · type · L401-L409 — enum ApplyStatus
+- apply · function · L410-L410 — virtual ApplyStatus     apply(const Model &model, DynamicPrintConfig config, bool extruder_applied = false) = 0;
+- model · function · L411-L411 — const Model&            model() const { return m_model; }
+- TaskParams · class · L413-L423 — struct TaskParams
+- TaskParams · function · L414-L414 — TaskParams() : single_model_object(0), single_model_instance_only(false), to_object_step(-1), to_print_step(-1) {}
+- set_task · function · L425-L425 — virtual void            set_task(const TaskParams &params) {}
+- process · function · L427-L427 — virtual void            process(long long *time_cost_with_cache = nullptr, bool use_cache = false) = 0;
+- export_cached_data · function · L428-L428 — virtual int             export_cached_data(const std::string& dir_path, bool with_space=false) { return 0;}
+- load_cached_data · function · L429-L429 — virtual int            load_cached_data(const std::string& directory) { return 0;}
+- finalize · function · L432-L432 — virtual void            finalize() {}
+- SlicingStatus · class · L434-L472 — struct SlicingStatus
+- SlicingStatus · function · L435-L439 — SlicingStatus(int percent, const std::string &text, unsigned int flags = 0, int warning_step = -1,
+- SlicingStatus · function · L440-L444 — SlicingStatus(const PrintBase &print, int warning_step, const std::string& text,
+- SlicingStatus · function · L445-L449 — SlicingStatus(const PrintObjectBase &print_object, int warning_step, const std::string& text,
+- FlagBits · type · L453-L461 — enum FlagBits
+- status_callback_type · type · L473-L473 — typedef std::function<void(const SlicingStatus&)>  status_callback_type;
+- set_status_default · function · L475-L475 — void                    set_status_default() { m_status_callback = nullptr; }
+- set_status_silent · function · L477-L477 — void                    set_status_silent() { m_status_callback = [](const SlicingStatus&){}; }
+- set_status_callback · function · L479-L479 — void                    set_status_callback(status_callback_type cb) { m_status_callback = cb; }
+- set_status · function · L481-L481 — void                    set_status(int percent, const std::string &message, unsigned int flags = SlicingStatus::DEFAULT, int warning_step = -1) const;
+- cancel_callback_type · type · L483-L483 — typedef std::function<void()>  cancel_callback_type;
+- set_cancel_callback · function · L487-L487 — void                       set_cancel_callback(cancel_callback_type cancel_callback) { m_cancel_callback = cancel_callback; }
+- CancelStatus · type · L489-L496 — enum CancelStatus
+- cancel_status · function · L497-L497 — CancelStatus               cancel_status() const { return m_cancel_status.load(std::memory_order_acquire); }
+- canceled · function · L499-L499 — bool                       canceled() const { return m_cancel_status.load(std::memory_order_acquire) != NOT_CANCELED; }
+- cancel · function · L501-L501 — void                       cancel() { m_cancel_status = CANCELED_BY_USER; }
+- cancel_internal · function · L502-L502 — void                       cancel_internal() { m_cancel_status = CANCELED_INTERNAL; }
+- restart · function · L504-L504 — void                       restart() { m_cancel_status = NOT_CANCELED; }
+- finished · function · L506-L506 — virtual bool               finished() const = 0;
+- placeholder_parser · function · L508-L508 — const PlaceholderParser&   placeholder_parser() const { return m_placeholder_parser; }
+- full_print_config · function · L509-L509 — const DynamicPrintConfig&  full_print_config() const { return m_full_print_config; }
+- output_filename · function · L511-L511 — virtual std::string        output_filename(const std::string &filename_base = std::string()) const = 0;
+- output_filepath · function · L514-L514 — std::string                output_filepath(const std::string &path, const std::string &filename_base = std::string()) const;
+- get_plate_index · function · L517-L517 — int get_plate_index() const { return m_plate_index; }
+- set_plate_index · function · L518-L518 — void set_plate_index(int index) { m_plate_index = index; }
+- get_no_check_flag · function · L519-L519 — bool get_no_check_flag() const { return m_no_check; }
+- set_no_check_flag · function · L520-L520 — void set_no_check_flag(bool no_check) { m_no_check = no_check; }
+- get_plate_name · function · L523-L523 — std::string get_plate_name() const { return m_plate_name; }
+- set_plate_name · function · L524-L524 — void set_plate_name(const std::string& name) { m_plate_name = name; }
+- state_mutex · function · L529-L529 — std::mutex&            state_mutex() const { return m_state_mutex; }
+- cancel_callback · function · L530-L530 — std::function<void()>  cancel_callback() { return m_cancel_callback; }
+- call_cancel_callback · function · L531-L531 — void				   call_cancel_callback() { m_cancel_callback(); }
+- status_update_warnings · function · L535-L536 — void 				   status_update_warnings(int step, PrintStateBase::WarningLevel warning_level,
+- status_update_warnings · function · L538-L539 — void                   status_update_warnings(int step, PrintStateBase::WarningLevel warning_level,
+- throw_if_canceled · function · L543-L543 — void                   throw_if_canceled() const { if (m_cancel_status.load(std::memory_order_acquire)) throw CanceledException(); }
+- make_try_cancel · function · L545-L545 — PrintTryCancel         make_try_cancel() const { return PrintTryCancel(this); }
+- output_filename · function · L548-L548 — std::string            output_filename(const std::string &format, const std::string &default_ext, const std::string &filename_base, const DynamicConfig *config_override = nullptr) const;
+- update_object_placeholders · function · L550-L550 — void                   update_object_placeholders(DynamicConfig &config, const std::string &default_ext) const;
+- PrintBaseWithState · class · L581-L622 — template<typename PrintStepEnum, const size_t COUNT>
+- is_step_done · function · L585-L585 — bool            is_step_done(PrintStepEnum step) const { return m_state.is_done(step, this->state_mutex()); }
+- step_state_with_timestamp · function · L586-L586 — PrintStateBase::StateWithTimeStamp step_state_with_timestamp(PrintStepEnum step) const { return m_state.state_with_timestamp(step, this->state_mutex()); }
+- step_state_with_warnings · function · L587-L587 — PrintStateBase::StateWithWarnings  step_state_with_warnings(PrintStepEnum step) const { return m_state.state_with_warnings(step, this->state_mutex()); }
+- active_step_add_warning · function · L590-L597 — void            active_step_add_warning(PrintStateBase::WarningLevel warning_level, const std::string &message,
+- set_started · function · L599-L599 — bool            set_started(PrintStepEnum step) { return m_state.set_started(step, this->state_mutex(), [this](){ this->throw_if_canceled(); }); }
+- set_done · function · L600-L605 — PrintStateBase::TimeStamp set_done(PrintStepEnum step)
+- invalidate_step · function · L606-L607 — bool            invalidate_step(PrintStepEnum step)
+- invalidate_steps · function · L608-L610 — template<typename StepTypeIterator>
+- invalidate_steps · function · L611-L612 — bool            invalidate_steps(std::initializer_list<PrintStepEnum> il)
+- invalidate_all_steps · function · L613-L614 — bool            invalidate_all_steps()
+- is_step_started_unguarded · function · L616-L616 — bool            is_step_started_unguarded(PrintStepEnum step) const { return m_state.is_started_unguarded(step); }
+- is_step_done_unguarded · function · L617-L617 — bool            is_step_done_unguarded(PrintStepEnum step) const { return m_state.is_done_unguarded(step); }
+- PrintObjectBaseWithState · class · L624-L682 — template<typename PrintType, typename PrintObjectStepEnum, const size_t COUNT>
+- print · function · L628-L628 — PrintType*       print()         { return m_print; }
+- print · function · L629-L629 — const PrintType* print() const   { return m_print; }
+- PrintObjectState · type · L631-L631 — typedef PrintState<PrintObjectStepEnum, COUNT> PrintObjectState;
+- is_step_done · function · L632-L632 — bool            is_step_done(PrintObjectStepEnum step) const { return m_state.is_done(step, PrintObjectBase::state_mutex(m_print)); }
+- step_state_with_timestamp · function · L633-L633 — PrintStateBase::StateWithTimeStamp step_state_with_timestamp(PrintObjectStepEnum step) const { return m_state.state_with_timestamp(step, PrintObjectBase::state_mutex(m_print)); }
+- step_state_with_warnings · function · L634-L634 — PrintStateBase::StateWithWarnings  step_state_with_warnings(PrintObjectStepEnum step) const { return m_state.state_with_warnings(step, PrintObjectBase::state_mutex(m_print)); }
+- PrintObjectBaseWithState · function · L637-L637 — PrintObjectBaseWithState(PrintType *print, ModelObject *model_object) : PrintObjectBase(model_object), m_print(print) {}
+- set_started · function · L639-L640 — bool            set_started(PrintObjectStepEnum step)
+- set_done · function · L641-L646 — PrintStateBase::TimeStamp set_done(PrintObjectStepEnum step)
+- invalidate_step · function · L648-L649 — bool            invalidate_step(PrintObjectStepEnum step)
+- invalidate_steps · function · L650-L652 — template<typename StepTypeIterator>
+- invalidate_steps · function · L653-L654 — bool            invalidate_steps(std::initializer_list<PrintObjectStepEnum> il)
+- invalidate_all_steps · function · L655-L656 — bool            invalidate_all_steps()
+- invalidate_all_steps_without_cancel · function · L657-L658 — bool            invalidate_all_steps_without_cancel()
+- is_step_started_unguarded · function · L660-L660 — bool            is_step_started_unguarded(PrintObjectStepEnum step) const { return m_state.is_started_unguarded(step); }
+- is_step_done_unguarded · function · L661-L661 — bool            is_step_done_unguarded(PrintObjectStepEnum step) const { return m_state.is_done_unguarded(step); }
+- active_step_add_warning · function · L665-L670 — void            active_step_add_warning(PrintStateBase::WarningLevel warning_level, const std::string &message,
+- throw_if_canceled · function · L675-L675 — void            throw_if_canceled() { if (m_print->canceled()) throw CanceledException(); }

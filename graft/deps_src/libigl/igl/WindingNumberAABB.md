@@ -1,0 +1,30 @@
+# deps_src/libigl/igl/WindingNumberAABB.h
+
+- SplitMethod · type · L35-L40 — enum SplitMethod
+- split_method · function · L44-L44 — split_method(MEDIAN_ON_LONGEST_AXIS)
+- set_mesh · function · L62-L64 — inline void set_mesh(
+- init · function · L65-L65 — inline void init();
+- inside · function · L66-L66 — inline bool inside(const Point & p) const;
+- grow · function · L67-L67 — inline virtual void grow();
+- compute_min_max_corners · function · L69-L69 — inline void compute_min_max_corners();
+- max_abs_winding_number · function · L70-L70 — inline Scalar max_abs_winding_number(const Point & p) const;
+- max_simple_abs_winding_number · function · L71-L71 — inline Scalar max_simple_abs_winding_number(const Point & p) const;
+- set_mesh · function · L96-L98 — inline void igl::WindingNumberAABB<Scalar,Index>::set_mesh(
+- init · function · L109-L109 — inline void igl::WindingNumberAABB<Scalar,Index>::init()
+- grow · function · L150-L150 — inline void igl::WindingNumberAABB<Scalar,Index>::grow()
+- cols · function · L225-L225 — MatrixXF leftF(lefts,  (this->F).cols());
+- leftF · function · L225-L225 — MatrixXF leftF(lefts,  (this->F).cols());
+- cols · function · L226-L226 — MatrixXF rightF(rights,(this->F).cols());
+- rightF · function · L226-L226 — MatrixXF rightF(rights,(this->F).cols());
+- assert · function · L256-L258 — inline bool igl::WindingNumberAABB<Scalar,Index>::inside(const Point & p) const
+- inside · function · L256-L256 — inline bool igl::WindingNumberAABB<Scalar,Index>::inside(const Point & p) const
+- size · function · L258-L258 — assert(p.size() == max_corner.size());
+- compute_min_max_corners · function · L274-L274 — inline void igl::WindingNumberAABB<Scalar,Index>::compute_min_max_corners()
+- max_abs_winding_number · function · L318-L318 — igl::WindingNumberAABB<Scalar,Index>::max_abs_winding_number(const Point & p) const
+- max_simple_abs_winding_number · function · L333-L334 — igl::WindingNumberAABB<Scalar,Index>::max_simple_abs_winding_number(
+- Scalar · type · L348-L350 — typedef
+- Index · type · L351-L353 — typedef
+- BV · function · L354-L354 — MatrixXS BV((int)(1<<3),3);
+- cols · function · L383-L383 — MatrixXF PBF(BF.rows(),BF.cols());
+- PBF · function · L383-L383 — MatrixXF PBF(BF.rows(),BF.cols());
+- rows · function · L383-L383 — MatrixXF PBF(BF.rows(),BF.cols());

@@ -1,0 +1,33 @@
+# src/slic3r/GUI/DeviceTab/uiAMSBestPositionPopup.hpp
+
+- UiStyledAMSPanel · class · L22-L47 — class UiStyledAMSPanel : public wxPanel
+- UiStyledAMSPanel · function · L25-L33 — UiStyledAMSPanel(wxWindow* parent,
+- OnPaint · function · L36-L36 — void OnPaint(wxPaintEvent& event);
+- UiStyledSwitchPanel · class · L49-L103 — class UiStyledSwitchPanel : public wxPanel
+- UiStyledSwitchPanel · function · L52-L61 — UiStyledSwitchPanel(wxWindow* parent,
+- AddToLeft · function · L64-L64 — void AddToLeft(wxWindow* window, int proportion = 0, int flag = wxEXPAND, int border = 0);
+- AddToRight · function · L65-L65 — void AddToRight(wxWindow* window, int proportion = 0, int flag = wxEXPAND, int border = 0);
+- Clear · function · L66-L66 — void Clear(bool deleteWindows);
+- GetLeftSizer · function · L68-L68 — wxSizer* GetLeftSizer() { return m_leftSizer; }
+- GetRightSizer · function · L69-L69 — wxSizer* GetRightSizer() { return m_rightSizer; }
+- LayoutAndFit · function · L70-L83 — void LayoutAndFit()
+- OnPaint · function · L85-L85 — void OnPaint(wxPaintEvent& event);
+- DataStatusType · type · L106-L110 — enum DataStatusType
+- UiAMSSlot · class · L112-L151 — class UiAMSSlot : public wxPanel
+- UiAMSSlot · function · L115-L123 — UiAMSSlot(wxWindow* parent,
+- OnPaint · function · L127-L127 — void OnPaint(wxPaintEvent&);
+- DrawRectangle · function · L128-L128 — void DrawRectangle(wxPaintDC& dc, const wxSize& cli);
+- DrawLine · function · L129-L129 — void DrawLine(wxPaintDC& dc, const wxSize& cli);
+- LightenColour · function · L130-L130 — wxColour LightenColour(const wxColour& original);
+- IsDark · function · L131-L135 — bool IsDark(const wxColour& c)
+- DataAmsSlotInfo · class · L153-L161 — struct DataAmsSlotInfo
+- UiAMS · class · L163-L176 — class UiAMS : public UiStyledAMSPanel
+- UiAMS · function · L166-L170 — UiAMS(wxWindow* parent,
+- init · function · L172-L172 — void init();
+- DataStatusParam · class · L179-L184 — struct DataStatusParam
+- ReselectMachineDialog · class · L186-L221 — class ReselectMachineDialog : public wxDialog
+- ReselectMachineDialog · function · L189-L189 — ReselectMachineDialog(wxWindow* parent);
+- UpdateInfo · function · L191-L194 — void UpdateInfo(MachineObject* obj,
+- CaculateSwitcherDistribution · function · L197-L197 — int CaculateSwitcherDistribution(MachineObject* obj, const std::map<int, int>&  best_pos_map, const std::vector<FilamentInfo>& ams_mapping);
+- getTrayID · function · L198-L198 — wxString getTrayID(MachineObject* obj, const std::string& amsID, const std::string& slotID);
+- OnRefreshButton · function · L199-L199 — void OnRefreshButton(wxCommandEvent& event);

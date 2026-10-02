@@ -1,0 +1,80 @@
+# src/slic3r/GUI/Gizmos/GLGizmoEmboss.hpp
+
+- wxFont · class · L24-L24 — class wxFont;
+- AppConfig · class · L26-L26 — class AppConfig;
+- GLVolume · class · L27-L27 — class GLVolume;
+- ModelVolumeType · type · L28-L28 — enum class ModelVolumeType : int;
+- GLGizmoEmboss · class · L32-L238 — class GLGizmoEmboss : public GLGizmoBase
+- GLGizmoEmboss · function · L35-L35 — explicit GLGizmoEmboss(GLCanvas3D &parent, const std::string &icon_filename, unsigned int sprite_id);
+- create_volume · function · L42-L42 — bool create_volume(ModelVolumeType volume_type, const Vec2d &mouse_pos);
+- create_volume · function · L48-L48 — bool create_volume(ModelVolumeType volume_type);
+- on_shortcut_key · function · L53-L53 — void on_shortcut_key();
+- do_mirror · function · L61-L61 — bool do_mirror(size_t axis);
+- re_emboss · function · L69-L69 — static bool re_emboss(const ModelVolume &text, std::shared_ptr<std::atomic<bool>> job_cancel = nullptr);
+- on_init · function · L72-L72 — bool on_init() override;
+- on_get_name · function · L73-L73 — std::string on_get_name() const override;
+- on_render · function · L74-L74 — void on_render() override;
+- on_register_raycasters_for_picking · function · L75-L75 — void on_register_raycasters_for_picking() override;
+- on_unregister_raycasters_for_picking · function · L76-L76 — void on_unregister_raycasters_for_picking() override;
+- on_render_input_window · function · L77-L77 — void on_render_input_window(float x, float y, float bottom_limit) override;
+- on_set_state · function · L78-L78 — void on_set_state() override;
+- data_changed · function · L79-L79 — void data_changed(bool is_serializing) override; // selection changed
+- on_set_hover_id · function · L80-L80 — void on_set_hover_id() override{ m_rotate_gizmo.set_hover_id(m_hover_id); }
+- on_enable_grabber · function · L81-L81 — void on_enable_grabber(unsigned int id) override { m_rotate_gizmo.enable_grabber(); }
+- on_disable_grabber · function · L82-L82 — void on_disable_grabber(unsigned int id) override { m_rotate_gizmo.disable_grabber(); }
+- on_start_dragging · function · L83-L83 — void on_start_dragging() override;
+- on_stop_dragging · function · L84-L84 — void on_stop_dragging() override;
+- on_dragging · function · L85-L85 — void on_dragging(const UpdateData &data) override;
+- push_button_style · function · L86-L86 — void push_button_style(bool pressed);
+- pop_button_style · function · L87-L87 — void pop_button_style();
+- on_mouse · function · L94-L94 — bool on_mouse(const wxMouseEvent &mouse_event) override;
+- wants_enter_leave_snapshots · function · L96-L96 — bool wants_enter_leave_snapshots() const override;
+- get_gizmo_entering_text · function · L97-L97 — std::string get_gizmo_entering_text() const override;
+- get_gizmo_leaving_text · function · L98-L98 — std::string get_gizmo_leaving_text() const override;
+- get_action_snapshot_name · function · L99-L99 — std::string get_action_snapshot_name() const override;
+- volume_transformation_changing · function · L102-L102 — void volume_transformation_changing();
+- volume_transformation_changed · function · L103-L103 — void volume_transformation_changed();
+- create_default_styles · function · L105-L105 — static EmbossStyles create_default_styles();
+- init_create · function · L107-L107 — bool init_create(ModelVolumeType volume_type);
+- set_volume_by_selection · function · L109-L109 — void set_volume_by_selection();
+- reset_volume · function · L110-L110 — void reset_volume();
+- is_changed_from_default_style · function · L112-L112 — bool is_changed_from_default_style();
+- reset_to_default_style · function · L113-L113 — void reset_to_default_style();
+- process · function · L116-L116 — bool process(bool make_snapshot = true);
+- close · function · L117-L117 — void close();
+- draw_window · function · L118-L118 — void draw_window(float x, float y);
+- draw_text_input · function · L119-L119 — void draw_text_input();
+- draw_model_type · function · L120-L120 — void draw_model_type();
+- draw_style_list · function · L121-L121 — void draw_style_list();
+- draw_delete_style_button · function · L122-L122 — void draw_delete_style_button();
+- draw_style_rename_popup · function · L123-L123 — void draw_style_rename_popup();
+- draw_style_rename_button · function · L124-L124 — void draw_style_rename_button();
+- draw_style_save_button · function · L125-L125 — void draw_style_save_button(bool is_modified);
+- draw_style_save_as_popup · function · L126-L126 — void draw_style_save_as_popup();
+- draw_style_add_button · function · L127-L127 — void draw_style_add_button();
+- init_font_name_texture · function · L128-L128 — void init_font_name_texture();
+- draw_font_list_line · function · L129-L129 — void draw_font_list_line();
+- draw_font_list · function · L130-L130 — void draw_font_list();
+- draw_height · function · L131-L131 — void draw_height(bool use_inch);
+- draw_depth · function · L132-L132 — void draw_depth(bool use_inch);
+- set_height · function · L135-L135 — bool set_height();
+- draw_italic_button · function · L137-L137 — bool draw_italic_button();
+- draw_bold_button · function · L138-L138 — bool draw_bold_button();
+- draw_advanced · function · L139-L139 — void draw_advanced();
+- select_facename · function · L141-L141 — bool select_facename(const wxString& facename);
+- rev_input_mm · function · L143-L144 — template<typename T> bool rev_input_mm(const std::string &name, T &value, const T *default_value,
+- rev_input · function · L151-L152 — template<typename T> bool rev_input(const std::string &name, T &value, const T *default_value,
+- rev_checkbox · function · L153-L153 — bool rev_checkbox(const std::string &name, bool &value, const bool* default_value, const std::string  &undo_tooltip) const;
+- rev_slider · function · L154-L155 — bool rev_slider(const std::string &name, std::optional<int>& value, const std::optional<int> *default_value,
+- rev_slider · function · L156-L157 — bool rev_slider(const std::string &name, std::optional<float>& value, const std::optional<float> *default_value,
+- rev_slider · function · L158-L159 — bool rev_slider(const std::string &name, float &value, const float *default_value,
+- revertible · function · L160-L161 — template<typename T, typename Draw> bool revertible(const std::string &name, T &value, const T *default_value,
+- on_mouse_for_rotation · function · L164-L164 — bool on_mouse_for_rotation(const wxMouseEvent &mouse_event);
+- on_mouse_for_translate · function · L165-L165 — bool on_mouse_for_translate(const wxMouseEvent &mouse_event);
+- on_mouse_change_selection · function · L166-L166 — void on_mouse_change_selection(const wxMouseEvent &mouse_event);
+- create_notification_not_valid_font · function · L170-L170 — void create_notification_not_valid_font(const TextConfiguration& tc);
+- create_notification_not_valid_font · function · L171-L171 — void create_notification_not_valid_font(const std::string& text);
+- remove_notification_not_valid_font · function · L172-L172 — void remove_notification_not_valid_font();
+- reinit_text_lines · function · L209-L209 — void reinit_text_lines(unsigned count_lines=0);
+- calculate_scale · function · L226-L226 — void calculate_scale();
+- init_icons · function · L231-L231 — void init_icons();

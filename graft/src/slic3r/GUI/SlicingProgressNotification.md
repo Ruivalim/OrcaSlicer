@@ -1,0 +1,29 @@
+# src/slic3r/GUI/SlicingProgressNotification.hpp
+
+- SlicingProgressState · type · L14-L22 — enum class SlicingProgressState
+- SlicingProgressNotification · function · L23-L29 — SlicingProgressNotification(const NotificationData& n, NotificationIDProvider& id_provider, wxEvtHandler* evt_handler, std::function<bool()> callback)
+- set_percentage · function · L30-L30 — void                set_percentage(float percent) { m_percentage = percent; }
+- get_dailytips_panel · function · L31-L31 — DailyTipsPanel*     get_dailytips_panel() { return m_dailytips_panel; }
+- get_progress_state · function · L32-L32 — SlicingProgressState get_progress_state() { return m_sp_state; }
+- set_status_text · function · L34-L34 — void				set_status_text(const std::string& text);
+- set_cancel_callback · function · L36-L36 — void			    set_cancel_callback(std::function<bool()> callback) { m_cancel_callback = callback; }
+- has_cancel_callback · function · L37-L37 — bool                has_cancel_callback() const { return m_cancel_callback != nullptr; }
+- set_progress_state · function · L39-L39 — bool				set_progress_state(float percent);
+- set_progress_state · function · L41-L41 — bool				set_progress_state(SlicingProgressState state, float percent = 0.f);
+- set_print_info · function · L43-L43 — void			    set_print_info(const std::string& info);
+- set_sidebar_collapsed · function · L45-L45 — void                set_sidebar_collapsed(bool collapsed);
+- update_state · function · L47-L47 — bool                update_state(bool paused, const int64_t delta) override;
+- set_fff · function · L49-L49 — void				set_fff(bool b) { m_is_fff = b; }
+- set_export_possible · function · L50-L50 — void                set_export_possible(bool b) { m_export_possible = b; }
+- on_change_color_mode · function · L51-L51 — void                on_change_color_mode(bool is_dark) override;
+- init · function · L53-L53 — void        init() override;
+- render · function · L54-L54 — void        render(GLCanvas3D& canvas, float initial_y, bool move_from_overlay, float overlay_width, float right_margin) override;
+- render_progress_text · function · L56-L56 — void	    render_progress_text(const ImVec2& pos);
+- render_bar · function · L57-L57 — void		render_bar(const ImVec2& pos, const ImVec2& size);
+- render_cancel_button · function · L58-L58 — void		render_cancel_button(const ImVec2& pos, const ImVec2& size);
+- render_progress_close_button · function · L59-L59 — void		render_progress_close_button(const ImVec2& pos, const ImVec2& size);
+- render_dailytips_panel · function · L60-L60 — void        render_dailytips_panel(const ImVec2& pos, const ImVec2& size);
+- render_show_dailytips · function · L61-L61 — void        render_show_dailytips(const ImVec2& pos);
+- on_show_dailytips · function · L63-L63 — void        on_show_dailytips();
+- on_cancel_button · function · L64-L64 — void        on_cancel_button();
+- get_duration · function · L65-L65 — int		    get_duration() override;

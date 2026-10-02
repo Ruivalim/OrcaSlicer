@@ -1,0 +1,95 @@
+# deps/EXPAT/expat/expat.h
+
+- XML_Bool · type · L54-L54 — typedef unsigned char XML_Bool;
+- XML_Status · type · L71-L78 — enum XML_Status
+- XML_Error · type · L80-L131 — enum XML_Error
+- XML_Content_Type · type · L133-L140 — enum XML_Content_Type
+- XML_Content_Quant · type · L142-L147 — enum XML_Content_Quant
+- XML_Content · type · L167-L167 — typedef struct XML_cp XML_Content;
+- XML_cp · class · L169-L175 — struct XML_cp
+- XML_Content_Type · type · L170-L170 — enum XML_Content_Type type;
+- XML_Content_Quant · type · L171-L171 — enum XML_Content_Quant quant;
+- XML_SetElementDeclHandler · function · L187-L188 — XMLPARSEAPI(void)
+- XML_SetAttlistDeclHandler · function · L202-L203 — XMLPARSEAPI(void)
+- XML_SetXmlDeclHandler · function · L218-L219 — XMLPARSEAPI(void)
+- XML_Memory_Handling_Suite · type · L221-L225 — typedef struct
+- XML_ParserCreate · function · L230-L231 — XMLPARSEAPI(XML_Parser)
+- XML_ParserCreateNS · function · L255-L256 — XMLPARSEAPI(XML_Parser)
+- XML_ParserCreate_MM · function · L267-L270 — XMLPARSEAPI(XML_Parser)
+- XML_ParserReset · function · L281-L282 — XMLPARSEAPI(XML_Bool)
+- XML_SetEntityDeclHandler · function · L364-L365 — XMLPARSEAPI(void)
+- XML_Encoding · type · L521-L526 — typedef struct
+- XML_SetElementHandler · function · L547-L549 — XMLPARSEAPI(void)
+- XML_SetStartElementHandler · function · L551-L552 — XMLPARSEAPI(void)
+- XML_SetEndElementHandler · function · L554-L555 — XMLPARSEAPI(void)
+- XML_SetCharacterDataHandler · function · L557-L559 — XMLPARSEAPI(void)
+- XML_SetProcessingInstructionHandler · function · L561-L563 — XMLPARSEAPI(void)
+- XML_SetCommentHandler · function · L564-L565 — XMLPARSEAPI(void)
+- XML_SetCdataSectionHandler · function · L567-L570 — XMLPARSEAPI(void)
+- XML_SetStartCdataSectionHandler · function · L572-L574 — XMLPARSEAPI(void)
+- XML_SetEndCdataSectionHandler · function · L576-L578 — XMLPARSEAPI(void)
+- XML_SetDefaultHandler · function · L584-L585 — XMLPARSEAPI(void)
+- XML_SetDefaultHandlerExpand · function · L591-L592 — XMLPARSEAPI(void)
+- XML_SetDoctypeDeclHandler · function · L594-L596 — XMLPARSEAPI(void)
+- XML_SetStartDoctypeDeclHandler · function · L598-L600 — XMLPARSEAPI(void)
+- XML_SetEndDoctypeDeclHandler · function · L602-L603 — XMLPARSEAPI(void)
+- XML_SetUnparsedEntityDeclHandler · function · L605-L607 — XMLPARSEAPI(void)
+- XML_SetNotationDeclHandler · function · L609-L610 — XMLPARSEAPI(void)
+- XML_SetNamespaceDeclHandler · function · L612-L615 — XMLPARSEAPI(void)
+- XML_SetStartNamespaceDeclHandler · function · L617-L619 — XMLPARSEAPI(void)
+- XML_SetEndNamespaceDeclHandler · function · L621-L623 — XMLPARSEAPI(void)
+- XML_SetNotStandaloneHandler · function · L625-L627 — XMLPARSEAPI(void)
+- XML_SetExternalEntityRefHandler · function · L629-L631 — XMLPARSEAPI(void)
+- XML_SetExternalEntityRefHandlerArg · function · L637-L638 — XMLPARSEAPI(void)
+- XML_SetSkippedEntityHandler · function · L640-L642 — XMLPARSEAPI(void)
+- XML_SetUnknownEncodingHandler · function · L644-L647 — XMLPARSEAPI(void)
+- XML_DefaultCurrent · function · L653-L654 — XMLPARSEAPI(void)
+- XML_SetReturnNSTriplet · function · L670-L671 — XMLPARSEAPI(void)
+- XML_SetUserData · function · L674-L675 — XMLPARSEAPI(void)
+- XML_SetEncoding · function · L686-L687 — XMLPARSEAPI(enum XML_Status)
+- XML_Status · type · L686-L686 — XMLPARSEAPI(enum XML_Status)
+- XML_UseParserAsHandlerArg · function · L693-L694 — XMLPARSEAPI(void)
+- XML_Error · type · L715-L715 — XMLPARSEAPI(enum XML_Error)
+- XML_UseForeignDTD · function · L715-L716 — XMLPARSEAPI(enum XML_Error)
+- XML_SetBase · function · L726-L727 — XMLPARSEAPI(enum XML_Status)
+- XML_Status · type · L726-L726 — XMLPARSEAPI(enum XML_Status)
+- XML_GetBase · function · L729-L730 — XMLPARSEAPI(const XML_Char *)
+- XML_GetSpecifiedAttributeCount · function · L738-L739 — XMLPARSEAPI(int)
+- XML_GetIdAttributeIndex · function · L747-L748 — XMLPARSEAPI(int)
+- XML_AttrInfo · type · L756-L761 — typedef struct
+- XML_GetAttributeInfo · function · L769-L770 — XMLPARSEAPI(const XML_AttrInfo *)
+- XML_Parse · function · L782-L783 — XMLPARSEAPI(enum XML_Status)
+- XML_Status · type · L782-L782 — XMLPARSEAPI(enum XML_Status)
+- XML_GetBuffer · function · L785-L786 — XMLPARSEAPI(void *)
+- XML_ParseBuffer · function · L788-L789 — XMLPARSEAPI(enum XML_Status)
+- XML_Status · type · L788-L788 — XMLPARSEAPI(enum XML_Status)
+- XML_Status · type · L822-L822 — XMLPARSEAPI(enum XML_Status)
+- XML_StopParser · function · L822-L823 — XMLPARSEAPI(enum XML_Status)
+- XML_ResumeParser · function · L837-L838 — XMLPARSEAPI(enum XML_Status)
+- XML_Status · type · L837-L837 — XMLPARSEAPI(enum XML_Status)
+- XML_Parsing · type · L840-L840 — enum XML_Parsing { XML_INITIALIZED, XML_PARSING, XML_FINISHED, XML_SUSPENDED };
+- XML_ParsingStatus · type · L842-L845 — typedef struct
+- XML_Parsing · type · L843-L843 — enum XML_Parsing parsing;
+- XML_GetParsingStatus · function · L852-L853 — XMLPARSEAPI(void)
+- XML_ExternalEntityParserCreate · function · L871-L873 — XMLPARSEAPI(XML_Parser)
+- XML_ParamEntityParsing · type · L875-L879 — enum XML_ParamEntityParsing
+- XML_SetParamEntityParsing · function · L905-L907 — XMLPARSEAPI(int)
+- XML_ParamEntityParsing · type · L907-L907 — enum XML_ParamEntityParsing parsing);
+- XML_SetHashSalt · function · L915-L916 — XMLPARSEAPI(int)
+- XML_Error · type · L921-L921 — XMLPARSEAPI(enum XML_Error)
+- XML_GetErrorCode · function · L921-L922 — XMLPARSEAPI(enum XML_Error)
+- XML_GetCurrentLineNumber · function · L944-L944 — XMLPARSEAPI(XML_Size) XML_GetCurrentLineNumber(XML_Parser parser);
+- XML_GetCurrentColumnNumber · function · L945-L945 — XMLPARSEAPI(XML_Size) XML_GetCurrentColumnNumber(XML_Parser parser);
+- XML_GetCurrentByteIndex · function · L946-L946 — XMLPARSEAPI(XML_Index) XML_GetCurrentByteIndex(XML_Parser parser);
+- XML_GetCurrentByteCount · function · L951-L952 — XMLPARSEAPI(int)
+- XML_GetInputContext · function · L964-L965 — XMLPARSEAPI(const char *)
+- XML_FreeContentModel · function · L973-L974 — XMLPARSEAPI(void)
+- XML_ATTR_ALLOC_SIZE · function · L982-L1005 — XMLPARSEAPI(void *)
+- XML_Error · type · L995-L995 — XML_ErrorString(enum XML_Error code);
+- XML_ExpatVersionInfo · function · L1010-L1011 — XMLPARSEAPI(XML_Expat_Version)
+- XML_FeatureEnum · type · L1014-L1030 — enum XML_FeatureEnum
+- XML_Feature · type · L1032-L1036 — typedef struct
+- XML_FeatureEnum · type · L1033-L1033 — enum XML_FeatureEnum feature;
+- XML_GetFeatureList · function · L1038-L1039 — XMLPARSEAPI(const XML_Feature *)
+- XML_SetBillionLaughsAttackProtectionMaximumAmplification · function · L1043-L1045 — XMLPARSEAPI(XML_Bool)
+- XML_SetBillionLaughsAttackProtectionActivationThreshold · function · L1048-L1050 — XMLPARSEAPI(XML_Bool)

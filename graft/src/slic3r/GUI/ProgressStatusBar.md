@@ -1,0 +1,33 @@
+# src/slic3r/GUI/ProgressStatusBar.hpp
+
+- wxTimer · class · L11-L11 — class wxTimer;
+- wxGauge · class · L12-L12 — class wxGauge;
+- wxButton · class · L13-L13 — class wxButton;
+- wxTimerEvent · class · L14-L14 — class wxTimerEvent;
+- wxStatusBar · class · L15-L15 — class wxStatusBar;
+- wxWindow · class · L16-L16 — class wxWindow;
+- wxFrame · class · L17-L17 — class wxFrame;
+- wxString · class · L18-L18 — class wxString;
+- wxFont · class · L19-L19 — class wxFont;
+- ProgressStatusBar · class · L29-L70 — class ProgressStatusBar : public ProgressIndicator
+- ProgressStatusBar · function · L38-L38 — ProgressStatusBar(wxWindow *parent = nullptr, int id = -1);
+- get_progress · function · L41-L41 — int         get_progress() const;
+- set_progress · function · L44-L44 — void        set_progress(int) override;
+- get_range · function · L45-L45 — int         get_range() const override;
+- set_range · function · L46-L46 — void        set_range(int = 100) override;
+- show_progress · function · L47-L47 — void        show_progress(bool);
+- start_busy · function · L48-L48 — void        start_busy(int = 100);
+- stop_busy · function · L49-L49 — void        stop_busy();
+- is_busy · function · L50-L50 — inline bool is_busy() const { return m_busy; }
+- set_cancel_callback · function · L51-L51 — void        set_cancel_callback(CancelFn = CancelFn()) override;
+- reset_cancel_callback · function · L52-L52 — inline void reset_cancel_callback() { set_cancel_callback(); }
+- run · function · L53-L53 — void        run(int rate);
+- embed · function · L54-L54 — void        embed(wxFrame *frame = nullptr);
+- set_status_text · function · L55-L55 — void        set_status_text(const wxString& txt);
+- set_status_text · function · L56-L56 — void        set_status_text(const std::string& txt);
+- set_status_text · function · L57-L57 — void        set_status_text(const char *txt) override;
+- get_status_text · function · L58-L58 — wxString    get_status_text() const;
+- set_font · function · L59-L59 — void        set_font(const wxFont &font);
+- show_cancel_button · function · L62-L62 — void        show_cancel_button();
+- hide_cancel_button · function · L63-L63 — void        hide_cancel_button();
+- update_dark_ui · function · L65-L65 — void        update_dark_ui();

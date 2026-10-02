@@ -1,0 +1,71 @@
+# src/libslic3r/PrintApply.cpp
+
+- model_volume_list_update_supports · function · L16-L56 — /* static */ void model_volume_list_update_supports(ModelObject &model_object_dst, const ModelObject &model_object_new)
+- ModelVolumeWithStatus · type · L18-L18 — typedef std::pair<const ModelVolume*, bool> ModelVolumeWithStatus;
+- key · function · L29-L29 — ModelVolumeWithStatus key(model_volume_src, false);
+- model_volume_list_copy_configs · function · L58-L89 — static inline void model_volume_list_copy_configs(ModelObject &model_object_dst, const ModelObject &model_object_src, const ModelVolumeType type)
+- layer_height_ranges_copy_configs · function · L91-L103 — static inline void layer_height_ranges_copy_configs(t_layer_config_ranges &lr_dst, const t_layer_config_ranges &lr_src)
+- transform3d_lower · function · L105-L117 — static inline bool transform3d_lower(const Transform3d &lhs, const Transform3d &rhs)
+- T · type · L107-L107 — typedef Transform3d::Scalar T;
+- transform3d_equal · function · L119-L128 — static inline bool transform3d_equal(const Transform3d &lhs, const Transform3d &rhs)
+- T · type · L121-L121 — typedef Transform3d::Scalar T;
+- PrintObjectTrafoAndInstances · class · L130-L135 — struct PrintObjectTrafoAndInstances
+- print_objects_from_model_object · function · L139-L169 — static std::vector<PrintObjectTrafoAndInstances> print_objects_from_model_object(const ModelObject &model_object, const Vec3d &shrinkage_compensation)
+- layer_height_ranges_equal · function · L173-L188 — static bool layer_height_ranges_equal(const t_layer_config_ranges &lr1, const t_layer_config_ranges &lr2, bool check_layer_height)
+- custom_per_printz_gcodes_tool_changes_differ · function · L191-L219 — static bool custom_per_printz_gcodes_tool_changes_differ(const std::vector<CustomGCode::Item> &va, const std::vector<CustomGCode::Item> &vb)
+- print_config_diffs · function · L223-L278 — static t_config_option_keys print_config_diffs(
+- full_print_config_diffs · function · L282-L308 — static t_config_option_keys full_print_config_diffs(const DynamicPrintConfig &current_full_config, const DynamicPrintConfig &new_full_config, int plate_index)
+- is_printable_filament_changed · function · L310-L353 — static bool is_printable_filament_changed(const DynamicPrintConfig& new_full_config, const Polygon& old_poly, const Polygon& new_poly)
+- printable_poly · function · L321-L321 — Polygon printable_poly(pts);
+- LayerRanges · class · L357-L418 — class LayerRanges
+- LayerRange · class · L360-L366 — struct LayerRange
+- LayerRanges · function · L368-L368 — LayerRanges() = default;
+- LayerRanges · function · L369-L369 — LayerRanges(const t_layer_config_ranges &in) { this->assign(in); }
+- assign · function · L372-L396 — void assign(const t_layer_config_ranges &in)
+- config · function · L398-L398 — const DynamicPrintConfig* config(const t_layer_height_range &range) const
+- begin · function · L411-L411 — std::vector<LayerRange>::const_iterator begin() const { return m_ranges.cbegin(); }
+- end · function · L412-L412 — std::vector<LayerRange>::const_iterator end  () const { return m_ranges.cend(); }
+- size · function · L413-L413 — size_t                                  size () const { return m_ranges.size(); }
+- ModelObjectStatus · class · L422-L453 — struct ModelObjectStatus
+- Status · type · L423-L429 — enum Status
+- PrintObjectRegionsStatus · type · L431-L435 — enum class PrintObjectRegionsStatus
+- ModelObjectStatus · function · L437-L437 — ModelObjectStatus(ObjectID id, Status status = Unknown) : id(id), status(status) {}
+- ModelObjectStatusDB · class · L455-L484 — struct ModelObjectStatusDB
+- add · function · L457-L460 — void add(const ModelObject &model_object, const ModelObjectStatus::Status status)
+- add_if_new · function · L462-L469 — bool add_if_new(const ModelObject &model_object, const ModelObjectStatus::Status status)
+- get · function · L471-L471 — const ModelObjectStatus& get(const ModelObject &model_object)
+- reuse · function · L477-L477 — const ModelObjectStatus& reuse(const ModelObject &model_object)
+- PrintObjectStatus · class · L486-L511 — struct PrintObjectStatus
+- Status · type · L487-L492 — enum Status
+- PrintObjectStatus · function · L494-L498 — PrintObjectStatus(PrintObject *print_object, Status status = Unknown) :
+- PrintObjectStatus · function · L499-L499 — PrintObjectStatus(ObjectID id) : id(id), print_object(nullptr), trafo(Transform3d::Identity()), status(Unknown) {}
+- PrintObjectStatusDB · class · L513-L553 — class PrintObjectStatusDB
+- PrintObjectStatusDB · function · L518-L521 — PrintObjectStatusDB(const PrintObjectPtrs &print_objects)
+- iterator_range · class · L523-L530 — struct iterator_range : std::pair<const_iterator, const_iterator>
+- iterator_range · function · L526-L526 — iterator_range(const std::pair<const_iterator, const_iterator> in) : std::pair<const_iterator, const_iterator>(in) {}
+- begin · function · L528-L528 — const_iterator begin() throw() { return this->first; }
+- end · function · L529-L529 — const_iterator end() throw() { return this->second; }
+- get_range · function · L532-L534 — iterator_range get_range(const ModelObject &model_object) const
+- get_range · function · L536-L538 — iterator_range get_range(const ModelObjectStatus &model_object_status) const
+- count · function · L540-L542 — size_t count(const ModelObject &model_object)
+- begin · function · L544-L544 — std::multiset<PrintObjectStatus>::iterator begin() { return m_db.begin(); }
+- end · function · L545-L545 — std::multiset<PrintObjectStatus>::iterator end()   { return m_db.end(); }
+- clear · function · L547-L549 — void clear()
+- model_volume_solid_or_modifier · function · L555-L559 — static inline bool model_volume_solid_or_modifier(const ModelVolume &mv)
+- trafo_for_bbox · function · L561-L569 — static inline Transform3f trafo_for_bbox(const Transform3d &object_trafo, const Transform3d &volume_trafo)
+- trafos_differ_in_rotation_by_z_and_mirroring_by_xy_only · function · L571-L595 — static inline bool trafos_differ_in_rotation_by_z_and_mirroring_by_xy_only(const Transform3d &t1, const Transform3d &t2)
+- transformed_its_bbox2d · function · L597-L608 — static PrintObjectRegions::BoundingBox transformed_its_bbox2d(const indexed_triangle_set &its, const Transform3f &m, float offset)
+- transformed_its_bboxes_in_z_ranges · function · L610-L677 — static void transformed_its_bboxes_in_z_ranges(
+- print_objects_regions_invalidate_keep_some_volumes · function · L682-L710 — void print_objects_regions_invalidate_keep_some_volumes(PrintObjectRegions &print_object_regions, ModelVolumePtrs old_volumes, ModelVolumePtrs new_volumes)
+- find_volume_extents · function · L714-L714 — const PrintObjectRegions::BoundingBox* find_volume_extents(const PrintObjectRegions::LayerRangeRegions &layer_range, const ModelVolume &volume)
+- find_modifier_volume_extents · function · L721-L740 — PrintObjectRegions::BoundingBox find_modifier_volume_extents(const PrintObjectRegions::LayerRangeRegions &layer_range, const int this_region_id)
+- region_config_from_model_volume · function · L742-L742 — PrintRegionConfig region_config_from_model_volume(const PrintRegionConfig &default_or_parent_region_config, const DynamicPrintConfig *layer_range_config, const ModelVolume &volume, size_t num_extruders, std::vector<int>& variant_index);
+- print_region_ref_inc · function · L744-L744 — void print_region_ref_inc(PrintRegion &r) { ++ r.m_ref_cnt; }
+- print_region_ref_reset · function · L745-L745 — void print_region_ref_reset(PrintRegion &r) { r.m_ref_cnt = 0; }
+- print_region_ref_cnt · function · L746-L746 — int  print_region_ref_cnt(const PrintRegion &r) { return r.m_ref_cnt; }
+- verify_update_print_object_regions · function · L751-L905 — bool verify_update_print_object_regions(
+- update_volume_bboxes · function · L908-L975 — void update_volume_bboxes(
+- generate_print_object_regions · function · L979-L992 — static PrintObjectRegions* generate_print_object_regions(
+- apply · method · L1198-L2053 — Print::ApplyStatus Print::apply(const Model &model, DynamicPrintConfig new_full_config, bool extruder_applied)
+- print_object_status_db · function · L1617-L1617 — PrintObjectStatusDB print_object_status_db(m_objects);
+- cmp · class · L2017-L2017 — struct cmp { bool operator() (const PrintRegion *l, const PrintRegion *r) const { return l->config_hash() == r->config_hash() && l->config() == r->config(); } };

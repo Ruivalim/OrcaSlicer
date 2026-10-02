@@ -1,0 +1,48 @@
+# src/slic3r/GUI/Widgets/Button.hpp
+
+- ButtonProps · class · L9-L14 — class ButtonProps
+- ChoiceButtonGap · function · L12-L12 — static int ChoiceButtonGap() { return 10; };
+- WindowButtonGap · function · L13-L13 — static int WindowButtonGap() { return 10; };
+- ButtonStyle · type · L16-L21 — enum class ButtonStyle
+- ButtonType · type · L23-L31 — enum class ButtonType
+- Button · class · L33-L140 — class Button : public StaticBox
+- Button · function · L56-L56 — Button();
+- Button · function · L58-L58 — Button(wxWindow* parent, wxString text, wxString icon = "", long style = 0, int iconSize = 0, wxWindowID btn_id = wxID_ANY);
+- Create · function · L60-L60 — bool Create(wxWindow* parent, wxString text, wxString icon = "", long style = 0, int iconSize = 0, wxWindowID btn_id = wxID_ANY);
+- SetLabel · function · L62-L62 — void SetLabel(const wxString& label) override;
+- SetFont · function · L64-L64 — bool SetFont(const wxFont& font) override;
+- SetIcon · function · L66-L66 — void SetIcon(const wxString& icon);
+- SetIcon · function · L67-L67 — void SetIcon(const wxBitmap& icon);
+- SetMinSize · function · L69-L69 — void SetMinSize(const wxSize& size) override;
+- SetMaxSize · function · L70-L70 — void SetMaxSize(const wxSize& size) override;
+- SetPaddingSize · function · L72-L72 — void SetPaddingSize(const wxSize& size);
+- SetIconSpacing · function · L74-L74 — void SetIconSpacing(int spacing);
+- SetStyle · function · L76-L76 — void SetStyle(const ButtonStyle style /*= ButtonStyle::Regular*/, const ButtonType type /*= ButtonType::None*/);
+- SetTextColor · function · L78-L78 — void SetTextColor(StateColor const& color);
+- SetTextColorNormal · function · L80-L80 — void SetTextColorNormal(wxColor const& color);
+- SetSelected · function · L82-L82 — void SetSelected(bool selected = true) { m_selected = selected; }
+- SetIndicator · function · L86-L86 — void SetIndicator(bool on);
+- GetStyle · function · L89-L89 — ButtonStyle GetStyle() const { return m_style; }
+- GetType · function · L90-L90 — ButtonType GetType() const { return m_type; }
+- IsSelected · function · L91-L91 — bool IsSelected() const { return m_selected; }
+- Enable · function · L93-L93 — bool Enable(bool enable = true) override;
+- EnableTooltipEvenDisabled · function · L94-L94 — void EnableTooltipEvenDisabled(); // The tip will be shown even if the button is disabled
+- SetCanFocus · function · L96-L96 — void SetCanFocus(bool canFocus) override;
+- SetValue · function · L98-L98 — void SetValue(bool state);
+- GetValue · function · L100-L100 — bool GetValue() const;
+- SetCenter · function · L102-L102 — void SetCenter(bool isCenter);
+- SetVertical · function · L104-L104 — void SetVertical(bool vertical = true);
+- Rescale · function · L106-L106 — void Rescale();
+- MSWWindowProc · function · L110-L110 — WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) override;
+- AcceptsFocus · function · L113-L113 — bool AcceptsFocus() const override;
+- paintEvent · function · L120-L120 — void paintEvent(wxPaintEvent& evt);
+- render · function · L122-L122 — void render(wxDC& dc);
+- messureSize · function · L124-L124 — void messureSize();
+- mouseDown · function · L127-L127 — void mouseDown(wxMouseEvent& event);
+- mouseReleased · function · L128-L128 — void mouseReleased(wxMouseEvent& event);
+- mouseCaptureLost · function · L129-L129 — void mouseCaptureLost(wxMouseCaptureLostEvent& event);
+- keyDownUp · function · L130-L130 — void keyDownUp(wxKeyEvent& event);
+- sendButtonEvent · function · L133-L133 — void sendButtonEvent();
+- OnParentMotion · function · L136-L136 — void OnParentMotion(wxMouseEvent& event);
+- OnParentLeave · function · L137-L137 — void OnParentLeave(wxMouseEvent& event);
+- DECLARE_EVENT_TABLE · function · L139-L139 — DECLARE_EVENT_TABLE()

@@ -1,0 +1,103 @@
+# src/slic3r/GUI/wxExtensions.hpp
+
+- msw_rescale_menu · function · L24-L24 — void                msw_rescale_menu(wxMenu* menu);
+- msw_rescale_menu · function · L26-L26 — inline void         msw_rescale_menu(wxMenu* /* menu */) {}
+- append_menu_item · function · L29-L31 — wxMenuItem* append_menu_item(wxMenu* menu, int id, const wxString& string, const wxString& description,
+- append_menu_item · function · L32-L34 — wxMenuItem* append_menu_item(wxMenu* menu, int id, const wxString& string, const wxString& description,
+- append_submenu · function · L36-L38 — wxMenuItem* append_submenu(wxMenu* menu, wxMenu* sub_menu, int id, const wxString& string, const wxString& description,
+- append_menu_radio_item · function · L40-L41 — wxMenuItem* append_menu_radio_item(wxMenu* menu, int id, const wxString& string, const wxString& description,
+- append_menu_check_item · function · L43-L46 — wxMenuItem* append_menu_check_item(wxMenu* menu, int id, const wxString& string, const wxString& description,
+- enable_menu_item · function · L48-L48 — void enable_menu_item(wxUpdateUIEvent& evt, std::function<bool()> const cb_condition, wxMenuItem* item, wxWindow* win);
+- wxDialog · class · L50-L50 — class wxDialog;
+- edit_tooltip · function · L52-L52 — void    edit_tooltip(wxString& tooltip);
+- msw_buttons_rescale · function · L53-L53 — void    msw_buttons_rescale(wxDialog* dlg, const int em_unit, const std::vector<int>& btn_ids);
+- em_unit · function · L54-L54 — int     em_unit(wxWindow* win);
+- create_menu_bitmap · function · L56-L56 — wxBitmap create_menu_bitmap(const std::string& bmp_name);
+- create_scaled_bitmap · function · L60-L65 — wxBitmap create_scaled_bitmap(const std::string& bmp_name, wxWindow *win = nullptr,
+- create_scaled_bitmap2 · function · L67-L69 — wxBitmap create_scaled_bitmap2(const std::string& bmp_name_in, Slic3r::GUI::BitmapCache& cache, wxWindow* win = nullptr,
+- create_scaled_bitmap · function · L71-L72 — wxBitmap create_scaled_bitmap(const std::string& bmp_name, wxWindow *win = nullptr,
+- get_default_extruder_color_icon · function · L75-L75 — wxBitmap* get_default_extruder_color_icon(bool thin_icon = false);
+- get_extruder_color_icons · function · L76-L76 — std::vector<wxBitmap *> get_extruder_color_icons(bool thin_icon = false);
+- get_extruder_color_icon · function · L77-L77 — wxBitmap * get_extruder_color_icon(std::string color, std::string label, int icon_width, int icon_height);
+- get_extruder_color_icon · function · L80-L81 — wxBitmap * get_extruder_color_icon(std::vector<std::string> colors, bool is_gradient, std::string label, int icon_width, int icon_height,
+- read_color_pack · function · L82-L82 — std::vector<std::vector<std::string>> read_color_pack(std::vector<std::string> color_pack);
+- show_sys_picker_dialog · function · L83-L83 — wxColourData show_sys_picker_dialog(wxWindow *parent, const wxColourData &clr_data);
+- BitmapComboBox · class · L87-L87 — class BitmapComboBox;
+- apply_extruder_selector · function · L90-L95 — void apply_extruder_selector(Slic3r::GUI::BitmapComboBox** ctrl,
+- wxCheckListBoxComboPopup · class · L97-L130 — class wxCheckListBoxComboPopup : public wxCheckListBox, public wxComboPopup
+- OnCheckListBoxFunction · type · L112-L116 — enum class OnCheckListBoxFunction
+- Create · function · L120-L120 — virtual bool Create(wxWindow* parent);
+- GetControl · function · L121-L121 — virtual wxWindow* GetControl();
+- SetStringValue · function · L122-L122 — virtual void SetStringValue(const wxString& value);
+- GetStringValue · function · L123-L123 — virtual wxString GetStringValue() const;
+- GetAdjustedSize · function · L124-L124 — virtual wxSize GetAdjustedSize(int minWidth, int prefHeight, int maxHeight);
+- OnKeyEvent · function · L126-L126 — virtual void OnKeyEvent(wxKeyEvent& evt);
+- OnCheckListBox · function · L128-L128 — void OnCheckListBox(wxCommandEvent& evt);
+- OnListBoxSelection · function · L129-L129 — void OnListBoxSelection(wxCommandEvent& evt);
+- wxDataViewTreeCtrlComboPopup · class · L135-L154 — class wxDataViewTreeCtrlComboPopup: public wxDataViewTreeCtrl, public wxComboPopup
+- Create · function · L145-L145 — virtual bool		Create(wxWindow* parent);
+- GetControl · function · L146-L146 — virtual wxWindow*	GetControl() { return this; }
+- SetStringValue · function · L147-L147 — virtual void		SetStringValue(const wxString& value) { m_text = value; }
+- GetStringValue · function · L148-L148 — virtual wxString	GetStringValue() const { return m_text; }
+- OnKeyEvent · function · L151-L151 — virtual void		OnKeyEvent(wxKeyEvent& evt);
+- OnDataViewTreeCtrlSelection · function · L152-L152 — void				OnDataViewTreeCtrlSelection(wxCommandEvent& evt);
+- SetItemsCnt · function · L153-L153 — void				SetItemsCnt(int cnt) { m_cnt_open_items = cnt; }
+- ScalableBitmap · class · L161-L196 — class ScalableBitmap
+- ScalableBitmap · function · L164-L164 — ScalableBitmap() {};
+- ScalableBitmap · function · L165-L171 — ScalableBitmap( wxWindow *parent,
+- GetBmpSize · function · L175-L175 — wxSize  GetBmpSize() const;
+- GetBmpSize · function · L176-L176 — static wxSize GetBmpSize(const wxBitmap &bmp);
+- GetBmpWidth · function · L178-L178 — int     GetBmpWidth() const;
+- GetBmpHeight · function · L179-L179 — int     GetBmpHeight() const;
+- msw_rescale · function · L181-L181 — void                msw_rescale();
+- bmp · function · L183-L183 — const wxBitmap&     bmp() const { return m_bmp; }
+- bmp · function · L184-L184 — wxBitmap&           bmp()       { return m_bmp; }
+- name · function · L185-L185 — const std::string&  name() const{ return m_icon_name; }
+- px_cnt · function · L187-L187 — int                 px_cnt()const           {return m_px_cnt;}
+- LockButton · class · L203-L235 — class LockButton : public wxButton
+- LockButton · function · L206-L210 — LockButton(
+- OnButton · function · L213-L213 — void    OnButton(wxCommandEvent& event);
+- IsLocked · function · L215-L215 — bool    IsLocked() const                { return m_is_pushed; }
+- SetLock · function · L216-L216 — void    SetLock(bool lock);
+- enable · function · L219-L219 — void    enable()                        { m_disabled = false; }
+- disable · function · L220-L220 — void    disable()                       { m_disabled = true;  }
+- msw_rescale · function · L222-L222 — void    msw_rescale();
+- update_button_bitmaps · function · L225-L225 — void    update_button_bitmaps();
+- ScalableButton · class · L242-L287 — class ScalableButton : public wxButton
+- ScalableButton · function · L245-L245 — ScalableButton(){}
+- ScalableButton · function · L246-L255 — ScalableButton(
+- ScalableButton · function · L257-L262 — ScalableButton(
+- SetBitmap_ · function · L266-L266 — void SetBitmap_(const ScalableBitmap& bmp);
+- SetBitmap_ · function · L267-L267 — bool SetBitmap_(const std::string& bmp_name);
+- SetBitmapDisabled_ · function · L268-L268 — void SetBitmapDisabled_(const ScalableBitmap &bmp);
+- GetBitmapHeight · function · L269-L269 — int  GetBitmapHeight();
+- UseDefaultBitmapDisabled · function · L270-L270 — void UseDefaultBitmapDisabled();
+- msw_rescale · function · L272-L272 — void    msw_rescale();
+- UpdateDarkUI · function · L273-L273 — void    UpdateDarkUI() { msw_rescale(); };
+- MenuWithSeparators · class · L294-L312 — class MenuWithSeparators : public wxMenu
+- MenuWithSeparators · function · L297-L298 — MenuWithSeparators(const wxString& title, long style = 0)
+- MenuWithSeparators · function · L300-L301 — MenuWithSeparators(long style = 0)
+- DestroySeparators · function · L305-L305 — void DestroySeparators();
+- SetFirstSeparator · function · L306-L306 — void SetFirstSeparator();
+- SetSecondSeparator · function · L307-L307 — void SetSecondSeparator();
+- BlinkingBitmap · class · L319-L337 — class BlinkingBitmap : public wxStaticBitmap
+- BlinkingBitmap · function · L322-L322 — BlinkingBitmap() {};
+- BlinkingBitmap · function · L323-L323 — BlinkingBitmap(wxWindow* parent, const std::string& icon_name = "blank_16");
+- msw_rescale · function · L327-L327 — void    msw_rescale();
+- invalidate · function · L328-L328 — void    invalidate();
+- activate · function · L329-L329 — void    activate();
+- blink · function · L330-L330 — void    blink();
+- get_bmp · function · L332-L332 — const wxBitmap& get_bmp() const { return bmp.bmp(); }
+- ImageTransientPopup · class · L345-L373 — class ImageTransientPopup : public PopupWindow
+- ImageTransientPopup · function · L348-L348 — ImageTransientPopup( wxWindow *parent, bool scrolled, wxBitmap bmp);
+- SetImage · function · L351-L351 — void SetImage(wxBitmap bmp);
+- Popup · function · L354-L354 — virtual void Popup(wxWindow *focus = NULL) wxOVERRIDE;
+- OnDismiss · function · L355-L355 — virtual void OnDismiss() wxOVERRIDE;
+- ProcessLeftDown · function · L356-L356 — virtual bool ProcessLeftDown(wxMouseEvent& event) wxOVERRIDE;
+- Show · function · L357-L357 — virtual bool Show( bool show = true ) wxOVERRIDE;
+- OnMouse · function · L365-L365 — void OnMouse( wxMouseEvent &event );
+- OnSize · function · L366-L366 — void OnSize( wxSizeEvent &event );
+- OnSetFocus · function · L367-L367 — void OnSetFocus( wxFocusEvent &event );
+- OnKillFocus · function · L368-L368 — void OnKillFocus( wxFocusEvent &event );
+- wxDECLARE_ABSTRACT_CLASS · function · L371-L371 — wxDECLARE_ABSTRACT_CLASS(ImageTransientPopup);
+- wxDECLARE_EVENT_TABLE · function · L372-L372 — wxDECLARE_EVENT_TABLE();

@@ -1,0 +1,25 @@
+# deps_src/hidapi/win/hid.c
+
+- NTSTATUS · type · L26-L26 — typedef LONG NTSTATUS;
+- _HIDD_ATTRIBUTES · class · L86-L91 — typedef struct _HIDD_ATTRIBUTES
+- USAGE · type · L93-L93 — typedef USHORT USAGE;
+- _HIDP_CAPS · class · L94-L102 — typedef struct _HIDP_CAPS
+- hid_device_ · class · L134-L144 — struct hid_device_
+- new_hid_device · function · L146-L146 — static hid_device *new_hid_device()
+- free_hid_device · function · L163-L170 — static void free_hid_device(hid_device *dev)
+- register_error · function · L172-L200 — static void register_error(hid_device *dev, const char *op)
+- lookup_functions · function · L204-L226 — static int lookup_functions()
+- open_device · function · L229-L244 — static HANDLE open_device(const char *path, BOOL open_rw)
+- hid_free_enumeration · function · L505-L518 — void  HID_API_EXPORT HID_API_CALL hid_free_enumeration(struct hid_device_info *devs)
+- hid_write · function · L624-L677 — int HID_API_EXPORT HID_API_CALL hid_write(hid_device *dev, const unsigned char *data, size_t length)
+- hid_read_timeout · function · L680-L749 — int HID_API_EXPORT HID_API_CALL hid_read_timeout(hid_device *dev, unsigned char *data, size_t length, int milliseconds)
+- hid_read · function · L751-L754 — int HID_API_EXPORT HID_API_CALL hid_read(hid_device *dev, unsigned char *data, size_t length)
+- hid_set_nonblocking · function · L756-L760 — int HID_API_EXPORT HID_API_CALL hid_set_nonblocking(hid_device *dev, int nonblock)
+- hid_send_feature_report · function · L762-L771 — int HID_API_EXPORT HID_API_CALL hid_send_feature_report(hid_device *dev, const unsigned char *data, size_t length)
+- hid_get_feature_report · function · L774-L820 — int HID_API_EXPORT HID_API_CALL hid_get_feature_report(hid_device *dev, unsigned char *data, size_t length)
+- hid_close · function · L822-L828 — void HID_API_EXPORT HID_API_CALL hid_close(hid_device *dev)
+- hid_get_manufacturer_string · function · L830-L841 — int HID_API_EXPORT_CALL HID_API_CALL hid_get_manufacturer_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_product_string · function · L843-L854 — int HID_API_EXPORT_CALL HID_API_CALL hid_get_product_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_serial_number_string · function · L856-L867 — int HID_API_EXPORT_CALL HID_API_CALL hid_get_serial_number_string(hid_device *dev, wchar_t *string, size_t maxlen)
+- hid_get_indexed_string · function · L869-L880 — int HID_API_EXPORT_CALL HID_API_CALL hid_get_indexed_string(hid_device *dev, int string_index, wchar_t *string, size_t maxlen)
+- main · function · L910-L952 — int __cdecl main(int argc, char* argv[])

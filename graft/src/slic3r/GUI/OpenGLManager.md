@@ -1,0 +1,35 @@
+# src/slic3r/GUI/OpenGLManager.hpp
+
+- wxWindow · class · L6-L6 — class wxWindow;
+- wxGLCanvas · class · L7-L7 — class wxGLCanvas;
+- wxGLContext · class · L8-L8 — class wxGLContext;
+- OpenGLManager · class · L14-L103 — class OpenGLManager
+- EFramebufferType · type · L17-L22 — enum class EFramebufferType : unsigned char
+- GLInfo · class · L24-L63 — class GLInfo
+- GLInfo · function · L40-L40 — GLInfo() = default;
+- get_version · function · L42-L42 — const std::string& get_version() const;
+- get_glsl_version · function · L43-L43 — const std::string& get_glsl_version() const;
+- get_vendor · function · L44-L44 — const std::string& get_vendor() const;
+- get_renderer · function · L45-L45 — const std::string& get_renderer() const;
+- is_core_profile · function · L47-L47 — bool is_core_profile() const { return m_core_profile; }
+- is_mesa · function · L49-L49 — bool is_mesa() const;
+- get_max_tex_size · function · L51-L51 — int get_max_tex_size() const;
+- get_max_anisotropy · function · L52-L52 — float get_max_anisotropy() const;
+- is_version_greater_or_equal_to · function · L54-L54 — bool is_version_greater_or_equal_to(unsigned int major, unsigned int minor) const;
+- is_glsl_version_greater_or_equal_to · function · L55-L55 — bool is_glsl_version_greater_or_equal_to(unsigned int major, unsigned int minor) const;
+- to_string · function · L59-L59 — std::string to_string(bool for_github) const;
+- detect · function · L62-L62 — void detect() const;
+- EMultisampleState · type · L66-L71 — enum class EMultisampleState : unsigned char
+- OpenGLManager · function · L84-L84 — OpenGLManager() = default;
+- init_gl · function · L87-L87 — bool init_gl(bool popup_error = true);
+- init_glcontext · function · L88-L88 — wxGLContext* init_glcontext(wxGLCanvas& canvas, const std::pair<int, int>& required_opengl_version, bool enable_compatibility_profile, bool enable_debug);
+- get_shader · function · L90-L90 — GLShaderProgram* get_shader(const std::string& shader_name) { return m_shaders_manager.get_shader(shader_name); }
+- get_current_shader · function · L91-L91 — GLShaderProgram* get_current_shader() { return m_shaders_manager.get_current_shader(); }
+- are_compressed_textures_supported · function · L93-L93 — static bool are_compressed_textures_supported() { return s_compressed_textures_supported; }
+- can_multisample · function · L94-L94 — static bool can_multisample() { return s_multisample == EMultisampleState::Enabled; }
+- are_framebuffers_supported · function · L95-L95 — static bool are_framebuffers_supported() { return (s_framebuffers_type != EFramebufferType::Unknown); }
+- get_framebuffers_type · function · L96-L96 — static EFramebufferType get_framebuffers_type() { return s_framebuffers_type; }
+- create_wxglcanvas · function · L97-L97 — static wxGLCanvas* create_wxglcanvas(wxWindow& parent);
+- get_gl_info · function · L98-L98 — static const GLInfo& get_gl_info() { return s_gl_info; }
+- force_power_of_two_textures · function · L99-L99 — static bool force_power_of_two_textures() { return s_force_power_of_two_textures; }
+- detect_multisample · function · L102-L102 — static void detect_multisample(int* attribList);

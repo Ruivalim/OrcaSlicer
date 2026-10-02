@@ -1,0 +1,48 @@
+# deps_src/pybind11/include/pybind11/eigen/matrix.h
+
+- PYBIND11_WARNING_DISABLE_MSVC · function · L22-L22 — PYBIND11_WARNING_DISABLE_MSVC(5054) // https://github.com/pybind/pybind11/pull/3741
+- static_assert · function · L36-L36 — static_assert(EIGEN_VERSION_AT_LEAST(3, 2, 7),
+- PYBIND11_WARNING_DISABLE_MSVC · function · L41-L44 — PYBIND11_WARNING_DISABLE_MSVC(4127)
+- EigenRowMajor · function · L97-L97 — stride{EigenRowMajor ? (rstride > 0 ? rstride : 0)
+- EigenRowMajor · function · L99-L99 — EigenRowMajor ? (cstride > 0 ? cstride : 0)
+- EigenConformable · function · L103-L104 — EigenConformable(EigenIndex r, EigenIndex c, EigenIndex stride)
+- stride_compatible · function · L107-L107 — bool stride_compatible() const
+- inner · function · L118-L118 — return (props::inner_stride == Eigen::Dynamic || props::inner_stride == stride.inner()
+- outer · function · L120-L120 — && (props::outer_stride == Eigen::Dynamic || props::outer_stride == stride.outer()
+- bool · function · L124-L124 — operator bool() const { return conformable; }
+- conformable · function · L173-L218 — static EigenConformable<row_major> conformable(const array &a)
+- base · function · L286-L286 — capsule base(src, [](void *o) { delete static_cast<Type *>(o); });
+- load · function · L299-L342 — bool load(handle src, bool convert)
+- ensure · function · L306-L306 — auto buf = array::ensure(src);
+- conformable · function · L317-L317 — auto fits = props::conformable(buf);
+- cast_impl · function · L347-L364 — static handle cast_impl(CType *src, return_value_policy policy, handle parent)
+- cast · function · L368-L368 — static handle cast(Type &&src, return_value_policy /* policy */, handle parent)
+- cast · function · L372-L374 — static handle cast(const Type &&src, return_value_policy /* policy */, handle parent)
+- cast · function · L376-L382 — static handle cast(Type &src, return_value_policy policy, handle parent)
+- cast · function · L384-L390 — static handle cast(const Type &src, return_value_policy policy, handle parent)
+- cast · function · L392-L394 — static handle cast(Type *src, return_value_policy policy, handle parent)
+- cast · function · L396-L398 — static handle cast(const Type *src, return_value_policy policy, handle parent)
+- cast · function · L431-L431 — static handle cast(const MapType &src, return_value_policy policy, handle parent)
+- return_descr · function · L449-L449 — static constexpr auto name = return_descr(props::descriptor);
+- load · function · L454-L454 — bool load(handle, bool) = delete;
+- MapType · function · L455-L455 — operator MapType() = delete;
+- load · function · L499-L499 — bool load(handle src, bool convert)
+- make_stride · function · L605-L607 — static S make_stride(EigenIndex outer, EigenIndex inner)
+- make_stride · function · L609-L611 — static S make_stride(EigenIndex outer, EigenIndex)
+- make_stride · function · L613-L615 — static S make_stride(EigenIndex, EigenIndex inner)
+- cast · function · L633-L633 — static handle cast(const Type &src, return_value_policy /* policy */, handle /* parent */)
+- cast · function · L637-L639 — static handle cast(const Type *src, return_value_policy policy, handle parent)
+- load · function · L646-L646 — bool load(handle, bool) = delete;
+- Type · function · L647-L647 — operator Type() = delete;
+- load · function · L661-L676 — bool load(handle src, bool)
+- tuple · function · L681-L682 — auto shape = pybind11::tuple((pybind11::object) obj.attr("shape"));
+- cast · function · L700-L714 — static handle cast(const Type &src, return_value_policy /* policy */, handle /* parent */)
+- data · function · L706-L706 — array data(src.nonZeros(), src.valuePtr());
+- nonZeros · function · L706-L706 — array data(src.nonZeros(), src.valuePtr());
+- valuePtr · function · L706-L706 — array data(src.nonZeros(), src.valuePtr());
+- outerIndices · function · L707-L707 — array outerIndices((rowMajor ? src.rows() : src.cols()) + 1, src.outerIndexPtr());
+- rows · function · L707-L707 — array outerIndices((rowMajor ? src.rows() : src.cols()) + 1, src.outerIndexPtr());
+- innerIndexPtr · function · L708-L708 — array innerIndices(src.nonZeros(), src.innerIndexPtr());
+- innerIndices · function · L708-L708 — array innerIndices(src.nonZeros(), src.innerIndexPtr());
+- nonZeros · function · L708-L708 — array innerIndices(src.nonZeros(), src.innerIndexPtr());
+- PYBIND11_NAMESPACE_END · function · L723-L723 — PYBIND11_NAMESPACE_END(PYBIND11_NAMESPACE)

@@ -1,0 +1,94 @@
+# src/libslic3r/Layer.hpp
+
+- ExPolygon · class · L12-L12 — class ExPolygon;
+- Layer · class · L14-L14 — class Layer;
+- LayerRegion · class · L16-L16 — class LayerRegion;
+- PrintRegion · class · L18-L18 — class PrintRegion;
+- PrintRegionConfig · class · L19-L19 — class PrintRegionConfig;
+- PrintObject · class · L20-L20 — class PrintObject;
+- Print · class · L21-L21 — class Print;
+- Generator · class · L28-L28 — class Generator;
+- IndexedMesh · class · L32-L32 — class IndexedMesh;
+- LayerRegion · class · L35-L123 — class LayerRegion
+- layer · function · L38-L38 — Layer*                      layer()         { return m_layer; }
+- layer · function · L39-L39 — const Layer*                layer() const   { return m_layer; }
+- region · function · L40-L40 — const PrintRegion&          region() const  { return *m_region; }
+- get_slices · function · L42-L42 — const SurfaceCollection& get_slices() const { return slices; }
+- flow · function · L80-L80 — Flow    flow(FlowRole role) const;
+- flow · function · L81-L81 — Flow    flow(FlowRole role, double layer_height) const;
+- bridging_flow · function · L82-L82 — Flow    bridging_flow(FlowRole role, bool thick_bridge = false) const;
+- slices_to_fill_surfaces_clipped · function · L84-L84 — void    slices_to_fill_surfaces_clipped();
+- prepare_fill_surfaces · function · L85-L85 — void    prepare_fill_surfaces();
+- make_perimeters · function · L87-L87 — void    make_perimeters(const SurfaceCollection &slices, const LayerRegionPtrs &compatible_regions, SurfaceCollection* fill_surfaces, ExPolygons* fill_no_overlap);
+- process_external_surfaces · function · L88-L88 — void    process_external_surfaces(const Layer *lower_layer, const Polygons *lower_layer_covered);
+- infill_area_threshold · function · L89-L89 — double  infill_area_threshold() const;
+- trim_surfaces · function · L91-L91 — void    trim_surfaces(const Polygons &trimming_polygons);
+- elephant_foot_compensation_step · function · L94-L94 — void    elephant_foot_compensation_step(const float elephant_foot_compensation_perimeter_step, const Polygons &trimming_polygons);
+- export_region_slices_to_svg · function · L96-L96 — void    export_region_slices_to_svg(const char *path) const;
+- export_region_fill_surfaces_to_svg · function · L97-L97 — void    export_region_fill_surfaces_to_svg(const char *path) const;
+- export_region_slices_to_svg_debug · function · L99-L99 — void    export_region_slices_to_svg_debug(const char *name) const;
+- export_region_fill_surfaces_to_svg_debug · function · L100-L100 — void    export_region_fill_surfaces_to_svg_debug(const char *name) const;
+- has_extrusions · function · L103-L103 — bool    has_extrusions() const { return ! this->perimeters.entities.empty() || ! this->fills.entities.empty(); }
+- simplify_infill_extrusion_entity · function · L105-L105 — void    simplify_infill_extrusion_entity() { simplify_entity_collection(&fills); }
+- simplify_wall_extrusion_entity · function · L106-L106 — void    simplify_wall_extrusion_entity() { simplify_entity_collection(&perimeters); }
+- simplify_entity_collection · function · L108-L108 — void    simplify_entity_collection(ExtrusionEntityCollection* entity_collection);
+- simplify_path · function · L109-L109 — void    simplify_path(ExtrusionPath* path);
+- simplify_multi_path · function · L110-L110 — void    simplify_multi_path(ExtrusionMultiPath* multipath);
+- simplify_loop · function · L111-L111 — void    simplify_loop(ExtrusionLoop* loop);
+- LayerRegion · function · L117-L117 — LayerRegion(Layer *layer, const PrintRegion *region) : m_layer(layer), m_region(region) {}
+- Layer · class · L125-L284 — class Layer
+- id · function · L129-L129 — size_t              id() const          { return m_id; }
+- set_id · function · L130-L130 — void                set_id(size_t id)   { m_id = id; }
+- object · function · L131-L131 — PrintObject*        object()            { return m_object; }
+- object · function · L132-L132 — const PrintObject*  object() const      { return m_object; }
+- bottom_z · function · L140-L140 — coordf_t            bottom_z() const { return this->print_z - this->height; }
+- region_count · function · L169-L169 — size_t                  region_count() const { return m_regions.size(); }
+- get_region · function · L170-L170 — const LayerRegion*      get_region(int idx) const { return m_regions[idx]; }
+- get_region · function · L171-L171 — LayerRegion*            get_region(int idx) { return m_regions[idx]; }
+- add_region · function · L172-L172 — LayerRegion*            add_region(const PrintRegion *print_region);
+- regions · function · L173-L173 — const LayerRegionPtrs&  regions() const { return m_regions; }
+- empty · function · L175-L175 — bool                    empty() const;
+- make_slices · function · L176-L176 — void                    make_slices();
+- backup_untyped_slices · function · L179-L179 — void                    backup_untyped_slices();
+- restore_untyped_slices · function · L180-L180 — void                    restore_untyped_slices();
+- restore_untyped_slices_no_extra_perimeters · function · L182-L182 — void                    restore_untyped_slices_no_extra_perimeters();
+- merged · function · L184-L184 — ExPolygons              merged(float offset) const;
+- any_internal_region_slice_contains · function · L185-L188 — template <class T> bool any_internal_region_slice_contains(const T &item) const
+- any_bottom_region_slice_contains · function · L189-L192 — template <class T> bool any_bottom_region_slice_contains(const T &item) const
+- is_perimeter_compatible · function · L195-L195 — static bool             is_perimeter_compatible(const Print& print, const PrintRegion& a, const PrintRegion& b);
+- make_perimeters · function · L196-L196 — void                    make_perimeters();
+- make_fills · function · L198-L198 — void                    make_fills() { this->make_fills(nullptr, nullptr); }
+- make_fills · function · L199-L199 — void                    make_fills(FillAdaptive::Octree* adaptive_fill_octree, FillAdaptive::Octree* support_fill_octree, FillLightning::Generator* lightning_generator = nullptr);
+- generate_sparse_infill_polylines_for_anchoring · function · L200-L202 — Polylines               generate_sparse_infill_polylines_for_anchoring(FillAdaptive::Octree *adaptive_fill_octree,
+- make_ironing · function · L203-L203 — void 					make_ironing();
+- choose_ironing_extruder · function · L206-L208 — static int              choose_ironing_extruder(const PrintRegionConfig &cfg,
+- make_contour_z · function · L209-L209 — void                    make_contour_z(const sla::IndexedMesh &mesh);
+- export_region_slices_to_svg · function · L211-L211 — void                    export_region_slices_to_svg(const char *path) const;
+- export_region_fill_surfaces_to_svg · function · L212-L212 — void                    export_region_fill_surfaces_to_svg(const char *path) const;
+- export_region_slices_to_svg_debug · function · L214-L214 — void                    export_region_slices_to_svg_debug(const char *name) const;
+- export_region_fill_surfaces_to_svg_debug · function · L215-L215 — void                    export_region_fill_surfaces_to_svg_debug(const char *name) const;
+- has_extrusions · function · L218-L218 — virtual bool            has_extrusions() const { for (auto layerm : m_regions) if (layerm->has_extrusions()) return true; return false; }
+- simplify_wall_extrusion_path · function · L221-L221 — void simplify_wall_extrusion_path() { for (auto layerm : m_regions) layerm->simplify_wall_extrusion_entity();}
+- simplify_infill_extrusion_path · function · L222-L222 — void simplify_infill_extrusion_path() { for (auto layerm : m_regions) layerm->simplify_infill_extrusion_entity(); }
+- get_sparse_infill_max_void_area · function · L224-L224 — coordf_t get_sparse_infill_max_void_area();
+- idx_higher_or_equal · function · L231-L258 — template<typename IteratorType, typename IndexType, typename FN_HIGHER_EQUAL>
+- get_extruder_id · function · L260-L260 — size_t get_extruder_id(unsigned int filament_id) const;
+- new_layers · function · L264-L264 — friend std::vector<Layer*> new_layers(PrintObject*, const std::vector<coordf_t>&);
+- fix_slicing_errors · function · L265-L265 — friend std::string fix_slicing_errors(PrintObject* object, LayerPtrs&, const std::function<void()>&, int &);
+- Layer · function · L267-L270 — Layer(size_t id, PrintObject *object, coordf_t height, coordf_t print_z, coordf_t slice_z) :
+- simplify_support_entity_collection · function · L274-L274 — void    simplify_support_entity_collection(ExtrusionEntityCollection* entity_collection);
+- simplify_support_path · function · L275-L275 — void    simplify_support_path(ExtrusionPath* path);
+- simplify_support_multi_path · function · L276-L276 — void    simplify_support_multi_path(ExtrusionMultiPath* multipath);
+- simplify_support_loop · function · L277-L277 — void    simplify_support_loop(ExtrusionLoop* loop);
+- SupportInnerType · type · L286-L289 — enum SupportInnerType
+- SupportLayer · class · L291-L343 — class SupportLayer : public Layer
+- has_extrusions · function · L306-L306 — virtual bool                has_extrusions() const { return ! support_fills.empty(); }
+- interface_id · function · L309-L309 — size_t                      interface_id() const { return m_interface_id; }
+- simplify_support_extrusion_path · function · L311-L311 — void simplify_support_extrusion_path() { this->simplify_support_entity_collection(&support_fills); }
+- SupportLayer · function · L319-L320 — SupportLayer(size_t id, size_t interface_id, PrintObject *object, coordf_t height, coordf_t print_z, coordf_t slice_z) :
+- AreaType · type · L330-L330 — enum AreaType { BaseType = 0, RoofType = 1, FloorType = 2, Roof1stLayer = 3 };
+- AreaGroup · class · L331-L341 — struct AreaGroup
+- AreaGroup · function · L340-L340 — AreaGroup(ExPolygon *a, int t, coordf_t d) : area(a), type(t), dist_to_top(d) {}
+- zs_from_layers · function · L345-L353 — template<typename LayerContainer>
+- get_extents · function · L355-L355 — extern BoundingBox get_extents(const LayerRegion &layer_region);
+- get_extents · function · L356-L356 — extern BoundingBox get_extents(const LayerRegionPtrs &layer_regions);

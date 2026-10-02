@@ -1,0 +1,24 @@
+# src/slic3r/GUI/GUI_Geometry.hpp
+
+- ECoordinatesType · type · L7-L12 — enum class ECoordinatesType : unsigned char
+- TransformationType · class · L14-L73 — class TransformationType
+- Enum · type · L17-L43 — enum Enum
+- TransformationType · function · L45-L45 — TransformationType() : m_value(World) {}
+- TransformationType · function · L46-L46 — TransformationType(Enum value) : m_value(value) {}
+- has · function · L50-L50 — bool has(Enum v) const { return ((unsigned int)m_value & (unsigned int)v) != 0; }
+- set_world · function · L52-L52 — void set_world()      { this->remove(Instance); this->remove(Local); }
+- set_instance · function · L53-L53 — void set_instance()   { this->remove(Local); this->add(Instance); }
+- set_local · function · L54-L54 — void set_local()      { this->remove(Instance); this->add(Local); }
+- set_absolute · function · L55-L55 — void set_absolute()    { this->remove(Relative); }
+- set_relative · function · L56-L56 — void set_relative()    { this->add(Relative); }
+- set_joint · function · L57-L57 — void set_joint()       { this->remove(Independent); }
+- set_independent · function · L58-L58 — void set_independent() { this->add(Independent); }
+- world · function · L60-L60 — bool world()        const { return !this->has(Instance) && !this->has(Local); }
+- instance · function · L61-L61 — bool instance()     const { return this->has(Instance); }
+- local · function · L62-L62 — bool local()        const { return this->has(Local); }
+- absolute · function · L63-L63 — bool absolute()     const { return !this->has(Relative); }
+- relative · function · L64-L64 — bool relative()     const { return this->has(Relative); }
+- joint · function · L65-L65 — bool joint()        const { return !this->has(Independent); }
+- independent · function · L66-L66 — bool independent()  const { return this->has(Independent); }
+- add · function · L69-L69 — void add(Enum v)    { m_value = Enum((unsigned int)m_value | (unsigned int)v); }
+- remove · function · L70-L70 — void remove(Enum v) { m_value = Enum((unsigned int)m_value & (~(unsigned int)v)); }

@@ -1,0 +1,29 @@
+# src/slic3r/GUI/UpdateDialogs.hpp
+
+- wxBoxSizer · class · L12-L12 — class wxBoxSizer;
+- wxCheckBox · class · L13-L13 — class wxCheckBox;
+- MsgUpdateSlic3r · class · L21-L36 — class MsgUpdateSlic3r : public MsgDialog
+- MsgUpdateSlic3r · function · L24-L24 — MsgUpdateSlic3r(const Semver &ver_current, const Semver &ver_online);
+- MsgUpdateSlic3r · function · L25-L25 — MsgUpdateSlic3r(MsgUpdateSlic3r &&) = delete;
+- MsgUpdateSlic3r · function · L26-L26 — MsgUpdateSlic3r(const MsgUpdateSlic3r &) = delete;
+- disable_version_check · function · L32-L32 — bool disable_version_check() const;
+- on_hyperlink · function · L34-L34 — void on_hyperlink(wxHyperlinkEvent& evt);
+- MsgUpdateConfig · class · L40-L68 — class MsgUpdateConfig : public DPIDialog
+- Update · class · L43-L58 — struct Update
+- Update · function · L52-L57 — Update(std::string vendor, Semver version, std::string comment, std::string changelog)
+- MsgUpdateConfig · function · L61-L61 — MsgUpdateConfig(const std::vector<Update> &updates, bool force_before_wizard = false);
+- on_dpi_changed · function · L62-L62 — void on_dpi_changed(const wxRect &suggested_rect);
+- MsgUpdateForced · class · L71-L97 — class MsgUpdateForced : public MsgDialog
+- Update · class · L74-L89 — struct Update
+- Update · function · L83-L88 — Update(std::string vendor, Semver version, std::string comment, std::string changelog)
+- MsgUpdateForced · function · L91-L91 — MsgUpdateForced(const std::vector<Update>& updates);
+- MsgUpdateForced · function · L92-L92 — MsgUpdateForced(MsgUpdateForced&&) = delete;
+- MsgUpdateForced · function · L93-L93 — MsgUpdateForced(const MsgUpdateForced&) = delete;
+- MsgDataIncompatible · class · L100-L110 — class MsgDataIncompatible : public MsgDialog
+- MsgDataIncompatible · function · L104-L104 — MsgDataIncompatible(const std::unordered_map<std::string, wxString> &incompats);
+- MsgDataIncompatible · function · L105-L105 — MsgDataIncompatible(MsgDataIncompatible &&) = delete;
+- MsgDataIncompatible · function · L106-L106 — MsgDataIncompatible(const MsgDataIncompatible &) = delete;
+- MsgNoUpdates · class · L125-L134 — class MsgNoUpdates : public MsgDialog
+- MsgNoUpdates · function · L128-L128 — MsgNoUpdates();
+- MsgNoUpdates · function · L129-L129 — MsgNoUpdates(MsgNoUpdates&&) = delete;
+- MsgNoUpdates · function · L130-L130 — MsgNoUpdates(const MsgNoUpdates&) = delete;

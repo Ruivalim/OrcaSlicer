@@ -1,0 +1,48 @@
+# deps_src/agg/agg_renderer_base.h
+
+- pixfmt_type · type · L34-L34 — typedef typename pixfmt_type::color_type color_type;
+- pixfmt_type · type · L35-L35 — typedef typename pixfmt_type::row_data row_data;
+- renderer_base · function · L39-L40 — explicit renderer_base(pixfmt_type& ren) :
+- attach · function · L43-L47 — void attach(pixfmt_type& ren)
+- ren · function · L50-L50 — const pixfmt_type& ren() const { return *m_ren;  }
+- width · function · L54-L54 — unsigned width()  const { return m_ren->width();  }
+- height · function · L55-L55 — unsigned height() const { return m_ren->height(); }
+- clip_box · function · L58-L72 — bool clip_box(int x1, int y1, int x2, int y2)
+- cb · function · L60-L60 — rect_i cb(x1, y1, x2, y2);
+- reset_clipping · function · L75-L91 — void reset_clipping(bool visibility)
+- clip_box_naked · function · L94-L100 — void clip_box_naked(int x1, int y1, int x2, int y2)
+- inbox · function · L103-L107 — bool inbox(int x, int y) const
+- clip_box · function · L110-L110 — const rect_i& clip_box() const { return m_clip_box;    }
+- xmin · function · L111-L111 — int           xmin()     const { return m_clip_box.x1; }
+- ymin · function · L112-L112 — int           ymin()     const { return m_clip_box.y1; }
+- xmax · function · L113-L113 — int           xmax()     const { return m_clip_box.x2; }
+- ymax · function · L114-L114 — int           ymax()     const { return m_clip_box.y2; }
+- bounding_clip_box · function · L117-L117 — const rect_i& bounding_clip_box() const { return m_clip_box;    }
+- bounding_xmin · function · L118-L118 — int           bounding_xmin()     const { return m_clip_box.x1; }
+- bounding_ymin · function · L119-L119 — int           bounding_ymin()     const { return m_clip_box.y1; }
+- bounding_xmax · function · L120-L120 — int           bounding_xmax()     const { return m_clip_box.x2; }
+- bounding_ymax · function · L121-L121 — int           bounding_ymax()     const { return m_clip_box.y2; }
+- clear · function · L124-L134 — void clear(const color_type& c)
+- fill · function · L138-L148 — void fill(const color_type& c)
+- copy_pixel · function · L151-L157 — void copy_pixel(int x, int y, const color_type& c)
+- blend_pixel · function · L160-L166 — void blend_pixel(int x, int y, const color_type& c, cover_type cover)
+- pixel · function · L169-L174 — color_type pixel(int x, int y) const
+- copy_hline · function · L177-L189 — void copy_hline(int x1, int y, int x2, const color_type& c)
+- copy_vline · function · L192-L204 — void copy_vline(int x, int y1, int y2, const color_type& c)
+- blend_hline · function · L207-L220 — void blend_hline(int x1, int y, int x2,
+- blend_vline · function · L223-L236 — void blend_vline(int x, int y1, int y2,
+- copy_bar · function · L240-L252 — void copy_bar(int x1, int y1, int x2, int y2, const color_type& c)
+- rc · function · L242-L242 — rect_i rc(x1, y1, x2, y2);
+- blend_bar · function · L255-L272 — void blend_bar(int x1, int y1, int x2, int y2,
+- rc · function · L258-L258 — rect_i rc(x1, y1, x2, y2);
+- blend_solid_hspan · function · L275-L295 — void blend_solid_hspan(int x, int y, int len,
+- blend_solid_vspan · function · L298-L318 — void blend_solid_vspan(int x, int y, int len,
+- copy_color_hspan · function · L322-L341 — void copy_color_hspan(int x, int y, int len, const color_type* colors)
+- copy_color_vspan · function · L345-L364 — void copy_color_vspan(int x, int y, int len, const color_type* colors)
+- blend_color_hspan · function · L368-L371 — void blend_color_hspan(int x, int y, int len,
+- blend_color_vspan · function · L394-L397 — void blend_color_vspan(int x, int y, int len,
+- clip_rect_area · function · L420-L461 — rect_i clip_rect_area(rect_i& dst, rect_i& src, int wsrc, int hsrc) const
+- rdst · function · L483-L483 — rect_i rdst(rsrc.x1 + dx, rsrc.y1 + dy, rsrc.x2 + dx, rsrc.y2 + dy);
+- rdst · function · L530-L530 — rect_i rdst(rsrc.x1 + dx, rsrc.y1 + dy, rsrc.x2 + dx, rsrc.y2 + dy);
+- rdst · function · L601-L601 — rect_i rdst(rsrc.x1 + dx, rsrc.y1 + dy, rsrc.x2 + dx, rsrc.y2 + dy);
+- rdst · function · L673-L673 — rect_i rdst(rsrc.x1 + dx, rsrc.y1 + dy, rsrc.x2 + dx, rsrc.y2 + dy);

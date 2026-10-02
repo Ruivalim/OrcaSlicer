@@ -1,0 +1,57 @@
+# deps_src/nanosvg/nanosvgrast.h
+
+- NSVGrasterizer · type · L42-L42 — typedef struct NSVGrasterizer NSVGrasterizer;
+- nsvgCreateRasterizer · function · L61-L61 — NSVGrasterizer* nsvgCreateRasterizer(void);
+- nsvgRasterize · function · L72-L74 — void nsvgRasterize(NSVGrasterizer* r,
+- nsvgRasterizeXY · function · L77-L80 — void nsvgRasterizeXY(NSVGrasterizer* r,
+- nsvgDeleteRasterizer · function · L83-L83 — void nsvgDeleteRasterizer(NSVGrasterizer*);
+- NSVGedge · class · L104-L108 — typedef struct NSVGedge
+- NSVGpoint · class · L110-L116 — typedef struct NSVGpoint
+- NSVGactiveEdge · class · L118-L123 — typedef struct NSVGactiveEdge
+- NSVGmemPage · class · L125-L129 — typedef struct NSVGmemPage
+- NSVGcachedPaint · class · L131-L136 — typedef struct NSVGcachedPaint
+- NSVGrasterizer · class · L138-L166 — struct NSVGrasterizer
+- nsvgCreateRasterizer · function · L168-L168 — NSVGrasterizer* nsvgCreateRasterizer(void)
+- nsvgDeleteRasterizer · function · L184-L203 — void nsvgDeleteRasterizer(NSVGrasterizer* r)
+- nsvg__nextPage · function · L205-L205 — static NSVGmemPage* nsvg__nextPage(NSVGrasterizer* r, NSVGmemPage* cur)
+- nsvg__resetPool · function · L228-L236 — static void nsvg__resetPool(NSVGrasterizer* r)
+- nsvg__alloc · function · L238-L238 — static unsigned char* nsvg__alloc(NSVGrasterizer* r, int size)
+- nsvg__ptEquals · function · L250-L255 — static int nsvg__ptEquals(float x1, float y1, float x2, float y2, float tol)
+- nsvg__addPathPoint · function · L257-L280 — static void nsvg__addPathPoint(NSVGrasterizer* r, float x, float y, int flags)
+- nsvg__appendPathPoint · function · L282-L291 — static void nsvg__appendPathPoint(NSVGrasterizer* r, NSVGpoint pt)
+- nsvg__duplicatePoints · function · L293-L303 — static void nsvg__duplicatePoints(NSVGrasterizer* r)
+- nsvg__addEdge · function · L305-L335 — static void nsvg__addEdge(NSVGrasterizer* r, float x0, float y0, float x1, float y1)
+- nsvg__normalize · function · L337-L346 — static float nsvg__normalize(float *x, float* y)
+- nsvg__absf · function · L348-L348 — static float nsvg__absf(float x) { return x < 0 ? -x : x; }
+- nsvg__roundf · function · L349-L349 — static float nsvg__roundf(float x) { return (x >= 0) ? floorf(x + 0.5) : ceilf(x - 0.5); }
+- nsvg__flattenCubicBez · function · L351-L387 — static void nsvg__flattenCubicBez(NSVGrasterizer* r,
+- nsvg__flattenShape · function · L389-L408 — static void nsvg__flattenShape(NSVGrasterizer* r, NSVGshape* shape, float sx, float sy)
+- NSVGpointFlags · type · L410-L415 — enum NSVGpointFlags
+- nsvg__initClosed · function · L417-L429 — static void nsvg__initClosed(NSVGpoint* left, NSVGpoint* right, NSVGpoint* p0, NSVGpoint* p1, float lineWidth)
+- nsvg__buttCap · function · L431-L447 — static void nsvg__buttCap(NSVGrasterizer* r, NSVGpoint* left, NSVGpoint* right, NSVGpoint* p, float dx, float dy, float lineWidth, int connect)
+- nsvg__squareCap · function · L449-L465 — static void nsvg__squareCap(NSVGrasterizer* r, NSVGpoint* left, NSVGpoint* right, NSVGpoint* p, float dx, float dy, float lineWidth, int connect)
+- nsvg__roundCap · function · L471-L505 — static void nsvg__roundCap(NSVGrasterizer* r, NSVGpoint* left, NSVGpoint* right, NSVGpoint* p, float dx, float dy, float lineWidth, int ncap, int connect)
+- nsvg__bevelJoin · function · L507-L525 — static void nsvg__bevelJoin(NSVGrasterizer* r, NSVGpoint* left, NSVGpoint* right, NSVGpoint* p0, NSVGpoint* p1, float lineWidth)
+- nsvg__miterJoin · function · L527-L561 — static void nsvg__miterJoin(NSVGrasterizer* r, NSVGpoint* left, NSVGpoint* right, NSVGpoint* p0, NSVGpoint* p1, float lineWidth)
+- nsvg__roundJoin · function · L563-L602 — static void nsvg__roundJoin(NSVGrasterizer* r, NSVGpoint* left, NSVGpoint* right, NSVGpoint* p0, NSVGpoint* p1, float lineWidth, int ncap)
+- nsvg__straightJoin · function · L604-L615 — static void nsvg__straightJoin(NSVGrasterizer* r, NSVGpoint* left, NSVGpoint* right, NSVGpoint* p1, float lineWidth)
+- nsvg__curveDivs · function · L617-L623 — static int nsvg__curveDivs(float r, float arc, float tol)
+- nsvg__expandStroke · function · L625-L694 — static void nsvg__expandStroke(NSVGrasterizer* r, NSVGpoint* points, int npoints, int closed, int lineJoin, int lineCap, float lineWidth)
+- nsvg__prepareStroke · function · L696-L751 — static void nsvg__prepareStroke(NSVGrasterizer* r, float miterLimit, int lineJoin)
+- nsvg__flattenShapeStroke · function · L753-L861 — static void nsvg__flattenShapeStroke(NSVGrasterizer* r, NSVGshape* shape, float sx, float sy)
+- nsvg__cmpEdge · function · L863-L871 — static int nsvg__cmpEdge(const void *p, const void *q)
+- nsvg__addActive · function · L874-L874 — static NSVGactiveEdge* nsvg__addActive(NSVGrasterizer* r, NSVGedge* e, float startPoint)
+- nsvg__freeActive · function · L904-L908 — static void nsvg__freeActive(NSVGrasterizer* r, NSVGactiveEdge* z)
+- nsvg__fillScanline · function · L910-L935 — static void nsvg__fillScanline(unsigned char* scanline, int len, int x0, int x1, int maxWeight, int* xmin, int* xmax)
+- nsvg__fillActiveEdges · function · L940-L972 — static void nsvg__fillActiveEdges(unsigned char* scanline, int len, NSVGactiveEdge* e, int maxWeight, int* xmin, int* xmax, char fillRule)
+- nsvg__clampf · function · L974-L974 — static float nsvg__clampf(float a, float mn, float mx) { return a < mn ? mn : (a > mx ? mx : a); }
+- nsvg__RGBA · function · L976-L979 — static unsigned int nsvg__RGBA(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
+- nsvg__lerpRGBA · function · L981-L989 — static unsigned int nsvg__lerpRGBA(unsigned int c0, unsigned int c1, float u)
+- nsvg__applyOpacity · function · L991-L999 — static unsigned int nsvg__applyOpacity(unsigned int c, float u)
+- nsvg__div255 · function · L1001-L1004 — static inline int nsvg__div255(int x)
+- nsvg__scanlineSolid · function · L1006-L1132 — static void nsvg__scanlineSolid(unsigned char* dst, int count, unsigned char* cover, int x, int y,
+- nsvg__rasterizeSortedEdges · function · L1134-L1220 — static void nsvg__rasterizeSortedEdges(NSVGrasterizer *r, float tx, float ty, float sx, float sy, NSVGcachedPaint* cache, char fillRule)
+- nsvg__unpremultiplyAlpha · function · L1222-L1279 — static void nsvg__unpremultiplyAlpha(unsigned char* image, int w, int h, int stride)
+- nsvg__initPaint · function · L1282-L1340 — static void nsvg__initPaint(NSVGcachedPaint* cache, NSVGpaint* paint, float opacity)
+- nsvgRasterizeXY · function · L1384-L1472 — void nsvgRasterizeXY(NSVGrasterizer* r,
+- nsvgRasterize · function · L1474-L1479 — void nsvgRasterize(NSVGrasterizer* r,

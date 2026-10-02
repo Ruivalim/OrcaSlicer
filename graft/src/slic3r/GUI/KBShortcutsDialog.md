@@ -1,0 +1,30 @@
+# src/slic3r/GUI/KBShortcutsDialog.hpp
+
+- Button · class · L14-L14 — class Button;
+- Label · class · L15-L15 — class Label;
+- TabCtrl · class · L16-L16 — class TabCtrl;
+- KBShortcutsDialog · class · L22-L91 — class KBShortcutsDialog : public DPIDialog
+- FixedKey · class · L25-L29 — struct FixedKey
+- MouseAction · class · L31-L35 — struct MouseAction
+- Row · class · L36-L40 — struct Row
+- Page · class · L41-L47 — struct Page
+- EditableRow · class · L48-L55 — struct EditableRow
+- PreferenceRow · class · L56-L60 — struct PreferenceRow
+- KBShortcutsDialog · function · L75-L75 — KBShortcutsDialog(wxWindow* parent, ShortcutContext page);   // opens on the page of that context
+- on_dpi_changed · function · L78-L78 — void on_dpi_changed(const wxRect &suggested_rect) override;
+- fill_pages · function · L81-L81 — void fill_pages();
+- create_page · function · L82-L82 — wxPanel* create_page(wxWindow* parent, const Page& page);
+- edit_shortcut · function · L83-L83 — void edit_shortcut(Shortcut shortcut);
+- reset_shortcut · function · L84-L84 — void reset_shortcut(Shortcut shortcut);
+- take_chord_from · function · L86-L86 — bool take_chord_from(Shortcut shortcut, const std::vector<Shortcut>& conflicts, const wxString& question);
+- apply_bindings · function · L87-L87 — void apply_bindings();   // refreshes the rows and pushes the change to the rest of the app
+- set_chord_labels · function · L89-L89 — int  set_chord_labels(wxStaticText* modifiers, wxStaticText* key, std::vector<wxString> parts);
+- open_mouse_preferences · function · L90-L90 — void open_mouse_preferences(const char* preference);
+- ShortcutCaptureDialog · class · L94-L120 — class ShortcutCaptureDialog : public DPIDialog
+- ShortcutCaptureDialog · function · L97-L97 — ShortcutCaptureDialog(wxWindow* parent, Shortcut shortcut);
+- chord · function · L100-L100 — const KeyChord&              chord() const { return m_chord; }
+- conflicts · function · L101-L101 — const std::vector<Shortcut>& conflicts() const { return m_conflicts; }
+- on_dpi_changed · function · L104-L104 — void on_dpi_changed(const wxRect& suggested_rect) override;
+- on_key · function · L107-L107 — void on_key(wxKeyEvent& evt);
+- on_char · function · L108-L108 — void on_char(wxKeyEvent& evt);
+- record · function · L109-L109 — void record(const KeyChord& chord);

@@ -1,0 +1,39 @@
+# src/libslic3r/ProjectTask.hpp
+
+- BBLProject · class · L17-L17 — class BBLProject;
+- BBLProfile · class · L18-L18 — class BBLProfile;
+- BBLTask · class · L19-L19 — class BBLTask;
+- BBLModelTask · class · L20-L20 — class BBLModelTask;
+- MachineBedType · type · L23-L30 — enum MachineBedType
+- MappingResult · type · L32-L36 — enum MappingResult
+- FilamentInfo · class · L38-L100 — struct FilamentInfo
+- get_ams_id · function · L63-L74 — int get_ams_id() const
+- get_slot_id · function · L76-L85 — int get_slot_id() const
+- get_display_filament_type · function · L88-L99 — std::string get_display_filament_type() const
+- BBLSliceInfo · class · L102-L140 — class BBLSliceInfo
+- BBLSliceInfo · function · L104-L109 — BBLSliceInfo(BBLProfile* profile = nullptr)
+- BBLSliceInfo · function · L111-L124 — BBLSliceInfo(const BBLSliceInfo& obj)
+- TaskUserOptions · type · L142-L148 — enum TaskUserOptions
+- BBLModelTask · class · L150-L163 — class BBLModelTask
+- BBLModelTask · function · L152-L152 — BBLModelTask();
+- BBLSubTask · class · L165-L244 — class BBLSubTask
+- SubTaskStatus · type · L167-L175 — enum SubTaskStatus
+- BBLSubTask · function · L177-L177 — BBLSubTask(BBLTask* task = nullptr);
+- BBLSubTask · function · L179-L202 — BBLSubTask(const BBLSubTask& obj)
+- parse_content_json · function · L241-L241 — int parse_content_json(std::string json_str);
+- parse_status · function · L242-L242 — static BBLSubTask::SubTaskStatus parse_status(std::string status);
+- parse_user_service_task_status · function · L243-L243 — static BBLSubTask::SubTaskStatus parse_user_service_task_status(int status);
+- OnGetSubTaskFn · type · L246-L246 — typedef std::function<void(BBLModelTask* subtask)> OnGetSubTaskFn;
+- BBLTask · class · L248-L286 — class BBLTask
+- TaskStatus · type · L250-L253 — enum TaskStatus
+- BBLTask · function · L255-L255 — BBLTask(BBLProfile* profile = nullptr);
+- task_status_str · function · L273-L283 — std::string task_status_str()
+- parse_content_json · function · L285-L285 — int parse_content_json(std::string json);
+- BBLProfile · class · L288-L307 — class BBLProfile
+- BBLProfile · function · L290-L290 — BBLProfile(BBLProject* project = nullptr);
+- get_slice_info · function · L306-L306 — BBLSliceInfo* get_slice_info(std::string plate_idx);
+- BBLProject · class · L309-L339 — class BBLProject
+- BBLProject · function · L311-L314 — BBLProject()
+- BBLProject · function · L315-L317 — BBLProject(std::string name)
+- set_name · function · L336-L336 — void set_name(std::string name) { project_name = name; }
+- reset · function · L338-L338 — void reset();

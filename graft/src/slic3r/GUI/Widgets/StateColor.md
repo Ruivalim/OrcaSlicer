@@ -1,0 +1,33 @@
+# src/slic3r/GUI/Widgets/StateColor.hpp
+
+- StateColor · class · L8-L110 — class StateColor
+- State · type · L11-L23 — enum State
+- GetLAB · function · L26-L26 — static std::tuple<double, double, double> GetLAB(const wxColour& color);
+- GetLightness · function · L27-L27 — static double GetLightness(const wxColour& color);
+- SetLightness · function · L28-L28 — static wxColour SetLightness(const wxColour& color, double lightness);
+- LightenDarkenColor · function · L29-L29 — static wxColour LightenDarkenColor(const wxColour& color, int amount);
+- GetColorDifference · function · L30-L30 — static double GetColorDifference(const wxColour& c1, const wxColour& c2);
+- LAB_Delta_E · function · L31-L31 — static double LAB_Delta_E(const wxColour& c1, const wxColour& c2);
+- SetDarkMode · function · L33-L33 — static void SetDarkMode(bool dark);
+- GetDarkMap · function · L35-L35 — static std::map<wxColour, wxColour> const & GetDarkMap();
+- darkModeColorFor · function · L36-L36 — static wxColour darkModeColorFor(wxColour const &color);
+- lightModeColorFor · function · L37-L37 — static wxColour lightModeColorFor(wxColour const &color);
+- StateColor · function · L40-L43 — template<typename ...Colors>
+- StateColor · function · L46-L46 — StateColor(wxColour const & color);
+- StateColor · function · L49-L49 — StateColor(wxString const &color);
+- StateColor · function · L52-L52 — StateColor(unsigned long color);
+- append · function · L65-L65 — void append(wxColour const & color, int states);
+- append · function · L67-L67 — void append(wxString const &color, int states);
+- append · function · L69-L69 — void append(unsigned long color, int states);
+- clear · function · L71-L71 — void clear();
+- count · function · L74-L74 — int count() const { return statesList_.size(); }
+- states · function · L76-L76 — int states() const;
+- defaultColor · function · L79-L79 — wxColour defaultColor();
+- colorForStates · function · L81-L81 — wxColour colorForStates(int states);
+- colorForStatesNoDark · function · L83-L83 — wxColour colorForStatesNoDark(int states);
+- colorIndexForStates · function · L85-L85 — int colorIndexForStates(int states);
+- setColorForStates · function · L87-L87 — bool setColorForStates(wxColour const & color, int states);
+- setTakeFocusedAsHovered · function · L89-L89 — void setTakeFocusedAsHovered(bool set);
+- fill · function · L92-L96 — template<typename Color, typename ...Colors>
+- fillOne · function · L98-L101 — template<typename Color>
+- fill · function · L103-L104 — void fill()

@@ -1,0 +1,23 @@
+# deps/EXPAT/expat/xmltok.h
+
+- position · class · L146-L150 — typedef struct position
+- ATTRIBUTE · type · L152-L157 — typedef struct
+- ENCODING · type · L160-L160 — typedef struct encoding ENCODING;
+- XML_Convert_Result · type · L165-L170 — enum XML_Convert_Result
+- encoding · class · L172-L200 — struct encoding
+- XML_Convert_Result · type · L188-L191 — enum XML_Convert_Result(PTRCALL *utf8Convert)(const ENCODING *enc,
+- XML_Convert_Result · type · L192-L196 — enum XML_Convert_Result(PTRCALL *utf16Convert)(const ENCODING *enc,
+- INIT_ENCODING · type · L281-L284 — typedef struct
+- XmlParseXmlDecl · function · L286-L290 — int XmlParseXmlDecl(int isGeneralTextEntity, const ENCODING *enc,
+- XmlInitEncoding · function · L292-L292 — int XmlInitEncoding(INIT_ENCODING *, const ENCODING **, const char *name);
+- XmlGetUtf8InternalEncoding · function · L293-L293 — const ENCODING *XmlGetUtf8InternalEncoding(void);
+- XmlGetUtf16InternalEncoding · function · L294-L294 — const ENCODING *XmlGetUtf16InternalEncoding(void);
+- XmlUtf8Encode · function · L295-L295 — int FASTCALL XmlUtf8Encode(int charNumber, char *buf);
+- XmlUtf16Encode · function · L296-L296 — int FASTCALL XmlUtf16Encode(int charNumber, unsigned short *buf);
+- XmlSizeOfUnknownEncoding · function · L297-L297 — int XmlSizeOfUnknownEncoding(void);
+- XmlInitUnknownEncoding · function · L301-L302 — ENCODING *XmlInitUnknownEncoding(void *mem, int *table, CONVERTER convert,
+- XmlParseXmlDeclNS · function · L304-L308 — int XmlParseXmlDeclNS(int isGeneralTextEntity, const ENCODING *enc,
+- XmlInitEncodingNS · function · L310-L310 — int XmlInitEncodingNS(INIT_ENCODING *, const ENCODING **, const char *name);
+- XmlGetUtf8InternalEncodingNS · function · L311-L311 — const ENCODING *XmlGetUtf8InternalEncodingNS(void);
+- XmlGetUtf16InternalEncodingNS · function · L312-L312 — const ENCODING *XmlGetUtf16InternalEncodingNS(void);
+- XmlInitUnknownEncodingNS · function · L313-L314 — ENCODING *XmlInitUnknownEncodingNS(void *mem, int *table, CONVERTER convert,

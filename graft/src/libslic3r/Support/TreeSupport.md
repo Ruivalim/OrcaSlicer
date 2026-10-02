@@ -1,0 +1,54 @@
+# src/libslic3r/Support/TreeSupport.hpp
+
+- PrintObject · class · L23-L23 — class PrintObject;
+- TreeSupport · class · L24-L24 — class TreeSupport;
+- SupportLayer · class · L25-L25 — class SupportLayer;
+- LayerHeightData · class · L27-L37 — struct LayerHeightData
+- LayerHeightData · function · L32-L32 — LayerHeightData()      = default;
+- LayerHeightData · function · L33-L33 — LayerHeightData(coordf_t z, coordf_t h, size_t obj_layer) : print_z(z), height(h), obj_layer_nr(obj_layer) {}
+- bottom_z · function · L34-L36 — coordf_t bottom_z()
+- TreeNodeType · type · L39-L43 — enum TreeNodeType
+- SupportNode · class · L49-L184 — struct SupportNode
+- SupportNode · function · L53-L62 — SupportNode()
+- SupportNode · function · L65-L94 — SupportNode(const Point position, const int distance_to_top, const int obj_layer_nr, const int support_roof_layers_below, const bool to_buildplate, SupportNode* parent,
+- TreeSupportData · class · L191-L343 — class TreeSupportData
+- TreeSupportData · function · L194-L194 — TreeSupportData() = default;
+- TreeSupportData · function · L202-L202 — TreeSupportData(const PrintObject& object, coordf_t xy_distance, coordf_t radius_sample_resolution);
+- TreeSupportData · function · L208-L208 — TreeSupportData(TreeSupportData&&) = delete;
+- TreeSupportData · function · L211-L211 — TreeSupportData(const TreeSupportData&) = delete;
+- get_collision · function · L224-L224 — const ExPolygons& get_collision(coordf_t radius, size_t layer_idx) const;
+- get_avoidance · function · L240-L240 — const ExPolygons& get_avoidance(coordf_t radius, size_t layer_idx, int recursions=0) const;
+- get_contours · function · L242-L242 — Polygons get_contours(size_t layer_nr) const;
+- get_contours_with_holes · function · L243-L243 — Polygons get_contours_with_holes(size_t layer_nr) const;
+- create_node · function · L245-L246 — SupportNode* create_node(const Point position, const int distance_to_top, const int obj_layer_nr, const int support_roof_layers_below, const bool to_buildplate, SupportNode* parent,
+- clear_nodes · function · L247-L247 — void clear_nodes();
+- RadiusLayerPair · class · L257-L262 — struct RadiusLayerPair
+- RadiusLayerPairEquality · class · L263-L267 — struct RadiusLayerPairEquality
+- RadiusLayerPairHash · class · L268-L272 — struct RadiusLayerPairHash
+- ceil_radius · function · L279-L279 — coordf_t ceil_radius(coordf_t radius) const;
+- calculate_collision · function · L287-L287 — const ExPolygons& calculate_collision(const RadiusLayerPair& key) const;
+- calculate_avoidance · function · L295-L295 — const ExPolygons& calculate_avoidance(const RadiusLayerPair& key) const;
+- LineHash · class · L345-L350 — struct LineHash
+- TreeSupport · class · L355-L527 — class TreeSupport
+- TreeSupport · function · L363-L363 — TreeSupport(PrintObject& object, const SlicingParameters &slicing_params);
+- move_bounds_to_contact_nodes · function · L365-L367 — void move_bounds_to_contact_nodes(std::vector<TreeSupport3D::SupportElements> &move_bounds,
+- generate · function · L376-L376 — void generate();
+- detect_overhangs · function · L378-L378 — void detect_overhangs(bool check_support_necessity = false);
+- create_node · function · L380-L389 — SupportNode* create_node(const Point  position,
+- OverhangType · type · L412-L412 — enum OverhangType { Detected = 0, Enforced, SharpTail };
+- draw_circles · function · L461-L461 — void draw_circles();
+- drop_nodes · function · L475-L475 — void drop_nodes();
+- smooth_nodes · function · L477-L477 — void smooth_nodes();
+- plan_layer_heights · function · L484-L484 — std::vector<LayerHeightData> plan_layer_heights();
+- generate_contact_points · function · L498-L498 — void generate_contact_points();
+- insert_dropped_node · function · L505-L505 — void insert_dropped_node(std::vector<SupportNode*>& nodes_layer, SupportNode* node);
+- create_tree_support_layers · function · L506-L506 — void create_tree_support_layers();
+- generate_toolpaths · function · L507-L507 — void generate_toolpaths();
+- calc_branch_radius · function · L509-L509 — coordf_t calc_branch_radius(coordf_t base_radius, size_t layers_to_top, size_t tip_layers, double diameter_angle_scale_factor);
+- calc_branch_radius · function · L511-L511 — coordf_t calc_branch_radius(coordf_t base_radius, coordf_t mm_to_top, double diameter_angle_scale_factor, bool use_min_distance=true);
+- calc_radius · function · L512-L512 — coordf_t   calc_radius(coordf_t mm_to_top);
+- get_radius · function · L513-L513 — coordf_t get_radius(const SupportNode* node);
+- get_avoidance · function · L514-L514 — ExPolygons get_avoidance(coordf_t radius, size_t obj_layer_nr);
+- get_collision · function · L516-L516 — ExPolygons get_collision(coordf_t radius, size_t layer_nr);
+- get_collision_polys · function · L518-L518 — Polygons get_collision_polys(coordf_t radius, size_t layer_nr);
+- get_trim_support_regions · function · L521-L526 — Polygons get_trim_support_regions(

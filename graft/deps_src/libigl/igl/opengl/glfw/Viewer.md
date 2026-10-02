@@ -1,0 +1,42 @@
+# deps_src/libigl/igl/opengl/glfw/Viewer.h
+
+- class · type · L46-L46 — enum class MouseButton {Left, Middle, Right};
+- class · type · L47-L47 — enum class MouseMode { None, Rotation, Zoom, Pan, Translation} mouse_mode;
+- launch · function · L48-L48 — IGL_INLINE int launch     (bool fullscreen = false, const std::string &name = "libigl viewer", int width = 0, int height = 0);
+- launch_init · function · L49-L49 — IGL_INLINE int launch_init(bool fullscreen = false, const std::string &name = "libigl viewer", int width = 0, int height = 0);
+- launch_rendering · function · L50-L50 — IGL_INLINE bool launch_rendering(bool loop = true);
+- launch_shut · function · L51-L51 — IGL_INLINE void launch_shut();
+- init · function · L52-L52 — IGL_INLINE void init();
+- init_plugins · function · L53-L53 — IGL_INLINE void init_plugins();
+- shutdown_plugins · function · L54-L54 — IGL_INLINE void shutdown_plugins();
+- load_mesh_from_file · function · L58-L58 — IGL_INLINE bool load_mesh_from_file(const std::string & mesh_file_name);
+- save_mesh_to_file · function · L59-L59 — IGL_INLINE bool   save_mesh_to_file(const std::string & mesh_file_name);
+- key_pressed · function · L61-L61 — IGL_INLINE bool key_pressed(unsigned int unicode_key,int modifier);
+- key_down · function · L62-L62 — IGL_INLINE bool key_down(int key,int modifier);
+- key_up · function · L63-L63 — IGL_INLINE bool key_up(int key,int modifier);
+- mouse_down · function · L64-L64 — IGL_INLINE bool mouse_down(MouseButton button,int modifier);
+- mouse_up · function · L65-L65 — IGL_INLINE bool mouse_up(MouseButton button,int modifier);
+- mouse_move · function · L66-L66 — IGL_INLINE bool mouse_move(int mouse_x,int mouse_y);
+- mouse_scroll · function · L67-L67 — IGL_INLINE bool mouse_scroll(float delta_y);
+- load_scene · function · L69-L69 — IGL_INLINE bool load_scene();
+- load_scene · function · L70-L70 — IGL_INLINE bool load_scene(std::string fname);
+- save_scene · function · L71-L71 — IGL_INLINE bool save_scene();
+- save_scene · function · L72-L72 — IGL_INLINE bool save_scene(std::string fname);
+- draw · function · L74-L74 — IGL_INLINE void draw();
+- draw_buffer · function · L95-L102 — IGL_INLINE void draw_buffer(
+- resize · function · L104-L104 — IGL_INLINE void resize(int w,int h); // explicitly set window size
+- post_resize · function · L105-L105 — IGL_INLINE void post_resize(int w,int h); // external resize due to user interaction
+- snap_to_canonical_quaternion · function · L107-L107 — IGL_INLINE void snap_to_canonical_quaternion();
+- open_dialog_load_mesh · function · L108-L108 — IGL_INLINE void open_dialog_load_mesh();
+- open_dialog_save_mesh · function · L109-L109 — IGL_INLINE void open_dialog_save_mesh();
+- data · function · L119-L119 — IGL_INLINE ViewerData& data(int mesh_id = -1);
+- data · function · L120-L120 — IGL_INLINE const ViewerData& data(int mesh_id = -1) const;
+- append_mesh · function · L132-L132 — IGL_INLINE int append_mesh(bool visible = true);
+- erase_mesh · function · L150-L150 — IGL_INLINE bool erase_mesh(const size_t index);
+- mesh_index · function · L154-L154 — IGL_INLINE size_t mesh_index(const int id) const;
+- core · function · L164-L164 — IGL_INLINE ViewerCore& core(unsigned core_id = 0);
+- core · function · L165-L165 — IGL_INLINE const ViewerCore& core(unsigned core_id = 0) const;
+- append_core · function · L177-L177 — IGL_INLINE int append_core(Eigen::Vector4f viewport, bool append_empty = false);
+- erase_core · function · L183-L183 — IGL_INLINE bool erase_core(const size_t index);
+- core_index · function · L187-L187 — IGL_INLINE size_t core_index(const int id) const;
+- select_hovered_core · function · L191-L191 — IGL_INLINE void select_hovered_core();

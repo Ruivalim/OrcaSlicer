@@ -1,0 +1,105 @@
+# src/slic3r/GUI/CalibrationWizardSavePage.hpp
+
+- CaliSaveStyle · type · L9-L12 — enum CaliSaveStyle
+- CalibrationCommonSavePage · class · L15-L22 — class CalibrationCommonSavePage : public CalibrationWizardPage
+- CalibrationCommonSavePage · function · L18-L18 — CalibrationCommonSavePage(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- PAColumnDataPanel · class · L24-L48 — class PAColumnDataPanel : wxPanel
+- PAColumnDataPanel · function · L26-L32 — PAColumnDataPanel(
+- is_failed · function · L34-L34 — bool is_failed() { return m_is_failed; }
+- get_col_idx · function · L35-L35 — int get_col_idx() { return m_col_idx; }
+- get_k_str · function · L36-L36 — wxString get_k_str();
+- get_n_str · function · L37-L37 — wxString get_n_str();
+- get_name · function · L38-L38 — wxString get_name();
+- set_data · function · L39-L39 — void set_data(wxString k_str, wxString n_str, wxString name);
+- CaliSavePresetValuePanel · class · L50-L78 — class CaliSavePresetValuePanel : public wxPanel
+- CaliSavePresetValuePanel · function · L62-L67 — CaliSavePresetValuePanel(
+- create_panel · function · L69-L69 — void create_panel(wxWindow* parent);
+- set_img · function · L71-L71 — void set_img(const std::string& bmp_name_in);
+- set_value_title · function · L72-L72 — void set_value_title(const wxString& title);
+- set_save_name_title · function · L73-L73 — void set_save_name_title(const wxString& title);
+- get_value · function · L74-L74 — void get_value(double& value);
+- get_save_name · function · L75-L75 — void get_save_name(std::string& name);
+- set_save_name · function · L76-L76 — void set_save_name(const std::string& name);
+- msw_rescale · function · L77-L77 — void msw_rescale();
+- CaliPASaveAutoPanel · class · L81-L117 — class CaliPASaveAutoPanel : public wxPanel
+- CaliPASaveAutoPanel · function · L84-L89 — CaliPASaveAutoPanel(
+- create_panel · function · L91-L91 — void create_panel(wxWindow* parent);
+- set_machine_obj · function · L93-L93 — void set_machine_obj(MachineObject* obj) { m_obj = obj; }
+- default_naming · function · L95-L95 — std::vector<std::pair<int, std::string>> default_naming(std::vector<std::pair<int, std::string>> preset_names);
+- sync_cali_result · function · L96-L96 — void sync_cali_result(const std::vector<PACalibResult>& cali_result, const std::vector<PACalibResult>& history_result);
+- save_to_result_from_widgets · function · L97-L97 — void save_to_result_from_widgets(wxWindow* window, bool* out_is_valid, wxString* out_msg);
+- get_result · function · L98-L98 — bool get_result(std::vector<PACalibResult>& out_result);
+- is_all_failed · function · L99-L99 — bool is_all_failed() { return m_is_all_failed; }
+- sync_cali_result_for_multi_extruder · function · L102-L102 — void sync_cali_result_for_multi_extruder(const std::vector<PACalibResult> &cali_result, const std::vector<PACalibResult> &history_result);
+- CaliPASaveManualPanel · class · L119-L151 — class CaliPASaveManualPanel : public wxPanel
+- CaliPASaveManualPanel · function · L122-L127 — CaliPASaveManualPanel(
+- create_panel · function · L128-L128 — void create_panel(wxWindow* parent);
+- set_save_img · function · L129-L129 — void set_save_img();
+- set_pa_cali_method · function · L130-L130 — void set_pa_cali_method(ManualPaCaliMethod method);
+- set_machine_obj · function · L132-L132 — void set_machine_obj(MachineObject* obj) { m_obj = obj; }
+- set_default_name · function · L134-L134 — void set_default_name(const wxString& name);
+- get_result · function · L136-L136 — bool get_result(PACalibResult& out_result);
+- Show · function · L138-L138 — virtual bool Show(bool show = true) override;
+- msw_rescale · function · L140-L140 — void msw_rescale();
+- CaliPASaveP1PPanel · class · L153-L178 — class CaliPASaveP1PPanel : public wxPanel
+- CaliPASaveP1PPanel · function · L156-L161 — CaliPASaveP1PPanel(
+- create_panel · function · L162-L162 — void create_panel(wxWindow* parent);
+- set_save_img · function · L163-L163 — void set_save_img();
+- set_pa_cali_method · function · L164-L164 — void set_pa_cali_method(ManualPaCaliMethod method);
+- get_result · function · L166-L166 — bool get_result(float* out_k, float* out_n);
+- Show · function · L168-L168 — virtual bool Show(bool show = true) override;
+- msw_rescale · function · L170-L170 — void msw_rescale();
+- CalibrationPASavePage · class · L180-L212 — class CalibrationPASavePage : public CalibrationCommonSavePage
+- CalibrationPASavePage · function · L183-L183 — CalibrationPASavePage(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- create_page · function · L185-L185 — void create_page(wxWindow* parent);
+- set_cali_method · function · L186-L186 — void set_cali_method(CalibrationMethod method) override;
+- sync_cali_result · function · L188-L188 — void sync_cali_result(MachineObject* obj);
+- get_auto_result · function · L189-L189 — bool get_auto_result(std::vector<PACalibResult>& result) { return m_auto_panel->get_result(result); }
+- is_all_failed · function · L190-L190 — bool is_all_failed() { return m_auto_panel->is_all_failed(); }
+- get_manual_result · function · L191-L191 — bool get_manual_result(PACalibResult& result) { return m_manual_panel->get_result(result); }
+- get_p1p_result · function · L192-L192 — bool get_p1p_result(float* k, float* n) { return m_p1p_panel->get_result(k, n); }
+- show_panels · function · L194-L194 — void show_panels(CalibrationMethod method, const PrinterSeries printer_ser);
+- on_device_connected · function · L196-L196 — void on_device_connected(MachineObject* obj) override;
+- update · function · L198-L198 — void update(MachineObject* obj) override;
+- Show · function · L200-L200 — virtual bool Show(bool show = true) override;
+- msw_rescale · function · L202-L202 — void msw_rescale() override;
+- CalibrationFlowX1SavePage · class · L214-L238 — class CalibrationFlowX1SavePage : public CalibrationCommonSavePage
+- CalibrationFlowX1SavePage · function · L217-L217 — CalibrationFlowX1SavePage(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- create_page · function · L219-L219 — void create_page(wxWindow* parent);
+- sync_cali_result · function · L222-L222 — void sync_cali_result(const std::vector<FlowRatioCalibResult>& cali_result);
+- save_to_result_from_widgets · function · L223-L223 — void save_to_result_from_widgets(wxWindow* window, bool* out_is_valid, wxString* out_msg);
+- get_result · function · L224-L224 — bool get_result(std::vector<std::pair<wxString, float>>& out_results);
+- is_all_failed · function · L225-L225 — bool is_all_failed() { return m_is_all_failed; }
+- Show · function · L227-L227 — virtual bool Show(bool show = true) override;
+- msw_rescale · function · L229-L229 — void msw_rescale() override;
+- CalibrationFlowCoarseSavePage · class · L240-L286 — class CalibrationFlowCoarseSavePage : public CalibrationCommonSavePage
+- CalibrationFlowCoarseSavePage · function · L243-L243 — CalibrationFlowCoarseSavePage(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- create_page · function · L245-L245 — void create_page(wxWindow* parent);
+- set_save_img · function · L246-L246 — void set_save_img();
+- set_default_options · function · L248-L248 — void set_default_options(const wxString &name);
+- is_skip_fine_calibration · function · L250-L250 — bool is_skip_fine_calibration();
+- set_curr_flow_ratio · function · L252-L252 — void set_curr_flow_ratio(float value);
+- get_result · function · L254-L254 — bool get_result(float* out_value, wxString* out_name);
+- Show · function · L256-L256 — virtual bool Show(bool show = true) override;
+- update_print_error_info · function · L258-L258 — void update_print_error_info(int code, const std::string& msg, const std::string& extra) { m_sending_panel->update_print_error_info(code, msg, extra); }
+- on_cali_start_job · function · L260-L260 — void on_cali_start_job();
+- on_cali_finished_job · function · L262-L262 — void on_cali_finished_job();
+- on_cali_cancel_job · function · L264-L264 — void on_cali_cancel_job();
+- get_sending_progress_bar · function · L266-L268 — std::shared_ptr<ProgressIndicator> get_sending_progress_bar()
+- msw_rescale · function · L270-L270 — void msw_rescale() override;
+- CalibrationFlowFineSavePage · class · L288-L316 — class CalibrationFlowFineSavePage : public CalibrationCommonSavePage
+- CalibrationFlowFineSavePage · function · L291-L291 — CalibrationFlowFineSavePage(wxWindow* parent, wxWindowID id = wxID_ANY, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize, long style = wxTAB_TRAVERSAL);
+- create_page · function · L293-L293 — void create_page(wxWindow* parent);
+- set_save_img · function · L294-L294 — void set_save_img();
+- set_default_options · function · L296-L296 — void set_default_options(const wxString &name);
+- set_curr_flow_ratio · function · L298-L298 — void set_curr_flow_ratio(float value);
+- get_result · function · L300-L300 — bool get_result(float* out_value, wxString* out_name);
+- Show · function · L302-L302 — virtual bool Show(bool show = true) override;
+- msw_rescale · function · L304-L304 — void msw_rescale() override;
+- CalibrationMaxVolumetricSpeedSavePage · class · L318-L336 — class CalibrationMaxVolumetricSpeedSavePage : public CalibrationCommonSavePage
+- CalibrationMaxVolumetricSpeedSavePage · function · L321-L322 — CalibrationMaxVolumetricSpeedSavePage(wxWindow *parent, wxWindowID id = wxID_ANY,
+- create_page · function · L324-L324 — void create_page(wxWindow *parent);
+- set_save_img · function · L325-L325 — void set_save_img();
+- get_save_result · function · L327-L327 — bool get_save_result(double &value, std::string &name);
+- set_prest_name · function · L329-L329 — void set_prest_name(const std::string &name) { m_save_preset_panel->set_save_name(name); };
+- Show · function · L331-L331 — virtual bool Show(bool show = true) override;

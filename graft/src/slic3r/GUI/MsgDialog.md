@@ -1,0 +1,97 @@
+# src/slic3r/GUI/MsgDialog.hpp
+
+- wxBoxSizer · class · L22-L22 — class wxBoxSizer;
+- wxCheckBox · class · L23-L23 — class wxCheckBox;
+- wxStaticBitmap · class · L24-L24 — class wxStaticBitmap;
+- ButtonSizeType · type · L26-L30 — enum ButtonSizeType
+- ButtonData · class · L41-L45 — struct ButtonData
+- MsgButton · class · L47-L52 — class MsgButton
+- WX_DECLARE_HASH_MAP · function · L54-L54 — WX_DECLARE_HASH_MAP(wxString, MsgButton *, wxStringHash, wxStringEqual, MsgButtonsHash);
+- MsgDialog · class · L58-L102 — struct MsgDialog : DPIDialog
+- MsgDialog · function · L60-L60 — MsgDialog(MsgDialog &&) = delete;
+- MsgDialog · function · L61-L61 — MsgDialog(const MsgDialog &) = delete;
+- show_dsa_button · function · L66-L66 — void show_dsa_button(wxString const & title = {});
+- get_checkbox_state · function · L67-L67 — bool get_checkbox_state();
+- on_dpi_changed · function · L68-L68 — virtual void on_dpi_changed(const wxRect& suggested_rect);
+- SetButtonLabel · function · L69-L69 — void SetButtonLabel(wxWindowID btn_id, const wxString& label, bool set_focus = false);
+- AddButton · function · L73-L73 — void AddButton(wxWindowID btn_id, const wxString& label, bool set_focus = false) { add_button(btn_id, set_focus, label); }
+- MsgDialog · function · L86-L86 — MsgDialog(wxWindow *parent, const wxString &title, const wxString &headline, long style = wxOK, wxBitmap bitmap = wxNullBitmap, const wxString &forward_str = "");
+- add_button · function · L88-L88 — Button* add_button(wxWindowID btn_id, bool set_focus = false, const wxString& label = wxString());
+- get_button · function · L90-L90 — Button* get_button(wxWindowID btn_id);
+- apply_style · function · L91-L91 — void apply_style(long style);
+- finalize · function · L92-L92 — void finalize();
+- ErrorDialog · class · L106-L120 — class ErrorDialog : public MsgDialog
+- ErrorDialog · function · L111-L111 — ErrorDialog(wxWindow *parent, const wxString &temp_msg, bool has_code_excerpts);
+- ErrorDialog · function · L112-L112 — ErrorDialog(ErrorDialog &&) = delete;
+- ErrorDialog · function · L113-L113 — ErrorDialog(const ErrorDialog &) = delete;
+- WarningDialog · class · L124-L136 — class WarningDialog : public MsgDialog
+- WarningDialog · function · L127-L130 — WarningDialog(	wxWindow *parent,
+- WarningDialog · function · L131-L131 — WarningDialog(WarningDialog&&) = delete;
+- WarningDialog · function · L132-L132 — WarningDialog(const WarningDialog&) = delete;
+- get_wraped_wxString · function · L138-L138 — wxString get_wraped_wxString(const wxString& text_in, size_t line_len = 80);
+- MessageDialog · class · L159-L175 — class MessageDialog : public MsgDialog
+- MessageDialog · function · L163-L169 — MessageDialog(wxWindow       *parent,
+- MessageDialog · function · L170-L170 — MessageDialog(MessageDialog&&) = delete;
+- MessageDialog · function · L171-L171 — MessageDialog(const MessageDialog&) = delete;
+- RichMessageDialog · class · L178-L313 — class RichMessageDialog : public MsgDialog
+- RichMessageDialog · function · L185-L188 — RichMessageDialog(	wxWindow *parent,
+- RichMessageDialog · function · L189-L189 — RichMessageDialog(RichMessageDialog&&) = delete;
+- RichMessageDialog · function · L190-L190 — RichMessageDialog(const RichMessageDialog&) = delete;
+- ShowModal · function · L195-L195 — int  ShowModal() override;
+- ShowCheckBox · function · L197-L201 — void ShowCheckBox(const wxString& checkBoxText, bool checked = false)
+- GetCheckBoxText · function · L203-L203 — wxString	GetCheckBoxText()	const { return m_checkBoxText; }
+- IsCheckBoxChecked · function · L204-L204 — bool		IsCheckBoxChecked() const;
+- SetYesNoLabels · function · L209-L214 — virtual bool SetYesNoLabels(const wxMD::ButtonLabel& yes, const wxMD::ButtonLabel& no)
+- SetYesNoCancelLabels · function · L216-L224 — virtual bool SetYesNoCancelLabels(const wxMD::ButtonLabel& yes,
+- SetOKLabel · function · L226-L230 — virtual bool SetOKLabel(const wxMD::ButtonLabel& ok)
+- SetOKCancelLabels · function · L232-L238 — virtual bool SetOKCancelLabels(const wxMD::ButtonLabel& ok,
+- SetHelpLabel · function · L240-L244 — virtual bool SetHelpLabel(const wxMD::ButtonLabel& help)
+- HasCustomLabels · function · L246-L250 — bool HasCustomLabels() const
+- GetYesLabel · function · L255-L258 — wxString GetYesLabel() const
+- GetNoLabel · function · L259-L262 — wxString GetNoLabel() const
+- GetOKLabel · function · L263-L266 — wxString GetOKLabel() const
+- GetCancelLabel · function · L267-L270 — wxString GetCancelLabel() const
+- GetHelpLabel · function · L271-L274 — wxString GetHelpLabel() const
+- DoSetCustomLabel · function · L281-L284 — void DoSetCustomLabel(wxString& var, const wxMD::ButtonLabel& label)
+- GetCustomYesLabel · function · L291-L291 — const wxString& GetCustomYesLabel() const { return m_yes; }
+- GetCustomNoLabel · function · L292-L292 — const wxString& GetCustomNoLabel() const { return m_no; }
+- GetCustomOKLabel · function · L293-L293 — const wxString& GetCustomOKLabel() const { return m_ok; }
+- GetCustomHelpLabel · function · L294-L294 — const wxString& GetCustomHelpLabel() const { return m_help; }
+- GetCustomCancelLabel · function · L295-L295 — const wxString& GetCustomCancelLabel() const { return m_cancel; }
+- GetDefaultYesLabel · function · L300-L300 — virtual wxString GetDefaultYesLabel() const { return wxGetTranslation("Yes"); }
+- GetDefaultNoLabel · function · L301-L301 — virtual wxString GetDefaultNoLabel() const { return wxGetTranslation("No"); }
+- GetDefaultOKLabel · function · L302-L302 — virtual wxString GetDefaultOKLabel() const { return wxGetTranslation("OK"); }
+- GetDefaultCancelLabel · function · L303-L303 — virtual wxString GetDefaultCancelLabel() const { return wxGetTranslation("Cancel"); }
+- GetDefaultHelpLabel · function · L304-L304 — virtual wxString GetDefaultHelpLabel() const { return wxGetTranslation("Help"); }
+- StaticLine · class · L316-L327 — class StaticLine : public wxStaticLine
+- StaticLine · function · L319-L325 — StaticLine(wxWindow* parent,
+- MessageDialog · class · L329-L338 — class MessageDialog : public wxMessageDialog
+- MessageDialog · function · L332-L336 — MessageDialog(wxWindow* parent,
+- RichMessageDialog · class · L341-L352 — class RichMessageDialog : public wxRichMessageDialog
+- RichMessageDialog · function · L344-L350 — RichMessageDialog(wxWindow* parent,
+- InfoDialog · class · L356-L368 — class InfoDialog : public MsgDialog
+- InfoDialog · function · L359-L359 — InfoDialog(wxWindow *parent, const wxString &title, const wxString &msg, bool is_marked = false, long style = wxOK| wxICON_INFORMATION);
+- InfoDialog · function · L360-L360 — InfoDialog(InfoDialog&&) = delete;
+- InfoDialog · function · L361-L361 — InfoDialog(const InfoDialog&) = delete;
+- DownloadDialog · class · L370-L384 — class DownloadDialog : public MsgDialog
+- DownloadDialog · function · L373-L373 — DownloadDialog(wxWindow *parent, const wxString &title, const wxString &msg, bool is_marked = false, long style = wxOK | wxCANCEL);
+- DownloadDialog · function · L374-L374 — DownloadDialog(InfoDialog &&)      = delete;
+- DownloadDialog · function · L375-L375 — DownloadDialog(const InfoDialog &) = delete;
+- SetExtendedMessage · function · L380-L380 — void SetExtendedMessage(const wxString &extendedMessage);
+- DeleteConfirmDialog · class · L386-L398 — class DeleteConfirmDialog : public DPIDialog
+- DeleteConfirmDialog · function · L389-L389 — DeleteConfirmDialog(wxWindow *parent, const wxString &title, const wxString &msg);
+- on_dpi_changed · function · L391-L391 — virtual void on_dpi_changed(const wxRect &suggested_rect);
+- Newer3mfVersionDialog · class · L400-L418 — class Newer3mfVersionDialog : public DPIDialog
+- Newer3mfVersionDialog · function · L403-L403 — Newer3mfVersionDialog(wxWindow *parent, const Semver* file_version, const Semver* cloud_version, wxString new_keys);
+- on_dpi_changed · function · L405-L405 — virtual void on_dpi_changed(const wxRect &suggested_rect){};
+- get_msg_sizer · function · L408-L408 — wxBoxSizer *get_msg_sizer();
+- get_btn_sizer · function · L409-L409 — wxBoxSizer *get_btn_sizer();
+- NetworkErrorDialog · class · L421-L437 — class NetworkErrorDialog : public DPIDialog
+- NetworkErrorDialog · function · L424-L424 — NetworkErrorDialog(wxWindow* parent);
+- on_dpi_changed · function · L426-L426 — virtual void on_dpi_changed(const wxRect& suggested_rect) {};
+- FilamentWarningInfo · class · L442-L446 — struct FilamentWarningInfo
+- FilamentWarningDialog · class · L448-L463 — class FilamentWarningDialog : public MsgDialog
+- FilamentWarningDialog · function · L451-L451 — FilamentWarningDialog(wxWindow *parent, const wxString &title, std::vector<FilamentWarningInfo> infos);
+- FilamentWarningDialog · function · L452-L452 — FilamentWarningDialog(FilamentWarningDialog &&)                 = delete;
+- FilamentWarningDialog · function · L453-L453 — FilamentWarningDialog(const FilamentWarningDialog &)            = delete;
+- BuildContent · function · L459-L459 — void BuildContent();

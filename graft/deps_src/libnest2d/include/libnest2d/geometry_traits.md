@@ -1,0 +1,168 @@
+# deps_src/libnest2d/include/libnest2d/geometry_traits.hpp
+
+- PointTag · class · L19-L19 — struct PointTag {};
+- PolygonTag · class · L20-L20 — struct PolygonTag {};
+- PathTag · class · L21-L21 — struct PathTag {};
+- MultiPolygonTag · class · L22-L22 — struct MultiPolygonTag {};
+- BoxTag · class · L23-L23 — struct BoxTag {};
+- CircleTag · class · L24-L24 — struct CircleTag {};
+- ShapeTag · class · L27-L27 — template<class Shape> struct ShapeTag { using Type = typename Shape::Tag; };
+- ContourType · class · L33-L33 — template<class S> struct ContourType { using Type = S; };
+- PointType · class · L40-L42 — template<class Sh> struct PointType
+- CoordType · class · L49-L52 — template<class GeomClass> struct CoordType
+- ComputeType · class · L62-L62 — template<class T, bool = std::is_arithmetic<T>::value> struct ComputeType {};
+- DoublePrecision · class · L73-L73 — template<class T> struct DoublePrecision { using Type = T; };
+- HolesContainer · class · L87-L88 — template<class S>
+- DefaultMultiShape · class · L113-L117 — template<class S> struct DefaultMultiShape: public std::vector<S>
+- DefaultMultiShape · function · L115-L116 — template<class...Args> DefaultMultiShape(Args&&...args):
+- MultiShape · class · L120-L120 — template<class S> struct MultiShape { using Type = DefaultMultiShape<S>; };
+- Orientation · type · L131-L131 — enum class Orientation { CLOCKWISE, COUNTER_CLOCKWISE };
+- OrientationType · class · L133-L138 — template<class S>
+- is_clockwise · function · L140-L142 — template<class T> inline constexpr bool is_clockwise()
+- Closure · type · L148-L148 — enum class Closure { OPEN, CLOSED };
+- ClosureType · class · L150-L152 — template<class S> struct ClosureType
+- PointPair · class · L162-L166 — template<class P>
+- _Box · class · L171-L222 — template<class P>
+- _Box · function · L181-L182 — inline _Box(const P& center = {TCoord<P>(0), TCoord<P>(0)}):
+- _Box · function · L184-L185 — inline _Box(const P& p, const P& pp):
+- _Box · function · L187-L188 — inline _Box(TCoord<P> width, TCoord<P> height,
+- minCorner · function · L191-L191 — inline const P& minCorner() const BP2D_NOEXCEPT { return p1; }
+- maxCorner · function · L192-L192 — inline const P& maxCorner() const BP2D_NOEXCEPT { return p2; }
+- minCorner · function · L194-L194 — inline P& minCorner() BP2D_NOEXCEPT { return p1; }
+- maxCorner · function · L195-L195 — inline P& maxCorner() BP2D_NOEXCEPT { return p2; }
+- width · function · L197-L197 — inline TCoord<P> width() const BP2D_NOEXCEPT;
+- height · function · L198-L198 — inline TCoord<P> height() const BP2D_NOEXCEPT;
+- center · function · L200-L200 — inline P center() const BP2D_NOEXCEPT;
+- area · function · L203-L203 — inline Unit area() const BP2D_NOEXCEPT
+- intersection · function · L207-L219 — _Box intersection(_Box other)
+- infinite · function · L221-L221 — static inline _Box infinite(const P &center = {TCoord<P>(0), TCoord<P>(0)});
+- _Circle · class · L228-L249 — template<class P>
+- _Circle · function · L237-L237 — _Circle() = default;
+- _Circle · function · L238-L238 — _Circle(const P& center, double r): center_(center), radius_(r) {}
+- center · function · L240-L240 — inline const P& center() const BP2D_NOEXCEPT { return center_; }
+- center · function · L241-L241 — inline void center(const P& c) { center_ = c; }
+- radius · function · L243-L243 — inline double radius() const BP2D_NOEXCEPT { return radius_; }
+- radius · function · L244-L244 — inline void radius(double r) { radius_ = r; }
+- area · function · L246-L246 — inline double area() const BP2D_NOEXCEPT
+- _Segment · class · L258-L299 — template<class P>
+- _Segment · function · L267-L267 — inline _Segment() = default;
+- _Segment · function · L269-L270 — inline _Segment(const P& p, const P& pp):
+- first · function · L276-L276 — inline const P& first() const BP2D_NOEXCEPT { return p1; }
+- second · function · L282-L282 — inline const P& second() const BP2D_NOEXCEPT { return p2; }
+- first · function · L284-L287 — inline void first(const P& p) BP2D_NOEXCEPT
+- second · function · L289-L291 — inline void second(const P& p) BP2D_NOEXCEPT
+- angleToXaxis · function · L294-L294 — inline Radians angleToXaxis() const;
+- sqlength · function · L297-L297 — template<class Unit = TCompute<P>> inline Unit sqlength() const;
+- x · function · L309-L313 — template<class P>
+- y · function · L315-L319 — template<class P>
+- x · function · L322-L322 — inline TCoord<P>& x(P& p)
+- y · function · L328-L328 — inline TCoord<P>& y(P& p)
+- squaredDistance · function · L333-L339 — template<class P, class Unit = TCompute<P>>
+- distance · function · L341-L345 — template<class P>
+- perp · function · L348-L351 — template<class Pt> inline Pt perp(const Pt& p)
+- dotperp · function · L353-L357 — template<class Pt, class Unit = TCompute<Pt>>
+- dot · function · L360-L364 — template<class Pt, class Unit = TCompute<Pt>>
+- magnsq · function · L367-L371 — template<class Pt, class Unit = TCompute<Pt>>
+- horizontalDistance · function · L373-L396 — template<class P, class Unit = TCompute<P>>
+- verticalDistance · function · L398-L421 — template<class P, class Unit = TCompute<P>>
+- getX · function · L436-L437 — template<class P>
+- getY · function · L439-L440 — template<class P>
+- setX · function · L442-L446 — template<class P>
+- setY · function · L448-L452 — template<class P>
+- modulo · function · L477-L481 — template<class T>
+- modulo · function · L482-L486 — template<class T>
+- Formats · type · L527-L530 — enum class Formats
+- create · function · L536-L540 — template<class S>
+- create · function · L542-L546 — template<class S>
+- create · function · L548-L552 — template<class S>
+- create · function · L554-L558 — template<class S>
+- holes · function · L561-L561 — inline THolesContainer<S>& holes(S& /*sh*/)
+- holes · function · L568-L568 — inline const THolesContainer<S>& holes(const S& /*sh*/)
+- hole · function · L575-L575 — inline TContour<S>& hole(S& sh, unsigned long idx)
+- hole · function · L581-L581 — inline const TContour<S>& hole(const S& sh, unsigned long idx)
+- holeCount · function · L586-L590 — template<class S>
+- contour · function · L593-L593 — inline TContour<S>& contour(S& sh)
+- contour · function · L601-L601 — inline const TContour<S>& contour(const S& sh)
+- reserve · function · L609-L613 — template<class RawPath>
+- addVertex · function · L615-L619 — template<class S, class...Args>
+- foreachVertex · function · L621-L624 — template<class S, class Fn>
+- begin · function · L626-L630 — template<class S>
+- end · function · L632-L636 — template<class S>
+- cbegin · function · L638-L643 — template<class S>
+- cend · function · L645-L650 — template<class S>
+- toString · function · L652-L656 — template<class S>
+- serialize · function · L658-L664 — template<Formats, class S>
+- unserialize · function · L666-L671 — template<Formats, class S>
+- area · function · L673-L674 — template<class Cntr, class Unit = double>
+- intersects · function · L676-L682 — template<class S>
+- isInside · function · L684-L690 — template<class TGuest, class THost>
+- isInside · function · L692-L698 — template<class TGuest, class THost>
+- touches · function · L700-L707 — template<class S>
+- touches · function · L709-L716 — template<class S>
+- boundingBox · function · L718-L724 — template<class S>
+- boundingBox · function · L726-L732 — template<class RawShapes>
+- convexHull · function · L734-L735 — template<class S>
+- convexHull · function · L737-L738 — template<class RawShapes, class S = typename RawShapes::value_type>
+- rotate · function · L740-L745 — template<class S>
+- translate · function · L747-L752 — template<class S, class P>
+- offset · function · L754-L758 — template<class S>
+- offset · function · L760-L765 — template<class S>
+- isValid · function · L767-L771 — template<class S>
+- isConvex · function · L773-L803 — template<class RawPath> inline bool isConvex(const RawPath& sh, const PathTag&)
+- begin · function · L809-L814 — template<class S>
+- begin · function · L816-L820 — template<class S> // Tag dispatcher
+- cbegin · function · L822-L827 — template<class S>
+- cbegin · function · L829-L833 — template<class S> // Tag dispatcher
+- end · function · L835-L840 — template<class S>
+- end · function · L842-L846 — template<class S> // Tag dispatcher
+- cend · function · L848-L853 — template<class S>
+- cend · function · L855-L859 — template<class S> // Tag dispatcher
+- _backward · function · L861-L863 — template<class It> std::reverse_iterator<It> _backward(It iter)
+- rbegin · function · L865-L868 — template<class P> auto rbegin(P& p) -> decltype(_backward(end(p)))
+- rcbegin · function · L870-L873 — template<class P> auto rcbegin(const P& p) -> decltype(_backward(cend(p)))
+- rend · function · L875-L878 — template<class P> auto rend(P& p) -> decltype(_backward(begin(p)))
+- rcend · function · L880-L883 — template<class P> auto rcend(const P& p) -> decltype(_backward(cbegin(p)))
+- front · function · L885-L885 — template<class P> TPoint<P> front(const P& p) { return *shapelike::cbegin(p); }
+- back · function · L886-L888 — template<class P> TPoint<P> back (const P& p)
+- reserve · function · L891-L895 — template<class S>
+- reserve · function · L897-L900 — template<class T> // Tag dispatcher
+- addVertex · function · L902-L906 — template<class S>
+- addVertex · function · L908-L912 — template<class S> // Tag dispatcher
+- boundingBox · function · L914-L918 — template<class S>
+- boundingBox · function · L920-L924 — template<class Box>
+- boundingBox · function · L926-L941 — template<class Circle>
+- boundingBox · function · L943-L947 — template<class S> // Dispatch function
+- boundingBox · function · L949-L967 — template<class P> _Box<P> boundingBox(const _Box<P>& bb1, const _Box<P>& bb2 )
+- boundingBox · function · L969-L973 — template<class S1, class S2>
+- area · function · L975-L979 — template<class Box>
+- area · function · L981-L985 — template<class Circle>
+- area · function · L987-L1004 — template<class Cntr, class Unit>
+- area · function · L1006-L1014 — template<class S> inline double area(const S& poly, const PolygonTag& )
+- area · function · L1016-L1017 — template<class RawShapes>
+- area · function · L1019-L1023 — template<class S> // Dispatching function
+- area · function · L1025-L1033 — template<class RawShapes>
+- convexHull · function · L1035-L1039 — template<class S>
+- convexHull · function · L1041-L1046 — template<class S>
+- convexHull · function · L1048-L1113 — template<class S>
+- convexHull · function · L1115-L1125 — template<class RawShapes, class S>
+- isInside · function · L1127-L1133 — template<class TP, class TC>
+- isInside · function · L1135-L1147 — template<class TP, class TB>
+- isInside · function · L1149-L1157 — template<class S, class TC>
+- isInside · function · L1159-L1165 — template<class TB, class TC>
+- isInside · function · L1167-L1182 — template<class TBGuest, class TBHost>
+- isInside · function · L1184-L1189 — template<class S, class TB>
+- isInside · function · L1191-L1194 — template<class TGuest, class THost>
+- vertex · function · L1197-L1198 — inline TPoint<S>& vertex(S& sh, unsigned long idx,
+- vertex · function · L1204-L1205 — inline TPoint<S>& vertex(S& sh, unsigned long idx,
+- vertex · function · L1211-L1211 — inline TPoint<S>& vertex(S& sh, unsigned long idx)
+- vertex · function · L1217-L1219 — inline const TPoint<S>& vertex(const S& sh,
+- vertex · function · L1225-L1227 — inline const TPoint<S>& vertex(const S& sh,
+- vertex · function · L1234-L1235 — inline const TPoint<S>& vertex(const S& sh,
+- contourVertexCount · function · L1240-L1244 — template<class S>
+- foreachVertex · function · L1246-L1250 — template<class S, class Fn>
+- foreachVertex · function · L1252-L1255 — template<class S, class Fn>
+- isConvex · function · L1257-L1263 — template<class Poly> inline bool isConvex(const Poly& sh, const PolygonTag&)
+- isConvex · function · L1265-L1268 — template<class S> inline bool isConvex(const S& sh) // dispatch
+- offset · function · L1270-L1275 — template<class Box> inline void offset(Box& bb, TCoord<Box> d, const BoxTag&)
+- offset · function · L1277-L1280 — template<class C> inline void offset(C& circ, TCoord<C> d, const CircleTag&)
+- offset · function · L1283-L1285 — template<class S> inline void offset(S& sh, TCoord<S> d)

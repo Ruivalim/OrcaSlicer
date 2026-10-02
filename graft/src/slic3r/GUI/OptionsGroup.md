@@ -1,0 +1,102 @@
+# src/slic3r/GUI/OptionsGroup.hpp
+
+- UIBuildCanceled · class · L28-L28 — class UIBuildCanceled : public std::exception {};
+- OG_CustomCtrl · class · L29-L29 — class OG_CustomCtrl;
+- Option · class · L35-L47 — struct Option
+- Option · function · L45-L46 — Option(const ConfigOptionDef& _opt, t_config_option_key id) :
+- Line · class · L51-L102 — class Line : public UndoValueUIManager
+- get_first_option_key · function · L71-L71 — std::string& get_first_option_key()
+- append_option · function · L75-L77 — void append_option(const Option& option)
+- append_widget · function · L78-L80 — void append_widget(const widget_t widget)
+- Line · function · L81-L82 — Line(wxString label, wxString tooltip) :
+- Line · function · L83-L83 — Line() : m_is_separator(true) {}
+- set_label · function · L85-L91 — void set_label(const wxString& new_label)
+- is_separator · function · L93-L93 — bool is_separator() const { return m_is_separator; }
+- has_only_option · function · L94-L94 — bool has_only_option(const std::string& opt_key) const { return m_options.size() == 1 && m_options[0].opt_id == opt_key; }
+- get_extra_widgets · function · L96-L96 — const std::vector<widget_t>&	get_extra_widgets() const {return m_extra_widgets;}
+- get_options · function · L97-L97 — const std::vector<Option>&		get_options() const { return m_options; }
+- OptionsGroup · class · L109-L263 — class OptionsGroup
+- parent · function · L146-L146 — inline wxWindow* parent() const { return m_parent; }
+- ctrl_parent · function · L148-L148 — wxWindow*   ctrl_parent() const;
+- append_line · function · L150-L150 — void		append_line(const Line& line);
+- activate_line · function · L152-L152 — void		activate_line(Line& line);
+- get_line · function · L154-L154 — Line* get_line(const std::string& opt_key);
+- activate · function · L157-L157 — bool		activate(std::function<void()> throw_if_canceled = [](){}, int horiz_alignment = wxALIGN_LEFT);
+- clear · function · L159-L159 — void		clear(bool destroy_custom_ctrl = false);
+- create_single_option_line · function · L161-L161 — Line		create_single_option_line(const Option& option, const std::string& path = std::string()) const;
+- append_single_option_line · function · L162-L162 — void		append_single_option_line(const Option& option, const std::string& path = std::string()) { append_line(create_single_option_line(option, path)); }
+- append_separator · function · L163-L163 — void		append_separator();
+- get_field · function · L166-L166 — inline Field*	get_field(const t_config_option_key& id) const
+- set_value · function · L171-L175 — bool			set_value(const t_config_option_key& id, const boost::any& value, bool change_event = false)
+- get_value · function · L176-L182 — boost::any		get_value(const t_config_option_key& id)
+- show_field · function · L184-L184 — void			show_field(const t_config_option_key& opt_key, bool show = true);
+- hide_field · function · L185-L185 — void			hide_field(const t_config_option_key& opt_key) {  show_field(opt_key, false);  }
+- enable_field · function · L187-L187 — void enable_field(const t_config_option_key& opt_key, bool enable = true);
+- disable_field · function · L188-L188 — void disable_field(const t_config_option_key& opt_key) { enable_field(opt_key, false); }
+- set_name · function · L190-L190 — void			set_name(const wxString& new_name);
+- enable · function · L192-L192 — inline void		enable() { for (auto& field : m_fields) field.second->enable(); }
+- disable · function · L193-L193 — inline void		disable() { for (auto& field : m_fields) field.second->disable(); }
+- set_grid_vgap · function · L194-L194 — void			set_grid_vgap(int gap) { m_grid_sizer->SetVGap(gap); }
+- clear_fields_except_of · function · L196-L196 — void            clear_fields_except_of(const std::vector<std::string> left_fields);
+- hide_labels · function · L198-L198 — void            hide_labels() { label_width = 0; m_labels_hidden = true; }
+- OptionsGroup · function · L200-L201 — OptionsGroup(wxWindow *_parent, const wxString &title, const wxString &icon, bool is_tab_opt = false,
+- get_grid_sizer · function · L204-L204 — wxGridSizer*        get_grid_sizer() { return m_grid_sizer; }
+- get_lines · function · L205-L205 — const std::vector<Line>& get_lines() { return m_lines; }
+- is_legend_line · function · L206-L206 — bool				is_legend_line();
+- set_max_win_width · function · L209-L209 — void				set_max_win_width(int max_win_width);
+- is_activated · function · L211-L211 — bool				is_activated() { return sizer != nullptr; }
+- remove_option_if · function · L213-L213 — void remove_option_if(std::function<bool(std::string const &)> const & comp);
+- build_field · function · L244-L244 — const t_field&		build_field(const t_config_option_key& id, const ConfigOptionDef& opt);
+- build_field · function · L245-L245 — const t_field&		build_field(const t_config_option_key& id);
+- build_field · function · L246-L246 — const t_field&		build_field(const Option& opt);
+- on_kill_focus · function · L248-L248 — virtual void		on_kill_focus(const std::string& opt_key) {};
+- on_change_OG · function · L249-L249 — virtual void		on_change_OG(const t_config_option_key& opt_id, const boost::any& value);
+- back_to_initial_value · function · L250-L250 — virtual void		back_to_initial_value(const std::string& opt_key) {}
+- back_to_sys_value · function · L251-L251 — virtual void		back_to_sys_value(const std::string& opt_key) {}
+- config_type · function · L255-L255 — virtual int			config_type() const { return -1; }
+- get_url · function · L258-L258 — static wxString		get_url(const std::string& path_end);
+- launch_browser · function · L259-L259 — static bool			launch_browser(const std::string& path_end);
+- pick_plugin · function · L262-L262 — std::string         pick_plugin(const ConfigOptionDef& opt);
+- ConfigOptionsGroup · class · L265-L340 — class ConfigOptionsGroup: public OptionsGroup
+- ConfigOptionsGroup · function · L267-L269 — ConfigOptionsGroup(	wxWindow* parent, const wxString& title, const wxString& icon, DynamicPrintConfig* config = nullptr,
+- ConfigOptionsGroup · function · L270-L272 — ConfigOptionsGroup(	wxWindow* parent, const wxString& title, DynamicPrintConfig* config = nullptr,
+- ConfigOptionsGroup · function · L273-L275 — ConfigOptionsGroup(	wxWindow* parent, const wxString& title, ModelConfig* config,
+- ConfigOptionsGroup · function · L276-L277 — ConfigOptionsGroup(	wxWindow* parent) :
+- config_category · function · L279-L279 — const wxString& config_category() const throw() { return m_config_category; }
+- config_type · function · L280-L280 — int config_type() const throw() override { return m_config_type; }
+- opt_map · function · L281-L281 — const t_opt_map&   opt_map() const throw() { return m_opt_map; }
+- set_config_category_and_type · function · L283-L283 — void 		set_config_category_and_type(const wxString &category, int type) { m_config_category = category; m_config_type = type; }
+- set_config · function · L284-L285 — void        set_config(DynamicPrintConfig* config)
+- get_option · function · L286-L286 — Option		get_option(const std::string& opt_key, int opt_index = -1);
+- create_single_option_line · function · L287-L290 — Line		create_single_option_line(const std::string& title, const std::string& path = std::string(), int idx = -1) /*const*/
+- create_single_option_line · function · L291-L293 — Line		create_single_option_line(const Option& option, const std::string& path = std::string()) const
+- append_single_option_line · function · L294-L296 — void		append_single_option_line(const Option& option, const std::string& path = std::string())
+- append_single_option_line · function · L297-L301 — void		append_single_option_line(const std::string title, const std::string& path = std::string(), int idx = -1)
+- on_change_OG · function · L303-L303 — void		on_change_OG(const t_config_option_key& opt_id, const boost::any& value) override;
+- back_to_initial_value · function · L304-L304 — void		back_to_initial_value(const std::string& opt_key) override;
+- back_to_sys_value · function · L305-L305 — void		back_to_sys_value(const std::string& opt_key) override;
+- back_to_config_value · function · L306-L306 — void		back_to_config_value(const DynamicPrintConfig& config, const std::string& opt_key);
+- on_kill_focus · function · L307-L307 — void		on_kill_focus(const std::string& opt_key) override;
+- reload_config · function · L308-L308 — void		reload_config();
+- Hide · function · L310-L310 — void        Hide();
+- Show · function · L311-L311 — void        Show(const bool show);
+- is_visible · function · L312-L312 — bool        is_visible(ConfigOptionMode mode);
+- update_visibility · function · L313-L313 — bool        update_visibility(ConfigOptionMode mode);
+- msw_rescale · function · L314-L314 — void        msw_rescale();
+- sys_color_changed · function · L315-L315 — void        sys_color_changed();
+- refresh · function · L316-L316 — void        refresh();
+- config_value · function · L317-L317 — boost::any	config_value(const std::string& opt_key, int opt_index, bool deserialize);
+- get_config_value · function · L319-L319 — boost::any	get_config_value(const DynamicPrintConfig& config, const std::string& opt_key, int opt_index = -1);
+- get_config_value2 · function · L321-L321 — boost::any	get_config_value2(const DynamicPrintConfig& config, const std::string& opt_key, int opt_index = -1);
+- get_fieldc · function · L322-L322 — Field*		get_fieldc(const t_config_option_key& opt_key, int opt_index);
+- get_custom_ctrl_with_blinking_ptr · function · L323-L323 — std::pair<OG_CustomCtrl*, bool*>	get_custom_ctrl_with_blinking_ptr(const t_config_option_key& opt_key, int opt_index/* = -1*/);
+- change_opt_value · function · L339-L339 — void 	change_opt_value(const t_config_option_key& opt_key, const boost::any& value, int opt_index = 0);
+- ExtruderOptionsGroup · class · L344-L351 — class ExtruderOptionsGroup : public ConfigOptionsGroup
+- ExtruderOptionsGroup · function · L346-L348 — ExtruderOptionsGroup(wxWindow* parent, const wxString& title, const wxString& icon, DynamicPrintConfig* config = nullptr, // ORCA: add support for icons
+- on_change_OG · function · L350-L350 — void on_change_OG(const t_config_option_key& opt_id, const boost::any& value) override;
+- ogStaticText · class · L354-L364 — class ogStaticText :public wxStaticText
+- ogStaticText · function · L356-L356 — ogStaticText() {}
+- ogStaticText · function · L357-L357 — ogStaticText(wxWindow* parent, const wxString& text);
+- SetText · function · L360-L360 — void		SetText(const wxString& value, bool wrap = true);
+- SetPathEnd · function · L362-L362 — void		SetPathEnd(const std::string& link);
+- FocusText · function · L363-L363 — void		FocusText(bool focus);

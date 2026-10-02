@@ -1,0 +1,108 @@
+# src/slic3r/GUI/CalibrationWizardPresetPage.hpp
+
+- CaliPresetStage · type · L8-L12 — enum CaliPresetStage
+- FlowRatioCaliSource · type · L14-L17 — enum FlowRatioCaliSource
+- CalibrationPresetPage · class · L19-L19 — class CalibrationPresetPage;
+- CaliPresetCaliStagePanel · class · L21-L48 — class CaliPresetCaliStagePanel : public wxPanel
+- CaliPresetCaliStagePanel · function · L24-L28 — CaliPresetCaliStagePanel(wxWindow* parent,
+- create_panel · function · L29-L29 — void create_panel(wxWindow* parent);
+- msw_rescale · function · L31-L31 — void msw_rescale();
+- set_cali_stage · function · L33-L33 — void set_cali_stage(CaliPresetStage stage, float value);
+- get_cali_stage · function · L34-L34 — void get_cali_stage(CaliPresetStage& stage, float& value);
+- set_flow_ratio_value · function · L36-L36 — void set_flow_ratio_value(float flow_ratio);
+- set_parent · function · L37-L37 — void set_parent(CalibrationPresetPage* parent) { m_stage_panel_parent = parent; }
+- set_flow_ratio_calibration_type · function · L38-L38 — void set_flow_ratio_calibration_type(FlowRatioCalibrationType type);
+- CaliComboBox · class · L50-L72 — class CaliComboBox : public wxPanel
+- CaliComboBox · function · L53-L61 — CaliComboBox(wxWindow *parent,
+- get_selection · function · L63-L63 — int get_selection() const;
+- get_value · function · L64-L64 — wxString get_value() const;
+- set_values · function · L65-L65 — void set_values(const wxArrayString& values);
+- CaliPresetWarningPanel · class · L74-L89 — class CaliPresetWarningPanel : public wxPanel
+- CaliPresetWarningPanel · function · L77-L81 — CaliPresetWarningPanel(wxWindow* parent,
+- create_panel · function · L83-L83 — void create_panel(wxWindow* parent);
+- set_warning · function · L85-L85 — void set_warning(wxString text);
+- CaliPresetTipsPanel · class · L91-L109 — class CaliPresetTipsPanel : public wxPanel
+- CaliPresetTipsPanel · function · L94-L98 — CaliPresetTipsPanel(wxWindow* parent,
+- create_panel · function · L100-L100 — void create_panel(wxWindow* parent);
+- set_params · function · L102-L102 — void set_params(int nozzle_temp, int bed_temp, float max_volumetric);
+- get_params · function · L103-L103 — void get_params(int& nozzle_temp, int& bed_temp, float& max_volumetric);
+- CaliPresetCustomRangePanel · class · L111-L135 — class CaliPresetCustomRangePanel : public wxPanel
+- CaliPresetCustomRangePanel · function · L114-L119 — CaliPresetCustomRangePanel(wxWindow* parent,
+- create_panel · function · L121-L121 — void create_panel(wxWindow* parent);
+- msw_rescale · function · L123-L123 — void msw_rescale();
+- set_unit · function · L125-L125 — void set_unit(wxString unit);
+- set_titles · function · L126-L126 — void set_titles(wxArrayString titles);
+- set_values · function · L127-L127 — void set_values(wxArrayString values);
+- get_values · function · L128-L128 — wxArrayString get_values();
+- CaliPresetPageStatus · type · L137-L156 — enum CaliPresetPageStatus
+- CalibrationPresetPage · class · L158-L356 — class CalibrationPresetPage : public CalibrationWizardPage
+- CalibrationPresetPage · function · L161-L167 — CalibrationPresetPage(wxWindow* parent,
+- create_page · function · L169-L169 — void create_page(wxWindow* parent);
+- update_print_status_msg · function · L171-L171 — void update_print_status_msg(wxString msg, bool is_warning);
+- format_text · function · L172-L172 — wxString format_text(wxString& m_msg);
+- stripWhiteSpace · function · L173-L173 — void stripWhiteSpace(std::string& str);
+- update_priner_status_msg · function · L174-L174 — void update_priner_status_msg(wxString msg, bool is_warning);
+- update · function · L175-L175 — void update(MachineObject* obj) override;
+- update_flow_ratio_type · function · L176-L176 — void update_flow_ratio_type(FlowRatioCalibrationType type) { curr_obj->flow_ratio_calibration_type = type; }
+- on_device_connected · function · L178-L178 — void on_device_connected(MachineObject* obj) override;
+- update_print_error_info · function · L180-L180 — void update_print_error_info(int code, const std::string& msg, const std::string& extra) { m_sending_panel->update_print_error_info(code, msg, extra); }
+- set_cali_filament_mode · function · L182-L182 — void set_cali_filament_mode(CalibrationFilamentMode mode) override;
+- set_cali_method · function · L184-L184 — void set_cali_method(CalibrationMethod method) override;
+- on_cali_start_job · function · L186-L186 — void on_cali_start_job();
+- on_cali_finished_job · function · L188-L188 — void on_cali_finished_job();
+- on_cali_cancel_job · function · L190-L190 — void on_cali_cancel_job();
+- init_with_machine · function · L192-L192 — void init_with_machine(MachineObject* obj);
+- sync_ams_info · function · L194-L194 — void sync_ams_info(MachineObject* obj);
+- select_default_compatible_filament · function · L196-L196 — void select_default_compatible_filament();
+- get_index_by_tray_id · function · L198-L198 — int get_index_by_tray_id(int tray_id);
+- get_selected_filament_combobox · function · L200-L200 — std::vector<FilamentComboBox*> get_selected_filament_combobox();
+- get_selected_filaments · function · L203-L203 — std::map<int, Preset*> get_selected_filaments();
+- get_filament_ams_list · function · L205-L205 — std::map<int, DynamicPrintConfig> get_filament_ams_list() const { return filament_ams_list; }
+- get_preset_info · function · L207-L209 — void get_preset_info(
+- get_cali_stage · function · L211-L211 — void get_cali_stage(CaliPresetStage& stage, float& value);
+- get_sending_progress_bar · function · L213-L215 — std::shared_ptr<ProgressIndicator> get_sending_progress_bar()
+- get_printer_preset · function · L217-L217 — Preset* get_printer_preset(MachineObject* obj, float nozzle_value);
+- get_print_preset · function · L218-L218 — Preset* get_print_preset();
+- get_print_preset_name · function · L219-L219 — std::string get_print_preset_name();
+- get_custom_range_values · function · L221-L221 — wxArrayString get_custom_range_values();
+- get_pa_cali_method · function · L222-L222 — CalibMode     get_pa_cali_method();
+- get_page_status · function · L224-L224 — CaliPresetPageStatus get_page_status() { return m_page_status; }
+- get_current_object · function · L225-L225 — MachineObject* get_current_object() { return curr_obj; }
+- msw_rescale · function · L226-L226 — void msw_rescale() override;
+- on_sys_color_changed · function · L227-L227 — void on_sys_color_changed() override;
+- get_extruder_id · function · L229-L229 — int get_extruder_id(int ams_id);
+- get_nozzle_diameter · function · L230-L230 — float get_nozzle_diameter(int extruder_id) const;
+- get_nozzle_volume_type · function · L231-L231 — NozzleVolumeType get_nozzle_volume_type(int extruder_id) const;
+- get_extruder_type · function · L232-L232 — ExtruderType get_extruder_type(int extruder_id) const;
+- create_selection_panel · function · L235-L235 — void create_selection_panel(wxWindow* parent);
+- create_filament_list_panel · function · L236-L236 — void create_filament_list_panel(wxWindow* parent);
+- create_ams_items_sizer · function · L237-L237 — wxBoxSizer* create_ams_items_sizer(MachineObject* obj, wxPanel* ams_preview_panel, std::vector<AMSPreview*> &ams_preview_list, std::vector<AMSinfo> &ams_info, int nozzle_id);
+- init_selection_values · function · L239-L239 — void init_selection_values();
+- update_filament_combobox · function · L240-L240 — void update_filament_combobox(std::string ams_id = "");
+- on_select_nozzle · function · L242-L242 — void on_select_nozzle(wxCommandEvent& evt);
+- on_select_plate_type · function · L243-L243 — void on_select_plate_type(wxCommandEvent& evt);
+- on_choose_ams · function · L245-L245 — void on_choose_ams(wxCommandEvent& event);
+- on_choose_ext_spool · function · L246-L246 — void on_choose_ext_spool(wxCommandEvent& event);
+- on_select_tray · function · L248-L248 — void on_select_tray(wxCommandEvent& event);
+- on_switch_ams · function · L250-L250 — void on_switch_ams(std::string ams_id = "");
+- on_recommend_input_value · function · L252-L252 — void on_recommend_input_value();
+- check_filament_compatible · function · L254-L254 — void check_filament_compatible();
+- is_filaments_compatiable · function · L255-L255 — bool is_filaments_compatiable(const std::map<int, Preset *>& prests);
+- is_filament_in_blacklist · function · L256-L256 — bool is_filament_in_blacklist(int tray_id, Preset* preset, std::string& error_tips);
+- is_filaments_compatiable · function · L257-L260 — bool is_filaments_compatiable(const std::map<int, Preset *> &prests,
+- get_nozzle_value · function · L262-L262 — float get_nozzle_value();
+- update_plate_type_collection · function · L264-L264 — void update_plate_type_collection(CalibrationMethod method);
+- update_combobox_filaments · function · L265-L265 — void update_combobox_filaments(MachineObject* obj);
+- update_show_status · function · L266-L266 — void update_show_status();
+- update_sync_button_status · function · L267-L267 — void update_sync_button_status();
+- is_nozzle_info_synced · function · L268-L268 — bool is_nozzle_info_synced() const;
+- show_status · function · L269-L269 — void show_status(CaliPresetPageStatus status);
+- Enable_Send_Button · function · L270-L270 — void Enable_Send_Button(bool enable);
+- is_blocking_printing · function · L271-L271 — bool is_blocking_printing();
+- need_check_sdcard · function · L272-L272 — bool need_check_sdcard(MachineObject* obj);
+- get_status · function · L274-L274 — CaliPresetPageStatus  get_status() { return m_page_status; }
+- update_multi_extruder_filament_combobox · function · L301-L301 — void update_multi_extruder_filament_combobox(const std::string &ams_id, int nozzle_id);
+- create_multi_extruder_filament_list_panel · function · L302-L302 — void create_multi_extruder_filament_list_panel(wxWindow *parent);
+- on_select_nozzle_volume_type · function · L303-L303 — void on_select_nozzle_volume_type(wxCommandEvent &evt, size_t extruder_id);
+- MaxVolumetricSpeedPresetPage · class · L358-L368 — class MaxVolumetricSpeedPresetPage : public CalibrationPresetPage
+- MaxVolumetricSpeedPresetPage · function · L361-L367 — MaxVolumetricSpeedPresetPage(wxWindow *     parent,
