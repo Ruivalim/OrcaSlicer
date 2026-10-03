@@ -1,0 +1,222 @@
+name: Sync upstream release
+
+# Detecta release estável novo do OrcaSlicer/OrcaSlicer e usa como marcador de
+# cadência: puxa o upstream/main daquele momento para o main deste fork via PR.
+# Se o merge for sem conflito e os checks do PR passarem, o PR é merged
+# automaticamente.
+#
+# O fork vive na linha de dev (upstream/main), então o conteúdo do sync é o main
+# do upstream, não a tag do release (a tag é da linha de release, mais antiga).
+#
+# Requer o secret UPSTREAM_SYNC_TOKEN (PAT clássico com escopo `repo`, ou
+# fine-grained com contents+pull requests+issues no fork). Sem ele, o PR abre
+# mas NÃO dá auto-merge: eventos `pull_request` disparados pelo GITHUB_TOKEN
+# não acionam os workflows de CI, então o gate "CI verde" seria vazio.
+
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag do release para sincronizar (vazio = último release estável)'
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: sync-upstream-release
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      UPSTREAM_REPO: OrcaSlicer/OrcaSlicer
+      GH_TOKEN: ${{ secrets.UPSTREAM_SYNC_TOKEN || secrets.GITHUB_TOKEN }}
+      IS_PAT: ${{ secrets.UPSTREAM_SYNC_TOKEN != '' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar git e autenticação
+        run: |
+          set -euo pipefail
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Escolher release a sincronizar
+        id: pick
+        env:
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          if [ -n "${INPUT_TAG:-}" ]; then
+            TAG="$INPUT_TAG"
+          else
+            TAG=$(gh api "repos/${UPSTREAM_REPO}/releases" --paginate \
+              --jq '[.[] | select(.draft == false and .prerelease == false and (.tag_name | startswith("v")))] | .[0].tag_name')
+          fi
+          if [ -z "$TAG" ] || [ "$TAG" = "null" ]; then
+            echo "::error::Nenhum release estável encontrado em ${UPSTREAM_REPO}"
+            exit 1
+          fi
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "Release alvo: ${TAG}"
+
+      - name: Buscar upstream
+        run: |
+          set -euo pipefail
+          git remote add upstream "https://github.com/${UPSTREAM_REPO}.git" 2>/dev/null || true
+          git fetch --force upstream main:refs/remotes/upstream/main
+          git fetch origin main
+          echo "upstream/main alvo: $(git rev-parse --short upstream/main)"
+
+      - name: Verificar se já está sincronizado
+        id: check
+        env:
+          TAG: ${{ steps.pick.outputs.tag }}
+        run: |
+          set -euo pipefail
+          if git merge-base --is-ancestor upstream/main origin/main; then
+            echo "upstream/main já está no main do fork. Nada a fazer."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          PRIOR=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "sync/${TAG}" --state all --json number --jq '.[0].number // empty')
+          if [ -n "$PRIOR" ]; then
+            echo "Sync do release ${TAG} já foi tratado (PR #${PRIOR}). Nada a fazer."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Merge do upstream/main
+        id: merge
+        if: steps.check.outputs.skip != 'true'
+        env:
+          TAG: ${{ steps.pick.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git switch -c "sync/${TAG}" origin/main
+          if git merge --no-ff --no-edit upstream/main; then
+            echo "conflict=false" >> "$GITHUB_OUTPUT"
+          else
+            git diff --name-only --diff-filter=U > conflicted-files.txt
+            git merge --abort || true
+            echo "conflict=true" >> "$GITHUB_OUTPUT"
+            echo "::warning::Merge de ${TAG} tem conflito. Ver issue criada."
+          fi
+
+      - name: Abrir issue de conflito
+        if: steps.merge.outputs.conflict == 'true'
+        env:
+          TAG: ${{ steps.pick.outputs.tag }}
+        run: |
+          set -euo pipefail
+          EXISTING=$(gh issue list --repo "$GITHUB_REPOSITORY" --state all --search "sync ${TAG}" \
+            --json number,title --jq '.[].title' | grep -F "Sync ${TAG}:" | head -1 || true)
+          if [ -n "$EXISTING" ]; then
+            echo "Issue já existe para ${TAG}."
+            exit 1
+          fi
+          FILES=$(sed 's/^/- /' conflicted-files.txt | head -50)
+          BODY=$(cat <<EOF
+          Merge do \`upstream/main\` (${UPSTREAM_REPO}) no \`main\` teve conflito. Marcador: release \`${TAG}\`.
+
+          Arquivos em conflito:
+          ${FILES}
+
+          Resolver manualmente:
+          \`\`\`
+          git fetch upstream && git switch main && git merge upstream/main
+          \`\`\`
+          EOF
+          )
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Sync ${TAG}: resolução manual necessária" \
+            --body "$BODY"
+          exit 1
+
+      - name: Abrir PR de sync
+        id: pr
+        if: steps.merge.outputs.conflict == 'false'
+        env:
+          TAG: ${{ steps.pick.outputs.tag }}
+        run: |
+          set -euo pipefail
+          git push -u origin "sync/${TAG}"
+          COMMITS=$(git log --oneline --no-decorate "origin/main..upstream/main" | head -50)
+          COUNT=$(git rev-list --count "origin/main..upstream/main")
+          BODY=$(cat <<EOF
+          Sincroniza \`main\` com o [${UPSTREAM_REPO}](https://github.com/${UPSTREAM_REPO}) no estado de \`upstream/main\` em $(git rev-parse --short upstream/main).
+
+          Marcador: release \`${TAG}\`. O conteúdo é o main do upstream (linha de dev), não a tag do release.
+
+          ${COUNT} commits desde o último sync:
+          \`\`\`
+          ${COMMITS}
+          \`\`\`
+
+          Os builds pesados (Build all / unit tests) rodam no pós-merge, no push para \`main\`.
+          EOF
+          )
+          gh pr create --repo "$GITHUB_REPOSITORY" --base main --head "sync/${TAG}" \
+            --title "chore: sync upstream main (release ${TAG})" \
+            --body "$BODY"
+          PR=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "sync/${TAG}" --state open --json number --jq '.[0].number')
+          echo "pr=${PR}" >> "$GITHUB_OUTPUT"
+          echo "PR #${PR} aberto."
+
+      - name: Avisar quando não há PAT
+        if: steps.pr.outputs.pr != '' && env.IS_PAT != 'true'
+        env:
+          PR: ${{ steps.pr.outputs.pr }}
+        run: |
+          set -euo pipefail
+          gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body "⚠️ Auto-merge desativado: o secret \`UPSTREAM_SYNC_TOKEN\` não está configurado, então este PR não disparou os workflows de CI. Configure o PAT para o gate de CI verde funcionar."
+          echo "::warning::PR aberto sem auto-merge (falta UPSTREAM_SYNC_TOKEN)."
+
+      - name: Aguardar checks do PR
+        if: steps.pr.outputs.pr != '' && env.IS_PAT == 'true'
+        env:
+          PR: ${{ steps.pr.outputs.pr }}
+        run: |
+          set -euo pipefail
+          set +e
+          gh pr checks "$PR" --repo "$GITHUB_REPOSITORY" --watch --interval 60
+          CODE=$?
+          set -e
+          if [ "$CODE" -eq 0 ]; then
+            echo "Checks verdes."
+          elif [ "$CODE" -eq 8 ]; then
+            echo "::warning::Nenhum check de CI registrado no PR. Seguindo para o merge (os builds rodam no pós-merge)."
+          else
+            gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body "❌ Checks do PR falharam. Auto-merge cancelado, resolver manualmente."
+            echo "::error::Checks do PR #${PR} falharam."
+            exit 1
+          fi
+
+      - name: Merge do PR
+        if: steps.pr.outputs.pr != '' && env.IS_PAT == 'true'
+        env:
+          PR: ${{ steps.pr.outputs.pr }}
+        run: |
+          set -euo pipefail
+          MERGEABLE=$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json mergeable --jq '.mergeable')
+          if [ "$MERGEABLE" != "MERGEABLE" ]; then
+            gh pr comment "$PR" --repo "$GITHUB_REPOSITORY" --body "⚠️ GitHub reporta PR como não mergeável (${MERGEABLE}). Resolver manualmente."
+            echo "::error::PR #${PR} não mergeável (${MERGEABLE})."
+            exit 1
+          fi
+          gh pr merge "$PR" --repo "$GITHUB_REPOSITORY" --merge --delete-branch
+          echo "PR #${PR} merged."
